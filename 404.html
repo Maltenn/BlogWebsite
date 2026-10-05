@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- you found the page about pages that don't exist. very meta of you. -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 — MALTEN.EXE</title>
+    <link rel="icon" href="pfp.png">
+    <link rel="stylesheet" href="styles.css">
+    <script src="desktop.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <div class="window" style="margin-top:40px;">
+            <div class="title-bar">
+                <div class="title-bar-text">⚠ 404 — page not found (it checked everywhere)</div>
+                <div class="title-bar-controls">
+                    <img src="Minimize.png" alt="Minimize">
+                    <img src="Fullscreen.png" alt="Maximize">
+                    <img src="Close.png" alt="Close">
+                </div>
+            </div>
+            <div class="window-body" style="text-align:center;">
+                <img src="assets/construction_banner.gif" alt="warning: under construction" style="max-width:100%;">
+                <h2 style="color:#4b2d83;">you found a page that doesn't exist yet.</h2>
+                <p>or ever will. probably.</p>
+                <img src="assets/under_repair_dog.gif" alt="a dog, working on it" height="120">
+                <p style="font-size:12px;">this dog has been assigned to the problem.<br>
+                he is doing his best. he is a dog.</p>
+                <img src="assets/construction_line.gif" alt="" class="bar-gif">
+                <p>
+                    <a href="index.html" class="btn98" style="text-decoration:none; display:inline-block;">🏠 take me home</a>
+                </p>
+                <p style="font-size:11px; color:#666;">auto-rescue in <span id="count">15</span> seconds…</p>
+                <p style="font-size:10px; color:#999;">error code: 404_NO_PAGE_ONLY_DOG</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        let n = 15;
+        setInterval(() => {
+            n--;
+            const el = document.getElementById('count');
+            if (el) el.textContent = n;
+            if (n <= 0) location.href = 'index.html';
+        }, 1000);
+    </script>
+</body>
+</html>
