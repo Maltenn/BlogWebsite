@@ -28,12 +28,7 @@ GIFs in assets/ and assets/posts/ are from the GeoCities archive via gifcities.o
 - `photo_vending.jpg` — File:Capri-Sun China headquarters (20220418131317).jpg — N509FZ — CC BY-SA 4.0 — https://commons.wikimedia.org/wiki/File:Capri-Sun_China_headquarters_(20220418131317).jpg
 - `photo_dvd.jpg` — File:Movie Collection (160201463).jpeg — 
 Isengardt — CC BY 3.0 — https://commons.wikimedia.org/wiki/File:Movie_Collection_(160201463).jpeg
-- `photo_lanparty.jpg` — File:LAN party in France in 2003.jpg — Syced — CC0 — https://commons.wikimedia.org/wiki/File:LAN_party_in_France_in_2003.jpg
-## Videos (Wikimedia Commons)
-- `skate_flip.webm` — Skateboarding at Mexico City - Flip - 070 — CC BY 4.0 — https://upload.wikimedia.org/wikipedia/commons/d/db/Skateboarding_at_Mexico_City_-_Flip_-_070.webm
-- `skate_flip2.webm` — Skateboarding at Mexico City - Flip - 080 — CC BY 4.0 — https://upload.wikimedia.org/wikipedia/commons/a/a0/Skateboarding_at_Mexico_City_-_Flip_-_080.webm
-- `zoetrope_horse.ogv` — Zoetrope at Amon Carter Museum 1 — Public domain — https://upload.wikimedia.org/wikipedia/commons/4/42/Zoetrope_at_Amon_Carter_Museum_1.ogv
-- `kitten.webm` — Calico kitten playing — CC BY-SA 4.0 — https://upload.wikimedia.org/wikipedia/commons/d/d2/Calico_kitten_playing.webm
+- `zoetrope_horse.webm` — VP8/Vorbis re-encode of Zoetrope at Amon Carter Museum 1 — Public domain — https://upload.wikimedia.org/wikipedia/commons/4/42/Zoetrope_at_Amon_Carter_Museum_1.ogv (the original .ogv was removed; Chromium no longer plays Theora)
 - `ufo_flir.webm` — FLIR1 Official UAP Footage (US Gov) — Public domain — https://upload.wikimedia.org/wikipedia/commons/7/70/FLIR1_Official_UAP_Footage_from_the_USG_for_Public_Release.webm
 - `posts/photo_kristengoth.jpg` — File:Kristengoth4.jpg — Ancienterf — CC BY-SA 3.0 — https://commons.wikimedia.org/wiki/File:Kristengoth4.jpg
 
@@ -49,9 +44,7 @@ Isengardt — CC BY 3.0 — https://commons.wikimedia.org/wiki/File:Movie_Collec
 ## October 2026 additions
 
 ### Videos
-- `video/zoetrope_horse.webm` — VP8/Vorbis re-encode (ffmpeg) of `zoetrope_horse.ogv` above (Zoetrope at Amon Carter Museum 1, public domain); Chromium no longer plays Theora.
 - `video/zoetrope_horse.jpg`, `video/ufo_flir.jpg` — poster frames taken from the two clips above.
-- `video/skate_flip.webm`, `video/skate_flip2.webm`, `video/kitten.webm`, `video/zoetrope_horse.ogv` — no longer referenced by the site (kept on disk; safe to delete together with their lines above).
 
 ### Profile pictures, post GIFs and decor for the 54 new residents + 4 replaced avatars
 All from GifCities (the Internet Archive's GeoCities GIF collection, https://gifcities.org) unless noted.
