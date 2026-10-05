@@ -1,0 +1,157 @@
+{
+ "id": "kayla",
+ "name": "xoxKaylaxox",
+ "tag": "if my status is a song its about u. u know who u are",
+ "avatar": "assets/avatar_kayla.gif",
+ "gender": "Female",
+ "age": 17,
+ "hometown": "Plano, Texas",
+ "loc": "Plano, Texas",
+ "zodiac": "Scorpio",
+ "status": "In a Relationship",
+ "hereFor": "Friends",
+ "mood": "in love?? </3 <3",
+ "lastLogin": "Sep 5 2026 12:04 AM",
+ "theme": {
+  "bg": "#000000",
+  "fg": "#ffd6f2",
+  "accent": "#ff00d3"
+ },
+ "bgTile": "assets/tiles/tile_hearts.png",
+ "blogTitle": "every song i put on my profile this month and what it meant (bryan read this)",
+ "about": "kayla. 17. in a relationship (as of 4pm, check back). my best friend is brittany n if ur not nice to her ur not nice to me, thats just how it works. i talk in lyrics bc its easier than talking. if my status is a song its about u. u know who u are. xox",
+ "meet": "Who I'd like to meet: hayley williams so she can explain to bryan what a text message is. and whoever invented 'its complicated' so i can ask him if its supposed to hurt this much lol",
+ "interests": {
+  "General": "bryan (sometimes), brittany (always), warped tour, my pink razr, glitter eyeliner, changing my profile song at 2am, cherry limeades, the mall, quizzes about what ur top 8 says about u",
+  "Music": "paramore, hawthorne heights, taking back sunday, dashboard confessional, the academy is..., fall out boy, the starting line, cartel, static prophecy (ur welcome bryan), kelly clarkson when nobodys looking",
+  "Movies": "the notebook, mean girls, a walk to remember, 13 going on 30, garden state, sleepover, anything w/ mandy moore",
+  "Television": "laguna beach, the oc, one tree hill, degrassi (jimmy n ashley 4ever), gilmore girls, trl",
+  "Books": "the sisterhood of the traveling pants, speak, the gossip girl books, twilight (tina made me n now im mad about it), cosmo girl quizzes count",
+  "Heroes": "brittany, hayley williams, my older sister who has a car, lauren from laguna beach (NOT kristin), whoever invented the away message"
+ },
+ "song": {
+  "name": "Emergency",
+  "artist": "Paramore",
+  "pattern": [
+   0,
+   4,
+   7,
+   4,
+   0,
+   4,
+   7,
+   12
+  ],
+  "bpm": 120
+ },
+ "decor": [
+  "assets/deco_hearts_bar.gif",
+  "assets/deco_sparkle_bunny.gif",
+  "assets/deco_email_roses.gif"
+ ],
+ "friends": [
+  "brittany",
+  "bryan",
+  "paige",
+  "lexi",
+  "tina",
+  "josh",
+  "starxgazer",
+  "greg"
+ ],
+ "wall": [
+  {
+   "from": "brittany",
+   "text": "kayla ur back at #1 where u BELONG. bryan can have #2 when he learns to text back. mall sat, wear the pink one, we are getting limeades n NOT checking his page. xoxo",
+   "time": "Sep 4 2026 7:33 PM"
+  },
+  {
+   "from": "bryan",
+   "text": "hey. sorry. phone died. also i saw ur status. can we talk. like on aim. tonight. im on. i think im on",
+   "time": "Sep 3 2026 11:49 PM"
+  },
+  {
+   "from": "paige",
+   "text": "just so u know i have u and bryan sharing a milkshake at 9:40 last nite w/ the 'single' status still up on ur page. no judgment. album goes up thursday",
+   "time": "Sep 1 2026 10:18 PM"
+  },
+  {
+   "from": "starxgazer",
+   "text": "kayla. scorpio. bryan. pisces. water sign + water sign = ocean drama. its not u, its mercury retrograde. (its also a little bit bryan)",
+   "time": "Aug 28 2026 8:56 PM"
+  }
+ ],
+ "replies": [
+  "omg ily. xox",
+  "dont even get me started. srsly. dont",
+  "thats literally the chorus of my life rite now",
+  "lol me too. wait what r we talking about",
+  "ok thats cute. ur cute. commented ur pics xox"
+ ],
+ "thanksAdd": "thanks 4 the add xox!! ur pics r cute, commented 2 of them. if u see my status change like 4 times today dont worry about it, its bryan. its always bryan. xoxKaylaxox",
+ "ambient": [
+  "changed my profile song 3 times today. brittany says thats a cry for help. its a cry for bryan to CHECK HIS PHONE",
+  "brittany n i made a rule: no status changes after 11pm. i broke it at 11:04. she broke it at 11:06",
+  "if ur relationship status is 'its complicated' for more than 2 weeks does it just become ur personality. asking for me",
+  "bryan texted back!!! it said 'k'. we r single again"
+ ],
+ "saltyDm": "ok so SOMEBODY commented bryans pic 'ur cute :]' and i just wanna say im not mad. im not. i put her at #7 in my top 8 which is where u put people ur not mad at. #8 is todd. she is one slot above todd. thats all. xox",
+ "keywords": {
+  "bryan": "which bryan. mine? the one who reads texts n doesnt answer them? we're together rn. wait let me check my page. yea we're together. ask again in an hour",
+  "status": "its complicated. the status AND the situation. ask brittany she has a whole chart w/ dates on it"
+ },
+ "banter": {
+  "bryan": [
+   "bryan ur status still says single. mine says in a relationship. one of us is wrong n it isnt the one w/ the pink razr",
+   "ur drumming friday was so good i forgot i was mad at u. i remembered in the car. text me"
+  ],
+  "brittany": [
+   "brit ur #1 forever. bryan is a boy. boys are temporary. ur PERMANENT xox",
+   "we r wearing matching pink to gregs garage fri n we are going to STAND in front of the drums. no reason. xox"
+  ],
+  "paige": [
+   "paige can u NOT post the milkshake pic until we're back together. give it like 2 days. maybe 3",
+   "ur pics of me r seriously the only ones where i look ok crying. ur a genius. also delete that one"
+  ],
+  "lexi": [
+   "lexi us being on-off in the same WEEK is hilarious n also i need to talk to u about it for 3 hours. aim?",
+   "ok new rule 4 both of us: we dont change our status til the other one says its ok. deal? (i already broke it) (sorry)"
+  ],
+  "josh": [
+   "josh i did talk to him. out loud. with mouths. it went bad. now what",
+   "ur so nice it actually makes me mad sometimes lol. thanks 4 the aim last nite tho. dont tell brit i cried"
+  ]
+ },
+ "statuses": [
+  "kayla is in a relationship (for now) <3",
+  "kayla is ~*~ maybe u shouldve called before u changed ur mind ~*~ (voltage heart, static prophecy, ur welcome bryan)",
+  "kayla is single. dont ask. actually ask bryan",
+  "kayla is listening to 'ohio is for lovers' for the 40th time and it is NOT about ohio",
+  "kayla is ~ u say nothing loud enough 4 me to hear it thru a phone ~ (i wrote that one myself. its about u)"
+ ],
+ "bulletins": [
+  {
+   "subject": "SURVEY: 20 things about ur top 2 (stolen from brittany)",
+   "body": "1. who is #1? brittany 2. who is #2? bryan (as of 4pm) 3. have u ever kissed #2? yes lol 4. do u trust #1? with my LIFE 5. would #2 text u back if it was an emergency? ...next question 6. has #1 ever made u cry? no 7. has #2? next question 8. would u die 4 #1? yes 9. would u die 4 #2? i mean 10. whos not in ur top but should be? todd, he never changed his status on me 11-20. idk im tired. repost n put ur own. xox",
+   "time": "Aug 27 2026 11:32 PM"
+  },
+  {
+   "subject": "to whoever is 'concerned' about my status lol",
+   "body": "ok i see the comments. yes it changed. yes it changed back. yes it might change again. its called being 17 n dating a drummer. im FINE. brittany is with me, we have cherry limeades, we are watching the notebook and NOT checking his page. (we checked once.) if ur name is bryan n ur reading this: k. xoxKaylaxox",
+   "time": "Sep 1 2026 8:19 PM"
+  }
+ ],
+ "pcComments": [
+  "omg ur so pretty in this. commented all of them xox",
+  "this is SO cute. is this from gregs?? i was crying like 10 ft to ur left",
+  "pc4pc? i did like 6 of urs already lol",
+  "ur hair!! how. HOW. tell me",
+  "aw this is the cutest pic of u two. (are u guys still together? jk. kinda not jk)"
+ ],
+ "dmSeed": [
+  {
+   "text": "hey malten! xox brittany said ur cool so ur cool. fair warning my status might change like twice while u read this. its bryan. not important. welcome to ourspace!! comment my pics? xox",
+   "time": "Aug 26 2026 9:14 PM"
+  }
+ ]
+}

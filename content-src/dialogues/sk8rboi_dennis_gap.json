@@ -1,0 +1,240 @@
+{
+  "id": "sk8rboi_dennis_gap",
+  "with": "sk8rboi",
+  "opener": [
+    "yo. u there. i need a ruling on a plan n i need it b4 saturday noon",
+    "ok so u know henry. 13, wheels in his heels, banned from 3 stores. dennis (mall security) just banned him from the whole food court 4 'wheels.' bro he was WALKING. fast. but walking",
+    "henry says hes rolling a full lap thru the food court saturday at noon right in front of dennis w/ me filming on dads camcorder. i said id think abt it. i thought abt it 4 two days. ur the tiebreaker"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "what does henry actually want, mike? the lap, or something under the lap?", "next": "a_want" },
+        { "say": "what's your theory on dennis? you always have one.", "next": "b_dennis" },
+        { "say": "film it. history needs a cameraman. bring both batteries.", "next": "c_film" }
+      ]
+    },
+
+    "a_want": {
+      "them": [
+        "huh. under the lap. ...he wants 2 walk in the front door. thats it. the pretzel lady keeps waving him round the back by the dumpsters n slipping him a pretzel like its a secret handshake",
+        "he told me at the dock n then said 'but also the lap will be sik' like he was embarrassed he said the real thing"
+      ],
+      "choices": [
+        { "say": "then the lap is just how he's asking. what's the best way to actually get him in that door?", "next": "plans" },
+        { "say": "that kid's a better person than most guys who get banned for fun. protect that.", "next": "plans" }
+      ]
+    },
+
+    "b_dennis": {
+      "them": [
+        "ok so. my theory. dennis stands by the gap like it owes him money. i seen him look at a curb 4 40 seconds. he walks on the balls of his feet like a guy who used 2 b on a board n never forgave the ground",
+        "i got a spare deck in my room w/ normal wheels n a crack in the nose. i was gonna bring it 2 him as a peace offering. but what if hes just a guy who lost a board n i show up w/ one n he feels judged. what if its the meanest nice thing ive ever done"
+      ],
+      "choices": [
+        { "say": "bringing a guy a deck is the opposite of mean. that's called a peace offering.", "next": "plans" },
+        { "say": "you're psychoanalyzing a security guard from a loading dock. i respect it. continue.", "next": "plans" }
+      ]
+    },
+
+    "c_film": {
+      "them": [
+        "BRO. ok. ok ok ok. i got 2 batteries n a fresh hi8. henry on the escalator rail, dennis's face when he sees the wheels... 240p masterpiece",
+        "but hold on. if dennis sees the camcorder he'll know its me. i skate the loading dock. the loading dock is MY dock. i can survive banned from the mall but not banned from the dock. is one lap worth the dock"
+      ],
+      "choices": [
+        { "say": "depends. is there a way to get henry in the front door without risking either of you?", "next": "plans" },
+        { "say": "ask the real question: would henry rather be famous or be allowed in?", "next": "plans" }
+      ]
+    },
+
+    "plans": {
+      "them": [
+        "ok so i got 3 ideas n they all make my stomach do the thing it does b4 a rail",
+        "1) i go talk 2 dennis. alone. w/ the spare deck. man 2 man. 2) walt. grandpa walt writes the best letters on this whole site. we write the mall office a REAL letter w/ a stamp. 3) the 'we r all henry' thing: 4 of us walk in no wheels in a line, each w/ a pretzel. nobody can ban a line of guys walking",
+        "pick 1. ill do whatever u say. thats a lie. ill do whatever u say if its sik"
+      ],
+      "effects": [
+        { "type": "status", "text": "sk8rboi_mike has 3 plans and zero sleep. consulting a professional. (the professional knows who he is) (dont tell derek i asked 4 help)" }
+      ],
+      "choices": [
+        { "say": "talk to dennis. alone. he's a person, not a wall.", "next": "dennis_prep" },
+        { "say": "the letter. walt writes like a man who has seen things.", "next": "letter_walt" },
+        { "say": "'we are all henry.' a line of four guys, walking. that's a protest he can't ban.", "next": "protest_plan" }
+      ]
+    },
+
+    "dennis_prep": {
+      "them": [
+        "ok. im in the lot behind the mall w/ the deck in a gym bag. dennis is at the food court door doing the thing where he stands w/ his hands behind his back like a butler",
+        "my mouth is dry. 'hi sir im mike' feels weak. 'i come in peace' feels like a movie. what do i open w/"
+      ],
+      "effects": [
+        { "type": "status", "from": "henry", "text": "henry is by the back door of the pretzel place in normal shoes, not rolling. mike said 'dont roll.' henry is not rolling. henry is vibrating." }
+      ],
+      "choices": [
+        { "say": "tell him the true thing. 'sir, i think you used to skate. i brought you a board.'", "next": "dennis_door" },
+        { "say": "keep it simple. 'sir, im mike. i skate. i brought you something.'", "next": "dennis_door" }
+      ]
+    },
+
+    "dennis_door": {
+      "them": [
+        "he looked at the bag 4 like 6 seconds. then at me. then the bag. he said 'whats in the bag.' i said a skateboard. he said 'is it stolen.' i said no sir its mine. he said 'then why is it in a bag'",
+        "i didnt know. i said 'its 4 u.' he didnt say anything. he unzipped it a little n looked at the crack in the nose n his whole face did something. now hes just standing there holding my deck"
+      ],
+      "choices": [
+        { "say": "tell him why. the real why. 'you stand by that gap like you miss something.'", "next": "dennis_shoe" },
+        { "say": "say it straight: 'it's a friendly bribe, sir. let henry in the front door.'", "next": "dennis_cold" }
+      ]
+    },
+
+    "dennis_cold": {
+      "them": [
+        "he handed the deck back. he said 'i cant take that, son. policy.' too fast. like he rehearsed it in a mirror. then 'tell the kid im not mad at him. the wheels r mall insurance. i dont make the rules i enforce them'",
+        "then he walked away. he looked back at the deck 3 times. bro. i said BRIBE. i said the word bribe 2 a security guard. i didnt do it right. henry's gonna do the lap anyway. i know henry"
+      ],
+      "effects": [
+        { "type": "status", "text": "sk8rboi_mike is standing in a parking lot holding a skateboard like a sad person holding a very flat dog. 'bribe' was the wrong word. noted. lesson 342." }
+      ],
+      "choices": [
+        { "say": "go back tomorrow with the true word. he looked at that deck three times. that's a guy who wants to say yes.", "next": "dennis_shoe" },
+        { "say": "then be there saturday. don't film it, don't stop him. just stand next to him.", "next": "lap_day" }
+      ]
+    },
+
+    "dennis_shoe": {
+      "them": [
+        "he said 'wait here.' went in the booth. came back w/ a plastic bag. bro. in the bag was MY SHOE. the left one. the one i lost at the gap in march. size 10, the laces still tied in the weird knot i do",
+        "he said 'lost n found 7 months. nobody claims a single shoe. i figured whoever lost it was either rich or embarrassed.' then he said 'i skated this lot b4 it was a mall. i lost a board down that gap once. a board just goes. a shoe stays.'",
+        "i dont know what to say. my eyes r doing the dust thing"
+      ],
+      "choices": [
+        { "say": "thank him. then be quiet and let him keep talking. he's been holding that a while.", "next": "end_dennis" },
+        { "say": "tell him henry isn't trouble. he's dennis at thirteen.", "next": "end_dennis" },
+        { "say": "put the shoe on right there. some things deserve a ceremony.", "next": "end_dennis" }
+      ]
+    },
+
+    "letter_walt": {
+      "them": [
+        "ok i dm'd walt. he replied in 4 min w/ 'Dear Michael,' n bro i never told him my name was michael. he said hed be honored. he said 'the mall office will answer a stamp before a shout.'",
+        "he wrote the whole thing in like 10 min. 'A young man with wheels in his shoes is a young man with somewhere to go.' i got chills. but he also wrote 'wheels removed or carried' n henry will say thats surrender"
+      ],
+      "choices": [
+        { "say": "show henry the letter. let him sign it himself. it's his door.", "next": "letter_sent" },
+        { "say": "ask walt to add one line in henry's own words. a letter needs a voice.", "next": "letter_sent" }
+      ]
+    },
+
+    "letter_sent": {
+      "them": [
+        "henry signed it. 'Henry (13)' n then crossed out the (13) n wrote it back in bc 'they should know.' he walked it 2 the mailbox himself. he took the heelys OFF 2 do it. i didnt ask. he said 'dennis can see the mailbox from the lot. i want him 2 see i can walk'",
+        "walt ALSO posted the letter on henrys wall bc he thinks the wall is the mail. 'the mall will receive it in due course.' the mall is not on ourspace. but its the most formal wall post in history",
+        "office says 10 business days. henry says he cant wait that long. he says the lap is still happening saturday"
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "walt", "to": "henry", "text": "Dear Henry, I have forwarded your correspondence to the management of the mall, in the care of your wall. It reads, in part: a young man with wheels in his shoes is a young man with somewhere to go. I could not improve upon it, and I tried twice. The mall will receive it in due course. Regards, Walt" }
+      ],
+      "choices": [
+        { "say": "ask him to wait the ten days. the letter deserves its chance.", "next": "end_letter" },
+        { "say": "then go saturday. a letter and a lap work better together.", "next": "lap_day" }
+      ]
+    },
+
+    "protest_plan": {
+      "them": [
+        "ok the line. i got derek (he said yes b4 i finished the sentence, he thinks its a contest) n tj (he wants a new column on his tally sheet). so its me henry derek tj. 4",
+        "how do we do it. cuz if dennis sees 4 guys walking in he might think its a joke. or a threat. or a joke thats a threat"
+      ],
+      "effects": [
+        { "type": "status", "from": "tj", "text": "ninja_tj has added a column to the tally. the column is called WALKING. pirates: 0. ninjas: 0. walking: 4 (projected). this is a third thing. he has never been so ready." }
+      ],
+      "choices": [
+        { "say": "silent line. pretzels. don't explain it. let the line do the talking.", "next": "protest_day" },
+        { "say": "bring a sign: 'WE ARE ALL HENRY.' a protest needs words.", "next": "protest_day" },
+        { "say": "tell the pretzel lady first. she's the only one in that building on your side.", "next": "protest_day" }
+      ]
+    },
+
+    "protest_day": {
+      "them": [
+        "bro. 12:01. 4 in a line 20 ft inside the doors. derek, tj, henry (heelys NOT rolling), me w/ camcorder. dennis is looking at us. we r walking. feet on the ground. dennis has no rule 4 this. his mouth is open a little",
+        "derek just did a heel drag out of habit. tj is doing a ninja walk. henry is smiling so hard its a different face. dennis is walking toward us. whats the move"
+      ],
+      "choices": [
+        { "say": "keep walking. you've got a rule he doesn't.", "next": "end_protest" },
+        { "say": "stop. say 'sir' like henry does. you made your point.", "next": "dennis_shoe" }
+      ]
+    },
+
+    "lap_day": {
+      "them": [
+        "ok its saturday. 11:58. henry's at the doors. wheels down. dennis isnt at his post. the post is EMPTY. henry looks at me like 'is this real'",
+        "i got the camcorder around my neck. the lap is happening in 40 seconds. what do i do"
+      ],
+      "choices": [
+        { "say": "press record and walk beside him. if it's a lap, it gets a witness.", "next": "end_lap" },
+        { "say": "leave the camera on your chest. walk next to him. some laps are for the people in them.", "next": "end_lap" }
+      ]
+    },
+
+    "end_dennis": {
+      "them": [
+        "he said henry can come in the front door. wheels away till he's through, n 'one lap on saturdays w/ a foot down. i dont see a rule against a lap w/ a foot down.' bro he wasnt joking. i think",
+        "i put the shoe on. it fits. it still smells like the gap. dennis said 'son' n i said 'sir' n he LAUGHED. a real one. i didnt know he had it",
+        "i gotta go tell henry. dads camcorder was off the whole time but this 1 i dont need on tape"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "sk8rboi_mike got his shoe back. 7 months in the lost n found, laces still in the knot. also made a friend. also henry can walk in the front door now. im not crying its the dust off the mall" },
+        { "type": "status", "from": "henry", "delay": 30, "text": "henry walked in the FRONT door of the food court. feet on the ground. dennis said 'son.' i said 'sir.' we shook hands. the carpet is different from the back. i dont know what is happening but i like it" },
+        { "type": "wallpost", "from": "derek", "to": "sk8rboi", "delay": 90, "text": "mike i heard u made peace w/ a security guard. thats the least skate thing ive ever heard of. proud of u. (my gap was still bigger.)" },
+        { "type": "wallpost", "from": "holly", "to": "sk8rboi", "delay": 160, "text": "mike. a security guard just bought a skate tee at my register. a medium. 'for a friend,' he said. i asked him to name 3 songs on it. he got 2, then said 'the third one is off an old tape of mine.' i gave him the discount. i don't discuss the discount. -holly" }
+      ]
+    },
+
+    "end_protest": {
+      "them": [
+        "he looked at the 4 of us. he looked at the line. he said 'ALL FOUR. OUT.' in a voice like a door. we walked out IN the line. we did not break it. greatest thing ive ever filmed",
+        "the pretzel lady gave us all a free one on the way out. derek is banned from the WHOLE mall bc of the heel drag. henry says its the best day of his life. dad watched the tape twice n said 'again.' i said 'again'"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "sk8rboi_mike was banned from the food court at 12:14 PM. best 4 minutes of footage ive ever shot (240p). the pretzel lady gave us all one on the way out. dad watched it twice n said 'again.'" },
+        { "type": "status", "from": "derek", "delay": 40, "text": "sk8_or_die_derek is banned from the ENTIRE MALL. not a store. THE MALL. dennis read us out in alphabetical order. i was first. my gap was bigger." },
+        { "type": "wallpost", "from": "tj", "to": "sk8rboi", "delay": 100, "text": "mike. the protest was neither pirates nor ninjas. it was a third thing. i have formally closed the tally. final count: walking 4. the column called 'walking' won." },
+        { "type": "wallpost", "from": "henry", "to": "sk8rboi", "delay": 160, "text": "MIKE. we r a MOVEMENT. dennis said 'ALL FOUR OF U. OUT.' my mom thinks the shoes r 'athletic.' she doesnt know about the movement. banned from 4 places now. a personal best" }
+      ]
+    },
+
+    "end_lap": {
+      "them": [
+        "we did the lap. 41 min, no foot down, henry w/ his arms out like a plane. dennis wasnt there. nobody stopped us. the post stayed empty the whole time",
+        "n the camcorder said BATT at the doors n died. dad took the good battery 2 work. so the best lap of henrys life doesnt exist. i just stood there holding a dead camcorder. u ever land something w/ no1 watching",
+        "henry said 'does it still count.' i said it counts. i said 'again.' i got that from my dad. we r going again next saturday. battery: charged. (a different battery)"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "sk8rboi_mike held a dead camcorder through the best 41 minutes of someone elses life. 'again.' next saturday. batteries: 2 (charged) (checked) (i checked twice)" },
+        { "type": "status", "from": "henry", "delay": 30, "text": "henry did a full lap of the mall. no foot down. 41 minutes (tied his own record). dennis wasnt on shift. nobody stopped me. mikes camcorder died. does it count. mike says it counts. mike says 'again.'" },
+        { "type": "wallpost", "from": "paige", "to": "henry", "delay": 75, "text": "henry. i was outside the pretzel place the whole time. i have pics. the first 4 are tilted on purpose. the lap happened. pics or it didnt happen: it happened. contact sheet on my page tonight." },
+        { "type": "status", "from": "holly", "delay": 130, "text": "holly is at register 2. a boy just did a lap past the window w/ his arms out like an airplane. no security in sight. she saw nothing. she saw an airplane." }
+      ]
+    },
+
+    "end_letter": {
+      "them": [
+        "henry agreed 2 wait. he said 'ten business days' like it was a prison sentence. he put the heelys in his bag n we walked home. WALKED. the whole way. henry has never walked home",
+        "dennis was at the lot door when we passed. he looked at the letter in henrys hand n at the mailbox n nodded. just a nod. walt says the mall 'will receive it in due course.' i think dennis already did"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "sk8rboi_mike is proud of a 13 yr old who waited. 'again' took me 8 months 2 learn. henry took 3 days. (dana took 4 seconds)" },
+        { "type": "status", "from": "henry", "delay": 30, "text": "henry mailed a letter 2 the mall w/ a real stamp. then walked home. WALKED. wheels in his bag. dennis nodded at me from the lot. 10 business days. i have never waited 4 anything. i am learning. i hate it. (i dont hate it)" },
+        { "type": "wallpost", "from": "walt", "to": "henry", "delay": 90, "text": "Dear Henry, Michael tells me you walked home. A boy who carries something he loves in his bag is a boy who understands patience, which most men learn at sixty. I look forward to the reply. In due course. Regards, Walt" },
+        { "type": "dm", "from": "henry", "delay": 200, "text": "mike says u were the one who said wait. i was gonna be mad. dennis just walked past me by the pretzel place n didnt say anything. he nodded at my shoes n then at my hands. i think the letter is working. i dont know how. walt is a wizard." }
+      ]
+    }
+  }
+}

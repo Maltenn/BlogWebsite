@@ -1,0 +1,218 @@
+{
+ "id": "doug",
+ "name": "dialup_doug",
+ "tag": "still on 56k. this headline took 40 seconds to save. if i vanish mid sentence its my mo",
+ "avatar": "assets/avatar_doug.gif",
+ "gender": "Male",
+ "age": 16,
+ "hometown": "Athens, Wisconsin (pop. 1,095)",
+ "loc": "county road F, 4 miles past where the cable stops",
+ "zodiac": "Cancer (i think. the horoscope page never finishes loa",
+ "status": "Single (connecting...)",
+ "hereFor": "Friends, whatever loads",
+ "mood": "buffering",
+ "lastLogin": "Oct 3 2026 7:28 PM",
+ "theme": {
+  "bg": "#c0c0c0",
+  "fg": "#000000",
+  "accent": "#0000cc"
+ },
+ "blogTitle": "typed offline in notepad, pasted when the line is free",
+ "about": "hi im doug. i have dial-up. it says 56k on the box but its 26.4 on a good night because we live 4 miles past where the cable stops. every glitter gif on this site costs me about a minute. every profile song costs me 9. so when i tell you i looked at your page, understand that i LOOKED at your page. i read your whole about me while the pictures came in one stripe at a time. the internet line is also the house phone, and my mom calls my aunt carol every night at 7:30, so if i stop in the middle of a sentence it isnt rude, its just 7:30. i type everything in notepad first so its ready to paste. the cable company says we get broadband next spring. they have said next spring for 3 springs.",
+ "aboutMore": "things i can do while a page loads: make a sandwich. feed the barn cats. do my algebra. watch one stripe of brittanys default picture arrive (its her forehead. it has been her forehead since tuesday). on saturdays i bike 6 miles to the library, which has a fast line and a one hour limit, and i bring a list. half the list is things other people asked me to look up. i can also do the entire modem connecting sound with my mouth. 22 seconds. third place at the 4-H talent show.",
+ "meet": "Who I'd like to meet: whoever at the cable company keeps saying next spring. the person who invented the progress bar, to ask if they know it lies. a glitter gif under 20k. and everybody on here, in person, because i have honestly never seen most of your pictures finish loa",
+ "interests": {
+  "General": "waiting, notepad, knowing file sizes by heart, turning images off, the library on saturdays (computer 3, by the window), biking, barn cats, 4-H, reading the whole page, call waiting (enemy), aunt carol (not an enemy. but)",
+  "Music": "the first 40 seconds of a lot of songs. madonna - hung up (i have heard up to the first chorus. it seems good), the modem sound (i can sing it), whatever larry burns me (its never what the cd says), the radio in the barn (country and one polka hour)",
+  "Movies": "anything that comes on a tape or a disc. napoleon dynamite, october sky, the sandlot, holes. i have never watched a video on the internet all the way through. i saw 11 seconds of a cat once. it was really good",
+  "Television": "we get 4 channels and one is in french. jeopardy, the red green show, packers games, whatever is on while mom is on the phone",
+  "Books": "hatchet (hes patient. i get it), where the red fern grows, the troubleshooting booklet that came with the modem, your about me sections (all of them. cover to cover)",
+  "Heroes": "my mom (shes on her feet all day at the diner, the phone is her one thing, i can wait), the saturday librarian, larry (mails me the internet on cds), lars (showed me the text browser), anybody who makes a website under 100k"
+ },
+ "song": {
+  "name": "Hung Up",
+  "artist": "Madonna",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/65/45/c3/6545c319-f578-6e0a-ab1d-f7ea3089f297/mzaf_15842461037347473100.plus.aac.p.m4a",
+  "pattern": [0, 2, 3, 7, 3, 2, 0, 7],
+  "bpm": 125
+ },
+ "decor": [
+  "assets/badge_aol-sucks.gif",
+  "assets/badge_netscape.gif"
+ ],
+ "friends": ["liz", "meg", "nikki", "angela", "larry", "lars", "marcus", "fred", "kyle"],
+ "wall": [
+  {
+   "from": "liz",
+   "text": "doug. i made u a lite version of my layout. no images, 4 lines of css, loads in 6 seconds. it physically hurt me. its the ugliest thing ive ever coded n its only 4 u. credit me anyway.",
+   "time": "Oct 1 2026 1:12 AM"
+  },
+  {
+   "from": "meg",
+   "text": "DOUG!! i drew u as a horse!! ur a clydesdale bc they r patient and strong!! the file is kinda big bc of the sparkles (2 megs) but i believe in u!! start loading it now and it will be there by breakfast!!",
+   "time": "Sep 28 2026 5:30 PM"
+  },
+  {
+   "from": "nikki",
+   "text": "doug i made you a nightcore remix of the dial-up noise. it's the same sound but in 9 seconds instead of 22. it will take you 9 minutes to download, which honestly is kind of poetic. UNTZ UNTZ (in 56k)",
+   "time": "Sep 25 2026 9:47 PM"
+  },
+  {
+   "from": "angela",
+   "text": "~*~ Doug! ~*~ According to my hit counter you have visited my site SIX times and signed my guestbook ZERO times! The guestbook is at the very bottom of the page, just after the rippling lake! I know it takes a moment to load but it is WORTH it! Good things come to those who wait! ~ Angela, Webmistress",
+   "time": "Sep 21 2026 4:36 PM"
+  },
+  {
+   "from": "larry",
+   "text": "doug ur october cd is in the mail!! this one has megs horse drawings, 3 of nicks cartoons and a song that says its madonna. it isnt. its a guy selling a boat. but hes really in2 it",
+   "time": "Sep 18 2026 10:58 PM"
+  },
+  {
+   "from": "marcus",
+   "text": "Doug. Re: Rule 3c (the Doug Clause). You have now used it 31 times this month. The clause stands. I am simply noting the number. -- Marcus, Moderator (unofficial)",
+   "time": "Sep 14 2026 8:20 AM"
+  },
+  {
+   "from": "fred",
+   "text": "Doug, back on Friendster every page took forty seconds to load, and we sat there and we waited, and we were grateful. You would have done well there. You may be the only person on this site with any discipline.",
+   "time": "Sep 7 2026 12:34 PM"
+  },
+  {
+   "from": "kyle",
+   "text": "doug do u know any cheat codes 4 making the internet faster. also r u really on dial up thats what my grandma has lol. ok i g2g my mom is coming up the stai",
+   "time": "Aug 29 2026 8:59 PM"
+  }
+ ],
+ "replies": [
+  "sorry, just got this. it was sent 3 days ago. thats pretty fast for me",
+  "good comment. i read it twice while the rest of the page loaded",
+  "hold on i think my mom is about to pick up the ph",
+  "ok im back. it was aunt carol. it is always aunt carol",
+  "how big is it. in kilobytes. i need to know before i click",
+  "i typed a really good reply to this in notepad and then the line dropped. this is the short version",
+  "ha. that took 40 seconds to load and it was worth all 40",
+  "cant see the picture yet but im sure its great. ill know by thursday",
+  "thats the nicest thing anyone has said to me this connection",
+  "if this cuts off just assume the rest was really fun and that i"
+ ],
+ "thanksAdd": "thanks for the add. sorry it took 2 days, the accept button was at the bottom of a page with a lot of glitter on it. i read your whole profile while i waited. all of it. i know things about you now. good things. ok its 7:29 and my mom is giving me the look, talk so",
+ "ambient": [
+  "its 7:26. i have 4 minutes. i am going to load exactly one page and i am going to choose wisely",
+  "the cable company called. broadband is coming to our road next spring. the guy laughed a little when he said it. i think he remembers me",
+  "megs new pony drawing just finished loading. i started it at breakfast. its beautiful. the mane has stars in it. worth the whole day",
+  "biked to the library. computer 3. one hour. looked at 212 pages. my eyes hurt and i have never been happier",
+  "connected at 31.2 tonight. thats a personal record. i ran upstairs to tell somebody and everybody was asl",
+  "ok so i finally figured out what all the bulletins this week were about and its actually really simple, the whole thing started when"
+ ],
+ "saltyDm": "ok so i see the request got denied. or the page didnt finish loading and its actually a yes and i only got the top half. im going to believe that one. dont tell me. its nicer this way. anyway if you change your mind im here. just slow",
+ "keywords": {
+  "dial": "56k on the box. 26.4 in real life. it makes a sound like a robot falling down the stairs for 22 seconds and then im in. i can do the sound with my mouth. third place at 4-H",
+  "slow": "people say slow like its bad. i have read every word on every profile on this site because the words come first. you all skip to the pictures. i know your books section",
+  "mom": "shes great. she works the breakfast shift at the diner and the phone with aunt carol at 7:30 is her one thing. i get the internet the other 23 hours. well. 15. i sleep",
+  "phone": "we have call waiting and it kicks me off every time. that little beep is the sound of my evening leaving. it is always aunt carol",
+  "library": "saturdays. 6 miles each way. computer 3 by the window. one hour limit. i bring a list. last week the list was 40 things and 22 were for other people",
+  "picture": "i havent seen it yet. i keep pictures turned off most days. i know what everyone on here looks like from how they type. you seem tall"
+ },
+ "banter": {
+  "liz": [
+   "liz your layout is 340 lines and 14 pictures and it takes me 11 minutes and i want you to know i wait all 11 every time. the scrolling box at the end is worth it. its like dessert",
+   "liz thank you for the lite version. 6 seconds. i sat there afterward with nothing to do. i didnt know what to do with my hands. i made a sandwich out of habit"
+  ],
+  "meg": [
+   "meg the clydesdale finished loading. it took from 7am to 4pm with one aunt carol in the middle. he has sparkles on his hooves. i printed him at the library and hes on the fridge. the cows are jeal",
+   "meg can you do the next horse in fewer colors. not because i dont love it. i love it. its just that my mom needs to call the dentist at some point this week"
+  ],
+  "nikki": [
+   "nikki your page plays a song the second it opens and the song is 2.7 megs. thats 9 minutes. then its sped up so its over in 2. i waited 9 minutes for 2 minutes. i did it again today",
+   "nikki i listened to the dial-up remix. it felt like my whole life going by really fast. i liked it. can you do the call waiting beep next"
+  ],
+  "angela": [
+   "angela i tried again. the under construction guy loaded (1 minute). the welcome banner loaded (2 minutes). the midi started right away (its 14k, i know every note now). then the lake started rippling and my mom picked up the pho",
+   "angela thats 7 tries. i have never seen the bottom of your website. i believe the guestbook is down there. i believe in it the way people believe in the ocean floor"
+  ],
+  "larry": [
+   "larry the cd came. 3 things. 1) thank you. 2) the folder called 'ourspace front page' is actually 200 pictures of a lighthouse. 3) i looked at all 200. its a really nice lighthouse",
+   "larry my one song hit 74%. it was at 71 since august. i dont even remember what song it is anymore. im just proud of it"
+  ],
+  "lars": [
+   "lars the text browser changed my life but i have a question. somebodys page just says [IMAGE] [IMAGE] [IMAGE] rawr [IMAGE]. is that what it really looks like. is that riley",
+   "lars your cd came in the mail. i havent installed it. my dad says the computer is 'fine how it is' and its not, but he also said that about the tractor"
+  ],
+  "marcus": [
+   "marcus thank you for the doug clause. nobody ever made a rule for me before. usually rules are about me. this one is for me. its differ",
+   "marcus i read all 12 of your rules. the whole page. fastest loading thing on this site. 4 seconds. no pictures. i mean this as a compliment: you are the lightest person i know"
+  ]
+ },
+ "statuses": [
+  "doug is connecting... connecting... connecting...",
+  "doug is online!! (26.4k) (mom is at work) (go go go)",
+  "doug is waiting for megs horse to load. its down to the ears",
+  "doug just got kicked off by call waiting. it was aunt carol. it is always aunt carol",
+  "doug is at the library. computer 3. 58 minutes left. do not talk to him",
+  "doug is typing this in notepad and will paste it when the line is fr",
+  "doug just watched 11 whole seconds of a video. new record"
+ ],
+ "bulletins": [
+  {
+   "subject": "PLEASE put file sizes in your bulletins (a request from the countryside)",
+   "body": "hi. doug here. typed offline. small request. when you post a picture or a glitter thing or a song, could you put how big it is in the subject. like 'new pics (2 megs)' or 'my layout (sit down, doug)'. i am on dial-up and every click is a bet. yesterday i clicked a bulletin called 'lol' and it was a 4 meg picture of a taco. that was 13 minutes. it was a good taco. but i would have liked to choose. things under 100k i will look at right away. things under 1 meg, tonight. things over 1 meg, saturday at the library, i will put you on the list. thank you. i read all of your bulletins by the way. every one. the words come first."
+  },
+  {
+   "subject": "the 'how patient are you' survey (its only 1k, i checked)",
+   "body": "copy and paste. 1) longest you ever waited for a page: 2) what did you do while you waited: 3) was it worth it: 4) does your phone line do anything else: 5) what will you do first when you get fast internet: mine. 1) 2 days (nicks cartoon). 2) algebra, chores, slept, more algebra. 3) yes. the eraser part. 4) its the house phone and aunt carol lives in it. 5) honestly i think i would open brittanys page and watch the whole thing show up at once. like a magic trick. and then i would probably go outsi"
+  }
+ ],
+ "pcComments": [
+  "this is a great forehead. ill comment again when the rest gets here",
+  "ok its loaded down to your shoulders. so far so good. you look happy from the shoulders up",
+  "i saw this one at the library on saturday. all of it. at once. i said wow out loud and the librarian looked at me",
+  "is this 2 megs. it feels like 2 megs. im going to trust it and go do the dishes",
+  "nice pic. i can only see the top half but the sky in it is really blue. good sky. was there more"
+ ],
+ "dmSeed": [
+  {
+   "text": "hi malten. this is doug. i typed this offline so its ready. your page took 6 minutes to load which is honestly pretty light, thank you for that. i read everything on it. i have a question about the gues"
+  },
+  {
+   "text": "sorry. my mom needed the phone. that was yesterday. the question was about your guestbook and i forget what it was. i signed it though. it only took 40 seconds. nice guestbook."
+  }
+ ],
+ "dms": [
+  "malten what do i look like in my default picture. i uploaded it in july from the library and i have never seen it load at home. larry says its a picture of a fence. is it a fence. i was standing next to a fence",
+  "its 7:28. i have 2 minutes before aunt carol. i just want to say that today was a really good day and the reason is that i finally found out what happens at the end of",
+  "question. is a video on the internet supposed to move the whole time. ive only ever seen them stop every 2 seconds to think. i assumed that was the style",
+  "the cable guy drove down our road today. i ran out. he was lost. he asked me how to get back to the highway. i told him. i also said 'see you next spring.' he didnt get it",
+  "i did the modem sound with my mouth for my grandpa and he said it sounds exactly like a fax he got once. best review ive ever had",
+  "the librarian gave me 15 extra minutes on computer 3 today because nobody was waiting. i used it to look at your page with the pictures on. you have a lot of stuff on there. i mean that nicely. it was like a parade",
+  "malten if i ever stop replying for a long time its not you. its either the phone or the cows. its usually the phone. one time it was the cows"
+ ],
+ "blog": [
+  {
+   "title": "what saturday at the library is like",
+   "date": "Sep 27 2026 8:41 PM",
+   "mood": "full (of internet)",
+   "body": "typed sunday, pasting whenever. every saturday i bike to the library in town. its 6 miles. theres a hill by the co-op that i walk. the library has 4 computers and a fast line and a clipboard, and you get one hour. i get there when it opens. computer 3, by the window. i bring a list on notebook paper. this week: 1) see megs horse of me at full size. 2) watch nicks cartoon without it stopping to think. 3) look at everyones default pictures so i know who you all are (brittany is not just a forehead. good for her). 4) print lizs lite layout. then theres the part of the list thats for other people. my mom wanted a casserole recipe. my dad wanted a part number for the baler. mr olson down the road wanted to know if his cousin in arizona has a web page (he does. its about cactus). i print it all, 10 cents a page. then i bike home with the internet in my backpack. its my favorite day."
+  },
+  {
+   "title": "things i know about you because the words load first",
+   "date": "Sep 9 2026 9:55 PM",
+   "mood": "patient",
+   "body": "on fast internet i think a profile shows up all at once and your eyes go to the picture. mine comes in order. name. headline. then the about me, the whole thing, sitting there in plain letters for a minute or two before anything shiny arrives. so i read it. heres what i know. patrick has a rock and the rock has a name. todd runs this place off a laptop and worries about it. raven puts periods on everything and is nicer than she lets on. chad typed his own about me and is proud of that, you can tell. dave has never hacked anything and i hope he never does because i think it would scare him. nobody reads the books section but me. half of you have the same book in there and havent noticed. by the time the glitter loads i already like you. i think if everybody had to wait 9 minutes for each other it would be a nicer website. anyway its 7:29 so"
+  }
+ ],
+ "survey": {
+  "title": "the survey everyone did in august (it just finished loading)",
+  "qa": [
+   ["name:", "doug. dialup_doug on here. regular doug at home"],
+   ["connection speed:", "56k on the box. 26.4 most nights. 31.2 once (i told everyone)"],
+   ["what are you doing right now:", "answering this in notepad. the line is busy. its 7:41. aunt carol"],
+   ["how long did this survey take to load:", "4 minutes. somebody put a glitter divider between every question"],
+   ["last thing you waited for:", "megs horse. 9 hours. no regrets"],
+   ["longest phone call your mom ever had:", "2 hours 14 minutes. easter. aunt carol got a new dog"],
+   ["pets:", "5 barn cats, a dog named gravy, and 40 cows who are more like coworkers"],
+   ["what do you want for christmas:", "next spring"],
+   ["favorite website:", "marcuses rules page (4 seconds, no pictures). also maltens guestbook (40 seconds)"],
+   ["describe yourself in one sentence:", "i am patient and i read the whole thing and if i ever stop talking in the middle its just beca"]
+  ]
+ }
+}

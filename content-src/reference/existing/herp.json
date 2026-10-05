@@ -1,0 +1,145 @@
+{
+ "id": "herp",
+ "name": "herp",
+ "tag": "herp.",
+ "avatar": "herp.gif",
+ "age": "??",
+ "loc": "herp",
+ "mood": "herp 🐸",
+ "lastLogin": "herp",
+ "theme": {
+  "bg": "#eaffea",
+  "fg": "#1a4d1a",
+  "accent": "#2e8b57"
+ },
+ "about": "herp. herp herp. herp — herp, herp. HERP.",
+ "interests": {
+  "General": "herp, herp, herp (herp)",
+  "Music": "herp (all genres), herp herp, herp at 1.5x",
+  "Movies": "herp, herp II, herp III (herp)",
+  "Television": "herp (channel 3), herp reruns",
+  "Books": "herp (paperback), herp (hardcover), herp jr.'s diary",
+  "Heroes": "herp sr., herp jr., herp"
+ },
+ "song": {
+  "name": "The HampsterDance Song",
+  "artist": "Hampton the Hampster",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/f4/7c/ae/f47cae71-21a6-9743-c5f5-95c11ca8fa42/mzaf_10825937857542032714.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   null,
+   0,
+   null,
+   0,
+   0,
+   null,
+   0
+  ],
+  "bpm": 100
+ },
+ "decor": [
+  "assets/deco_hamster.gif"
+ ],
+ "bgTile": "assets/tiles/tile_flowers.png",
+ "gender": "herp",
+ "hometown": "herp",
+ "zodiac": "Pisces (herp)",
+ "status": "herp",
+ "hereFor": "herp, herp, herp",
+ "blogTitle": "herp.",
+ "meet": "herp. herp herp herp? herp!!",
+ "pcComments": [
+  "herp!!",
+  "herp <3",
+  "herp? herp.",
+  "HERP. herp.",
+  "herp herp herp (herp!)"
+ ],
+ "statusesExtra": [
+  "herp is herp (herp!!)",
+  "herp... herp. (herp.)",
+  "HERP herp herp herp herp!!! herp.",
+  "herp is herp herp herp 13 herp. herp!"
+ ],
+ "banterExtra": {
+  "kittyxcore": [
+   "herp4herp?",
+   "hErP <3 herp!!"
+  ],
+  "epic": [
+   ":D herp",
+   "herp herp herp herp herp herp... herp. (HERP)"
+  ],
+  "mika": [
+   "herp!!! ★herp★",
+   "herp? ...herp. >:( herp."
+  ]
+ },
+ "banter": {
+  "nikki": [
+   "h-h-h-herp herp herpherpherp",
+   "HERP HERP HERP HERP (herp)"
+  ],
+  "riley": [
+   "hErP xD",
+   "hErP hErP hErP!!! (herp!!)"
+  ],
+  "tony": [
+   "herp ;)",
+   "h e r p ;)"
+  ],
+  "meg": [
+   "herp :)",
+   "♥ herp ♥"
+  ]
+ },
+ "statuses": [
+  "herp is herp",
+  "herp herped a herp. herp!",
+  "herp herp herp... herp? herp."
+ ],
+ "bulletins": [
+  {
+   "subject": "HERP",
+   "body": "herp herp herp. herp herp herp herp herp? herp!! herp herp... herp. (herp herp: herp.) herp ♥",
+   "time": "Jun 26 2026 12:00 PM"
+  }
+ ],
+ "friends": [
+  "vinyl_witch",
+  "patrick",
+  "banana",
+  "todd"
+ ],
+ "wall": [
+  {
+   "from": "banana",
+   "text": "HERP GETS IT. HERP HAS ALWAYS GOTTEN IT.",
+   "time": "Jul 3 2026 9:09 AM"
+  },
+  {
+   "from": "starxgazer",
+   "text": "herp your chart is unreadable and i think that's beautiful",
+   "time": "Jul 1 2026 8:08 PM"
+  },
+  {
+   "from": "todd",
+   "text": "Herp, your profile passed all validation checks. It is the only one that ever has.",
+   "time": "Jun 29 2026 10:00 AM"
+  }
+ ],
+ "replies": [
+  "herp.",
+  "herp herp.",
+  "herp?",
+  "HERP.",
+  "herp... herp.",
+  "...herp 💜"
+ ],
+ "thanksAdd": "herp!!",
+ "ambient": [
+  "herp.",
+  "herp herp herp. (developing story)"
+ ],
+ "saltyDm": "herp... :("
+}

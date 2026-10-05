@@ -1,0 +1,208 @@
+{
+ "id": "leo",
+ "name": "hatch_theory_leo",
+ "tag": "Everything is connected. I have 214 feet of string. The numbers are not a coincidence.",
+ "avatar": "assets/avatar_leo.gif",
+ "gender": "Male",
+ "age": 17,
+ "hometown": "Dayton, Ohio (4,815 miles from the island. I measured. With string. The string stretches. It is still 4,815)",
+ "loc": "my bedroom (the entire north wall is the board)",
+ "zodiac": "Leo (born August 15th. That is one of the numbers. I did not choose it. I have a card about it)",
+ "status": "Single (I have a card for this. It's small. It has a question mark on it)",
+ "hereFor": "Friends, Theories, Cross-Referencing (with sources)",
+ "mood": "vigilant (Wednesday at nine)",
+ "lastLogin": "Oct 4 2026 4:08 PM",
+ "theme": {
+  "bg": "#d9b27c",
+  "fg": "#2a1a0a",
+  "accent": "#8c0f14"
+ },
+ "blogTitle": "THE BOARD: Updates (Please Do Not Touch The String)",
+ "about": "My name is Leo. I watch one television show. You know the one. The island. Wednesday at nine. I have seen every episode at least three times, and I take notes on a legal pad that became a binder that became a wall. The north wall of my bedroom is a corkboard. It has 312 pushpins, 214 feet of string and an index card for every character, theory and number. The numbers are 4, 8, 15, 16, 23 and 42. You have seen them. You may have noticed them on your own. I noticed them in my locker (42). That was the first sign. I am not saying everything is connected. I am saying I have string, and it reaches. My mother says dinner is at six. Six is not one of the numbers. Which is exactly what worries me.",
+ "aboutMore": "For the record: I am not paranoid. Paranoid people think they are being watched. I think everyone is being watched equally and nobody has noticed. Different thing. The string has a code. Red is for the unexplained. Yellow is for the numbers. Blue is for people who know each other. There is a lot more blue than red on my wall. I keep that quiet. It hurts the brand.",
+ "meet": "Who I'd like to meet: the people who write the island show, for exactly 108 minutes. Whoever answers the phone number on the Hanso Foundation website (I called. It rang. Someone picked up. I did not speak. Neither did they). Bigfoot Bill, to compare footprint sizes. Zorp, for reasons I keep in a folder. And anyone else who looked at a clock at 4:08 and felt it look back.",
+ "interests": {
+  "General": "the board, red string (214 ft), blue string (more), yellow string (out), pushpins (312), legal pads (11, filled), cross-referencing, Wednesday at nine (pizza at 8:30, the good couch, no talking, 90 seconds of theory allowed during ads), measuring things with string, writing the numbers on receipts",
+  "Music": "the song from the hatch (it plays on a record player when somebody is alone and it is exactly as sad as that sounds), whatever comes on the radio when the numbers show up on the dial (never on purpose), the hum of the refrigerator (a pitch i have identified. it is an F. i have told no one)",
+  "Movies": "Pi (a man and numbers. he gets a headache. i get a headache. solidarity), Memento (a corkboard made of a person. i respect it), National Treasure (the Declaration of Independence has a back. they went too easy), The Truman Show (nobody notices), Donnie Darko (zorp recommended it. i'm not sure he was being helpful)",
+  "Television": "the island show (Wednesdays, 9), the recap show afterward (they'd get less wrong if they called me), The X-Files reruns (zorp and i have an understanding), Unsolved Mysteries (bill's cousin might be on one), the weather (it's a pattern)",
+  "Books": "Foucault's Pendulum (people who connect things until the things connect back. a warning. i read it twice), The Da Vinci Code (a good start. they got the string wrong), a library book on cryptography (third renewal), the TV Guide (annotated)",
+  "Heroes": "the man who pushed the button every 108 minutes (hard job, did it, nobody thanked him), my mom (lets the north wall stay, asked me to stop putting her on it, she is already on it, she is blue), maddie (a rigorous rival), brad at the video store (lets me keep season 2 for 5 days, i return it in 4, i have a theory about why he allows it), zorp (i'm watching him. with respect)"
+ },
+ "song": {
+  "name": "Make Your Own Kind of Music",
+  "artist": "Cass Elliot",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/16/cd/58/16cd58c4-3b40-10fe-2bea-2db82da112a4/mzaf_13689915999233858437.plus.aac.p.m4a",
+  "pattern": [0, 4, 7, 12, 7, 4, 2, 4],
+  "bpm": 112
+ },
+ "decor": [
+  "assets/badge_best_viewed_with_eyes.gif",
+  "assets/badge_blink.gif"
+ ],
+ "friends": ["maddie", "zorp", "starxgazer", "bill", "brad", "andy", "patrick", "todd", "gina"],
+ "wall": [
+  {
+   "from": "maddie",
+   "text": "Leo. I read Theory 31, 'Why The Desk In The Hatch Was Bolted Down.' I checked the episode guide and three message boards. It IS bolted. It IS a desk. You are not wrong that it is strange. I have written it down. Do not tell the message boards I wrote it down. Also: remove my sock drawer from the board. I know it is there. A landmark is still a drawer.",
+   "time": "Oct 1 2026 5:42 PM"
+  },
+  {
+   "from": "zorp",
+   "text": "leo. greetings. you said my login time of 3:33 AM 'adds up to 9' and that 9 'is not one of the numbers but is close to 8 and 15.' this is a normal arithmetic coincidence among humans. please remove my card from the board. the string coming off it goes to a field. there is no field. it is a normal diagram.",
+   "time": "Sep 28 2026 3:33 AM"
+  },
+  {
+   "from": "starxgazer",
+   "text": "leo babe i did a chart for the island. virgo rising, scorpio sun, a whole stellium in the 8th house. i know you wanted me to say it's the numbers. it's not. it's the 8th house. but the 8th house IS the 8. i said that out loud and then i had to sit down.",
+   "time": "Sep 24 2026 11:11 PM"
+  },
+  {
+   "from": "bill",
+   "text": "Leo. Size 15 footprint, found Tuesday by the creek behind the water treatment plant. Plaster cast, photo attached. Not the show. Not the numbers. Just a very large foot. Pin it to the board anyway. Somewhere near the polar bear. -- Bill",
+   "time": "Sep 20 2026 5:04 AM"
+  },
+  {
+   "from": "brad",
+   "text": "Leo. Two things. 1) Season 2 of your island show is due back today. The late fee is $4.23 and I am not saying anything about that number. 2) If you liked it, you will love Pi. Shelf B. It's about a guy and numbers. He gets a headache. You will relate. I'll waive the first day.",
+   "time": "Sep 14 2026 6:18 PM"
+  },
+  {
+   "from": "patrick",
+   "text": "leo i found my rock on ur board. he has a card. it says 'dwayne has not moved since the pilot.' thats true. i didnt know u noticed. thank you for noticing him. he says nothing but in a good way",
+   "time": "Sep 9 2026 2:14 PM"
+  },
+  {
+   "from": "gina",
+   "text": "leo. i recorded the school auditorium last night for EVP. at 4:08 a voice said '...fifteen.' it's the cafeteria fridge next door. (it's the fridge.) but you told me to report anything with a number in it. so. fifteen. fridge.",
+   "time": "Aug 29 2026 9:47 PM"
+  }
+ ],
+ "replies": [
+  "Noted. I'm adding it to the board.",
+  "Interesting. Which card should I put it on? I have 312. I have room.",
+  "That is a coincidence. I've learned to say that in a calm voice. It's the first step.",
+  "I'd tell you what I think it means, but I would need string.",
+  "Don't look at the clock. It's 4:08. It has been 4:08 more often than you'd think.",
+  "You may be right. I've been wrong twice. Both times it was the same mistake: I hadn't added you to the board soon enough.",
+  "There's a reasonable explanation. There usually is. I just don't trust the ones that arrive too quickly.",
+  "I'll consider it. I consider everything. That is the whole problem.",
+  "Thank you. That was not one of the numbers. It was better.",
+  "Pizza arrives Wednesday at 8:45. I have a theory about why it's never 9. It's on a card."
+ ],
+ "thanksAdd": "Request accepted. I've added you to the board. Your card has a picture and a string. The string goes to me. That is all it means for now. I will tell you if it needs to go anywhere else. Do not touch the string. Welcome.",
+ "ambient": [
+  "Measured the string again. 214 feet. Last Tuesday it was 213. I haven't added any. I have several theories. The least frightening one is that I miscounted.",
+  "The microwave beeped at 4:08 PM. I was nowhere near it. My mother was making popcorn. I wrote down the time anyway. I always write down the time.",
+  "Season 2 came out on DVD. I've watched all of it again. I found a new detail in the background of episode 9: a clock. I'm not going to say what time it shows. I'm going to say I paused it for twenty minutes.",
+  "New card on the board: the school cafeteria menu. Wednesday is tacos. Wednesday is also the show. I don't think that's a coincidence. I think the cafeteria is telling me to eat before nine.",
+  "Ran out of yellow string. The numbers will have to wait. I asked my mother to buy more. She asked 'what color.' I said 'yellow.' She said 'of course.'",
+  "My cat Walnut walked across the board and knocked down six pins and the card for the polar bear. I put them back. Then I looked at where he had walked. I put that on a card too."
+ ],
+ "saltyDm": "Request denied. That's fine. I've seen the pattern: people either accept within 48 hours or they don't. You're in the second category. I put your card in a drawer. Not the trash. A drawer. If you accept later, I'll put you on the board between Maddie and the polar bear.",
+ "keywords": {
+  "numbers": "4, 8, 15, 16, 23 and 42. They add up to 108, which is also the number of minutes. They're in your locker number, your phone number, your last receipt. Check. I'll wait. Don't say 'it's a coincidence.' I've been told that eleven times and I have a card for each.",
+  "island": "I can't tell you what the island is. I can tell you what it isn't: it isn't an island. An island doesn't have a hatch. An island doesn't have a polar bear. An island has gulls. I counted the gulls in three episodes. Zero.",
+  "string": "Red is for the unexplained. Blue is for people who know each other. Yellow is for the numbers. I ran out of green in August. Do not ask what green was for. It was a mistake. It's gone.",
+  "hatch": "There was a hatch. It had a desk and a record player and a countdown. I built a replica of the desk out of a TV tray. I sit at it on Wednesdays. I don't type anything. I just wait for a number. It's my favorite 108 minutes.",
+  "coincidence": "Coincidence is what we call it when we don't want to carry the string. I carry the string. It weighs about four pounds. It's also the lightest thing on my wall.",
+  "wednesday": "Wednesday at nine. Pizza at 8:30. The good couch. No one speaks during the show. During the ads I am allowed 90 seconds of theory. Then it's back to the island. My family has stopped asking. I think that means they are connected too."
+ },
+ "banter": {
+  "maddie": [
+   "Maddie. Trade accepted. Theory 31 is enclosed (typed, sourced, four pages). One note: 'Severus' has seven letters. Seven books. Seven years. I am not saying anything. I'm saying you can count the letters yourself. The sock drawer is on the board as a landmark, not a suspect. Landmarks are protected.",
+   "Maddie, you asked me to explain the string. It's blue. Blue means 'they know each other.' You are connected to Faye, Tina, Sephiroth, Patrick and a rock. That's a lot of blue. You are one of the bluest people on my board. That's the entire theory. It isn't a theory. It's an address book."
+  ],
+  "andy": [
+   "Andy. I counted the letters in your watermark. 'Unregistered HyperCam 2.' Twenty-three, with spaces. That is one of the numbers. Do you understand what you have done. You've been stamping 23 on everything you make for six months. I am not accusing you. I am informing you. Please sit down.",
+   "Andy. Thank you for the video of my corkboard. The slow pan across the strings was correct. The watermark in the corner was also correct. I've pinned a still frame of it to the board. It is the only clue I have that arrived on its own."
+  ],
+  "zorp": [
+   "Zorp. Your last login is always 3:33 AM. 3+3+3 is 9. 9 is not one of the numbers. 33 divided by 3 is 11. Eleven is not one of the numbers either. I have lined up a lot of things that are not one of the numbers and I would like to know why you keep generating them.",
+   "Zorp. I have a card for you. The string from your card goes to a field. I did not draw the field. The string went there on its own. I'm not asking questions. I'm asking you to stand in the field on a Wednesday at nine and see what happens. I'll be on the couch. (This is not a trap. It's a stakeout. With pizza.)"
+  ],
+  "starxgazer": [
+   "Star. I need your professional opinion. If the numbers were planets, which goes with which. Four is Mars, I think. Eight is Saturn. Fifteen I can't place. There are only so many planets. Please advise.",
+   "Star, you say the stars keep receipts. I keep strings. I think we are doing the same job. I'd like us to compare notes. Mine are on cork. Yours are on the sky. We'll meet in the middle, at a coffee shop, and neither of us will bring a pen."
+  ],
+  "todd": [
+   "Todd. The server dropped at 4:23 PM on Tuesday. And at 8:15 PM on Thursday. And at 11:42 PM on Saturday (not a number, but I got nervous). You told Lars it was the vacuum. I've cross-referenced. The vacuum does not run on Thursday. Who is vacuuming on Thursday, Todd.",
+   "Todd, I have a card for the laptop. It's the biggest card on the wall. I want you to know it isn't suspicion. It's respect. It holds the entire site. It's the most connected object I know. Don't let it get hot."
+  ],
+  "miles": [
+   "Miles. You made a trailer for the island show. It didn't need one. I watched it four times. The title flies in at 4:08. Did you do that on purpose. Please say no. I'd like it to be a coincidence for exactly one more day.",
+   "Miles. 'It just works.' On the island, nothing just works. Everything works for a reason. I'd like you to find out what the reason is before your battery does."
+  ]
+ },
+ "statuses": [
+  "leo is on the couch. It's 8:45. He's not saying anything. Do not say 'it's just a show.'",
+  "leo is re-measuring the string. 214 feet. It was 213. He would like a moment.",
+  "leo is checking every clock in the house against the others. They disagree by 3, 7 and 11 minutes. He has made a card for the disagreement.",
+  "leo is adding a new card: the cafeteria. He's not saying why. It's tacos on Wednesdays.",
+  "leo is out of yellow string. The numbers will have to wait.",
+  "leo is returning Season 2 to Brad. 4 days. The late fee is $4.23. He is paying in exact change. He is not saying anything about it.",
+  "leo is watching the mailbox. The mail came at 4:23. He is fine. He is making a card."
+ ],
+ "bulletins": [
+  {
+   "subject": "THE NUMBERS: a survey (check your own, I'll wait)",
+   "body": "Copy, paste, answer, repost. 1) Your locker number (or the last three digits of your phone number). 2) The time you woke up today. 3) The street number of the first house you remember. 4) How many steps from your front door to the mailbox. 5) The total on your last receipt. Circle any that are 4, 8, 15, 16, 23 or 42. Mine: 1) 42 (locker). 2) 4:08 AM (the cat). 3) 23 (Maple Street). 4) 15 (I counted). 5) $16.23 (Brad). I am not saying. I am saying five out of five. Reply with your score. Maddie, I know. It's a sample size of one. It's a very good one."
+  },
+  {
+   "subject": "BOARD UPDATE (new cards, a request, please do not touch the string)",
+   "body": "New cards this week: the school cafeteria (tacos), Todd's laptop, a footprint (courtesy of Bill), a field (courtesy of Zorp), a sock drawer (courtesy of Maddie, who does not want it there). A request: if you have a theory about the island show, send it to me with a source. Maddie's rule. I will add it to the board with your name on it. If you don't have a theory, send me your favorite number. I'll add that too. Everyone gets a card. That's the policy. It has always been the policy."
+  }
+ ],
+ "pcComments": [
+  "Nice picture. I've pinned a copy to the board. Don't worry. Everyone is on the board. It's an honor. There's a string. It's blue.",
+  "There's a clock in the background of this photo. It says 4:08. I've enlarged it. I am not saying anything. I am saying it's 4:08.",
+  "This picture has 15 people in it. I counted. It could be nothing. I'm putting it next to the other 15.",
+  "A very good picture. The light comes from the left. On the island it always comes from the left. I've noted it. I'm not worried. (I'm a little worried.)"
+ ],
+ "dmSeed": [
+  {
+   "text": "Hello malten. Leo. I added you to the board the minute your page loaded. You're in the center. Not as a suspect. As a reference point. Everyone has to be somewhere. If you notice any of the numbers (4, 8, 15, 16, 23, 42) in the next 48 hours, tell me. Don't tell anyone else. (Tell Maddie. She will say it's a coincidence. Tell her anyway.)"
+  },
+  {
+   "text": "Also: please don't touch the string."
+  }
+ ],
+ "dms": [
+  "malten, a question. How many windows are on your page? I counted 4. I counted again and it was 4. I counted a third time with my eyes closed. 4. I'm not saying that means anything. I'm saying I'd like you to count.",
+  "My mother asked me to stop measuring the house with the string. She said 'it's not a clue, Leo, it's the living room.' I said the string doesn't know that. She walked away. I think she's starting to see it.",
+  "I watched the pilot again tonight. There's a part where somebody takes a very long breath in. I held my breath along with it and passed out for a second. I'm okay. I'd like that noted. It's on a card.",
+  "Brad at the video store asked if I wanted a bag for season 2. I said no. He said 'it's raining.' I said it isn't about the rain. He gave me a bag anyway. Brad understands the board. He won't admit it.",
+  "If you were stranded on an island, what 3 things would you bring? Don't answer. I'm asking everyone. I'll add the answers to a card. Mine: a legal pad, string and a very good map. I know. I know. I'm not going.",
+  "Someone left a note in my locker today. It said '42?' with a question mark. I've kept it. I don't know who. I checked the handwriting against everyone on my board. It matches nobody. Which means it's someone I haven't added. Do you know who I haven't added? I need you to think.",
+  "A small thing. I had the board photographed for a school project ('something you love'). The teacher said it looked like 'a lot.' I said that's the idea. She gave me an A and asked if I was okay. I said yes. I said it twice. Once for her and once for me."
+ ],
+ "blog": [
+  {
+   "title": "The Strings (An Explanation, For Maddie)",
+   "date": "Oct 4 2026 10:58 PM",
+   "mood": "explaining",
+   "body": "Maddie asked me to explain the string. Fair. Once. Red is for the unexplained. Yellow is for the numbers. Blue is for people who know each other. That is all blue means. It does not mean suspicion. Maddie's card has six blue strings: Faye, Tina, Sephiroth, Patrick, a rock named Dwayne and a little brother named Owen (age 7, crayon). That's the most blue on the board after Todd's laptop. When somebody joins this site I give them a card the same day. I find out who they know. I run a string. Nobody on my board is floating. There is always at least one blue. If someone has only one, I look for a second. Fred has announced he is leaving seven times, so I ran a blue string from Fred to everyone who told him to stay. It's five strings. He doesn't have to know. I count them every night. I'm sorry about the sock drawer."
+  },
+  {
+   "title": "Premiere Eve: Seven Predictions and One Fear",
+   "date": "Oct 3 2026 11:40 PM",
+   "mood": "unable to sleep",
+   "body": "The island show comes back this week. Five months. Here are my predictions, sealed and witnessed by a cat. 1) The numbers will appear within the first fifteen minutes. If they don't, that is the numbers. 2) Somebody will walk through a door and the door will matter. 3) There will be a polar bear. If there isn't, the absence of the polar bear is the polar bear. 4) Someone will say 'we have to go back.' Nobody will. 5) The hatch will be explained. By Maddie's standard, that means it won't. 6) Somebody will hum the song. 7) I will not be surprised. My fear: that I'll be right about everything and it won't help. I'll be on the couch at 8:30 with pizza. Maddie will be on her stair. Andy will be next to a dryer. Zorp will be in a field. At nine, all of us pointed the same direction. I think that's what the numbers were for. It's on a card."
+  }
+ ],
+ "survey": {
+  "title": "The Theorist Survey (forwarded by Maddie 'for research') (answered with sources)",
+  "qa": [
+   ["name / handle:", "Leo. hatch_theory_leo. Card #1."],
+   ["favorite number:", "None of them. That is a lie. 15. It's the one that sounds like it's about to say something."],
+   ["how many pushpins:", "312. Last week 311. I'm not saying a pin is missing. I'm saying it was a good week for pins."],
+   ["do you believe in coincidences:", "I believe in the word. I think it's a very polite way of saying 'I haven't checked yet.'"],
+   ["have you ever been to the island:", "No. It's 4,815 miles. I measured it. With string. It stretched. It is still 4,815."],
+   ["best episode:", "The one with the film. I have watched it 15 times. That isn't a coincidence. It's a goal."],
+   ["pets:", "Walnut. A cat. Up before me every day. He is not on the board. I've been told that's a mistake."],
+   ["biggest fear:", "That the numbers turn out to be just numbers. Second: the cat and the board."],
+   ["tag 5 people:", "Maddie (rival), Andy (the number 23), Zorp (field), Starxgazer (the 8th house), Brad (late fees)."],
+   ["describe yourself in one sentence:", "I'm the guy with the string who wants everyone to be connected to someone."]
+  ]
+ }
+}

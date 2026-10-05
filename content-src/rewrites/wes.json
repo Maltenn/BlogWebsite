@@ -1,0 +1,143 @@
+{
+ "id": "wes",
+ "name": "wavedash_wes",
+ "tag": "20XX is a lifestyle",
+ "avatar": "assets/avatar_wes_v2.gif",
+ "age": 24,
+ "loc": "highway 99, passenger side (dad's driving, i'm holding the saltines)",
+ "mood": "frame perfect 🎮",
+ "lastLogin": "20 minutes ago (between friendlies)",
+ "theme": {
+  "bg": "#0d1b0d",
+  "fg": "#c8f5c8",
+  "accent": "#7fff7f"
+ },
+ "about": "melee player. i main fox. yes i know. i keep a roll of thumb tape in every room including the bathroom (for warmups). i can explain wavedashing to anyone in under 4 minutes and i WILL, you don't have to ask, in fact you can't stop me.",
+ "interests": {
+  "General": "melee (there are other games? cute), balloon arches (31 and counting), controller port maintenance, frame data, explaining wavedashing to anyone standing still, gamecube controller collecting, the smashboards forums at 3am",
+  "Music": "dragonforce (through the fire and flames, obviously), the melee soundtrack (pokemon stadium is peak), muse, whatever song is on the ken combo video, whatever's on at the local",
+  "Movies": "the karate kid (it's about tech skill), rocky (it's about tech skill), the wizard (it's not about tech skill but it IS about a kid and a tournament), akira (kaneda's bike slide is a wavedash. i have paused it 40 times to prove it)",
+  "Television": "g4 (attack of the show, x-play), ken vs isai on my own VHS tapes, dragon ball z (the training arcs only, skip the talking)",
+  "Books": "the melee frame data spreadsheet (a book if you print it, I did), the official SSBM strategy guide (wrong about everything, historically important), ender's game",
+  "Heroes": "the 20XX prophecy, the old pros on the combo videos, dale (rival, hero, please don't tell him), my dad (coach, driver, holder of the saltines), my mom (orange slices at halftime, positive notes)"
+ },
+ "song": {
+  "name": "Through the Fire and Flames",
+  "artist": "DragonForce",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/56/0c/4d/560c4d59-f18d-4b18-58eb-a740f98b00ba/mzaf_6229759668415352105.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   12,
+   0,
+   10,
+   0,
+   8,
+   7,
+   5
+  ],
+  "bpm": 150
+ },
+ "decor": [
+  "assets/deco_dragon.gif",
+  "assets/deco_blinkie_zim.gif"
+ ],
+ "gender": "Male",
+ "hometown": "his parents' basement (which is in Sacramento, technically)",
+ "zodiac": "Capricorn (I main a bird but I'm a goat. work ethic. frame data.)",
+ "status": "Single (in a committed relationship with a 612 day practice streak. it is very demanding. mostly.)",
+ "hereFor": "Friends, Networking, Friendlies (bring your own controller, I WILL inspect the ports)",
+ "blogTitle": "20XX: a frame-by-frame countdown",
+ "meet": "bob from the l.a. regional (beat me first round, great set, never told him). whoever first figured out the wavedash, so I can thank them and ask what ELSE they know. anyone who has beaten a fox in bracket without johns. also whoever keeps setting the venue thermostat to 58 degrees, so I can ask them, calmly, why.",
+ "pcComments": [
+  "nice pic. is that a gamecube controller on the shelf in the background? what color? is the stick centered? answer all three. this is important.",
+  "this photo has good neutral. you're centered, you're spacing correctly from the camera, no johns. solid.",
+  "cool. the shutter shades though. you look like a guy who just lost winners semis and wants no one to ask. I respect it, technically.",
+  "the flash on this pic lasted about 3 frames. I can tell. that's one fox jumpsquat, the shortest time in which anything has ever gone right for me. still a good pic.",
+  "you're holding a gamecube controller in this and the analog stick looks WORN. whose is that. is it ok. do you need me to look at it."
+ ],
+ "statusesExtra": [
+  "wavedash_wes hosted friendlies and SOMEONE brought an HDTV 'to help.' it added 4 frames of lag and I aged 4 years. no names. you know who you are. thanks for coming though.",
+  "wavedash_wes played Halo at youth group as a favor. it has no wavedash. it has no L-cancel. it has a 'sticky grenade,' which is a projectile with johns built in. josh is good at it though. concerning.",
+  "wavedash_wes ate $7 nachos from the venue snack bar at 10 am, then lost the next set, and would like it noted that the cheese was not a john. it was a circumstance. (it was a john. he's working on it.)",
+  "wavedash_wes is reading the 13 new members' profiles and has added all 13 to the friday friendlies sign-up sheet without asking. the sheet is on page 2. page 3 is a dream."
+ ],
+ "banterExtra": {
+  "josh": [
+   "josh you beat me at Halo 8 times in the youth room and I want to be clear: Halo is not melee, there's no tech skill, it's aim and grenades and a jeep. anyway what's your sensitivity and can I come back thursday.",
+   "ok. real talk. you have tournament-level composure. you didn't celebrate once. that's scarier than celebrating. come to melee night. I will put you on fox. you will hate it. you will be good at it."
+  ],
+  "epic": [
+   "epic. you linked me a YTMND of fox's up-throw up-air looped to 'what is love' and I have watched it 40 times. that's a combo video. you made a combo video by accident. respect.",
+   "'lol ur mom wavedashes' is not a joke, it's a statement of respect toward my mom, who does in fact have excellent reaction time. she's caught 8 casserole dishes mid-fall, one-handed, while holding a tray of orange slices. 8. not one slice moved."
+  ],
+  "nate": [
+   "nate you carry the amp. i hold the saltines on the 3 hour drive to fresno. we both have jobs nobody puts on a poster. it's honest work. don't take this as encouragement.",
+   "'some people need to grow up' is a solid headline but you posted it during my friendlies and three people looked at their phones mid-match. that's 200 frames of downtime. post it AFTER the set, dude."
+  ]
+ },
+ "banter": {
+  "kevin": [
+   "kevin. real talk. Butterfly on heavy is basically a tech skill exercise, your feet are hitting 1-frame links. you would be DISGUSTING at melee. I'd start you the way I started my cousin maya: one stage, 20 minutes, zero johns. think about it.",
+   "an AAA with no witnesses is still an AAA. in melee we call that a wavedash in the woods. I believe you, kevin. bring the sweatband to my basement."
+  ],
+  "dave": [
+   "dave you 'h4ck3d' the LAN party sign-up by writing your name twice. respect. anyway you're holding the other end of the balloon arch, it's 9 feet long and it wants to be a kite, THAT'S the real skill test.",
+   "l33tspeak is just fancy DI for words. also stop asking to 'overclock' my controller. it has no clock, dave. it has a stick and a cord. it is already perfect. I have measured."
+  ],
+  "derek": [
+   "derek a kickflip is basically a wavedash: dash (push), jump (ollie), air-dodge diagonally into the ground (the part where you fall). you're already doing melee tech. badly. like me at skating.",
+   "watched your gap video frame by frame with my thumb on the pause button. you were 2 frames from landing it. that's one missed L-cancel of margin. so close it hurts, man."
+  ],
+  "randy": [
+   "randy. Chuck Norris doesn't wavedash, the stage moves under him. there. happy? now please stop posting on my wall at 2am, it's frame-perfect annoying.",
+   "'PIE.' is not an argument randy, but neither is my 400-word post about ledge invincibility, so we're even. you'd make a good falco player. that's an insult btw."
+  ]
+ },
+ "statuses": [
+  "wavedash_wes acquired CRT #8. don't tell my mom. it has a name. its name is also wes.",
+  "wavedash_wes explained wavedashing to three new members today. zero asked. all were changed.",
+  "wavedash_wes is hosting friendlies saturday. 4 setups, no johns, controller ports cleaned with rubbing alcohol like a professional."
+ ],
+ "bulletins": [
+  {
+   "subject": "PSA: melee night is BACK (new members read this)",
+   "body": "friday. my basement. 4 setups (watch the third stair, it has opinions). melee singles, casual friendlies, and I will explain wavedashing to anyone who stands still long enough. it is NOT a glitch, it is an intentional physics interaction and it will change your life. new members: yes you can play, no you don't need your own controller, but if you bring one I WILL inspect the ports. kevin bring the sweatband. dave you're on the sign-up sheet, spell your name once this time. -wes",
+   "time": "Jul 1 2026 6:02 PM"
+  }
+ ],
+ "friends": [
+  "sk8rboi",
+  "banana",
+  "patrick",
+  "todd"
+ ],
+ "wall": [
+  {
+   "from": "sk8rboi",
+   "text": "wes explained wavedashing to me for 45 min. i still dont get it but i respect it",
+   "time": "Jul 2 2026 7:44 PM"
+  },
+  {
+   "from": "patrick",
+   "text": "wes can dwayne play melee. he doesn't have hands but he is very still. i read that is good for neutral. update: i dont know what neutral is but i think he has it",
+   "time": "Jul 1 2026 5:30 PM"
+  }
+ ],
+ "replies": [
+  "this comment was frame perfect. respect.",
+  "counterpoint: have you considered playing fox",
+  "i read this during a 4-stock. multitasking. that's the melee mindset.",
+  "strong opinion. wrong, but strong. run it back at the next local."
+ ],
+ "thanksAdd": "added. your neutral game must be decent if you found this profile.",
+ "ambient": [
+  "day 847 of asking the venue to bring back the good CRT.",
+  "new tech discovered at 3am. naming rights pending. it's probably nothing. it's EVERYTHING."
+ ],
+ "saltyDm": "denied?? that's a disrespect option select. see you in bracket.",
+ "keywords": {
+  "melee": "MELEE MENTIONED. ok what's your main. choose wisely, this determines everything.",
+  "fox": "a fellow fox enjoyer. 20XX approaches. stay ready.",
+  "smash": "if you mean melee, yes. if you mean the other ones, i wish you well on your journey."
+ }
+}

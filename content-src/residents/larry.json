@@ -1,0 +1,211 @@
+{
+ "id": "larry",
+ "name": "limewire_larry",
+ "tag": "its not stealing its SHARING. also does anyone know how 2 close a toolbar",
+ "avatar": "assets/avatar_larry.gif",
+ "gender": "Male",
+ "age": 16,
+ "hometown": "Erie, Pennsylvania",
+ "loc": "the family computer in the kitchen (14 min 2 boot, worth it)",
+ "zodiac": "Gemini (thats what the popup said)",
+ "status": "Single (but connecting 2 3 hosts)",
+ "hereFor": "Friends, Sharing, more sources",
+ "mood": "94% complete",
+ "lastLogin": "Oct 3 2026 1:47 AM",
+ "theme": {
+  "bg": "#12300f",
+  "fg": "#e6ffd6",
+  "accent": "#ffd60a"
+ },
+ "blogTitle": "larrys download log (everything here is REAL) (probably)",
+ "about": "hey its larry. i download stuff. songs, movies, a screensaver of a fish tank, a thing called FREE_SMILEYS that i think is still installing. i dont steal i SHARE, my whole shared folder is open 24/7 and u r welcome 2 all 6,114 files, about 40% of which r what they say they r. the family computer (the Beast, kitchen, next 2 the toaster) has 11 toolbars and a purple gorilla who talks 2 me and somewhere around 400 viruses but they mostly keep 2 themselves. if u want a mix cd just ask, i burn one 4 everybody, i have a spindle of 100 and a sharpie and nothing but time (the Beast takes 14 min 2 boot).",
+ "aboutMore": "things i have downloaded that were not what they said: a movie that was the right movie but filmed by a guy who laughs at every joke b4 it happens. an album that was 1 song 14 times. a 'full version' of a game that was a picture of the game. a linkin park song that was actually a man reading the weather in german (i kept it. its on ur mix cd. track 6). i am not mad about any of these. every file is a surprise and i think thats beautiful.",
+ "meet": "Who I'd like to meet: whoever labels the files. just 2 talk. no anger. also the guy who made the purple gorilla, the ppl who run the 1,000,000th visitor contest (i keep winning but they never send the prize), and one (1) more source 4 a file ive had at 99% since april.",
+ "interests": {
+  "General": "sharing (not stealing. SHARING), burning mix cds, sharpie track lists, watching the green bars fill up, closing popups (hobby) (full time), cd-r spindles, mowing lawns 4 spindle money, winamp skins (i have 212, i use the default), naming my playlists 'new playlist (14)'",
+  "Music": "according 2 my files: weird al (he apparently sings everything), 'track 01' by unknown artist (my #1 most played), bob marley - somewhere over the rainbow (its not him. i checked. its still labeled him), nirvana (3 of the 40 r really them), linkin_park_-_in_the_end(REAL)(not_fake)(live)(remix).mp3",
+  "Movies": "the matrix (in spanish, by accident, still good), shrek 2 (first 40 min only, then it becomes a fishing show), napoleon dynamite (the guy filming it sneezes at the best part), finding nemo (real one!! dad bought the dvd)",
+  "Television": "family guy clips labeled as simpsons clips, simpsons clips labeled as family guy clips, one episode of lost that was actually 43 min of a parking lot (i watched all of it just in case)",
+  "Books": "the limewire help file, the back of the cd-r spindle, 'so ur computer has a virus' (a pamphlet my dad printed and taped 2 the monitor), harry potter 6 as a .txt (it was 9 pages and harry was named barry) (barry was good tho)",
+  "Heroes": "whoever invented the cd burner, my grandma (taught me 2 label things. it did not take), the purple gorilla (loyal), todd, the one guy in ohio who has every song and never logs off"
+ },
+ "song": {
+  "name": "Teenage Dirtbag",
+  "artist": "Wheatus",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b9/44/cd/b944cd8e-fa2b-ff2d-f6a1-283577a4c649/mzaf_6502445317727847785.plus.aac.p.m4a",
+  "pattern": [0, 7, 4, 7, 0, 5, 9, 5],
+  "bpm": 96
+ },
+ "decor": [
+  "assets/badge_winamp.gif",
+  "assets/deco_dancing_baby.gif",
+  "assets/deco_new.gif"
+ ],
+ "friends": ["dave", "vinyl_witch", "todd", "lars", "doug", "nick", "patrick", "walt"],
+ "wall": [
+  {
+   "from": "vinyl_witch",
+   "text": "larry. the CD you burned me says 'nick drake - pink moon' in sharpie. it contains eleven tracks. none are nick drake. one is a man coughing for four minutes. I lit a candle for it. I also listened twice. don't make me another one. (make me another one.)",
+   "time": "Sep 28 2026 9:14 PM"
+  },
+  {
+   "from": "lars",
+   "text": "larry i looked at your machine for 20 minutes and it looked back. 11 toolbars. the part of the screen where websites go is the size of a business card. i have an ubuntu cd in my backpack with your name on it [0]. --- [0] literally. i wrote it in sharpie. you taught me that.",
+   "time": "Sep 25 2026 4:40 PM"
+  },
+  {
+   "from": "dave",
+   "text": "l4rry i sc4nned ur pc (i looked at it from the doorway). 400 viruses. thats not an infection thats a CIVILIZATION. they have a government. do not anger them. also thx 4 the mix cd, track 3 is not sandstorm but i respect the attempt",
+   "time": "Sep 22 2026 11:51 PM"
+  },
+  {
+   "from": "doug",
+   "text": "larry the cd u burned me of 'the internet' got here in the mail. 50 funny videos. 31 were the same dancing baby. best day of my summer. u saved me like 400 hours of loading. mom says thank u 2 and can u stop writing DOUG INTERNET on the envel",
+   "time": "Sep 16 2026 3:22 PM"
+  },
+  {
+   "from": "todd",
+   "text": "Hey Larry! Friendly admin note: your profile song file is called 'happy_birthday_REAL.mp3', it is 9MB, and it is not Happy Birthday. I'm not sure what it is. The laptop got warm. Could you re-upload a smaller one? Thanks for the mix CD by the way, I love track 4 (the modem noise). - Todd :)",
+   "time": "Sep 9 2026 8:05 AM"
+  },
+  {
+   "from": "walt",
+   "text": "Dear Larry, Thank you for the compact disc of big band music. It was mostly a young man shouting, but track nine was Glenn Miller and I danced with the kitchen chair. Please thank your grandmother for the pierogi. Regards, Walt",
+   "time": "Aug 30 2026 10:15 AM"
+  },
+  {
+   "from": "nick",
+   "text": "larry. stick fury 7 is an 800kb .swf. its FREE. on the PORTAL. what is 'stick_fury_7_FULL_MOVIE_dvdrip.exe' and why is it 2mb and why did u run it. voting 5 on ur bravery tho",
+   "time": "Aug 21 2026 6:37 PM"
+  }
+ ],
+ "replies": [
+  "nice!! saving this comment 2 my shared folder",
+  "lol hold on a popup just covered ur comment. ok its back. good comment",
+  "u want a mix cd? im making u a mix cd. 2 late its burning",
+  "one sec the gorilla is talking",
+  "thats what the file SAID it was. all i know is what the file said",
+  "94% agree. waiting on more sources 4 the other 6%",
+  "ok i searched 4 that and got 212 results and they r all the same polka. downloading all of them 2 be safe",
+  "brb the Beast needs 2 restart. see u in 14 min",
+  "its not stealing if i leave it where i found it AND also have it",
+  "dude i think i have that. its labeled something else but i have it"
+ ],
+ "thanksAdd": "thanks 4 the add!! i already started ur mix cd. its called 'malten mix vol 1' and it has 17 tracks, i havent listened 2 them so we will both be surprised. my shared folder is open 24/7, take whatever u want, about 40% of it is real",
+ "ambient": [
+  "my most played song is called 'track 01' by 'unknown artist' and i have 31 different ones. they r all bangers. i will never know what they r",
+  "the Beast finished booting. 14 min 20 sec. a new record (bad direction)",
+  "a popup just told me im the 1,000,000th visitor. thats 4 times this week. statistically i am the luckiest guy in pennsylvania",
+  "downloaded a movie last nite and its the right movie but everyone in it is speaking italian and theres a guys head at the bottom of the screen the whole time. 7/10 would share",
+  "dad needs the computer 2 do the taxes and i had 2 explain the gorilla. it did not go well. the gorilla did not help",
+  "burned 6 mix cds 2day. ran out of sharpie on #4 so the last 2 r labeled in pencil. u cant see it but its there. like friendship"
+ ],
+ "saltyDm": "denied?? ok no thats fine. im not mad. ur mix cd is already burned tho so now i have a cd called 'malten mix vol 1' and nobody 2 give it 2. ill just leave it in the shared folder. where everything is welcome. even the files that arent what they say. especially those",
+ "keywords": {
+  "limewire": "its not stealing its SHARING. my folder is open 2 everyone. is every file what it says? no. is that the files fault? also no. the green bars r the most peaceful thing i own",
+  "virus": "ppl keep saying 400 like its a lot. they mostly just live there. one of them changes my desktop 2 a sunset every tuesday and honestly its a nice sunset",
+  "toolbar": "i have 11. the part of the screen where the website goes is about the size of a pop tart now. i know where everything is tho. the weather one has never once been right",
+  "cd": "say no more. ur getting a mix cd. 17 tracks, sharpie track list, at least 9 of the titles will match the songs. i can hand it 2 todd or mail it, i have stamps",
+  "song": "my profile song is teenage dirtbag by wheatus. the file says its by weezer. every file says its by weezer or weird al. i have stopped fighting it",
+  "movie": "i have like 60 movies. 22 of them r the movie they say. 1 is a guy filming his tv while his dog barks. thats the one i rewatch"
+ },
+ "banter": {
+  "dave": [
+   "dave u said u could clean the viruses off the Beast and then u just stood in the kitchen and said 'whoa' 4 ten minutes. my mom made u a sandwich. is that the hack",
+   "dave i found a file called sandstorm_darude_REAL.mp3 and i got it 4 u. its not sandstorm. its a guy explaining how 2 grill corn. but it does kind of have a beat"
+  ],
+  "vinyl_witch": [
+   "ms witch i found pink moon again!! this time its 128kbps and only 2 of the tracks r in german. burning it 2nite. u dont have 2 light a candle this time",
+   "u said a cd-r has no soul but i put a sticker on this one. it is a frog. thats soul"
+  ],
+  "todd": [
+   "todd good news i fixed my profile song. bad news its a different wrong song now. the file said happy birthday. its a car alarm and then some jazz",
+   "todd do u want my old toolbars 4 the site. i have 11 and i only use like 2. ourspace could have a weather button. it would be wrong but it would be there"
+  ],
+  "lars": [
+   "lars i tried 2 download that linux thing u keep talking about. it was called ubuntu_FULL.exe and it was 2mb and now i have a 12th toolbar called LinuxSearch. is this freedom",
+   "lars u cant wipe the Beast. theres 6,114 files on there and a gorilla. where would they go. where would HE go"
+  ],
+  "doug": [
+   "doug ur next cd is in the mail. i saved u the whole front page of ourspace, 40 glitter gifs and megs new pony. thats like 3 weeks of ur life back. ur welcome buddy",
+   "doug how is ur one song going. is it still at 71%. im rooting 4 it. i could just burn it 4 u but i know its about the journey now"
+  ],
+  "nick": [
+   "nick i downloaded ALL ur cartoons 2 watch offline and somehow now i have 9 copies of episode 3 and one of them has different music. did u make that or did the file",
+   "nick i voted 5 on stick fury like u asked but a popup got in the way and i think i voted 5 on a casino. ur score should still go up tho right"
+  ],
+  "miles": [
+   "miles u said macs dont get viruses so i emailed u one of mine 2 check. nothing happened?? where did it go. is it ok. it was one of the nice ones",
+   "miles ur ipod has 400 songs on it and they r all labeled right. that sounds lonely man. no surprises. i can fix that"
+  ]
+ },
+ "statuses": [
+  "larry is at 99% and has been since april",
+  "larry is burning a mix cd 4 u. yes u. dont ask whats on it, he doesnt know",
+  "larry is waiting 4 the Beast 2 boot. minute 9. the gorilla is awake",
+  "larry just downloaded a 3 hour movie that is 4 megabytes. something feels off",
+  "larry is closing popups. this is a lifestyle now",
+  "larry is sharing (NOT stealing) (dad asked) (it was a long dinner)",
+  "larry just found out his fav band 'track 01' is actually like 30 different bands"
+ ],
+ "bulletins": [
+  {
+   "subject": "FREE MIX CDS (i mean it) (sign up below)",
+   "body": "ok so i got a new spindle (100 cd-rs, $18.99, mowed 2 lawns) and i am making a mix cd 4 every single person on ourspace. u dont have 2 pay. u dont have 2 pick the songs (u cant, i dont know what they r either). each one gets a sharpie track list and a drawing of a frog. current waitlist: patrick (wants 'songs a rock would like'), grandpa walt (more big band), doug (wants 'the internet' again), vinyl witch (says she doesnt want one) (shes getting one). comment w/ ur name. its not stealing its SHARING. -larry"
+  },
+  {
+   "subject": "GAME: guess whats actually in the file",
+   "body": "i give u the file name, u guess what it really was. 1) 'green_day_FULL_ALBUM.mp3' (answer: one song. not green day. a marching band). 2) 'spiderman_2_dvd.avi' (answer: spiderman 1). 3) 'funny_cat.exe' (answer: toolbar #7). 4) 'toolbar_remover_free.exe' (answer: toolbar #8). 5) 'happy_birthday_grandma.mp3' (answer: actually happy birthday!! played it at her party. everyone clapped. top 3 download of my life). repost w/ ur own. or dont, the Beast cant load bulletins anyway"
+  }
+ ],
+ "pcComments": [
+  "nice pic!! saved it 2 my shared folder. its called 'nice_pic(REAL).jpg' now",
+  "this took a while 2 load cuz the gorilla was talking over it but WORTH IT",
+  "is that a cd tower in the background. how many does it hold. i have 3 towers and one is all coasters",
+  "great pic. i tried 2 make it my desktop but a virus already picked a sunset. maybe next tuesday",
+  "u look happy in this!! what r u listening 2. whatever it is i probably have it labeled as something else"
+ ],
+ "dmSeed": [
+  {
+   "text": "hey malten!! its larry. i saw ur page has a music player on it and i just want u 2 know i have like 6,000 songs and u can have any of them. i dont know which ones r which. thats the fun part. want a mix cd? i already started one"
+  }
+ ],
+ "dms": [
+  "malten question. if a file is called 'the_matrix.avi' and its 3 megabytes and when u open it its just a photo of a guy giving a thumbs up... is that the directors cut",
+  "hey do u know anything about computers. the Beast made a noise like a harmonica 2day and now every website is in portuguese. its kind of nice actually. but dad has 2 do the taxes",
+  "malten i finished ur mix cd. track list: 1) unknown 2) unknown 3) weird al (probably not) 4) a song i think is from a commercial 5-17) surprises. i drew a frog on it. tell me where 2 send it",
+  "ok dont tell lars but i kind of like the 12th toolbar. it has a little penguin on it. it doesnt do anything. it just sits there. we have an understanding",
+  "malten!! i found the polka from my grandmas wedding. took 3 weeks. it was labeled as a metallica song. she cried and then she asked me 2 find 40 more. i have a purpose now",
+  "be honest is 14 minutes a long time 4 a computer 2 turn on. i timed dougs and his is 2 minutes but then he waits 9 minutes 4 one gif so i feel like it evens out",
+  "a popup just asked me 2 rate my experience and i gave it 5 stars. i always do. somebody worked hard on that popup"
+ ],
+ "blog": [
+  {
+   "title": "the grandma polka quest (SOLVED)",
+   "date": "Sep 19 2026 10:32 PM",
+   "mood": "accomplished",
+   "body": "ok so 3 weeks ago my grandma says larry, ur good w/ the computer, can u find the polka they played at my wedding. she doesnt know the name. she hums it. i type 'polka' in2 the search and get a million results and every single one is labeled 'weird al - polka'. so i download them. all of them. the Beast ran 4 six days straight and dad pointed a fan at it. i listened 2 like 300 polkas. i know things about accordions now that i cant unknow. file #212 was called 'metallica - enter sandman (live)' and i almost skipped it. it was the polka. the EXACT one. i burned it on a cd and wrote GRANDMA on it and drew a frog. she played it in the kitchen and danced w/ the dog and cried a little. then she said 'can u find the one from the reception.' so thats my october. its not stealing its sharing and sometimes its sharing w/ ur grandma."
+  },
+  {
+   "title": "review: every movie i downloaded this month (ranked)",
+   "date": "Oct 1 2026 12:18 AM",
+   "mood": "sleepy but sharing",
+   "body": "5) 'pirates_of_the_caribbean_2.avi'. it was the first one. still good. 6/10 bc i wanted the second one. 4) a movie where the guy filming it brought a baby. the baby had opinions. 5/10 movie, 9/10 baby. 3) 'king_kong_FULL.avi', which was 11 minutes long and ended when they got 2 the island. honestly a tighter story. 8/10. 2) the one in italian w/ a guys head at the bottom of the screen. i dont know what happened in it but the head nodded a lot so i think it was good. 7/10. 1) a file called 'movie.avi' that was a home video of somebodys family at a lake. nobody famous. a kid catches a fish and everyone goes nuts. i have watched it 4 times. 10/10. if this is ur family, ur dad is really proud of that fish. thats all 4 this month. the Beast needs a nap."
+  }
+ ],
+ "survey": {
+  "title": "the 'whats on ur computer' survey (SHARED from a bulletin) (not stolen)",
+  "qa": [
+   ["name:", "larry. on the Beast my user name is 'Owner' and i dont know how 2 change it"],
+   ["how many songs do u have:", "6,114. unique songs: maybe 900. its a lot of the same polka"],
+   ["last thing u downloaded:", "something called FREE_SMILEYS. its been installing since tuesday. i believe in it"],
+   ["desktop background:", "depends on the day. a virus picks. 2day its a sunset"],
+   ["how many toolbars:", "11. 12 if u count the penguin one and i do now"],
+   ["most played song:", "'track 01' by unknown artist. all 31 of them"],
+   ["have u ever bought a cd:", "yes!! blank ones. a hundred at a time"],
+   ["what do u want 2 be when u grow up:", "the guy who labels the files. id do it RIGHT. every single one"],
+   ["best gift u ever gave:", "the wedding polka cd 4 my grandma. second place: dougs 'the internet' cd"],
+   ["if u could tell the world one thing:", "its not stealing its sharing. also if u have the last 1% of a file ive been waiting on since april, please, im right here"]
+  ]
+ }
+}

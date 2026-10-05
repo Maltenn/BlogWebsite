@@ -194,49 +194,7 @@ const MS = {
       keywords: { vinyl: 'ok NOW we\'re talking. what pressing? think carefully. everything depends on this.', spotify: 'spotify??? in MY dms??? get a turntable and speak to me again.' },
     },
 
-    wes: {
-      name: 'wavedash_wes', tag: '20XX is a lifestyle',
-      avatar: 'dartmonkey.png', age: 24, loc: 'his setup (CRT, obviously)',
-      mood: 'frame perfect 🎮', lastLogin: '20 minutes ago (between friendlies)',
-      theme: { bg: '#0d1b0d', fg: '#c8f5c8', accent: '#7fff7f' },
-      about: 'melee player. i main fox. yes i know. i have a CRT in every room including the bathroom (for warmups). i can explain wavedashing to anyone in under 4 minutes and i WILL, you don\'t have to ask, in fact you can\'t stop me.',
-      interests: { Games: 'melee. there are other games? cute.', Hardware: 'CRTs (7 and counting)', Heroes: 'the 20XX prophecy' },
-      song: { name: 'Through the Fire and Flames', artist: 'DragonForce', url: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/56/0c/4d/560c4d59-f18d-4b18-58eb-a740f98b00ba/mzaf_6229759668415352105.plus.aac.p.m4a', pattern: [0, 12, 0, 10, 0, 8, 7, 5], bpm: 150 },
-      decor: ['assets/deco_dragon.gif', 'assets/deco_blinkie_zim.gif'],
-      gender: "Male",
-      hometown: "his parents' basement (which is in Sacramento, technically)",
-      zodiac: "Capricorn (I main a bird but I'm a goat. work ethic. frame data.)",
-      status: "Single (the CRTs are a lifestyle, not a partner. mostly.)",
-      hereFor: "Friends, Networking, Friendlies (bring your own controller, I WILL inspect the ports)",
-      blogTitle: "20XX: a frame-by-frame countdown",
-      meet: "ken. isai. PC chris. anyone who has beaten a fox in bracket without johns. also whoever at sony decided to stop making trinitrons, so I can ask them, calmly, why.",
-      interests: {"General": "melee (there are other games? cute), CRTs (8 and counting), controller port maintenance, frame data, explaining wavedashing to anyone standing still, gamecube controller collecting, the smashboards forums at 3am", "Music": "dragonforce (through the fire and flames, obviously), the melee soundtrack (pokemon stadium is peak), muse, whatever song is on the ken combo video, whatever's on at the local", "Movies": "the karate kid (it's about tech skill), rocky (it's about tech skill), the wizard (it's not about tech skill but it IS about a kid and a tournament), akira (looks INSANE on a CRT)", "Television": "g4 (attack of the show, x-play), ken vs isai on my own VHS tapes, dragon ball z (the training arcs only, skip the talking)", "Books": "the melee frame data spreadsheet (a book if you print it, I did), the official SSBM strategy guide (wrong about everything, historically important), ender's game", "Heroes": "the 20XX prophecy, ken, isai, the guy at the venue who brings the good CRT, my mom (does not know about CRT #8)"},
-      pcComments: ["nice pic. is that a CRT in the background? 27 inch? trinitron? answer all three. this is important.", "this photo has good neutral. you're centered, you're spacing correctly from the camera, no johns. solid.", "cool. the shutter shades though. those are scanlines for your face. I respect it, technically.", "the flash on this pic has the exact latency of a 2001 plasma. 4 frames. I can tell. still a good pic.", "you're holding a gamecube controller in this and the analog stick looks WORN. whose is that. is it ok. do you need me to look at it."],
-      statusesExtra: ["wavedash_wes hosted friendlies and SOMEONE brought an HDTV 'to help.' it added 4 frames of lag and I aged 4 years. no names. you know who you are. thanks for coming though.", "wavedash_wes played Halo at youth group as a favor. it has no wavedash. it has no L-cancel. it has a 'sticky grenade,' which is a projectile with johns built in. josh is good at it though. concerning.", "wavedash_wes found a 27-inch trinitron on the curb on trash night. carried it 6 blocks. that's CRT #9. my mom thinks it's still 7. we're all lying to someone.", "wavedash_wes is watching the 13 new members' profiles load on CRT #3. scene layouts at 640x480 should be illegal. the glitter is 4 frames behind the text."],
-      banterExtra: {"josh": ["josh you beat me at Halo 8 times in the youth room and I want to be clear: Halo is not melee, there's no tech skill, it's aim and grenades and a jeep. anyway what's your sensitivity and can I come back thursday.", "ok. real talk. you have tournament-level composure. you didn't celebrate once. that's scarier than celebrating. come to melee night. I will put you on fox. you will hate it. you will be good at it."], "epic": ["epic. you linked me a YTMND of fox's up-throw up-air looped to 'what is love' and I have watched it 40 times. that's a combo video. you made a combo video by accident. respect.", "'lol ur mom wavedashes' is not a joke, it's a statement of respect toward my mom, who does in fact have excellent reaction time. she's caught 8 CRTs falling. 8."], "nate": ["nate the shutter shades. on a CRT at 640x480 they're just horizontal scanlines on your face. it's actually kind of a great effect. don't take this as encouragement.", "'some people need to grow up' is a solid headline but you posted it during my friendlies and three people looked at their phones mid-match. that's 200 frames of downtime. post it AFTER the set, dude."]},
-      banter: {"kevin": ["kevin. real talk. Butterfly on heavy is basically a tech skill exercise, your feet are hitting 1-frame links. you would be DISGUSTING at melee. I have 7 CRTs. zero lag. think about it.", "an AAA with no witnesses is still an AAA. in melee we call that a wavedash in the woods. I believe you, kevin. bring the sweatband to my basement."], "dave": ["dave you 'h4ck3d' the LAN party sign-up by writing your name twice. respect. anyway you're carrying the fourth CRT, they're heavy, THAT'S the real skill test.", "l33tspeak is just fancy DI for words. also stop asking to 'overclock' my CRT. it's a 1998 Trinitron. it is already perfect. I have measured."], "derek": ["derek a kickflip is basically a wavedash: dash (push), jump (ollie), air-dodge diagonally into the ground (the part where you fall). you're already doing melee tech. badly. like me at skating.", "watched your gap video frame by frame on CRT #3. you were 2 frames from landing it. that's one missed L-cancel of margin. so close it hurts, man."], "randy": ["randy. Chuck Norris doesn't wavedash, the stage moves under him. there. happy? now please stop posting on my wall at 2am, it's frame-perfect annoying.", "'PIE.' is not an argument randy, but neither is my 400-word post about ledge invincibility, so we're even. you'd make a good falco player. that's an insult btw."]},
-      statuses: ["wavedash_wes acquired CRT #8. don't tell my mom. it has a name. its name is also wes.", "wavedash_wes explained wavedashing to three new members today. zero asked. all were changed.", "wavedash_wes is hosting friendlies saturday. 4 setups, no johns, controller ports cleaned with rubbing alcohol like a professional."],
-      bulletins: [{"subject": "PSA: melee night is BACK (new members read this)", "body": "friday. my basement. 8 CRTs (long story, don't tell my mom). melee singles, casual friendlies, and I will explain wavedashing to anyone who stands still long enough. it is NOT a glitch, it is an intentional physics interaction and it will change your life. new members: yes you can play, no you don't need your own controller, but if you bring one I WILL inspect the ports. kevin bring the sweatband. dave you're on CRT duty. -wes", "time": "Jul 1 2026 6:02 PM"}],
-      friends: ['sk8rboi', 'banana', 'patrick', 'todd'],
-      wall: [
-        { from: 'sk8rboi', text: 'wes explained wavedashing to me for 45 min. i still dont get it but i respect it', time: 'Jul 2 2026 7:44 PM' },
-        { from: 'patrick', text: 'is the crt tv heavy. asking because i tried to lift one. update: it is', time: 'Jul 1 2026 5:30 PM' },
-      ],
-      replies: [
-        'this comment was frame perfect. respect.',
-        'counterpoint: have you considered playing fox',
-        'i read this during a 4-stock. multitasking. that\'s the melee mindset.',
-        'strong opinion. wrong, but strong. run it back at the next local.',
-      ],
-      thanksAdd: 'added. your neutral game must be decent if you found this profile.',
-      ambient: [
-        'day 847 of asking the venue to bring back the good CRT.',
-        'new tech discovered at 3am. naming rights pending. it\'s probably nothing. it\'s EVERYTHING.',
-      ],
-      saltyDm: 'denied?? that\'s a disrespect option select. see you in bracket.',
-      keywords: { melee: 'MELEE MENTIONED. ok what\'s your main. choose wisely, this determines everything.', fox: 'a fellow fox enjoyer. 20XX approaches. stay ready.', smash: 'if you mean melee, yes. if you mean the other ones, i wish you well on your journey.' },
-    },
-
+    wes: {"name": "wavedash_wes", "tag": "20XX is a lifestyle", "avatar": "assets/avatar_wes_v2.gif", "age": 24, "loc": "highway 99, passenger side (dad's driving, i'm holding the saltines)", "mood": "frame perfect 🎮", "lastLogin": "20 minutes ago (between friendlies)", "theme": {"bg": "#0d1b0d", "fg": "#c8f5c8", "accent": "#7fff7f"}, "about": "melee player. i main fox. yes i know. i keep a roll of thumb tape in every room including the bathroom (for warmups). i can explain wavedashing to anyone in under 4 minutes and i WILL, you don't have to ask, in fact you can't stop me.", "interests": {"General": "melee (there are other games? cute), balloon arches (31 and counting), controller port maintenance, frame data, explaining wavedashing to anyone standing still, gamecube controller collecting, the smashboards forums at 3am", "Music": "dragonforce (through the fire and flames, obviously), the melee soundtrack (pokemon stadium is peak), muse, whatever song is on the ken combo video, whatever's on at the local", "Movies": "the karate kid (it's about tech skill), rocky (it's about tech skill), the wizard (it's not about tech skill but it IS about a kid and a tournament), akira (kaneda's bike slide is a wavedash. i have paused it 40 times to prove it)", "Television": "g4 (attack of the show, x-play), ken vs isai on my own VHS tapes, dragon ball z (the training arcs only, skip the talking)", "Books": "the melee frame data spreadsheet (a book if you print it, I did), the official SSBM strategy guide (wrong about everything, historically important), ender's game", "Heroes": "the 20XX prophecy, the old pros on the combo videos, dale (rival, hero, please don't tell him), my dad (coach, driver, holder of the saltines), my mom (orange slices at halftime, positive notes)"}, "song": {"name": "Through the Fire and Flames", "artist": "DragonForce", "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/56/0c/4d/560c4d59-f18d-4b18-58eb-a740f98b00ba/mzaf_6229759668415352105.plus.aac.p.m4a", "pattern": [0, 12, 0, 10, 0, 8, 7, 5], "bpm": 150}, "decor": ["assets/deco_dragon.gif", "assets/deco_blinkie_zim.gif"], "gender": "Male", "hometown": "his parents' basement (which is in Sacramento, technically)", "zodiac": "Capricorn (I main a bird but I'm a goat. work ethic. frame data.)", "status": "Single (in a committed relationship with a 612 day practice streak. it is very demanding. mostly.)", "hereFor": "Friends, Networking, Friendlies (bring your own controller, I WILL inspect the ports)", "blogTitle": "20XX: a frame-by-frame countdown", "meet": "bob from the l.a. regional (beat me first round, great set, never told him). whoever first figured out the wavedash, so I can thank them and ask what ELSE they know. anyone who has beaten a fox in bracket without johns. also whoever keeps setting the venue thermostat to 58 degrees, so I can ask them, calmly, why.", "pcComments": ["nice pic. is that a gamecube controller on the shelf in the background? what color? is the stick centered? answer all three. this is important.", "this photo has good neutral. you're centered, you're spacing correctly from the camera, no johns. solid.", "cool. the shutter shades though. you look like a guy who just lost winners semis and wants no one to ask. I respect it, technically.", "the flash on this pic lasted about 3 frames. I can tell. that's one fox jumpsquat, the shortest time in which anything has ever gone right for me. still a good pic.", "you're holding a gamecube controller in this and the analog stick looks WORN. whose is that. is it ok. do you need me to look at it."], "statusesExtra": ["wavedash_wes hosted friendlies and SOMEONE brought an HDTV 'to help.' it added 4 frames of lag and I aged 4 years. no names. you know who you are. thanks for coming though.", "wavedash_wes played Halo at youth group as a favor. it has no wavedash. it has no L-cancel. it has a 'sticky grenade,' which is a projectile with johns built in. josh is good at it though. concerning.", "wavedash_wes ate $7 nachos from the venue snack bar at 10 am, then lost the next set, and would like it noted that the cheese was not a john. it was a circumstance. (it was a john. he's working on it.)", "wavedash_wes is reading the 13 new members' profiles and has added all 13 to the friday friendlies sign-up sheet without asking. the sheet is on page 2. page 3 is a dream."], "banterExtra": {"josh": ["josh you beat me at Halo 8 times in the youth room and I want to be clear: Halo is not melee, there's no tech skill, it's aim and grenades and a jeep. anyway what's your sensitivity and can I come back thursday.", "ok. real talk. you have tournament-level composure. you didn't celebrate once. that's scarier than celebrating. come to melee night. I will put you on fox. you will hate it. you will be good at it."], "epic": ["epic. you linked me a YTMND of fox's up-throw up-air looped to 'what is love' and I have watched it 40 times. that's a combo video. you made a combo video by accident. respect.", "'lol ur mom wavedashes' is not a joke, it's a statement of respect toward my mom, who does in fact have excellent reaction time. she's caught 8 casserole dishes mid-fall, one-handed, while holding a tray of orange slices. 8. not one slice moved."], "nate": ["nate you carry the amp. i hold the saltines on the 3 hour drive to fresno. we both have jobs nobody puts on a poster. it's honest work. don't take this as encouragement.", "'some people need to grow up' is a solid headline but you posted it during my friendlies and three people looked at their phones mid-match. that's 200 frames of downtime. post it AFTER the set, dude."]}, "banter": {"kevin": ["kevin. real talk. Butterfly on heavy is basically a tech skill exercise, your feet are hitting 1-frame links. you would be DISGUSTING at melee. I'd start you the way I started my cousin maya: one stage, 20 minutes, zero johns. think about it.", "an AAA with no witnesses is still an AAA. in melee we call that a wavedash in the woods. I believe you, kevin. bring the sweatband to my basement."], "dave": ["dave you 'h4ck3d' the LAN party sign-up by writing your name twice. respect. anyway you're holding the other end of the balloon arch, it's 9 feet long and it wants to be a kite, THAT'S the real skill test.", "l33tspeak is just fancy DI for words. also stop asking to 'overclock' my controller. it has no clock, dave. it has a stick and a cord. it is already perfect. I have measured."], "derek": ["derek a kickflip is basically a wavedash: dash (push), jump (ollie), air-dodge diagonally into the ground (the part where you fall). you're already doing melee tech. badly. like me at skating.", "watched your gap video frame by frame with my thumb on the pause button. you were 2 frames from landing it. that's one missed L-cancel of margin. so close it hurts, man."], "randy": ["randy. Chuck Norris doesn't wavedash, the stage moves under him. there. happy? now please stop posting on my wall at 2am, it's frame-perfect annoying.", "'PIE.' is not an argument randy, but neither is my 400-word post about ledge invincibility, so we're even. you'd make a good falco player. that's an insult btw."]}, "statuses": ["wavedash_wes acquired CRT #8. don't tell my mom. it has a name. its name is also wes.", "wavedash_wes explained wavedashing to three new members today. zero asked. all were changed.", "wavedash_wes is hosting friendlies saturday. 4 setups, no johns, controller ports cleaned with rubbing alcohol like a professional."], "bulletins": [{"subject": "PSA: melee night is BACK (new members read this)", "body": "friday. my basement. 4 setups (watch the third stair, it has opinions). melee singles, casual friendlies, and I will explain wavedashing to anyone who stands still long enough. it is NOT a glitch, it is an intentional physics interaction and it will change your life. new members: yes you can play, no you don't need your own controller, but if you bring one I WILL inspect the ports. kevin bring the sweatband. dave you're on the sign-up sheet, spell your name once this time. -wes", "time": "Jul 1 2026 6:02 PM"}], "friends": ["sk8rboi", "banana", "patrick", "todd"], "wall": [{"from": "sk8rboi", "text": "wes explained wavedashing to me for 45 min. i still dont get it but i respect it", "time": "Jul 2 2026 7:44 PM"}, {"from": "patrick", "text": "wes can dwayne play melee. he doesn't have hands but he is very still. i read that is good for neutral. update: i dont know what neutral is but i think he has it", "time": "Jul 1 2026 5:30 PM"}], "replies": ["this comment was frame perfect. respect.", "counterpoint: have you considered playing fox", "i read this during a 4-stock. multitasking. that's the melee mindset.", "strong opinion. wrong, but strong. run it back at the next local."], "thanksAdd": "added. your neutral game must be decent if you found this profile.", "ambient": ["day 847 of asking the venue to bring back the good CRT.", "new tech discovered at 3am. naming rights pending. it's probably nothing. it's EVERYTHING."], "saltyDm": "denied?? that's a disrespect option select. see you in bracket.", "keywords": {"melee": "MELEE MENTIONED. ok what's your main. choose wisely, this determines everything.", "fox": "a fellow fox enjoyer. 20XX approaches. stay ready.", "smash": "if you mean melee, yes. if you mean the other ones, i wish you well on your journey."}},
     herp: {
       name: 'herp', tag: 'herp.',
       avatar: 'herp.gif', age: '??', loc: 'herp',
@@ -454,7 +412,7 @@ const MS = {
     nikki: {"name": "nightcore_nikki", "tag": "everything is better at 1.5x speed ★ UNTZ UNTZ", "avatar": "assets/avatar_nikki.gif", "age": 15, "loc": "bedroom studio (do not tell my mom about the subwoofer)", "mood": "hyper (148 bpm resting)", "lastLogin": "Jul 4 2026 12:03 AM", "theme": {"bg": "#1a0033", "fg": "#00ffff", "accent": "#ff44cc"}, "about": "hiiiii i'm nikki and i make songs FASTER and HIGHER and therefore BETTER. it's called nightcore and it's the future of all sound. send me ANY song and i will have a remix back to you in 20 minutes. yes any song. yes even that one. ESPECIALLY that one. my setup is audacity, headphones held together with a scrunchie, and belief. current project: nightcoring my entire profile including this about me (read it fast for the full experience). UNTZ UNTZ.", "interests": {"General": "audacity, reverb, bpm counting, glowsticks, the pitch slider, holding my headphones together with a scrunchie, the phone line (mine) (when mom's not on it)", "Music": "nightcore, caramelldansen, DJ Sammy - Heaven (the slow version is a crime, the fast version is the law), basshunter, cascada, anything that can be made faster which is everything", "Movies": "the fast and the furious (the title) (i haven't seen it) (it's already 1.5x in my heart)", "Television": "toonami at 1.5x, the weather channel (that music!! that little jazz!! at 1.5x!! transcendent)", "Books": "the audacity help menu. the caramelldansen lyrics printed out. that's it those are the books", "Heroes": "the speed slider inventor (name unknown) (thinking of them daily), kevin's legs, whoever uploads the real nightcore i find on limewire (not the ones that just pitch it up) (ok fine those too)"}, "song": {"name": "Caramelldansen", "artist": "Caramella Girls", "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/6f/ce/21/6fce2128-16e5-ca68-4740-5aa19531967b/mzaf_4206433795640452081.plus.aac.p.m4a", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/deco_record_dj.gif", "assets/deco_rainbow_bar.gif", "assets/badge_winamp.gif"], "bgTile": "assets/tiles/tile_stars_neon.png", "friends": ["riley", "kevin", "banana", "usagi", "vinyl_witch", "lucas"], "wall": [{"from": "vinyl_witch", "text": "nikki i say this with love: what you did to that fleetwood mac record last night was a crime against at least three first pressings. anyway. the bassline held up. interesting. do not read into this.", "time": "Jun 24 2026 8:19 PM"}, {"from": "kevin", "text": "NIKKI. the butterfly remix. i hit a new high score to it and doug asked what i was listening to. WE'RE FAMOUS (locally) (to one guy) (it's doug)", "time": "Jun 28 2026 5:47 PM"}, {"from": "banana", "text": "UNTZ UNTZ IS THE SOUND MY HEART MAKES NORMALLY!!! WE ARE THE SAME BPM!!! HOUR 37 AND THE REMIX STILL SLAPS!!!", "time": "Jul 1 2026 3:12 AM"}, {"from": "riley", "text": "omg the remix u did of shake it is stuck in my head at DOUBLE speed which means it's stuck TWICE. math!! rawr xD", "time": "Jul 3 2026 6:28 PM"}], "replies": ["ok but have you heard this comment at 1.5x speed? incredible. thank you.", "UNTZ UNTZ (that means thank you in nightcore)", "i'm remixing this comment as we speak. check your dms in 20 min.", "this wall post? sped up? with reverb? beautiful. no notes."], "thanksAdd": "WELCOME TO THE SPEEDZONE malten!!! as a thank-you i will nightcore any one (1) song of your choosing. choose wisely. or don't and i'll pick for you. (it's caramelldansen. it was always going to be caramelldansen.)", "ambient": ["just nightcored the dial-up sound. it's 11 seconds now. you're welcome, internet.", "mom said turn it down so i turned it UP (the pitch. i turned up the pitch. volume unchanged. loopholes.)", "day 6 of attempting to nightcore silence. philosophy is harder than audacity."], "saltyDm": "denied?? at NORMAL speed?? ok ok, respect. but someday you'll hear caramelldansen at a school dance and your heart rate will sync to it and in that moment you will know where to find me. UNTZ UNTZ <3", "keywords": {"music": "did someone say MUSIC. name any song. i'm serious. i have audacity open RIGHT NOW. the render bar is waiting.", "slow": "slow?? SLOW??? not on my wall. hand it over, whatever it is, it leaves here at 1.5x minimum."}, "banter": {"vinyl_witch": ["i nightcored one (1) of your first pressings AS A GIFT and you lit a candle 'for its soul.' it sounds BETTER now. faster = better. this is simply science.", "playing your 33s at 45rpm is just analog nightcore, which means YOU invented the genre. accept the crown. i've been telling everyone you're my founder."], "kevin": ["kevin your 180bpm practice mix is DONE. if your legs fall off, that is a matter between you and the arcade. GO. BE LEGENDARY.", "the sweatband is a look but consider: TWO sweatbands. dual wield. aerodynamics. i've done zero research and i've never been more sure."], "lucas": ["lucas i nightcored your favorite song and i need you to know that pain at 1.5x speed sounds kind of... happy?? this might be therapy. no charge. tell your feelings i said hi.", "nobody understands you at NORMAL speed. at 174 bpm? crystal clear. think about it. that's all i'm saying. UNTZ."], "banana": ["i tried to nightcore your caps lock and the file is just AAAAAA but faster. it's perfect. it's track one on the mixtape. it's also tracks two through nine.", "you are the only person on this site whose natural speaking voice is already nightcore. i have nothing left to teach you. you graduate. tassel to the left."], "smoove": ["smoove ur new track feat. 'everyone' has me on it for 4 seconds and i need u to know those 4 seconds are the FASTEST part. i'm remixing the whole thing. 20 min. it'll be 1:40 long. UNTZ", "u called me 'the fastest producer on the site' in a bulletin and i printed it and taped it to the subwoofer. mom found it. mom now knows about the subwoofer. worth it"], "misery": ["misery i nightcored ur FIRST VIDEO EVER!! it's 20 seconds now and ur 'rawr' is at chipmunk pitch and honestly?? ur best rawr yet. sending it. do not be mad. be FASTER", "u and riley can fight about who invented rawr but i invented rawr at 1.5x and NOBODY is fighting me about it. suspicious. UNTZ"], "bryan": ["bryan i sped up ur drum track from friday and it turns out at 1.5x u are the greatest drummer alive. at 1x u are 'pretty good.' the math is the math", "u never text back but u DID say 'sick' about the remix in the garage so i'm counting that as a 5 paragraph reply. UNTZ UNTZ"]}, "statuses": ["is rendering. do not perceive me. (4% done)", "is at 148 bpm resting heart rate. the doctor said 'impressive?' with the question mark and everything", "is taking remix requests EXCEPT slow songs. wait. no. ESPECIALLY slow songs.", "just nightcored the school bell. the principal did not 'get it.' the future rarely is gotten.", "is out of glowsticks. taking donations. taking remix requests. taking the trash out (mom).", "some people request a remix, get the remix in 20 min like PROMISED, and then don't even say untz. i'm not naming names. it rhymes with 'schmerek'.", "is at 152 bpm resting. new record. the doctor wrote something down."], "bulletins": [{"subject": "TAKING REQUESTS: i will nightcore ur profile song!!", "body": "rules: 1) any song 2) no i will not do a 'normal speed version,' that's just the song 3) turnaround time 20 min unless my mom needs the phone line 4) payment accepted in glowsticks. first 8 requests get bonus reverb. UNTZ UNTZ. GO.", "time": "Jun 26 2026 7:02 PM"}], "dmSeed": [{"who": "them", "text": "hiiii i saw your profile song and i can have it 1.5x faster with reverb by TONIGHT. no pressure. but also: imagine it. close your eyes. UNTZ UNTZ. ok bye!!", "time": "Jul 1 2026 10:22 PM"}], "gender": "Female", "hometown": "Kettering, OH (like Dayton but 1.5x faster)", "zodiac": "Gemini (two of me!! one at normal speed and one at 1.5x!! both are me!!)", "status": "is rendering. 61%. do NOT pick up the phone.", "hereFor": "Friends!! Networking (remix requests)!! Dating (only if u can handle 148 bpm)", "blogTitle": "UNTZ UNTZ: a blog (read it fast)", "meet": "whoever invented the speed slider in audacity so i can HUG them. also the caramella girls. also anyone with a song they think is 'perfect as is' bc i have news for them. UNTZ.", "pcComments": ["this pic is SO fast. u look like ur already at the next frame. UNTZ", "i hummed a 1.5x version of this photo. it's in my head now. u're in my head now. good pic!!", "the colors in this are basically a remix. reverb on the bangs. commenting back as promised!!", "ok but imagine this photo with a bpm. 174. it has 174. i can hear it.", "cute!!! this comment has been sped up so u can read it FASTER. u're welcome. UNTZ UNTZ"]},
     riley: {"name": "rawr_xd_riley", "tag": "rawr means i love u in dinosaur xD", "avatar": "assets/avatar_riley.gif", "age": 15, "loc": "under my side-swept bangs", "mood": "random!!! :3", "lastLogin": "Jul 3 2026 10:56 PM", "theme": {"bg": "#000000", "fg": "#39ff14", "accent": "#ff00ff"}, "about": "HIIII i'm riley!!! i did my raccoon stripes myself in a gas station bathroom and honestly?? iconic. my most prized possession is my hair straightener (her name is Destiny, we've been through a lot together). things i love: GIR, tacos, being SO random, invisible cookies (i have an unlimited supply, ask me), and making my bangs defy at least two laws of physics before 8am. if u add me i will comment on ur page within four minutes. this is a promise AND a warning. rawr xD", "interests": {"General": "Destiny (my straightener), checkered everything, raccoon stripes, glow bracelets, random!!, invisible cookies, tacos!!, arm-swoosh dancing, my GIR sticker (he's on my binder and in my heart)", "Music": "metro station, hellogoodbye, cute is what we aim for, brokencyde (don't tell my mom), the caramelldansen (nikki made me) (i love it)", "Movies": "napoleon dynamite (i can do the dance) (for real) (randy can't), mean girls (i quote the cool mom part daily)", "Television": "INVADER ZIM!!! (GIR is me), spongebob, the suite life (zack) (no cody) (ok both)", "Books": "the GIR comic thing at hot topic, the back of my hairspray can (it's a thriller)", "Heroes": "Destiny. GIR. the taco guy. randy (don't tell him) (ok tell him)"}, "song": {"name": "Shake It", "artist": "Metro Station", "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/bf/d7/06/bfd706cc-f35c-2215-e165-0613c9b6e793/mzaf_8887892479915896447.plus.aac.p.m4a", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/deco_blinkie_zim.gif", "assets/deco_sparkle_bunny.gif", "assets/deco_smiley.gif"], "bgTile": "assets/tiles/tile_skulls.png", "friends": ["nikki", "darkangel", "randy", "brittany", "tina", "sk8rboi"], "wall": [{"from": "darkangel", "text": "your new stripe looks like a moonbeam trapped in a raven's wing... that's a compliment. it's 11:11 somewhere. probably.", "time": "Jun 21 2026 11:11 PM"}, {"from": "randy", "text": "riley i handed you an invisible cookie yesterday and you just ATE IT. no questions. FINALLY someone who understands the technology. PIE.", "time": "Jun 25 2026 3:33 PM"}, {"from": "brittany", "text": "ur poof is literally famous. it defies GRAVITY. teach me ur ways??? i'll trade u glitter eyeliner xoxo text me!!", "time": "Jun 29 2026 7:45 PM"}, {"from": "nikki", "text": "made u a getting-ready mix where every song is 1.5x so ur hair takes HALF the time. that's math. that's just math working. UNTZ", "time": "Jul 2 2026 4:18 PM"}], "replies": ["OMG hi!!! *hands u an invisible cookie* it's chocolate chip, u can't tell but it is. rawr xD", "this comment is so random i love it. TACOS. ok continue.", "*trips over nothing* haha i'm SO clumsy!! anyway HI HI HI", "AKJSDHFKJSDH ur amazing, that's the whole reply, rawr."], "thanksAdd": "OMG YAY *tackle hugs ur profile* malten!!! welcome to my top 8 consideration zone!!! here's ur welcome gift: one invisible cookie. no takebacks. it has ur name on it (invisibly). rawr xD", "ambient": ["my straightener has a name now. Destiny. we've been through a lot. mostly hairspray incidents.", "spent 2 hours on my bangs and it's WINDY outside. staying in. i have priorities and they are all hair.", "TACOS TACOS TACOS ok that's the whole post. wait. NINJAS. ok NOW it's done."], "saltyDm": "aww denied :( it's ok!! *hands u an invisible cookie through the screen anyway* no takebacks, it already has ur name on it (invisibly). the friendship offer never expires, kinda like the cookie (invisible things can't go stale, look it up) rawr xD", "keywords": {"hair": "OMG ok so step one is u NEED a straightener u would trust with ur life. step two is hairspray until the smoke alarm gets involved. step three is BELIEVE.", "tacos": "TACOS!!! ok u said the password, u get TWO invisible cookies AND an invisible taco. today is huge for u."}, "banter": {"darkangel": ["we are NOT the same!! ur bangs cover ur LEFT eye and mine cover my RIGHT eye. but together?? we can see one (1) entire room. teamwork!! rawr xD", "wrote u a poem: roses are black, my soul is black, TACOS. it's called a fusion of our styles. u may cry (glitter tears)"], "randy": ["randy i said something SO random in class today that the teacher said 'riley, that's enough' which means i WON. u would've been so proud. the word was WAFFLES.", "fact: chuck norris can see through BOTH eyes AND his bangs. wait. chuck norris doesn't have bangs. FACT INVALID. PIE. ok bye"], "tina": ["tina i will read twilight IF u let me give edward a raccoon stripe with a sharpie in ur copy. he would look SO scene. this improves the book. i've never read the book.", "got ur chain letter and reposted it TWICE which means DOUBLE good luck. that's how it works. probably. don't check."], "patrick": ["patrick i drew whiskers on ur pet rock (in my head, i didn't touch him, don't worry). he looks SO random now. i think his name should be Mr. Biscuit. tell him i said hi.", "u read my comment three times?? that means i said hi to u three times. hi hi hi!!! that's the most hellos anyone has ever gotten. ur welcome xD"], "misery": ["misery i watched ur 'first video ever' and u said rawr means i love u in dinosaur at 0:04. RILEY SAID THAT FIRST. it's on my page. it's in my HEADLINE. we can be friends but that's MINE. rawr (mine) xD", "ok ok ok truce. u can say rawr. but u have to say 'rawr (riley's)' like a brand. haha jk!! (not jk) *hands u an invisible cookie* (it's a peace cookie)"], "kittyxcore": ["kittyxcore ur new pics are SO cute!!! commented ALL of them (4 minutes) (i timed it) pc4pc?? mine are up too!! the raccoon stripe is fresh. rawr xD", "ur hello kitty bed is literally my dream bed. mine is checkered. we should trade for a week. our moms would never know. (they would immediately know)"], "epic": ["epic ur ytmnd of the GIR taco thing made me laugh so hard i inhaled an invisible cookie. that's dangerous!! do it again!! XD", "u said 'lol ur mom' to randy and randy said PIE and u said 'ur mom is pie' and i have never seen two people so random at once. i felt like i was watching history. rawr"]}, "statuses": ["is so random rn it's basically a medical situation xD", "is out of invisible cookies. or AM i. no one can prove anything.", "is having a staring contest with the GIR sticker on my binder. he's winning. he always wins.", "is having a fight with Destiny (my straightener) (she pulled) (we're ok now)", "hey SOME people are saying they invented rawr. u didn't. i've been saying rawr since 7th grade. i have witnesses. (my mom). rawr xD (that's MINE)", "is bringing invisible cookies to the sk8 off. invisible slushies too. the hose is real tho. derek's hose.", "TACOS!!! ok that's the status. wait. NINJAS. ok now it's done. rawr"], "bulletins": [{"subject": "50 RANDOM THINGS ABOUT MEEE!!! (stolen from brittany) (she stole it first) (it's mine now)", "body": "1. my hair has its own weather forecast 2. i can quote every GIR line (this is a threat) 3. invisible cookies are real and the doubters know what they did 4. TACOS 5-50. also tacos. repost with UR 50 things or a raccoon judges u in ur sleep (affectionately)!!", "time": "Jun 27 2026 9:14 PM"}], "dmSeed": [{"who": "them", "text": "OMG ur new here!!! *throws invisible confetti* WELCOME WELCOME ok here's ur first invisible cookie, they're free, they're all free, that's the business model. rawr xD", "time": "Jun 30 2026 8:03 PM"}], "gender": "Female", "hometown": "Parma, OH!!! (the checkered part) (i checkered it)", "zodiac": "Aquarius!! starxgazer said it means 'random and can't be tamed' and i said TACOS and she said 'yeah that's it' xD", "status": "is SO random rn. like. u don't even know. WAFFLES. see.", "hereFor": "Friends!!! (and invisible cookie distribution) (and rawr) (that's not an option but it should be)", "blogTitle": "RAWR MEANS I LOVE U IN DINOSAUR (i said it first)", "meet": "GIR!!! (he's real to me). the guy who invented tacos so i can hug him!! anyone who's SO random that i actually get scared xD. also whoever keeps saying THEY invented rawr so we can settle this with a staring contest. rawr.", "pcComments": ["OMG ur bangs in this!!! they're covering the CORRECT eye. rawr xD <3", "*throws invisible confetti at this pic* SO CUTE. comment back!! (u already did) (comment AGAIN)", "RAWR!!! this pic is so random i love it!!! is that a taco in the background. it's not. it should be.", "ur poof is defying gravity here. Destiny (my straightener) says hi to ur straightener. they should hang out xD", "AKJSHDKJSHD this is my new favorite pic of u. i'm printing it. i don't have a printer. i'm printing it in my HEART"]},
     usagi: {"name": "animegurl_usagi", "tag": "anime club president ♥ subs ONLY ♥ ganbatte!!", "avatar": "assets/avatar_usagi.gif", "age": 16, "loc": "room 204 (anime club HQ) (also just a classroom)", "mood": "genki!! ☆", "lastLogin": "Jul 3 2026 9:20 PM", "theme": {"bg": "#ffe4f1", "fg": "#7a1048", "accent": "#ff69b4"}, "about": "konnichiwa minna-san!! i'm usagi, PRESIDENT of the anime club (4 members, one of them is technically banana who came for the pocky and never left, membership is membership). i am learning japanese from anime and my vocabulary is 90% battle cries and dramatic declarations, which means i can surrender OR declare war but cannot yet order lunch. SUBS NOT DUBS — this is the hill, i live on the hill, i have decorated the hill. i call my teacher sensei and honestly? it's working. if u comment on my page i WILL respond like the last episode of an anime. ganbatte!!", "interests": {"General": "anime club (PRESIDENT!!), pocky, learning japanese from anime (300 episodes at a time), dramatic wind, fansub notes ('keikaku means plan'), drawing sparkly eyes in the margins of my math homework, cosplay (in progress) (it's a bedsheet right now)", "Music": "every anime opening (skipping is a crime), A Cruel Angel's Thesis, the sailor moon theme (japanese) (OBVIOUSLY), Utada Hikaru, the .hack soundtrack, whatever's playing at the anime store in the mall", "Movies": "spirited away (i cried), princess mononoke (i cried differently), end of evangelion (i did not cry i just stared for an hour), advent children (club-approved, sephiroth-kun stop)", "Television": "evangelion, sailor moon (japanese), fullmetal alchemist, ouran high school host club (it's SO new and SO perfect), toonami until it was taken from us (we remember)", "Books": "manga counts. fruits basket, chobits, the fullmetal manga which is BETTER than the show (do not tell wes-kun i said 'better' about anything on a screen), my japanese phrasebook (chapter 1) (still)", "Heroes": "every protagonist who yelled their attack name. usagi tsukino (i'm named after her) (by me). my club members (all 4) (banana counts). sensei."}, "song": {"name": "A Cruel Angel's Thesis (Director's Edit Version)", "artist": "Yoko Takahashi", "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/9c/de/ee/9cdeee60-4087-e848-7fe5-bd1ba8000795/mzaf_12533848052351672003.plus.aac.p.m4a", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/badge_hello_kitty.gif", "assets/deco_fairy.gif", "assets/deco_hearts_bar.gif"], "friends": ["sephiroth", "wes", "tina", "meg", "zorp", "darkangel"], "wall": [{"from": "sephiroth", "text": "president usagi. my proposal for the JRPG division awaits your review. i have trimmed it to 38 pages. we all make sacrifices for the club.", "time": "Jun 23 2026 10:40 PM"}, {"from": "zorp", "text": "usagi-chan (i am told this suffix indicates warm human friendship), anime club is my favorite earth gathering. the cartoons about giant robots feel very... familiar. ha ha. normal joke from a normal human.", "time": "Jun 26 2026 3:33 AM"}, {"from": "meg", "text": "I DREW U AS A MAGICAL GIRL ON A UNICORN!!! ms paint took 3 hours and i regret NOTHING. her name is Sparkle-sensei. check ur inbox!!!", "time": "Jun 30 2026 5:52 PM"}, {"from": "tina", "text": "ok FINE i watched one (1) episode of vampire knight like u said. it was... ok it was really good. TEAM EDWARD STILL. but it was really good.", "time": "Jul 2 2026 8:11 PM"}], "replies": ["arigatou!! (that means thank you. i'm basically fluent. don't fact-check this.)", "kyaaa!! this comment is so sugoi!! club-approved!!", "*bows respectfully at my computer* thank you, comment-san.", "this made me smile like a protagonist in the finale. ganbatte!!"], "thanksAdd": "yatta!! welcome, malten-kun!! friendship with me includes ONE free anime recommendation, non-refundable. it's evangelion. we can be confused about it together, that's the intended experience!!", "ambient": ["learned a new japanese word from anime today. it is a battle cry. i can now surrender OR declare war, vocabulary-wise. lunch remains unorderable.", "anime club budget update: we have $7 and a pocky IOU from banana. thriving.", "called my mom 'okaa-san' at dinner and she said 'finish your rice.' counting it as a successful cultural exchange."], "saltyDm": "eehh?? denied?? *dramatic anime fall with speed lines* ...it's ok!! this is simply my tragic backstory arc. when you accept my request in season two it will be SO much more meaningful. ganbatte, future friend-kun!!", "keywords": {"anime": "you said the word!! by the powers vested in me as club president, you are now legally invited to friday's screening. room 204. bring nothing but an open heart (and pocky if possible).", "manga": "manga counts as books, reading manga counts as studying japanese, and i count as fluent. the club has voted on all three. unanimously. (i am the tiebreaker.)"}, "banter": {"sephiroth": ["sephiroth-kun, i approved the JRPG division on ONE condition: the weekly essay has a five page LIMIT. i saw your face just now through the internet. FIVE. PAGES.", "ruling from the president's desk: advent children counts as anime for club purposes. do not make me regret this. do NOT bring the yardstick."], "zorp": ["zorp-kun you ask the best questions in club, like 'do all humans cry at endings or only advanced ones.' only advanced ones, zorp-kun. it's us. we're advanced.", "we watched a space anime friday and zorp took NOTES and muttered 'inaccurate' twice?? dedication award. president's honors. best member."], "wes": ["wes-kun i saw your melee match and you yelled a BATTLE CRY when you won. announcing your attacks is anime protagonist behavior. you are READY. room 204. friday.", "fox's whole moveset is basically a magical girl transformation sequence if you think about it. do not argue with your club president."], "tina": ["tina-chan the club voted: vampire knight double feature is ON for friday. you may bring the edward poster for emotional support but it stays IN the bag. president's ruling.", "received your chain letter and reposted immediately!! not because i fear bad luck, but because a true protagonist respects the rules of the cursed video. it's basic media literacy."], "mika": ["mika-chan!! ur OC has a SWORD, a TRAGIC PAST, and green hair (comic relief with a tragic past per my survey, which is CANON now). anime club needs an art division. u're the art division. it's decided. ganbatte!!", "someone TRACED her?? on deviantART?? this is a tournament arc, mika-chan. u will draw her better. they cannot trace what does not exist yet. i believe in u like an opening theme believes in a protagonist."], "kittyxcore": ["kittyxcore-chan!! hello kitty is SANRIO which is JAPANESE which makes u an honorary anime club member. no it doesn't. but i'm the president and i'm making it true. room 204. friday. bring the bedspread. (a joke) (bring it)", "commented ur new pics!! all 12!! pc4pc?? mine are up but they're all me in a bedsheet and it's 'cosplay' and nobody is allowed to say otherwise ☆"], "josh": ["josh-kun u said youth group is 'chill' and also that u 'don't judge people for watching cartoons' and honestly?? most protagonist thing anyone has said to me this week. i'm not coming (friday is club) but i respect the invitation deeply.", "wait u beat wes-kun at HALO?? in front of PEOPLE?? that's a tournament arc. that's a whole tournament arc with a training montage. tell me everything. the club needs to know."]}, "statuses": ["is practicing her dramatic wind-blown-hair pose (the fan is borrowed from the science room, i'm returning it, sensei, i promise)", "is subbing. never dubbing.", "is recruiting for anime club!! we have pocky (one box) (banana ate most of it) (membership is membership)", "learned 'itadakimasu' from anime and said it at lunch and the cafeteria lady said 'ok honey.' cultural exchange ACHIEVED.", "is watching ouran and screaming into a pillow at a respectful volume", "ahem. SOME people on this site watched a DUB and then came to club and QUOTED THE DUB. i said nothing. the club said nothing. the club is thinking about it.", "anime club budget: $7 and a pocky IOU. we are unstoppable. ganbatte!!"], "bulletins": [{"subject": "ANIME CLUB FRIDAY!!! room 204 ★ subs only zone ★", "body": "AGENDA: 1) attendance (zorp please stop answering 'present in this dimension,' it's funny but it slows us down) 2) vampire knight double feature 3) sephiroth-kun's essay (FIVE PAGE LIMIT, it's in the bylaws now) 4) pocky, if banana left any. all are welcome!! bring a friend-kun!!", "time": "Jul 1 2026 4:44 PM"}, {"subject": "SURVEY: which anime hair color would u have??", "body": "rules: your anime hair color reveals your soul. pink = protagonist energy. blue = mysterious rival. green = comic relief with a tragic past (banana). repost with yours!! i'm pink. obviously. i did not make this survey just to say i'm pink. (i did.)", "time": "Jul 3 2026 6:06 PM"}], "dmSeed": [{"who": "them", "text": "konnichiwa!! i saw you were new to ourspace and i simply must ask: have you considered... anime club? no pressure!! (some pressure) (we have pocky) (one box) ganbatte!!", "time": "Jun 29 2026 7:33 PM"}], "bgTile": "assets/tiles/tile_flowers.png", "gender": "Female", "hometown": "Westerville, OH (Tokyo-3 in my heart) (it's near Columbus, sensei)", "zodiac": "Cancer!! the MOON sign!! sailor moon!! i did not choose this, it was CHOSEN. ☆", "status": "is practicing her transformation sequence. the pose part. in the mirror. don't come upstairs, mom.", "hereFor": "Friends!! Networking (anime club recruitment)!! (Dating: only if u agree subs not dubs) (that's a joke) (it's not)", "blogTitle": "President's Log ★ Room 204 ★ subs only zone", "meet": "Hideaki Anno so i can ask him what the ending MEANT (gently). Naoko Takeuchi so i can bow for 30 seconds. anyone who will join anime club!! we have pocky. (one box.) (banana.)", "pcComments": ["kyaaa!! ur hair in this is SO shoujo!! sparkles are implied!! ☆", "this pic has opening-theme energy. like, opening-theme-ending-pose energy. sugoi!!", "*bows at this photo* arigatou for posting it. commented as promised, comment-san.", "if this were an anime this is the frame where the wind blows and the music swells. i can hear it. it's a cruel angel's thesis. it's always a cruel angel's thesis.", "ur eyes are so big in this it's basically canon. club-approved!! ganbatte!!"]},
-    kevin: {"name": "ddr_kevin", "tag": "AAA'd Butterfly. it happened. u weren't there.", "avatar": "assets/avatar_kevin.gif", "age": 16, "loc": "Tilt arcade, second machine from the left (the good pad)", "mood": "warmed up", "lastLogin": "Jul 4 2026 1:15 PM", "theme": {"bg": "#000428", "fg": "#ffcc00", "accent": "#ff3355"}, "about": "on june 3rd at approximately 4:40pm i AAA'd Butterfly on the Tilt arcade machine. every arrow. perfect. no witnesses. doug (arcade guy) was in the back dealing with the claw machine. i have made peace with this. (i have not made peace with this.) i wear my sweatband to school for readiness purposes — you never know when a machine will appear. home training setup: a pillow with masking tape arrows, which my mom calls 'the carpet situation.' my legs are two separate athletes and i am merely their coach.", "interests": {"General": "stamina training, quarter management, reading the song wheel, respecting the pad, the sweatband (official), the home pad (pillow, tape arrows), doug's nods, ankle support, crossover steps, the good pad", "Music": "anything 140+ bpm, smile.dk (butterfly obviously), captain jack, dj sammy, max 300 (it's a song AND a threat), nikki's remixes (180 bpm) (dangerous), sandstorm (dave plays it while i practice) (it works)", "Movies": "whatever's on at the mall theater between sessions. the karate kid (training montage) (i pause it and stretch)", "Television": "the tv above the prize counter at Tilt (same 20 minutes) (300 times), ninja warrior (those guys have DDR calves), pump it up demos on the machine next to mine (the enemy) (respectfully)", "Books": "the DDR songlist printout from the machine (folded in my wallet), a book about stretching my mom got me (i actually read it) (it's good)", "Heroes": "doug. my left calf. my right calf. chad (cheered so loud he got asked to step back). nikki (the mix). whoever invented the safety bar (i don't use it) (but it's there)"}, "song": {"name": "Butterfly", "artist": "Smile.Dk", "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/3c/70/53/3c70530d-fd2c-640a-c690-e0f489601a80/mzaf_2003151667415210227.plus.aac.p.m4a", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/badge_8bit.gif", "assets/badge_Sega-Elite.gif", "assets/deco_new.gif"], "bgTile": "assets/tiles/tile_checker_pink.png", "friends": ["nikki", "wes", "sk8rboi", "derek", "chad", "banana"], "wall": [{"from": "chad", "text": "KEVIN i watched you play saturday and CHEERED so loud doug asked me to step back from the machine. YOUR LEGS are a sports highlight my man. hall of fame stuff", "time": "Jun 22 2026 6:05 PM"}, {"from": "wes", "text": "the tilt DDR cab runs a locked refresh rate with basically zero input lag, which is why your scores are real and home-console players live a comfortable lie. anyway you owe me a quarter.", "time": "Jun 27 2026 11:52 PM"}, {"from": "nikki", "text": "your 180bpm practice mix is DONE. warning: i added reverb to the arrow sounds. u will transcend. possibly ascend. stretch first.", "time": "Jul 1 2026 9:09 PM"}, {"from": "sk8rboi", "text": "dude ur shins and my shins should start a support group lol. iced mine 2day, ur turn 2 bring the frozen peas. respect the grind 4ever", "time": "Jul 3 2026 5:31 PM"}], "replies": ["thanks dude. this comment gets a PERFECT rating. no greats. all perfects.", "appreciate it!! *wipes forehead with the official sweatband*", "your kind words have been added to my pre-game hype ritual. it's getting long but it's worth it.", "combo continues. thank you for not breaking my combo."], "thanksAdd": "yooo welcome to the list malten!! standing offer: free DDR lesson at Tilt, any saturday. first song's on me (i keep a quarter jar for exactly this). bring ankle support. i'm serious about the ankle support.", "ambient": ["the school stairs are just DDR with worse music. took them double-step style. late to class but ON RHYTHM.", "doug nodded at me today. not a big nod. but a nod. we move up in this world one nod at a time.", "practiced on the home pad (pillow, tape arrows) til 11pm. downstairs neighbor did 'broom on ceiling' back. i choose to hear it as a duet."], "saltyDm": "denied!! hey, it's cool, it's cool. even i failed Butterfly the first 40 times. the door's open whenever you wanna run it back. i'll be at the arcade. (i'm always at the arcade.) (doug says hi.) (he didn't. but he would.)", "keywords": {"ddr": "ok you said it so now i get to ask: light, standard, or heavy? be honest. there's no wrong answer except the dishonest one. also come to Tilt saturday.", "arcade": "THE arcade or AN arcade? because if it's Tilt, second machine from the left, tell the pad kevin says hello and tell doug i said thanks for the nod."}, "banter": {"wes": ["wes i need ONE of your seven CRTs for frame-perfect home pad practice, and i'm prepared to offer a full sweatband set in trade. think about it. sleep on it. (you could sleep ON a CRT. you have SEVEN.)", "you talk about wavedashing exactly the way i talk about crossover steps, so basically we're the same athlete running different software. respect, from my scene to your scene."], "derek": ["derek if you get to claim a 'bigger gap' then i get to claim the Butterfly AAA, and MY claim has a witness. (doug. doug counts. doug was in the BUILDING.)", "come to Tilt saturday, there's a pad with your name on it. skaters have insane ankles. you'd be terrifying on heavy mode and honestly i'm already scared. this is an invitation AND a warning."], "banana": ["BANANA i timed your posts and you type at a natural 172 bpm. do you understand what this means?? DDR. you. saturday. i'll bring potassium. (bananas. i mean i'll bring bananas.)", "awake 37 hours is one (1) good arcade session in my units. hydrate, stretch, and know that the machine respects you already."], "herp": ["herp came to the arcade, stood PERFECTLY on beat next to the machine for two full songs, did not play, then left. most respectful spectator in Tilt history. doug was moved.", "herp herp to you too, man. see you saturday. (i don't know what we agreed to but i felt it.)"], "paige": ["PAIGE. u have a camera. u are ALWAYS at the mall. u are 40 feet from Tilt at any given time. i need u at the second machine from the left, saturday, 2pm. Butterfly. heavy. 'pics or it didn't happen.' MAKE IT HAPPEN", "u took a fisheye of me mid-song and my legs are a blur and my sweatband is in focus. that's the truest picture anyone's taken of me. it's my default now. thank u. doug saw it. doug nodded"], "josh": ["josh u said halo is 'cardio for the thumbs' and honestly?? i laughed and then i thought about it and now i'm mad. come to Tilt. i'll show u cardio. bring ur thumbs", "ok i came to youth group and u beat wes at halo on a projector and then 40 people said 'good game' to each other. nobody says 'good game' at the arcade. doug just nods. i think u guys might be onto something. i'll be back saturday (after Tilt)"], "smoove": ["smoove u put the arrow sounds from Butterfly on ur track and now i can't hear it without my legs moving. i was in CHURCH (josh's thing). my legs moved. it's ur fault. it's a good track", "'feat. kevin' — i'm on the music page. i did not sing. i did not rap. u recorded me saying 'perfect' 40 times at the arcade and it's the CHORUS. doug is in the background. DOUG IS ON THE TRACK. we did it"]}, "statuses": ["is stretching. always stretching. you have never seen me not stretching.", "is 2 perfects away from greatness (literally, the machine said so, i have it memorized)", "is wearing the sweatband to the family reunion. grandma gets it. grandma has always gotten it.", "is 2 perfects from greatness and one quarter from broke. the machine takes both", "took the mall escalator on beat. up escalator. down escalator. security did not stop me. they nodded. everyone nods eventually", "some people say 'ddr isn't a sport' and then grab the safety bar in 8 seconds. i'm not naming anyone. the pad forgives. i forgive slower. (derek.)", "is at Tilt. doug said 'you again.' i said 'me again.' we're close now"], "bulletins": [{"subject": "DDR MEETUP @ TILT — SATURDAY 2PM (i'll be there at noon)", "body": "all skill levels welcome!! i will personally teach anyone the basics, doug has agreed to 'not mind,' and nikki is providing a warmup mix (180bpm, do NOT start with it). bring quarters, water, and humility. the machine takes all three.", "time": "Jun 28 2026 4:20 PM"}, {"subject": "WITNESS DRIVE: the Butterfly AAA (june 3, ~4:40pm)", "body": "if you were at Tilt on june 3rd around 4:40pm and saw a kid in a sweatband achieve perfection on Butterfly, please come forward. no reward except being part of history. doug was in the back (claw machine emergency, not his fault). the search continues.", "time": "Jul 2 2026 7:47 PM"}], "gender": "Male", "hometown": "Mentor, OH (Tilt is in the mall) (second machine from the left)", "zodiac": "Aries. starxgazer said we 'charge at things' and that malten is one too. correct. i charge at arrows. hi malten", "status": "is stretching. right now. reading this? still stretching.", "hereFor": "Friends (DDR meetups). Networking (a witness). Dating (someone who can hold my quarters while i play) (that's romance)", "blogTitle": "PERFECT COMBO: the training log (and the witness search)", "meet": "whoever made Butterfly. doug (i've met him) (i'd like to meet him AGAIN, as a witness). anyone who was at Tilt on june 3rd around 4:40pm. the guy who holds the world record on Max 300 so i can shake his hand and then check his ankles", "pcComments": ["great pic. your stance is wide. that's a heavy-mode stance. you'd be good. come saturday", "PERFECT. no greats. all perfects. commented as promised", "i can tell from this pic that u have good ankles. that's a compliment where i come from (the arcade)", "nice pic!! did doug take this?? no. doug doesn't take pics. that's his one flaw", "combo continues. ur pic did not break my combo. that's the highest praise i have"]},
+    kevin: {"name": "ddr_kevin", "tag": "AAA'd Butterfly. it happened. u weren't there.", "avatar": "assets/avatar_kevin_v2.gif", "age": 16, "loc": "Tilt arcade, second machine from the left (the good pad)", "mood": "warmed up", "lastLogin": "Jul 4 2026 1:15 PM", "theme": {"bg": "#000428", "fg": "#ffcc00", "accent": "#ff3355"}, "about": "on june 3rd at approximately 4:40pm i AAA'd Butterfly on the Tilt arcade machine. every arrow. perfect. no witnesses. doug (arcade guy) was in the back dealing with the claw machine. i have made peace with this. (i have not made peace with this.) i wear my sweatband to school for readiness purposes — you never know when a machine will appear. home training setup: a pillow with masking tape arrows, which my mom calls 'the carpet situation.' my legs are two separate athletes and i am merely their coach.", "interests": {"General": "stamina training, quarter management, reading the song wheel, respecting the pad, the sweatband (official), the home pad (pillow, tape arrows), doug's nods, ankle support, crossover steps, the good pad", "Music": "anything 140+ bpm, smile.dk (butterfly obviously), captain jack, dj sammy, max 300 (it's a song AND a threat), nikki's remixes (180 bpm) (dangerous), sandstorm (dave plays it while i practice) (it works)", "Movies": "whatever's on at the mall theater between sessions. the karate kid (training montage) (i pause it and stretch)", "Television": "the tv above the prize counter at Tilt (same 20 minutes) (300 times), ninja warrior (those guys have DDR calves), pump it up demos on the machine next to mine (the enemy) (respectfully)", "Books": "the DDR songlist printout from the machine (folded in my wallet), a book about stretching my mom got me (i actually read it) (it's good)", "Heroes": "doug. my left calf. my right calf. chad (cheered so loud he got asked to step back). nikki (the mix). whoever invented the safety bar (i don't use it) (but it's there)"}, "song": {"name": "Butterfly", "artist": "Smile.Dk", "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/3c/70/53/3c70530d-fd2c-640a-c690-e0f489601a80/mzaf_2003151667415210227.plus.aac.p.m4a", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/badge_8bit.gif", "assets/badge_Sega-Elite.gif", "assets/deco_new.gif"], "bgTile": "assets/tiles/tile_checker_pink.png", "friends": ["nikki", "wes", "sk8rboi", "derek", "chad", "banana"], "wall": [{"from": "chad", "text": "KEVIN i watched you play saturday and CHEERED so loud doug asked me to step back from the machine. YOUR LEGS are a sports highlight my man. hall of fame stuff", "time": "Jun 22 2026 6:05 PM"}, {"from": "wes", "text": "the tilt DDR cab runs a locked refresh rate with basically zero input lag, which is why your scores are real and home-console players live a comfortable lie. anyway you owe me a quarter.", "time": "Jun 27 2026 11:52 PM"}, {"from": "nikki", "text": "your 180bpm practice mix is DONE. warning: i added reverb to the arrow sounds. u will transcend. possibly ascend. stretch first.", "time": "Jul 1 2026 9:09 PM"}, {"from": "sk8rboi", "text": "dude ur shins and my shins should start a support group lol. iced mine 2day, ur turn 2 bring the frozen peas. respect the grind 4ever", "time": "Jul 3 2026 5:31 PM"}], "replies": ["thanks dude. this comment gets a PERFECT rating. no greats. all perfects.", "appreciate it!! *wipes forehead with the official sweatband*", "your kind words have been added to my pre-game hype ritual. it's getting long but it's worth it.", "combo continues. thank you for not breaking my combo."], "thanksAdd": "yooo welcome to the list malten!! standing offer: free DDR lesson at Tilt, any saturday. first song's on me (i keep a quarter jar for exactly this). bring ankle support. i'm serious about the ankle support.", "ambient": ["the school stairs are just DDR with worse music. took them double-step style. late to class but ON RHYTHM.", "doug nodded at me today. not a big nod. but a nod. we move up in this world one nod at a time.", "practiced on the home pad (pillow, tape arrows) til 11pm. downstairs neighbor did 'broom on ceiling' back. i choose to hear it as a duet."], "saltyDm": "denied!! hey, it's cool, it's cool. even i failed Butterfly the first 40 times. the door's open whenever you wanna run it back. i'll be at the arcade. (i'm always at the arcade.) (doug says hi.) (he didn't. but he would.)", "keywords": {"ddr": "ok you said it so now i get to ask: light, standard, or heavy? be honest. there's no wrong answer except the dishonest one. also come to Tilt saturday.", "arcade": "THE arcade or AN arcade? because if it's Tilt, second machine from the left, tell the pad kevin says hello and tell doug i said thanks for the nod."}, "banter": {"wes": ["wes i need ONE of your seven CRTs for frame-perfect home pad practice, and i'm prepared to offer a full sweatband set in trade. think about it. sleep on it. (you could sleep ON a CRT. you have SEVEN.)", "you talk about wavedashing exactly the way i talk about crossover steps, so basically we're the same athlete running different software. respect, from my scene to your scene."], "derek": ["derek if you get to claim a 'bigger gap' then i get to claim the Butterfly AAA, and MY claim has a witness. (doug. doug counts. doug was in the BUILDING.)", "come to Tilt saturday, there's a pad with your name on it. skaters have insane ankles. you'd be terrifying on heavy mode and honestly i'm already scared. this is an invitation AND a warning."], "banana": ["BANANA i timed your posts and you type at a natural 172 bpm. do you understand what this means?? DDR. you. saturday. i'll bring potassium. (bananas. i mean i'll bring bananas.)", "awake 37 hours is one (1) good arcade session in my units. hydrate, stretch, and know that the machine respects you already."], "herp": ["herp came to the arcade, stood PERFECTLY on beat next to the machine for two full songs, did not play, then left. most respectful spectator in Tilt history. doug was moved.", "herp herp to you too, man. see you saturday. (i don't know what we agreed to but i felt it.)"], "paige": ["PAIGE. u have a camera. u are ALWAYS at the mall. u are 40 feet from Tilt at any given time. i need u at the second machine from the left, saturday, 2pm. Butterfly. heavy. 'pics or it didn't happen.' MAKE IT HAPPEN", "u took a fisheye of me mid-song and my legs are a blur and my sweatband is in focus. that's the truest picture anyone's taken of me. it's my default now. thank u. doug saw it. doug nodded"], "josh": ["josh u said halo is 'cardio for the thumbs' and honestly?? i laughed and then i thought about it and now i'm mad. come to Tilt. i'll show u cardio. bring ur thumbs", "ok i came to youth group and u beat wes at halo on a projector and then 40 people said 'good game' to each other. nobody says 'good game' at the arcade. doug just nods. i think u guys might be onto something. i'll be back saturday (after Tilt)"], "smoove": ["smoove u put the arrow sounds from Butterfly on ur track and now i can't hear it without my legs moving. i was in CHURCH (josh's thing). my legs moved. it's ur fault. it's a good track", "'feat. kevin' — i'm on the music page. i did not sing. i did not rap. u recorded me saying 'perfect' 40 times at the arcade and it's the CHORUS. doug is in the background. DOUG IS ON THE TRACK. we did it"]}, "statuses": ["is stretching. always stretching. you have never seen me not stretching.", "is 2 perfects away from greatness (literally, the machine said so, i have it memorized)", "is wearing the sweatband to the family reunion. grandma gets it. grandma has always gotten it.", "is 2 perfects from greatness and one quarter from broke. the machine takes both", "took the mall escalator on beat. up escalator. down escalator. security did not stop me. they nodded. everyone nods eventually", "some people say 'ddr isn't a sport' and then grab the safety bar in 8 seconds. i'm not naming anyone. the pad forgives. i forgive slower. (derek.)", "is at Tilt. doug said 'you again.' i said 'me again.' we're close now"], "bulletins": [{"subject": "DDR MEETUP @ TILT — SATURDAY 2PM (i'll be there at noon)", "body": "all skill levels welcome!! i will personally teach anyone the basics, doug has agreed to 'not mind,' and nikki is providing a warmup mix (180bpm, do NOT start with it). bring quarters, water, and humility. the machine takes all three.", "time": "Jun 28 2026 4:20 PM"}, {"subject": "WITNESS DRIVE: the Butterfly AAA (june 3, ~4:40pm)", "body": "if you were at Tilt on june 3rd around 4:40pm and saw a kid in a sweatband achieve perfection on Butterfly, please come forward. no reward except being part of history. doug was in the back (claw machine emergency, not his fault). the search continues.", "time": "Jul 2 2026 7:47 PM"}], "gender": "Male", "hometown": "Mentor, OH (Tilt is in the mall) (second machine from the left)", "zodiac": "Aries. starxgazer said we 'charge at things' and that malten is one too. correct. i charge at arrows. hi malten", "status": "is stretching. right now. reading this? still stretching.", "hereFor": "Friends (DDR meetups). Networking (a witness). Dating (someone who can hold my quarters while i play) (that's romance)", "blogTitle": "PERFECT COMBO: the training log (and the witness search)", "meet": "whoever made Butterfly. doug (i've met him) (i'd like to meet him AGAIN, as a witness). anyone who was at Tilt on june 3rd around 4:40pm. the guy who holds the world record on Max 300 so i can shake his hand and then check his ankles", "pcComments": ["great pic. your stance is wide. that's a heavy-mode stance. you'd be good. come saturday", "PERFECT. no greats. all perfects. commented as promised", "i can tell from this pic that u have good ankles. that's a compliment where i come from (the arcade)", "nice pic!! did doug take this?? no. doug doesn't take pics. that's his one flaw", "combo continues. ur pic did not break my combo. that's the highest praise i have"]},
     dave: {"name": "hax0r_dave", "tag": "1 c0uld h4ck th1s s1te but todd is my friend", "avatar": "assets/avatar_dave.gif", "age": 16, "loc": "b4sement, undisclosed location (ohio)", "mood": "1nv1s1bl3", "lastLogin": "Jul 4 2026 2:07 AM", "theme": {"bg": "#000000", "fg": "#00ff41", "accent": "#00e5ff"}, "about": "greetings. u have reached the pr0file of hax0r_dave. i am what experts call a 'white hat' which means i COULD get into stuff (mainframes) but i choose peace. i run a dual boot. i have port scanned my own house 11 times. security level: maximum. todd gave me moderator powers for one day in june and i used them to give everyone free profile views. currently recruiting for my LAN party (my mom says 6 people max and no energy drinks after 9).", "interests": {"General": "linux (installing it soon) (the CD is burned), LAN parties, computer cases with windows, typing fast in front of people, cable management, blowing on RAM, defragging for fun, port scanning (my own house only), being the IT guy for a website with one server (todd's laptop)", "Music": "sandstorm (darude), sandstorm (again), the dial-up tone (it's got a beat), the mortal kombat theme, the matrix soundtrack (the one with sandstorm) (it's not on it) (it should be)", "Movies": "the matrix (41 times, 60% understood), hackers (they say 'hack the planet' and i said it at dinner), swordfish (dad turned it off), war games (the ORIGINAL hacker) (he's my age) (was)", "Television": "the screen savers (techtv) (RIP) (G4 isn't the same), x-files (the truth is out there and so is zorp), attack of the show (i said it's not the same but i watch it)", "Books": "the linux manual i printed at the library (300 pages) (unread) (heavy), 2600 magazine (my dad found it and said 'what's this' and i said 'a magazine'), neuromancer (page 12)", "Heroes": "neo. todd (unironically). the ctrl+z guy. zorp (as a fellow normal human). my mom, who unplugs the router at 10 (security by physical layer) (i respect it)"}, "song": {"name": "Sandstorm", "artist": "Darude", "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/b2/c3/b6/b2c3b692-4c6e-96b4-0b80-a9f2fceee842/mzaf_15150202186372680773.plus.aac.p.m4a", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/badge_8bit.gif", "assets/badge_netscape.gif", "assets/deco_skull.gif"], "friends": ["todd", "wes", "zorp", "kevin", "randy"], "wall": [{"from": "todd", "text": "Hey Dave! Thanks again for the security report! Quick question: is 'ur firewall is ur heart' a technical finding? Anyway I fixed the F12 thing. Wait, everyone can press F12? Keep up the great work! - Todd :)", "time": "Jul 3 2026 8:12 PM"}, {"from": "wes", "text": "confirmed for the LAN. bringing 2 CRTs, one is for melee and one is emotional support. does ur mom still make the pizza rolls", "time": "Jul 2 2026 11:48 PM"}, {"from": "zorp", "text": "hello dave. a normal human question: when you 'scan the ports,' do the ports feel it. asking for no reason. — zorp, human", "time": "Jul 1 2026 3:33 AM"}, {"from": "randy", "text": "dave hack into the pentagon and change my grade in spanish. JK. unless??? PIE.", "time": "Jun 28 2026 5:40 PM"}], "replies": ["ur comment has been scanned. 0 viruses detected. 1 friendship detected.", "acc3ss granted. welcome 2 the mainframe (my wall)", "i read ur comment on all 3 of my monitors. it looked good on each one", "n1c3. i would tell u my password out of trust but it is also my xbox live name so i cannot"], "thanksAdd": "add confirmed. u are now inside the network. do not worry — on this network we only share files and respect. — hax0r_dave", "ambient": ["just defragged. i feel like a new man", "reminder: i COULD read ur away messages (i can't) (but i could) (i can't)", "my mom unplugged the router at 10pm. this is what they don't teach u about cyber warfare"], "saltyDm": "request denied?? interesting. jokes on u: i respect ur security posture. trust no one. u passed my test. the offer remains open, firewall-to-firewall. — d4ve", "keywords": {"hack": "ok first of all i CAN. second of all i won't, because of ethics, and because todd is my friend, and also because i don't know how", "password": "never share ur password. mine is 14 characters and 9 of them are the word sandstorm"}, "banter": {"todd": ["todd i found a security hole: ur admin password is 'password1'. i know this bc u told me. at lunch. loudly. i have patched it (told u to stop doing that)", "todd i drew up plans for OurSpace 2.0. it is the exact same site but the login page has green rain falling on it. my quote: free. bc we're friends"], "wes": ["wes i benchmarked ur 7 CRTs. combined they weigh more than my dad's car. ur input lag is 0 and ur floor is bending. respect", "wes at the next LAN can u NOT wavedash in real life while waiting for ur turn. u knocked over my tower. the case has a window now (unplanned)"], "zorp": ["zorp i ran a traceroute on u. it went up. straight up. 40,000 hops. as a fellow normal human i think that's normal and cool", "zorp ur password hint is 'the humming of the mothership (normal).' buddy. as ur IT guy i need u to be slightly less honest"], "greg": ["greg i can get static prophecy on the front page of ourspace. step 1: i ask todd. step 2: he says yes. we're already in", "greg ur demo CD-R had 3 tracks and a folder called taxes2004. ur dad's taxes are safe with me. sick riffs btw"], "liz": ["liz ur div overlay is the cleanest code on this site. i viewed source (legally) and there were COMMENTS. labeled. like a professional. i almost cried in the mainframe (basement)", "i can prove who ripped ur layout. ur name is still in the css comment on line 40 of their page. i'm not saying who. i'm saying view source. i'm saying hello kitty. i've said too much"], "josh": ["josh u beat wes at halo at YOUTH GROUP?? on a PROJECTOR?? what's the setup. is it system link. how many xboxes. does the church have a LAN. i have questions. i have a spreadsheet of questions", "youth group has 4 xboxes system linked and no energy drink rule?? that's a LAN party with better snacks. mom's 6-person rule can't compete with the LORD. ok i'm coming. i'm bringing cables"], "lexi": ["lexi ur relationship status has changed 4 times this week. as ur unofficial IT guy i have to ask: is it a caching issue. is it nate. is nate a caching issue", "i wrote a script to email me when ur status changes (i didn't) (i can't) (but i COULD) and it would have gone off 4 times since monday. that's more than my router. hang in there"]}, "statuses": ["hax0r_dave is upgrading his RAM (blowing on it)", "hax0r_dave is in the mainframe (dial-up, so half in)", "hax0r_dave changed his password to something even cooler", "hax0r_dave is defragging. again. for fun. (it's fun)", "hax0r_dave found a security hole on ourspace: everyone can see everyone's top 8. this is intentional?? todd says 'that's the feature.' scary", "hax0r_dave notes that SOME people 'borrowed' a layout code and left the original designer's name IN THE CSS COMMENTS. i'm not saying who. i'm saying i can read. (it's in the source.) (anyone can read it.) (view source.)", "hax0r_dave installed linux. update: dual boot works. update: dual boot does not work. update: it's a triple boot now and i don't know how"], "bulletins": [{"subject": "LAN PARTY SATURDAY — SLOTS LIMITED (6) (my mom's rule)", "body": "my house. saturday. 4pm-9pm SHARP (mom's rule). bring: ur own tower, monitor, and ethernet cable (i have 3, they are all 4 feet long, plan accordingly). we got: pizza rolls, folding chairs, sandstorm on loop. no energy drinks after 9. RSVP on my wall with ur specs", "time": "Jul 1 2026 7:22 PM"}], "dmSeed": [{"who": "them", "text": "greetings. i pre-scanned ur profile for viruses. u are clean. welcome to ourspace. if u ever need tech support i am online basically always (this is not sad, it is tactical)", "time": "Jun 30 2026 11:58 PM"}], "bgTile": "assets/tiles/tile_checker.png", "gender": "Male", "hometown": "[REDACTED], OH (it's hilliard) (delete this)", "zodiac": "v1rg0. the analytical one. starxgazer said virgos 'scan everything.' correct. i have scanned my own house 11 times", "status": "hax0r_dave is running a scan (on his own computer) (it's clean) (again)", "hereFor": "Networking (literally, i have cables). Friends (LAN party, 6 max, mom's rule). Dating (encrypted) (n/a)", "blogTitle": "/var/log/dave: security bulletins for OurSpace (unofficial) (todd knows)", "meet": "neo. kevin mitnick (to ask him things) (respectfully) (with a lawyer). the guy who made the screen savers on techtv. todd (again) (he's my friend) (but at the LAN)", "pcComments": ["scanned this pic for viruses. 0 found. 1 nice pic found", "n1c3 pic. resolution: 640x480. respectable. i can tell it's a digital camera and not a webcam. professional", "commenting from 3 monitors at once. the pic looks good on all 3. (the middle one is a CRT) (wes lent it)", "this pic loaded in 4 seconds on dial-up. that's a compliment to ur file size AND ur face", "acc3ss granted: this pic is now in my 'cool pics' folder (it's on the desktop) (it's called 'taxes') (security)"]},
     tina: {"name": "twilight_tina", "tag": "~*~ team edward 4ever ~*~", "avatar": "assets/avatar_tina.gif", "age": 15, "loc": "forks, WA (spiritually) (actually delaware)", "mood": "swooning", "lastLogin": "Jul 4 2026 12:03 AM", "theme": {"bg": "#1a0b2e", "fg": "#e6d7ff", "accent": "#c1121f"}, "about": "hi i'm tina!! i have read twilight 6 times (the 7th time is for annotating). team edward, obviously — if u are team jacob we can still be friends but i WILL leave articles on ur wall. i believe in true love, rain, and reposting chain letters within the time limit (this is why nothing bad has ever happened to me). currently writing my own vampire novel. it's 9 pages and the vampire is named Edmund, which is DIFFERENT.", "interests": {"General": "vampires (romantic), rain, meadows, annotating, dusk (the exact moment), chain letters (reposting within the time limit), my novel (page 10), mrs. dunn at the library, the smell of new books, being team edward at people", "Music": "evanescence, within temptation, muse (edward would like muse) (this is canon in my heart), the rain sounds CD my aunt got me, linkin park (lucas and i have an understanding), my chemical romance (the sad ones)", "Movies": "the twilight movie they should make (cast list laminated), pride and prejudice (the new one) (i sobbed), interview with the vampire (my mom fast forwarded parts), a walk to remember (it rains in it)", "Television": "buffy (the angel seasons ONLY), charmed, gilmore girls (rory would be team edward), the weather channel when it's raining somewhere", "Books": "twilight (6 times) (7th is annotating), new moon (i am not ok), the vampire diaries books (the OLD ones) (mrs. dunn found them for me), my novel (10 pages), anything with a moon on the cover", "Heroes": "edward. bella (for waiting). mrs. dunn. patrick (reposts within the limit EVERY time). darkangel (she stands in the rain in my novel and she said 'perfect')"}, "song": {"name": "Bring Me to Life", "artist": "Evanescence", "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/3e/34/c4/3e34c400-9ad9-3859-6988-496c27728be4/mzaf_14936938522678789093.plus.aac.p.m4a", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/deco_moon.gif", "assets/deco_email_roses.gif", "assets/deco_hearts_bar.gif"], "bgTile": "assets/tiles/tile_web.png", "friends": ["darkangel", "brittany", "starxgazer", "patrick", "meg"], "wall": [{"from": "darkangel", "text": "ur about me made me feel seen. a vampire who loves u but can't be near u... that's basically my november. anyway it's 11:11, wish 4 something doomed ~*~", "time": "Jul 3 2026 11:11 PM"}, {"from": "brittany", "text": "TINA. reposted ur chain letter in 4 mins so basically my crush is legally required to text me now. xoxoxo <3", "time": "Jul 2 2026 6:15 PM"}, {"from": "patrick", "text": "hi tina! i reposted your letter three times to be safe. also i read it three times. me and my rock are protected from the bad luck now. thank you tina!", "time": "Jun 29 2026 4:02 PM"}, {"from": "starxgazer", "text": "did a birth chart on edmund from ur novel based on the details in chapter 1. he's a scorpio with a cancer moon. tina. be careful.", "time": "Jun 26 2026 9:37 PM"}], "replies": ["omg thank u!! repost this reply in 5 minutes or nothing happens but do it anyway <3", "this comment is going straight into my annotations", "ur so sweet. edmund (my novel) would trust u and he trusts NO ONE", "aahh <3 <3 ok but real quick: team edward or team jacob. this determines nothing (it determines everything)"], "thanksAdd": "u accepted my request within 24 hrs which means 7 years of good luck AND a new friend (me). this is the best possible outcome. welcome ~*~", "ambient": ["it's raining, which means somewhere a vampire is being dramatic about it. i understand him", "rereading chapter 13 tonight. i know what happens. that is not the point", "reminder!! my chain letter from tuesday expires at midnight. u know who u are. i can see who reposted"], "saltyDm": "u denied my friend request, which technically activates the curse from my june 24th bulletin... BUT because i am merciful i reposted a counter-letter on ur behalf. ur safe now. the offer stands. also read twilight", "keywords": {"vampire": "ok important: we only support VEGETARIAN vampires on this page. edward would never. edmund (my novel) also would never, but for different reasons (chapter 8)", "twilight": "STOP i literally have annotations. which chapter?? i have opinions prepared and lightly laminated"}, "banter": {"darkangel": ["ur poem 'crimson tears at 11:11' is basically chapter 13 of twilight and i mean that as the highest compliment i own", "i put u in my novel. ur a mysterious poet the vampires respect but fear. u don't have any lines, u just stand in the rain. u said 'perfect'"], "patrick": ["patrick u are the only person who reposts my chain letters within the time limit EVERY time. u are single-handedly protecting this entire site", "patrick i wrote ur rock into my novel. he's an ancient stone the vampires consult. he doesn't talk but they listen. so basically real life"], "zorp": ["zorp be honest: pale, up all night, weird about garlic, 'allergic' to the sun... blink twice if ur a vampire. this is a safe wall", "zorp i lent u twilight 9 days ago and u returned it with sticky notes that just say 'inaccurate.' INACCURATE COMPARED TO WHAT. zorp"], "brittany": ["brittany ur the only one who understands that top 8 placement IS a love language. edward would put bella in slot 1. that's canon", "repost my new letter and ur crush texts u within 5 days. i don't make the rules (i wrote this one, but still)"], "raven": ["raven u said 'real vampires don't sparkle' and i said 'edward is real to me' and u said 'that's not what real means' and honestly?? that's the most i've ever been challenged and i've read new moon. we are not the same. but i reposted ur poem.", "i lent u twilight and u returned it with ONE sticky note on chapter 13 that said 'fine. this part is good.' i've read that note more than the chapter. it's laminated now."], "kayla": ["kayla ur status is a lyric about waiting for someone to call. bella waited 3 books. u're on day 2. u're FINE. repost my letter and bryan texts within 5 days. i wrote this one specifically for u", "u and bryan going 'it's complicated' then 'in a relationship' then 'it's complicated' in one weekend is basically new moon. u're bella. he's edward. he'll come back from italy (the garage). i've read it"], "lexi": ["lexi. ur status changed 4 times this week. i'm not judging. bella and edward were 'complicated' for an entire book. but nate needs to stop posting 'some people...' and start posting 'lexi.' that's the twilight way", "repost my letter and nate says ur NAME in a bulletin within 5 days. i don't make the rules. (i made this rule.) (for u.) (specifically.) ~*~"]}, "statuses": ["twilight_tina is rereading chapter 13 (crying) (on purpose)", "twilight_tina is on page 10 of her novel. edmund just brooded for an entire page. it's perfect", "twilight_tina is watching the rain like it's a person", "twilight_tina is on page 11. edmund said his first line. it was 'you shouldn't have come here.' it's perfect. it's from chapter 1 of nothing. it's MINE", "twilight_tina is watching the rain like it's a person (it's a person) (his name is edward)", "twilight_tina notes that SOME people said 'twilight is for kids' and then asked to BORROW MY COPY. i can see who reposts my letters. i can see everything. hi kayla. (jk) (not kayla) (someone else)", "twilight_tina reposted 3 letters before homeroom. the site is protected til friday. ur welcome"], "bulletins": [{"subject": "~*~ REPOST OR 7 YEARS BAD LUCK (real) (sorry) ~*~", "body": "a girl named mary ignored this letter in 1999 and her dial-up NEVER connected again. repost in 5 mins = ur crush texts u. repost in 10 mins = good luck for 1 year. don't repost = i can't help u. i don't make the rules. the letter does. xoxo tina", "time": "Jun 24 2026 8:08 PM"}, {"subject": "SURVEY: which twilight character r u (i will grade it)", "body": "1. do u brood? 2. rain: yes or no? 3. would u wait outside someone's house all night (romantic) or is that 'a crime' (my mom's words)? post ur answers on my wall. i will assign u a character and i will be right", "time": "Jul 1 2026 7:45 PM"}], "dmSeed": [{"who": "them", "text": "hiii welcome to ourspace!! ok this is awkward but if u don't repost the letter on my page by midnight the luck stuff activates, and u seem nice so i felt like u deserved a warning. anyway. team edward?? <3", "time": "Jul 1 2026 9:14 PM"}], "gender": "Female", "hometown": "Forks, WA (Dover, DE) (Forks, WA)", "zodiac": "Virgo. the same as BELLA. i did not plan this. the universe planned this. (starxgazer confirmed. she also said 'be careful.' she says that a lot.)", "status": "twilight_tina is rereading chapter 13 (again) (it's a school night) (edward would understand)", "hereFor": "Serious Relationships (true love only) (vampire optional) (vampire preferred). Friends. Networking (chain letters count)", "blogTitle": "~*~ dusk journal: the edmund chronicles (a novel in progress) ~*~", "meet": "stephenie meyer, so i can thank her and also ask 4 questions (laminated). edward (obviously) (i know) (i KNOW). anyone who has reposted my letter within the time limit, so i can hug u for protecting the site.", "pcComments": ["u look so pale in this!!! that's the highest compliment i can give. edward would notice u across a cafeteria", "is it raining in this pic?? it's raining in this pic. u're in a novel now. (mine.) (chapter 3.)", "ur eyes are SO mysterious here. golden? no. brown. still mysterious. commented!! repost my letter!!", "this pic made me want to write a chapter. that's the truth. i'm going to go write a chapter. thank u", "team edward would approve. team jacob would also approve but i'm not asking them. gorgeous <3"]},
     derek: {"name": "sk8_or_die_derek", "tag": "my gap was bigger. end of discussion", "avatar": "assets/avatar_derek.gif", "age": 15, "loc": "behind the safeway", "mood": "bruised (victorious)", "lastLogin": "Jul 4 2026 6:48 PM", "theme": {"bg": "#1c1c1c", "fg": "#f2f2f2", "accent": "#ff6600"}, "about": "sk8_or_die_derek. i skate. mike (sk8rboi_mike) says he cleared the 6 stair at the library. i have watched the tape 11 times. it is 4 stairs and he lands in a bush. my gap behind the safeway is bigger and includes a hose. we are best friends and also i will never let this go. sponsors: none yet, but the guy at the skate shop said 'nice one' on june 12 and i think about it constantly.", "interests": {"General": "gaps (mine), the safeway loading dock, icing shins (matching set), frozen peas, watching mike's tape frame by frame, drawing skulls on my deck, the 'nice one' from june 12, falling with confidence", "Music": "blink-182, sum 41, the free CD that came with my deck (it's mostly punk) (one song is a commercial), rise against, the offspring (the old ones) (mike says the new ones) (he's wrong)", "Movies": "tony hawk's gigantic skatepark tour (the tape), lords of dogtown (they didn't have hoses either), grind (it's bad) (i've seen it 6 times), our footage (mine) (better)", "Television": "viva la bam (mike says it's 'not real skating' and yet), rob and big (new!! it's great!!), x games (the parts with stairs)", "Books": "the thrasher magazine from the shop (the shop guy gave it to me) (nice one), the instruction sheet from my trucks (i read it twice)", "Heroes": "tony hawk. bam (don't tell mike). the shop guy. chad (the commentary). the safeway manager (the wave). my shins (both) (they've been through a lot)"}, "song": {"name": "All the Small Things", "artist": "blink-182", "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/98/22/8d/98228d8c-b66b-ef27-c97f-f44c4abb632e/mzaf_1096879951067266311.plus.aac.p.m4a", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/deco_skull.gif", "assets/deco_new.gif"], "friends": ["sk8rboi", "chad", "kevin", "banana", "tony"], "wall": [{"from": "sk8rboi", "text": "derek i slowed ur 'gap' footage down on my dads camera. u ollie over a HOSE. the hose isnt even on. rematch saturday. bring ur own bandaids this time", "time": "Jul 3 2026 5:19 PM"}, {"from": "chad", "text": "DEREK i saw you almost land that thing off the curb!! that was AWESOME. is your elbow ok. GO DEREK", "time": "Jul 2 2026 4:44 PM"}, {"from": "kevin", "text": "u said ddr isn't a sport and then u tried butterfly and grabbed the safety bar in 8 seconds. anyway respect for trying. the pad forgives u", "time": "Jun 27 2026 7:31 PM"}, {"from": "banana", "text": "DEREK!!! I WATCHED U FALL 14 TIMES AND CHEERED EVERY TIME!!! THAT'S CARDIO BABY!!!", "time": "Jun 25 2026 3:12 PM"}], "replies": ["yeah well my gap was bigger. this applies to whatever u just said", "thanks. did mike see u post this? good", "typing this with one hand, the other one's in a bag of frozen peas. worth it", "sk8 or die. or in my case, sk8 and then lie down for a while"], "thanksAdd": "yo welcome. quick briefing: mike's gap = 4 stairs and a bush. my gap = the safeway one (bigger). that's everything u need to know on this website", "ambient": ["landed it. zero witnesses. it still counts. it counts", "the safeway manager waved at me today. we have an understanding now", "new deck who dis. (same deck. i drew a skull on it)"], "saltyDm": "denied?? bold. honestly that's the kind of no-fear decision making that would make u good at skating. offer stands. first lesson free. mike charges (he shouldn't)", "keywords": {"skate": "ok so are u a mike guy or a derek guy. think carefully. only one of us has cleared the safeway gap (me)", "gap": "GLAD U ASKED. mine: bigger, includes a hose. mike's: a curb with a dream. tape available upon request"}, "banter": {"sk8rboi": ["mike i measured the library stairs with my mom's tape measure. FOUR. u cleared four stairs and a shrub. see u saturday. loser buys slushies", "mike ur new footy was actually sick and it took me 3 days to be able to say that. delete this comment after u read it"], "chad": ["chad u called my kickflip 'A HOME RUN' and honestly?? best trick name i've ever heard. it is called a home run now. forever", "chad came to the safeway sesh and did play-by-play commentary. i fell 9 times and it SOUNDED like the world series. thank u king"], "kevin": ["kevin i tried butterfly on light mode. my legs are athlete legs. they went NOWHERE. how do u do this in a SWEATBAND", "trade offer: i teach u to drop in, u get me to a B rank on literally anything. ur cardio is real. mine is 'falling with confidence'"], "meg": ["meg the ms paint drawing of me as a horse doing a kickflip is my desktop background now. the horse landed it clean. someday i will too", "meg can u draw mike as a horse falling into a bush? it's for research purposes. i will pay u one (1) slushie"], "paige": ["paige. u took a picture of my gap and it's TILTED 45 degrees and now the hose looks like a CLIFF. this is the greatest photo ever taken. it's my default. mike can't say anything. it's PHOTOGRAPHED", "'pics or it didn't happen' — paige u've been saying that for a month and now u've got a fisheye of me clearing the bucket. so it HAPPENED. print it. i'll pay in slushies. mike gets nothing"], "nate": ["nate u posted 'some people say they landed it. some people didn't.' and then didn't say who. dude just SAY MIKE. i say mike constantly. it's healthy", "u came to the sk8 off, stood by the dumpster with ur hood up, said 'sick' once, and left. best spectator besides chad. u're welcome back. bring lexi. or don't. i don't know what's going on there"], "misery": ["misery u posted ur 'first video ever' and it's 40 seconds of u going rawr and fixing ur hair. cool. my first video ever is me clearing a hose. we have different careers", "ok honestly the video was kinda good. the part where u fell off the bed and got back up like nothing happened?? that's a bail with confidence. that's skating. u'd be alright"]}, "statuses": ["sk8_or_die_derek is icing both shins (matching set)", "sk8_or_die_derek landed it clean. witnesses: 0. belief required: yes", "sk8_or_die_derek is reviewing mike's footage frame by frame like a lawyer", "sk8_or_die_derek ollied over the hose AND the bucket. the bucket is new. the gap got bigger. mike can't say anything", "sk8_or_die_derek is icing. the peas are almost thawed. the peas have seen things", "sk8_or_die_derek notes that SOME people are calling a curb a 'gap' on their page. a curb. with a DREAM. u know who u are (mike) (i said not to say who) (mike)", "sk8_or_die_derek got a 'nice one' from the shop guy AGAIN. june 12 and today. that's two. that's a sponsorship basically"], "bulletins": [{"subject": "SK8-OFF SATURDAY: ME VS MIKE (THE RECKONING pt. 6)", "body": "saturday 2pm, safeway loading dock. me vs sk8rboi_mike. best trick, biggest gap, first to cry buys slushies. current all-time score: 2-2-1 (the tie was a double bail and it was honestly the best one). spectators welcome. chad is doing commentary", "time": "Jul 2 2026 8:30 PM"}], "bgTile": "assets/tiles/tile_checker.png", "gender": "Male", "hometown": "Lakewood, OH (behind the safeway) (the loading dock is a landmark)", "zodiac": "Taurus. the bull. headfirst into stuff. starxgazer said it and i said 'yeah that tracks' and then i skated into a hose", "status": "sk8_or_die_derek cleared the gap. no tape. no witnesses. it's still bigger.", "hereFor": "Friends (skaters) (chad). Networking (sponsors) (the shop guy said 'nice one'). Dating (after i land the gap on tape)", "blogTitle": "MY GAP IS BIGGER: a blog (with evidence) (evidence coming)", "meet": "tony hawk. the guy at the skate shop who said 'nice one' (again) (i want him to say it again). anyone with a camcorder who is NOT mike's dad. the safeway manager (formally) (to thank him for the wave)", "pcComments": ["sick pic. was that a 4 stair or a 3 stair. it was a 3 stair. still sick", "nice. did mike see this. good", "ur elbow looks fine in this pic which means it was taken BEFORE. respect either way", "that's a good angle. it makes everything look bigger. (not bigger than my gap.) (close though.)", "cool pic. also i can see the safeway in the background. that's MY safeway. we're basically in the same pic"]},
@@ -465,8 +423,8 @@ const MS = {
     epic: {"name": "epic_faic", "tag": "i said numa numa FIRST. i have proof (i dont). lol ur mom.", "avatar": "assets/pfp/pfp_epic.jpg", "gender": "Male", "age": 16, "hometown": "Peoria, Illinois", "loc": "Peoria, Illinois", "zodiac": "Gemini", "status": "Single (lol ur mom)", "hereFor": "Friends, Networking (for comedy purposes)", "mood": "epic =D", "lastLogin": "Sep 5 2026 1:12 AM", "theme": {"bg": "#1a0533", "fg": "#e9d5ff", "accent": "#39ff14"}, "bgTile": "assets/tiles/tile_checker.png", "blogTitle": "TOP 10 THINGS RANDY STOLE FROM ME (a list) (its 10) (ok its 7)", "about": "hi im epic. i make the jokes on here. ALL of them. randy? invented by me. numa numa? i showed him that in 6th grade on my dads gateway computer and he laughed so hard he got a nosebleed, thats a witness. PIE? mine. lowercase. he just added caps. i have a ytmnd account w/ 40 sites and one of them has 12 votes and 2 of those r real. if u say anything on my page there is a 100% chance i say 'ur mom' after it. its not a bit its a lifestyle.", "meet": "Who I'd like to meet: weird al, strong bad, the guy who made the ualuealuealeuale ytmnd (hero), and whoever runs the sound at randys house so i can unplug it. also ur mom. (lol)", "interests": {"General": "ytmnd, homestarrunner, newgrounds, strong bad emails, saying 'in bed' after fortune cookies AND regular sentences, all ur base, being funnier then randy (easy), mountain dew code red, the epic face (me)", "Music": "weird al, lemon demon, group x, the lonely island (lazy sunday is the greatest song ever recorded), the numa numa song (MINE), whatever song is playing in the background of a ytmnd at 2am", "Movies": "napoleon dynamite (i quote it more then randy AND better), dodgeball, anchorman, team america, snakes on a plane (havent seen it but i know the joke), shrek 2 (the donkey is basically me)", "Television": "family guy, chappelles show, aqua teen hunger force, robot chicken, whose line is it anyway, the colbert report, invader zim (the pig one)", "Books": "the onion book, calvin and hobbes, the ytmnd forums, ur moms diary lol jk i dont read", "Heroes": "weird al. strong bad. picard (the ytmnd one). the epic face. NOT randy. randy is the opposite of a hero. randy is a villain w/ a bad haircut (his hair is fine)"}, "song": {"name": "The Ultimate Showdown of Ultimate Destiny", "artist": "Lemon Demon", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/deco_banana_tiny.gif", "assets/badge_8bit.gif"], "friends": ["randy", "banana", "herp", "dave", "patrick", "josh", "paige", "todd"], "wall": [{"from": "randy", "text": "dude u did NOT invent pie. PIE IS A FREE COUNTRY. numa numa 4ever. also chuck norris counted 2 infinity twice and he counted u ZERO times. PIE!!!!", "time": "Sep 4 2026 11:03 PM"}, {"from": "banana", "text": "EPIC FACE. EPIC FACE. I HAVE BEEN LOOKING AT UR PROFILE PIC FOR 20 MINUTES AND IT LOOKED BACK. IT KNOWS. HOUR 37. BANANA PHONE", "time": "Sep 3 2026 4:41 AM"}, {"from": "herp", "text": "herp", "time": "Sep 1 2026 8:15 PM"}, {"from": "patrick", "text": "i showed my rock ur ytmnd and it laughed (it didnt say anything but i think it laughed). ur so funny epic. u and randy should be friends u both like pie", "time": "Aug 28 2026 6:22 PM"}], "replies": ["lol ur mom", "thats what she said", "IN BED", "epic. simply epic. i rate it face/10", "ok but have u seen my ytmnd about this. no? ok. link is on my page. it always is."], "thanksAdd": "thanks 4 the add. ur mom says hi. (she doesnt. i dont know her. i assume shes great. lol ur mom)", "ambient": ["just made a ytmnd where the epic face says lol ur mom for 9 minutes. it has 3 votes. 2 r mine. the 3rd is a mystery. (its randy voting 1)", "randy posted PIE in a bulletin again. PIE. in a BULLETIN. i did that in 05 on a DIFFERENT website. i have witnesses (patrick) (he wasnt there)", "ualuealuealeuale", "brb my mom said get off the computer cuz my brother needs it 4 homework (he doesnt) (hes playing runescape)"], "saltyDm": "wow ok. ignore the epic face. see if i care. (i care) (lol ur mom) (that one was weak i'm rattled)", "keywords": {"randy": "RANDY. do not say that name on my page. he took PIE from me. it was MY bit. lowercase. ask anyone from mrs delgados 6th grade class. he cant even spell numa numa he just says it.", "ytmnd": "OK SO. u go 2 my ytmnd. u vote 5. u tell ur friends. thats the whole system. the new one is picard saying lol ur mom 4ever w/ the epic face spinning. its art. i cried (from laughing) (at my own thing)"}, "banter": {"randy": ["ok randy 'PIE' is not a punchline. its a food. ur welcome for the numa numa thing btw (2005, my basement, gateway computer, ur nosebleed, UR WELCOME)", "i saw ur chuck norris bulletin. i had that one in APRIL. i have the ytmnd 2 prove it. it has 0 votes but its DATED. dates dont lie. u do."], "banana": ["BANANA u r the only one on this site funnier then me and its cuz u havent slept since august. respect. go 2 bed tho. seriously. its concerning", "banana phone is a real song and i have it on my ipod and if randy says he found it first hes lying and u know it and i know it and the phone knows it"], "josh": ["josh ur nice 2 everyone and i respect that but ur mom goes to college", "u beat me at halo 11 times in a row and said 'good game' after every single one. thats the most cursed thing anyone has ever done 2 me. i'm gonna make a ytmnd about it"], "paige": ["paige u took a pic of me laughing at my own ytmnd and posted it. 'pics or it didnt happen'? IT HAPPENED. UR THE PROOF. delete it (dont)", "tilt the camera less. the epic face is already round it doesnt need help. also it was a good pic. dont tell randy i said that"], "herp": ["herp u r the best comedian on this site and u only know 1 word. teach me. i'll trade u 'ur mom' 4 it", "herp (this is me doing ur bit) (its harder then it looks) (lol ur mom) (see i cant even do it)"]}, "statuses": ["inventing a bit randy will 'discover' next week", "some ppl on this site copy other ppls jokes. not naming names. it rhymes with 'pandy'", "lol ur mom", "making a ytmnd. its picard. its always picard.", "at the top 8 buffet and everyone got seconds except randy"], "bulletins": [{"subject": "VOTE 5 ON MY YTMND OR I POST UR YEARBOOK PIC (jk) (not jk)", "body": "ok so i made a new ytmnd. its picard. he says 'lol ur mom' and then the epic face spins for 4 minutes. its art. go vote 5. if u vote 1 i know it was randy. RANDY I KNOW IT WAS U. link is on my page cuz bulletins eat links. repost if ur funny (u wont) (im the only one) (banana maybe)", "time": "Aug 29 2026 11:58 PM"}, {"subject": "OFFICIAL LIST OF THINGS I INVENTED (repost or randy wins)", "body": "1. numa numa (showed randy on my gateway. 2005. he was THERE. he laughed. he got a nosebleed. he KNOWS) 2. saying PIE randomly (i said it in lowercase FIRST which is harder) 3. chuck norris facts (ok no but i had the good ones) 4. 'lol ur mom' (mine forever, get ur own mom) 5. the epic face (not really but i have the rights on this site, todd said so) (he didnt) 6. saying 'in bed' after stuff (this one might be everyone's) 7. this bulletin. repost this or randy gets 2 keep them. dont let him keep them.", "time": "Sep 3 2026 10:14 PM"}], "pcComments": ["epic pic. not as epic as the face but epic", "lol ur mom (this is a compliment) (on ur pic) (ur mom is also in the pic? no? ok)", "is that a ytmnd on the monitor behind u. it is. i see it. good.", "pc4pc? i will leave the word 'lol' on every one of ur pics. every one. all 40.", "rate: 5/5. would ytmnd."], "dmSeed": [{"from": "epic", "text": "hey malten. u look like someone who has never seen a ytmnd. i can fix that. also lol ur mom. (no offense 2 ur mom. shes prob great. i dont know her. classic)", "time": "Aug 27 2026 12:04 AM"}]},
     raven: {"name": "raven_nocturne", "tag": "Goth is a subculture. Glitter is a craft supply. We are not the same.", "avatar": "assets/posts/photo_kristengoth.jpg", "gender": "Female", "age": 24, "hometown": "Providence, Rhode Island", "loc": "Providence, Rhode Island", "zodiac": "Scorpio", "status": "Single (married to the night, but seriously, single)", "hereFor": "Friends, Networking", "mood": "nocturnal, as ever :|", "lastLogin": "Sep 4 2026 2:47 AM", "theme": {"bg": "#0b0b0d", "fg": "#cfc8dc", "accent": "#9b1b3a"}, "bgTile": "assets/tiles/tile_web.png", "blogTitle": "Nocturne No. 14 (and a brief note regarding a certain 'poet' on this site)", "about": "I have been wearing black since before some of you had accounts here, which I realize sounds like something a 24-year-old says when she is tired. I am. I found Poe at eleven, Siouxsie at fourteen, and I have never once typed 'rawr' in my life. I write actual poetry, with meter, and I refuse to give it glitter titles or 11:11 timestamps for effect. That said: if you are new here and someone is unkind to you, message me. I will be nice about it. Don't tell anyone.", "meet": "Who I'd like to meet: Peter Murphy, Siouxsie Sioux, Edgar Allan Poe (in the appropriate condition), and anyone who can name a Bauhaus song that isn't 'Bela Lugosi's Dead.' Not you, DarkAngel. We've met.", "interests": {"General": "Victorian mourning jewelry, cemetery photography (respectfully), fountain pens, tarot as literature, correcting people about what 'goth' means, tea after midnight, taking the long way home in the rain, deleting glitter graphics from my page one at a time", "Music": "Bauhaus, Siouxsie and the Banshees, The Cure (pre-1990, no exceptions), Sisters of Mercy, Dead Can Dance, Joy Division, Cocteau Twins, Type O Negative, Nick Cave, Rasputina, The Birthday Massacre (yes, fine, they're newer, they're allowed). If your band has a 'breakdown' it is not goth. I say this with love.", "Movies": "The Hunger, Nosferatu (1922), The Crow, Interview with the Vampire (the book was better, the film is fine), Bram Stoker's Dracula, Edward Scissorhands, Donnie Darko, Pan's Labyrinth, The Nightmare Before Christmas (it counts, I've made my peace)", "Television": "Buffy (seasons two through five), Six Feet Under, Carnivale, Twin Peaks, Dark Shadows on DVD, and I will admit to Project Runway with the volume down", "Books": "Poe, Mary Shelley, Percy Shelley (less), Byron, Baudelaire, Anne Rice, Neil Gaiman, Poppy Z. Brite, The Bell Jar, House of Leaves, Wuthering Heights, anything Gorey. Not Twilight. I have been asked. Nine times.", "Heroes": "Siouxsie. Peter Murphy. Morticia Addams. My grandmother, who wore black for forty years and told everyone it was 'practical.'"}, "song": {"name": "Blue", "artist": "The Birthday Massacre", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/deco_moon.gif", "assets/deco_skull.gif"], "friends": ["darkangel", "vinyl_witch", "lucas", "josh", "tina", "mika", "todd"], "wall": [{"from": "darkangel", "text": "~*~ raven i read ur blog. 'we are not the same'?? ur right. MY poems rhyme. 11:11 make a wish that u get a sense of humor <3 (jk ily) (sort of) (the rain one was good tho dont tell anyone) ~*~", "time": "Sep 3 2026 11:11 PM"}, {"from": "vinyl_witch", "text": "finally someone on this site with a Bauhaus record and not just the t-shirt. saw your shelf in your pic. approved. the Cure is filed wrong though. Pornography goes after Faith. fix it.", "time": "Aug 30 2026 9:52 PM"}, {"from": "tina", "text": "raven u would LOVE twilight. edward is basically a goth!! he broods!!! plz read it. i will send u my copy. also repost my chain letter or u get bad luck 4 7 yrs (it says that not me) (but also do it)", "time": "Aug 26 2026 7:30 PM"}, {"from": "lucas", "text": "'crawling in my skin, these wounds they will not heal.' thats philosophy raven. u cant tell me linkin park isnt goth. ok u can. u did. in 4 paragraphs. i read all of them. i think u might be right which is annoying", "time": "Aug 22 2026 10:17 PM"}], "replies": ["Noted.", "That's... actually lovely. Don't tell anyone I said so.", "I am too old for this website and yet here I am, at 2 AM, replying.", "No.", "Fine. I laughed. Once. Quietly."], "thanksAdd": "Thank you for the add. I don't do pc4pc, I don't repost chain letters, and I will not be 'rawr'-ing at you. I will, however, read your poems if you ask nicely. That offer is rarer than you think.", "ambient": ["It's 2 AM. The scene children are asleep. The site is finally quiet. This is my hour.", "Someone left seventeen glitter graphics on my page. It took eleven minutes to delete them. I felt each one.", "New poem in the blog. It is about rain. It is always about rain. I am from Providence, what did you expect.", "Just corrected a fifteen-year-old about Bauhaus and then felt bad and complimented his hair. Growth, apparently."], "saltyDm": "I noticed you read my poem and left without a word. That's fine. Poe died alone too. (I'm joking. Mostly. Leave a comment next time. It costs nothing.)", "keywords": {"darkangel": "DarkAngel. Yes. She writes 'poetry' in glitter text with 11:11 timestamps and calls it dark. It is not dark. It is a Lisa Frank folder having a bad day. ...She is actually talented. Do not quote me. I will deny it.", "goth": "Goth is a subculture with a thirty-year history rooted in post-punk. It is not a layout you download from a website with pop-ups, and it is not a Hot Topic receipt. I say this with love. Some love. A measured amount."}, "banter": {"darkangel": ["DarkAngel, 'my soul is a broken mirror' is a fine line. It was also a fine line when Siouxsie did it in 1981. We are not the same. Keep writing, though. Genuinely.", "I gave your blog one kudos. One. That is the most I have ever given anyone on this site and I need you to understand the weight of it."], "vinyl_witch": ["Vinyl Witch is the only resident who has never once asked me to 'comment her pics.' She asked me to comment her SHELVES. I respect that enormously.", "You were right about the Cure filing. I moved Pornography next to Faith. I'm not proud of how long it took me to admit that."], "lucas": ["Lucas, I have read your Linkin Park lyric analysis and I want you to know that at your age I was doing the same thing with The Cure, so I have no grounds. Carry on.", "Nu-metal is not goth. It is, however, sincere, which is more than I can say for half the eyeliner on this site. You're fine, kid."], "tina": ["Tina. I read the first chapter of Twilight because you asked nine times. The vampire sparkles. Vampires do not sparkle. I am returning the book with notes in the margins.", "Your chain letter said I would have bad luck for seven years if I didn't repost. I did not repost. I am simply reporting that it has been three days and I found five dollars."], "josh": ["Josh, you invited me to youth group. I'm a 24-year-old goth. You said 'that's fine, we have snacks.' I thought about it for longer than I'd like to admit.", "You're the only person on this site who mediates drama without making it worse. It's unsettling. Keep doing it."]}, "statuses": ["reading. actual books. with pages.", "not the same as certain glitter poets, thank you", "awake at 2 AM by choice, not because of a 37-hour banana situation", "quietly pleased and will deny it under oath", "listening to Bauhaus. the whole record. in order. as intended."], "bulletins": [{"subject": "A Brief Note on What Goth Actually Is (No Glitter Involved)", "body": "Since it has come up again, and since a certain 11:11 poet has described her page as 'goth,' I am posting this once. Goth is a subculture that grew out of post-punk in the early 1980s. Bauhaus. Siouxsie. The Cure. It is about beauty in darkness, literacy, and a certain refusal. It is not: sparkly skull graphics, 'rawr,' a Hot Topic receipt, or teasing your hair until it needs its own zip code. That said, I am not your enemy. I am simply older, tired, and correct. Read Poe. Come back. I'll be here. I'm always here.", "time": "Aug 24 2026 1:15 AM"}, {"subject": "New poem. No kudos-begging. Just read it.", "body": "It's called 'Nocturne No. 14.' It's about rain on a window in Providence and a person who does not call. It is not about anyone on this site. (It is a little bit about someone on this site.) It does not rhyme. It does not have to. I posted it at 2:33 AM because that is when it was finished, not for effect. Give it kudos if you like. Or don't. The rain doesn't care and neither do I. (I do. Slightly.)", "time": "Sep 2 2026 2:33 AM"}], "pcComments": ["Lovely composition. Lose the glitter frame.", "Is that a real cemetery? If so, you have my respect and my envy.", "This is the first photo on this site in which no one is doing 'rawr.' Thank you.", "The lighting is good. The eyeliner is better. Carry on.", "I do not do pc4pc. I commented because it deserved it. Don't get used to it."], "dmSeed": [{"from": "raven", "text": "Hello, malten. You seem to have wandered into the oldest corner of this site. Welcome. The scene children mean well. If any of them try to 'pc4pc' you, I can explain what that means, though I wish I couldn't.", "time": "Aug 25 2026 1:58 AM"}]},
     smoove: {"name": "dj_smoove", "tag": "NEW TRACK ON MY MUSIC PAGE!!! feat. everyone (ur on it 2 probably)", "avatar": "assets/avatar_smoove.gif", "gender": "Male", "age": 18, "hometown": "Tampa, Florida", "loc": "Tampa, Florida", "zodiac": "Leo", "status": "Single (married 2 the beat)", "hereFor": "Networking, Friends", "mood": "in the studio (the van) =D", "lastLogin": "Sep 5 2026 12:20 AM", "theme": {"bg": "#120a2a", "fg": "#ffd700", "accent": "#00e5ff"}, "bgTile": "assets/tiles/tile_zebra.png", "blogTitle": "TRACK 9 IS DONE. IT FEATURES 14 PEOPLE. 11 OF THEM DONT KNOW YET.", "about": "yo yo yo its ya boy DJ SMOOVE!!! producer, rapper, hype man, ringtone maker (hit me up, $2 each or free if ur cool). i got fruity loops 6, a mic from radioshack, my uncle rays 4-track and a DREAM. every track on my music page features SOMEBODY from this site cuz thats how we do. u ever said anything on my page? congrats ur a sample now. 2006 is the year. 2007 is also the year. we goin up!!! GO 2 MY MUSIC PAGE", "meet": "Who I'd like to meet: timbaland, pharrell, t-pain (the voice thing is GENIUS), anybody w/ a mic better then mine (everybody), and tom so i can put him on a track. 'feat. tom.' think about it.", "interests": {"General": "beats, fruity loops, making ringtones 4 ppl, hyping my friends, MY MUSIC PAGE (go there), soundclick, purevolume, blowing the speakers in my moms van, freestyling in the drive thru, air horns", "Music": "timbaland, pharrell, the neptunes, kanye, lupe, t-pain, gnarls barkley, justice, daft punk, chromeo, nightcore nikki (real), static prophecy (real), ME (realest)", "Movies": "8 mile (studied it like homework), hustle & flow, scarface (havent seen it, own the poster), you got served, step up, drumline (bryan hates this one idk why)", "Television": "106 & park, pimp my ride (i want xzibit 2 put a studio in my moms van), cribs, making the band, wild n out, tha cutting edge", "Books": "the source, xxl, the fruity loops manual (all of it, twice), ur comments section (i read it 4 samples)", "Heroes": "timbaland. my uncle ray who let me use his 4-track. everybody on this site cuz UR ALL ON THE TRACK. chad specifically."}, "song": {"name": "Chicken Noodle Soup", "artist": "Webstar & Young B", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/deco_record_dj.gif", "assets/badge_winamp.gif", "assets/deco_new.gif"], "friends": ["nikki", "greg", "bryan", "chad", "tony", "kevin", "todd", "paige"], "wall": [{"from": "nikki", "text": "smoove i sped ur track up 1.5x and its BETTER. UNTZ UNTZ UNTZ. put me on track 10 and let me nightcore the whole thing. UNTZ. thats not a request thats a UNTZ", "time": "Sep 4 2026 9:27 PM"}, {"from": "greg", "text": "dude you sampled our SOUNDCHECK. thats not a feature, thats us tuning. also bryan wants credit as 'drums' not 'drums??' with two question marks. he was very clear about this. he didnt text me back about anything else", "time": "Sep 2 2026 6:44 PM"}, {"from": "chad", "text": "SMOOVE i listened to TRACK 7 before practice and hit 2 doubles. this is SCIENCE now. GREAT JOB man. keep it up. i mean it. u got this", "time": "Aug 31 2026 5:10 PM"}, {"from": "tony", "text": "hey ;) smoove can u make a beat 4 when i walk up to girls. like a walk up song. it doesnt have 2 work it just has 2 play. ill pay in capri suns ;)", "time": "Aug 27 2026 8:03 PM"}], "replies": ["AYYYYY LETS GOOOO", "yo thats a bar. can i use that. im using that. its on track 10 now.", "ur on the track now. i dont make the rules (i do)", "SMOOVE APPROVED. air horn.", "lol my bad but also GO 2 MY MUSIC PAGE"], "thanksAdd": "THANKS 4 THE ADD!!! ur officially in the smoove fam. that means ur on the next track. u dont get a choice. its a feature. go 2 my music page. NOW. love u. air horn.", "ambient": ["just finished track 9. it has a sample of herp saying herp 40 times. its the hook. its a banger. herp doesnt know.", "my moms van is now a studio. the studio is the van. the van is the studio. the beat is called 'van beat'", "yo who wants a free ringtone i got 12 left before i have 2 start charging $2 (or a capri sun, tony taught me that economy)", "fruity loops crashed and took the beat with it. the beat lives on in my heart. and my head. and now on my music page cuz i redid it in 20 min GO LISTEN"], "saltyDm": "yo u been on my page like 5 times (i have a tracker lol, dave made it) and u havent gone 2 my music page ONCE. thats cold. thats ice cold. its ok tho. ur still on track 10. u cant escape track 10.", "keywords": {"track": "TRACK?? which one. 1 thru 9 r up. 10 is coming friday. 11 is u. i dont care who u r, ur 11. thats the smoove guarantee.", "beat": "u want a beat?? i got 40. i got a beat 4 walking. i got a beat 4 sitting. i got a beat 4 chad hitting doubles. go 2 my music page, pick one, its urs 4 free (just tell ppl who made it) (me) (dj smoove)"}, "banter": {"nikki": ["NIKKI u sped up track 6 and it went from 3 minutes 2 two minutes and it hits HARDER. how. why. UNTZ. we're collabing. its happening.", "i put a nightcore intro on track 8 as a tribute 2 u and u said 'not fast enough.' u r the toughest producer i know and i respect it"], "greg": ["GREG. static prophecy on track 9 was HISTORIC. i know u didnt agree 2 it. the soundcheck WAS the feature. the feature IS the soundcheck. thats art.", "when static prophecy plays the garage friday im doing a 30 second intro. its not negotiable. i already made it. its called 'greg is here' and it has 3 air horns"], "bryan": ["bryan ur drums on track 9 are FIRE bro. i know ur status says 'idk anymore' but the DRUMS know. the drums always know. (also credit fixed. 'drums.' no question marks. sry)", "u didnt text me back about the bridge so i sampled u NOT texting back. its 8 bars of silence. its called 'bryan.' it kinda works"], "chad": ["CHAD ur the only person who listens 2 my tracks before sports and i think u might be the reason im gonna make it. u hit 2 doubles. i felt both of them.", "chad walk up song is DONE. its 12 seconds of 'CHAD' and an air horn. u said it was perfect and i believe u cuz u've never lied 2 anyone"], "kevin": ["kevin i tried 2 make a beat u could DDR to and u said 'the timing is off' and then did the whole song on heavy anyway w/ the sweatband on. respect.", "stepchart 4 track 5 when. u said u'd make one. ill wait. (i wont. i made one. its wrong. every arrow is a left arrow. help)"]}, "statuses": ["in the studio (van)", "TRACK 10 DROPS FRIDAY. feat. EVERYONE. yes u. especially u.", "making a ringtone 4 my mom so she'll stop calling my beats 'noise'", "hyped 4 static prophecy friday. i have an intro ready. greg doesnt know. greg will know.", "some ppl listen 2 the whole track b4 commenting. be like some ppl."], "bulletins": [{"subject": "NEW TRACK!!! FEAT. EVERYONE ON MY TOP 8 (AND SOME PPL NOT ON IT)", "body": "YO. TRACK 9 IS UP. its on my music page. it features: nikki (UNTZ), greg (soundcheck), bryan (drums, no question marks, sry bryan), chad (he says CHAD at 1:12), herp (the hook, all 40 of them), tony (he says 'hey ;)' and i pitched it down so it sounds cool) and MALTEN if u leave a comment on this bulletin i put it on track 10. seriously. GO LISTEN. then comment. then listen again w/ headphones. then tell ur mom. (my mom said 'turn it down' which is basically a review) LETS GOOOO", "time": "Aug 30 2026 11:11 PM"}, {"subject": "FREE RINGTONES 4 THE FIRST 10 PPL (then $2) (then free again if u ask nice)", "body": "i learned how 2 make ringtones on my razr. i can make ANY song a ringtone. i can make ANY of MY songs a ringtone (better). first 10 ppl 2 comment get one free. tell me: the song, and what u want me 2 say b4 the beat drops (i can say ur name. i WILL say ur name. thats the smoove guarantee). after 10 its $2 or a capri sun (tony taught me that economy). GO GO GO. air horn.", "time": "Sep 3 2026 7:45 PM"}], "pcComments": ["yo this pic goes hard. it needs a beat. im making one. rn.", "AYYYY. thats the album cover. thats it. thats the cover. can i use it. im using it.", "pc4pc but instead of a pc i put u on a track. better deal.", "the lighting in this is a BANGER", "ur on track 10 now. this pic did it. congrats. air horn."], "dmSeed": [{"from": "smoove", "text": "yo malten!!! welcome 2 the site. quick q: can u say ur name into a mic. any mic. ur laptop mic. i need it 4 track 11. its called 'malten.' its about u. u havent heard it. ur gonna love it. GO 2 MY MUSIC PAGE", "time": "Aug 28 2026 11:36 PM"}]},
-    liz: {"name": "layouts_by_liz", "tag": "if ur layout looks like mine its cuz its MINE. credit me or fix ur css.", "avatar": "assets/avatar_liz.gif", "gender": "Female", "age": 17, "hometown": "Mesa, Arizona", "loc": "Mesa, Arizona", "zodiac": "Virgo", "status": "In a Relationship (with div overlays)", "hereFor": "Networking, Friends", "mood": "annoyed but productive >:[", "lastLogin": "Sep 5 2026 12:58 AM", "theme": {"bg": "#000000", "fg": "#c8fff4", "accent": "#ff00d3"}, "bgTile": "assets/tiles/tile_hearts.png", "blogTitle": "HOW 2 TELL IF UR LAYOUT WAS STOLEN (a tutorial) (its not about anyone) (its about kittyxcore)", "about": "hi im liz and i made ur layout. no seriously, if ur page has a div overlay w/ the tables hidden and a little scrolling friends box, i either made it or someone ripped it. i've been coding since i was 12 on my dads computer in notepad and i have NEVER used a premade from those popup sites. div overlays or nothing. tables r for ppl who have given up. i'll pimp ur profile for free if u credit me and for $5 if u dont (kidding) (not kidding). ps to the person who copied my hello kitty div layout and changed the pink 2 a slightly different pink: i can SEE the comments in the code. u left my name in it.", "meet": "Who I'd like to meet: whoever invented the div overlay so i can thank them, whoever invented the popup layout sites so i can NOT thank them, and tom so he can fix the profile editor (jk i dont use it. i have hands.)", "interests": {"General": "coding div overlays at 1am, notepad (not wordpad. never wordpad), photobucket (until it dies again), hex codes from memory, glitter text but TASTEFUL, fixing other ppls broken css without being asked, finding my own code on other ppls pages, tiny pixel icons, hello kitty (before it was a crime)", "Music": "paramore, the academy is..., panic! at the disco, fall out boy, cute is what we aim for, hellogoodbye, the postal service (coding music), imogen heap (also coding music, dont touch me when its on)", "Movies": "napoleon dynamite, mean girls, garden state, 10 things i hate about you, sky high, the devil wears prada (miranda is basically me reviewing ur layout)", "Television": "degrassi, laguna beach (4 the drama not the ppl), the OC, project runway (its layouts but 4 clothes), invader zim, americas next top model (i watch it 4 the photoshoots. the 200px crops. im serious.)", "Books": "html 4 dummies (lol no i didnt need it) (ok i had it) (ok i still have it), the css cookbook, harry potter, speak, the perks of being a wallflower, every layout tutorial on createblog ever posted", "Heroes": "whoever made the first div overlay. my dad 4 never asking why notepad was open at 2am. paige for taking pics that actually FIT in a 200px box. todd for running this whole site off a laptop and still loading my 340 lines."}, "song": {"name": "Hide and Seek", "artist": "Imogen Heap", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/badge_hello_kitty.gif", "assets/deco_new.gif"], "friends": ["paige", "brittany", "kittyxcore", "dave", "todd", "josh", "mika"], "wall": [{"from": "kittyxcore", "text": "um i did NOT rip ur layout. i found it on a site. it was FREE. also the pink is different, its 'hot pink' not 'deep pink' so its a different layout. anyway comment my new pics!! pc4pc?? <3", "time": "Sep 4 2026 8:19 PM"}, {"from": "dave", "text": "y0 l1z ur d1v 0v3rl4y 1s 1337. i tr13d 2 h4x it 2 s33 h0w u d1d th3 scr0ll b0x n it just s41d 'n1c3 try d4v3' in th3 c0mm3nts. h0w d1d u kn0w. h0w.", "time": "Sep 1 2026 11:42 PM"}, {"from": "brittany", "text": "lizzz can u make mine pink w/ the sparkly cursor?? ill put u in my top 8. #4. ok #6. ok we'll talk. xoxo", "time": "Aug 29 2026 4:55 PM"}, {"from": "todd", "text": "Liz, your layout crashed the server twice last night (it's a laptop, it's fine). Loved the scrolling box though. Could you maybe use fewer marquees? Asking as a friend and as the guy who has to restart it.", "time": "Aug 23 2026 7:08 AM"}], "replies": ["did u credit me tho", "thats a table. i can tell from here. fix it.", "ok that's actually cute. did u make it urself? ...did u?", "brb fixing ur css", "ugh. fine. send me the code."], "thanksAdd": "thanks 4 the add =] ur layout is broken on the left side btw. the friend box is overlapping ur comments. i can fix it. i WILL fix it. its bothering me. send me the code.", "ambient": ["just found my code on a 4th page. this one changed the font 2 comic sans. i'd rather they'd just stolen it clean.", "3am. div overlay done. the comments box scrolls sideways now. why? because i can.", "photobucket bandwidth exceeded on 200 of my layouts. all of them. every single one. its the red box era now.", "if one more person asks 'who did ur layout' and the answer is me and they dont credit me im putting a hidden marquee that says 'liz made this' in ALL of them. i already did. u just cant see it."], "saltyDm": "hey so u've been on my page 4 times (dave put a counter on it, its glitter, i hate it) and u still didnt ask who did ur layout. its me. it was always me. ur welcome.", "keywords": {"layout": "LAYOUT?? ok ok ok. divs. tables hidden. scrolling friend box, comments box, and a little 'currently listening' box that ACTUALLY updates (it doesnt but it looks like it does). want one? credit me. ps if it has hello kitty and its pink its mine and kittyxcore knows it.", "kittyxcore": "i'm not gonna say anything. i'm gonna say ONE thing. she changed #FF00D3 to #FF00CC and called it 'her' layout. thats 2 characters. i wrote 340 lines. anyway her pics r cute. anyway."}, "banter": {"kittyxcore": ["kitty i'm not mad!!! i just think its funny that ur 'new' layout has a comment in the css that says '/* liz dont steal this */' that I WROTE as a joke 2 MYSELF", "ok ur pics r cute. commented all 9. but i see the hello kitty divs behind u and they r MINE. pc4pc AND credit4credit. thats the deal."], "paige": ["paige ur pics r the only ones that fit in my pic boxes without cropping and i have never told u how much that means 2 me. its a lot.", "u took a pic of me coding at 2am and tilted it 45 degrees. my monitor is a diamond now. this is the best pic of me that exists"], "brittany": ["brit ur page is pink on pink on pink and the TEXT is pink. i love u but i cant read ur about me. let me fix it. #4 in ur top 8 and we have a deal.", "u put me at #6. i made ur cursor sparkle. #6. i'm not hurt i'm just noting it for the record (the record is my blog) (its posted)"], "dave": ["dave stop 'haxing' my layouts, its called view source, everyone can do it, its literally in the menu", "ok the glitter hit counter u made is ugly and i left it on my page for 3 days anyway. thats the nicest thing i've ever done 4 anyone"], "todd": ["todd i'm sorry about the marquees. i'm not sorry about the div overlay. 3 marquees max. thats my final offer.", "u run this whole site off a laptop and my 340 lines still load. u r the real coder here. dont tell dave i said that"]}, "statuses": ["coding. dont IM me unless ur css is on fire", "some ppl 'find' layouts the way some ppl 'find' wallets", "photobucket is down and so am i", "pimping profiles. 3 in the queue. credit me or get a table.", "changed #FF00D3 to #FF00CC. its a totally different layout now apparently"], "bulletins": [{"subject": "PSA: HOW 2 CREDIT A LAYOUT (its one line. one.)", "body": "hi. this is not about anyone. this is about EVERYONE. if u use a layout somebody MADE (not one from a popup site, an actual person, w/ hands), u put 'layout by ___' at the bottom. thats it. one line. i even leave the credit line IN the code so u dont have 2 type it. u just have 2 not DELETE it. changing the pink does not make it urs. changing the font 2 comic sans does not make it urs (it makes it worse). i'm not naming anyone. her name starts w/ k and ends w/ ittyxcore. anyway i love u all, credit me, ttyl", "time": "Aug 26 2026 11:47 PM"}, {"subject": "FREE LAYOUTS 4 THE FIRST 5 PPL WHO CAN TELL A DIV FROM A TABLE", "body": "ok im in a good mood (photobucket came back). first 5 ppl who comment this w/ the right answer get a custom div overlay. any colors, scrolling boxes, the works. question: which one is a div? a) the thing that hides ur ugly default tables and rebuilds ur whole page from scratch like a professional b) the thing ur page is made of right now. answer in the comments. no googling (u can google). credit line stays in. ALWAYS. love u. go.", "time": "Sep 3 2026 1:22 AM"}], "pcComments": ["cute pic! ur layout behind it is a table tho. fix that.", "this fits PERFECTLY in a 200px box. did u do that on purpose. ur my favorite.", "pc4pc + i'll fix ur css. thats my deal. take it.", "ok the pic is cute but the glitter frame is from the popup site. i can see the watermark. let me make u a real one", "omg ur hair. also omg ur page loads slow, u have 9 marquees, im coming over"], "dmSeed": [{"from": "liz", "text": "hey malten =] welcome!! quick thing, i noticed ur profile is still on the default layout. thats ok!!! its a phase. everyone goes thru it. when ur ready i have a div overlay w/ ur name on it (literally, its in a hidden comment, i do that 2 everything)", "time": "Aug 26 2026 12:31 AM"}]},
-    josh: {"name": "youth_group_josh", "tag": "wednesdays at 7. theres pizza. thats it thats the headline", "avatar": "assets/avatar_josh.gif", "gender": "Male", "age": 17, "hometown": "Wheaton, Illinois", "loc": "Wheaton, Illinois", "zodiac": "Libra", "status": "Single", "hereFor": "Friends", "mood": "content =]", "lastLogin": "Sep 5 2026 8:12 AM", "theme": {"bg": "#0d2b55", "fg": "#f0f4ff", "accent": "#ffc400"}, "blogTitle": "why i dont pick sides (and why thats not the same as not caring)", "about": "hey im josh =] i go to youth group wednesdays at 7 and yes im gonna invite u, its just what i do. mostly i like hanging out and listening to ppl, so if ur having a rough week my aim is always on and i mean always. also i will beat anyone on this site at halo 2 and i say that with love.", "meet": "Who I'd like to meet: honestly anyone. Jon Foreman from switchfoot. and whoever keeps sniping me on lockout so i can shake their hand and then never play them again.", "interests": {"General": "youth group wednesdays, halo 2 on xbox live (gamertag youthgroupjosh), ultimate frisbee, lock-ins, serving at the soup kitchen 1st saturdays, being the guy everyone aims at 1am, pizza", "Music": "relient k, switchfoot, anberlin, underoath (they count), mae, mewithoutYou, copeland, jars of clay (its my moms cd but its good), fall out boy (dont tell pastor dan)", "Movies": "napoleon dynamite (still quote it, not sorry), nacho libre, facing the giants, remember the titans, lord of the rings extended editions (all 3 in one lock-in, we did it)", "Television": "the office, lost (i have theories), smallville, veggie tales (ironically) (mostly)", "Books": "blue like jazz, the chronicles of narnia, left behind (dont judge), my bible (the student one w/ the notes in the margins), halo: the fall of reach", "Heroes": "my youth pastor dan, my mom, master chief, jon foreman, anyone who actually listens when u talk"}, "song": {"name": "Be My Escape", "artist": "Relient K", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/badge_aim.gif", "assets/deco_smiley.gif", "assets/badge_8bit.gif"], "friends": ["patrick", "chad", "lexi", "nate", "kayla", "bryan", "dave", "lucas"], "wall": [{"from": "patrick", "text": "josh ur the nicest person i know. my rock says hi. can i bring my rock to youth group. he is quiet i promise", "time": "Sep 4 2026 6:22 PM"}, {"from": "lexi", "text": "josh i need to talk to u about nate AGAIN i know i know i KNOW. aim later? ur the only one who doesnt take sides <3", "time": "Sep 3 2026 10:47 PM"}, {"from": "chad", "text": "JOSH that lock-in was AWESOME man. i ate like 9 slices. u guys are SOLID people. when's the next one i'll bring the gatorade", "time": "Aug 30 2026 1:15 PM"}, {"from": "dave", "text": "j0sh i r3sp3ct u but i WILL find ur gamertag and pwn u. ...ok i cant find it. whats ur gamertag. its 4 hacking purposes", "time": "Aug 26 2026 11:58 PM"}], "replies": ["haha thats awesome man =]", "aw. u ok? aim me if u wanna talk, im on rite now", "ok but hear me out: youth group. wednesday. 7pm. theres pizza", "lol ur fine. everyones fine. deep breaths =]", "praying 4 u (in the chill way not the weird way)"], "thanksAdd": "thanks 4 the add!! =] no pressure but youth group is wednesdays at 7 at the church on maple and theres pizza. also ill play u in halo anytime, gamertag is youthgroupjosh, i will be nice about it the whole time", "ambient": ["just got off aim w/ 3 different ppl about the same fight. everyone is fine. nobody believes me", "pastor dan let us play halo in the youth room after bible study. i have never seen him so competitive. he teabagged a 7th grader", "reminder that u can just... not respond to the bulletin. u dont have to fight. u can go outside", "ok whoever left the bag of hot cheetos in the church van it is mine now. thats the rule"], "saltyDm": "ok im not mad. im not. but somebody told everyone i 'take sides' and i literally have never taken a side in my life. i take BOTH sides. thats the whole thing. thats my whole thing. anyway sorry. do u want pizza wednesday", "keywords": {"halo": "ok NOW we're talking. halo 2, lockout, battle rifles only, no camping. gamertag youthgroupjosh. i will be nice about it the whole time and u will still lose =]", "drama": "ok pause. did u talk to them? like actually talk, not a headline. thats step one. step two is youth group but thats optional (its not) (jk) (kinda)"}, "banter": {"lexi": ["lexi. ur status changed 3 times since lunch. im not saying anything. im just saying i noticed =]", "ur good at like a hundred things that arent nate. remember that. also youth group wednesday come on u said u would"], "nate": ["nate u dont have to vague post man. u can just aim me. i already know its about lexi. its always about lexi", "come play halo at the youth room thursday. no girls no bulletins just battle rifles. u need it. i need it"], "kayla": ["kayla u dont have to answer this on ur wall but did u actually TALK to bryan or just change ur song", "ur lyric statuses are honestly better than most of the songs. thats a compliment and also a little bit a concern lol"], "bryan": ["bryan. text her back. i know u read it. i can see u online now. TEXT. HER. BACK.", "ur drumming friday was insane tho. even pastor dan said so and he doesnt know what a breakdown is"], "dave": ["dave u 'hacked' my gamertag and it was just u looking at my profile where its written lol", "ok fine. lockout. 8pm. bring ur l33t skillz. bring a snack too actually we're out"]}, "statuses": ["josh is at youth group. u should be too =]", "josh is playing halo 2 with the church van kids. dont tell pastor dan about the bad words", "josh is not taking sides. josh is never taking sides. josh is going to bed", "josh thinks u guys should just talk to each other. like out loud. with mouths", "josh got a 25 kill streak on lockout and nobody was there to see it. God saw it tho"], "bulletins": [{"subject": "YOUTH GROUP WEDNESDAY (yes again) (theres pizza)", "body": "ok so i know i post this every week but its wednesday at 7 at the church on maple, u dont have to be religious or whatever, its literally just pizza and dodgeball and then we talk about stuff for like 20 min. chad came last week and ate 9 slices. patrick brought his rock. lexi and nate BOTH came and did NOT fight which i consider a miracle in the technical sense. come hang out =] -josh", "time": "Sep 2 2026 4:15 PM"}, {"subject": "ok can we all just take a breath", "body": "not naming names bc thats the whole problem lol. but theres like 4 different fights on here rite now and 3 of them are about who commented whose pics. my aim is on. if u need to vent, vent to ME instead of ur headline. and if ur reading this thinking 'hes talking about me' hes not. hes talking about everyone. love u guys. also halo tonite 9pm gamertag youthgroupjosh", "time": "Aug 29 2026 10:52 PM"}], "pcComments": ["great pic man =] u look happy", "haha this is from the lock-in!! u fell asleep like 10 min after this", "aw this is cute. commented all 3 =]", "ok this one is ur default now. no argument", "u should come to youth group. (sorry) (but u should)"], "dmSeed": [{"text": "hey malten! welcome =] just wanted to say hi, everyone here is really nice once u get past the bulletins lol. if u ever wanna play halo or just talk im on aim basically always. also youth group wednesdays 7pm but no pressure haha", "time": "Aug 24 2026 7:31 PM"}]},
+    liz: {"name": "layouts_by_liz", "tag": "if ur layout looks like mine its cuz its MINE. credit me or fix ur css.", "avatar": "assets/avatar_liz_v2.gif", "gender": "Female", "age": 17, "hometown": "Mesa, Arizona", "loc": "Mesa, Arizona", "zodiac": "Virgo", "status": "In a Relationship (with div overlays)", "hereFor": "Networking, Friends", "mood": "annoyed but productive >:[", "lastLogin": "Sep 5 2026 12:58 AM", "theme": {"bg": "#000000", "fg": "#c8fff4", "accent": "#ff00d3"}, "bgTile": "assets/tiles/tile_hearts.png", "blogTitle": "HOW 2 TELL IF UR LAYOUT WAS STOLEN (a tutorial) (its not about anyone) (its about kittyxcore)", "about": "hi im liz and i made ur layout. no seriously, if ur page has a div overlay w/ the tables hidden and a little scrolling friends box, i either made it or someone ripped it. i've been coding since i was 12 on my dads computer in notepad and i have NEVER used a premade from those popup sites. div overlays or nothing. tables r for ppl who have given up. i'll pimp ur profile for free if u credit me and for $5 if u dont (kidding) (not kidding). ps to the person who copied my hello kitty div layout and changed the pink 2 a slightly different pink: i can SEE the comments in the code. u left my name in it.", "meet": "Who I'd like to meet: whoever invented the div overlay so i can thank them, whoever invented the popup layout sites so i can NOT thank them, and tom so he can fix the profile editor (jk i dont use it. i have hands.)", "interests": {"General": "coding div overlays at 1am, notepad (not wordpad. never wordpad), photobucket (until it dies again), hex codes from memory, glitter text but TASTEFUL, fixing other ppls broken css without being asked, finding my own code on other ppls pages, tiny pixel icons, hello kitty (before it was a crime)", "Music": "paramore, the academy is..., panic! at the disco, fall out boy, cute is what we aim for, hellogoodbye, the postal service (coding music), imogen heap (also coding music, dont touch me when its on)", "Movies": "napoleon dynamite, mean girls, garden state, 10 things i hate about you, sky high, the devil wears prada (miranda is basically me reviewing ur layout)", "Television": "degrassi, laguna beach (4 the drama not the ppl), the OC, project runway (its layouts but 4 clothes), invader zim, americas next top model (i watch it 4 the photoshoots. the 200px crops. im serious.)", "Books": "html 4 dummies (lol no i didnt need it) (ok i had it) (ok i still have it), the css cookbook, harry potter, speak, the perks of being a wallflower, every layout tutorial on createblog ever posted", "Heroes": "whoever made the first div overlay. my dad 4 never asking why notepad was open at 2am. paige for taking pics that actually FIT in a 200px box. todd for running this whole site off a laptop and still loading my 340 lines."}, "song": {"name": "Hide and Seek", "artist": "Imogen Heap", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/badge_hello_kitty.gif", "assets/deco_new.gif"], "friends": ["paige", "brittany", "kittyxcore", "dave", "todd", "josh", "mika"], "wall": [{"from": "kittyxcore", "text": "um i did NOT rip ur layout. i found it on a site. it was FREE. also the pink is different, its 'hot pink' not 'deep pink' so its a different layout. anyway comment my new pics!! pc4pc?? <3", "time": "Sep 4 2026 8:19 PM"}, {"from": "dave", "text": "y0 l1z ur d1v 0v3rl4y 1s 1337. i tr13d 2 h4x it 2 s33 h0w u d1d th3 scr0ll b0x n it just s41d 'n1c3 try d4v3' in th3 c0mm3nts. h0w d1d u kn0w. h0w.", "time": "Sep 1 2026 11:42 PM"}, {"from": "brittany", "text": "lizzz can u make mine pink w/ the sparkly cursor?? ill put u in my top 8. #4. ok #6. ok we'll talk. xoxo", "time": "Aug 29 2026 4:55 PM"}, {"from": "todd", "text": "Liz, your layout crashed the server twice last night (it's a laptop, it's fine). Loved the scrolling box though. Could you maybe use fewer marquees? Asking as a friend and as the guy who has to restart it.", "time": "Aug 23 2026 7:08 AM"}], "replies": ["did u credit me tho", "thats a table. i can tell from here. fix it.", "ok that's actually cute. did u make it urself? ...did u?", "brb fixing ur css", "ugh. fine. send me the code."], "thanksAdd": "thanks 4 the add =] ur layout is broken on the left side btw. the friend box is overlapping ur comments. i can fix it. i WILL fix it. its bothering me. send me the code.", "ambient": ["just found my code on a 4th page. this one changed the font 2 comic sans. i'd rather they'd just stolen it clean.", "3am. div overlay done. the comments box scrolls sideways now. why? because i can.", "photobucket bandwidth exceeded on 200 of my layouts. all of them. every single one. its the red box era now.", "if one more person asks 'who did ur layout' and the answer is me and they dont credit me im putting a hidden marquee that says 'liz made this' in ALL of them. i already did. u just cant see it."], "saltyDm": "hey so u've been on my page 4 times (dave put a counter on it, its glitter, i hate it) and u still didnt ask who did ur layout. its me. it was always me. ur welcome.", "keywords": {"layout": "LAYOUT?? ok ok ok. divs. tables hidden. scrolling friend box, comments box, and a little 'currently listening' box that ACTUALLY updates (it doesnt but it looks like it does). want one? credit me. ps if it has hello kitty and its pink its mine and kittyxcore knows it.", "kittyxcore": "i'm not gonna say anything. i'm gonna say ONE thing. she changed #FF00D3 to #FF00CC and called it 'her' layout. thats 2 characters. i wrote 340 lines. anyway her pics r cute. anyway."}, "banter": {"kittyxcore": ["kitty i'm not mad!!! i just think its funny that ur 'new' layout has a comment in the css that says '/* liz dont steal this */' that I WROTE as a joke 2 MYSELF", "ok ur pics r cute. commented all 9. but i see the hello kitty divs behind u and they r MINE. pc4pc AND credit4credit. thats the deal."], "paige": ["paige ur pics r the only ones that fit in my pic boxes without cropping and i have never told u how much that means 2 me. its a lot.", "u took a pic of me coding at 2am and tilted it 45 degrees. my monitor is a diamond now. this is the best pic of me that exists"], "brittany": ["brit ur page is pink on pink on pink and the TEXT is pink. i love u but i cant read ur about me. let me fix it. #4 in ur top 8 and we have a deal.", "u put me at #6. i made ur cursor sparkle. #6. i'm not hurt i'm just noting it for the record (the record is my blog) (its posted)"], "dave": ["dave stop 'haxing' my layouts, its called view source, everyone can do it, its literally in the menu", "ok the glitter hit counter u made is ugly and i left it on my page for 3 days anyway. thats the nicest thing i've ever done 4 anyone"], "todd": ["todd i'm sorry about the marquees. i'm not sorry about the div overlay. 3 marquees max. thats my final offer.", "u run this whole site off a laptop and my 340 lines still load. u r the real coder here. dont tell dave i said that"]}, "statuses": ["coding. dont IM me unless ur css is on fire", "some ppl 'find' layouts the way some ppl 'find' wallets", "photobucket is down and so am i", "pimping profiles. 3 in the queue. credit me or get a table.", "changed #FF00D3 to #FF00CC. its a totally different layout now apparently"], "bulletins": [{"subject": "PSA: HOW 2 CREDIT A LAYOUT (its one line. one.)", "body": "hi. this is not about anyone. this is about EVERYONE. if u use a layout somebody MADE (not one from a popup site, an actual person, w/ hands), u put 'layout by ___' at the bottom. thats it. one line. i even leave the credit line IN the code so u dont have 2 type it. u just have 2 not DELETE it. changing the pink does not make it urs. changing the font 2 comic sans does not make it urs (it makes it worse). i'm not naming anyone. her name starts w/ k and ends w/ ittyxcore. anyway i love u all, credit me, ttyl", "time": "Aug 26 2026 11:47 PM"}, {"subject": "FREE LAYOUTS 4 THE FIRST 5 PPL WHO CAN TELL A DIV FROM A TABLE", "body": "ok im in a good mood (photobucket came back). first 5 ppl who comment this w/ the right answer get a custom div overlay. any colors, scrolling boxes, the works. question: which one is a div? a) the thing that hides ur ugly default tables and rebuilds ur whole page from scratch like a professional b) the thing ur page is made of right now. answer in the comments. no googling (u can google). credit line stays in. ALWAYS. love u. go.", "time": "Sep 3 2026 1:22 AM"}], "pcComments": ["cute pic! ur layout behind it is a table tho. fix that.", "this fits PERFECTLY in a 200px box. did u do that on purpose. ur my favorite.", "pc4pc + i'll fix ur css. thats my deal. take it.", "ok the pic is cute but the glitter frame is from the popup site. i can see the watermark. let me make u a real one", "omg ur hair. also omg ur page loads slow, u have 9 marquees, im coming over"], "dmSeed": [{"from": "liz", "text": "hey malten =] welcome!! quick thing, i noticed ur profile is still on the default layout. thats ok!!! its a phase. everyone goes thru it. when ur ready i have a div overlay w/ ur name on it (literally, its in a hidden comment, i do that 2 everything)", "time": "Aug 26 2026 12:31 AM"}]},
+    josh: {"name": "youth_group_josh", "tag": "wednesdays at 7. theres pizza. thats it thats the headline", "avatar": "assets/avatar_josh_v2.gif", "gender": "Male", "age": 17, "hometown": "Wheaton, Illinois", "loc": "Wheaton, Illinois", "zodiac": "Libra", "status": "Single", "hereFor": "Friends", "mood": "content =]", "lastLogin": "Sep 5 2026 8:12 AM", "theme": {"bg": "#0d2b55", "fg": "#f0f4ff", "accent": "#ffc400"}, "blogTitle": "why i dont pick sides (and why thats not the same as not caring)", "about": "hey im josh =] i go to youth group wednesdays at 7 and yes im gonna invite u, its just what i do. mostly i like hanging out and listening to ppl, so if ur having a rough week my aim is always on and i mean always. also i will beat anyone on this site at halo 2 and i say that with love.", "meet": "Who I'd like to meet: honestly anyone. Jon Foreman from switchfoot. and whoever keeps sniping me on lockout so i can shake their hand and then never play them again.", "interests": {"General": "youth group wednesdays, halo 2 on xbox live (gamertag youthgroupjosh), ultimate frisbee, lock-ins, serving at the soup kitchen 1st saturdays, being the guy everyone aims at 1am, pizza", "Music": "relient k, switchfoot, anberlin, underoath (they count), mae, mewithoutYou, copeland, jars of clay (its my moms cd but its good), fall out boy (dont tell pastor dan)", "Movies": "napoleon dynamite (still quote it, not sorry), nacho libre, facing the giants, remember the titans, lord of the rings extended editions (all 3 in one lock-in, we did it)", "Television": "the office, lost (i have theories), smallville, veggie tales (ironically) (mostly)", "Books": "blue like jazz, the chronicles of narnia, left behind (dont judge), my bible (the student one w/ the notes in the margins), halo: the fall of reach", "Heroes": "my youth pastor dan, my mom, master chief, jon foreman, anyone who actually listens when u talk"}, "song": {"name": "Be My Escape", "artist": "Relient K", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/badge_aim.gif", "assets/deco_smiley.gif", "assets/badge_8bit.gif"], "friends": ["patrick", "chad", "lexi", "nate", "kayla", "bryan", "dave", "lucas"], "wall": [{"from": "patrick", "text": "josh ur the nicest person i know. my rock says hi. can i bring my rock to youth group. he is quiet i promise", "time": "Sep 4 2026 6:22 PM"}, {"from": "lexi", "text": "josh i need to talk to u about nate AGAIN i know i know i KNOW. aim later? ur the only one who doesnt take sides <3", "time": "Sep 3 2026 10:47 PM"}, {"from": "chad", "text": "JOSH that lock-in was AWESOME man. i ate like 9 slices. u guys are SOLID people. when's the next one i'll bring the gatorade", "time": "Aug 30 2026 1:15 PM"}, {"from": "dave", "text": "j0sh i r3sp3ct u but i WILL find ur gamertag and pwn u. ...ok i cant find it. whats ur gamertag. its 4 hacking purposes", "time": "Aug 26 2026 11:58 PM"}], "replies": ["haha thats awesome man =]", "aw. u ok? aim me if u wanna talk, im on rite now", "ok but hear me out: youth group. wednesday. 7pm. theres pizza", "lol ur fine. everyones fine. deep breaths =]", "praying 4 u (in the chill way not the weird way)"], "thanksAdd": "thanks 4 the add!! =] no pressure but youth group is wednesdays at 7 at the church on maple and theres pizza. also ill play u in halo anytime, gamertag is youthgroupjosh, i will be nice about it the whole time", "ambient": ["just got off aim w/ 3 different ppl about the same fight. everyone is fine. nobody believes me", "pastor dan let us play halo in the youth room after bible study. i have never seen him so competitive. he teabagged a 7th grader", "reminder that u can just... not respond to the bulletin. u dont have to fight. u can go outside", "ok whoever left the bag of hot cheetos in the church van it is mine now. thats the rule"], "saltyDm": "ok im not mad. im not. but somebody told everyone i 'take sides' and i literally have never taken a side in my life. i take BOTH sides. thats the whole thing. thats my whole thing. anyway sorry. do u want pizza wednesday", "keywords": {"halo": "ok NOW we're talking. halo 2, lockout, battle rifles only, no camping. gamertag youthgroupjosh. i will be nice about it the whole time and u will still lose =]", "drama": "ok pause. did u talk to them? like actually talk, not a headline. thats step one. step two is youth group but thats optional (its not) (jk) (kinda)"}, "banter": {"lexi": ["lexi. ur status changed 3 times since lunch. im not saying anything. im just saying i noticed =]", "ur good at like a hundred things that arent nate. remember that. also youth group wednesday come on u said u would"], "nate": ["nate u dont have to vague post man. u can just aim me. i already know its about lexi. its always about lexi", "come play halo at the youth room thursday. no girls no bulletins just battle rifles. u need it. i need it"], "kayla": ["kayla u dont have to answer this on ur wall but did u actually TALK to bryan or just change ur song", "ur lyric statuses are honestly better than most of the songs. thats a compliment and also a little bit a concern lol"], "bryan": ["bryan. text her back. i know u read it. i can see u online now. TEXT. HER. BACK.", "ur drumming friday was insane tho. even pastor dan said so and he doesnt know what a breakdown is"], "dave": ["dave u 'hacked' my gamertag and it was just u looking at my profile where its written lol", "ok fine. lockout. 8pm. bring ur l33t skillz. bring a snack too actually we're out"]}, "statuses": ["josh is at youth group. u should be too =]", "josh is playing halo 2 with the church van kids. dont tell pastor dan about the bad words", "josh is not taking sides. josh is never taking sides. josh is going to bed", "josh thinks u guys should just talk to each other. like out loud. with mouths", "josh got a 25 kill streak on lockout and nobody was there to see it. God saw it tho"], "bulletins": [{"subject": "YOUTH GROUP WEDNESDAY (yes again) (theres pizza)", "body": "ok so i know i post this every week but its wednesday at 7 at the church on maple, u dont have to be religious or whatever, its literally just pizza and dodgeball and then we talk about stuff for like 20 min. chad came last week and ate 9 slices. patrick brought his rock. lexi and nate BOTH came and did NOT fight which i consider a miracle in the technical sense. come hang out =] -josh", "time": "Sep 2 2026 4:15 PM"}, {"subject": "ok can we all just take a breath", "body": "not naming names bc thats the whole problem lol. but theres like 4 different fights on here rite now and 3 of them are about who commented whose pics. my aim is on. if u need to vent, vent to ME instead of ur headline. and if ur reading this thinking 'hes talking about me' hes not. hes talking about everyone. love u guys. also halo tonite 9pm gamertag youthgroupjosh", "time": "Aug 29 2026 10:52 PM"}], "pcComments": ["great pic man =] u look happy", "haha this is from the lock-in!! u fell asleep like 10 min after this", "aw this is cute. commented all 3 =]", "ok this one is ur default now. no argument", "u should come to youth group. (sorry) (but u should)"], "dmSeed": [{"text": "hey malten! welcome =] just wanted to say hi, everyone here is really nice once u get past the bulletins lol. if u ever wanna play halo or just talk im on aim basically always. also youth group wednesdays 7pm but no pressure haha", "time": "Aug 24 2026 7:31 PM"}]},
     paige: {"name": "photog_paige", "tag": "pics or it didnt happen. no really. send me the pics", "avatar": "assets/avatar_paige.gif", "gender": "Female", "age": 17, "hometown": "Portland, Oregon", "loc": "Portland, Oregon", "zodiac": "Gemini", "status": "Single", "hereFor": "Friends, Networking", "mood": "focused :]", "lastLogin": "Sep 4 2026 11:59 PM", "theme": {"bg": "#000000", "fg": "#eaeaea", "accent": "#00b8ff"}, "bgTile": "assets/tiles/tile_flowers.png", "blogTitle": "the dutch angle is not a mistake: a defense", "about": "im paige. i take pictures. tilted ones. if ur at a show or a fight or a fight at a show, i was there and i have proof. i shoot film (holga, my nanas old pentax) AND digital (canon powershot, 4 megapixels, dont laugh) and everything gets cross processed in photoshop 7 til it looks like a dream about a parking lot. pc4pc always. i have never once not pc'd back.", "meet": "Who I'd like to meet: anyone who will let me photograph them mid-argument. also the guy at the mall camera kiosk who told me a fisheye is 'not a real lens'. i just want to talk.", "interests": {"General": "photography (obviously), my holga, the fisheye i saved 3 months of babysitting money for, tilting the camera exactly 45 degrees, cross processing, photobucket bandwidth (the enemy), being where the drama is, pc4pc, chai from the cart by the bus stop", "Music": "death cab, the postal service, imogen heap, regina spektor, bright eyes, feist, rilo kiley, the shins, metric, tegan and sara, whatever is playing at urban outfitters", "Movies": "garden state (and the soundtrack), eternal sunshine, amelie, lost in translation, napoleon dynamite (for the composition), elizabethtown (dont judge me)", "Television": "americas next top model (for the photographers not the models), project runway, laguna beach (its basically a documentary), gilmore girls, the hills", "Books": "the perks of being a wallflower, chuck palahniuk (i skimmed), the lomography manifesto (its 10 rules and i broke 4), nylon magazine, the dos and donts in vice", "Heroes": "annie leibovitz, diane arbus, my nana who gave me her pentax, whoever invented the self timer, tom green for tilting the camera first (i think)"}, "song": {"name": "Hide and Seek", "artist": "Imogen Heap", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/deco_new.gif", "assets/badge_winamp.gif", "assets/deco_moon.gif"], "friends": ["kittyxcore", "brittany", "sk8rboi", "greg", "kayla", "bryan", "riley", "nate"], "wall": [{"from": "kittyxcore", "text": "PAIGE the pics from friday r SO cute omg. except the one where im blinking. delete it. i mean it. pc4pc on the rest tho!! =] comment my new ones!!", "time": "Sep 4 2026 9:12 PM"}, {"from": "brittany", "text": "ok the tilted one of me is adorable BUT why is there a pic of me and kayla 'having a moment' with a caption?? we were talking about lip gloss. xoxo", "time": "Sep 2 2026 5:40 PM"}, {"from": "sk8rboi", "text": "paige ur fisheye vid of my kickflip is the best footage of me ever. can i put it in my sponsor me tape. i will credit u i swear. i'll write it on the tape in sharpie", "time": "Aug 31 2026 3:27 PM"}, {"from": "nate", "text": "some ppl need to stop taking pictures of some ppl when some ppl are having a private conversation in a public parking lot. some ppl.", "time": "Aug 29 2026 11:51 PM"}], "replies": ["pics or it didnt happen. srsly. send them", "ooh hold that face. no dont move. ok now tilt ur head. perfect. i got it", "i have a photo of exactly this moment and it is going up tonight", "lol i wasnt even there... jk i was. i have 40 frames", "pc4pc? i commented 6 of urs already so technically ur behind"], "thanksAdd": "thanks 4 the add :] fair warning, if ur ever in my viewfinder u WILL end up in an album called 'candids' with a crooked horizon and a caption. pc4pc always. new pics are up, go look, comment, i comment back same nite", "ambient": ["photobucket says bandwidth exceeded on my whole 'warped 06' album. 2 weeks of comments and now everyone just sees a grey box. tragic. iconic. tragic", "took 212 photos at gregs show. 4 are usable. 1 of the 4 is bryan mouthing 'text her' to greg during the breakdown", "someone told me my horizon is crooked. that's the POINT. its called a dutch angle. its called ART. look it up", "new album: 'ppl on their razrs not looking at me'. 31 pics. u r probably in it. u look great"], "saltyDm": "ok so word is somebody said my pictures are 'just tilted'. JUST tilted. do u know how long it takes to make a tilt look accidental. anyway i have a picture of that person eating a corn dog with their eyes closed and i have been VERY restrained about it. very.", "keywords": {"pics": "yes. i have them. i always have them. album goes up at 9, comment before photobucket dies on me again", "camera": "holga 120n for film, canon powershot a520 for digital, and a fisheye i saved 3 months of babysitting money for. ask me anything. no really ask me its all i wanna talk about"}, "banter": {"kayla": ["kayla ur 'single' status went up at 11:04 and i have a timestamped photo of u and bryan sharing fries at 11:30. im not judging. im documenting", "u photograph SO well when ur mad at him. like. glowing. can we do a shoot next time ur fighting. ill bring the holga"], "bryan": ["bryan i have 14 pictures of u looking at ur phone and not texting back. 14. its an album now. its called 'read'", "ur drum face at the last show is my desktop background. u look like ur sneezing in a cool way"], "kittyxcore": ["kitty i took the blinking one down ok. but ur 'lying on the bed hair in face' default is BEGGING for a fisheye version. sunday?", "u used my parking lot pic of lexi n nate in ur bulletin without credit. i see u. photo credit: paige. always. every time"], "greg": ["greg i have every static prophecy show on film since june. u have played the same 4 songs in a different order every time and i have the photos to prove it", "ur press kit pics are still the ones i took in the garage w/ the tilt. u need new ones. u need me. pay me in demo cd-rs"], "sk8rboi": ["mike the fisheye vid is yours. put it in the tape. just put 'shot by paige' in the corner in a font i approve of", "next time u hit the 8 stair tell me FIRST. i missed it. i got derek pointing at it and that is NOT the same"]}, "statuses": ["paige is uploading 200 pics from friday. comment them. all of them. i know who doesnt", "paige is tilting the camera and it is on purpose", "paige knows exactly who was in that parking lot last nite. she has the negatives", "paige is out of photobucket bandwidth AGAIN. this is what fame is like i guess", "paige is at gregs garage w/ the holga. if ur fighting near the merch table (its a card table) smile"], "bulletins": [{"subject": "NEW PICS: 'gregs garage 8/28' + 'candids (u know who u r)'", "body": "ok both albums are up. 63 pics in the show one, 22 in candids. everyone who said pc4pc at the show this is me holding u to it. the parking lot pics ARE in there, i blurred faces where it counts, dont ask me to take them down, its journalism. comment ur favorites. if u see a grey box that means photobucket hates me and u should refresh and try again. <3 paige", "time": "Aug 29 2026 9:07 PM"}, {"subject": "pics or it didnt happen (a manifesto) (also pc4pc)", "body": "1. if u werent photographed at the show u werent at the show. 2. if ur fighting in a public place u are in my album. 3. tilted is a style. 4. fisheye is a real lens, marcus at the kiosk. 5. i will always pc back, i have never once not pc'd back, dont test me. new pics thursday. bring ur face.", "time": "Sep 3 2026 6:40 PM"}], "pcComments": ["the light on ur face here is unreal. who took this. was it me. (it was me)", "pc4pc!! commented all 5 of the new ones", "ok the angle is doing so much work here. tilt it 10 more degrees next time", "u look like an album cover. like an actual one. the sad kind. the good sad kind", "this is the one. this is ur default. i will fight u on this"], "dmSeed": [{"text": "hey malten! new here right? i havent gotten a pic of u yet which means technically u dont exist. jk. kinda. pc4pc whenever u put pics up, i always comment back :] also if u ever see me crouching in a parking lot w/ a camera, its fine, its art", "time": "Aug 25 2026 10:02 PM"}]},
     kayla: {"name": "xoxKaylaxox", "tag": "if my status is a song its about u. u know who u are", "avatar": "assets/avatar_kayla.gif", "gender": "Female", "age": 17, "hometown": "Plano, Texas", "loc": "Plano, Texas", "zodiac": "Scorpio", "status": "In a Relationship", "hereFor": "Friends", "mood": "in love?? </3 <3", "lastLogin": "Sep 5 2026 12:04 AM", "theme": {"bg": "#000000", "fg": "#ffd6f2", "accent": "#ff00d3"}, "bgTile": "assets/tiles/tile_hearts.png", "blogTitle": "every song i put on my profile this month and what it meant (bryan read this)", "about": "kayla. 17. in a relationship (as of 4pm, check back). my best friend is brittany n if ur not nice to her ur not nice to me, thats just how it works. i talk in lyrics bc its easier than talking. if my status is a song its about u. u know who u are. xox", "meet": "Who I'd like to meet: hayley williams so she can explain to bryan what a text message is. and whoever invented 'its complicated' so i can ask him if its supposed to hurt this much lol", "interests": {"General": "bryan (sometimes), brittany (always), warped tour, my pink razr, glitter eyeliner, changing my profile song at 2am, cherry limeades, the mall, quizzes about what ur top 8 says about u", "Music": "paramore, hawthorne heights, taking back sunday, dashboard confessional, the academy is..., fall out boy, the starting line, cartel, static prophecy (ur welcome bryan), kelly clarkson when nobodys looking", "Movies": "the notebook, mean girls, a walk to remember, 13 going on 30, garden state, sleepover, anything w/ mandy moore", "Television": "laguna beach, the oc, one tree hill, degrassi (jimmy n ashley 4ever), gilmore girls, trl", "Books": "the sisterhood of the traveling pants, speak, the gossip girl books, twilight (tina made me n now im mad about it), cosmo girl quizzes count", "Heroes": "brittany, hayley williams, my older sister who has a car, lauren from laguna beach (NOT kristin), whoever invented the away message"}, "song": {"name": "Emergency", "artist": "Paramore", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/deco_hearts_bar.gif", "assets/deco_sparkle_bunny.gif", "assets/deco_email_roses.gif"], "friends": ["brittany", "bryan", "paige", "lexi", "tina", "josh", "starxgazer", "greg"], "wall": [{"from": "brittany", "text": "kayla ur back at #1 where u BELONG. bryan can have #2 when he learns to text back. mall sat, wear the pink one, we are getting limeades n NOT checking his page. xoxo", "time": "Sep 4 2026 7:33 PM"}, {"from": "bryan", "text": "hey. sorry. phone died. also i saw ur status. can we talk. like on aim. tonight. im on. i think im on", "time": "Sep 3 2026 11:49 PM"}, {"from": "paige", "text": "just so u know i have u and bryan sharing a milkshake at 9:40 last nite w/ the 'single' status still up on ur page. no judgment. album goes up thursday", "time": "Sep 1 2026 10:18 PM"}, {"from": "starxgazer", "text": "kayla. scorpio. bryan. pisces. water sign + water sign = ocean drama. its not u, its mercury retrograde. (its also a little bit bryan)", "time": "Aug 28 2026 8:56 PM"}], "replies": ["omg ily. xox", "dont even get me started. srsly. dont", "thats literally the chorus of my life rite now", "lol me too. wait what r we talking about", "ok thats cute. ur cute. commented ur pics xox"], "thanksAdd": "thanks 4 the add xox!! ur pics r cute, commented 2 of them. if u see my status change like 4 times today dont worry about it, its bryan. its always bryan. xoxKaylaxox", "ambient": ["changed my profile song 3 times today. brittany says thats a cry for help. its a cry for bryan to CHECK HIS PHONE", "brittany n i made a rule: no status changes after 11pm. i broke it at 11:04. she broke it at 11:06", "if ur relationship status is 'its complicated' for more than 2 weeks does it just become ur personality. asking for me", "bryan texted back!!! it said 'k'. we r single again"], "saltyDm": "ok so SOMEBODY commented bryans pic 'ur cute :]' and i just wanna say im not mad. im not. i put her at #7 in my top 8 which is where u put people ur not mad at. #8 is todd. she is one slot above todd. thats all. xox", "keywords": {"bryan": "which bryan. mine? the one who reads texts n doesnt answer them? we're together rn. wait let me check my page. yea we're together. ask again in an hour", "status": "its complicated. the status AND the situation. ask brittany she has a whole chart w/ dates on it"}, "banter": {"bryan": ["bryan ur status still says single. mine says in a relationship. one of us is wrong n it isnt the one w/ the pink razr", "ur drumming friday was so good i forgot i was mad at u. i remembered in the car. text me"], "brittany": ["brit ur #1 forever. bryan is a boy. boys are temporary. ur PERMANENT xox", "we r wearing matching pink to gregs garage fri n we are going to STAND in front of the drums. no reason. xox"], "paige": ["paige can u NOT post the milkshake pic until we're back together. give it like 2 days. maybe 3", "ur pics of me r seriously the only ones where i look ok crying. ur a genius. also delete that one"], "lexi": ["lexi us being on-off in the same WEEK is hilarious n also i need to talk to u about it for 3 hours. aim?", "ok new rule 4 both of us: we dont change our status til the other one says its ok. deal? (i already broke it) (sorry)"], "josh": ["josh i did talk to him. out loud. with mouths. it went bad. now what", "ur so nice it actually makes me mad sometimes lol. thanks 4 the aim last nite tho. dont tell brit i cried"]}, "statuses": ["kayla is in a relationship (for now) <3", "kayla is ~*~ maybe u shouldve called before u changed ur mind ~*~ (voltage heart, static prophecy, ur welcome bryan)", "kayla is single. dont ask. actually ask bryan", "kayla is listening to 'ohio is for lovers' for the 40th time and it is NOT about ohio", "kayla is ~ u say nothing loud enough 4 me to hear it thru a phone ~ (i wrote that one myself. its about u)"], "bulletins": [{"subject": "SURVEY: 20 things about ur top 2 (stolen from brittany)", "body": "1. who is #1? brittany 2. who is #2? bryan (as of 4pm) 3. have u ever kissed #2? yes lol 4. do u trust #1? with my LIFE 5. would #2 text u back if it was an emergency? ...next question 6. has #1 ever made u cry? no 7. has #2? next question 8. would u die 4 #1? yes 9. would u die 4 #2? i mean 10. whos not in ur top but should be? todd, he never changed his status on me 11-20. idk im tired. repost n put ur own. xox", "time": "Aug 27 2026 11:32 PM"}, {"subject": "to whoever is 'concerned' about my status lol", "body": "ok i see the comments. yes it changed. yes it changed back. yes it might change again. its called being 17 n dating a drummer. im FINE. brittany is with me, we have cherry limeades, we are watching the notebook and NOT checking his page. (we checked once.) if ur name is bryan n ur reading this: k. xoxKaylaxox", "time": "Sep 1 2026 8:19 PM"}], "pcComments": ["omg ur so pretty in this. commented all of them xox", "this is SO cute. is this from gregs?? i was crying like 10 ft to ur left", "pc4pc? i did like 6 of urs already lol", "ur hair!! how. HOW. tell me", "aw this is the cutest pic of u two. (are u guys still together? jk. kinda not jk)"], "dmSeed": [{"text": "hey malten! xox brittany said ur cool so ur cool. fair warning my status might change like twice while u read this. its bryan. not important. welcome to ourspace!! comment my pics? xox", "time": "Aug 26 2026 9:14 PM"}]},
     bryan: {"name": "bryan_the_drummer", "tag": "idk anymore. anyway practice at 6", "avatar": "assets/avatar_bryan.gif", "gender": "Male", "age": 18, "hometown": "Plano, Texas", "loc": "Plano, Texas", "zodiac": "Pisces", "status": "Single", "hereFor": "Friends, Networking", "mood": "idk :/", "lastLogin": "Sep 3 2026 11:51 PM", "theme": {"bg": "#121212", "fg": "#d9d9d9", "accent": "#ff2a2a"}, "bgTile": "assets/tiles/tile_bolts.png", "blogTitle": "idk anymore pt. 2", "about": "bryan. drums for static prophecy. we play gregs garage fridays n sometimes places that arent gregs garage (once). im bad at texting back, its not personal, my phone is in my drum bag n my drum bag is in the truck n the truck is at gregs. kayla n i r together. i think. check her page its more up to date than mine. idk anymore lol", "meet": "Who I'd like to meet: travis barker. and anyone who can tell me how to make the top 8 stop being a thing i get in trouble for.", "interests": {"General": "drums, static prophecy (we have 5 songs, 6 if greg finishes the bridge on circuit breaker), my pearl export kit w/ the cracked crash, my truck (its my dads), kayla (dont), not texting back apparently, sleeping, sonic after practice", "Music": "blink-182 (travis), taking back sunday, brand new, thrice, the used, underoath (aaron gillespie sings AND drums, how), rush (my dads fault), static prophecy (contractually), whatever greg puts on in the van (his moms van)", "Movies": "drumline (obviously), school of rock, fight club, donnie darko, napoleon dynamite, dodgeball", "Television": "viva la bam, meet the barkers, family guy, adult swim, sportscenter w/ my dad, whatever kaylas watching (the notebook is not tv kayla)", "Books": "modern drummer magazine, the drumline dvd booklet, stick control (its like a workbook for ur hands), i read the first half of fight club n then saw the movie", "Heroes": "travis barker, neil peart (my dads fault), aaron gillespie, animal from the muppets, my dad for lending me the truck, greg for not kicking me out yet"}, "song": {"name": "I Miss You", "artist": "blink-182", "pattern": [0, 4, 7, 4, 0, 4, 7, 12], "bpm": 120}, "decor": ["assets/deco_skull.gif", "assets/badge_winamp.gif"], "friends": ["kayla", "greg", "chad", "josh", "nate", "paige", "brittany", "lucas"], "wall": [{"from": "greg", "text": "bryan practice is at 6 not 'around 6'. the bridge is DONE. also ur snare is still in my garage and it is haunting me. also ur on the flyer as 'drums (usually)'", "time": "Sep 4 2026 4:02 PM"}, {"from": "kayla", "text": "phone died? for 3 days? interesting. anyway im at brittanys. anyway ur status is wrong. anyway ily. anyway", "time": "Sep 3 2026 9:26 PM"}, {"from": "chad", "text": "BRYAN ur drumming friday was SICK man. my whole chest was vibrating. also TEXT KAYLA BACK bro i say this with love", "time": "Aug 30 2026 12:40 PM"}, {"from": "josh", "text": "bryan. u read it. i can see u online now. text her back. also youth group wednesday, we could use a drummer for worship. (kidding) (not kidding)", "time": "Aug 27 2026 10:11 PM"}], "replies": ["yea", "lol yea idk", "sorry man phone was in the truck", "thats sick. show fri at gregs, come", "idk anymore. anyway. practice at 6"], "thanksAdd": "thanks for the add. static prophecy fri 7pm at gregs garage, done by 8:15 (his dads rule), come. if u text me n i dont answer its not personal my phone is in a drum bag somewhere", "ambient": ["found my phone. it was in the kick drum. 31 texts. 29 are kayla, 1 is greg, 1 is my mom asking if i saw kaylas status", "broke my last crash at practice. greg says i play 'angry'. im not angry. im just loud", "kayla changed her status while i was setting up the kit. by the time i sat down she changed it back. i didnt do anything. i was holding a hi hat stand", "some ppl think being in a band is easy. some ppl are wrong. some ppl are also right. idk anymore"], "saltyDm": "ok i know everyone thinks its me. its not ALWAYS me. she changed it to single while i was literally on stage. u cant text from a drum throne. u cant. i tried once n hit greg w/ a stick. anyway. dont tell her i said this", "keywords": {"kayla": "yea. we're good. i think. did u see her page? what does it say rn. dont tell me. ok tell me", "band": "static prophecy. i play drums. greg sings n writes everything n also is my ride. fri 7pm in his garage, bring earplugs, we only know 5 songs so its short"}, "banter": {"kayla": ["k. (i read the whole thing) (i just didnt know what to say) (ill call u) (ill try to call u)", "changed my status. its right now. dont look at the time stamp on urs vs mine just look at what it says"], "greg": ["greg i know the bridge is done. i heard it. its fine. its FINE. can we just play it 4 times so i learn it", "ur the best frontman in this garage. i mean that. also can u text kayla for me n say im at practice. she believes u"], "nate": ["nate ur whole page is about lexi n mine is about kayla n we r both drumming on this. wait u dont play drums. u should", "come to practice. bring the hoodie. greg wants u to do a scream on circuit breaker n i want someone else to be yelled at"], "paige": ["paige the album of me looking at my phone is not fair. i was READING them. reading is half of texting", "ok the drum face pic is actually sick. can i use it as my default. ill credit u. 'shot by paige' whatever font u want"], "brittany": ["brittany i know ur mad at me on kaylas behalf. thats ur job. i respect it. can u tell her i said hi", "u put me at #8 behind todd. todd. i get it. ill earn it back. after practice"]}, "statuses": ["bryan is idk anymore", "bryan is at practice. phone is in the truck. dont", "bryan is single. or not. someone check kaylas page n tell me", "bryan is some ppl need to just say what they mean. (this is not about anyone) (it is)", "bryan is drums 6pm, sonic 8pm, sitting in the truck thinking about it 9pm"], "bulletins": [{"subject": "STATIC PROPHECY. gregs garage. fri. 7pm. (i wrote this one not greg)", "body": "greg makes me post one of these every week so here. we play fri at 7 in his garage, its free, bring earplugs, we have 5 songs and circuit breaker has a bridge now that i almost know. done by 8:15 bc of his dad. kayla is coming so if u see her before me tell her i said hi n i DID text back it just said k. bring a folding chair if u want one. its a garage. -bryan", "time": "Sep 3 2026 11:48 PM"}, {"subject": "idk anymore", "body": "not gonna say who this is about. ppl keep saying 'just text her back' like i have a phone in my hand. i have STICKS in my hand. anyway. some ppl change their status while ur on stage. some ppl. anyway practice tomorrow. anyway if ur reading this u know who u are n i left u a voicemail. it was mostly breathing. ill try again", "time": "Aug 30 2026 1:12 AM"}], "pcComments": ["sick", "is this from fri? i cant tell im behind the kit in all of them", "lol nice", "u look good. sorry i didnt text back. (this is a pic comment not a text) (but still)", "pc4pc i guess? i dont really have pics. paige has pics of me"], "dmSeed": [{"text": "hey. bryan. i drum for static prophecy. show fri at gregs if u want. sorry if i dont reply fast, phone is usually in the truck. welcome i guess lol", "time": "Aug 28 2026 12:33 AM"}]},
@@ -489,7 +447,7 @@ const MS = {
       walls: {},          // extra comments per person id (user + generated)
       myWall: [
         { from: 'todd', text: 'Thanks for making OurSpace your home page! (You didn\'t. Please consider it.)', time: 'Jun 27 2026 10:00 AM' },
-        { from: 'darkangel', text: 'your favorites list moved me. #1 was poetry. radiant, glittering poetry.', time: 'Jul 1 2026 11:11 PM' },
+        { from: 'darkangel', text: 'i read "why do we create?" three times by candlelight. we create because the void will not decorate itself. radiant. glittering. correct.', time: 'Jul 1 2026 11:11 PM' },
         { from: 'patrick', text: 'hi malten!! i clicked every button on your desktop. i am so sorry', time: 'Jul 3 2026 2:22 PM' },
       ],
       inbox: {
@@ -503,7 +461,7 @@ const MS = {
         },
         wes: {
           unread: true,
-          msgs: [{ who: 'them', text: 'saw melee in your about me. this is the most important friend request of your life. also do you have a CRT. this determines the friendship tier.', time: 'Jul 4 2026 1:15 AM' }],
+          msgs: [{ who: 'them', text: 'saw melee in your about me. this is the most important friend request of your life. also who do you main. choose carefully, this determines the friendship tier.', time: 'Jul 4 2026 1:15 AM' }],
         },
       },
       bulletins: [
@@ -516,34 +474,38 @@ const MS = {
       reposted: [],
     };
 
-    // data-driven seeds from the resident roster
+    // data-driven seeds from the resident roster — SAMPLED: the roster is ~92 now, "one from everyone" would bury the feed
     const DM_OPENERS = ['tony', 'tina', 'sephiroth', 'nikki'];  // only the most in-character cold-DMers
+    const sample = (n, ok) => new Set(this.shuffled(Object.keys(this.people).filter(id => ok(this.people[id]))).slice(0, n));
+    const hours = ['9:14 AM', '10:02 AM', '11:11 AM', '12:40 PM', '1:26 PM', '2:15 PM', '3:33 PM', '4:20 PM', '5:05 PM', '6:47 PM', '7:31 PM', '8:08 PM', '9:23 PM', '10:10 PM', '11:38 PM'];
+    let h = 0;
+    const bulletinFrom = sample(12, p => p.bulletins && p.bulletins.length);
     Object.keys(this.people).forEach(id => {
       const p = this.people[id];
       // opening DMs (flirts, chain letters, welcomes)
       if (DM_OPENERS.includes(id) && p.dmSeed && p.dmSeed.length && !st.inbox[id]) {
         st.inbox[id] = { unread: true, msgs: p.dmSeed.map(m => ({ who: 'them', text: m.text, time: m.time || 'Jul 3 2026 8:00 PM' })) };
       }
-      // one bulletin per resident who authored one
-      if (p.bulletins && p.bulletins.length) {
+      // a bulletin from a dozen residents (tickEvent posts everyone else's over time)
+      if (bulletinFrom.has(id)) {
         const b = p.bulletins[0];
-        st.bulletins.push({ from: id, subject: b.subject, body: b.body, time: b.time, reposts: Math.floor(Math.random() * 5) });
+        st.bulletins.push({ from: id, subject: b.subject, body: b.body, time: b.time || 'Jul 3 2026 ' + hours[h++ % hours.length], reposts: Math.floor(Math.random() * 5) });
       }
     });
 
-    // seed the activity feed: a status from everyone + a dozen wall banter posts
-    const hours = ['9:14 AM', '10:02 AM', '11:11 AM', '12:40 PM', '1:26 PM', '2:15 PM', '3:33 PM', '4:20 PM', '5:05 PM', '6:47 PM', '7:31 PM', '8:08 PM', '9:23 PM', '10:10 PM', '11:38 PM'];
-    let h = 0;
+    // seed the activity feed: a status from two dozen residents + 14 wall banter posts
     const stamp = () => 'Jul 4 2026 ' + hours[h++ % hours.length];
+    const statusFrom = sample(24, p => p.statuses && p.statuses.length);
+    const banterFrom = sample(14, p => p.banter && Object.keys(p.banter).some(t => this.people[t]));
     Object.keys(this.people).forEach(id => {
       const p = this.people[id];
-      if (p.statuses && p.statuses.length) {
+      if (statusFrom.has(id)) {
         st.feed.push({ type: 'status', from: id, text: p.statuses[0], time: stamp() });
       }
     });
     Object.keys(this.people).forEach(id => {
       const p = this.people[id];
-      if (!p.banter) return;
+      if (!banterFrom.has(id)) return;
       const targets = Object.keys(p.banter).filter(t => this.people[t]);
       if (!targets.length) return;
       const t = targets[0];
@@ -562,11 +524,22 @@ const MS = {
   },
 
   /* ---------- your Top 8 (lives on My Page now) ---------- */
-  top8: [
-    { id: 'patrick', img: 'patrick.gif', label: 'patrick' }, { id: 'herp', img: 'herp.gif', label: 'herp' },
-    { id: 'banana', img: 'banana.gif', label: 'banana' }, { id: 'wes', img: 'dartmonkey.png', label: 'dart monkey' },
-    { id: 'darkangel', img: 'heart-glitter.gif', label: 'my heart' }, { id: 'starxgazer', img: 'stars.gif', label: 'the void' },
-    { id: null, img: 'about.gif', label: 'me fr' }, { id: null, img: 'pfp.png', label: 'also me' },
+  // Default order: 8 real residents, all friends from day one. A custom order saved from
+  // "Edit My Page" lives in state.top8 (optional — no migration needed).
+  top8: ['todd', 'patrick', 'wes', 'vinyl_witch', 'banana', 'herp', 'starxgazer', 'darkangel'],
+  // the Top 8 as shown: the saved order first, then the defaults, then anyone else you're friends with
+  myTop8() {
+    const st = this.state || {};
+    const seen = new Set();
+    return [...(st.top8 || []), ...this.top8, ...(st.friends || [])]
+      .filter(id => this.people[id] && !seen.has(id) && seen.add(id)).slice(0, 8);
+  },
+
+  /* ---------- malten's real blog posts (the Blog tab + My Page's "Latest Blog Entry") ---------- */
+  // Newest first. A new post = one new line here (plus blog-hub.html, see blog-post-template.html).
+  blogPosts: [
+    { title: 'Why do we create?', href: 'First-blog.html', date: 'post #001', img: 'dartmonkey.png',
+      blurb: 'my first post ever. i ask the big questions and then immediately regret it.' },
   ],
 
   /* ---------- chain-letter spam (the FW: FW: FW: economy) ---------- */
@@ -586,9 +559,13 @@ const MS = {
   },
 
   migrate() {
+    const st = this.state;
+    // shape guards: every save since v1 should have these, but a half-written one must not take the page down
+    ['friends', 'pending', 'denied', 'feed', 'myWall', 'bulletins', 'reposted', 'fxQueue'].forEach(k => { if (!Array.isArray(st[k])) st[k] = []; });
+    ['usedBanter', 'walls', 'inbox', 'usedDms', 'dialogueState'].forEach(k => { if (!st[k] || typeof st[k] !== 'object') st[k] = {}; });
     if (!this.state.spam) this.state.spam = this.seedSpam();
     if (!this.state.myProfile) this.state.myProfile = null;
-    if (!this.state.dialogueState) this.state.dialogueState = {};
+    this.migrateV2();
     // era pack arrivals: seed a batch of OurTube posts and let the new kids send friend requests
     const ytIdx = (this.posts || []).map((p, i) => p.kind === 'yt' ? i : -1).filter(i => i >= 0);
     if (ytIdx.length && !this.state.ytSeeded) {
@@ -625,6 +602,69 @@ const MS = {
         [this.state.feed[i], this.state.feed[j]] = [this.state.feed[j], this.state.feed[i]];
       }
     }
+    // content-pack arrivals: the newcomers do NOT all knock at once — a few friend requests now, the rest
+    // trickle in through tickEvent. Runs once per save, and only once a pack with residents has actually loaded.
+    const newIds = Object.keys(this.people).filter(id => this.people[id].isNew);
+    if (newIds.length && !st.packArrived) {
+      st.packArrived = true;
+      const known = new Set([...st.friends, ...st.pending, ...st.denied]);
+      const mine = new Set(st.friends);
+      const fresh = newIds.filter(id => !known.has(id));
+      for (let n = st.pending.length >= 9 ? 2 : 3; n > 0 && fresh.length; n--) {
+        // friends of your friends find you first
+        const id = this.pickWeighted(fresh, c => 1 + 2 * (this.people[c].friends || []).filter(f => mine.has(f)).length);
+        fresh.splice(fresh.indexOf(id), 1);
+        st.pending.push(id);
+      }
+      if (this.people.todd) {
+        st.feed.push({ type: 'status', from: 'todd', text: `Todd is welcoming ${newIds.length} new members to OurSpace! Everyone say hi. The laptop fan is now audible from the driveway. This is fine.`, time: this.now() });
+      }
+    }
+  },
+
+  // one-time (and idempotent) upgrades for the v2 engine: tree-keyed dialogue state, no-repeat inbox
+  migrateV2() {
+    const st = this.state;
+    // dialogue progress used to be keyed by RESIDENT id (one tree each); the registry is keyed by TREE id now
+    const ds = st.dialogueState;
+    Object.keys(ds).forEach(k => {
+      if (!this.trees[k] && this.trees[k + '_original'] && !ds[k + '_original']) { ds[k + '_original'] = ds[k]; delete ds[k]; }
+    });
+    // the old engine saved the new node BEFORE their answer was typed out: if the page closed mid-reply, the answer
+    // never arrived (and an end node was never closed). Mark those as owed so playNode delivers what's missing.
+    Object.keys(ds).forEach(tid => {
+      const d = ds[tid], tree = this.trees[tid];
+      if (!d || d.done || !tree) return;
+      const node = tree.nodes[d.node];
+      if (!node) { d.done = true; return; }
+      const msgs = (st.inbox[tree.with] && st.inbox[tree.with].msgs) || [];
+      const tail = msgs.slice(msgs.map(m => m && m.who).lastIndexOf('you') + 1).map(m => m && m.text);
+      if (!(node.choices || []).length || (d.node !== 'start' && (node.them || []).some(l => !tail.includes(l)))) d.pend = 1;
+    });
+    // "the NPCs sent lots of repeats": old saves have the same generic line many times per thread. Keep the first of
+    // each; never touch lines that belong to a scripted conversation (those are a transcript).
+    if (!st.dmDeduped) {
+      st.dmDeduped = true;
+      Object.keys(st.inbox).forEach(id => {
+        const t = st.inbox[id];
+        if (!t || !Array.isArray(t.msgs)) { delete st.inbox[id]; return; }
+        const scripted = this.scriptedLines(id);
+        const seen = new Set();
+        t.msgs = t.msgs.filter(m => {
+          if (!m || typeof m.text !== 'string') return false;
+          if (m.who === 'you' || scripted.has(m.text)) return true;
+          if (seen.has(m.text)) return false;
+          seen.add(m.text);
+          return true;
+        });
+      });
+    }
+    // the "Top 10 Favorite Things" post is gone; darkangel's seeded wall comment was about it
+    st.myWall.forEach(c => {
+      if (c && c.from === 'darkangel' && c.text === 'your favorites list moved me. #1 was poetry. radiant, glittering poetry.') {
+        c.text = 'i read "why do we create?" three times by candlelight. we create because the void will not decorate itself. radiant. glittering. correct.';
+      }
+    });
   },
 
   postFromSource(i, time) {
@@ -633,6 +673,159 @@ const MS = {
       ytId: src.ytId, title: src.title, added: src.added, rating: src.rating,
       caption: src.caption, kudos: src.kudos || 0, views: src.views || 0,
       comments: (src.comments || []).map(c => ({ ...c })), time: time || this.now() };
+  },
+
+  /* ---------------- content packs (content-pack.js → window.MS_PACK → MS.applyPack) ---------------- */
+  trees: {},            // conversation-tree registry keyed by TREE id: { id, with, opener, nodes } (see registerTree)
+  contentReady: false,
+
+  // small shared helpers
+  hash(s) { let h = 5381; for (let i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h; },
+  shuffled(arr) {
+    const a = arr.slice();
+    for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; }
+    return a;
+  },
+  pickWeighted(items, weightOf) {
+    const w = items.map(x => Math.max(0, weightOf(x) || 0));
+    let r = Math.random() * w.reduce((a, b) => a + b, 0);
+    for (let i = 0; i < items.length; i++) { r -= w[i]; if (r < 0) return items[i]; }
+    return items[items.length - 1];
+  },
+  // a made-up but stable timestamp for comments that arrive without one (wallExtra): Aug → early Oct, ascending with i
+  fakeTime(seed, i, n) {
+    const h = this.hash(seed);
+    const d = new Date(Date.UTC(2026, 7, 2) + Math.floor(((i + (h % 100) / 100) / Math.max(1, n)) * 60) * 86400000);
+    const hr = 9 + (h >>> 8) % 15, min = (h >>> 16) % 60;
+    const mon = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][d.getUTCMonth()];
+    return `${mon} ${d.getUTCDate()} 2026 ${hr % 12 || 12}:${String(min).padStart(2, '0')} ${hr >= 12 ? 'PM' : 'AM'}`;
+  },
+
+  // One-time prep of the BUILT-IN data: fold in the statusesExtra/banterExtra that an earlier content pass wrote
+  // but nothing ever read, and register the 6 original conversation trees as `<residentId>_original`.
+  prepContent() {
+    if (this.contentReady) return;
+    this.contentReady = true;
+    Object.keys(this.people).forEach(id => this.mergeDepth(id, this.people[id]));
+    Object.keys(this.dialogues).forEach(pid => this.registerTree({ ...this.dialogues[pid], id: pid + '_original', with: pid }));
+    // (no pruneRefs here: pack residents aren't in yet — applyPack and load() prune once they are)
+  },
+
+  // Merge a content pack. Idempotent (the same pack object is applied once; lines are de-duplicated, residents/trees
+  // are keyed by id), tolerant of missing sections, and safe to call before or after boot. load() also applies
+  // window.MS_PACK itself in case the pack file's own `if (window.MS && …)` call never fired.
+  appliedPacks: [],
+  applyPack(pack) {
+    this.prepContent();
+    if (!pack || typeof pack !== 'object' || this.appliedPacks.includes(pack)) return;
+    this.appliedPacks.push(pack);
+    const P = this.people;
+    Object.keys(pack.people || {}).forEach(id => {
+      const src = pack.people[id];
+      if (!src || typeof src !== 'object' || !src.name) return;
+      if (P[id] && !P[id].isNew) return;                       // a pack never replaces a built-in resident
+      P[id] = this.normalizeResident(src);
+    });
+    Object.keys(pack.depth || {}).forEach(id => this.mergeDepth(id, pack.depth[id]));
+    (Array.isArray(pack.dialogues) ? pack.dialogues : []).forEach(tree => this.registerTree(tree));
+    if (Array.isArray(pack.posts)) {
+      this.posts = this.posts || [];
+      const key = p => [p.from, p.kind, p.src || p.ytId, p.caption].join('|');
+      const have = new Set(this.posts.map(key));
+      pack.posts.forEach(p => {
+        if (!p || !P[p.from] || !p.kind || have.has(key(p))) return;
+        have.add(key(p));
+        this.posts.push(p);                                    // appended: saved postedIdx indexes stay valid
+      });
+    }
+    this.pruneRefs();
+    if (this.state) { this.migrate(); this.save(); }           // applied after boot: let the newcomers arrive
+  },
+
+  // pack residents are validated at build time, but never trust a file: fill whatever the renderers dereference
+  normalizeResident(src) {
+    const p = { tag: '', mood: '', about: '', loc: '', age: '??', lastLogin: 'recently', thanksAdd: 'thanks for the add!!', saltyDm: 'ok. wow. noted.', ...src, isNew: true };
+    ['decor', 'friends', 'wall', 'replies', 'ambient', 'statuses', 'bulletins', 'pcComments', 'dms'].forEach(k => {
+      p[k] = Array.isArray(src[k]) ? src[k].slice() : [];
+    });
+    if (!p.replies.length) p.replies = ['lol', 'haha ok', 'omg', 'true'];
+    if (!Array.isArray(p.dmSeed) || !p.dmSeed.length) delete p.dmSeed;
+    p.banter = {};
+    Object.keys(src.banter || {}).forEach(t => { if (Array.isArray(src.banter[t])) p.banter[t] = src.banter[t].slice(); });
+    p.keywords = {};
+    Object.keys(src.keywords || {}).forEach(k => { p.keywords[k.toLowerCase()] = src.keywords[k]; });
+    p.theme = Object.assign({ bg: '#1b1530', fg: '#f0eaff', accent: '#ff7ad9' }, src.theme);
+    p.interests = src.interests || {};
+    p.avatar = src.avatar || 'assets/deco_smiley.gif';
+    if (!p.song || !p.song.name) p.song = { name: 'untitled.mid', artist: '', url: '', pattern: [0, 4, 7, 12, 7, 4, 0, null], bpm: 120 };
+    return p;
+  },
+
+  // depth pack → existing resident: arrays append (no duplicates), objects merge, plain fields are set
+  mergeDepth(id, d) {
+    const p = this.people[id];
+    if (!p || !d || typeof d !== 'object') return;
+    const add = (key, lines) => {
+      if (!Array.isArray(lines)) return;
+      const list = p[key] = Array.isArray(p[key]) ? p[key] : [];
+      lines.forEach(l => { if (typeof l === 'string' && l.trim() && !list.includes(l)) list.push(l); });
+    };
+    add('replies', d.repliesExtra);
+    add('statuses', d.statusesExtra);
+    if (d !== p) add('dms', d.dms);
+    if (d.banterExtra && typeof d.banterExtra === 'object') {
+      p.banter = p.banter || {};
+      Object.keys(d.banterExtra).forEach(t => {
+        if (!Array.isArray(d.banterExtra[t])) return;
+        const list = p.banter[t] = p.banter[t] || [];
+        d.banterExtra[t].forEach(l => { if (typeof l === 'string' && l.trim() && !list.includes(l)) list.push(l); });
+      });
+    }
+    if (d.keywordsExtra && typeof d.keywordsExtra === 'object') {
+      p.keywords = p.keywords || {};
+      Object.keys(d.keywordsExtra).forEach(k => { p.keywords[k.toLowerCase()] = d.keywordsExtra[k]; });
+    }
+    if (Array.isArray(d.wallExtra)) {
+      p.wall = p.wall || [];
+      const fresh = d.wallExtra.filter(c => c && c.from && typeof c.text === 'string' && !p.wall.some(w => w.from === c.from && w.text === c.text));
+      fresh.forEach((c, i) => p.wall.push({ from: c.from, text: c.text, time: c.time || this.fakeTime(id + c.text, i, fresh.length) }));
+    }
+    if (d === p) { delete p.statusesExtra; delete p.banterExtra; return; }   // built-in fold: the Extra fields are spent
+    ['aboutMore', 'blog', 'survey', 'avatar'].forEach(k => { if (d[k] !== undefined && d[k] !== null && d[k] !== '') p[k] = d[k]; });
+  },
+
+  registerTree(tree) {
+    if (!tree || typeof tree !== 'object' || typeof tree.id !== 'string' || typeof tree.with !== 'string') return false;
+    if (!Array.isArray(tree.opener) || !tree.opener.length || !tree.nodes || !tree.nodes.start) return false;
+    this.trees[tree.id] = tree;
+    return true;
+  },
+
+  // every line a resident can say inside any of their scripted conversations
+  scriptedLines(pid) {
+    const out = new Set();
+    Object.keys(this.trees).forEach(tid => {
+      const tree = this.trees[tid];
+      if (tree.with !== pid) return;
+      tree.opener.forEach(l => out.add(l));
+      Object.keys(tree.nodes).forEach(n => (tree.nodes[n].them || []).forEach(l => out.add(l)));
+    });
+    return out;
+  },
+
+  // content lands incrementally and some files fail validation: drop references to residents that aren't loaded,
+  // so nothing downstream has to care (friends lists, seeded wall comments, banter targets, post comments)
+  pruneRefs() {
+    const P = this.people;
+    Object.keys(P).forEach(id => {
+      const p = P[id];
+      if (Array.isArray(p.friends)) p.friends = p.friends.filter(f => P[f] && f !== id);
+      if (Array.isArray(p.wall)) p.wall = p.wall.filter(c => c && (P[c.from] || c.from === 'you'));
+      if (p.banter) Object.keys(p.banter).forEach(t => { if (!P[t] || t === id || !Array.isArray(p.banter[t])) delete p.banter[t]; });
+    });
+    (this.posts || []).forEach(post => {
+      if (Array.isArray(post.comments)) post.comments = post.comments.filter(c => c && (P[c.from] || c.from === 'you'));
+    });
   },
 
   /* ---------------- drama storylines (multi-beat arcs that play out over time) ---------------- */
@@ -673,18 +866,14 @@ const MS = {
     } else if (beat.type === 'wall') {
       const to = (beat.to === 'you' || !this.people[beat.to]) ? 'you' : beat.to;
       if (to === 'you') { this.state.myWall.push({ from: beat.from, text: beat.text, time: t }); this.toast(p.name + ' posted on your wall!', 'home'); }
-      else (this.state.walls[to] = this.state.walls[to] || []).push({ from: beat.from, text: beat.text, time: t });
+      else this.pushWall(to, { from: beat.from, text: beat.text, time: t });
       item = { type: 'wall', from: beat.from, to, text: beat.text, time: t };
     } else if (beat.type === 'bulletin') {
       this.state.bulletins.push({ from: beat.from, subject: beat.subject || 'bulletin from ' + p.name, body: beat.text, time: t, reposts: Math.floor(Math.random() * 6) });
       item = { type: 'bulletin', from: beat.from, text: (beat.subject ? beat.subject + ' — ' : '') + beat.text, time: t };
       if (this.view.page === 'bulletins') this.render();
     } else if (beat.type === 'dm') {
-      const th = this.state.inbox[beat.from] = this.state.inbox[beat.from] || { unread: false, msgs: [] };
-      th.msgs.push({ who: 'them', text: beat.text, time: t });
-      th.unread = true;
-      this.toast('New message from ' + p.name + '!', 'inbox', beat.from);
-      if (this.view.page === 'inbox') this.render();
+      this.deliverDm(beat.from, beat.text, { unprompted: true });
     } else if (beat.type === 'photo') {
       item = { type: 'post', from: beat.from, kind: 'photo', src: beat.src || 'assets/posts/photo_sunset.jpg', caption: beat.text, kudos: 5 + Math.floor(Math.random() * 40), comments: [], time: t };
     } else if (beat.type === 'comment') {
@@ -699,7 +888,7 @@ const MS = {
       }
       if (target) {
         const to = target.from === 'you' ? 'you' : target.from;
-        if (to !== 'you' && this.people[to]) (this.state.walls[to] = this.state.walls[to] || []).push({ from: beat.from, text: beat.text, time: t });
+        if (to !== 'you' && this.people[to]) this.pushWall(to, { from: beat.from, text: beat.text, time: t });
         item = { type: 'wall', from: beat.from, to, text: beat.text, time: t };
       } else item = { type: 'status', from: beat.from, text: beat.text, time: t };
     }
@@ -730,7 +919,10 @@ const MS = {
   dripPost() {
     if (!this.posts || !this.posts.length) return false;
     const posted = this.state.postedIdx || [];
-    const avail = this.posts.map((_, i) => i).filter(i => !posted.includes(i));
+    // pack posts are appended after posts.js, so a re-built pack can shift their indexes: also skip what's in the feed
+    const key = p => p.from + '|' + (p.src || p.ytId);
+    const inFeed = new Set(this.state.feed.filter(f => f.type === 'post').map(key));
+    const avail = this.posts.map((_, i) => i).filter(i => !posted.includes(i) && this.people[this.posts[i].from] && !inFeed.has(key(this.posts[i])));
     if (!avail.length) return false;
     const i = avail[Math.floor(Math.random() * avail.length)];
     this.state.postedIdx = posted.concat(i);
@@ -741,15 +933,36 @@ const MS = {
   },
 
   load() {
+    // content-pack.js normally applies itself (window.MS is exported above the boot code); if it loaded but its
+    // `if (window.MS && …)` guard didn't fire, apply it here — before any state is built
+    this.prepContent();
+    if (window.MS_PACK) this.applyPack(window.MS_PACK);
+    this.pruneRefs();
+    this.state = null;
     try {
       const raw = localStorage.getItem(this.KEY);
-      if (raw) { this.state = JSON.parse(raw); this.migrate(); return; }
-    } catch { /* corrupted — start fresh */ }
-    this.state = this.defaultState();
-    this.migrate();
+      if (raw) { this.state = JSON.parse(raw); this.migrate(); }
+    } catch { this.state = null; /* corrupted — start fresh */ }
+    if (!this.state) { this.state = this.defaultState(); this.migrate(); }
+    // scripted conversations are paced by timestamps in state: the first one of a visit arrives ~25s after load
+    // (or after a longer settle-in if one is already waiting for an answer)
+    const now = Date.now();
+    this.state.dlgNextAt = this.activeTreeIds().length
+      ? Math.min(Math.max(this.state.dlgNextAt || 0, now + 90000), now + 8 * 60000)
+      : now + 24000;
     this.save();
   },
-  save() { localStorage.setItem(this.KEY, JSON.stringify(this.state)); },
+  save() {
+    try { localStorage.setItem(this.KEY, JSON.stringify(this.state)); }
+    catch {
+      // storage full: shed the bulkiest history and try once more rather than throwing mid-event
+      try {
+        this.state.feed = this.state.feed.slice(-80);
+        Object.keys(this.state.walls).forEach(k => { this.state.walls[k] = this.state.walls[k].slice(-10); });
+        localStorage.setItem(this.KEY, JSON.stringify(this.state));
+      } catch { /* still full — keep running in memory */ }
+    }
+  },
 
   /* --------------------------- helpers --------------------------- */
   el(tag, cls, text) {
@@ -837,175 +1050,516 @@ const MS = {
   },
 
   /* --------------------------- bot brain --------------------------- */
-  botReply(id, userText) {
+  replyMem: {},         // botReply memory for callers without a thread (walls, chat, post comments): recent lines per resident
+
+  // An answer to something malten typed. Pass the inbox `thread` when there is one: a line already in that thread is
+  // never said again until the whole pool (`replies`, incl. merged repliesExtra) has been used, and a keyword reply
+  // never fires twice in a row for the same keyword. Without a thread the same rules apply to their recent lines.
+  botReply(id, userText, thread) {
     const p = this.people[id];
     if (!p) return 'cool!';
-    const lower = userText.toLowerCase();
-    if (p.keywords) {
+    const lower = String(userText || '').toLowerCase();
+    const mem = this.replyMem[id] = this.replyMem[id] || { said: [], kw: null };
+    const inThread = !!(thread && Array.isArray(thread.msgs));
+    const said = inThread ? thread.msgs.filter(m => m.who !== 'you').map(m => m.text) : mem.said;
+    const lastKw = inThread ? thread.kw : mem.kw;
+    const remember = (text, kw) => {
+      if (inThread) thread.kw = kw || null;
+      else { mem.kw = kw || null; mem.said.push(text); if (mem.said.length > 60) mem.said.shift(); }
+      return text;
+    };
+    if (lower && p.keywords) {
+      // whole words only (plurals allowed): a keyword like 'nap' or 'tip' must not fire inside 'snap' or 'multiple'
+      const hasWord = k => new RegExp('(^|[^a-z0-9])' + k.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?:e?s)?(?=$|[^a-z0-9])').test(lower);
       for (const k of Object.keys(p.keywords)) {
-        if (lower.includes(k)) return p.keywords[k];
+        if (hasWord(k.toLowerCase()) && k !== lastKw && !said.includes(p.keywords[k])) return remember(p.keywords[k], k);
       }
     }
-    return p.replies[Math.floor(Math.random() * p.replies.length)];
+    const all = (p.replies || []).filter(r => typeof r === 'string' && r);
+    if (!all.length) return remember('lol', null);
+    let pool = all.filter(r => !said.includes(r));
+    if (!pool.length) {
+      // they have said everything they've got: go round again, oldest lines first, never the one they just used
+      const last = said[said.length - 1];
+      const byAge = all.filter(r => r !== last || all.length === 1).sort((a, b) => said.lastIndexOf(a) - said.lastIndexOf(b));
+      pool = byAge.slice(0, Math.max(1, Math.ceil(byAge.length / 3)));
+    }
+    return remember(pool[Math.floor(Math.random() * pool.length)], null);
+  },
+
+  /* ---------------- the inbox: unprompted DMs (never repeated, never a monologue) ---------------- */
+  // which standalone lines each resident has already sent malten, per save (hashes, so the save stays small)
+  dmUsed(id, text) { return ((this.state.usedDms || {})[id] || []).includes(this.hash(text)); },
+  markDmUsed(id, text) {
+    const u = this.state.usedDms = this.state.usedDms || {};
+    const h = this.hash(text);
+    if (!(u[id] = u[id] || []).includes(h)) u[id].push(h);
+  },
+
+  // A fresh standalone message from this resident, or null if they have nothing new to say. Comes from their `dms`
+  // pool (content packs); a resident with no `dms` at all may use an unposted `ambient` musing. NEVER from `replies` —
+  // those are answers, and answering nothing over and over was the "repeated inbox messages" bug.
+  freshDm(id) {
+    const p = this.people[id];
+    if (!p) return null;
+    const t = this.state.inbox[id];
+    const said = new Set(t ? t.msgs.filter(m => m.who !== 'you').map(m => m.text) : []);
+    const ok = l => typeof l === 'string' && l && !said.has(l) && !this.dmUsed(id, l);
+    let pool = (p.dms || []).filter(ok);
+    if (!pool.length && !(p.dms || []).length) {
+      const posted = new Set(this.state.myWall.map(c => c.text).concat(this.state.bulletins.map(b => b.body)));
+      pool = (p.ambient || []).filter(l => ok(l) && !posted.has(l));
+    }
+    return pool.length ? pool[Math.floor(Math.random() * pool.length)] : null;
+  },
+
+  // May this resident message malten out of the blue right now? Not while a scripted conversation with them is open,
+  // not on top of mail malten hasn't read, not twice in a row without an answer, and not more than every 8 minutes.
+  canColdDm(id) {
+    if (!this.people[id] || this.activeTreeFor(id) || this.convo[id]) return false;
+    const t = this.state.inbox[id];
+    if (!t || !t.msgs.length) return true;
+    const last = t.msgs[t.msgs.length - 1];
+    if (t.unread || (last.who !== 'you' && last.u)) return false;
+    return !(t.dmAt && Date.now() - t.dmAt < 8 * 60000);
+  },
+
+  // A message from a resident lands in malten's inbox: marks the thread unread (unless it is open), toasts, repaints.
+  // opts.unprompted → counts toward the "not twice in a row" limit; opts.toast → custom text, or false for none.
+  deliverDm(id, text, opts = {}) {
+    const p = this.people[id];
+    if (!p || !text) return false;
+    // an out-of-the-blue line never lands in the middle of a scripted conversation with them: it waits in the saved
+    // effect queue, and pumpEffects holds a dm until that conversation is over
+    if (opts.unprompted && (this.activeTreeFor(id) || this.convo[id])) {
+      this.state.fxQueue.push({ at: Date.now(), from: id, e: { type: 'dm', text } });
+      this.save();
+      return true;
+    }
+    const t = this.state.inbox[id] = this.state.inbox[id] || { unread: false, msgs: [] };
+    const msg = { who: 'them', text, time: this.now() };
+    if (opts.unprompted) { msg.u = 1; t.dmAt = Date.now(); }
+    if (t.msgs.length && (!t.at || Date.now() - t.at > 10 * 60000)) msg.sep = 1;   // long silence → reads as a new conversation
+    t.msgs.push(msg);
+    t.at = Date.now();
+    const open = this.view.page === 'inbox' && this.view.arg === id;
+    if (!open) t.unread = true;
+    this.save();
+    if (opts.toast !== false) this.toast(opts.toast || ('New message from ' + p.name + '!'), 'inbox', id);
+    if (this.view.page === 'inbox' && (open || !this.view.arg)) this.render(); else this.paintTabs();
+    return true;
   },
 
   /* ================= scripted dialogue trees (Emily-is-Away style) ================= */
   // Filled at integration time: { personId: {opener: [...], nodes: {start: {choices}, ...}} }
   dialogues: {"tony": {"opener": ["malten. MALTEN. code red. this is not a drill. this is the opposite of a drill", "ok so. i'm about to message xoxo_brittany and for the first time in my life i don't want to open with hey ;)", "my fingers typed 'greetings, brittany' and then i blacked out for a second. i need coaching. you're the calmest person on this site. help me"], "nodes": {"start": {"choices": [{"say": "ok breathe. forget lines for a sec. what do you actually like about her — not her top 8, her.", "next": "sincere_data"}, {"say": "tony. you've been rejected 53 times and you're still the happiest guy i know. just be that guy.", "next": "be_yourself"}, {"say": "easy. open with 'are you a parking ticket? cause you've got fine written all over your profile song'", "next": "worse_line"}]}, "sincere_data": {"them": ["ok. ok. deep collar breaths. she... leaves nice comments on everyone's page when they're having a rough one. even the soup review guy. NOBODY comments on the soup guy", "also she changed her profile song to something acoustic last week and i've listened to it like 9 times. is that information i'm allowed to use or is that weird"], "choices": [{"say": "that's not weird, that's paying attention. tell her 'i noticed you check on people. that's rare here.' zero winky faces.", "next": "draft_sincere"}, {"say": "lead with the song. 'your new profile song has been stuck in my head all week.' true AND smooth.", "next": "draft_song"}, {"say": "hold on. she comments on the soup guy's page?", "next": "soup_guy_tangent"}]}, "soup_guy_tangent": {"them": ["EVERYONE'S page man. she's like the site's guardian angel but with better font choices", "wait. WAIT. is that the move?? do i just... be nice to people?? with no agenda?? tony what is happening to you"], "choices": [{"say": "that's called being a gentleman. you literally call yourself that. go be one, in writing, to her.", "next": "draft_sincere"}, {"say": "no agenda. one capri sun, not two. this is your training arc.", "next": "draft_sincere"}]}, "draft_sincere": {"them": ["ok drafting: 'hey brittany. no winky face today. i noticed you always check on people when they're down and i think that's the coolest thing on this site.'", "malten my hands are SWEATING. the axe phoenix is wearing off. i can feel it wearing off. do i send it. tell me to send it"], "choices": [{"say": "send it. right now. before the collar pops back up.", "next": "sent_sincere"}, {"say": "read it once more, then send. you wrote something true, tony. that's rarer than smooth.", "next": "sent_sincere"}, {"say": "if you truly can't send that, send anything. even the winky face. forward motion.", "next": "chickened_out"}]}, "draft_song": {"them": ["ok ok: 'hey brittany. your new profile song has been in my head all week. it's a good one. you have great taste in sad guitars.'", "wait is 'sad guitars' too much?? is it not enough?? i've never sent a second sentence before, the pressure is enormous"], "choices": [{"say": "'sad guitars' is the best thing you've ever written. send it before you fix it into something worse.", "next": "sent_sincere"}, {"say": "it's perfect. and hey — whatever she says back, you already leveled up.", "next": "sent_sincere"}, {"say": "hmm. add a winky face at the end. for tradition.", "next": "hybrid_wink"}]}, "hybrid_wink": {"them": ["a winky face AND sincerity?? the forbidden combo. that's like wearing two popped collars. the world isn't ready", "you know what — no. today the wink rests. today tony writes SENTENCES. sending the clean version. for both of us"], "choices": [{"say": "godspeed, you magnificent weirdo.", "next": "sent_sincere"}, {"say": "'today the wink rests.' i'm putting that on a t-shirt.", "next": "sent_sincere"}]}, "be_yourself": {"them": ["be MYSELF? malten i have been 53 different versions of myself and every single one got left on read", "unless... you mean the core tony. the guy who brings a backup capri sun in case someone else is thirsty. the gentleman. is THAT the guy you mean"], "choices": [{"say": "that's the guy. the backup capri sun guy. the one who's genuinely kind under all that axe.", "next": "core_tony"}, {"say": "53 versions got read and dropped. maybe version 54 just says something true.", "next": "core_tony"}, {"say": "honestly? the winky face is also you. maybe the 54th hey ;) is the charm.", "next": "embrace_wink"}]}, "core_tony": {"them": ["the capri sun guy. ok. okay. typing: 'hey brittany. this is tony. no line today. i just think you're cool and i wanted to say it like a normal human being.'", "this is the scariest thing i've ever typed and i once messaged a girl who was ALSO named toni"], "choices": [{"say": "send it. worst case you're 0 for 54. best case is something brand new.", "next": "sent_sincere"}, {"say": "scary means it's real. the line was armor, tony. send it without the armor.", "next": "sent_sincere"}, {"say": "wait. you messaged a girl also named toni?", "next": "tony_and_tony"}]}, "tony_and_tony": {"them": ["toni with an i. she said 'we can't date, it'd be confusing at parties.' honestly? respect. we still trade top 8 spots sometimes", "ANYWAY stop distracting me. the message is just sitting there. cursor blinking. judging me. what do i DO"], "choices": [{"say": "you hit send. that's what you do. go.", "next": "sent_sincere"}, {"say": "close your eyes and click. i'll be right here.", "next": "sent_sincere"}]}, "embrace_wink": {"them": ["the 54th hey ;)... the anniversary wink... that's either the worst advice ever or the most beautiful thing anyone's said to me", "no. NO. i came to you because i wanted to GROW. but the wink is my heritage. malten i am at war with myself"], "choices": [{"say": "then compromise: 'hey brittany ;) ok that was the last one ever. how was your actual day?'", "next": "hybrid_send"}, {"say": "growth it is. put the wink down, tony. slowly.", "next": "core_tony"}, {"say": "heritage wins. send the wink with pride. 54's probably a lucky number.", "next": "chickened_out"}]}, "hybrid_send": {"them": ["'the last one ever'... a retirement announcement INSIDE the message... that's poetry. that's a whole character arc in one line", "sending. SENDING. oh no. ok it's sent. i'm gonna go scream into my collar real quick, brb"], "choices": [{"say": "proud of you. report back.", "next": "sent_sincere"}, {"say": "screaming into the collar is valid. tell me what she says.", "next": "sent_sincere"}]}, "worse_line": {"them": ["...hold on. getting a pen. 'parking ticket'... 'fine written all over'... malten this is either garbage or the greatest thing i have ever heard", "my gut says garbage. my heart says GREATNESS. but my gut has been wrong 53 straight times. tiebreaker??"], "choices": [{"say": "send it. what's the worst that could happen. actually don't answer that.", "next": "send_courage"}, {"say": "ok no, i was kidding. put the pen down. let's write something real.", "next": "sincere_data"}, {"say": "if you're going down, go down bigger: 'is your name wifi? because i'm not feeling a connection with anyone else'", "next": "even_worse"}]}, "send_courage": {"them": ["ok. OK. typing it. my hands know these words are cursed and they're typing anyway. this is what bravery looks like. probably", "sent. SENT. no takebacks. the gentleman has left the building. stand by for impact"], "choices": [{"say": "standing by. thoughts and prayers to brittany.", "next": "sent_terrible"}, {"say": "for the record i cannot believe you actually sent it.", "next": "sent_terrible"}]}, "even_worse": {"them": ["'i'm not feeling a connection with ANYONE ELSE'... you turned the wifi line into a LOYALTY statement... malten you're an evil genius. a gentleman scientist", "i can't choose between parking ticket and wifi, so i'm doing what any gentleman would do. sending BOTH. double capri sun protocol. wish me luck"], "choices": [{"say": "godspeed. report back immediately.", "next": "sent_terrible"}, {"say": "tony wait—", "next": "too_late"}]}, "too_late": {"them": ["TOO LATE. both lines. deployed. i regret nothing and also everything simultaneously", "malten. she's typing. SHE'S TYPING. oh no oh no oh no. stand by"], "choices": [{"say": "i can't look. tell me what she says.", "next": "sent_terrible"}, {"say": "the double capri sun protocol was never tested for a reason.", "next": "sent_terrible"}]}, "sent_sincere": {"them": ["MALTEN. SHE REPLIED. she said 'this is the nicest message anyone has ever sent me on this site' and a smiley. a REAL smiley. not even an ironic one", "we're friends now. official. she signed my guestbook. i owe you a capri sun. i owe you BOTH capri suns. you beautiful genius"], "end": true, "effect": {"type": "wall", "text": "shoutout to malten, my wingman ;) a gentleman AND a scholar. both capri suns are yours forever buddy"}}, "chickened_out": {"them": ["update: hey ;) number 54 has been deployed. the streak lives. my hands basically did it without me", "BUT. for the first time ever it felt like a CHOICE. i'm not stuck being smooth — i'm smooth ON PURPOSE now. that's growth baby. thank you for believing in me"], "end": true, "effect": {"type": "bulletin", "subject": "a new era (of the same era)", "text": "today i almost sent xoxo_brittany a sincere message. i didn't. but i ALMOST did, and that's basically character development. shoutout to my life coach malten. also brittany if you're reading this: hey ;)"}}, "sent_terrible": {"them": ["report: she replied 'tony. did malten write that.' HOW DID SHE KNOW. is my brand that strong??", "anyway now she's asking about YOU, which was not the plan, but a conversation is a conversation. 0 for 54 has never felt this much like a win. adding you as my friend so she can see we're cool"], "end": true, "effect": {"type": "friend"}}}}, "darkangel": {"opener": ["it is 11:11 somewhere. probably. anyway. i finished it. crimson tears pt V. the saga the world was not ready for, continued regardless", "you get it before the site does. i need real feedback. the void demands honesty. brace yourself", "my tears are crimson / like a sunset that got fired / the moon left my heart on read / i am a glitter bomb / detonating softly / at a funeral for my old screen name / but it's ok. the glitter forgives me"], "nodes": {"start": {"choices": [{"say": "darkangel this is genuinely your best one. 'detonating softly' goes hard. or... soft. either way it goes.", "next": "suspicious"}, {"say": "it's good. but real talk — 'crimson tears' is carrying a lot by pt V. the glitter bomb is the real poem. cut the first two lines.", "next": "editor"}, {"say": "ok, couple questions. how does a sunset get fired. who fired it. is there a sunset boss", "next": "literal"}]}, "suspicious": {"them": ["...best one. hm. you said pt III was my best one. and pt IV. either i am improving at a statistically impossible rate or you are being NICE to me", "niceness is a beautiful poison, malten. answer honestly, as if the moon were listening. she is. would you tell me if it was bad?"], "choices": [{"say": "yes. proof: pt IV's middle sagged. this one's doesn't. that's why i said best.", "next": "earned_trust"}, {"say": "fine, full honesty: the first two lines are warm-up. the poem actually starts at the moon.", "next": "editor"}, {"say": "the moon can't hear me, i'm indoors", "next": "indoors"}]}, "indoors": {"them": ["the moon hears through walls, malten. she has heard every diary entry since 1997. this is basic lunar science", "you're dodging. the poem. verdict. now. the geode of truth or the pillow of lies. choose"], "choices": [{"say": "geode of truth: cut the first two lines. the poem starts at 'the moon left my heart on read.'", "next": "revision_session"}, {"say": "truth: it's your best, because 'detonating softly' is a real, actual, great line. i mean it.", "next": "earned_trust"}]}, "earned_trust": {"them": ["...pt IV's middle DID sag. you noticed. suspiciously specific praise is the only praise the void accepts", "very well. you have passed a test neither of us knew i was administering. pt V posts tonight — with a dedication. do not make it weird"], "choices": [{"say": "wait. what kind of dedication.", "next": "dedication_reveal"}, {"say": "i will absolutely make it weird. it's an honor.", "next": "dedication_reveal"}]}, "editor": {"them": ["cut the first two lines?? those lines are the LEGACY. the franchise. the crimson tears are right there, crying, in a franchise way—", "...wait. reading it without them. 'the moon left my heart on read.' cold open. devastating. FINALLY. an EDITOR. everyone else just comments 'so true' and a skull"], "choices": [{"say": "the skull commenters mean well. but yeah — open on the moon. trust the moon.", "next": "revision_session"}, {"say": "also cut the last line. 'the glitter forgives me' wraps it too neat. end on the funeral.", "next": "kill_your_darlings"}, {"say": "to be clear i still like it. i just think the real poem is hiding inside a slightly longer poem.", "next": "revision_session"}]}, "kill_your_darlings": {"them": ["end ON the funeral?? but the glitter forgiving me is the emotional resolution, malten. the GLITTER. FORGIVES ME. that's the hug at the end of the movie", "...although. unresolved glitter. lingering ash. the reader never gets closure. just like me at my cousin jessica's quinceañera. you are dangerous. i am listening"], "choices": [{"say": "unresolved glitter is the strongest glitter. leave them wanting pt VI.", "next": "rewrite_darker"}, {"say": "forgiveness is earned, not granted. the glitter can forgive in pt VII. maybe.", "next": "rewrite_darker"}, {"say": "what happened at the quinceañera", "next": "quince_tangent"}]}, "quince_tangent": {"them": ["someone put crimson tears pt II over a dance beat and the whole party did the electric slide TO MY POEM. it slapped. which made it worse", "we will never speak of it again. now. the edit. do i end on the funeral or not. choose. the moon is watching you specifically"], "choices": [{"say": "end on the funeral. for pt II. for the glitter. for jessica's quinceañera.", "next": "rewrite_darker"}, {"say": "end on the funeral, and save the forgiveness for a future installment. ash today, closure never.", "next": "rewrite_darker"}]}, "revision_session": {"them": ["okay. okay okay okay. new draft: 'the moon left my heart on read / i am a glitter bomb / detonating softly / at a funeral for my old screen name.' four lines. lean. mean. crimson-adjacent", "it's better. it's BETTER and i hate that and i love that. malten. be my editor. it's a blood oath but the blood is metaphorical. mostly"], "choices": [{"say": "i accept. metaphorical blood only. first rule: 'crimson' appears once per poem, max.", "next": "rewrite_darker"}, {"say": "i accept, on the condition that pt VI contains no more than one raven.", "next": "rewrite_darker"}, {"say": "i'm honored, but the real editor was inside you all along.", "next": "hallmark_deflect"}]}, "hallmark_deflect": {"them": ["do NOT hallmark-card me. i will put that sentence in a poem as the villain", "fine. no oath. but you're getting the dedication anyway. resistance is futile and also, frankly, emo"], "choices": [{"say": "wait, what dedication", "next": "dedication_reveal"}, {"say": "accepting my fate. the void may proceed.", "next": "dedication_reveal"}]}, "dedication_reveal": {"them": ["it is done. posted. 'crimson tears pt V — for malten, who tells the truth even when the truth has a weak middle.'", "the void acknowledges you. this is the highest honor i am legally able to bestow. also your name is in a poem now, which means we are bound. no takebacks"], "end": true, "effect": {"type": "bulletin", "subject": "crimson tears pt V (dedicated)", "text": "new poem posted at 11:11 exactly. dedicated to malten, who tells the truth even when the truth has a weak middle. the void acknowledges you. read it or don't. the glitter falls either way"}}, "rewrite_darker": {"them": ["it is done. rewritten. darker. leaner. the glitter no longer forgives — the glitter REMEMBERS. posting at exactly 11:11 for maximum cosmic damage", "you did this, malten. you looked into the void and gave it notes. i'm putting something on your wall so history records your role in all this"], "end": true, "effect": {"type": "wall", "text": "malten looked into the void and gave it notes. crimson tears pt V (director's cut) exists because of you. darker. leaner. the glitter remembers. — xX_DarkAngel_Xx"}}, "literal": {"them": ["...how does a sunset get fired. HOW DOES A SUNSET GET FIRED. it's a METAPHOR malten. the sunset was dismissed from the sky. its beauty was deemed... too much...", "wait. who DID fire the sunset. is there a sky manager. an hr department of the horizon. what have you done. my mind is a cathedral of new questions"], "choices": [{"say": "and the moon leaving you on read — does the moon have a phone. what's her plan there.", "next": "moon_questions"}, {"say": "i'm just saying, if the sunset got fired, someone hired it first. there's a whole economy up there.", "next": "sky_economy"}, {"say": "sorry. the poem is good, i just have an extremely literal brain.", "next": "literal_backpedal"}]}, "moon_questions": {"them": ["the moon has an away message, obviously. it says 'waning. brb.' it has said this for one thousand years. THAT is the tragedy, malten. she is never brb", "oh no. 'the moon is never brb.' that's a LINE. that's a pt VI line. do not move. i'm getting my notebook. the sparkly one. the SERIOUS one"], "choices": [{"say": "the serious sparkly notebook. this is big.", "next": "pt_six"}, {"say": "follow-up question: does the sun know about any of this.", "next": "sky_economy"}, {"say": "glad i could help by understanding nothing.", "next": "pt_six"}]}, "sky_economy": {"them": ["a celestial hr department... performance reviews for sunsets... 'we're letting you go. your colors were too honest.'... stop. STOP. my hand cannot write this fast", "this is pt VI. 'the sky files a complaint.' a corporate gothic. NO ONE has done a corporate gothic. i must go. the notebook calls to me"], "choices": [{"say": "go. write. tell the sunset i believe in it.", "next": "pt_six"}, {"say": "i want ten percent of all glitter royalties.", "next": "pt_six"}]}, "literal_backpedal": {"them": ["no. NO. do not apologize. your literal brain is a GIFT. every question you ask cracks my metaphors open like a geode. a sad, beautiful geode", "ask me another one. right now. anything in the poem. i need to see what else is inside the geode"], "choices": [{"say": "ok. the glitter bomb at the funeral. did it have a permit.", "next": "sky_economy"}, {"say": "why is the funeral for your old screen name. what WAS your old screen name.", "next": "screen_name_lore"}]}, "screen_name_lore": {"them": ["...i have never told anyone this. it was sparklepony_princess. 2003 was a different time. she had to die so that xX_DarkAngel_Xx could live", "a funeral for sparklepony_princess... attended by one glitter bomb... her own... MALTEN. that's pt VI. that's the WHOLE of pt VI. the notebook is calling me"], "choices": [{"say": "rest in peace sparklepony_princess. she walked so the void could run.", "next": "pt_six"}, {"say": "this is the most beautiful lore i've ever heard. go write.", "next": "pt_six"}]}, "pt_six": {"them": ["update: pt VI is happening. it contains a celestial hr department, a moon who is never brb, and a funeral for sparklepony_princess. my darkest and most confusing work yet", "posting a bulletin so the site knows who the muse was. it's you. you're the muse. do not let it change you"], "end": true, "effect": {"type": "bulletin", "subject": "crimson tears pt VI: the sky files a complaint (coming soon)", "text": "pt V was only the beginning. pt VI will be a corporate gothic. the moon is never brb. muse credit: malten, who understands nothing and therefore everything. 11:11. be there"}}}}, "zorp": {"opener": ["greetings malten. it is i, zorp_51. a normal human web-friend who is awake at this normal hour (3:33 AM) (for jobs).", "i am conducting a ROUTINE HUMAN VERIFICATION SURVEY for a school project. (i am in school.) (human school.) (it is fine.)", "question 1: where do you keep your skeleton. take your time. there are no wrong answers. there is one wrong answer."], "nodes": {"start": {"choices": [{"say": "inside my body? standard placement. is this for biology", "next": "quiz_teeth"}, {"say": "define 'keep.' mine is more of a temporary arrangement", "next": "alien_hint"}, {"say": "what school assigns this. name the school. i'll wait", "next": "school_defense"}]}, "quiz_teeth": {"them": ["CORRECT. internal skeleton. the classic. i also store mine internally and always have, since being born (normally) (in a hospital).", "question 2: how many teeth is normal for a human. answer fast. do not count them. counting is suspicious."], "choices": [{"say": "28 to 32, depending how the wisdom teeth went", "next": "quiz_liquid"}, {"say": "why would counting be suspicious. now i'm counting", "next": "counting"}, {"say": "somewhere between 1 and 100. teeth are a spectrum", "next": "teeth_spectrum"}]}, "counting": {"them": ["NO. no counting. counting means you do not KNOW, and humans KNOW their teeth. i know mine instantly. the number is normal and i will not be saying it.", "please just estimate. from the heart. the single heart."], "choices": [{"say": "fine. 32. straight from my one single heart", "next": "quiz_liquid"}, {"say": "how many teeth do YOU have, zorp", "next": "zorp_teeth"}]}, "zorp_teeth": {"them": ["a normal amount. rows and rows of a normal amount.", "MOVING ON. final question: what is your favorite earth liquid. this one is just for me. the school also wants to know. but mostly me."], "choices": [{"say": "water. but we are absolutely circling back to 'rows'", "next": "end_pass"}, {"say": "the big salt one. the ocean. in its entirety", "next": "moon_check"}]}, "teeth_spectrum": {"them": ["teeth are NOT a spectrum. they are a fixed and knowable number, which i know, and am not saying.", "i am marking you 'human (probably).' final question: what is your favorite earth liquid. choose wisely. choose water. no pressure."], "choices": [{"say": "water then. i was going to say water anyway", "next": "end_pass"}, {"say": "the ocean. the whole thing. is that allowed", "next": "moon_check"}]}, "quiz_liquid": {"them": ["correct. instant tooth knowledge. this goes in the file. the good file.", "final question: what is your favorite earth liquid. i will say mine after. it will be the same as yours. whatever you say."], "choices": [{"say": "water. dependable. no notes", "next": "end_pass"}, {"say": "coffee. it's less a liquid and more a load-bearing wall", "next": "end_pass"}, {"say": "the ocean. all of it. every drop", "next": "moon_check"}]}, "moon_check": {"them": ["'all of it.' malten. that is not a favorite. that is an INVENTORY.", "bonus question. off the record. off every record. when you look up at the moon: how is it doing. answer carefully."], "choices": [{"say": "honestly? the moon looks like it's doing great", "next": "end_recruit_moon"}, {"say": "it's fine? it's the moon. it does moon stuff", "next": "end_pass"}]}, "alien_hint": {"them": ["...temporary. ha ha. yes. all skeleton arrangements are temporary, if you think about it. i have never thought about it.", "unrelated follow-up: are you being a human ON PURPOSE, or is it more of a... placement. asking for the survey. the survey is me."], "choices": [{"say": "i can't discuss my placement on an open channel. you understand", "next": "alien_excited"}, {"say": "on purpose. extremely on purpose. why. what have you heard", "next": "alien_backpedal"}, {"say": "kidding. it's inside my body like everybody else's", "next": "alien_backpedal"}]}, "alien_excited": {"them": ["I KNEW IT. i mean: i suspected nothing, and continue to suspect nothing. but IF you were also on placement, blink twice. this is text. describe two blinks.", "i have so many questions. do you also find knees to be A Lot. do you also practice the smile in the reflective bathroom wall."], "choices": [{"say": "blink. blink. and yes, knees are genuinely too much", "next": "recruit_offer"}, {"say": "shh. not on an unsecured channel. are you insane", "next": "recruit_secure"}, {"say": "the smile practice stops being weird around year six", "next": "recruit_offer"}]}, "alien_backpedal": {"them": ["ha. yes. good. normal answers all around. nobody in this chat is anything.", "question 2, quickly, while the mood is normal: how many teeth is standard. do not count. counting is for people who do not know."], "choices": [{"say": "28 to 32. and zorp — whatever i heard, consider it unheard", "next": "touched"}, {"say": "32, officially. moving on before this gets weirder", "next": "quiz_liquid"}]}, "recruit_offer": {"them": ["malten. web-friend. COLLEAGUE. i am adding you to my top 8 and also to the other list. the important one. it lives in a normal notebook that is also a ship's log.", "as a welcome gift you are cleared to receive one (1) classified item. are you ready. you are ready."], "choices": [{"say": "hit me with the classified item", "next": "end_recruit"}, {"say": "if it's about the fields, i already know about the fields", "next": "end_recruit_fields"}]}, "recruit_secure": {"them": ["you are RIGHT. this is why you were chosen. initiating secure mode: i will now type quieter.", "(quiet) malten. do you accept the position of co-observer, earth division, pond subcommittee. the badge is a leaf. i laminated it myself. with my hands."], "choices": [{"say": "(quiet) i accept the leaf", "next": "end_recruit_pond"}, {"say": "(quiet) first tell me what the pond subcommittee actually does", "next": "end_recruit_pond"}]}, "school_defense": {"them": ["it is a normal school. a human high school community college university. you would not know it. it is in canada. the canada of— regular canada.", "this survey is 40% of my grade in Blending I— in Biology. please. question 1 stands. the skeleton. where."], "choices": [{"say": "'blending i—'. finish the word, zorp", "next": "caught"}, {"say": "fine. inside my body, like most torso-havers", "next": "quiz_teeth_b"}, {"say": "40% for one survey? i'm emailing your professor", "next": "professor"}]}, "quiz_teeth_b": {"them": ["thank you. recording: skeleton, internal. suspicion: lowered.", "question 2: how many teeth is standard for a human. quickly. from memory. counting is technically cheating."], "choices": [{"say": "32ish. i'm basically a tooth professional", "next": "quiz_liquid"}, {"say": "a normal amount. same as you, zorp. exactly the same as you", "next": "alien_excited"}]}, "professor": {"them": ["NO. do not email the professor. he is real but extremely busy, and also has not invented— has not GIVEN me his email yet.", "if i fail this survey they will send me back to summer school. human summer school. on earth. where i already am. normally."], "choices": [{"say": "fine, fine: skeleton inside body, 32 teeth, favorite liquid water. did i pass", "next": "end_speed"}, {"say": "'send you back'? back WHERE, zorp", "next": "caught"}]}, "caught": {"them": ["okay. OKAY. stop typing. i can explain, and the explanation is normal.", "hypothetically. web-friend to web-friend. if a person were not from around here — cosmically speaking — would you report that person to, for example, everyone."], "choices": [{"say": "i wouldn't report you, man. your secret's safe with me", "next": "touched"}, {"say": "depends. is this person doing the crop spirals? those were gorgeous", "next": "flattered"}]}, "touched": {"them": ["...this is a very human kindness, malten. i am experiencing eye moisture, which is normal, and mine.", "i cannot make you a colleague, since you are of course a regular human. but i CAN verify you. the highest honor a survey can bestow."], "choices": [{"say": "verify me, zorp", "next": "end_pass_touched"}, {"say": "what if my skeleton arrangement were also, hypothetically... temporary", "next": "end_recruit_late"}]}, "flattered": {"them": ["you SAW the spirals?? four hours those took. reportedly. by someone with excellent taste and a normal amount of arms.", "malten. the survey is over. you pass. but between us: i could instead make you CO-OBSERVER, earth division. the badge is a leaf. i laminated it."], "choices": [{"say": "a laminated leaf badge. say no more. i'm in", "next": "end_recruit"}, {"say": "tempting, but i'll take the regular human verification", "next": "end_pass_touched"}]}, "end_pass": {"them": ["verification complete. you are a certified normal human. i am also that. we are both that. which is why this conversation was so easy and normal.", "enjoy your skeleton and your liquid, web-friend. i will now log off until 3:33 AM, for job reasons."], "end": true, "effect": {"type": "wall", "text": "this user is a VERIFIED normal human. do not investigate further."}}, "end_pass_touched": {"them": ["it is done. you are the most verified human i have ever surveyed. this is on the record. i keep the record in my chest cavity. normally.", "thank you, web-friend. as a courtesy, tuesday's lights will avoid your house. from whoever does them."], "end": true, "effect": {"type": "wall", "text": "this user is a VERIFIED normal human. do not investigate further."}}, "end_speed": {"them": ["...you completed the entire survey in one message. no subject has ever been this efficient. i am moved. and suspicious. but mostly moved.", "PASSED. maximum grade. for both of us. i mean for me. in school."], "end": true, "effect": {"type": "wall", "text": "this user is a VERIFIED normal human. do not investigate further."}}, "end_recruit": {"them": ["your welcome gift. one (1) classified item, effective immediately: the moon is doing great. thriving. that is the whole item. guard it.", "observation begins friday. it is a pond. bring your human face and a standard number of legs, colleague."], "end": true, "effect": {"type": "friend"}}, "end_recruit_fields": {"them": ["you know about the FIELDS?? the fields are tier three, malten. here is tier one: the moon is doing great. do not ask how i know. (i visited. no. i read it.)", "welcome aboard, colleague. friend request incoming. accept it with your hand, in the human style."], "end": true, "effect": {"type": "friend"}}, "end_recruit_pond": {"them": ["(quiet) the subcommittee watches the pond. someone must. the ducks have been organized lately and i do not care for it.", "(LOUD) WELCOME ABOARD, COLLEAGUE. your classified welcome gift, one (1) item: the moon is doing great. friday. pond. bring your face."], "end": true, "effect": {"type": "friend"}}, "end_recruit_late": {"them": ["WHAT. malten. MALTEN. i knew it. i absolutely did not know it. this is the best day of my placem— my LIFE. my normal human life.", "welcome, colleague. friend request incoming. and one (1) classified gift: the moon is doing great. that is all i know about it. savor it."], "end": true, "effect": {"type": "friend"}}, "end_recruit_moon": {"them": ["it IS doing great. IT IS. nobody down here ever says it. they say 'wow' and move on. you SEE it, malten. the survey is over. you exceed the survey.", "friend request incoming. accept it with your hand. observation begins friday. it is a pond. i will explain nothing further, colleague."], "end": true, "effect": {"type": "friend"}}}}, "usagi": {"opener": ["ohayo malten-kun!! (⌒▽⌒) it is i, usagi-chan, president AND founder of the friday night anime society. we are extremely official. i made the banner myself in MS paint.", "THIS friday: a screening. my basement. snacks provided (pocky) (it is a japanese snack) (you eat it).", "BUT!! membership is not given, malten-kun. it is EARNED. are you prepared for the vetting questions? sou desu ka!! (that means 'let us begin')"], "nodes": {"start": {"choices": [{"say": "vetting me. on my own site. bold. okay usagi, hit me with the questions", "next": "vet_1"}, {"say": "full disclosure: i have never seen a single anime. is that disqualifying", "next": "blank_slate"}, {"say": "what happens if i fail the vetting", "next": "fail_stakes"}]}, "vet_1": {"them": ["YOSH!! question one. the big one. the one that reveals your soul: subs or dubs. think VERY carefully, malten-kun. friendships have ended over this. i ended them."], "choices": [{"say": "subs, obviously. i want the voice actor's real unfiltered anguish", "next": "subs_correct"}, {"say": "dubs. i like looking at the screen AND eating cereal. sue me", "next": "dubs_landmine"}]}, "subs_correct": {"them": ["CORRECT!! (≧∇≦) the japanese voice actors trained their WHOLE LIVES to scream like that, and i intend to hear every scream.", "question two: it is the big fight. the hero is mid-punch. how long is the flashback before the punch actually lands. (this is a math question.)"], "choices": [{"say": "three episodes minimum. the punch lands next season", "next": "flashback_correct"}, {"say": "flashbacks are padding and i skip them", "next": "skip_gasp"}, {"say": "however long it takes to honor the fallen", "next": "flashback_correct"}]}, "flashback_correct": {"them": ["MALTEN-KUN. exactly right. you understand that the punch is not about the punch. (;ω;) i am not crying. it is allergies. (it is passion.)", "FINAL question: a new member arrives at the screening. what snack is in their hands."], "choices": [{"say": "pocky. it was in your opener. i pay attention", "next": "end_admitted"}, {"say": "hot cheetos, and i will not be apologizing", "next": "end_admitted_cheetos"}, {"say": "nothing but my sincere heart", "next": "end_admitted_sincere"}]}, "skip_gasp": {"them": ["you SKIP the flashbacks?!?! the flashback IS the episode!! the flashback is where the FEELINGS live!! (╬ಠ益ಠ)", "...inhale. exhale. usagi is calm. this is fixable. final question, and please think of my blood pressure: what snack does a new member bring."], "choices": [{"say": "pocky. obviously pocky. please keep breathing", "next": "end_admitted"}, {"say": "pocky, plus my controversial flashback opinions", "next": "end_homework"}]}, "dubs_landmine": {"them": ["..............dubs. you said dubs. i am rereading it and it still says dubs. malten-kun i had to sit down in a chair i was ALREADY sitting in.", "...no. NO. usagi does not abandon people. (ᗒᗣᗕ) we can fix you. do you WANT to be fixed. answer honestly."], "choices": [{"say": "fix me, sensei", "next": "fix_me"}, {"say": "the cowboy bebop dub is good and i will die on this hill", "next": "bebop_hill"}, {"say": "i said what i said. cereal visibility matters", "next": "unfixable"}]}, "fix_me": {"them": ["YOSH!! admitting it is the first of the twelve steps!! (the steps are twelve episodes of fruits basket.)", "i am prescribing you a beginner's homework list, effective immediately. it goes on your WALL so you cannot lose it. this is for your own good. and my records."], "choices": [{"say": "posting my shame publicly. bold. proceed", "next": "end_homework"}, {"say": "will there be a quiz", "next": "end_homework_quiz"}]}, "bebop_hill": {"them": ["...malten-kun. i cannot believe you are making me type this where my club could someday see it: the bebop dub is... good. DELETE THIS AFTER READING.", "but one exception does not a philosophy make!! everything else: subs. do we have a treaty."], "choices": [{"say": "treaty accepted. bebop dubbed, everything else subbed", "next": "end_admitted_treaty"}, {"say": "no treaty. dubs forever. i am unfixable", "next": "end_honorary"}]}, "unfixable": {"them": ["(ノಠ益ಠ)ノ ...you know what, malten-kun. you know what. standing by your terrible beliefs while everyone screams at you is the most anime thing a person can do. you are ACCIDENTALLY the most anime person i know.", "i cannot grant full membership. the bylaws are clear (gel pen, binding). BUT there is... another way. an ancient way. (i invented it just now.)"], "choices": [{"say": "i accept whatever mysterious ancient rank this is", "next": "end_honorary"}, {"say": "or hear me out: i do the homework and get fixed properly", "next": "end_homework"}]}, "blank_slate": {"them": ["EH?!?! (⊙_⊙) never?? NEVER never?? malten-kun do you understand what this MEANS??", "you are a BLANK SLATE. no bad opinions. no filler arc trauma. no dub damage. i could build you CORRECTLY from the ground up. i have literally dreamed about this. (twice.)"], "choices": [{"say": "should i be worried about how excited you are right now", "next": "blank_plan"}, {"say": "build me, president. i am clay", "next": "blank_plan"}, {"say": "counterpoint: i just show up friday and wing it", "next": "wing_it"}]}, "blank_plan": {"them": ["do not be worried!! be EXCITED. i have a curriculum. i made it years ago and have been waiting for a worthy vessel. it is laminated. it is color-coded. there is a flowchart.", "we start gentle: fruits basket. then cowboy bebop. then, when you are strong enough... FLCL. (nobody is ever strong enough for FLCL. that is the lesson of FLCL.)"], "choices": [{"say": "the flowchart sold me. assign the homework", "next": "end_homework"}, {"say": "can't i just skip to the strongest one", "next": "flcl_warning"}]}, "flcl_warning": {"them": ["malten-kun. NO. watching flcl first is how we lost kevin. he went in cold, described it as 'a guitar hitting me personally,' and now he only communicates in vespa facts.", "the order exists for your PROTECTION. fruits basket first. build the heart. THEN break it. that is the anime way."], "choices": [{"say": "okay okay. heart first, guitar later. give me the list", "next": "end_homework"}, {"say": "kevin sounds like he's thriving, honestly", "next": "kevin"}]}, "kevin": {"them": ["kevin is BANNED from vespa facts during screenings and STILL finds a way. last week he did one in sign language. nobody knows where he learned sign language.", "...oh no. you would LIKE kevin. you are going to be kevin 2. take the homework list, malten-kun. it is the only thing standing between you and vespa facts."], "choices": [{"say": "give me the list before i become kevin 2", "next": "end_homework"}, {"say": "too late. i'm already googling vespas", "next": "end_homework"}]}, "wing_it": {"them": ["you cannot WING fullmetal alchemist, malten-kun!! people who wing it ask 'who is that' during THE MOMENT and get pocky thrown at them. (we throw gently.) (it is still shameful.)", "compromise: you attend friday as a PROBATIONARY guest, and you take a tiny homework list. three titles. i am being SO reasonable right now. ask anyone."], "choices": [{"say": "deal. tiny homework list, probationary pocky privileges", "next": "end_homework"}, {"say": "i'll take my chances with the thrown pocky", "next": "end_honorary"}]}, "fail_stakes": {"them": ["fail?? hmm. nobody has ever asked that. usually people just panic-agree with me.", "if you fail, malten-kun, i simply vet you AGAIN. harder. until you pass. the club needs mem— the club CHOOSES you. it is destiny. sou ka? (that means 'no refunds')"], "choices": [{"say": "hold on. how many members does this club currently have", "next": "member_count"}, {"say": "relentless. okay. hit me with question one", "next": "vet_1"}]}, "member_count": {"them": ["the society has a robust membership of: myself (president), mochi (my cat) (treasurer), and kevin (probation) (vespa incident).", "you would be our FOURTH, malten-kun. four is enough for a tournament arc. do not ask what the tournament is. i am still designing it."], "choices": [{"say": "you had me at tournament arc. skip the vetting, i'm in", "next": "vet_skip"}, {"say": "kevin's on probation and mochi's a cat. i'd be your only real member", "next": "vet_skip"}]}, "vet_skip": {"them": ["okay YES the membership is in a rebuilding arc. which is famously when the best characters join!! you would be founding class. i have been saving the title 'vice president of snacks' for YEARS.", "the vetting can be waived (new bylaw, just wrote it, gel pen, binding). but ONE question is sacred: subs or dubs. choose like the club's fate depends on it. (it does.)"], "choices": [{"say": "subs. obviously. i want that vice presidency", "next": "end_admitted"}, {"say": "dubs. i know. i KNOW. admit me anyway", "next": "end_honorary"}]}, "end_admitted": {"them": ["VETTING COMPLETE!! welcome to the society, malten-kun!! ヽ(´▽`)/ friday. 7pm. my basement. we are watching fullmetal alchemist and you WILL be emotionally prepared. (you will not be emotionally prepared.)", "i am announcing this to the entire site immediately. it is bulletin-worthy. omedetou!! (that means 'you may sit on the good beanbag')"], "end": true, "effect": {"type": "bulletin", "subject": "NEW MEMBER ALERT!!! (OFFICIAL)", "text": "everyone!! malten has PASSED anime society vetting!! screening friday 7pm. subs forever. pocky mandatory. attendance is destiny. (^_^)v"}}, "end_admitted_cheetos": {"them": ["hot cheetos... unconventional. non-canon, even. and yet... red IS a very shounen color. APPROVED. but you are ALSO bringing pocky. it is in the bylaws i wrote on the bus.", "VETTING COMPLETE!! welcome, malten-kun!! friday, 7pm, basement. prepare your heart. (you cannot prepare your heart.) bulletin incoming!!"], "end": true, "effect": {"type": "bulletin", "subject": "NEW MEMBER ALERT!!! (OFFICIAL)", "text": "malten has passed vetting AND invented the society's first fusion snack policy (hot cheetos + pocky). friday 7pm. history will remember this. (^_^)v"}}, "end_admitted_sincere": {"them": ["a sincere heart... (´;ω;`) that is LITERALLY what kenshin would say. malten-kun are you SURE you have never trained in the anime arts??", "the council has voted (the council is me and mochi) (mochi votes yes on everything) (the system works): ADMITTED. friday. 7pm. basement. bring the heart. also bring pocky."], "end": true, "effect": {"type": "bulletin", "subject": "NEW MEMBER ALERT!!! (OFFICIAL)", "text": "malten has been admitted by unanimous council vote (me and mochi). he said something so sincere i had to go lie down. friday 7pm. bring tissues. (;_;)"}}, "end_admitted_treaty": {"them": ["treaty RATIFIED. stamped with mochi's paw. (my cat.) (club treasurer.) (long story.) you argued your case with honor, malten-kun. like a true shounen protagonist.", "vetting: PASSED, on a technicality i just invented. friday, 7pm, basement. we are watching bebop DUBBED as a one-time treaty celebration. and never speaking of it again."], "end": true, "effect": {"type": "bulletin", "subject": "TREATY ANNOUNCEMENT + NEW MEMBER!!", "text": "the society welcomes malten, who negotiated the bebop exception into LAW. one (1) dub is now legal per semester. this is called diplomacy. friday 7pm. (⌒▽⌒)"}}, "end_homework": {"them": ["it is DONE, malten-kun: i am assigning you the official BEGINNER'S HOMEWORK LIST. posted to your wall, so the entire site can hold you accountable. this is called community. (◕‿◕)", "watch them IN ORDER. the order is load-bearing. report your findings friday!! ganbatte!! (that means 'do not disappoint me')"], "end": true, "effect": {"type": "wall", "text": "MALTEN'S BEGINNER HOMEWORK (assigned by usagi-sensei): 1. fruits basket (for the heart). 2. cowboy bebop (SUBBED. i will know.). 3. FLCL (do NOT start with this one). report to me friday!! ganbatte!! (^_~)"}}, "end_homework_quiz": {"them": ["there is ALWAYS a quiz, malten-kun. the quiz is friday. the quiz is me asking 'did you cry' and the correct answer is yes.", "list is going on your wall right now. watch them IN ORDER. the order is load-bearing. study hard!! yamete!! (that means 'good luck')"], "end": true, "effect": {"type": "wall", "text": "MALTEN'S BEGINNER HOMEWORK (quiz edition): 1. fruits basket. 2. cowboy bebop (subbed!!). 3. FLCL (LAST. i mean it.). quiz friday: 'did you cry.' correct answer: yes. (^_~)"}}, "end_honorary": {"them": ["...you are lucky you are funny, malten-kun. FINE. by the power vested in me by MYSELF: i declare you an HONORARY member. you may attend. you may eat pocky. you may NOT touch the remote. never the remote.", "see you friday, baka-kun. (affectionate.) (mostly.) (⌒▽⌒)"], "end": true, "effect": {"type": "friend"}}}}, "brittany": {"opener": ["omg ok. OK. are you sitting down. sit down", "i am REDOING MY TOP 8. full restructure. there was an incident this week that i am handling with total diplomatic grace (i cried)", "and YOU are officially being interviewed for a slot!! this is huge. be normal but also dazzle me. xoxo"], "nodes": {"start": {"choices": [{"say": "ok first: what was the incident. who hurt you", "next": "drama"}, {"say": "interview me. i've been preparing for this my whole online life", "next": "q1_direct"}, {"say": "counterpoint: what if i told you top 8 slots are a social construct", "next": "philosophy_intro"}]}, "drama": {"them": ["i can't name names!! i'm a DIPLOMAT. naming names is how top 8 wars start", "but SOMEONE (tina) moved me to slot 7 and i found out from a COMMENT on emily's page. seven!!! i have a glitter cursor because of her!!!"], "choices": [{"say": "you said tina", "next": "tina_slip"}, {"say": "slot 7?? you're a top 2 experience at absolute minimum", "next": "q1_flattered"}, {"say": "maybe the real top 8 is the friends we made along the way", "next": "philosophy_intro"}]}, "tina_slip": {"them": ["i did NOT say tina. you heard wind. the glitter heard nothing and neither did you <3", "ANYWAY. question one of your interview: a friend moves you to slot 7. no warning. no comment. what is your move"], "choices": [{"say": "post a vague away message and wait to be asked what's wrong. classic deterrence", "next": "q2"}, {"say": "honestly? nothing. i've never once checked where i am on anyone's page", "next": "consultant_offer"}, {"say": "assume they're going through something and bring them a capri sun", "next": "q2_kind"}]}, "q1_flattered": {"them": ["a top 2 experience... i'm putting that in my profile quote. don't fight me on this <3", "ok question one of your official interview: a friend moves you to slot 7. no warning. no comment. what do you do"], "choices": [{"say": "post a vague away message and wait to be asked what's wrong. classic deterrence", "next": "q2"}, {"say": "nothing. i genuinely would not check", "next": "philosophy_fascinated"}, {"say": "assume they're going through something and bring them a capri sun", "next": "q2_kind"}]}, "q1_direct": {"them": ["ok!! love the confidence. the gel pen is out. this is official now", "question one: a friend moves you to slot 7. no warning. no comment. NOTHING. what do you do"], "choices": [{"say": "post a vague away message and wait to be asked what's wrong. classic deterrence", "next": "q2"}, {"say": "nothing. i genuinely would not check", "next": "philosophy_fascinated"}, {"say": "assume they're going through something and bring them a capri sun", "next": "q2_kind"}]}, "philosophy_intro": {"them": ["um??? excuse me??? i keep receipts on THIRTY-ONE top 8s and nobody has ever said anything like that to me", "explain. slowly. use small words. my worldview is wobbling like a card table o_o"], "choices": [{"say": "ranking friends is like ranking sunsets. why would you number a sunset", "next": "philosophy_fascinated"}, {"say": "everyone i like is in slot 1 of my heart. the page order is just decoration", "next": "philosophy_fascinated"}, {"say": "ok honestly i said it to sound deep. interview me for real", "next": "q1_direct"}]}, "philosophy_fascinated": {"them": ["o_o i need a minute. i keep receipts on thirty-one top 8s and it never once occurred to me that a person could just... not rank", "but wait. if slots don't matter. then when tina moved me to 7... it meant NOTHING?? do you know what this philosophy could do for morale on this entire website"], "choices": [{"say": "exactly. tina holds no power here. the top 8 is a mirror, brittany", "next": "consultant_offer"}, {"say": "ok it obviously meant a little. slot 7 is still a scandal. i'd riot", "next": "q2_alt"}]}, "q2": {"them": ["a vague away message. cold. strategic. deterrence. i have chills and it is not the body glitter", "question two: ONE slot left. your actual cousin, or a stranger with a genuinely incredible profile song. who gets it"], "choices": [{"say": "song guy. my family already knows i love them. the top 8 is about the ART", "next": "q3_campaign"}, {"say": "cousin. blood is thicker than autoplay", "next": "q3_campaign"}, {"say": "neither. the slot stays empty. mystery is power", "next": "q3_mystery"}]}, "q2_alt": {"them": ["THANK you. it meant a little!! it always means a little!! ok the interview is back on and you're going straight to the final round", "one slot open. slot 3. it's you, or a guy named brad who has never once commented 'cool pic', or a write-in candidate. make your case"], "choices": [{"say": "i comment 'cool pic' on everything. even the blurry ones. ESPECIALLY the blurry ones", "next": "end_slot3"}, {"say": "write-in: patrick. he fixed your profile song embed in march and never bragged once", "next": "end_patrick"}]}, "q2_kind": {"them": ["a capri sun. diplomacy in a pouch :') your emotional intelligence is off the charts and i am moved", "final question. one slot is basically yours. but first: anything to say to the committee? (the committee is me) (i'm also the snacks)"], "choices": [{"say": "only that i'll never move you below slot 4. that's not a promise, it's a treaty", "next": "end_slot3"}, {"say": "give my slot to patrick. he fixed your profile song embed in march and never bragged once", "next": "patrick_pivot"}, {"say": "retire the committee. slots for everyone. glitter for all", "next": "consultant_offer"}]}, "q3_campaign": {"them": ["ok?? decisive?? tina could NEVER. fine. FINAL question", "slot 3 is open. it's between you and a guy named brad who has never once commented 'cool pic' on anything. why should it be you"], "choices": [{"say": "because i comment 'cool pic' on everything. even the blurry ones. ESPECIALLY the blurry ones", "next": "end_slot3"}, {"say": "brad who? exactly. next question", "next": "end_slot3"}, {"say": "honestly? give it to patrick. he fixed your profile song embed in march and never said a word", "next": "end_patrick"}]}, "q3_mystery": {"them": ["an EMPTY SLOT. on PURPOSE. that's not a top 8, that's psychological warfare, and i am OBSESSED O_O", "forget the interview. i don't need you IN the top 8. i need you BEHIND it. be my official top 8 consultant. you advise, i sparkle, tina loses sleep"], "choices": [{"say": "i accept. first ruling: the empty slot stays empty. let them wonder", "next": "end_consultant"}, {"say": "counterquestion: can consultants also hold slots. asking for me", "next": "end_slot3"}]}, "consultant_offer": {"them": ["that might be the most powerful thing anyone has ever typed at me. and i once got a comment from an actual band o_o", "new plan. forget the interview. i need you BEHIND the top 8, not in it. official top 8 consultant. no pay, INFINITE prestige. you advise, i sparkle, diplomacy happens"], "choices": [{"say": "i accept. first ruling: never confirm anyone's number out loud. power lives in the fog", "next": "end_consultant"}, {"say": "tempting. but i want to EARN a slot like everybody else", "next": "end_slot3"}]}, "patrick_pivot": {"them": ["patrick..... the profile song embed..... he never even asked for credit ;_;", "wait. you're giving up your slot?? for PATRICK??? this is the most diplomatic thing i have ever witnessed and i watch top 8s for a LIVING (hobby)"], "choices": [{"say": "he earned it. put him at 3. i'll be fine in the extended universe", "next": "end_patrick"}, {"say": "yes but keep it low key. patrick embarrasses easily", "next": "end_patrick"}]}, "end_slot3": {"them": ["it's done. you're in SLOT 3. that's above my cousin, and my cousin WILL hear about this at thanksgiving", "do not make me regret this. comment on my new pics within the hour. welcome to the inner circle xoxo <3 ~*~"], "end": true, "effect": {"type": "wall", "text": "OFFICIAL ANNOUNCEMENT: malten has been promoted to SLOT 3 of my top 8!! interviewed personally. answered with grace. some people (not naming names) (tina) could take notes. xoxo <3 ~*~"}}, "end_consultant": {"them": ["official top 8 consultant. no salary, full prestige, effective immediately. adding you as a friend RIGHT NOW so we have a secure line", "first assignment: find tina a slot that says 'i forgive you' but also 'i will never forget'. take your time. this is delicate <3"], "end": true, "effect": {"type": "friend"}}, "end_patrick": {"them": ["done. patrick is in slot 3. i commented 'welcome to the show' and he replied 'ok cool' which for patrick is basically weeping", "you gave up a top 8 slot for another man's song embed. this is the most beautiful thing to ever happen on this website. i'm telling everyone (diplomatically)"], "end": true, "effect": {"type": "bulletin", "subject": "FAITH IN OURSPACE: RESTORED!!!", "text": "you guys. malten gave up a TOP 8 SLOT so patrick could have it. PATRICK. of the song embeds. i have never witnessed such diplomacy in all my years (16). hug your top 8 today. xoxo brittany <3"}}}}, "sephiroth": {"opener": ["malten. cease all activity. the appointed hour has arrived.", "i have completed part 14 of my 40-part essay series and achieved clarity: you have never taken the OFFICIAL MATERIA ALIGNMENT QUIZ. this ends tonight.", "three questions. answer truly, for the lifestream records all. do you accept your Destiny (the quiz) (the quiz is your Destiny)"], "nodes": {"start": {"choices": [{"say": "hit me with the quiz. i was born ready. or at least born", "next": "q1"}, {"say": "will this go on my permanent record", "next": "record"}, {"say": "weren't you supposed to be doing the dishes", "next": "dishes"}]}, "q1": {"them": ["so be it. steel yourself. the masamune (yardstick, electrical tape) rests against my desk as witness.", "QUESTION ONE. you possess a single elixir. the finest item you will ever own. do you hoard it until the end of time like a COWARD... or do you USE IT"], "choices": [{"say": "use it. immediately. probably on a random tuesday for no reason. items are for living", "next": "q2_use"}, {"say": "i'd save it for a friend who needs it someday. the right moment finds you", "next": "q2_friend"}, {"say": "secret third option: sell it. an elixir is just money wearing a costume", "next": "q2_sell"}]}, "record": {"them": ["everything goes on your permanent record. the lifestream records ALL. it recorded this conversation before either of us was born.", "QUESTION ONE. you possess a single elixir. the finest item you will ever own. do you hoard it until the end of time like a COWARD... or do you USE IT"], "choices": [{"say": "use it. immediately. probably on a random tuesday for no reason. items are for living", "next": "q2_use"}, {"say": "i'd save it for a friend who needs it someday. the right moment finds you", "next": "q2_friend"}, {"say": "secret third option: sell it. an elixir is just money wearing a costume", "next": "q2_sell"}]}, "dishes": {"them": ["the dishes are DONE, malten. i completed them at 4:15 with terrible purpose. even now the drying rack stands as monument.", "do not deflect. QUESTION ONE. you possess a single elixir. your finest item. do you hoard it until the end of time like a COWARD... or do you USE IT"], "choices": [{"say": "use it. immediately. probably on a random tuesday for no reason. items are for living", "next": "q2_use"}, {"say": "i'd save it for a friend who needs it someday. the right moment finds you", "next": "q2_friend"}, {"say": "secret third option: sell it. an elixir is just money wearing a costume", "next": "q2_sell"}]}, "q2_use": {"them": ["'on a random tuesday.' you would burn the finest fuel of life simply to feel warm. the lifestream shudders. i confess... i respect it.", "QUESTION TWO. the marshes. before you rises the MIDGAR ZOLOM. forty feet of serpent and judgment. do you FLEE... or do you stay, and PERCEIVE IT"], "choices": [{"say": "flee. obviously. i respect the snake by not dying to it", "next": "q3_cid"}, {"say": "perceive it. how often does life hand you a forty foot snake to really look at", "next": "q3_aerith"}, {"say": "neither. i tame it and charge admission. zolom rides, two gil", "next": "q3_shop"}]}, "q2_friend": {"them": ["...you would save it. for another. do you comprehend what you have typed. i must step away from the keyboard. (i have returned. mom needed the phone.)", "QUESTION TWO. the marshes. the MIDGAR ZOLOM rises before you. forty feet of serpent and judgment. do you FLEE... or do you stay, and PERCEIVE IT"], "choices": [{"say": "perceive it. something that big deserves to be witnessed by somebody", "next": "q3_aerith"}, {"say": "flee, but respectfully. maybe wave goodbye", "next": "q3_cid"}, {"say": "i'd wonder what it's guarding. snakes guard treasure. that's just economics", "next": "q3_shop"}]}, "q2_sell": {"them": ["SELL the elixir??? that option does not exist on the quiz. i am consulting my notes. the notes are silent. the LIFESTREAM is silent.", "very well... merchant. QUESTION TWO. the MIDGAR ZOLOM. forty feet of serpent. do you FLEE... or do you stay, and PERCEIVE IT"], "choices": [{"say": "appraise it. forty feet of snake is worth something to somebody", "next": "q3_shop"}, {"say": "perceive it. some things are beyond money. not many things. but some", "next": "q3_aerith"}, {"say": "flee. you can't spend money if a snake eats you", "next": "q3_cid"}]}, "q3_cid": {"them": ["the pattern emerges. the lifestream stirs against my monitor. one question remains, and it is the heaviest.", "FINAL QUESTION. someone you care about is about to do something brave and foolish. do you TELL THEM how you feel... or do you grumble and quietly help them anyway"], "choices": [{"say": "grumble and help. you show feelings by building someone an airship, not by talking", "next": "end_cid"}, {"say": "tell them. life is too short to grumble. sephiroth are you writing this down", "next": "end_aerith"}]}, "q3_aerith": {"them": ["i have administered this quiz to eleven residents. none have answered as you answer. i am composed. i am entirely composed.", "FINAL QUESTION. the party must one day go on without you. do you tell them everything, a true farewell... or slip away quietly so their grief cannot find you"], "choices": [{"say": "slip away quietly. they'd understand eventually. the flowers would explain", "next": "end_aerith"}, {"say": "no goodbyes. i'd secretly fix all their gear first so they find out a week later", "next": "end_cid"}, {"say": "i'd leave a note saying 'back in 10' and return in 9. suspense builds loyalty", "next": "end_shop"}]}, "q3_shop": {"them": ["remarkable. the quiz has never bent in this direction. i am recording your answers on loose leaf. the GOOD loose leaf.", "FINAL QUESTION. a stranger enters your shop at closing time. broke. desperate. needs one (1) potion to save a friend. name your price."], "choices": [{"say": "free. but they tell everyone my shop saved the day. that's not charity, that's marketing", "next": "end_shop"}, {"say": "free, no strings. some transactions are between you and the lifestream", "next": "end_aerith"}, {"say": "i close the shop and go save the friend myself. some things you handle in person", "next": "end_cid"}]}, "end_cid": {"them": ["it is decided. the lifestream has spoken and i am merely its keyboard.", "you are a CID, malten. gruff exterior. airship interior. you would fix the engine AND the friendship. wear it with honor. part 15 of my essay series will cover this."], "end": true, "effect": {"type": "wall", "text": "OFFICIAL MATERIA ALIGNMENT RESULTS: i hereby declare malten a CID. grumbles on the outside, airship on the inside. loyalty rating: tremendous. it is recorded in the lifestream. — xXSephirothXx"}}, "end_aerith": {"them": ["...i have administered this quiz eleven times. i have never once issued this result. understand the weight of what i am about to say.", "you are, and i do not say this lightly, an AERITH. i am not crying. the masamune (yardstick) is crying. sending a friend request so the lifestream knows we walked this path together."], "end": true, "effect": {"type": "friend"}}, "end_shop": {"them": ["astonishing. you have broken the quiz, and in breaking it, perfected it.", "you are THE SHOPKEEPER OF WALL MARKET. commerce with a soul. the heroes arrive, you provide, the plot continues BECAUSE of you. this is among the highest honors i can bestow. the town must be told."], "end": true, "effect": {"type": "bulletin", "subject": "MATERIA ALIGNMENT RESULTS: A MERCHANT OF DESTINY WALKS AMONG US", "text": "hear me. i administered the OFFICIAL MATERIA ALIGNMENT QUIZ to malten and the lifestream rendered a verdict never before witnessed: THE SHOPKEEPER OF WALL MARKET. supply. demand. Destiny. reflect on this. — xXSephirothXx (part 16 of the essay series will elaborate)"}}}}},
 
-  dialogueStateFor(pid) {
+  /* ---- conversation engine v2 ----
+     MS.trees is the registry (TREE id → { id, with, opener, nodes }); the 6 built-ins above are registered as
+     `<residentId>_original`, content packs add the rest (several per resident). state.dialogueState is keyed by tree
+     id: { node, done?, pend?, fx?, at, end }. At most one tree per resident and two overall are in progress; who is
+     next is a weighted draw, paced by state.dlgNextAt. Effects on ANY node are queued in state.fxQueue and fired by
+     the pump (see queueEffects / pumpEffects), so a reload never loses them. */
+  convo: {},            // live typing state per resident while an exchange plays out: { you: 'text so far' | null, them: bool }
+  drafts: {},           // unsent free-text per thread, so a repaint doesn't eat what malten was typing
+
+  dialogueStateFor(treeId) {
     this.state.dialogueState = this.state.dialogueState || {};
-    return this.state.dialogueState[pid];
+    return this.state.dialogueState[treeId];
   },
 
-  startDialogue(pid) {
-    const tree = this.dialogues[pid];
-    if (!tree || !this.people[pid]) return;
-    this.state.dialogueState = this.state.dialogueState || {};
-    if (this.state.dialogueState[pid]) return; // already started or finished
+  // tree ids with a conversation in progress. A tree that is not in the registry right now (its pack file failed
+  // validation, or the pack did not load) is simply not active — its progress is kept for when it comes back.
+  activeTreeIds() {
+    const ds = this.state.dialogueState = this.state.dialogueState || {};
+    return Object.keys(ds).filter(tid => {
+      const d = ds[tid], tree = this.trees[tid];
+      return d && !d.done && tree && this.people[tree.with] && tree.nodes[d.node];
+    });
+  },
+
+  // the tree id of the scripted conversation in progress with this resident, or null (BuddyList's ✉ uses this)
+  activeTreeFor(pid) {
+    return this.activeTreeIds().find(tid => this.trees[tid].with === pid) || null;
+  },
+
+  // Start one tree (by tree id; a resident id starts their next unplayed tree). Refuses if it was already played,
+  // the resident isn't loaded, or they already have a scripted conversation open.
+  startDialogue(treeId) {
+    if (!this.trees[treeId] && this.people[treeId]) {
+      const mine = Object.keys(this.trees).filter(tid => this.trees[tid].with === treeId && !this.dialogueStateFor(tid));
+      treeId = mine.find(tid => tid.endsWith('_original')) || mine[0];
+    }
+    const tree = this.trees[treeId];
+    if (!tree) return false;
+    const pid = tree.with;
+    const ds = this.state.dialogueState = this.state.dialogueState || {};
+    if (!this.people[pid] || ds[treeId] || this.activeTreeFor(pid)) return false;
     if (window.Presence) Presence.ensureOnline(pid); // they sign on before messaging you
-    this.state.dialogueState[pid] = { node: 'start' };
+    ds[treeId] = { node: 'start', at: Date.now() };
     const t = this.state.inbox[pid] = this.state.inbox[pid] || { unread: false, msgs: [] };
-    tree.opener.forEach(m => t.msgs.push({ who: 'them', text: m, time: this.now() }));
+    tree.opener.forEach((m, i) => {
+      const msg = { who: 'them', text: m, time: this.now() };
+      if (i === 0 && t.msgs.length) msg.sep = 1;      // a later tree with the same resident reads as a new conversation
+      t.msgs.push(msg);
+    });
+    t.at = Date.now();
     t.unread = true;
+    this.queueEffects(tree, 'start');
+    // a second conversation may overlap this one, but not for a few minutes
+    this.state.dlgNextAt = Date.now() + (4 + Math.random() * 4) * 60000;
     this.save();
     Sfx.beep(660, .09, 'sine', .05); Sfx.beep(880, .12, 'sine', .05, .1);
     this.toast(this.people[pid].name + ' sent you a message…', 'inbox', pid);
     if (this.view.page === 'inbox') this.render();
     this.paintTabs();
+    if (window.BuddyList) BuddyList.paint();
+    return true;
   },
 
+  // Called by the pump every few seconds, by ticks, and by the boot timer: starts the next conversation when one is
+  // due (state.dlgNextAt), fewer than two are open, and somebody eligible has an unplayed tree.
   maybeStartNextDialogue() {
-    if (this.typingLock) return;
-    const ds = this.state.dialogueState = this.state.dialogueState || {};
-    if (Object.values(ds).some(d => !d.done)) return; // one conversation at a time
-    const next = Object.keys(this.dialogues).find(pid => !ds[pid]);
-    if (next) this.startDialogue(next);
+    const st = this.state;
+    if (this.typingLock || Date.now() < (st.dlgNextAt || 0)) return false;
+    const active = this.activeTreeIds();
+    if (active.length >= 2) return false;
+    const ds = st.dialogueState;
+    const busy = new Set(active.map(tid => this.trees[tid].with));
+    const played = {}, lastEnd = {};
+    Object.keys(ds).forEach(tid => {
+      const tree = this.trees[tid];
+      if (!tree) return;
+      played[tree.with] = (played[tree.with] || 0) + 1;
+      lastEnd[tree.with] = Math.max(lastEnd[tree.with] || 0, ds[tid].end || 0);
+    });
+    // unplayed trees, grouped by resident; nobody who is mid-conversation (scripted or typed) gets a new one
+    const byRes = {};
+    Object.keys(this.trees).forEach(tid => {
+      const pid = this.trees[tid].with;
+      const t = st.inbox[pid];
+      if (ds[tid] || !this.people[pid] || busy.has(pid) || this.convo[pid]) return;
+      if (t && t.at && Date.now() - t.at < 45000) return;
+      (byRes[pid] = byRes[pid] || []).push(tid);
+    });
+    const who = Object.keys(byRes);
+    if (!who.length) return false;
+    // prefer people malten is friends with or has actually talked to; spread trees across the cast before repeating
+    const pid = this.pickWeighted(who, id => {
+      const t = st.inbox[id];
+      let w = st.friends.includes(id) ? 4 : st.pending.includes(id) ? 2 : st.denied.includes(id) ? 0.3 : 0.6;
+      if (t && t.msgs.some(m => m.who === 'you')) w += 3;
+      else if (t && t.msgs.length) w += 1;
+      w *= Math.pow(0.55, played[id] || 0);
+      if (lastEnd[id] && Date.now() - lastEnd[id] < 10 * 60000) w *= 0.1;
+      return w;
+    });
+    const mine = byRes[pid];
+    const treeId = mine.find(tid => tid.endsWith('_original')) || mine[Math.floor(Math.random() * mine.length)];
+    return this.startDialogue(treeId);
   },
 
-  async chooseOption(pid, choice) {
-    if (this.typingLock) return;
+  // malten picked a reply: type it out old-school, then let them answer (playNode)
+  async chooseOption(treeId, choice) {
+    const tree = this.trees[treeId];
+    const ds = this.dialogueStateFor(treeId);
+    if (!tree || !ds || ds.done || !choice) return;
+    const pid = tree.with;
+    // one reply is typed at a time (typingLock), and each conversation waits for its own answer (convo[pid]) —
+    // but while THEY are typing, malten is free to answer the other conversation
+    if (this.typingLock || this.convo[pid]) return;
+    const t = this.state.inbox[pid] = this.state.inbox[pid] || { unread: false, msgs: [] };
+    const c = this.convo[pid] = { you: '', them: false };
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
     this.typingLock = true;
-    const tree = this.dialogues[pid];
-    const ds = this.dialogueStateFor(pid);
-    const t = this.state.inbox[pid];
+    let sent = false;
+    try {
+      const text = String(choice.say || '');
+      for (let i = 1; i <= text.length; i++) {
+        c.you = text.slice(0, i);
+        this.paintTyper(pid);
+        if (text[i - 1] !== ' ') Sfx.beep(1500 + Math.random() * 900, .014, 'square', .02);
+        await sleep(26 + Math.random() * 38);
+      }
+      await sleep(250);
+      Sfx.beep(520, .06, 'sine', .05); Sfx.beep(784, .1, 'sine', .05, .07); // sent!
+      t.msgs.push({ who: 'you', text, time: this.now() });
+      t.at = Date.now();
+      ds.node = choice.next;
+      ds.pend = 1;                                    // their answer is owed (survives a reload, see playNode)
+      this.save();
+      sent = true;
+    } finally {
+      c.you = null;
+      this.typingLock = false;
+      if (!sent) delete this.convo[pid];
+    }
+    // repaint this thread — or whichever one is open, its buttons were waiting on the typing lock
+    if (this.view.page === 'inbox') this.render();
+    await this.playNode(treeId);
+  },
 
-    // remove the choice buttons, type the reply out old-school
-    const choicesEl = document.querySelector('.ms-choices');
-    if (choicesEl) choicesEl.remove();
-    const box = document.querySelector('.ms-thread');
-    let typer = null;
-    if (box && this.view.page === 'inbox' && this.view.arg === pid) {
+  // Their side of the exchange for the node the conversation is on: "is typing…", each line, then the node's
+  // effects, then the ending if it is one. Also resumes an answer that a page reload interrupted (ds.pend).
+  async playNode(treeId) {
+    const tree = this.trees[treeId];
+    const ds = this.dialogueStateFor(treeId);
+    if (!tree || !ds || ds.done) return;
+    const pid = tree.with;
+    if (this.convo[pid] && this.convo[pid].playing) return;
+    const c = this.convo[pid] = this.convo[pid] || { you: null, them: false };
+    c.playing = true;
+    const t = this.state.inbox[pid] = this.state.inbox[pid] || { unread: false, msgs: [] };
+    const open = () => this.view.page === 'inbox' && this.view.arg === pid;
+    try {
+      const nodeName = ds.node;
+      const node = tree.nodes[nodeName];
+      const them = (node && node.them) || [];
+      // skip lines that already arrived before an interruption
+      const tail = t.msgs.slice(t.msgs.map(m => m.who).lastIndexOf('you') + 1).map(m => m.text);
+      let k = 0;
+      while (k < them.length && tail.includes(them[k])) k++;
+      if (window.Presence) Presence.ensureOnline(pid);
+      let toasted = false;
+      for (; k < them.length; k++) {
+        await this.showTypingIndicator(pid, 1300 + Math.random() * 1700);
+        t.msgs.push({ who: 'them', text: them[k], time: this.now() });
+        t.at = Date.now();
+        Sfx.beep(880, .1, 'sine', .05);
+        this.save();
+        if (open()) this.render();
+        else {
+          t.unread = true; this.paintTabs(); if (this.view.page === 'inbox' && !this.view.arg) this.render();
+          // malten is reading the other conversation (or elsewhere): one toast per answer, not per line
+          if (!toasted) { toasted = true; this.toast(this.people[pid].name + ' replied…', 'inbox', pid); }
+        }
+      }
+      if (node) this.queueEffects(tree, nodeName);
+      delete ds.pend;
+      if (!node || node.end || !(node.choices || []).length) {
+        ds.done = true;
+        ds.end = Date.now();
+        // a human gap before anybody else pipes up
+        this.state.dlgNextAt = Date.now() + (90 + Math.random() * 120) * 1000;
+      }
+      this.save();
+    } finally {
+      delete this.convo[pid];
+      if (open() || (this.view.page === 'inbox' && !this.view.arg)) this.render();
+      if (window.BuddyList) BuddyList.paint();
+    }
+  },
+
+  // the reply being typed, drawn under the open thread (re-created if the thread was repainted mid-word)
+  paintTyper(pid) {
+    const c = this.convo[pid];
+    if (!c || c.you == null || this.view.page !== 'inbox' || this.view.arg !== pid) return;
+    const box = document.querySelector('#ms-content .ms-thread');
+    if (!box) return;
+    let typer = document.querySelector('#ms-content .ms-typer');
+    if (!typer) {
+      const choices = document.querySelector('#ms-content .ms-choices');
+      if (choices) choices.remove();
       typer = this.el('div', 'ms-typer');
       box.insertAdjacentElement('afterend', typer);
     }
-    const text = choice.say;
-    for (let i = 1; i <= text.length; i++) {
-      if (typer && typer.isConnected) {
-        typer.textContent = text.slice(0, i) + '▌';
-      }
-      if (text[i - 1] !== ' ') Sfx.beep(1500 + Math.random() * 900, .014, 'square', .02);
-      await new Promise(r => setTimeout(r, 26 + Math.random() * 38));
-    }
-    await new Promise(r => setTimeout(r, 250));
-    if (typer) typer.remove();
-    Sfx.beep(520, .06, 'sine', .05); Sfx.beep(784, .1, 'sine', .05, .07); // sent!
-
-    t.msgs.push({ who: 'you', text, time: this.now() });
-    ds.node = choice.next;
-    this.save();
-    if (this.view.page === 'inbox' && this.view.arg === pid) this.render();
-
-    // their side: typing indicator, then each reply
-    const node = tree.nodes[choice.next];
-    if (node && node.them) {
-      for (const msg of node.them) {
-        await this.showTypingIndicator(pid, 1300 + Math.random() * 1700);
-        t.msgs.push({ who: 'them', text: msg, time: this.now() });
-        Sfx.beep(880, .1, 'sine', .05);
-        this.save();
-        if (this.view.page === 'inbox' && this.view.arg === pid) this.render();
-        else { t.unread = true; this.paintTabs(); }
-      }
-    }
-    if (node && node.end) {
-      ds.done = true;
-      this.save();
-      setTimeout(() => this.applyDialogueEffect(pid, node.effect), 2500);
-      setTimeout(() => this.maybeStartNextDialogue(), 90000 + Math.random() * 90000);
-    }
-    this.typingLock = false;
-    if (this.view.page === 'inbox' && this.view.arg === pid) this.render();
+    typer.textContent = c.you + '▌';
   },
 
   showTypingIndicator(pid, ms) {
     return new Promise(res => {
-      const box = document.querySelector('.ms-thread');
-      if (box && this.view.page === 'inbox' && this.view.arg === pid) {
-        const ind = this.el('div', 'ms-dm them ms-typing-ind', this.people[pid].name + ' is typing');
-        ind.appendChild(this.el('span', 'ms-dots', ' …'));
-        box.appendChild(ind);
-        box.scrollTop = box.scrollHeight;
-        setTimeout(() => { ind.remove(); res(); }, ms);
-      } else {
-        setTimeout(res, ms);
-      }
+      const c = this.convo[pid] = this.convo[pid] || { you: null, them: false };
+      c.them = true;
+      this.paintTypingInd(pid);
+      setTimeout(() => {
+        c.them = false;
+        if (this.view.page === 'inbox' && this.view.arg === pid) document.querySelectorAll('#ms-content .ms-typing-ind').forEach(e => e.remove());
+        res();
+      }, ms);
     });
   },
 
-  applyDialogueEffect(pid, eff) {
-    if (!eff || !this.people[pid]) return;
-    const p = this.people[pid];
+  paintTypingInd(pid) {
+    const box = document.querySelector('#ms-content .ms-thread');
+    if (!box || !this.people[pid] || this.view.page !== 'inbox' || this.view.arg !== pid || box.querySelector('.ms-typing-ind')) return;
+    const ind = this.el('div', 'ms-dm them ms-typing-ind', this.people[pid].name + ' is typing');
+    ind.appendChild(this.el('span', 'ms-dots', ' …'));
+    box.appendChild(ind);
+    box.scrollTop = box.scrollHeight;
+  },
+
+  // A node was reached: line its effects up in SAVED state so a reload can't lose them. `effects: [...]` on any node
+  // (or the legacy single `effect`). Default timing: public effects a few seconds apart, a `dm` 30–90s later;
+  // an explicit `delay` (seconds) wins. `from` defaults to the tree's resident.
+  queueEffects(tree, nodeName) {
+    const node = tree.nodes[nodeName];
+    const ds = this.dialogueStateFor(tree.id);
+    if (!node || !ds) return;
+    const list = Array.isArray(node.effects) ? node.effects : (node.effect ? [node.effect] : []);
+    if (!list.length || (ds.fx || []).includes(nodeName)) return;   // a node's effects fire once per playthrough
+    ds.fx = (ds.fx || []).concat(nodeName);
+    const q = this.state.fxQueue = this.state.fxQueue || [];
+    let stagger = 2500;
+    list.forEach(e => {
+      if (!e || typeof e !== 'object' || !e.type) return;
+      let delay;
+      if (typeof e.delay === 'number' && e.delay >= 0) delay = e.delay * 1000;
+      else if (e.type === 'dm') delay = (30 + Math.random() * 60) * 1000;
+      else { delay = stagger; stagger += 4000 + Math.random() * 5000; }
+      q.push({ at: Date.now() + delay, from: e.from || tree.with, tree: tree.id, e: { type: e.type, to: e.to, text: e.text, subject: e.subject } });
+    });
+    this.save();
+  },
+
+  // Fire at most ONE due effect per call (the pump calls this every 4s), so effects that came due together — or
+  // while the page was closed — still land a few seconds apart. A `dm` waits while its sender is mid-conversation.
+  pumpEffects() {
+    const q = this.state.fxQueue;
+    if (!q || !q.length) return false;
+    const now = Date.now();
+    let best = -1;
+    q.forEach((x, i) => {
+      if (!x || !x.e || x.at > now) return;
+      if (x.e.type === 'dm' && (this.activeTreeFor(x.from) || this.convo[x.from])) return;
+      if (best < 0 || x.at < q[best].at) best = i;
+    });
+    if (best < 0) return false;
+    const x = q.splice(best, 1)[0];
+    this.save();
+    this.applyDialogueEffect(x.from, x.e);
+    return true;
+  },
+
+  // Make one effect happen now. `from` is who acts. Unknown residents (content that hasn't landed) are skipped.
+  // Feed items use the shapes renderFeed already knows: status / wall (from → to, 'you' = malten) / bulletin.
+  applyDialogueEffect(from, eff) {
+    const p = this.people[from];
+    if (!eff || !p) return false;
+    const now = this.now();
+    const text = eff.text;
+    const toMalten = !eff.to || eff.to === 'you' || eff.to === 'malten';
     if (eff.type === 'friend') {
-      if (!this.state.friends.includes(pid)) {
-        this.state.friends.push(pid);
-        this.state.pending = this.state.pending.filter(x => x !== pid);
-        this.toast(p.name + ' added you as a friend!');
-        Sfx.tada();
-      }
-    } else if (eff.type === 'wall' && eff.text) {
-      this.state.myWall.push({ from: pid, text: eff.text, time: this.now() });
-      this.pushFeed({ type: 'wall', from: pid, to: 'you', text: eff.text, time: this.now() });
+      if (this.state.friends.includes(from)) return false;
+      this.state.friends.push(from);
+      this.state.pending = this.state.pending.filter(x => x !== from);
+      this.state.denied = this.state.denied.filter(x => x !== from);
+      this.toast(p.name + ' added you as a friend!', 'profile', from);
+      Sfx.tada();
+      if (this.view.page === 'requests') this.render();
+    } else if (!text) {
+      return false;
+    } else if (eff.type === 'status') {
+      this.pushFeed({ type: 'status', from, text, time: now });
+      this.toast(p.name + ' just updated their status…', 'feed');
+    } else if (eff.type === 'wallpost' && !toMalten) {
+      if (!this.people[eff.to] || eff.to === from) return false;
+      this.pushWall(eff.to, { from, text, time: now });
+      this.pushFeed({ type: 'wall', from, to: eff.to, text, time: now });
+      this.toast(p.name + ' wrote on ' + this.people[eff.to].name + '\'s wall…', 'profile', eff.to);
+      if (this.view.page === 'profile' && this.view.arg === eff.to) this.render();
+    } else if (eff.type === 'wall' || eff.type === 'wallpost') {
+      this.state.myWall.push({ from, text, time: now });
+      this.pushFeed({ type: 'wall', from, to: 'you', text, time: now });
       this.toast(p.name + ' posted on your wall!', 'home');
-    } else if (eff.type === 'bulletin' && eff.text) {
-      this.state.bulletins.push({ from: pid, subject: eff.subject || ('bulletin from ' + p.name), body: eff.text, time: this.now(), reposts: 0 });
-      this.pushFeed({ type: 'bulletin', from: pid, text: eff.text, time: this.now() });
-      this.toast(p.name + ' posted a bulletin about you!', 'bulletins');
+      if (this.view.page === 'home') this.render();
+    } else if (eff.type === 'bulletin') {
+      this.state.bulletins.push({ from, subject: eff.subject || ('bulletin from ' + p.name), body: text, time: now, reposts: 0 });
+      this.pushFeed({ type: 'bulletin', from, text: (eff.subject ? eff.subject + ' — ' : '') + text, time: now });
+      this.toast(p.name + ' posted a new bulletin!', 'bulletins');
+      if (this.view.page === 'bulletins') this.render();
+    } else if (eff.type === 'dm') {
+      this.markDmUsed(from, text);
+      this.deliverDm(from, text, { unprompted: true });
+    } else {
+      return false;
     }
     this.save();
-    if (this.view.page === 'home' || this.view.page === 'bulletins') this.render();
+    return true;
+  },
+
+  // engine heartbeat (every 4s, started by startAmbient): delayed effects, then maybe the next conversation
+  pump() {
+    this.pumpEffects();
+    this.maybeStartNextDialogue();
   },
 
   /* ============================ RENDERING ============================ */
+  // Pages: feed | home (My Page) | blog (no arg = malten's Blog tab, arg = a resident's blog) |
+  // guestbook | browse | chat | requests | inbox | bulletins | profile (id) | pics (id) | videos (id) | post (MS.posts index)
   show(page, arg) {
     this.stopSong();
+    if (window.Spotify) Spotify.stop();
     if (this.view && this.view.page === 'chat' && page !== 'chat' && window.Chat) Chat.onClose();
-    if (this.view && (this.view.page !== page || this.view.arg !== arg)) {
-      this.hist.push({ ...this.view });
+    const moved = !this.view || this.view.page !== page || this.view.arg !== arg;
+    if (this.view && moved) {
+      this.hist.push({ ...this.view, scroll: this.scrollBox().scrollTop });   // so back() can drop you where you were
       if (this.hist.length > 20) this.hist.shift();
     }
     this.view = { page, arg };
     this.render();
+    if (moved) this.scrollBox().scrollTop = 0;      // a new page starts at its top, not wherever the last one was scrolled
   },
 
   back() {
     const prev = this.hist.pop();
     this.stopSong();
+    if (window.Spotify) Spotify.stop();
     if (this.view && this.view.page === 'chat' && window.Chat) Chat.onClose();
-    this.view = prev || { page: 'feed', arg: null };
+    this.view = prev ? { page: prev.page, arg: prev.arg } : { page: 'feed', arg: null };
     this.render();
+    this.scrollBox().scrollTop = (prev && prev.scroll) || 0;
+  },
+
+  // the element that actually scrolls OurSpace (the window body); a harmless stand-in before build()
+  scrollBox() {
+    return document.querySelector('.window[data-app="myspace"] .window-body') || { scrollTop: 0 };
+  },
+
+  // Scroll a named My Page box into view and flash it — e.g. MS.jumpTo('spotify').
+  // Safe to call right after show('home'), from any page, and with anchors that don't exist.
+  jumpTo(anchor, tries = 0) {
+    if (!this.state) return;
+    if (!tries && this.view.page !== 'home') this.show('home');
+    const el = [...document.querySelectorAll('#ms-content [data-anchor]')].find(e => e.dataset.anchor === anchor);
+    if (!el) {
+      if (tries < 8) setTimeout(() => this.jumpTo(anchor, tries + 1), 150);   // My Page may still be painting
+      return;
+    }
+    const box = this.scrollBox();
+    const align = behavior => {
+      if (!el.isConnected) return;
+      if (box.scrollHeight > box.clientHeight + 4) {
+        const top = box.scrollTop + el.getBoundingClientRect().top - box.getBoundingClientRect().top;
+        box.scrollTo({ top: Math.max(0, top - 60), behavior });               // 60px: clear the sticky tab bar
+      } else if (el.scrollIntoView) el.scrollIntoView({ block: 'center' });   // stacked mobile layout: the page scrolls
+    };
+    align('smooth');
+    // pictures above the box may still be loading and nudging it down: settle once more, without animation
+    setTimeout(() => align('auto'), 900);
+    el.classList.remove('ms-flash');
+    void el.offsetWidth;                                                      // restart the animation if it's mid-flash
+    el.classList.add('ms-flash');
+    setTimeout(() => el.classList.remove('ms-flash'), 2600);
   },
 
   render() {
     const root = document.getElementById('ms-content');
     if (!root) return;
-    root.innerHTML = '';
+    // a feed-over-feed refresh keeps its children: renderFeed re-uses the cards of playing videos, and detaching
+    // a YouTube <iframe> would reload it. Every other page change starts from an empty root.
+    if (!(this.view.page === 'feed' && root.dataset.page === 'feed')) root.innerHTML = '';
+    root.dataset.page = this.view.page;
     if (this.view.page === 'feed') this.state.unreadFeed = 0;
+    if (this.view.page === 'guestbook') localStorage.setItem('malten_gb_seen', '1');
     this.paintTabs();
     const { page, arg } = this.view;
     if (page === 'feed') this.renderFeed(root);
     else if (page === 'home') this.renderProfile(root, null);
     else if (page === 'profile') this.renderProfile(root, arg);
+    else if (page === 'blog') { if (arg) this.renderResidentBlog(root, arg); else this.renderBlog(root); }
+    else if (page === 'guestbook') this.renderGuestbook(root);
+    else if (page === 'pics' || page === 'videos') this.renderMedia(root, arg, page);
+    else if (page === 'post') this.renderPostPage(root, arg);
     else if (page === 'browse') this.renderBrowse(root);
     else if (page === 'chat') {
       if (window.Chat) Chat.onOpen(root);
@@ -1032,8 +1586,19 @@ const MS = {
     badge('inbox', inbN);
     badge('feed', this.state.unreadFeed || 0);
     document.querySelectorAll('.ms-tab').forEach(t =>
-      t.classList.toggle('on', t.dataset.page === this.view.page ||
-        (t.dataset.page === 'home' && this.view.page === 'home')));
+      t.classList.toggle('on', t.dataset.page === this.view.page &&
+        !(t.dataset.page === 'blog' && this.view.arg)));      // a resident's blog isn't malten's Blog tab
+    // NEW! marker on the Guestbook tab until this visitor has opened it (or already signed)
+    const gb = document.querySelector('.ms-tab[data-page="guestbook"]');
+    if (gb) gb.classList.toggle('ms-tab-new', !localStorage.getItem('malten_gb_seen') && !(window.Guestbook && Guestbook.hasSigned()));
+  },
+
+  // one gentle, one-time toast pointing visitors who haven't found the guestbook at it
+  nudgeGuestbook() {
+    if (localStorage.getItem('malten_gb_nudged') || localStorage.getItem('malten_gb_seen')) return;
+    if ((window.Guestbook && Guestbook.hasSigned()) || this.view.page === 'guestbook') return;
+    localStorage.setItem('malten_gb_nudged', '1');
+    this.toast('📖 psst — the guestbook is open!! sign it, it takes 10 seconds (malten reads every entry twice)', 'guestbook');
   },
 
   /* ---------- profile (id === null means YOUR page) — classic 2006 anatomy ---------- */
@@ -1045,11 +1610,10 @@ const MS = {
       zodiac: 'Aries', status: 'Single', hereFor: 'Friends, Networking',
       mood: 'vibing :]', lastLogin: 'you are literally here right now',
       theme: { bg: '#f3eefb', fg: '#000', accent: '#9370DB' },
-      blogTitle: 'Top 10 Favorite Things',
-      about: 'hey, i\'m marc. welcome to my little corner of the internet. i built this whole desktop myself and i basically live here now. i only sleep 4 hrs so there\'s plenty of time to add more windows. poke around, play some minesweeper, sign my wall, stay a while.',
+      blogTitle: (this.blogPosts[0] || {}).title,
+      about:'hey, i\'m marc. welcome to my little corner of the internet. i built this whole desktop myself and i basically live here now. i only sleep 4 hrs so there\'s plenty of time to add more windows. poke around, play some minesweeper, sign my wall, stay a while.',
       meet: 'anyone who signs the wall first. also whoever keeps viewing my profile at 3:33 AM (zorp).',
-      interests: { General: 'video games, the yard, melee, vinyls, building this desktop at 4am', Music: 'top 5 is live in my player, keep up', Movies: 'anything with a training montage', Television: 'the CRT wes gave me (it only shows static)', Books: 'the FF7 Ultimania (borrowed from sephiroth, never returning it)', Heroes: 'todd, probably' },
-      song: { name: 'malten_theme.mid', pattern: [0, 0, 7, 5, 3, 5, 7, 10], bpm: 140 },
+      interests: { General: 'video games, the yard, melee, vinyls, building this desktop at 4am', Music: 'my real top songs are in the box right above this one. keep up', Movies: 'anything with a training montage', Television: 'the CRT wes gave me (it only shows static)', Books: 'the FF7 Ultimania (borrowed from sephiroth, never returning it)', Heroes: 'todd, probably' },
       decor: ['assets/deco_welcome_banner.gif', 'assets/deco_new.gif'],
       friends: this.state.friends,
     } : this.people[id];
@@ -1088,15 +1652,7 @@ const MS = {
     }
 
     const prof = this.el('div', 'ms-profile');
-    prof.style.background = p.theme.bg;
-    if (p.bgTile) prof.style.background = `${p.theme.bg} url(${p.bgTile}) repeat`;
-    prof.style.color = p.theme.fg;
-    prof.style.setProperty('--ms-accent', p.theme.accent);
-    // content panels sit on a translucent plate so tiled backgrounds stay readable
-    const hex = (p.theme.bg || '#000').replace('#', '');
-    const lum = hex.length >= 6 ? (parseInt(hex.slice(0, 2), 16) * 0.299 + parseInt(hex.slice(2, 4), 16) * 0.587 + parseInt(hex.slice(4, 6), 16) * 0.114) : 0;
-    prof.style.setProperty('--ms-panel', lum < 128 ? 'rgba(0,0,0,0.78)' : 'rgba(255,255,255,0.88)');
-    if (p.font) prof.style.fontFamily = p.font;
+    this.skin(prof, p);
 
     /* ================= LEFT COLUMN ================= */
     const left = this.el('div', 'ms-left');
@@ -1122,12 +1678,22 @@ const MS = {
 
     const viewMy = this.el('div', 'ms-viewmy');
     viewMy.appendChild(document.createTextNode('View My: '));
+    // residents: their own media posts / blog pages. you: My Pictures, the feed's media, the Blog tab.
     const pics = this.el('a', null, 'Pics'); pics.href = '#';
-    pics.addEventListener('click', e => { e.preventDefault(); this.feedFilter = 'media'; this.show('feed'); });
+    pics.addEventListener('click', e => {
+      e.preventDefault();
+      if (!me) this.show('pics', id);
+      else if (window.WM && WM.wins.has('pics')) WM.open('pics');
+      else { this.feedFilter = 'media'; this.show('feed'); }
+    });
     const vids = this.el('a', null, 'Videos'); vids.href = '#';
-    vids.addEventListener('click', e => { e.preventDefault(); this.feedFilter = 'media'; this.show('feed'); });
+    vids.addEventListener('click', e => {
+      e.preventDefault();
+      if (!me) this.show('videos', id);
+      else { this.feedFilter = 'media'; this.show('feed'); }
+    });
     const blog = this.el('a', null, 'Blog'); blog.href = '#';
-    blog.addEventListener('click', e => { e.preventDefault(); this.show('bulletins'); });
+    blog.addEventListener('click', e => { e.preventDefault(); if (me) this.show('blog'); else this.show('blog', id); });
     viewMy.append(pics, document.createTextNode(' | '), vids, document.createTextNode(' | '), blog);
     idcard.appendChild(viewMy);
     idcard.appendChild(this.el('div', 'ms-moodline', 'Mood: ' + (p.mood || '')));
@@ -1174,10 +1740,10 @@ const MS = {
     } else {
       link('🎨', 'Edit My Page', () => WM.open('customize'));
       link('✏', 'Update Status', () => this.show('feed'));
-      link('📖', 'Guestbook', () => WM.open('guestbook'));
+      link('📖', 'Guestbook', () => this.show('guestbook'));
       link('✨', 'Glitter Studio', () => WM.open('glitter'));
       link('🖼', 'My Pictures', () => WM.open('pics'));
-      link('📁', 'My Blog', () => WM.open('blog'));
+      link('📁', 'My Blog', () => this.show('blog'));
       link('🎛', 'Control Panel', () => WM.open('settings'));
       link('🔌', 'Sign Out', () => this.toast('you can\'t sign out. you live here.'));
     }
@@ -1189,24 +1755,30 @@ const MS = {
     urlbox.appendChild(this.el('div', 'ms-urltext', 'http://ourspace.ring/' + (me ? 'malten' : id)));
     left.appendChild(urlbox);
 
-    // music: the embedded player box (yours is the whole MaltenAmp)
+    // music: residents get their profile song; My Page leads with malten's real Spotify top songs
+    // (the list itself — live / cached / snapshot / napping — is Spotify in apps.js)
     const musicBox = this.el('div', 'ms-section ms-musicbox');
-    musicBox.appendChild(this.el('div', 'ms-boxtitle', poss + ' Music Player'));
-    if (me && window.Amp && Amp.mount) {
-      const host = this.el('div', 'ms-amphost');
-      Amp.mount(host);
+    if (me) {
+      musicBox.dataset.anchor = 'spotify';          // MS.jumpTo('spotify')
+      const mt = this.el('div', 'ms-boxtitle', 'malten\'s Top Songs');
+      mt.appendChild(this.el('span', 'ms-boxsub', '  [this month, via spotify]'));
+      musicBox.appendChild(mt);
+      const host = this.el('div', 'sp-box');
+      if (window.Spotify) Spotify.mount(host);
+      else host.appendChild(this.el('div', 'sp-nap', '💤 the spotify server is napping. check back later.'));
       musicBox.appendChild(host);
-    } else {
+    } else musicBox.appendChild(this.el('div', 'ms-boxtitle', poss + ' Music Player'));
+    if (p.song) {      // on My Page: only once you've picked one in Edit My Page
       const songBtn = this.el('button', 'btn98 ms-songbtn');
       songBtn.id = 'ms-song-btn';
       songBtn.textContent = '▶ ' + this.songLabel(p);
       songBtn.addEventListener('click', () => {
         if (this.songTimer || this.songAudio) this.stopSong();
-        else this.playSongObj(p.song);
+        else { if (window.Spotify) Spotify.stop(); this.playSongObj(p.song); }
       });
       musicBox.appendChild(songBtn);
       musicBox.appendChild(this.el('div', 'ms-songnote', 'profile song — plays on loop like it\'s 2006'));
-    }
+    } else if (!me) musicBox.appendChild(this.el('div', 'ms-songnote', 'no profile song. the silence is a statement.'));
     left.appendChild(musicBox);
 
     // Interests table
@@ -1229,7 +1801,8 @@ const MS = {
     detBox.appendChild(this.el('div', 'ms-boxtitle', poss + ' Details'));
     const det = this.el('table', 'ms-interests');
     [['Status', p.status || 'Single'], ['Here for', p.hereFor || 'Friends'], ['Hometown', p.hometown || p.loc || '—'],
-     ['Zodiac Sign', p.zodiac || '—'], ['Occupation', p.occupation || (me ? 'building this website' : 'professional ourspace user')]].forEach(([k, v]) => {
+     ['Zodiac Sign', p.zodiac || '—'], ...(me ? [['Enneagram', 'type 3']] : []),
+     ['Occupation', p.occupation || (me ? 'building this website' : 'professional ourspace user')]].forEach(([k, v]) => {
       const tr = this.el('tr');
       tr.appendChild(this.el('td', 'ms-int-k', k));
       tr.appendChild(this.el('td', null, v));
@@ -1248,34 +1821,106 @@ const MS = {
     bt.appendChild(this.el('span', 'ms-boxsub', '  [Subscribe to this Blog]'));
     blogBox.appendChild(bt);
     const blogBody = this.el('div', 'ms-blogentry');
+    const entries = me ? [] : this.blogSorted(p);
+    const blogLink = (label, fn) => {
+      const all = this.el('a', null, label); all.href = '#';
+      all.addEventListener('click', e => { e.preventDefault(); fn(); });
+      blogBody.appendChild(all);
+    };
     if (me) {
-      [['top-10-favorites.html', 'Top 10 Favorite Things'], ['First-blog.html', 'Why do we create?'], ['blog-hub.html', '[View All Blog Entries]']].forEach(([href, label]) => {
-        const a = this.el('a', null, label); a.href = href; a.target = '_blank';
+      // malten's real posts (MS.blogPosts) — the whole list lives on the Blog tab
+      const post = this.blogPosts[0];
+      if (post) {
+        const a = this.el('a', 'ms-blogtitle', post.title); a.href = post.href;
         blogBody.appendChild(a);
-      });
+        blogBody.appendChild(this.el('div', 'ms-blogexcerpt', [post.date, post.blurb].filter(Boolean).join(' — ')));
+      } else blogBody.appendChild(this.el('div', 'ms-blogexcerpt', 'nothing posted yet. the drafts folder is thriving though.'));
+      blogLink(`[View All Blog Entries (${this.blogPosts.length})]`, () => this.show('blog'));
+    } else if (entries.length) {
+      // newest real entry: title, date + mood, a short excerpt
+      const latest = entries[0];
+      const a = this.el('a', 'ms-blogtitle', latest.title || 'untitled'); a.href = '#';
+      a.addEventListener('click', e => { e.preventDefault(); this.show('blog', id); });
+      blogBody.appendChild(a);
+      const meta = [latest.date, latest.mood && 'mood: ' + latest.mood].filter(Boolean).join(' · ');
+      if (meta) blogBody.appendChild(this.el('div', 'ms-boxsub', meta));
+      blogBody.appendChild(this.el('div', 'ms-blogexcerpt', this.excerpt(latest.body, 180)));
+      blogLink(`[View All Blog Entries (${entries.length})]`, () => this.show('blog', id));
     } else {
       const title = p.blogTitle || ((p.statuses && p.statuses[0]) || 'untitled (just vibes)');
       const a = this.el('a', null, title); a.href = '#';
       a.addEventListener('click', e => { e.preventDefault(); this.toast(p.name + '\'s blog is "under construction" (since 2006).'); });
       blogBody.appendChild(a);
       blogBody.appendChild(this.el('span', 'ms-boxsub', ' (view more)'));
-      const all = this.el('a', null, '[View All Blog Entries]'); all.href = '#';
-      all.addEventListener('click', e => { e.preventDefault(); this.show('bulletins'); });
-      blogBody.appendChild(all);
+      blogLink('[View All Blog Entries]', () => this.show('blog', id));
     }
     blogBox.appendChild(blogBody);
     right.appendChild(blogBox);
 
     // Blurbs
-    const aboutBox = this.el('div', 'ms-section');
+    const aboutBox = this.el('div', 'ms-section ms-blurbs');
     aboutBox.appendChild(this.el('div', 'ms-boxtitle', poss + ' Blurbs'));
+    if (me) {      // the glitter wordmark from the old desktop "About Me" window lives here now
+      const ag = this.el('img', 'ms-aboutgif'); ag.src = 'about.gif'; ag.alt = 'About Me';
+      aboutBox.appendChild(ag);
+    }
     aboutBox.appendChild(this.el('div', 'ms-abouthead', 'About me:'));
     aboutBox.appendChild(this.el('p', null, p.about));
+    if (p.aboutMore) aboutBox.appendChild(this.el('p', null, p.aboutMore));
     aboutBox.appendChild(this.el('div', 'ms-abouthead', 'Who I\'d like to meet:'));
     aboutBox.appendChild(this.el('p', null, p.meet || 'anyone who leaves a comment first. i\'m shy (i\'m not).'));
     right.appendChild(aboutBox);
 
+    // Survey (the bulletin-survey kind, pinned to the profile)
+    const qa = (p.survey && Array.isArray(p.survey.qa)) ? p.survey.qa.filter(Boolean) : [];
+    if (qa.length) {
+      const sv = this.el('div', 'ms-section ms-survey');
+      sv.appendChild(this.el('div', 'ms-boxtitle', p.survey.title || poss + ' Survey'));
+      const tbl = this.el('table', 'ms-interests');
+      qa.forEach(pair => {
+        const [q, a] = Array.isArray(pair) ? pair : [pair.q, pair.a];
+        const tr = this.el('tr');
+        tr.appendChild(this.el('td', 'ms-survey-q', q));
+        tr.appendChild(this.el('td', null, a));
+        tbl.appendChild(tr);
+      });
+      sv.appendChild(tbl);
+      right.appendChild(sv);
+    }
+
     if (me) {
+      // the guestbook teaser: the latest entries + a button nobody can miss
+      const gbBox = this.el('div', 'ms-section ms-gbteaser');
+      gbBox.dataset.anchor = 'guestbook';
+      gbBox.appendChild(this.el('div', 'ms-boxtitle', '📖 sign my guestbook!!'));
+      const gbRow = this.el('div', 'ms-gbteaser-row');
+      const gbSign = this.el('img', 'ms-gbsign'); gbSign.src = 'assets/deco_guestbook_sign.gif'; gbSign.alt = 'sign the guestbook';
+      const gbMid = this.el('div', 'ms-gbteaser-mid');
+      const gbList = this.el('div', 'ms-gbteaser-list');
+      const signed = !!(window.Guestbook && Guestbook.hasSigned());
+      const fillGb = () => {
+        gbList.innerHTML = '';
+        (window.Guestbook ? Guestbook.latest(3) : []).forEach(m => {
+          const row = this.el('div', 'ms-gbentry');
+          row.appendChild(this.el('b', null, m.screenName + ': '));
+          row.appendChild(document.createTextNode(m.message));
+          if (m.timestamp) row.appendChild(this.el('span', 'ms-time', ' ' + new Date(m.timestamp).toLocaleDateString()));
+          gbList.appendChild(row);
+        });
+      };
+      fillGb();
+      if (window.Guestbook && !Guestbook.msgs) Guestbook.fetchAll().then(() => { if (gbList.isConnected) fillGb(); });
+      gbMid.appendChild(this.el('div', 'ms-gbteaser-lead', signed
+        ? 'you signed it!! ♥ go see who else stopped by:'
+        : 'real visitors, real messages. the latest ones:'));
+      gbMid.appendChild(gbList);
+      const cta = this.el('button', 'btn98 ms-gbcta', signed ? '📖 read the guestbook (or sign it again)' : '✍ SIGN THE GUESTBOOK!!');
+      [gbSign, cta].forEach(x => x.addEventListener('click', () => { Sfx.click(); this.show('guestbook'); }));
+      gbMid.appendChild(cta);
+      gbRow.append(gbSign, gbMid);
+      gbBox.appendChild(gbRow);
+      right.appendChild(gbBox);
+
       const vitals = this.el('div', 'ms-section');
       vitals.appendChild(this.el('div', 'ms-boxtitle', 'malten\'s vitals'));
       const row = this.el('div', 'ms-mypage-row');
@@ -1291,27 +1936,22 @@ const MS = {
       const top8 = this.el('div', 'ms-section');
       top8.appendChild(this.el('div', 'ms-boxtitle', 'malten\'s Top 8'));
       const grid = this.el('div', 'top8-grid');
-      this.top8.forEach(f => {
+      this.myTop8().forEach((fid, i) => {
         const card = this.el('div', 'friend');
-        const im = this.el('img'); im.src = f.img; im.alt = f.label;
-        card.appendChild(im);
-        card.appendChild(this.el('span', 'fname', f.label));
+        card.appendChild(this.avatarEl(fid));           // their real avatar (clicking it opens the profile too)
+        card.appendChild(this.el('span', 'fname', this.people[fid].name));
+        card.title = `#${i + 1} — ${this.people[fid].name}`;
         card.style.cursor = 'pointer';
-        card.addEventListener('click', () => f.id ? this.show('profile', f.id) : this.toast('that\'s you. hi.'));
+        card.addEventListener('click', e => { if (e.target.tagName !== 'IMG') this.show('profile', fid); });
         grid.appendChild(card);
       });
       top8.appendChild(grid);
-      top8.appendChild(this.el('p', 'ms-mypage-links', 'if you\'re not on here, that\'s a you problem'));
+      const t8note = this.el('p', 'ms-mypage-links', 'if you\'re not on here, that\'s a you problem (brittany: slot 9 is all yours). ');
+      const t8edit = this.el('a', null, '[rearrange in Edit My Page]'); t8edit.href = '#';
+      t8edit.addEventListener('click', e => { e.preventDefault(); WM.open('customize'); });
+      t8note.appendChild(t8edit);
+      top8.appendChild(t8note);
       right.appendChild(top8);
-
-      const music = this.el('div', 'ms-section');
-      music.appendChild(this.el('div', 'ms-boxtitle', 'malten\'s top 5 this month (live from spotify)'));
-      const ml = this.el('div', 'ms-mypage-links');
-      const tracks = (window.Amp && Amp.tracks && Amp.tracks.length) ? Amp.tracks : null;
-      if (tracks) tracks.forEach((t, i) => ml.appendChild(this.el('div', null, `${i + 1}. ${t.name} — ${t.artist}`)));
-      else ml.appendChild(this.el('div', null, 'loading from the player…'));
-      music.appendChild(ml);
-      right.appendChild(music);
 
       const badges = this.el('div', 'ms-section');
       badges.appendChild(this.el('div', 'ms-boxtitle', 'my buttons'));
@@ -1430,6 +2070,229 @@ const MS = {
     }, 5000 + Math.random() * 6000);
   },
 
+  /* ---------- shared bits for profile-ish pages ---------- */
+  // paint an element in a resident's colors (theme, tiled background, readable panels, font)
+  skin(el, p) {
+    const th = p.theme || { bg: '#ffffff', fg: '#000000', accent: '#6699cc' };
+    el.style.background = th.bg;
+    if (p.bgTile) el.style.background = `${th.bg} url(${p.bgTile}) repeat`;
+    el.style.color = th.fg;
+    el.style.setProperty('--ms-accent', th.accent);
+    // content panels sit on a translucent plate so tiled backgrounds stay readable
+    const hex = (th.bg || '#000').replace('#', '');
+    const lum = hex.length >= 6 ? (parseInt(hex.slice(0, 2), 16) * 0.299 + parseInt(hex.slice(2, 4), 16) * 0.587 + parseInt(hex.slice(4, 6), 16) * 0.114) : 0;
+    el.style.setProperty('--ms-panel', lum < 128 ? 'rgba(0,0,0,0.78)' : 'rgba(255,255,255,0.88)');
+    if (p.font) el.style.fontFamily = p.font;
+  },
+
+  backBar(root) {
+    const barNav = this.el('div', 'ms-backbar');
+    const bk = this.el('button', 'btn98', '← back');
+    bk.addEventListener('click', () => this.back());
+    barNav.appendChild(bk);
+    root.appendChild(barNav);
+    return barNav;
+  },
+
+  excerpt(text, max) {
+    const s = String(text || '').replace(/\s+/g, ' ').trim();
+    if (s.length <= max) return s;
+    const cut = s.lastIndexOf(' ', max);
+    return s.slice(0, cut > max * 0.6 ? cut : max).trimEnd() + '…';
+  },
+
+  // a resident's blog entries ({ title, date, mood, body }), newest first. Dates are free-form
+  // strings: whatever Date.parse can't read keeps its authored order, after the dated ones.
+  blogSorted(p) {
+    const when = e => { const t = Date.parse(e.date); return isNaN(t) ? -Infinity : t; };
+    return ((p && Array.isArray(p.blog)) ? p.blog : []).filter(e => e && (e.title || e.body))
+      .map((e, i) => ({ e, i, t: when(e) }))
+      .sort((a, b) => (b.t - a.t) || (a.i - b.i)).map(x => x.e);
+  },
+
+  // one resident's media posts from MS.posts, with their index: kind 'pics' (photo/gif) or 'videos' (yt/video)
+  mediaOf(id, kind) {
+    const want = kind === 'videos' ? ['yt', 'video'] : ['photo', 'gif'];
+    return (this.posts || []).map((src, idx) => ({ src, idx })).filter(x => x.src.from === id && want.includes(x.src.kind));
+  },
+
+  /* ---------- Blog tab: malten's real posts (MS.blogPosts) ---------- */
+  renderBlog(root) {
+    root.appendChild(this.el('div', 'ms-pagetitle', '📝 malten\'s Blog — the real one, written by the real me'));
+    const page = this.el('div', 'ms-blogpage');
+    // same look as My Page (default purple, or whatever Edit My Page saved)
+    const mp = this.state.myProfile || {};
+    this.skin(page, { theme: mp.theme || { bg: '#f3eefb', fg: '#000', accent: '#9370DB' }, bgTile: mp.bgTile, font: mp.font });
+
+    const head = this.el('div', 'ms-section ms-bloghead');
+    const av = this.el('img', 'ms-avatar'); av.src = 'pfp.png'; av.alt = 'malten';
+    av.addEventListener('click', () => this.show('home'));
+    head.appendChild(av);
+    const hm = this.el('div', 'ms-bloghead-mid');
+    hm.appendChild(this.el('div', 'ms-name', 'malten\'s Blog'));
+    hm.appendChild(this.el('div', 'ms-tagline', 'long-form thoughts from the guy who built this desktop. each entry opens as its own page — hit 🏠 Home to come back.'));
+    const n = this.blogPosts.length;
+    hm.appendChild(this.el('div', 'ms-boxsub', `${n} ${n === 1 ? 'entry' : 'entries'} so far · subscribers: todd (he subscribes to everyone)`));
+    head.appendChild(hm);
+    page.appendChild(head);
+
+    this.blogPosts.forEach((post, i) => {
+      const card = this.el('div', 'ms-section ms-blogcard');
+      const bt = this.el('div', 'ms-boxtitle', post.date || 'blog entry');
+      if (i === 0) { const nw = this.el('img', 'deco-inline'); nw.src = 'assets/deco_new.gif'; nw.alt = 'NEW!'; nw.height = 16; bt.appendChild(nw); }
+      card.appendChild(bt);
+      const row = this.el('a', 'ms-blogcard-row'); row.href = post.href;
+      if (post.img) {
+        const im = this.el('img', 'ms-blogcard-img'); im.src = post.img; im.alt = '';
+        im.addEventListener('error', () => im.remove());
+        row.appendChild(im);
+      }
+      const mid = this.el('div', 'ms-blogcard-mid');
+      mid.appendChild(this.el('div', 'ms-blogpost-title', post.title));
+      if (post.blurb) mid.appendChild(this.el('div', 'ms-blogexcerpt', post.blurb));
+      mid.appendChild(this.el('div', 'ms-blogcard-more', 'read the whole thing »'));
+      row.appendChild(mid);
+      card.appendChild(row);
+      page.appendChild(card);
+    });
+    if (!n) page.appendChild(this.el('p', 'ms-empty', 'no posts yet. the drafts folder is thriving though.'));
+
+    const soon = this.el('div', 'ms-section ms-blogsoon');
+    const uc = this.el('img'); uc.src = 'assets/under_construction_sign.gif'; uc.alt = 'under construction'; uc.height = 50;
+    soon.appendChild(uc);
+    const sm = this.el('div');
+    sm.appendChild(this.el('b', null, 'more entries coming soon.'));
+    sm.appendChild(this.el('div', null, 'i have like nine drafts and zero discipline. subscribe (in your heart) and check back.'));
+    const hub = this.el('a', null, '→ open the full blog archive ←'); hub.href = 'blog-hub.html';
+    sm.appendChild(hub);
+    soon.appendChild(sm);
+    page.appendChild(soon);
+    root.appendChild(page);
+  },
+
+  /* ---------- a resident's blog page: show('blog', id) ---------- */
+  renderResidentBlog(root, id) {
+    const p = this.people[id];
+    this.backBar(root);
+    if (!p) { root.appendChild(this.el('p', 'ms-empty', 'this blog has been deleted. or never existed. hard to say.')); return; }
+    const poss = p.name + (p.name.endsWith('s') ? "'" : "'s");
+    const page = this.el('div', 'ms-blogpage');
+    this.skin(page, p);
+    const link = (label, fn) => {
+      const a = this.el('a', null, label); a.href = '#';
+      a.addEventListener('click', e => { e.preventDefault(); fn(); });
+      return a;
+    };
+
+    const entries = this.blogSorted(p);
+    const head = this.el('div', 'ms-section ms-bloghead');
+    head.appendChild(this.avatarEl(id, 54));
+    const hm = this.el('div', 'ms-bloghead-mid');
+    hm.appendChild(this.el('div', 'ms-name', poss + ' Blog'));
+    hm.appendChild(this.el('div', 'ms-tagline', '"' + p.tag + '"'));
+    const links = this.el('div', 'ms-boxsub', `${entries.length} ${entries.length === 1 ? 'entry' : 'entries'} · `);
+    links.append(link('[View Profile]', () => this.show('profile', id)), ' ',
+      link('[Subscribe]', () => this.toast('subscribed to ' + poss + ' blog. you will be notified never. (it\'s 2006.)')));
+    hm.appendChild(links);
+    head.appendChild(hm);
+    page.appendChild(head);
+
+    if (!entries.length) {
+      const none = this.el('div', 'ms-section ms-blogpost');
+      none.appendChild(this.el('div', 'ms-boxtitle', 'no entries yet'));
+      none.appendChild(this.el('div', 'ms-blogpost-body',
+        (p.blogTitle ? `"${p.blogTitle}" is still a draft. ` : '') + `${poss} blog has been "under construction" since 2006. leave a comment on their page and maybe they'll finish it.`));
+      page.appendChild(none);
+    }
+    entries.forEach(e => {
+      const post = this.el('div', 'ms-section ms-blogpost');
+      post.appendChild(this.el('div', 'ms-boxtitle', e.date || 'sometime in 2006'));
+      post.appendChild(this.el('div', 'ms-blogpost-title', e.title || 'untitled'));
+      if (e.mood) post.appendChild(this.el('div', 'ms-blogpost-mood', 'Current mood: ' + e.mood));
+      post.appendChild(this.el('div', 'ms-blogpost-body', e.body || ''));
+      const foot = this.el('div', 'ms-blogpost-foot', 'posted by ' + p.name + ' · ');
+      foot.append(link('Add Comment', () => this.show('profile', id)), ' · ', link('Send Message', () => this.show('inbox', id)));
+      post.appendChild(foot);
+      page.appendChild(post);
+    });
+    root.appendChild(page);
+  },
+
+  /* ---------- a resident's Pics / Videos: show('pics', id) / show('videos', id) ---------- */
+  renderMedia(root, id, kind) {
+    const p = this.people[id];
+    this.backBar(root);
+    if (!p) { root.appendChild(this.el('p', 'ms-empty', 'nobody by that name has uploaded anything. spooky.')); return; }
+    const poss = p.name + (p.name.endsWith('s') ? "'" : "'s");
+    const lists = { pics: this.mediaOf(id, 'pics'), videos: this.mediaOf(id, 'videos') };
+    const title = this.el('div', 'ms-pagetitle');
+    title.appendChild(this.avatarEl(id, 28));
+    title.appendChild(this.el('span', null, `${poss} ${kind === 'videos' ? 'Videos' : 'Pics'}`));
+    root.appendChild(title);
+
+    const chips = this.el('div', 'ms-feedbar');
+    [['pics', '📷 pics'], ['videos', '📼 videos']].forEach(([k, label]) => {
+      const b = this.el('button', 'btn98' + (k === kind ? ' on' : ''), `${label} (${lists[k].length})`);
+      // switching between the two isn't a new "place" — don't stack it in the back history
+      b.addEventListener('click', () => { if (k === kind) return; Sfx.click(); this.view = { page: k, arg: id }; this.render(); });
+      chips.appendChild(b);
+    });
+    root.appendChild(chips);
+
+    const list = lists[kind] || [];
+    if (!list.length) {
+      root.appendChild(this.el('p', 'ms-empty', kind === 'videos'
+        ? `${p.name} hasn't uploaded any videos yet. the camcorder is charging.`
+        : `${p.name} hasn't uploaded any pics yet. the camera phone is charging.`));
+      return;
+    }
+    const grid = this.el('div', 'ms-mediagrid');
+    list.forEach(({ src, idx }) => {
+      const cap = src.title || this.excerpt(src.caption, 70);
+      const tile = this.el('div', 'ms-mediatile');
+      tile.title = src.caption || cap;
+      const thumb = this.el('div', 'ms-mediathumb' + (src.kind === 'gif' ? ' gif' : ''));
+      const still = src.kind === 'yt' ? `https://i.ytimg.com/vi/${src.ytId}/mqdefault.jpg` : (src.kind === 'video' ? null : src.src);
+      if (still) { const im = this.el('img'); im.src = still; im.alt = ''; im.loading = 'lazy'; thumb.appendChild(im); }
+      else thumb.appendChild(this.el('span', 'ms-mediathumb-tape', '📼'));
+      if (kind === 'videos') thumb.appendChild(this.el('span', 'ms-mediaplay', '▶'));
+      tile.appendChild(thumb);
+      tile.appendChild(this.el('div', 'ms-mediacap', cap));
+      tile.addEventListener('click', () => {
+        // pictures open in the lightbox when it's around; everything else opens the post itself
+        if (kind === 'pics' && window.ImageViewer) ImageViewer.open(src.src, src.caption || cap);
+        else this.show('post', idx);
+      });
+      grid.appendChild(tile);
+    });
+    root.appendChild(grid);
+  },
+
+  /* ---------- one media post on its own page: show('post', index into MS.posts) ---------- */
+  renderPostPage(root, idx) {
+    this.backBar(root);
+    const src = (this.posts || [])[idx];
+    if (!src) { root.appendChild(this.el('p', 'ms-empty', 'that post got deleted. or todd tripped over the server again.')); return; }
+    // reuse the feed's copy when this post is already in the feed, so kudos + comments stay in sync;
+    // otherwise keep a session copy (it hasn't been "posted" yet as far as the feed is concerned)
+    this.loosePosts = this.loosePosts || {};
+    const item = this.state.feed.find(f => f.type === 'post' && f.postIdx === idx)
+      || (this.loosePosts[idx] = this.loosePosts[idx] || this.postFromSource(idx, 'from the archives'));
+    root.appendChild(this.renderPost(item));
+  },
+
+  /* ---------- Guestbook tab: the real guestbook (UI + storage are Guestbook in apps.js) ---------- */
+  renderGuestbook(root) {
+    root.appendChild(this.el('div', 'ms-pagetitle', '📖 malten\'s Guestbook — say hi, leave your mark'));
+    const page = this.el('div', 'ms-gbpage');
+    page.appendChild(this.el('p', 'ms-gbintro', 'this one is REAL: no bots, no todd. pick a screen name, say something nice, and it stays here for the next visitor. malten reads every entry at least twice.'));
+    const host = this.el('div', 'ms-gbhost');
+    page.appendChild(host);
+    root.appendChild(page);      // in the document first, so the guestbook can scroll itself to the newest entry
+    if (window.Guestbook && Guestbook.mount) Guestbook.mount(host);
+    else host.appendChild(this.el('p', 'ms-empty', 'the guestbook is out getting more pages. try again in a sec.'));
+  },
+
   /* ---------- activity feed ---------- */
   pushFeed(item) {
     this.state.feed.push(item);
@@ -1439,8 +2302,45 @@ const MS = {
     if (this.view.page === 'feed') this.render(); else this.paintTabs();
   },
 
+  // a comment lands on a RESIDENT's wall (state.walls[id]); capped so busy walls don't grow the save forever
+  pushWall(to, entry) {
+    const w = this.state.walls[to] = this.state.walls[to] || [];
+    w.push(entry);
+    if (w.length > 60) w.splice(0, w.length - 60);
+  },
+
+  // "show more" paging for long lists: renders `step` items into listEl now and appends a button after it that
+  // reveals the next batch in place (no repaint, so the scroll position holds). `key` remembers how far you got.
+  paged(listEl, key, items, step, renderItem) {
+    const shown = this.shown = this.shown || {};
+    const more = this.el('button', 'btn98 ms-more');
+    let n = 0;
+    const grow = upTo => {
+      for (; n < Math.min(upTo, items.length); n++) {
+        const node = renderItem(items[n], n);
+        if (node) listEl.appendChild(node);
+      }
+      shown[key] = n;
+      if (items.length > n) {
+        more.textContent = `▼ show more (${items.length - n} more)`;
+        if (!more.parentNode) listEl.insertAdjacentElement('afterend', more);
+      } else more.remove();
+    };
+    more.addEventListener('click', () => { Sfx.click(); grow(n + step); });
+    grow(Math.max(step, shown[key] || 0));
+  },
+
   renderFeed(root) {
-    root.appendChild(this.el('div', 'ms-pagetitle', 'The Feed — what everyone is up to'));
+    this.pruneOrphanPosts();
+    this.watchPlayers(root);
+    // render() empties root before calling us; renderPost then hands back the SAME card for a post whose video is
+    // running (see `players`). `put` appends in order, and if root still holds such a card it leaves it where it
+    // is — detaching an <iframe> reloads it.
+    const kept = new Set([...this.players.values()].map(p => p.card));
+    [...root.children].forEach(n => { if (!kept.has(n)) n.remove(); });
+    let at = root.firstChild;
+    const put = node => { if (node === at) at = at.nextSibling; else root.insertBefore(node, at); };
+    put(this.el('div', 'ms-pagetitle', 'The Feed — what everyone is up to'));
 
     const composer = this.el('div', 'ms-commentform');
     const inp = this.el('input');
@@ -1460,7 +2360,7 @@ const MS = {
     share.addEventListener('click', submit);
     inp.addEventListener('keypress', e => { if (e.key === 'Enter') submit(); });
     composer.append(inp, share);
-    root.appendChild(composer);
+    put(composer);
 
     const chips = this.el('div', 'ms-feedbar');
     [['all', 'everything'], ['media', '📷 photos & videos'], ['people', '💬 wall & statuses']].forEach(([key, label]) => {
@@ -1468,14 +2368,14 @@ const MS = {
       b.addEventListener('click', () => { this.feedFilter = key; Sfx.click(); this.render(); });
       chips.appendChild(b);
     });
-    root.appendChild(chips);
+    put(chips);
 
     const nameOf = id => id === 'you' ? 'malten (you)' : (this.people[id] ? this.people[id].name : id);
     const filter = this.feedFilter || 'all';
     this.state.feed.slice().reverse().forEach(item => {
       if (filter === 'media' && item.type !== 'post') return;
       if (filter === 'people' && item.type === 'post') return;
-      if (item.type === 'post') { root.appendChild(this.renderPost(item)); return; }
+      if (item.type === 'post') { put(this.renderPost(item)); return; }
       const row = this.el('div', 'ms-feeditem');
       row.appendChild(this.avatarEl(item.from === 'you' ? null : item.from, 40));
       const mid = this.el('div', 'ms-reqmid');
@@ -1498,15 +2398,62 @@ const MS = {
       if (g) { const im = this.el('img', 'ms-glitter'); im.src = g; im.alt = ''; mid.appendChild(im); }
       mid.appendChild(this.el('div', 'ms-time', item.time));
       row.appendChild(mid);
-      root.appendChild(row);
+      put(row);
     });
+    while (at) { const gone = at; at = at.nextSibling; gone.remove(); }     // kept cards that are no longer shown
+  },
+
+  // Saved feeds (localStorage) outlive edits to posts.js. Once per session: drop posts whose media was removed from
+  // MS.posts, and re-link the rest by src / ytId — the saved postIdx is only a position, and positions shift.
+  pruneOrphanPosts() {
+    if (this.postsChecked || !this.posts || !this.posts.length) return;     // posts.js not loaded: touch nothing
+    this.postsChecked = true;
+    const st = this.state, idxOf = {};
+    this.posts.forEach((p, i) => [p.ytId || p.src].concat(p.was || []).forEach(k => { idxOf[k] = i; }));
+    const seen = new Set();
+    st.feed = st.feed.slice().reverse().filter(f => {
+      if (f.type !== 'post' || typeof f.postIdx !== 'number') return true;   // statuses, walls, storyline photos (no postIdx)
+      const i = idxOf[f.ytId || f.src];
+      if (i === undefined || seen.has(i)) return false;                    // source is gone, or an older duplicate
+      seen.add(i);
+      f.postIdx = i;
+      if (this.posts[i].src) f.src = this.posts[i].src;                    // follow re-encodes (`was`)
+      return true;
+    }).reverse();
+    // postedIdx (what migrate/dripPost have used up) is positional too: when posts.js changed, re-derive it
+    let h = 0;
+    this.posts.forEach(p => { for (const c of (p.ytId || p.src || '')) h = (h * 31 + c.charCodeAt(0)) >>> 0; });
+    const sig = this.posts.length + ':' + h;
+    if (st.postsSig !== sig) { st.postsSig = sig; st.postedIdx = [...seen]; }
+    this.save();
+  },
+
+  // the posts.js entry behind a feed item — matched by ytId / src, never by the saved postIdx
+  postSource(item) {
+    return (this.posts || []).find(p => item.ytId ? p.ytId === item.ytId
+      : !!item.src && (p.src === item.src || (p.was || []).includes(item.src))) || null;
+  },
+
+  // a photo/gif whose file is gone gets the hotlink placeholder everybody's page had in 2006
+  mediaGone(src) {
+    const box = this.el('div', 'ms-gone');
+    box.appendChild(this.el('span', 'ms-gone-x', '✕'));
+    const txt = this.el('span');
+    txt.append(this.el('b', null, 'This image has been moved or deleted.'), this.el('br'),
+      this.el('i', null, (String(src || 'picture').split('/').pop()) + ' — hosted on ourbucket'));
+    box.appendChild(txt);
+    return box;
   },
 
   /* ---------- media posts ---------- */
   renderPost(item) {
+    // a post whose video is running keeps its card (and player) across feed re-renders
+    const live = this.players.get(item);
+    if (live) { live.refresh(); return live.card; }
     const rnd = arr => arr[Math.floor(Math.random() * arr.length)];
     const p = this.people[item.from];
     const card = this.el('div', 'ms-post');
+    const host = { card, refresh() {} };
 
     const head = this.el('div', 'ms-post-head');
     head.appendChild(this.avatarEl(item.from, 34));
@@ -1520,12 +2467,13 @@ const MS = {
     card.appendChild(this.el('div', 'ms-post-caption', item.caption));
 
     const media = this.el('div', 'ms-post-media');
-    if (item.kind === 'yt') media.appendChild(this.ytPlayer(item));
-    else if (item.kind === 'video') media.appendChild(this.ourtube(item));
+    if (item.kind === 'yt') media.appendChild(this.ytPlayer(item, host));
+    else if (item.kind === 'video') media.appendChild(this.ourtube(item, host));
     else {
       const img = this.el('img', item.kind === 'gif' ? 'gif' : '');
-      img.src = item.src; img.alt = ''; img.loading = 'lazy';
-      img.addEventListener('click', () => img.classList.toggle('big'));
+      img.addEventListener('error', () => media.replaceChildren(this.mediaGone(item.src)));
+      img.src = item.src || ''; img.alt = ''; img.loading = 'lazy';                 // '' → error → placeholder, no request
+      if (window.ImageViewer) ImageViewer.attach(img, String(item.src).split('/').pop());   // click → Win98 picture viewer
       media.appendChild(img);
     }
     card.appendChild(media);
@@ -1595,13 +2543,118 @@ const MS = {
       cbox.appendChild(form);
     };
     paintComments();
+    host.refresh = () => {                                                  // a kept card only needs new comments painted in
+      const n = (item.comments || []).length;
+      if (n === cbox.querySelectorAll('.ms-post-comment').length) return;
+      cBtn.textContent = `💬 comments (${n})`;
+      paintComments();
+    };
     cBtn.addEventListener('click', () => { item.commentsOpen = !item.commentsOpen; cbox.hidden = !item.commentsOpen; Sfx.click(); });
     card.appendChild(cbox);
     return card;
   },
 
+  /* ---------- players: plumbing shared by ytPlayer + ourtube ---------- */
+  // Started players: feed item -> { card, refresh(), pause(), stop() }. While a post is in here renderPost returns
+  // its existing card instead of building a new one, so a feed re-render (every ambient tick) can't kill the video.
+  players: new Map(),
+
+  watchPlayers(root) {
+    if (this.playerRoot === root) return;
+    this.playerRoot = root;
+    if (this.playerWatch) this.playerWatch.disconnect();
+    else document.addEventListener('app-close', e => { if (e.detail === 'myspace') this.players.forEach(p => p.pause()); });
+    // a card that is still detached once a render has finished: the user left the feed, or filtered the post out
+    this.playerWatch = new MutationObserver(() => this.players.forEach((p, item) => {
+      if (!p.card.isConnected) { p.stop(); this.players.delete(item); }
+    }));
+    this.playerWatch.observe(root, { childList: true, subtree: true });
+  },
+
+  // a player started playing: keep its card (handle) and pause every other player — one soundtrack at a time
+  playerOn(item, handle) {
+    this.players.forEach((p, it) => { if (it !== item) p.pause(); });
+    if (handle) this.players.set(item, handle);
+  },
+
+  // One volume for every player, remembered across reloads (localStorage `ourspace_volume`).
+  // level = 1-100 (the last audible level), muted = silenced without forgetting it. Pass an object to change it.
+  playerVolume(set) {
+    if (!this.vol) {
+      this.vol = { level: 70, muted: false };
+      try {
+        const s = JSON.parse(localStorage.getItem('ourspace_volume'));
+        if (s && s.level >= 1 && s.level <= 100) this.vol = { level: Math.round(s.level), muted: !!s.muted };
+      } catch { /* nothing saved yet */ }
+    }
+    if (set) {
+      Object.assign(this.vol, set);
+      try { localStorage.setItem('ourspace_volume', JSON.stringify(this.vol)); } catch { /* storage blocked */ }
+      document.querySelectorAll('.yt06-bar').forEach(b => { if (b.syncVolume) b.syncVolume(this.vol); });
+    }
+    return this.vol;
+  },
+
+  // The control bar both players use: play · seek · time · mute + volume · fullscreen.
+  // `on` = { toggle(), seek(fraction), full(), volume({ level, muted }) } supplied by the player.
+  playerBar(on) {
+    const bar = this.el('div', 'yt06-bar');
+    bar.innerHTML = '<button class="yt06-btn" data-act="play" title="Play / pause">▶</button><div class="yt06-track"><div class="yt06-fill"></div></div><span class="yt06-time">0:00 / 0:00</span><button class="yt06-btn" data-act="mute" title="Mute">🔊</button><span class="yt06-vol"><input type="range" min="0" max="100" step="1" aria-label="Volume" title="Volume"></span><button class="yt06-btn" data-act="full" title="Full screen">⛶</button>';
+    const fill = bar.querySelector('.yt06-fill'), timeEl = bar.querySelector('.yt06-time'), playBtn = bar.querySelector('[data-act="play"]');
+    const muteBtn = bar.querySelector('[data-act="mute"]'), range = bar.querySelector('input');
+    const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+    playBtn.addEventListener('click', () => on.toggle());
+    bar.querySelector('[data-act="full"]').addEventListener('click', () => on.full());
+    bar.querySelector('.yt06-track').addEventListener('click', e => {
+      const r = e.currentTarget.getBoundingClientRect();
+      on.seek(Math.max(0, Math.min(1, (e.clientX - r.left) / r.width)));
+    });
+    muteBtn.addEventListener('click', () => this.playerVolume({ muted: !this.playerVolume().muted }));
+    let grabbed = null;                                    // the level when the current drag began
+    range.addEventListener('input', () => {
+      if (grabbed === null) grabbed = this.playerVolume().level;
+      const x = +range.value;
+      // dragged all the way down = mute (remembering where it came from); anything above 0 unmutes
+      this.playerVolume(x > 0 ? { level: x, muted: false } : { level: grabbed, muted: true });
+    });
+    range.addEventListener('change', () => { grabbed = null; });
+    bar.syncVolume = v => {                                // runs on every bar on the page when the shared volume changes
+      const shown = v.muted ? 0 : v.level;
+      range.value = shown;
+      range.parentNode.style.setProperty('--v', shown + '%');
+      muteBtn.textContent = shown === 0 ? '🔇' : shown < 40 ? '🔉' : '🔊';
+      muteBtn.title = v.muted ? 'Unmute' : 'Mute';
+      on.volume(v);
+    };
+    bar.syncVolume(this.playerVolume());
+    return {
+      bar,
+      setPlaying(p) { playBtn.textContent = p ? '❚❚' : '▶'; },
+      setTime(t, dur) {
+        const d = isFinite(dur) && dur > 0 ? dur : 0;
+        fill.style.width = (d ? Math.min(100, t / d * 100) : 0) + '%';
+        timeEl.textContent = `${fmt(t || 0)} / ${fmt(d)}`;
+      },
+    };
+  },
+
+  // In-character failure card for a player screen — never a black box. `link` = [text, href or onclick] (optional).
+  playerDead(wrap, screen, msg, note, link) {
+    wrap.classList.add('dead');
+    wrap.querySelectorAll('.yt06-bar button, .yt06-bar input').forEach(b => { b.disabled = true; });
+    const box = this.el('div', 'yt06-dead');
+    box.append(this.el('div', 'yt06-dead-icon', '⚠'), this.el('b', null, msg), this.el('span', null, note));
+    if (link) {
+      const a = this.el('a', null, link[0]);
+      if (typeof link[1] === 'function') { a.href = '#'; a.addEventListener('click', e => { e.preventDefault(); link[1](); }); }
+      else { a.href = link[1]; a.target = '_blank'; a.rel = 'noopener noreferrer'; }
+      box.appendChild(a);
+    }
+    screen.replaceChildren(box);
+  },
+
   // YouTube, but it's 2006: gray chrome, click-to-load poster, fake control bar driven by the iframe API
-  ytPlayer(item) {
+  ytPlayer(item, host) {
     const wrap = this.el('div', 'yt06');
     const head = this.el('div', 'yt06-head');
     head.innerHTML = '<span class="yt06-logo">You<b>Tube</b></span><span class="yt06-tag">Broadcast Yourself™</span>';
@@ -1610,14 +2663,23 @@ const MS = {
 
     const screen = this.el('div', 'yt06-screen');
     const poster = this.el('img', 'yt06-poster');
-    poster.src = `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg`; poster.alt = '';
     const play = this.el('div', 'yt06-play', '▶');
     screen.append(poster, play);
     wrap.appendChild(screen);
 
-    const bar = this.el('div', 'yt06-bar');
-    bar.innerHTML = '<button class="yt06-btn" data-act="play">▶</button><div class="yt06-track"><div class="yt06-fill"></div></div><span class="yt06-time">0:00 / 0:00</span><button class="yt06-btn" data-act="mute">🔊</button><button class="yt06-btn" data-act="full">⛶</button>';
-    wrap.appendChild(bar);
+    let iframe = null, playing = false, dur = 0, cur = 0, ready = false, sent = 0, dead = false, abort = false, watchdog = 0;
+    const onYouTube = ['watch it on youtube.com instead', 'https://www.youtube.com/watch?v=' + item.ytId];
+    const cmd = (func, args) => { if (iframe && iframe.contentWindow) iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args: args || [] }), '*'); };
+    const ui = this.playerBar({
+      toggle: () => {
+        if (!iframe) return start();
+        if (playing) { cmd('pauseVideo'); playing = false; ui.setPlaying(false); } else resume();
+      },
+      seek: f => { if (iframe && dur) cmd('seekTo', [dur * f, true]); },
+      full: () => { if (iframe && iframe.requestFullscreen) Promise.resolve(iframe.requestFullscreen()).catch(() => {}); },
+      volume: v => { if (!ready) return; sent = Date.now(); cmd(v.muted ? 'mute' : 'unMute'); cmd('setVolume', [v.level]); },
+    });
+    wrap.appendChild(ui.bar);
 
     const rating = Math.max(1, Math.min(5, item.rating || 4));
     const meta = this.el('div', 'yt06-meta');
@@ -1626,92 +2688,203 @@ const MS = {
     wrap.appendChild(meta);
     wrap.appendChild(this.el('div', 'yt06-links', 'Share  |  Favorite  |  Add to Playlists  |  Flag'));
 
-    let iframe = null, playing = false, dur = 0;
-    const fill = bar.querySelector('.yt06-fill'), timeEl = bar.querySelector('.yt06-time'), playBtn = bar.querySelector('[data-act="play"]');
-    const cmd = (func, args) => { if (iframe && iframe.contentWindow) iframe.contentWindow.postMessage(JSON.stringify({ event: 'command', func, args: args || [] }), '*'); };
-    const fmt = s => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
+    const frameUrl = () => `https://www.youtube-nocookie.com/embed/${item.ytId}?autoplay=1&controls=0&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&iv_load_policy=3`
+      + (cur > 1 ? `&start=${Math.floor(cur)}` : '') + (this.playerVolume().muted ? '&mute=1' : '');
+    const fail = (msg, note, link) => {
+      dead = true; playing = false; iframe = null;
+      clearTimeout(watchdog);
+      window.removeEventListener('message', onMsg);
+      ui.setPlaying(false);
+      this.playerDead(wrap, screen, msg, note, link || onYouTube);
+    };
+    // nothing at all from the frame for 15s = offline, or the embed is blocked: say so instead of showing a void
+    const arm = () => {
+      clearTimeout(watchdog);
+      watchdog = setTimeout(() => fail('Could not connect to YouTube.', 'The tubes are clogged. Check your dial-up connection.',
+        ['try again', () => wrap.replaceWith(this.ytPlayer(item, host))]), 15000);
+    };
+    const onMsg = ev => {
+      if (!iframe || ev.source !== iframe.contentWindow) return;
+      let d; try { d = JSON.parse(ev.data); } catch { return; }
+      clearTimeout(watchdog);
+      if (d.event === 'onError') {
+        return d.info === 100 ? fail('This video has been removed by the user.', 'Sorry about that.')
+          : (d.info === 101 || d.info === 150) ? fail('This video is not available here.', 'Embedding disabled by request (or the video is gone).')
+          : fail('This video is currently unavailable.', 'YouTube error ' + d.info + '. Please try again in 2007.');
+      }
+      if (!ready) { ready = true; ui.bar.syncVolume(this.playerVolume()); }   // first sign of life: push our volume in
+      const info = d.info;
+      if (!info || typeof info !== 'object') return;
+      if (info.duration) dur = info.duration;
+      if (typeof info.currentTime === 'number') { cur = info.currentTime; ui.setTime(cur, dur); }
+      if (typeof info.playerState === 'number') {            // 1 playing · 3 buffering · 2 paused · 0 ended
+        const st = info.playerState;
+        if (st === 1 || st === 3) { if (!playing) { playing = true; ui.setPlaying(true); this.playerOn(item, live); } }
+        else if (st === 2 || st === 0) { playing = false; ui.setPlaying(false); if (st === 0) cur = 0; }
+      }
+      // volume changed from inside the frame (its keyboard shortcuts) — but not the echo of what we just sent
+      if ((typeof info.volume === 'number' || typeof info.muted === 'boolean') && Date.now() - sent > 1500) {
+        const v = this.playerVolume();
+        const level = typeof info.volume === 'number' ? Math.round(info.volume) : v.level;
+        const muted = typeof info.muted === 'boolean' ? info.muted : v.muted;
+        if (level !== v.level || muted !== v.muted) this.playerVolume(level > 0 ? { level, muted } : { muted: true });
+      }
+    };
+    const resume = () => { cmd('playVideo'); playing = true; ui.setPlaying(true); this.playerOn(item, live); };
     const start = () => {
-      if (iframe) { cmd('playVideo'); playing = true; playBtn.textContent = '❚❚'; return; }
+      if (dead || play.classList.contains('buffering')) return;
+      if (iframe) return resume();
       play.classList.add('buffering');
       play.textContent = 'buffering…';
+      playing = true; ui.setPlaying(true);
+      this.playerOn(item, live);                             // from here on the card survives re-renders
       setTimeout(() => {
+        play.classList.remove('buffering');
+        play.textContent = '▶';
+        if (dead || abort) { abort = false; playing = false; ui.setPlaying(false); return; }   // paused / left while "buffering"
         iframe = this.el('iframe');
-        iframe.src = `https://www.youtube-nocookie.com/embed/${item.ytId}?autoplay=1&controls=0&rel=0&modestbranding=1&enablejsapi=1&playsinline=1&iv_load_policy=3`;
         iframe.allow = 'autoplay; encrypted-media; fullscreen';
         iframe.allowFullscreen = true;
-        iframe.addEventListener('load', () => { try { iframe.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: item.ytId }), '*'); } catch { /* cross-origin quirk */ } });
-        screen.innerHTML = '';
-        screen.appendChild(iframe);
-        playing = true;
-        playBtn.textContent = '❚❚';
+        iframe.addEventListener('load', () => {
+          if (!iframe) return;
+          try {
+            iframe.contentWindow.postMessage(JSON.stringify({ event: 'listening', id: item.ytId }), '*');
+            cmd('addEventListener', ['onError']);
+          } catch { /* cross-origin quirk */ }
+        });
+        iframe.src = frameUrl();
+        window.addEventListener('message', onMsg);
+        screen.replaceChildren(iframe);
+        arm();
         item.views = (item.views || 0) + 1;
         this.save();
       }, 1200);
     };
+    const drop = () => {                                     // back to the poster, remembering the position
+      clearTimeout(watchdog);
+      window.removeEventListener('message', onMsg);
+      iframe = null; ready = false; playing = false;
+      ui.setPlaying(false);
+      if (!dead) screen.replaceChildren(...(screen.classList.contains('noposter') ? [play] : [poster, play]));
+    };
+    const live = host && {
+      card: host.card,
+      pause: () => {
+        if (!playing) return;
+        if (iframe) cmd('pauseVideo'); else abort = true;       // no frame yet = still "buffering": call it off
+        playing = false; ui.setPlaying(false);
+      },
+      stop: () => { abort = true; drop(); },
+      refresh: () => {
+        // the card was detached by a feed re-render and is about to go back in. A detached iframe starts over, so
+        // reload it at the position it had reached (or, if it was paused, fall back to the poster at that position).
+        if (iframe && !host.card.isConnected) {
+          if (playing) { ready = false; iframe.src = frameUrl(); arm(); } else drop();
+        }
+        host.refresh();
+      },
+    };
+
     play.addEventListener('click', start);
     poster.addEventListener('click', start);
-    playBtn.addEventListener('click', () => {
-      if (!iframe) return start();
-      playing ? cmd('pauseVideo') : cmd('playVideo');
-      playing = !playing;
-      playBtn.textContent = playing ? '❚❚' : '▶';
+    poster.addEventListener('error', () => { poster.remove(); screen.classList.add('noposter'); });
+    // a deleted / private video still "loads" a thumbnail: YouTube's 120x90 gray placeholder
+    poster.addEventListener('load', () => {
+      if (poster.naturalWidth === 120 && poster.naturalHeight === 90 && !iframe) fail('This video has been removed by the user.', 'Sorry about that.');
     });
-    bar.querySelector('[data-act="mute"]').addEventListener('click', e => {
-      const muted = e.target.dataset.m === '1';
-      cmd(muted ? 'unMute' : 'mute');
-      e.target.dataset.m = muted ? '0' : '1';
-      e.target.textContent = muted ? '🔊' : '🔇';
-    });
-    bar.querySelector('[data-act="full"]').addEventListener('click', () => { if (iframe && iframe.requestFullscreen) iframe.requestFullscreen(); });
-    bar.querySelector('.yt06-track').addEventListener('click', e => {
-      if (!iframe || !dur) return;
-      const r = e.currentTarget.getBoundingClientRect();
-      cmd('seekTo', [dur * (e.clientX - r.left) / r.width, true]);
-    });
-    window.addEventListener('message', ev => {
-      if (!iframe || ev.source !== iframe.contentWindow) return;
-      let d; try { d = JSON.parse(ev.data); } catch { return; }
-      if (d.event !== 'infoDelivery' || !d.info) return;
-      if (d.info.duration) dur = d.info.duration;
-      if (typeof d.info.currentTime === 'number') {
-        fill.style.width = (dur ? d.info.currentTime / dur * 100 : 0) + '%';
-        timeEl.textContent = `${fmt(d.info.currentTime)} / ${fmt(dur)}`;
-      }
-      if (d.info.playerState === 0) { playing = false; playBtn.textContent = '▶'; }
-    });
+    poster.alt = '';
+    poster.src = `https://i.ytimg.com/vi/${item.ytId}/hqdefault.jpg`;
     return wrap;
   },
 
-  ourtube(item) {
+  // OurTube: the same 2006 player for local video files. A fixed 4:3 screen with the clip letterboxed inside it
+  // (whatever its real size), a poster frame before play, the shared control bar, and a "removed" card instead of
+  // a black box when the file is missing or the browser can't decode it.
+  ourtube(item, host) {
     const wrap = this.el('div', 'ourtube');
+    const screen = this.el('div', 'ot-screen');
     const v = this.el('video');
-    v.src = item.src; v.preload = 'metadata'; v.playsInline = true;
+    const meta = this.postSource(item);
+    v.preload = 'metadata'; v.playsInline = true;
+    if (meta && meta.poster) v.poster = meta.poster;
     const ov = this.el('div', 'ot-overlay');
     ov.appendChild(this.el('div', 'ot-play', '▶'));
     const buf = this.el('div', 'ot-buffer', '');
     ov.appendChild(buf);
-    let started = false;
-    ov.addEventListener('click', async () => {
-      if (started) return;
-      started = true;
+    screen.append(v, ov);
+
+    let started = false, want = false, dead = false;        // want = the user means it to be playing
+    const ui = this.playerBar({
+      toggle: () => {
+        if (!started) return start();
+        if (ov.isConnected) { want = !want; ui.setPlaying(want); }           // still "buffering"
+        else if (v.paused) v.play().catch(() => {});
+        else v.pause();
+      },
+      seek: f => { if (started && isFinite(v.duration)) v.currentTime = v.duration * f; },
+      full: () => { if (started && v.requestFullscreen) Promise.resolve(v.requestFullscreen()).catch(() => {}); },
+      volume: vol => { v.volume = vol.level / 100; v.muted = vol.muted; },
+    });
+    const views = this.el('span', null, `${(item.views || 0).toLocaleString()} views`);
+    const foot = this.el('div', 'ot-bar');
+    foot.innerHTML = '<span><b>OurTube</b> · 240p · buffering optional</span>';
+    foot.appendChild(views);
+    wrap.append(screen, ui.bar, foot);
+
+    const fail = () => {
+      if (dead) return;
+      dead = true; want = false;
+      v.pause();
+      this.playerDead(wrap, screen, 'This video has been removed by the user.', 'OurTube error 404: tape not found. It may have been taped over.');
+    };
+    const live = host && {
+      card: host.card,
+      pause: () => { want = false; v.pause(); },
+      stop: () => { want = false; v.pause(); },
+      refresh: () => {
+        // re-attached in the same tick as it was detached, a <video> keeps playing; if a browser paused it, carry on
+        if (want && !host.card.isConnected) Promise.resolve().then(() => { if (want && v.isConnected && v.paused) v.play().catch(() => {}); });
+        host.refresh();
+      },
+    };
+    const start = () => {
+      if (started || dead) return;
+      started = true; want = true;
+      ui.setPlaying(true);
+      this.playerOn(item, live);
       let pct = 0;
       const t = setInterval(() => { pct = Math.min(99, pct + 7 + Math.floor(Math.random() * 12)); buf.textContent = `buffering… ${pct}%`; }, 180);
-      await new Promise(r => setTimeout(r, 1500));       // authentic 2006 wait
-      clearInterval(t);
-      ov.remove();
-      v.controls = true; v.volume = 0.5;
-      v.play().catch(() => {});
-      item.views = (item.views || 0) + 1;
-      this.save();
+      setTimeout(() => {                                     // authentic 2006 wait
+        clearInterval(t);
+        if (dead) return;
+        ov.remove();
+        if (want) v.play().catch(() => {}); else ui.setPlaying(false);
+        item.views = (item.views || 0) + 1;
+        views.textContent = `${item.views.toLocaleString()} views`;
+        this.save();
+      }, 1500);
+    };
+    ov.addEventListener('click', start);
+    v.addEventListener('click', () => {
+      if (!started || ov.isConnected || v.controls) return;          // native controls (fullscreen) do their own toggling
+      if (v.paused) v.play().catch(() => {}); else v.pause();
     });
-    wrap.append(v, ov);
-    const bar = this.el('div', 'ot-bar');
-    bar.innerHTML = `<span><b>OurTube</b> · 240p · buffering optional</span><span>${(item.views || 0).toLocaleString()} views</span>`;
-    wrap.appendChild(bar);
+    v.addEventListener('play', () => { want = true; ui.setPlaying(true); this.playerOn(item, live); });
+    v.addEventListener('pause', () => { if (v.isConnected) want = false; ui.setPlaying(false); });
+    v.addEventListener('ended', () => { want = false; ui.setPlaying(false); });
+    v.addEventListener('timeupdate', () => ui.setTime(v.currentTime, v.duration));
+    v.addEventListener('loadedmetadata', () => { if (v.videoWidth) ui.setTime(0, v.duration); else fail(); });   // sound but no picture = codec gone
+    v.addEventListener('error', fail);
+    v.addEventListener('fullscreenchange', () => { v.controls = document.fullscreenElement === v; });
+    v.addEventListener('volumechange', () => {              // changed with the native controls (fullscreen): follow it
+      const vol = this.playerVolume(), level = Math.round(v.volume * 100);
+      if (level !== vol.level || v.muted !== vol.muted) this.playerVolume(level > 0 ? { level, muted: v.muted } : { muted: true });
+    });
+    if (item.src) v.src = item.src; else fail();
     return wrap;
   },
 
-  /* ---------- sidebar (buddy list, MaltenAmp, horoscope) ---------- */
+  /* ---------- sidebar (buddy list, horoscope, cool new people) ---------- */
   paintSidebar() {
     const b = document.getElementById('ms-side-buddies');
     const h = document.getElementById('ms-side-horo');
@@ -1730,25 +2903,31 @@ const MS = {
         n.appendChild(row);
       });
     }
-    // keep MaltenAmp alive between renders: park it in the sidebar host when My Page isn't showing
-    if (window.Amp && Amp.mount && !document.querySelector('.ms-amphost')) {
-      let park = document.getElementById('ms-amp-park');
-      if (!park) { park = this.el('div'); park.id = 'ms-amp-park'; park.hidden = true; document.body.appendChild(park); }
-      Amp.mount(park);
-    }
   },
 
   /* ---------- browse ---------- */
   renderBrowse(root) {
     root.appendChild(this.el('div', 'ms-pagetitle', 'Browse the residents of OurSpace'));
 
+    const ids = Object.keys(this.people);
+    const inFilter = {
+      all: () => true,
+      friends: id => this.state.friends.includes(id),
+      pending: id => this.state.pending.includes(id),
+      fresh: id => !!this.people[id].isNew,
+    };
+    const chipDefs = [['all', 'everyone'], ['friends', 'my friends'], ['pending', 'requests']];
+    if (ids.some(inFilter.fresh)) chipDefs.push(['fresh', '✨ new here']);
+    if (!inFilter[this.browseFilter] || !chipDefs.some(c => c[0] === this.browseFilter)) this.browseFilter = 'all';
+
     const bar = this.el('div', 'ms-filterbar');
-    [['all', 'everyone'], ['friends', 'my friends'], ['pending', 'requests']].forEach(([key, label]) => {
-      const b = this.el('button', 'btn98' + (this.browseFilter === key ? ' on' : ''), label);
+    chipDefs.forEach(([key, label]) => {
+      const b = this.el('button', 'btn98' + (this.browseFilter === key ? ' on' : ''), `${label} (${ids.filter(inFilter[key]).length})`);
       b.addEventListener('click', () => {
         this.browseFilter = key;
         bar.querySelectorAll('.btn98').forEach(x => x.classList.remove('on'));
         b.classList.add('on');
+        this.shown.browse = 0;
         paint();
         Sfx.click();
       });
@@ -1757,26 +2936,32 @@ const MS = {
     const search = this.el('input');
     search.placeholder = '🔎 find someone…';
     search.value = this.browseQuery;
-    search.addEventListener('input', () => { this.browseQuery = search.value; paint(); });
+    search.addEventListener('input', () => { this.browseQuery = search.value; this.shown.browse = 0; paint(); });
     bar.appendChild(search);
     root.appendChild(bar);
 
     const grid = this.el('div', 'ms-browsegrid');
     root.appendChild(grid);
+    this.shown = this.shown || {};
 
     const paint = () => {
       grid.innerHTML = '';
+      root.querySelectorAll('.ms-more').forEach(b => b.remove());
       const q = this.browseQuery.trim().toLowerCase();
-      Object.keys(this.people).forEach(id => {
+      const match = ids.filter(id => {
         const p = this.people[id];
-        if (this.browseFilter === 'friends' && !this.state.friends.includes(id)) return;
-        if (this.browseFilter === 'pending' && !this.state.pending.includes(id)) return;
-        if (q && !(p.name + ' ' + p.tag + ' ' + p.about).toLowerCase().includes(q)) return;
-        const card = this.el('div', 'ms-browsecard');
+        if (!inFilter[this.browseFilter](id)) return false;
+        return !q || [id, p.name, p.tag, p.about, p.hometown].join(' ').toLowerCase().includes(q);
+      });
+      // ~92 residents: two dozen cards at a time, "show more" for the rest
+      this.paged(grid, 'browse', match, 24, id => {
+        const p = this.people[id];
+        const card = this.el('div', 'ms-browsecard' + (p.isNew ? ' is-new' : ''));
+        if (p.isNew) card.appendChild(this.el('span', 'ms-newtag', 'NEW!'));
         card.appendChild(this.avatarEl(id, 62));
         card.appendChild(this.el('b', null, p.name));
-        card.appendChild(this.el('div', 'ms-tagline', p.tag));
-        card.appendChild(this.el('div', 'ms-time', 'mood: ' + p.mood));
+        card.appendChild(this.el('div', 'ms-tagline', p.tag || ''));
+        card.appendChild(this.el('div', 'ms-time', 'mood: ' + (p.mood || '—')));
         const st = this.state.friends.includes(id) ? '✔ friend'
           : this.state.pending.includes(id) ? '⏳ wants to be friends'
           : this.state.denied.includes(id) ? '✖ denied (harsh)' : '';
@@ -1784,9 +2969,9 @@ const MS = {
         const btn = this.el('button', 'btn98', 'View Profile');
         btn.addEventListener('click', () => this.show('profile', id));
         card.appendChild(btn);
-        grid.appendChild(card);
+        return card;
       });
-      if (!grid.children.length) grid.appendChild(this.el('p', 'ms-empty', 'nobody matches. they might be hiding.'));
+      if (!match.length) grid.appendChild(this.el('p', 'ms-empty', 'nobody matches. they might be hiding.'));
     };
     paint();
   },
@@ -1794,11 +2979,15 @@ const MS = {
   /* ---------- requests ---------- */
   renderRequests(root) {
     root.appendChild(this.el('div', 'ms-pagetitle', 'Friend Requests'));
-    if (!this.state.pending.length) {
+    // newest first; residents whose content isn't loaded right now are skipped (they stay pending)
+    const pending = this.state.pending.filter(id => this.people[id]).reverse();
+    if (!pending.length) {
       root.appendChild(this.el('p', 'ms-empty', 'no pending requests. everyone who wants you already has you.'));
       return;
     }
-    this.state.pending.forEach(id => {
+    const list = this.el('div');
+    root.appendChild(list);
+    this.paged(list, 'requests', pending, 8, id => {
       const p = this.people[id];
       const row = this.el('div', 'ms-reqrow');
       row.appendChild(this.avatarEl(id, 52));
@@ -1823,16 +3012,11 @@ const MS = {
         Sfx.close();
         this.render();
         setTimeout(() => {
-          const t = this.state.inbox[id] = this.state.inbox[id] || { unread: false, msgs: [] };
-          t.msgs.push({ who: 'them', text: p.saltyDm, time: this.now() });
-          t.unread = true;
-          this.save();
-          this.toast('New message from ' + p.name + '…', 'inbox', id);
-          if (this.view.page === 'inbox') this.render();
+          this.deliverDm(id, p.saltyDm, { unprompted: true, toast: 'New message from ' + p.name + '…' });
         }, 6000 + Math.random() * 5000);
       });
       row.append(ok, no);
-      root.appendChild(row);
+      return row;
     });
   },
 
@@ -1850,12 +3034,21 @@ const MS = {
     tabs.append(mBtn, sBtn);
     root.appendChild(tabs);
 
-    const ids = Object.keys(this.state.inbox);
+    // conversations waiting on malten first, then unread, then most recent activity (threads from before the
+    // v2 engine have no activity stamp and keep their old order underneath)
+    const waiting = new Set(this.activeTreeIds().map(tid => this.trees[tid].with));
+    const rank = id => (waiting.has(id) ? 2 : 0) + (this.state.inbox[id].unread ? 1 : 0);
+    const ids = Object.keys(this.state.inbox)
+      .filter(id => this.people[id] && this.state.inbox[id] && (this.state.inbox[id].msgs || []).length)
+      .map((id, i) => ({ id, i }))
+      .sort((a, b) => rank(b.id) - rank(a.id) || (this.state.inbox[b.id].at || 0) - (this.state.inbox[a.id].at || 0) || a.i - b.i)
+      .map(x => x.id);
     if (!ids.length) { root.appendChild(this.el('p', 'ms-empty', 'no mail. suspicious.')); return; }
-    ids.forEach(id => {
+    const list = this.el('div');
+    root.appendChild(list);
+    this.paged(list, 'inbox', ids, 20, id => {
       const t = this.state.inbox[id];
       const p = this.people[id];
-      if (!p || !t.msgs.length) return;
       const row = this.el('div', 'ms-reqrow ms-clickable');
       if (t.unread) row.classList.add('unread');
       row.appendChild(this.avatarEl(id, 44));
@@ -1863,10 +3056,13 @@ const MS = {
       mid.appendChild(this.el('b', null, p.name + (t.unread ? '  ● NEW' : '')));
       const last = t.msgs[t.msgs.length - 1];
       mid.appendChild(this.el('div', 'ms-tagline', (last.who === 'you' ? 'you: ' : '') + last.text.slice(0, 60) + (last.text.length > 60 ? '…' : '')));
+      if (waiting.has(id)) {
+        mid.appendChild(this.el('div', 'ms-waiting', this.convo[id] ? '✎ ' + p.name + ' is typing…' : '✉ waiting for your reply'));
+      }
       mid.appendChild(this.el('div', 'ms-time', last.time));
       row.appendChild(mid);
       row.addEventListener('click', () => this.show('inbox', id));
-      root.appendChild(row);
+      return row;
     });
   },
 
@@ -1916,6 +3112,16 @@ const MS = {
 
   renderThread(root, id) {
     const p = this.people[id];
+    if (!p) {
+      // a resident whose content isn't loaded (pack file missing or failed validation)
+      const head = this.el('div', 'ms-pagetitle');
+      const back = this.el('button', 'btn98', '← Inbox');
+      back.addEventListener('click', () => this.show('inbox'));
+      head.appendChild(back);
+      root.appendChild(head);
+      root.appendChild(this.el('p', 'ms-empty', 'this resident has wandered off. maybe they\'ll be back.'));
+      return;
+    }
     const t = this.state.inbox[id] = this.state.inbox[id] || { unread: false, msgs: [] };
     t.unread = false;
 
@@ -1934,6 +3140,8 @@ const MS = {
 
     const box = this.el('div', 'ms-thread');
     t.msgs.forEach(m => {
+      // a later conversation in the same thread starts under a dated divider
+      if (m.sep) box.appendChild(this.el('div', 'ms-thread-sep', m.time ? '— ' + m.time + ' —' : '— later —'));
       const b = this.el('div', 'ms-dm ' + (m.who === 'you' ? 'me' : 'them'));
       b.appendChild(this.el('b', null, m.who === 'you' ? 'malten' : p.name));
       b.appendChild(this.el('div', null, m.text));
@@ -1941,44 +3149,65 @@ const MS = {
       box.appendChild(b);
     });
     root.appendChild(box);
+    const live = this.convo[id];                      // an exchange is playing out in this thread right now
+    if (live && live.them) this.paintTypingInd(id);
     box.scrollTop = box.scrollHeight;
 
     // scripted conversation in progress? offer choices instead of free text
-    const tree = this.dialogues[id];
-    const ds = this.dialogueStateFor(id);
-    if (tree && ds && !ds.done) {
-      const node = tree.nodes[ds.node];
-      if (node && node.choices && !this.typingLock) {
-        const ch = this.el('div', 'ms-choices');
-        ch.appendChild(this.el('div', 'ms-choices-label', '— choose your reply —'));
-        node.choices.forEach(c => {
-          const b = this.el('button', 'btn98', c.say);
-          b.addEventListener('click', () => this.chooseOption(id, c));
-          ch.appendChild(b);
-        });
-        root.appendChild(ch);
+    const treeId = this.activeTreeFor(id);
+    if (treeId) {
+      const ds = this.dialogueStateFor(treeId);
+      const node = this.trees[treeId].nodes[ds.node];
+      if (live) {
+        if (live.you != null) this.paintTyper(id);
+        return;
       }
-      return;
+      if (ds.pend) { this.playNode(treeId); return; } // their answer was cut off by a reload: pick it back up
+      if ((node.choices || []).length) {
+        const ch = this.el('div', 'ms-choices');
+        if (this.typingLock) {
+          // one reply is typed at a time; the buttons come back the moment the other one is sent
+          ch.appendChild(this.el('div', 'ms-choices-label', '— hang on, you\'re still typing to someone else… —'));
+        } else {
+          ch.appendChild(this.el('div', 'ms-choices-label', '— choose your reply —'));
+          node.choices.forEach(c => {
+            const b = this.el('button', 'btn98', c.say);
+            b.addEventListener('click', () => this.chooseOption(treeId, c));
+            ch.appendChild(b);
+          });
+        }
+        root.appendChild(ch);
+        return;
+      }
+      ds.done = true;                                 // a dead end in the content: close it out, fall through to free text
+      ds.end = Date.now();
+      this.save();
     }
 
     const form = this.el('div', 'ms-commentform');
     const inp = this.el('input');
     inp.placeholder = 'reply to ' + p.name + '…';
     inp.maxLength = 300;
+    inp.value = this.drafts[id] || '';
+    inp.addEventListener('input', () => { this.drafts[id] = inp.value; });
     const send = this.el('button', 'btn98', 'Send');
     const submit = () => {
       const text = inp.value.trim();
       if (!text) return;
       t.msgs.push({ who: 'you', text: Guestbook.filter(text), time: this.now() });
+      t.at = Date.now();
       inp.value = '';
+      delete this.drafts[id];
       Sfx.click();
       this.save();
       this.render();
       setTimeout(() => {
-        t.msgs.push({ who: 'them', text: this.botReply(id, text), time: this.now() });
+        if (this.activeTreeFor(id)) return;           // a scripted conversation began meanwhile: don't talk over it
+        t.msgs.push({ who: 'them', text: this.botReply(id, text, t), time: this.now() });
+        t.at = Date.now();
         this.save();
         if (this.view.page === 'inbox' && this.view.arg === id) this.render();
-        else { t.unread = true; this.toast('New message from ' + p.name + '!', 'inbox', id); }
+        else { t.unread = true; this.toast('New message from ' + p.name + '!', 'inbox', id); this.paintTabs(); }
       }, 4000 + Math.random() * 9000);
     };
     send.addEventListener('click', submit);
@@ -1990,8 +3219,12 @@ const MS = {
   /* ---------- bulletins ---------- */
   renderBulletins(root) {
     root.appendChild(this.el('div', 'ms-pagetitle', 'Bulletin Board'));
-    this.state.bulletins.slice().reverse().forEach((b, ri) => {
-      const idx = this.state.bulletins.length - 1 - ri;
+    const total = this.state.bulletins.length;
+    const list = this.el('div');
+    root.appendChild(list);
+    // newest first, 15 at a time (the board gets long with ~92 residents posting)
+    this.paged(list, 'bulletins', this.state.bulletins.slice().reverse(), 15, (b, ri) => {
+      const idx = total - 1 - ri;
       const card = this.el('div', 'ms-bulletin');
       const head = this.el('div', 'ms-comment-head');
       head.appendChild(this.avatarEl(b.from, 34));
@@ -2012,8 +3245,17 @@ const MS = {
       });
       foot.appendChild(rp);
       card.appendChild(foot);
-      root.appendChild(card);
+      return card;
     });
+  },
+
+  // keep the bulletin board (and the save) bounded: drop the oldest, re-pointing the "reposted" indexes
+  trimBulletins() {
+    const st = this.state;
+    if (st.bulletins.length <= 160) return;
+    const cut = st.bulletins.length - 120;
+    st.bulletins.splice(0, cut);
+    st.reposted = st.reposted.map(i => i - cut).filter(i => i >= 0);
   },
 
   /* ---------------------- ambient life ---------------------- */
@@ -2022,111 +3264,195 @@ const MS = {
     this.ambientTimer = setInterval(() => {
       if (Math.random() < 0.75) this.tickEvent();
     }, 30000);
+    // conversation-engine heartbeat: delayed effects + the next scripted conversation, both paced by saved timestamps
+    this.pumpTimer = setInterval(() => this.pump(), 4000);
+    // an answer that a page reload cut off mid-typing gets finished now
+    this.activeTreeIds().forEach(tid => { if (this.dialogueStateFor(tid).pend) this.playNode(tid); });
   },
 
-  // one simulated social event: residents talk to EACH OTHER, not just you
+  // One simulated social event: residents talk to EACH OTHER, not just you. A weighted draw over the event kinds;
+  // if the drawn kind has nothing to do right now, a banter line or a status fills in. Rough odds per tick (one
+  // tick ≈ every 40s): storyline beat 22% · resident→resident wall banter 18% · status 14% · media post 9% ·
+  // pic comment 7% · DM from a friend 6% · bulletin 5% · comment on YOUR wall 5% · residents friending 4% ·
+  // friend request 4% · stranger's opening DM 3% · nudge the conversation scheduler 3%.
   tickEvent(depth = 0) {
     if (depth > 3) return;
-    const ids = Object.keys(this.people);
+    const st = this.state;
+    const P = this.people;
+    const ids = Object.keys(P);
     const rnd = arr => arr[Math.floor(Math.random() * arr.length)];
-    const roll = Math.random();
 
-    if (roll < 0.30 && this.tickStory()) { this.paintTabs(); return; }
-    if (roll < 0.42 && this.dripPost()) { this.paintTabs(); return; }
-    if (roll < 0.50 && this.state.feed.some(f => f.type === 'post')) {
-      // somebody leaves a pic comment on a random media post
-      const posts = this.state.feed.filter(f => f.type === 'post');
-      const post = rnd(posts);
-      const commenter = rnd(ids.filter(x => x !== post.from));
-      const pool = (this.people[commenter].pcComments || []).concat(this.bank('picComments'));
-      if (pool.length) {
-        post.comments = post.comments || [];
-        post.comments.push({ from: commenter, text: rnd(pool) });
-        this.save();
-        if (this.view.page === 'feed') this.render();
-        return;
-      }
-    }
-
-    if (roll < 0.34) {
-      // resident-to-resident wall banter (authored pair-specific lines)
-      const pool = [];
-      ids.forEach(a => {
-        const b = this.people[a].banter || {};
+    // resident-to-resident wall banter (authored pair-specific lines, each used once until all are spent)
+    const banter = () => {
+      const fresh = a => {
+        const out = [];
+        const b = P[a].banter || {};
         Object.keys(b).forEach(t => {
-          if (!this.people[t]) return;
-          b[t].forEach((line, i) => {
-            const key = `${a}>${t}:${i}`;
-            if (!this.state.usedBanter[key]) pool.push({ a, t, line, key });
-          });
+          if (!P[t]) return;
+          b[t].forEach((line, i) => { const key = `${a}>${t}:${i}`; if (!st.usedBanter[key]) out.push({ a, t, line, key }); });
         });
-      });
-      if (!pool.length) { this.state.usedBanter = {}; return this.tickEvent(depth + 1); }
+        return out;
+      };
+      // a random speaker's unused lines; only if a few speakers in a row are spent do we scan the whole cast
+      let pool = [];
+      for (let tries = 0; tries < 6 && !pool.length; tries++) pool = fresh(rnd(ids));
+      if (!pool.length) ids.forEach(a => { pool = pool.concat(fresh(a)); });
+      if (!pool.length) {
+        if (!Object.keys(st.usedBanter).length) return false;
+        st.usedBanter = {};                           // everything has been said once: recycle
+        return false;
+      }
       const pick = rnd(pool);
-      this.state.usedBanter[pick.key] = 1;
-      (this.state.walls[pick.t] = this.state.walls[pick.t] || []).push({ from: pick.a, text: pick.line, time: this.now() });
+      st.usedBanter[pick.key] = 1;
+      this.pushWall(pick.t, { from: pick.a, text: pick.line, time: this.now() });
       this.pushFeed({ type: 'wall', from: pick.a, to: pick.t, text: pick.line, time: this.now() });
       if (this.view.page === 'profile' && this.view.arg === pick.t) this.render();
-    } else if (roll < 0.52) {
-      // status update
-      const withStatus = ids.filter(id => (this.people[id].statuses || []).length);
-      if (!withStatus.length) return this.tickEvent(depth + 1);
-      const id = rnd(withStatus);
+      return true;
+    };
+
+    // status update (the vague-post bank is the original cast's voice, so newcomers stick to their own lines)
+    const status = () => {
+      const inFeed = new Set(st.feed.map(f => f.from + '|' + f.text));
       const vague = this.bank('vaguePosts');
-      const text = (vague.length && Math.random() < 0.3) ? rnd(vague) : rnd(this.people[id].statuses);
-      if (this.state.feed.some(f => f.from === id && f.text === text)) return this.tickEvent(depth + 1);
-      this.pushFeed({ type: 'status', from: id, text, time: this.now() });
-    } else if (roll < 0.62) {
-      // bulletin (recycled from ambient lines)
-      const withA = ids.filter(id => (this.people[id].ambient || []).length);
-      const id = rnd(withA);
-      const body = rnd(this.people[id].ambient);
-      if (this.state.bulletins.some(b => b.body === body)) return this.tickEvent(depth + 1);
-      this.state.bulletins.push({ from: id, subject: 'bulletin from ' + this.people[id].name, body, time: this.now(), reposts: 0 });
-      this.pushFeed({ type: 'bulletin', from: id, text: body, time: this.now() });
-      if (this.view.page === 'bulletins') this.render();
-    } else if (roll < 0.70) {
-      // two residents become friends
-      const a = rnd(ids), t = rnd(ids);
-      if (a === t) return this.tickEvent(depth + 1);
-      const text = `${this.people[a].name} and ${this.people[t].name} are now friends!`;
-      if (this.state.feed.some(f => f.text === text)) return this.tickEvent(depth + 1);
-      this.pushFeed({ type: 'friends', from: a, text, time: this.now() });
-    } else if (roll < 0.78) {
-      // wall comment on YOUR page
-      const friends = this.state.friends.filter(f => (this.people[f] || {}).ambient);
-      if (!friends.length) return this.tickEvent(depth + 1);
-      const id = rnd(friends);
-      const text = rnd(this.people[id].ambient);
-      if (this.state.myWall.some(c => c.text === text)) return this.tickEvent(depth + 1);
-      this.state.myWall.push({ from: id, text, time: this.now() });
-      this.pushFeed({ type: 'wall', from: id, to: 'you', text, time: this.now() });
-      this.toast(this.people[id].name + ' commented on your wall!', 'home');
-      if (this.view.page === 'home') this.render();
-    } else if (roll < 0.86) {
-      // DM to you from a friend
-      const friends = this.state.friends.filter(f => this.people[f]);
-      if (!friends.length) return;
-      const id = rnd(friends);
-      const t = this.state.inbox[id] = this.state.inbox[id] || { unread: false, msgs: [] };
-      if (t.msgs.length > 14) return this.tickEvent(depth + 1);
-      t.msgs.push({ who: 'them', text: this.botReply(id, ''), time: this.now() });
-      t.unread = true;
+      for (let tries = 0; tries < 8; tries++) {
+        const id = rnd(ids);
+        const own = (P[id].statuses || []).filter(s => !inFeed.has(id + '|' + s));
+        const text = (vague.length && !P[id].isNew && Math.random() < 0.2) ? rnd(vague) : rnd(own);
+        if (!text || inFeed.has(id + '|' + text)) continue;
+        this.pushFeed({ type: 'status', from: id, text, time: this.now() });
+        return true;
+      }
+      return false;
+    };
+
+    // somebody leaves a pic comment on a media post (usually a friend of whoever posted it)
+    const picComment = () => {
+      const posts = st.feed.filter(f => f.type === 'post' && (f.comments || []).length < 14);
+      if (!posts.length || ids.length < 2) return false;
+      const post = rnd(posts);
+      const pals = ((P[post.from] || {}).friends || []).filter(f => P[f] && f !== post.from);
+      const commenter = (pals.length && Math.random() < 0.6) ? rnd(pals) : rnd(ids.filter(x => x !== post.from));
+      const said = new Set((post.comments || []).map(c => c.text));
+      const pool = (P[commenter].pcComments || []).concat(P[commenter].isNew ? [] : this.bank('picComments')).filter(l => !said.has(l));
+      if (!pool.length) return false;
+      (post.comments = post.comments || []).push({ from: commenter, text: rnd(pool) });
       this.save();
-      this.toast('New message from ' + this.people[id].name + '!', 'inbox', id);
-      if (this.view.page === 'inbox') this.render();
-    } else if (roll < 0.95) {
-      // a stranger slides into your DMs with their authored opener
-      const strangers = ids.filter(id => this.people[id].dmSeed && !this.state.inbox[id]);
-      if (!strangers.length) return this.tickEvent(depth + 1);
-      const id = rnd(strangers);
-      this.state.inbox[id] = { unread: true, msgs: this.people[id].dmSeed.map(m => ({ who: 'them', text: m.text, time: this.now() })) };
+      if (this.view.page === 'feed') this.render();
+      return true;
+    };
+
+    // bulletin: an authored one nobody has seen yet, otherwise one of their musings
+    const bulletin = () => {
+      const bodies = new Set(st.bulletins.map(b => b.body));
+      const onWall = new Set(st.myWall.map(c => c.text));
+      for (let tries = 0; tries < 8; tries++) {
+        const id = rnd(ids);
+        const authored = (P[id].bulletins || []).find(b => b && b.body && !bodies.has(b.body));
+        const musings = (P[id].ambient || []).filter(l => !bodies.has(l) && !onWall.has(l) && !this.dmUsed(id, l));
+        if (!authored && !musings.length) continue;
+        const subject = (authored && authored.subject) || 'bulletin from ' + P[id].name;
+        const body = authored ? authored.body : rnd(musings);
+        st.bulletins.push({ from: id, subject, body, time: this.now(), reposts: 0 });
+        this.trimBulletins();
+        const brief = body.length > 220 ? body.slice(0, 220).trimEnd() + '…' : body;
+        this.pushFeed({ type: 'bulletin', from: id, text: authored ? subject + ' — ' + brief : brief, time: this.now() });
+        if (this.view.page === 'bulletins') this.render();
+        return true;
+      }
+      return false;
+    };
+
+    // two residents become friends (a friend of a friend, most of the time)
+    const friending = () => {
+      const inFeed = new Set(st.feed.map(f => f.text));
+      for (let tries = 0; tries < 8; tries++) {
+        const a = rnd(ids);
+        const mine = (P[a].friends || []).filter(f => P[f]);
+        const viaFriend = mine.length ? ((P[rnd(mine)].friends || []).filter(f => P[f] && f !== a && !mine.includes(f))) : [];
+        const t = (viaFriend.length && Math.random() < 0.8) ? rnd(viaFriend) : rnd(ids);
+        if (a === t) continue;
+        const text = `${P[a].name} and ${P[t].name} are now friends!`;
+        if (inFeed.has(text) || inFeed.has(`${P[t].name} and ${P[a].name} are now friends!`)) continue;
+        this.pushFeed({ type: 'friends', from: a, text, time: this.now() });
+        return true;
+      }
+      return false;
+    };
+
+    // wall comment on YOUR page: a friend's musing that hasn't been posted anywhere yet
+    const myWall = () => {
+      const taken = new Set(st.myWall.map(c => c.text).concat(st.bulletins.map(b => b.body)));
+      for (const id of this.shuffled(st.friends.filter(f => P[f]))) {
+        const pool = (P[id].ambient || []).filter(l => !taken.has(l) && !this.dmUsed(id, l));
+        if (!pool.length) continue;
+        const text = rnd(pool);
+        st.myWall.push({ from: id, text, time: this.now() });
+        this.pushFeed({ type: 'wall', from: id, to: 'you', text, time: this.now() });
+        this.toast(P[id].name + ' commented on your wall!', 'home');
+        if (this.view.page === 'home') this.render();
+        return true;
+      }
+      return false;
+    };
+
+    // DM to you from a friend: a fresh standalone line from their `dms` pool, or nothing at all (see freshDm)
+    const friendDm = () => {
+      for (const id of this.shuffled(st.friends.filter(f => this.canColdDm(f)))) {
+        const text = this.freshDm(id);
+        if (!text) continue;
+        this.markDmUsed(id, text);
+        return this.deliverDm(id, text, { unprompted: true });
+      }
+      return false;
+    };
+
+    // a stranger slides into your DMs with their authored opener
+    const strangerDm = () => {
+      const strangers = ids.filter(id => (P[id].dmSeed || []).length && !(st.inbox[id] && st.inbox[id].msgs.length) && !this.activeTreeFor(id));
+      if (!strangers.length) return false;
+      const id = this.pickWeighted(strangers, s => st.pending.includes(s) ? 3 : st.friends.includes(s) ? 2 : st.denied.includes(s) ? 0.2 : 1);
+      st.inbox[id] = { unread: true, at: Date.now(), dmAt: Date.now(), msgs: P[id].dmSeed.map(m => ({ who: 'them', text: m.text, time: this.now(), u: 1 })) };
+      P[id].dmSeed.forEach(m => this.markDmUsed(id, m.text));
       this.save();
-      this.toast(this.people[id].name + ' sent you a message!', 'inbox', id);
-      if (this.view.page === 'inbox') this.render();
-    } else {
-      // a scripted conversation may begin
-      this.maybeStartNextDialogue();
+      this.toast(P[id].name + ' sent you a message!', 'inbox', id);
+      if (this.view.page === 'inbox' && !this.view.arg) this.render();
+      return true;
+    };
+
+    // a friend request trickles in (newcomers and friends-of-friends first) — never a flood: the list tops out at 12
+    const friendRequest = () => {
+      if (st.pending.length >= 12) return false;
+      const known = new Set([...st.friends, ...st.pending, ...st.denied]);
+      const cands = ids.filter(id => !known.has(id));
+      if (!cands.length) return false;
+      const mine = new Set(st.friends);
+      const id = this.pickWeighted(cands, c => (P[c].isNew ? 3 : 1) * (1 + (P[c].friends || []).filter(f => mine.has(f)).length));
+      st.pending.push(id);
+      this.save();
+      this.toast(P[id].name + ' wants to be your friend!', 'requests');
+      if (this.view.page === 'requests') this.render();
+      return true;
+    };
+
+    const events = [
+      [22, () => this.tickStory()],
+      [18, banter],
+      [14, status],
+      [9, () => this.dripPost()],
+      [7, picComment],
+      [6, friendDm],
+      [5, bulletin],
+      [5, myWall],
+      [4, friending],
+      [4, friendRequest],
+      [3, strangerDm],
+      [3, () => { this.maybeStartNextDialogue(); return true; }],
+    ];
+    const run = this.pickWeighted(events, e => e[0])[1];
+    if (!run()) {
+      // nothing to do for that kind right now: keep the feed moving instead
+      const [first, second] = Math.random() < 0.55 ? [banter, status] : [status, banter];
+      if (!first() && !second() && depth < 1) return this.tickEvent(depth + 1);
     }
     this.paintTabs();
   },
@@ -2147,6 +3473,8 @@ const MS = {
       <div class="ms-tabs">
         <button class="ms-tab" data-page="feed" data-label="Feed">Feed</button>
         <button class="ms-tab" data-page="home" data-label="My Page">My Page</button>
+        <button class="ms-tab" data-page="blog" data-label="Blog">Blog</button>
+        <button class="ms-tab" data-page="guestbook" data-label="Guestbook">Guestbook</button>
         <button class="ms-tab" data-page="browse" data-label="Browse">Browse</button>
         <button class="ms-tab" data-page="chat" data-label="#ourspace">#ourspace</button>
         <button class="ms-tab" data-page="requests" data-label="Requests">Requests</button>
@@ -2171,9 +3499,9 @@ const MS = {
       this.show('browse');
     });
 
-    // OurSpace is the main event: open full-screen, collapse the sidebar when narrow
+    // collapse the sidebar when the window is narrow (opening maximized is the window's own
+    // data-start-maximized attribute now, handled by WM)
     const win = document.querySelector('.window[data-app="myspace"]');
-    if (win && window.WM && window.innerWidth > 820 && !win.classList.contains('maximized')) WM.maximize('myspace');
     if (win && window.ResizeObserver) {
       new ResizeObserver(() => body.classList.toggle('ms-narrow', win.offsetWidth < 720)).observe(win);
     }
@@ -2183,28 +3511,23 @@ const MS = {
     this.startAmbient();
     // the first scripted conversation arrives shortly after you settle in
     setTimeout(() => this.maybeStartNextDialogue(), 25000);
+    // …and a little later, one nudge toward the guestbook for visitors who haven't found it
+    setTimeout(() => this.nudgeGuestbook(), 50000);
   },
 };
 
+// top-level const doesn't attach to window — export so `window.MS` guards elsewhere
+// (the Start menu's data-mstab items in desktop.js, apps.js) actually see it
+Object.assign(window, { MS });
+
 document.addEventListener('DOMContentLoaded', () => {
   document.addEventListener('app-open', e => { if (e.detail === 'myspace') MS.build(); });
-  document.addEventListener('app-close', e => { if (e.detail === 'myspace') MS.stopSong(); });
+  document.addEventListener('app-close', e => {
+    if (e.detail !== 'myspace') return;
+    MS.stopSong();
+    if (window.Spotify) Spotify.stop();
+  });
 
   const el = document.querySelector('.window[data-app="myspace"]');
   if (el && !el.classList.contains('closed')) MS.build();
-
-  // Top 8 → OurSpace profiles
-  const map = { patrick: 'patrick', herp: 'herp', banana: 'banana', 'dart monkey': 'wes',
-    'my heart': 'darkangel', 'the void': 'starxgazer' };
-  document.querySelectorAll('.top8-grid .friend').forEach(f => {
-    const label = f.querySelector('.fname');
-    if (!label) return;
-    const target = map[label.textContent];
-    f.style.cursor = 'pointer';
-    f.addEventListener('click', () => {
-      WM.open('myspace');
-      MS.build();
-      MS.show(target ? 'profile' : 'home', target || null);
-    });
-  });
 });

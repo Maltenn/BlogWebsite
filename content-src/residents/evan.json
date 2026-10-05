@@ -1,0 +1,281 @@
+{
+  "id": "evan",
+  "name": "xEvanx",
+  "tag": "Straight edge. Yes ma'am, no thank you, see you Friday. Thank you for visiting my page.",
+  "avatar": "assets/avatar_evan.gif",
+  "gender": "Male",
+  "age": 17,
+  "hometown": "Bellville, OH (pop. 1,900)",
+  "loc": "the garage, mid two-step (the door is open, for the neighbors' benefit)",
+  "zodiac": "Virgo (I'm told it's the tidy one. Thank you.)",
+  "status": "Single (focused)",
+  "hereFor": "Friends, Shows, Respectful conversation",
+  "mood": "resolute (and hungry, thank you for asking)",
+  "lastLogin": "Oct 4 2026 6:48 AM",
+  "theme": {
+    "bg": "#ecebe6",
+    "fg": "#111111",
+    "accent": "#c4161c"
+  },
+  "blogTitle": "Statement of Principles (updated Sundays)",
+  "about": "Hello. My name is Evan. I'm straight edge, which means I don't. That's all I'll say unless asked, and I'd prefer not to be asked at dinner. I sing for WITH ALL DUE RESPECT, a four-piece hardcore band from Bellville, Ohio. Our sets run 7 to 9 minutes because we say what we mean and then we stop. I put a black X on the back of each hand before a show. I'd like to be clear that the marker is a reminder, not a costume. If I'm at your house I will say thank you, I will say ma'am, and I will rinse my own plate. I've been told this is a lot. I'm sorry. I'm not changing it. Thank you for visiting my page.",
+  "aboutMore": "A few clarifications. I work Saturdays at Heidenreich Hardware, sweeping aisles and cutting keys, and I'm $340 away from the PA the band needs. My sister Josie, age 9, is our merch manager and the most ruthless negotiator I've met. My mother directs the choir at our church, which is where the voice comes from. In April I finished my Eagle project: a 12-foot bench outside the VFW hall, so people waiting for shows have somewhere to sit. Derek has skated it. I've decided this is a compliment.",
+  "meet": "Who I'd like to meet: the sound man at the VFW hall, to thank him in person. Greg's father, to thank him again. Whoever invented the thank-you note, to thank them. The person who stacked the folding chairs at the Elks Lodge, because I admired their work. A pit where everyone says sorry afterward. And any band willing to play 7 minutes and mean every one.",
+  "interests": {
+    "General": "the two-step (floor permitting), handwritten thank-you notes (stamped, mailed), dishes, Saturdays at Heidenreich Hardware, black Sharpie (fine point), being 15 minutes early, mowing Mr. Dietz's lawn (he tries to pay me, I decline, he leaves lemonade), pit etiquette, my band, Josie",
+    "Music": "Minor Threat, Gorilla Biscuits, Youth of Today, Sick of It All, Bane, Comeback Kid, Terror (the first record), WITH ALL DUE RESPECT (7 minutes at a time), and the 40 seconds of Voltage Heart that I believe is a hardcore riff and have never told Greg",
+    "Movies": "Rudy (I've seen it with my father 8 times and I still stand up at the end), Remember the Titans, Hoosiers, Cool Runnings, Rocky IV (the training montage is a statement of principles), anything about showing up",
+    "Television": "This Old House (Saturdays with my father), Dirty Jobs, Wheel of Fortune (Josie solves faster than me, I've stopped competing), the weather channel (the radar is honest)",
+    "Books": "the Boy Scout Handbook (annotated), Emily Post's Etiquette (Josie gave it to me, I read it in an afternoon, I now know where the soup spoon goes), The Old Man and the Sea (the only book I've read twice voluntarily)",
+    "Heroes": "my father, Ian MacKaye (I'll let his records speak for me), Mr. Baumgartner (my scoutmaster), the sound man at the VFW hall, Mr. Dietz, Josie, anyone who has carried an amp up a driveway without being asked"
+  },
+  "song": {
+    "name": "Straight Edge",
+    "artist": "Minor Threat",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/4d/ca/2b/4dca2b01-b52d-4994-97bf-9e431083b58f/mzaf_942625344205746627.plus.aac.p.m4a",
+    "pattern": [
+      0,
+      0,
+      7,
+      0,
+      5,
+      0,
+      7,
+      0
+    ],
+    "bpm": 178
+  },
+  "decor": [
+    "assets/badge_built_with_microsoft_notepad.gif",
+    "assets/deco_guestbook_sign.gif"
+  ],
+  "friends": [
+    "derek",
+    "misery",
+    "josh",
+    "ember",
+    "greg",
+    "bryan",
+    "skip",
+    "penny",
+    "walt"
+  ],
+  "wall": [
+    {
+      "from": "walt",
+      "text": "Dear Evan, I am told you wrote to thank me for a letter that was not addressed to you. I accept. It is the nicest thing a young man has done for me this month. I am putting a stamp in the mail to you, no note, just the stamp. Use it well. Regards, Walt",
+      "time": "Oct 1 2026 5:48 AM"
+    },
+    {
+      "from": "misery",
+      "text": "EVAN. u sent me a thank u note 4 coming to ur show. in the MAIL. w/ a STAMP. on PAPER!! i read it 3 times n showed lexi n kitty n my cat sat on it. ur on the good list. i still think ur kinda scene. rawr XD (sorry) (its a compliment)",
+      "time": "Sep 30 2026 8:31 PM"
+    },
+    {
+      "from": "ember",
+      "text": "evan thank you for the note. we put it in the folder with the other 3. we read the line where you said our set was 'sincere.' we're not going to read into the line. we read into the line. a split someday? we'll scream, you'll apologize. we'll split the difference. xFadingEmberx",
+      "time": "Sep 29 2026 10:03 PM"
+    },
+    {
+      "from": "skip",
+      "text": "Evan!! Thank you for opening the matinee. 7 minutes and the whole room sat up straight. Stan says you have a very 'clear voice' (he said it twice). Rudy is STILL the best movie. The tally holds. =D",
+      "time": "Sep 28 2026 7:19 PM"
+    },
+    {
+      "from": "greg",
+      "text": "evan u sent a thank-you note to my DAD. he put it on the fridge. it's next to my report card. it's better than my report card. also u finished in 7 min and the 8:15 rule didn't even get a chance. now he asks if 'the polite band' is coming back. ur booked. every friday if u want",
+      "time": "Sep 27 2026 6:14 PM"
+    },
+    {
+      "from": "derek",
+      "text": "evan i skated the bench. its smooth, great wood, 12 feet. mike says its 'not real skating' bc its a bench but i said evan built it so its basically holy. i left a scratch. i left a note. its on the bench. in marker. it says sorry",
+      "time": "Sep 26 2026 4:02 PM"
+    },
+    {
+      "from": "penny",
+      "text": "EVAN!!! u wore the bracelet to the show!!! UNDER the X!!! i SAW!!! RESPECT is the R in PLUR so ur whole band is basically the R!!! PLUR!!!",
+      "time": "Sep 26 2026 11:47 AM"
+    },
+    {
+      "from": "josh",
+      "text": "evan =] saw u at the soup kitchen sat. u washed pots for 3 hrs n wouldnt take a break. also pastor dan says ur welcome at youth group any wednesday. theres pizza. i know u'll ask. its just pizza",
+      "time": "Sep 20 2026 9:12 PM"
+    }
+  ],
+  "replies": [
+    "Thank you for your comment. I read it twice.",
+    "With respect, I'm going to think about that overnight. Thank you.",
+    "I appreciate you saying so. That's not nothing.",
+    "Understood. I make no promises, but I'll try.",
+    "Thank you. That was kind, and I don't say that lightly.",
+    "I'm sorry, I don't follow. Could you explain it once more, slowly? I have time.",
+    "Yes ma'am. (Or sir. I'm assuming. I apologize.)",
+    "That's fair. I'll admit it's fair.",
+    "Respectfully, no. But thank you for asking.",
+    "I'm glad you wrote. I'd like that on the record."
+  ],
+  "thanksAdd": "Thank you for accepting my request. I'd like to be clear that I don't send many. I'll try to be a good friend: I'll answer when you write, I'll say thank you when it's earned, and I'll show up to your thing if it's on a Friday and under 40 miles. I'm also going to mail you a note. Please expect it in 3 to 5 days. Thank you. xEvanx",
+  "ambient": [
+    "Rinsed my plate, wiped the counter, put the plate away, wiped the counter again. The counter is clean. I want that noted.",
+    "Two-stepped in the garage for 40 minutes this morning. The neighbor's dog joined for the last 5. It wasn't a good two-step. It was a sincere one.",
+    "Cut 14 keys at the store today. A lady said 'you're very polite' and I said 'thank you' and she said 'that's what I mean.' I'm still thinking about it.",
+    "A reminder: in the pit, if someone falls, you pick them up. That's the whole rule. There's a second rule. It's the same as the first.",
+    "I'm 11 sentences into a thank-you note to the man who fixed the VFW hall's heater. I don't know how to say 'thank you for the heat' in more than 11 sentences. I'm going to try for 12."
+  ],
+  "saltyDm": "I understand that my request was declined. Thank you for taking the time to consider it. I hold no hard feelings, and I'd like to be clear that I won't take it personally. I had already written a thank-you note for the occasion, so you may as well have it. It reads: 'Thank you for considering me.' That's the whole note.",
+  "keywords": {
+    "straight": "It means I don't. That's all I say about it. It's a personal commitment, not a lecture, and I don't like to put it on other people. I wear the X so I remember. Thank you for asking directly. That's polite.",
+    "band": "WITH ALL DUE RESPECT. Four of us: Mitch on guitar, Danny on bass, Pete on drums, and me. We play 7 to 9 minutes. We say what we mean and then we stop. Thank you for asking. Hardly anybody does.",
+    "manners": "My mother says they're free and you should spend them like they're free. I'd add that they're the only thing you can bring to any house in the country and not be turned away. Thank you for asking.",
+    "pit": "A pit is a place where people agree to be loud near each other. Rule one: if someone falls, you pick them up. Rule two: see rule one. Rule three: say sorry afterward. I always do.",
+    "bench": "My Eagle project. 12 feet, pressure-treated pine, outside the VFW hall. 340 screws. I counted. People sit on it before shows. Derek has skated it. I've decided it's a compliment.",
+    "mom": "My mother directs the choir at our church. She has an alto voice and a firm sense of right and wrong. I got the second one. She says my voice is 'an alto that took a wrong turn.' She says it kindly."
+  },
+  "banter": {
+    "derek": [
+      "Derek. I measured your gap behind the Safeway. 3 feet 11 inches, including the hose. Skip reports 4 feet 3. We used different tape measures. I'd be glad to meet him with a third. Respectfully, I think it's a driveway with ambition.",
+      "Derek, thank you for skating the bench. It's built to take weight. Please don't tell Mr. Dietz about the scratch. I'm refinishing it Saturday. I already bought the sandpaper. It isn't a punishment. It's a hobby."
+    ],
+    "misery": [
+      "Misery, thank you for coming on the 25th. I noticed you were in the back, I noticed you stayed for the two-step, and I noticed you left before I could say thank you. I'm not scene. I'd be grateful if the record reflected that. But your hair was very impressive. I don't consider that a contradiction.",
+      "Misery, the cat in your video is very dignified. He walks in, assesses the situation, and leaves it worse. I've known three vocalists like that. I'd shake his paw."
+    ],
+    "josh": [
+      "Josh, thank you for the invitation. I'll come to youth group on a Wednesday that doesn't have practice. That's one in six. I checked the calendar. I'm glad we agree on most things. I think we disagree about Wednesdays.",
+      "Josh I washed 41 pots at the soup kitchen. You told me to take a break. I said the pots were still there. That isn't stubborn. That's accurate."
+    ],
+    "ember": [
+      "To the band Fading Ember: thank you for the set on the 25th. It was sincere. I'd like to be clear that I don't entirely understand it. But I recognize it. We're doing the same thing at different speeds. A note is in the mail.",
+      "Ember, I'm told some people think hardcore and screamo shouldn't share a bill. I disagree. I'll bring a folding chair for your drummer (the machine). A chair is a courtesy. Respectfully."
+    ],
+    "greg": [
+      "Greg, please thank your father again. The note on the fridge is the first thing anyone has ever put on a fridge for me. We'll finish by 8:15. We've been finishing by 7:40. I'll cut the last song by 30 seconds as a gesture.",
+      "Greg, I carried the amp up the driveway. I wasn't asked. It isn't a favor, it's what I do. The amp is heavy. You're welcome. Thank you."
+    ],
+    "penny": [
+      "Penny, I understand your hardcore is happy and mine isn't. With respect, I think they're both hardcore, in the sense that we both mean it. I'm wearing the bracelet. I'd like to be clear that I'm wearing it because it's kind, and not because I understand the beads.",
+      "Penny, it's the only thing I own with glitter on it. I've decided it's a principle. Thank you. Please don't make another one. (Make another one.)"
+    ],
+    "walt": [
+      "Dear Mr. Walt, Thank you for your letter to Patrick. I read it over his shoulder, figuratively. I'm told it's customary to sign 'Regards.' I'm practicing. Regards, Evan",
+      "Dear Mr. Walt, I read that you carried the mail for 34 years. I'd like to shake your hand. I can't through a screen, so I'm mailing a thank-you note, which is the closest thing. Regards, Evan"
+    ]
+  },
+  "statuses": [
+    "evan is practicing 7 minutes of material. It's already 7 minutes. He's practicing the pauses.",
+    "evan is at Heidenreich Hardware. Yes sir, that's in aisle 4.",
+    "evan is writing a thank-you note. It's the third one today. No one is more surprised than he is.",
+    "evan is two-stepping. The garage floor is good. The garage floor has been thanked.",
+    "evan is saving for a PA. $340 to go. Josie has offered a loan at 12 percent.",
+    "evan is at the VFW hall. The bench is holding. The bench is always holding.",
+    "evan is sorry. He doesn't remember for what. He'll find out and then be sorry properly."
+  ],
+  "bulletins": [
+    {
+      "subject": "A Statement Regarding Pit Etiquette (please read before Friday)",
+      "body": "To everyone attending shows in this area: 1) If someone falls, you pick them up. 2) If you knock someone down, you pick them up and you apologize. 3) If you're in the back, you're welcome, and thank you for coming. 4) Windmilling is for the middle only. 5) Please don't teach my sister Josie any word you wouldn't say to my mother. She's nine and she repeats things. 6) Thank the sound man. Thank the band before you. Thank whoever stacked the chairs. I'd like to be clear that I'm not telling you how to live. I'm telling you how to stand near me. Thank you. xEvanx"
+    },
+    {
+      "subject": "Thank-You Notes Mailed This Week (a list, for accountability)",
+      "body": "To the VFW hall sound man (1). To Greg's father (2). To the heater repairman (1). To the band Fading Ember (1). To Penny, for a bracelet (1). To Derek, for skating a bench I built, which I'm choosing to be grateful for (1). To Mr. Dietz, for lemonade (1). To the lady at the stamp counter, who said 'another one, Evan' (1). Total this week: 9. If you'd like a note, please say so on my wall and I'll deliver it in person. If you'd rather not, I'll write one anyway and keep it in the folder. There's a folder. Thank you. xEvanx"
+    }
+  ],
+  "pcComments": [
+    "Thank you for sharing this photograph. The framing is good and everyone looks like they're in the right place. xEvanx",
+    "I'd like to be clear that this is a good picture. I'm saying so on the record.",
+    "Nice picture. I looked at it for a while. I mean that as a compliment.",
+    "Respectfully, the lighting is better than I expected. Well done.",
+    "Thank you for posting this. I'm going to keep it in mind during hard weeks."
+  ],
+  "dmSeed": [
+    {
+      "text": "Hello Malten. Thank you for accepting my request. My name is Evan. I'm not sure what the protocol is on this website, so I'm going to say thank you now, in case I forget later. Thank you. I hope you're well. I also hope you'll come to a show. We're short, but we mean every second."
+    },
+    {
+      "text": "Also, I'd like to apologize in advance if I ever answer slowly. I'm usually at the hardware store or in the garage, and I try not to type while two-stepping. It isn't safe. Thank you."
+    }
+  ],
+  "dms": [
+    "Hello Malten. I mailed you a thank-you note. It will arrive in 3 to 5 days. I don't know what it's for yet. I'll think of something before it gets there.",
+    "A question about etiquette: if someone says 'no problem' after you say 'thank you,' do you say thank you again? I've been doing it. It has created a loop. I was in one for 4 minutes with Mr. Dietz.",
+    "A man came into Heidenreich Hardware Saturday looking for 'the thing for the thing.' I knew what he meant. I have no idea how I knew. It was in aisle 9. He said 'you're a genius.' I said 'thank you' and went to sweep. I've been proud since.",
+    "Josie asked what 'straight edge' means. I said 'it means I don't.' She said 'don't what.' I said 'that's the whole thing, you don't, and you don't say.' She said 'okay' and went back to Wheel of Fortune. She's nine. She may be the wisest person I know.",
+    "A confession: I've been trying to learn to like Voltage Heart. I think I do. I think there's a hardcore riff at 1:12. I've never told Greg. I'd appreciate it if you didn't either. It would go to his head, and his head is already in the amp.",
+    "In 11 days my band is playing the VFW hall for what I'm calling the Bench Benefit. It raises money for the PA. If it raises $340 I'll cry in the parking lot. If it raises $339 I'll apologize to everyone individually.",
+    "Do you know a polite way to tell someone their song is 4 minutes long? I've tried several. I opened with 'respectfully.' It didn't help. He's still playing it.",
+    "My mother asked me to say something nice about myself on my page. I said I'm punctual. She said that's not nice, it's just true. I said it's the nicest thing I have. She was quiet. Then she said 'that's actually really nice.'"
+  ],
+  "blog": [
+    {
+      "title": "What Happened On The 25th (a statement)",
+      "date": "Sep 27 2026 7:45 AM",
+      "mood": "grateful",
+      "body": "At 6:40 PM I carried Danny's amp up Greg's driveway because I was early. At 7:05 Aaron played three songs, one of which was about a toaster, and I want it on the record that the toaster song was the best song anyone played that night, including mine, which was 7 minutes. We played at 7:30. Greg's father timed us with a kitchen timer, came out at 7:37, and said 'that's it?' I said 'yes sir.' He said 'huh.' It's the nicest review I've ever had. Fading Ember went on after us. Dr. Beat started at the wrong tempo and Cory looked at the machine like a man at a funeral. I clapped. A girl named Penny handed out 40 glowsticks and Greg's father ruled they weren't a strobe, which I'm told is now in the binder. Skip's band played from the driveway. I don't have a position on that. Thank you, Greg's father, for the extension cord."
+    },
+    {
+      "title": "A List Of Rules I Live By (Revised)",
+      "date": "Sep 6 2026 6:30 AM",
+      "mood": "orderly",
+      "body": "1) Say thank you before you're asked. 2) Rinse your own plate. If someone's asleep, rinse theirs. 3) If you say you'll be there at 7, be there at 6:45. 4) If someone falls, pick them up. 5) Don't say what you don't do. Just don't. 6) Finish what you start. If it's a song, finish by 8:15. 7) Write the note. 8) Apologize first and sort out the details later. 9) Say ma'am and sir, even when it's a surprise. 10) Never leave a bench lopsided. 11) Rule 11 is a rule my sister made me add. I told her I can't do all of this perfectly. She said 'watch me watching you.' So that's rule 11: Josie is watching. It's the best rule I have, and I didn't write it."
+    },
+    {
+      "title": "How To Build A Bench (a tutorial for people who don't)",
+      "date": "Aug 16 2026 8:20 PM",
+      "mood": "proud",
+      "body": "I built the bench outside the VFW hall for my Eagle project. Step one: ask. I asked the Legion post for permission and the commander said 'sure, kid' and I wrote him a letter anyway. Step two: measure twice. I measured four times. My father measured once and said 'looks right.' It was. Step three: 340 screws, all pre-drilled, none stripped. Step four: the Saturday crew. Danny, Mitch, Pete, Mr. Baumgartner, and Greg, who held the level and gave notes. Step five: sit on it. The first person to sit was an old man waiting for the bus. He said 'good bench.' That was the whole review and I've kept it. I'd like to explain why I did it. A show starts when you arrive, not when the band starts. People should have somewhere to sit while it begins."
+    }
+  ],
+  "survey": {
+    "title": "Questionnaire (forwarded by Josh, answered in full)",
+    "qa": [
+      [
+        "Name?",
+        "Evan Kessler. xEvanx on here."
+      ],
+      [
+        "Age?",
+        "17. I'll be 18 in March. I've been practicing."
+      ],
+      [
+        "Favorite food?",
+        "My mother's lasagna, Sundays at 5. I arrive at 4:50."
+      ],
+      [
+        "Best friend?",
+        "Bryan, for being on time to everything except texts. Derek, for the bench. Josie, for the truth."
+      ],
+      [
+        "Biggest fear?",
+        "Being rude by accident. I think about it more than I should."
+      ],
+      [
+        "Last thing you cried at?",
+        "Rudy. Again. Same part both times."
+      ],
+      [
+        "What do you do on a Friday night?",
+        "A show, if there's one. A different show, if there are two. The garage, if there are none."
+      ],
+      [
+        "Best advice you've received?",
+        "My father: 'Whatever you do, be early and say thank you.' That's all I have and it's enough."
+      ],
+      [
+        "What would you do with a million dollars?",
+        "A PA. A better PA. A bench in every town. Then, with what was left, a very large number of stamps."
+      ],
+      [
+        "Who would you have dinner with?",
+        "Anybody who'd let me do the dishes after."
+      ],
+      [
+        "Describe yourself in one sentence:",
+        "I'm polite on purpose and loud on purpose, and I'd like to be clear that those aren't opposites."
+      ],
+      [
+        "How many people will you forward this to?",
+        "Zero. I'll mail it. With a note."
+      ]
+    ]
+  }
+}

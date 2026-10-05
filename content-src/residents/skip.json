@@ -1,0 +1,287 @@
+{
+  "id": "skip",
+  "name": "ska_skip",
+  "tag": "ska is NOT dead, it's on the offbeat ♪ trombone ♪ The Pork Pie Patrol (9 of us!!)",
+  "avatar": "assets/avatar_skip.gif",
+  "gender": "Male",
+  "age": 17,
+  "hometown": "Shelby, OH (three stoplights, one trombone)",
+  "loc": "Luis's basement (9 chairs, 1 outlet, the neighbors have stopped asking)",
+  "zodiac": "Gemini (upstroke AND downstroke)",
+  "status": "Single (it's me and the trombone, it's serious)",
+  "hereFor": "Friends, Horn players, Anyone who wants to learn the skank step in 4 minutes",
+  "mood": "UP on the upbeat",
+  "lastLogin": "Oct 3 2026 9:14 PM",
+  "theme": {
+    "bg": "#111111",
+    "fg": "#ffffff",
+    "accent": "#ff3b2f"
+  },
+  "bgTile": "assets/tiles/tile_checker.png",
+  "blogTitle": "THE OFFBEAT: field notes from the horn section",
+  "about": "Hi!! I'm Skip. I play trombone in THE PORK PIE PATROL, a nine-piece ska band out of Shelby, Ohio: three horns, one guitar, bass, drums, keys, a singer, and Fitz, who is the hype guy, which is a full-time job. Everybody keeps telling me ska is dead. I keep a tally. It has been 11 days since somebody said it to my face, which is a personal best, and I'm choosing to take that as proof of life. We play the Elks Lodge matinee, the VFW hall when they let us, and any porch with a flat spot. Checkerboard isn't a style for me, it's a filing system. If you've never skanked (the dance!), come to a show and I'll teach you the step in four minutes. If it's not for you, you're still welcome. =D",
+  "aboutMore": "My grandpa Stan played trombone in a polka band for 41 years and this is his horn, a Conn that's older than my dad. His initials are scratched inside the bell. He lives at Maple Grove Manor now and his lip has 'retired,' so on Sundays I bring the horn and play him one polka and then one ska song, and he taps the offbeat on the armrest without noticing. I think polka is just ska that hasn't discovered the upstroke yet. Don't tell my grandpa. (He knows.)",
+  "meet": "Who I'd like to meet: a bass player who owns a van. Whoever decided the horn section gets the last 30 seconds of every Reel Big Fish song (thank you, sincerely). The person who says ska is dead, so I can play them one song and then let them go in peace. Anybody in marching band who can count in cut time. And the guy at the Elks Lodge who keeps stacking the folding chairs wrong, because I think we could be friends.",
+  "interests": {
+    "General": "ska (it's not dead), slide oil, checkerboard everything (shoelaces, wallet, one birthday cake), the skank step, writing horn charts by hand, the Elks Lodge matinee, my grandpa Stan, pep band pizza, van seating charts, the tally",
+    "Music": "The Specials, The Skatalites, Madness, Reel Big Fish, Less Than Jake, Mighty Mighty Bosstones, Five Iron Frenzy (Josh and I are the only two people who know every word), Streetlight Manifesto, Goldfinger, the Pork Pie Patrol (9 of us!), polka (a little, privately, a lot)",
+    "Movies": "Drumline (the trombones get one scene and I'll say no more), The Blues Brothers (basically ska with a better van), The Mighty Ducks (all three), School of Rock (documentary), Rudy (Evan made me watch it, I cried, I'd do it again)",
+    "Television": "Drum Corps International on the public station (the brass lines are my church), The Simpsons (Lisa's sax is a gateway), the Rose Parade (I count the trombones), whatever's on during pep band pizza",
+    "Books": "Arban's trombone method (page 41 is my Everest), the Pork Pie Patrol binder (charts, setlists, van seating), The Lord of the Rings (the Fellowship is NINE, I've done the math, we're the Fellowship)",
+    "Heroes": "Grandpa Stan, Mr. Pruitt (my band director, who has never once said ska is dead and has never once said it's alive), Fitz (the hype guy), the first guy who ever put a horn section in a punk song, Big Tom (joined our drums in July and smiled for a whole week)"
+  },
+  "song": {
+    "name": "Sell Out",
+    "artist": "Reel Big Fish",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/70/2a/f3/702af3f8-5051-55ef-3e8c-e220b2e223de/mzaf_8076080872885324472.plus.aac.p.m4a",
+    "pattern": [
+      0,
+      7,
+      4,
+      7,
+      0,
+      7,
+      4,
+      12
+    ],
+    "bpm": 168
+  },
+  "decor": [
+    "assets/deco_smiley.gif",
+    "assets/deco_record_dj.gif",
+    "assets/badge_midi_files_now.gif"
+  ],
+  "friends": [
+    "greg",
+    "derek",
+    "becca",
+    "gus",
+    "harmony",
+    "evan",
+    "josh",
+    "ember",
+    "penny"
+  ],
+  "wall": [
+    {
+      "from": "greg",
+      "text": "skip. the horn chart for voltage heart came in the mail. thank u. it's 6 pages. i filed it in the binder under 'other.' this is not a no. it's a 'not yet.' (it's a no for the songs.) (for ENTRANCES i'm very open.) (dad says the garage holds 12 and u are 9 and there's already 4 of us. he did the math on a napkin.)",
+      "time": "Oct 2 2026 8:40 PM"
+    },
+    {
+      "from": "becca",
+      "text": "SKIP. At halftime Friday you skanked through the entire trombone line during 'Hey Jude' and the whole line FOLLOWED you. Mr. Pruitt called it 'unauthorized but cohesive.' I am still writing the incident report. Sectionals are Tuesday. Bring your music AND your feet.",
+      "time": "Sep 30 2026 4:55 PM"
+    },
+    {
+      "from": "derek",
+      "text": "skip i showed my gap to ur band. fitz said 'whoa' and kenji said 'is that a hose.' thats two reviews. also the checkerboard grip tape u made me is actually sick. dont tell mike i said that",
+      "time": "Sep 28 2026 6:22 PM"
+    },
+    {
+      "from": "aaron",
+      "text": "Skip, your grandpa Stan requested 'Pennsylvania Polka' again at Maple Grove. I played it in E minor and he told me, very kindly, to put it back in the right key. He said you'd know which one. Also, 'Track Four Skips' is about a CD. I know it sounded like it was about you. It's fine.",
+      "time": "Sep 27 2026 3:48 PM"
+    },
+    {
+      "from": "penny",
+      "text": "SKIP!!! glowsticks + horns = the BEST TEEN NITE!!! i made u a checkerboard bracelet (28 beads, black n white, i counted!!!) it's in ur trombone case, in the pocket w/ the slide oil!!! PLUR!!!",
+      "time": "Sep 24 2026 4:05 PM"
+    },
+    {
+      "from": "gus",
+      "text": "skip dude i beat the expert solo 3 times in a row. u said u needed a 2nd guitar. luis said ok while his wisdom teeth r out. what do u need me to play. do u have a hard mode",
+      "time": "Sep 22 2026 9:31 PM"
+    },
+    {
+      "from": "ember",
+      "text": "thanks for taking big tom. we mean it. he sent a picture from your show and he is SMILING in it. we are not looking at the picture. we looked at the picture. we are fine.",
+      "time": "Sep 19 2026 11:02 PM"
+    },
+    {
+      "from": "harmony",
+      "text": "hey skip... i listened to your song all the way through and it was over in 2 minutes and 10 seconds, which is wild, because i was just getting comfortable. maybe try a longer one, friend? like 40 minutes? think about it. peace.",
+      "time": "Sep 15 2026 1:14 PM"
+    }
+  ],
+  "replies": [
+    "That's ska!! (I don't know what you said but it landed on the offbeat.)",
+    "Thank you! I'm adding that to the tally. The tally has a good-things column now.",
+    "Love it. I'm writing a horn part for that comment.",
+    "Ha!! I would skank to that.",
+    "That's a rest, not a stop. In music a rest is just the part where everybody breathes.",
+    "=D that's the nicest upstroke anyone's played me all week",
+    "Okay but have you heard The Specials? No pressure. (Some pressure.)",
+    "Honestly? Same. Let's go skank about it.",
+    "That's a minor key, but we can modulate. We always can.",
+    "Okay now I'm smiling even bigger and I didn't know that was possible. Thank you!!"
+  ],
+  "thanksAdd": "THANK YOU for the add!!! You're officially on the Pork Pie Patrol mailing list (it's a clipboard at the Elks Lodge). Your first lesson, free: it's 'one AND two AND' and the AND is where everybody lives. Matinee is Sunday, 2 PM, all ages, $3. Bring a friend and shoes you can skank in. =D",
+  "ambient": [
+    "Day 11. Eleven days since anybody said ska is dead to my face. Personal best. The tally is on the fridge now. Mom adds a tick when she thinks I'm not looking.",
+    "Fitz (hype guy) practiced his hype in the van for 40 minutes straight. Nobody asked him to. This is why we have a hype guy.",
+    "Wrote a horn part in the shower and forgot it by the time I found a pencil. Wrote it again on the bus and it's BETTER. Lesson: showers are for first drafts.",
+    "Played the polka for Grandpa Stan. He tapped his foot on the offbeat. I didn't say anything. He didn't say anything. We both knew.",
+    "Q: What's the best part of the marching band? A: The trombone section. Q: What's the second best part? A: There isn't one. =D"
+  ],
+  "saltyDm": "Oh!! You denied the request?? That's cool!! That's totally fine!! That's a rest in the song, not the end of the song!! The matinee is still Sunday at 2 and there's still a folding chair with your name on it (it says 'Guest of Skip'). Ska is not dead, and neither is this friendship (it's a pre-friendship).",
+  "keywords": {
+    "ska": "Oh you said the word. Okay. Three waves: Jamaica, England, and us. We're in the third wave and it's a long one, it goes on for years. Come to the Elks Lodge Sunday at 2 and I'll show you the rest.",
+    "trombone": "It's a Conn that belonged to my grandpa Stan. Seven positions, no buttons, no excuses. The slide is the only instrument that can say 'whooooa' AND 'oops' at the same time, and it does both on purpose.",
+    "dead": "Ska is not dead. It's not even asleep. It's on a break between songs and the next song is in a major key. Please don't say it, though, I'd have to reset the tally to zero. I have the clipboard right here.",
+    "polka": "Polka is ska's grandfather. Literally, in my case. Same instruments, same joy, same people in matching shirts. Polka just puts the beat on the one. I'm not saying one is better. I'm saying one has a faster van.",
+    "checkerboard": "It isn't a pattern, it's a promise: black and white, together, equal amounts, in squares. The Specials did it first. I did it second (shoelaces, wallet, notebook, one cake).",
+    "band": "THE PORK PIE PATROL: Dino (vocals), Luis (guitar), Tess (bass), Kenji (trumpet), Priya (alto sax), Mo (keys), Fitz (hype), Big Tom (drums), and me (trombone, hi!). Nine people, one van, no room."
+  },
+  "banter": {
+    "greg": [
+      "greg i wrote a horn part for Circuit Breaker. three horns. it makes the bridge go UP. it's in your mailbox and NOT the binder because the binder has a 'no horns' tab and i didn't want to meet it",
+      "greg all nine of us came to the garage friday and didn't ask to play. we stood in the driveway. we played Voltage Heart from outside as 'passing traffic.' your dad looked out the window and nodded on the offbeat. i SAW it"
+    ],
+    "becca": [
+      "becca i'll make you a deal: i stay in formation the ENTIRE halftime show if you let me skank during the walk-off. 16 counts. that's all. write it into the drill chart. i'll get the whole line in step",
+      "becca your memo said 'no unauthorized dancing.' i'd like to request authorization. i have the form. it's in a checkerboard folder. also 11 clarinets in a row sound like a field of geese and i mean that as the highest honor"
+    ],
+    "derek": [
+      "derek i measured your gap with the hose: 4 feet 3 inches. that's bigger than mike's. i have the tape measure and a witness (priya). i'm not picking sides. i'm picking measurements",
+      "derek skating and skanking are the same sport: knees bent, arms out, you almost fall every time, and you do it with confidence. come to the Elks Lodge Sunday and try the step. bring pads. (you won't need pads.) (bring pads)"
+    ],
+    "gus": [
+      "gus here's the secret to ska guitar: it's all upstrokes. you hit the strings AFTER the beat. that's it. it's easy. it's the hardest thing. luis says you can sub for two weeks (wisdom teeth). welcome to the Fellowship (it's nine, you're the tenth, we're making it work)",
+      "gus i heard the recording of your first rehearsal. you played every note perfectly in the exact order the colored buttons would've told you. next time look at the drummer. he's in charge of 'when'"
+    ],
+    "ember": [
+      "ember we're sorry about big tom. we asked him first. he said yes. he smiled while saying yes. we're sorry about the smile. let's do a split: you scream, we skank, 20 minutes each. you bring Dr. Beat, we bring the van",
+      "ember we added an 8-bar minor key section to 'Rude Awakening' in your honor. the band calls it the 'Cory part.' we won't say Cory again. it's a good part. it's the saddest 8 bars in ska"
+    ],
+    "harmony": [
+      "harmony i listened to the whole 40 minutes. i kept waiting for it to turn into ska. at minute 22 i think the bass player thought about it. i'm proud of him. my song is 2:10 and it ends exactly when you want more. that's the trick. peace!!",
+      "harmony your hacky sack circle is at 12:20 and trombone lunch is at 12:20. i have to pick a side. i'm bringing the trombone to the circle. nobody's ever played the slide while kicking. history incoming"
+    ],
+    "josh": [
+      "josh the church van is the best part of the band and i say that with my whole heart. we honk at everybody and almost all of them honk back. a man on Route 30 honked for 3 miles. we think he loves Jesus. we think he might also like ska",
+      "josh i learned the whole second verse of 'Every New Day' for you. i won't say which word i got wrong. it's the one in the middle. thank you for being the other guy who knows the words"
+    ]
+  },
+  "statuses": [
+    "skip is on day 11 of the ska-is-not-dead tally. personal best!!",
+    "skip is writing horn charts in study hall (the teacher thinks it's algebra. it's a LITTLE algebra.)",
+    "skip taught the skank step to a stranger at the mall. she's a natural. her mom is nervous.",
+    "skip just learned the church van seats 15 and we're 9, so everybody gets their own row. luxury!!",
+    "skip is oiling the slide. it's a form of prayer.",
+    "skip is 40 minutes from the matinee and Fitz has already started hyping",
+    "skip bought his 3rd mouthpiece of the year at 4 PM. it's a tradition. (it's a problem.) (it's a tradition.)"
+  ],
+  "bulletins": [
+    {
+      "subject": "SKA IS NOT DEAD: a tally (sign below if you've seen it alive this week)",
+      "body": "keeping a tally of every time ska was alive this week. 1) Elks Lodge matinee: 31 people, 4 skanking, 27 'watching,' 0 left early. 2) Marching band accidentally played an offbeat during the national anthem. Error, but it counted. 3) A guy at the mall food court tapped his foot on the AND. Witnessed. 4) My grandpa Stan, who tapped the offbeat on his armrest and said 'what's that called.' I said 'ska.' He said 'huh.' 4 for 4. Sign below if you've seen one. It's not dead. It's just early."
+    },
+    {
+      "subject": "HOW TO SKANK in 4 steps (copy and paste to teach a friend)",
+      "body": "1) Knees bent, like you're about to sit in a chair that's slightly too far away. 2) Lean forward, elbows out, like you're running through a very slow door. 3) Left foot goes up on the AND. (one AND two AND, the foot goes on AND.) 4) Smile. That's it. You're doing it. Practice in a hallway. It's amazing how fast you can cover 40 feet. If anybody asks what you're doing: it's a dance, it's called skanking, and it's for everybody, including your gym teacher."
+    },
+    {
+      "subject": "THE PORK PIE PATROL: Sunday at the Elks Lodge (matinee, all ages, $3)",
+      "body": "SUNDAY 2 PM, Elks Lodge on Gilbert Street. Nine of us, two sets, one polka in the middle (for Grandpa Stan, he'll be in the second row with a tennis-ball walker). Opening act: With All Due Respect, a hardcore band that plays for 7 minutes and apologizes for each one. Doors at 1:30. Checkerboard cake at 3 (it's a little off). Bring a friend who thinks ska is dead. Leave with a friend who knows better."
+    }
+  ],
+  "pcComments": [
+    "Great pic!! The checkerboard on the sweater is a bold choice and I support it.",
+    "Love this!! If this photo were a song it'd be in a major key. That's the highest compliment I know.",
+    "Looks like a good day. Looks like an upstroke.",
+    "Is that a trombone case in the background?? Wait, no, it's a bag. Still counts.",
+    "This photo is a skank step: a little forward, a little off balance, completely happy."
+  ],
+  "dmSeed": [
+    {
+      "text": "Hi!! It's Skip from the Pork Pie Patrol (trombone, the guy with the checkerboard shoelaces). Welcome to OurSpace! I add everyone I meet to a list called 'future skankers' and you're on it. No pressure. It's a list of people who might come to a show. We're at the Elks Lodge Sunday at 2. There will be cake (checkerboard, a little off)."
+    },
+    {
+      "text": "Also! Tally update: Day 11. I'm going to tell you this every time we talk until it hits 12. That's the whole plan."
+    }
+  ],
+  "dms": [
+    "The Pork Pie Patrol van is Josh's youth group's church van and it has a bumper sticker that says HONK IF YOU LOVE JESUS. We honk. Everybody honks back. A guy on Route 30 honked for 3 miles. We think he loves Jesus. We think he might also like ska.",
+    "Went to see Grandpa Stan today. He asked if the band was still going. I said we're nine people now. He said 'in my day we had twelve and one of them was an accordion.' He was proud. I think. He was tapping the offbeat.",
+    "Becca moved me to the front of the trombone line because 'you're the only one who can't stop smiling and judges like that.' That's not a real reason. It's the best reason.",
+    "I ironed a checkerboard patch onto my backpack and it came out 7 squares by 8. Nobody noticed. I've decided it's a checkerboard that's learning to be itself.",
+    "A guy at the mall said 'ska's dead' and I said 'then what's playing in my head' and he said 'the mall.' I had no answer. It was the mall. Tally reset to zero. I'm fine. I'm very upbeat.",
+    "I spent 40 minutes writing a one-note horn part for the school fire alarm. It's a B-flat. It isn't great. But it's the best fire alarm in the county.",
+    "Mom made a checkerboard cake for the band's six-month anniversary. 9 candles. The squares were a little off. I cried a little. Happy tears. Even the frosting was checkerboard (a little off, again).",
+    "Question: is it weird that the first thing I do in a new building is look for the best echo? The Elks Lodge bathroom is a B-flat. I'm not going to say more. You'll have to come see."
+  ],
+  "blog": [
+    {
+      "title": "THE ELKS LODGE MATINEE: a review of ourselves",
+      "date": "Sep 27 2026 10:15 PM",
+      "mood": "buzzing",
+      "body": "Attendance: 31. Skanking: 4 at the start, 19 by the third song, and I'll tell you how I know it's 19 because I counted from the second row of the horn line. WITH ALL DUE RESPECT opened. Evan thanked the room twice and apologized for the volume once. (Evan, I love you, but it was 7 minutes of you politely screaming.) Then we played our set, and then something happened. The Elks invited Maple Grove Manor to the matinee, and Grandpa Stan came with his walker with tennis balls on the feet, sat in the second row, and tapped the offbeat the whole show. At the end I said 'we'd like to close with a polka.' Stan sat up. Luis counted it in. We played 'Stan's Polka (Skankin' Version)' and the whole room did the step without knowing they were doing the step. That's it. That's the review. Ska is not dead. It was in the second row. It had tennis balls on its feet."
+    },
+    {
+      "title": "RANKING THE WAVES (a list for beginners)",
+      "date": "Sep 11 2026 8:02 PM",
+      "mood": "educational",
+      "body": "People ask me for a starter pack. Here it is, by wave. FIRST WAVE: Jamaica. The Skatalites. They invented the beat. If you only listen to one record, listen to one of theirs, and then call your grandpa. SECOND WAVE: England. The Specials, Madness, The Selecter. Two-tone. This is where checkerboard came from, and I want you to know I take that personally. THIRD WAVE: America. The Mighty Mighty Bosstones, Less Than Jake, Reel Big Fish, Five Iron Frenzy (Josh, you know), Streetlight Manifesto. The horns got louder and so did the guys holding them. FOURTH WAVE: us. We're local. We're nine. We're the wave that comes in and surprises you at the Elks Lodge. WAVE ZERO: polka. I've been told this isn't a thing. I've decided it is. Ranked by how fast a stranger taps a foot: 1) Skatalites. 2) The Specials. 3) Grandpa Stan. 4) Reel Big Fish. 5) Me, at lunch, no instrument."
+    },
+    {
+      "title": "what my grandpa's trombone case smells like (a love letter)",
+      "date": "Aug 29 2026 11:20 PM",
+      "mood": "soft",
+      "body": "Slide oil. Peppermint. Old Spice. And a thing I can't name that I think is 41 years of weddings. The case has four stickers: the Buckeye Concertina Aces, a Browns helmet, 'I Love Polka' (the heart is a real heart), and a tiny flag. Inside the lid, in marker, in handwriting I'd know anywhere, it says: PLAY IT LIKE YOU MEAN IT, STANLEY. That's me. I'm Stanley the third. Skip since kindergarten, because I skipped everywhere. I found the note the first day I opened the case, when I was twelve, and I haven't cleaned it off, and I never will. When Grandpa gave me the horn he said 'the secret is, there's no secret. You just show up and you blow.' I think that's ska. I think that's the whole thing. I'm going to put it on a T-shirt. (Checkerboard. Obviously.)"
+    }
+  ],
+  "survey": {
+    "title": "Which Ska Are You? (a survey for people who think they already know)",
+    "qa": [
+      [
+        "name:",
+        "Skip (Stanley, but only Grandpa gets to)"
+      ],
+      [
+        "instrument:",
+        "trombone. 7 positions, 0 buttons, 100% heart"
+      ],
+      [
+        "current mood in musical terms:",
+        "allegro, with an upstroke"
+      ],
+      [
+        "favorite checkerboard item you own:",
+        "shoelaces. second place: the cake. third: a wallet that makes a rip sound when you open it"
+      ],
+      [
+        "how many people in your band:",
+        "9. we've been 10 once (a guy sat in for one song 'for the experience'). we don't talk about it"
+      ],
+      [
+        "longest you've ever practiced:",
+        "6 hours, the day before the matinee. my lip looked like a very sad peach"
+      ],
+      [
+        "what do you say to people who say ska is dead:",
+        "'Come to the matinee.' Then I tally"
+      ],
+      [
+        "favorite non-ska song:",
+        "Pennsylvania Polka. (It's ska. It just doesn't know yet.)"
+      ],
+      [
+        "what's in your van:",
+        "9 people, 1 amp, 4 horn cases, a bass, a Casio keyboard, a cooler of sandwiches, and a very confident hype guy"
+      ],
+      [
+        "pet:",
+        "a hamster named Rocksteady (he is neither)"
+      ],
+      [
+        "last thing that made you cry:",
+        "Mom's cake. Also the movie Rudy (hey, Evan)"
+      ],
+      [
+        "describe yourself in one sentence:",
+        "Skip is nine people's worth of enthusiasm in one trombone case."
+      ]
+    ]
+  }
+}

@@ -1,0 +1,221 @@
+{
+  "id": "holly_third_song",
+  "with": "holly",
+  "opener": [
+    "welcome in. let me know if you need anything. (you will. it's 7:52 PM, i'm in the stockroom with a clipboard and a pen that's almost out of ink.)",
+    "dana taped a sheet to the stockroom door: HALLOWEEN WEEK: ASSOCIATE PICKS. every associate gets 3 songs on the store loop, friday at 6 PM, a 41 minute block between the sisters of mercy and the one with the bats. due at close tonight. i have two: 'bela lugosi's dead' and 'love will tear us apart.' slot 3 has said BLANK since 7:30. dana's instructions, in full: 'pick the one you'd put in a stranger's hand.'",
+    "before i say what's in slot 3, i'm running the test on you. it's the only way i know how to ask a question. name 3 songs. any band. i'll wait. (no, you have to actually type them.)"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "a forest. just like heaven. lovesong. all cure. i'm loyal, not creative.", "next": "a_pass" },
+        { "say": "toxic. toxic. and toxic. i read your profile. 311 plays.", "next": "b_toxic" },
+        { "say": "i only know one song. i know every word of it, though.", "next": "c_one" }
+      ]
+    },
+
+    "a_pass": {
+      "them": [
+        "...three. one band. that's not a list, that's a loyalty card. (it counts. 'a forest' has a bassline you could build a shed on.) you get a nod. [nod.] that's all i have. it's my best one.",
+        "ok. slot 3. i know the answer to dana's question. that's part one. part two is that the answer isn't on the list of things i'm allowed to like out loud. also raven put 'i'm saying nothing' on my wall about something she heard through the stockroom door at closing. 14 comments. kittyxcore guessed 'a hello kitty thing.' it wasn't. it was worse."
+      ],
+      "choices": [
+        { "say": "so who's the stranger? tell me who you're handing it to.", "next": "a_hand" },
+        { "say": "easy. the best goth song ever. nobody argues with 'best.'", "next": "a_safe" }
+      ]
+    },
+
+    "a_hand": {
+      "them": [
+        "the stranger. ok. it's not a goth. that's what i keep getting wrong. a goth already owns bauhaus. the stranger is a fifteen year old at 8 PM, standing under the speaker in a shirt they bought for the logo. they don't know a single band. they've been walking circles around the nightmare boxes for ten minutes pretending to read a tag.",
+        "what do you hand that kid. not what's correct. what's easy to hold. something they could hum on the way out of the mall without noticing they're humming. a big, dumb, perfect bridge. ...i said that out loud. i don't know where that came from. (it came from a place with a bridge.)"
+      ],
+      "choices": [
+        { "say": "then write that one down. the humming one. dana asked for a stranger, not a scholar.", "next": "crux" },
+        { "say": "what's the humming kid humming? say the title. out loud. to me, a stranger.", "next": "crux" }
+      ]
+    },
+
+    "a_safe": {
+      "them": [
+        "'best.' fine. 'a forest.' (you already said it. it's in my head. that's why.) it's perfect. it's the correct song. dana will read it and say 'great,' and a boy on saturday will hear it, nod, buy a shirt and not need one single thing handed to him.",
+        "i wrote it down. in pen. it's in the box. i feel like i just signed a form that says i agree to be fine."
+      ],
+      "choices": [
+        { "say": "cross it out. 'best' and 'right' aren't the same song.", "next": "a_hand" },
+        { "say": "leave it. it's a great song and dana asked for a pick, not a confession.", "next": "safe_path" }
+      ]
+    },
+
+    "b_toxic": {
+      "them": [
+        "i don't know what that is. there's no toxic. there's a song on my page and it's for research. it has a bridge. 311 plays isn't a number, it's a sample size.",
+        "...how did you count. no. don't answer. i put the number on the page. i did that. a person with a secret doesn't post the play count. unless she's mostly hoping to get caught.",
+        "this is the actual problem. raven wrote 'i'm saying nothing' on my wall about something she heard through the stockroom door at closing. nobody can read nothing and not ask. 14 comments."
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "raven", "to": "holly", "delay": 20, "text": "Holly. For the record: I am still saying nothing. It is now 19 comments of nothing. kittyxcore believes it was a Hello Kitty matter. It was not. I will add only that the sound was not in a minor key. I am not accusing. I am noting the key. - R" }
+      ],
+      "choices": [
+        { "say": "say it before she does. everyone hides one song. say yours first and it can't be a rumor.", "next": "b_own" },
+        { "say": "deny it. 'research.' 'structurally interesting.' go down with the bridge.", "next": "b_deny" }
+      ]
+    },
+
+    "b_own": {
+      "them": [
+        "...do you have one. a hidden one. (don't tell me. i'm going to assume it's a boy band and love you for it.)",
+        "ok. it's at closing. the mall goes to half lights, the fountain stops, the stockroom's empty. the song comes on in my head and my body does a thing. not dancing. 'moving.' my coworker walked in with a clipboard in august. he did the thing with the arms. he left. we've never discussed it. he's the best person i work with.",
+        "that's the secret. that's all of it. it's a pop song and i move to it in a stockroom. i said it to an actual person. i feel like a vending machine that just gave up a candy bar."
+      ],
+      "choices": [
+        { "say": "that's not a secret, that's a tuesday. you're allowed one song with no research behind it.", "next": "crux" },
+        { "say": "the arms guy never told anyone. that's who you tell next. then dana.", "next": "crux" }
+      ]
+    },
+
+    "b_deny": {
+      "them": [
+        "'research.' 'structurally interesting.' ...yes. i could say that with a straight face. i could say it to dana. she'd say 'which song' and i'd say 'a song.' she'd say 'which' and i'd say 'it's a rare mix.'",
+        "i've never lied to dana. i lie professionally, to customers, about the shirt being worth it. dana let me close alone four months in and never made it a thing. you don't lie to a person like that. you do a bit near her. is there a difference. tell me there's a difference."
+      ],
+      "choices": [
+        { "say": "there's a difference. a bit is a costume. put a costume on the sheet.", "next": "sneak_path" },
+        { "say": "it's a thin difference. say the real song to me first. practice on a stranger.", "next": "b_own" }
+      ]
+    },
+
+    "c_one": {
+      "them": [
+        "...say that again. 'one song, every word.' malten, do you know how many people say that to me. one in forty. it's the best sentence in the language. i don't tell them. i give them a cd and a nod and then i go in the stockroom and sit very still.",
+        "that's the kid i'm picking this for. ...which one. you don't have to say. (you don't have to. i'm just holding the door.)"
+      ],
+      "choices": [
+        { "say": "the one from the movie. the one you said doesn't count. no regrets.", "next": "c_movie" },
+        { "say": "later. first tell me about danny's third song. you dropped a plate.", "next": "c_danny" }
+      ]
+    },
+
+    "c_movie": {
+      "them": [
+        "'the one from the movie.' my rule. my actual rule. 'not the single, not the one from the movie.' ...you're not sorry. ok. you know what. it counts. (it doesn't count.) it counts. one song, every word, that's the whole door.",
+        "it also tells me something about my own rule. the rule has a back door. i built it with a back door. a nod on one side, a bag on the other. a test where everybody leaves with a song isn't a test. it's a cd with extra steps."
+      ],
+      "choices": [
+        { "say": "extra steps are the point. put the humming song in the loop. the stranger is the test.", "next": "crux" },
+        { "say": "so write it on the sheet like that. slot 3: the one you'd hand a stranger.", "next": "crux" }
+      ]
+    },
+
+    "c_danny": {
+      "them": [
+        "danny. he named the third song in the kitchen, correctly, while holding a spoon. i dropped a plate. the plate's fine. he looked at me like i'd handed him something.",
+        "then he asked what MY one song is. the one i'd play for somebody. i said 'research.' he said 'for what.' malten i'm 18 and an eleven year old asked me for a straight answer and i said 'it's complicated.' that's what adults say right before a dishwasher thing."
+      ],
+      "effects": [
+        { "type": "status", "delay": 6, "text": "holly is in the stockroom with a clipboard, a blank line and a brother who named 3 songs correctly. she is being asked a very simple question by a person who owns one misfits shirt" }
+      ],
+      "choices": [
+        { "say": "answer danny. out loud, right now, to me. one song. the stranger song.", "next": "crux" },
+        { "say": "tell danny tomorrow. tonight put the answer on a sheet for 41 minutes of strangers.", "next": "crux" }
+      ]
+    },
+
+    "crux": {
+      "them": [
+        "it's 8:41. dana's at register 1 counting the drawer. the sheet is on the clipboard and slot 3 is a rectangle. i've been looking at it so long it's started to look like a bridge.",
+        "raven's post is at 22 comments. misery asked if she can film the store at 6 on friday. somebody typed 'is it a britney thing' and i closed the window and stood very still in the stockroom.",
+        "what do i write."
+      ],
+      "effects": [
+        { "type": "status", "delay": 8, "text": "holly is at the stockroom door with a clipboard. slot 3 has been blank for 71 minutes. she says it's a rectangle. she is wrong" }
+      ],
+      "choices": [
+        { "say": "the real one. the stranger song. pen. no explaining the bridge.", "next": "pop_path" },
+        { "say": "the safe one on the sheet. the real one goes in a bag. you can still hand it to somebody.", "next": "safe_path" },
+        { "say": "a fake title. 'sisters of mercy: rare mix.' friday at 6, let the speakers confess.", "next": "sneak_path" }
+      ]
+    },
+
+    "pop_path": {
+      "them": [
+        "...ok. pen. i'm writing it. 'toxic.' 'britney spears.' the T looks nervous. (it's a T. it looks the same as every T. it looks nervous.)",
+        "dana's at the stockroom door. she's holding her coffee and she's reading the sheet and she's looking at slot 3. 'holly.' ...'this is a britney spears song.'",
+        "i said 'it's research.' reflex. she said 'is it.' she didn't say it mean. she said it like a door."
+      ],
+      "choices": [
+        { "say": "drop 'research.' it's what you play on your 12 minute break. that's the truth.", "next": "end_pop" },
+        { "say": "say 'wrong sheet.' swap it. 41 minutes in front of the whole mall is a lot of bridge.", "next": "safe_path" }
+      ]
+    },
+
+    "safe_path": {
+      "them": [
+        "ok. 'a forest' in slot 3. perfect. i bring it to dana. she reads it. 'great. it's exactly what i'd have picked.' she says it like a person who knows there's a different sheet. she doesn't ask. she's the kind of manager who doesn't ask until you can't help it.",
+        "i said thanks. i went to the stockroom. there's a blank disc on the shelf. i've burned 214 and i know exactly what track 1 is on the 215th. what do i do with that."
+      ],
+      "choices": [
+        { "say": "burn it. track 1. START HERE in silver marker. the loop stays safe, the bag doesn't.", "next": "end_safe" },
+        { "say": "give it to danny. he asked what yours is. he's a stranger who deserves a straight answer.", "next": "end_safe" }
+      ]
+    },
+
+    "sneak_path": {
+      "them": [
+        "...'sisters of mercy: toxic (rehearsal tape).' that's objectively a lie. it's also kind of a poem. dana will say 'we play sisters of mercy every hour, do we have this one,' and corporate will say 'we have everything,' and it'll play, and it'll have a bridge, and nobody will know.",
+        "i know. i KNOW. it's a bit. a bit is a costume. but a costume is still a person in a thing. malten if this goes wrong i'm in a stockroom for the rest of my natural life selling chain wallets to ghosts."
+      ],
+      "choices": [
+        { "say": "hand it in. straight face. 'rehearsal tape.' you have never been more professional.", "next": "end_sneak" },
+        { "say": "no. walk up to dana first. say it was a bit, then say the real name.", "next": "pop_path" }
+      ]
+    },
+
+    "end_pop": {
+      "them": [
+        "UPDATE, 9:19 PM. i said it. 'it's what i play on my twelve minutes in the car with the engine off. it's the one i'd hand a kid who knows no bands. it has a bridge. it's not research.' dana took the pen out of my hand and wrote 'APPROVED' next to slot 3. in red. i've never seen her use red.",
+        "she said 'i've been playing it in the office for a year. the manager's office has a door, holly. doors are thin.' malten. dana's been moving to it too.",
+        "friday at six. the whole mall. i'll be at register 2, folding. there's a boy who stands at the same shelf for 20 minutes every saturday. i hope he's under the speaker."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "holly just put a britney spears song on the associate picks sheet in pen. dana wrote APPROVED next to it in red. holly says it's research. holly's face is doing something it hasn't been cleared to do" },
+        { "type": "bulletin", "delay": 12, "subject": "ASSOCIATE PICKS: FRIDAY 6 PM, THE LOOP (the 3rd one is for you)", "text": "this friday at 6 PM, for 41 minutes, the hot topic loop is associate picks. mine are 'bela lugosi's dead' (9 minutes, dana said 'a lot,' it stays), 'love will tear us apart,' and a third. the third one is for a person who doesn't know any bands yet. you'll know it when you hear it. you'll hum it on the way out. that's fine. that's the point. (it has a bridge.) if you can name 3 songs: a nod. if you can name 1: a cd. if you hum it in the food court: i heard you. register 2. - holly" },
+        { "type": "wallpost", "from": "raven", "to": "holly", "delay": 40, "text": "Holly. 'Toxic.' That is what I heard through the stockroom door, at closing, in August and again last week. I said nothing, and I am now saying it where you can see me saying it: it is a well-built song. The bridge is structurally sound. I have no notes. This is the first time I have had no notes. The Bauhaus shirt is still hung backwards. Some things I do not let go of. - R" },
+        { "type": "wallpost", "from": "riley", "to": "holly", "delay": 75, "text": "HOLLY!!! dana taped the sheet on the DOOR and i read slot 3 and i SCREAMED at the hot topic gate and a boy dropped a keychain xD *hands u an invisible cookie* it's TOXIC flavored. best flavor. i'm coming friday at 6 w/ misery and the camcorder. she's gonna film ur head again. it's the best head. rawr (that one was me not the store)" },
+        { "type": "status", "from": "brad", "delay": 120, "text": "brad has heard that a store at the mall is playing a certain pop song for 41 minutes on Friday. he is not at liberty to say which store. for a person who told the truth about a song, he recommends LITTLE MISS SUNSHINE. it's about a family and a van. also BEETLEJUICE. (holly says she owns it. he is writing 'owns it' on a card.)" }
+      ]
+    },
+
+    "end_safe": {
+      "them": [
+        "UPDATE, 9:31 PM. the sheet's in the box. 'a forest' in slot 3, in pen, correct. dana put a check mark next to it. it's a good check mark. it's the check mark you get for being fine.",
+        "track 1 is on a disc in my bag. START HERE in silver marker. i didn't write whose it is. there's a kid, there's always a kid. i'll slip it into a bag on saturday. it's the 215th one. it's the first one with a song on it i'd have to explain.",
+        "this is how it goes, i think. you pick the one that's allowed on the loop and you put the other one in somebody's hand. that's a version. it's a good version. i just wanted to hear it in the store once."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "holly turned in the associate picks sheet. 3 songs. all correct. all perfect. dana put a check mark. holly says she's relieved. holly is looking at a blank disc in her bag" },
+        { "type": "wallpost", "from": "raven", "to": "holly", "delay": 45, "text": "Holly. I saw the sheet on the door. It is perfect. It is also the one that does not need you to be there. I am a person who lives in perfect. I know the address. I will say one more thing and then return to saying nothing: the bag is a fine place for the other one. It is a smaller room than the loop. That is all. - R" },
+        { "type": "status", "from": "brad", "delay": 100, "text": "brad has put CINEMA PARADISO on the staff shelf with a card. it's about a boy and a projector and a lot of things people cut out and save. the card says 'for someone with something in a bag.' he says it's a coincidence. it's not a coincidence, it's a recommendation" },
+        { "type": "dm", "delay": 240, "text": "malten. it's 11:02. i'm in the car with the engine off. the bag one is burned. START HERE. it's on the dash. it's fine. i just wanted someone to know there's a song on it i'd have to explain. don't say anything. (thanks for staying while i worked out it was a disc and not a slot.)" }
+      ]
+    },
+
+    "end_sneak": {
+      "them": [
+        "UPDATE, FRIDAY, 6:02 PM. it's playing. over the entire store, the upper level and about 40 feet of food court. 'sisters of mercy: toxic (rehearsal tape).' it's the best 3 minutes and 21 seconds of my life and also the worst. i'm at register 2. i'm folding the same 14 shirts. i can't stop my foot.",
+        "a boy at the shelf stopped. he's humming it. he doesn't know he's humming it. dennis walked past the door in his mall security vest and he's humming it too. dana's at the stockroom door with her arms crossed. she isn't looking at me. she's looking at the speaker. she is, to the speaker, smiling.",
+        "she came over at 6:04. 'sisters of mercy.' i said 'rare mix.' she said 'holly.' i said 'rare mix.' she said 'it's the best rare mix i've ever heard' and walked away. i've been promoted to 'associate picks coordinator.' it's not a real title. malten i don't know what's happening. it's the most fun i've had in a hot topic."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "holly's store loop is playing associate picks. track 3 is listed as 'sisters of mercy: toxic (rehearsal tape).' holly has no comment. holly is at register 2. holly is not smiling (she is)" },
+        { "type": "status", "from": "henry", "delay": 25, "text": "henry is at the hot topic door taking his wheels out like a saloon. the store is playing the britney one. dennis is humming it. dennis does not know he is humming it. henry has never been prouder of a mall" },
+        { "type": "wallpost", "from": "kittyxcore", "to": "holly", "delay": 55, "text": "HOLLYYY the britney song was IN YOUR STORE?!! i was in the food court n it went 'toxic' n i did my hair thing n a lady clapped. =^.^= its not on the sisters of mercy cd i have, i checked, i own 0 but i checked. pc4pc?? i have 47 new pics of me hearing it" },
+        { "type": "wallpost", "from": "thad", "to": "holly", "delay": 95, "text": "(He enters through the mall doors during the bridge.) Holly. Friday, 6:14 PM. I stood beneath a speaker and heard a Britney Spears song in a goth store, and I wept. (I am fine.) The label said Sisters of Mercy. I did not correct it. I will go to my grave knowing that bridge was a rehearsal tape. (He exits holding a keychain he did not need.)" }
+      ]
+    }
+  }
+}

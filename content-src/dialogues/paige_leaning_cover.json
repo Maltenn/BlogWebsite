@@ -1,0 +1,241 @@
+{
+ "id": "paige_leaning_cover",
+ "with": "paige",
+ "opener": [
+  "malten. emergency. yvette broke her silence. 3 days of nothing and then a message with a deadline in it",
+  "she wants the bleachers panorama for the yearbook COVER. the 340 people leaning left one. my name on the cover, bottom right, 6 pt font",
+  "there is one condition. u can probably guess the condition"
+ ],
+ "nodes": {
+  "start": {
+   "choices": [
+    { "say": "level it. 2 degrees. ur name on the cover of a book every senior keeps forever.", "next": "level_temptation" },
+    { "say": "read me exactly what she wrote. word for word.", "next": "read_message" },
+    { "say": "340 people leaning IS the picture. send it tilted and make her say no.", "next": "stand_firm" }
+   ]
+  },
+  "read_message": {
+   "them": [
+    "ok. verbatim. 'PAIGE. The senior panorama is selected for the cover pending ONE adjustment: please rotate it 2 degrees clockwise so the horizon is level. The committee votes Friday at 3:00. Reply by Thursday. ~Yvette'",
+    "then a second paragraph. 'I looked at the full size file for 40 minutes before writing this. I did not reply for 2 days because I did not know what I wanted to say.' malten she has never typed a sentence that wasnt a deadline"
+   ],
+   "choices": [
+    { "say": "40 minutes. thats not a no. shes stuck on it. thats different.", "next": "yvette_loved_it" },
+    { "say": "one rotate-canvas click. why is this a whole thing?", "next": "level_temptation" },
+    { "say": "who is even on this committee? how many votes does she get?", "next": "committee" }
+   ]
+  },
+  "level_temptation": {
+   "them": [
+    "ok but its not 'one click.' if i rotate it, 340 people stop leaning and stand up straight and its a nice picture of nice people. nobody looks at it twice",
+    "but its the COVER. my name. every picture nana ever took was level. maybe level is how u get in the door. maybe tilted is how u stay in the hallway"
+   ],
+   "choices": [
+    { "say": "go ask nana. shes the one w/ the lemons. what does she say?", "next": "ask_nana" },
+    { "say": "do it, then tilt the caption 2 degrees the other way. nobody can stop a tilted caption.", "next": "tilted_caption" },
+    { "say": "u said u reshot powderpuff 'level like a hostage.' u want to be a hostage on the cover?", "next": "stand_firm" }
+   ]
+  },
+  "stand_firm": {
+   "them": [
+    "...ok. u mean it. i love that u mean it. but yvette controls page 31, the spread, AND my 'best eye' vote. if i send her attitude she writes 'hm.' 'hm' is worse than red",
+    "also i left something out. her message has a second paragraph. she says she looked at the file for 40 minutes before replying. FORTY. she times her own sneezes"
+   ],
+   "choices": [
+    { "say": "40 minutes means shes torn. dont send attitude. send her a reason.", "next": "yvette_loved_it" },
+    { "say": "ok so who else votes? maybe its not just her.", "next": "committee" },
+    { "say": "attach the tilted one. 'cover as shot, or not at all.' see what she does.", "next": "draft_tilt" }
+   ]
+  },
+  "committee": {
+   "them": [
+    "ok the committee. 5 votes. ashley: level (she colour codes the lunch line). thad: leaning, but only bc he says golden hour on 340 faces is 'dramatic.' it IS. tim: abstains, hes doing the ledger. becca is IN the photo, row 4, clarinet, so she recused herself w/ a stopwatch",
+    "so its one vote. yvettes. the tiebreaker is the person who didnt answer me for 2 days"
+   ],
+   "effects": [
+    { "type": "wallpost", "from": "ashley", "to": "paige", "delay": 25, "text": "[RED] Paige. The cover committee has no color for 'tilted.' I have invented one. [PURPLE] It means 'under review.' Please advise by Thursday. [PINK] I think the lean is kind of cute. Do not tell Yvette. ~Ashley" }
+   ],
+   "choices": [
+    { "say": "then shes the one who needs help. talk to her. not red-pen talk, human talk.", "next": "reach_out" },
+    { "say": "go public. post both versions and let the whole school lean on her.", "next": "poll_idea" },
+    { "say": "or just level it and keep the peace. tiebreaker is a stressful job.", "next": "draft_level" }
+   ]
+  },
+  "ask_nana": {
+   "them": [
+    "hang on. nana is in the kitchen w/ the crossword. going in. do not move",
+    "ok. i showed her the print. she held it at arms length like a menu. she said 'honey, the people are standing straight. its the floor thats crooked.' then asked me for a 7 letter word for 'steadfast' and i said i didnt know and she said 'neither do i' and went back to the crossword",
+    "WHAT DOES THAT MEAN. is that a yes to tilted. is that a 'level it honey.' shes a mystery in a cardigan"
+   ],
+   "effects": [
+    { "type": "status", "text": "paige is in the kitchen holding a print up to the light. nana is holding the other end. nobody is saying what they mean (7 letters)" }
+   ],
+   "choices": [
+    { "say": "it means the people are fine. the floor is the thing thats off. dont fix the floor.", "next": "draft_tilt" },
+    { "say": "it means shell love either one. pick the one u can look at when ur 60. then tell yvette why.", "next": "reach_out" }
+   ]
+  },
+  "tilted_caption": {
+   "them": [
+    "a tilted caption on a level cover. thats... thats actually evil. she would have to rotate it back HERSELF. she would have to touch it. and then she would KNOW",
+    "i love it and im scared of it. she writes in red pen. i dont know what she does to people who commit design crimes in 6 pt font"
+   ],
+   "choices": [
+    { "say": "do it. call it a signature. 'photo: paige' leans. thats brand consistency.", "next": "draft_level" },
+    { "say": "no. if u want it tilted make the real case. not a stunt.", "next": "reach_out" }
+   ]
+  },
+  "draft_level": {
+   "them": [
+    "ok. photoshop 7. image > rotate canvas > arbitrary > 2 degrees CW. my cursor is hovering over OK. the lemons are on my desktop right behind the dialog box. i feel like im unplugging something",
+    "if i click this 340 people stand up straight all at once. they were SO happy leaning. do u think they know"
+   ],
+   "choices": [
+    { "say": "click it. people standing up straight is a fine thing to put on a cover.", "next": "end_level_cover" },
+    { "say": "wait. one conversation first. then click, if u still want to.", "next": "reach_out" }
+   ]
+  },
+  "yvette_loved_it": {
+   "them": [
+    "ok but think. if she hated it shed have written 'hm.' she wrote FORTY MINUTES. thats the longest she has ever looked at anything that wasnt a deadline",
+    "so maybe she wants it tilted and shes scared. of the committee. of me. of putting it in writing. ive never thought about yvette being scared. she laminates her feelings"
+   ],
+   "choices": [
+    { "say": "then be less scary than a red pen. tell her what u saw. she cant fix a feeling she hasnt heard.", "next": "reach_out" },
+    { "say": "stay out of her head. level the file. one click is a cheap price for the cover.", "next": "draft_level" },
+    { "say": "or send it tilted w/ a note: 'cover as shot or no cover.' she respects a deadline AND a spine.", "next": "draft_tilt" }
+   ]
+  },
+  "reach_out": {
+   "them": [
+    "ok. talk to her like a person. not 'hi yvette' like a hostage note. what do i even open with",
+    "she types in full sentences w/ a signature block. i type in lowercase and tilt things. we are not the same species"
+   ],
+   "choices": [
+    { "say": "open w/ the 40 minutes. 'i looked at ur message for 40 minutes too.' start where she started.", "next": "yvette_reply" },
+    { "say": "ask her straight: 'do u want it level, or does the committee?' she cant dodge a clean question.", "next": "yvette_firm" },
+    { "say": "send her the lemons print from nanas roll. show her where tilted comes from.", "next": "yvette_reply" }
+   ]
+  },
+  "yvette_firm": {
+   "them": [
+    "answer came fast. 'I want it level. The committee wants it level. A level horizon tells the reader the book is stable. The tilted one is not easy to look at, which is why I looked at it for 40 minutes. These facts are in conflict and I have chosen to give you both. ~Y.'",
+    "thats the most honest anyone has ever been to me and also a tiny insult and i dont know where to put my face"
+   ],
+   "choices": [
+    { "say": "she said it holds her for 40 min. thats what a cover is FOR. tell her that.", "next": "yvette_reply" },
+    { "say": "then level it and let it go. she gave u a straight answer. give her a straight yes.", "next": "draft_level" }
+   ]
+  },
+  "yvette_reply": {
+   "them": [
+    "ok she wrote back. 11 seconds. i timed it. her longest ever is a tardy slip. it says: 'Paige. Thank you for writing like a person. I will be direct. I wanted to ask whether you would leave it tilted. I did not ask because I assumed you would say no and I did not want to hear it. The committee is split and I am the deciding vote. I do not know how to vote.'",
+    "she DOESNT KNOW HOW TO VOTE. yvette. who owns a color for 'on time' and a color for 'late' and a color for 'late but emotionally on time.' shes asking ME. im sitting on my floor"
+   ],
+   "effects": [
+    { "type": "status", "from": "yvette", "delay": 20, "text": "yvette is holding an uncapped pen over one ballot. nobody is allowed to speak to her. (the ballot is for a horizon)" }
+   ],
+   "choices": [
+    { "say": "offer a deal: level on the front, the tilted original full page inside the back cover. 'as shot.'", "next": "end_back_cover" },
+    { "say": "tell her the truth: u want it tilted and u'd be proud either way. she should vote the one she looked at for 40 min.", "next": "end_tilted_cover" },
+    { "say": "tell her to vote level. she has a committee to live with. there will be other covers.", "next": "end_level_cover" }
+   ]
+  },
+  "draft_tilt": {
+   "them": [
+    "ok. attaching the original. 2 degrees of pure me. the note so far: 'Yvette. Cover as shot, or not at all.' thats a person with a spine. right",
+    "...its a person who gets 'hm' written on her. why did i type 'or not at all.' its sitting in drafts looking like a dare"
+   ],
+   "choices": [
+    { "say": "send it. u typed it bc u meant it. if she says no u lose nothing u didnt already have.", "next": "ultimatum_result" },
+    { "say": "soften one line: 'cover as shot, please. the tilt is the point.' same spine, no dare.", "next": "yvette_reply" }
+   ]
+  },
+  "ultimatum_result": {
+   "them": [
+    "sent. she replied in 4 seconds: 'Noted.' with a period. i cant tell if i won or got filed",
+    "10 min later: 'The committee will review the file as submitted. Do not contact me again before Friday. ~Y.' malten. 'as submitted.' thats either a yes or an execution"
+   ],
+   "effects": [
+    { "type": "status", "from": "yvette", "delay": 30, "text": "yvette is in the yearbook room with the door closed and the blinds down. (the yearbook room does not have blinds. she brought some.)" }
+   ],
+   "choices": [
+    { "say": "then wait. darkroom, red light, no texting. let the file do the talking.", "next": "end_adjusted" },
+    { "say": "she wants silence? give her a poll. post both and let the whole school see.", "next": "poll_idea" },
+    { "say": "apologize for 'or not at all.' she doesnt deserve a dare.", "next": "reach_out" }
+   ]
+  },
+  "poll_idea": {
+   "them": [
+    "a poll. both versions up as a bulletin, whole school votes, 340 people finally get to say what they think about leaning. yvette would have to count. in public. with her own spreadsheet watching",
+    "this is either genius or the end of my yearbook career. its the first time anybody not on a committee gets a vote. is that allowed. is ANYTHING allowed"
+   ],
+   "choices": [
+    { "say": "post it. let the site decide. democracy has a lean in it.", "next": "end_poll" },
+    { "say": "not behind her back. tell her first, then post it as plan B.", "next": "reach_out" }
+   ]
+  },
+  "end_tilted_cover": {
+   "them": [
+    "she voted. 2 to 1, leaning. tim abstained, becca recused herself w/ a stopwatch. its the COVER. TILTED. as shot. the whole class slides gently left and nobody is apologizing",
+    "she sent me the decision in writing so she could 'live with it.' im printing it. its going next to the lemons. also i might lie on the floor for a bit"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "text": "paige is on the cover of the yearbook. tilted. 340 people leaning, 1 horizon, 0 apologies. thank u yvette. thank u nana (7 letters)" },
+    { "type": "bulletin", "from": "yvette", "delay": 30, "subject": "COVER SELECTION: A STATEMENT", "text": "The committee has voted. The senior panorama will be reproduced as shot. The horizon is not level. I have been advised that this is a 'design choice.' I have put that in writing so that I can live with it. For the record, the vote was 2 to 1, and the first 40 minutes of my vote were no. The photographer will receive her credit in a size that is legible. Contact sheets are still due Friday at 3:00. Green. ~Yvette (Class President, hopefully)" },
+    { "type": "wallpost", "from": "becca", "to": "paige", "delay": 90, "text": "PAIGE. Row 4, third from the left, clarinet, leaning. 340 of us on the cover and not one of us level. I recused myself with a stopwatch and I would like it known that I was timing my own tears. I have never been so proud to be out of alignment. ~Becca" },
+    { "type": "wallpost", "from": "greg", "to": "paige", "delay": 140, "text": "paige tilted bleachers on the COVER?? static prophecy is putting 'as seen on the cover' on the next flyer. 'PHOTO: PAIGE (TILTED)' goes under it like always. sorry. its already happening" }
+   ]
+  },
+  "end_back_cover": {
+   "them": [
+    "she said yes. LEVEL on the front so the committee can live. the tilted one FULL PAGE inside the back cover w/ 'AS SHOT' in 8 pt letters, which was HER idea. she picked the font. she says 'as shot' is 'a truthful label'",
+    "so i get both. the front is for the door and the back is for me. nanas lemons level, my 340 leaning. we are both in the book. im going to go sit in the darkroom and just be in red light"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "wall", "text": "malten thank u. i asked instead of guessing and yvette told me shes been scared of the tilt for 3 days bc she liked it too much. we r basically the same person. do NOT tell her i said that" },
+    { "type": "wallpost", "from": "yvette", "to": "paige", "delay": 40, "text": "Paige. The inside back cover is approved: full page, 8 pt, 'AS SHOT.' This is the first time I have been glad to be outvoted by myself. Contact sheets are still due Friday at 3:00. Green. ~Yvette" },
+    { "type": "wallpost", "from": "thad", "to": "paige", "delay": 100, "text": "(Thad rises from the cheap seats.) Paige. The golden hour on 340 faces, full page, at the back of the house. The best seat is always the last one. I wept in the wings. (The wings were the hallway.) ~Thad" }
+   ]
+  },
+  "end_level_cover": {
+   "them": [
+    "done. rotated. 2 degrees. 340 people stood up straight at the same time and i swear i heard the whole gym exhale",
+    "it looks great. it looks like every yearbook cover ive ever seen. thats the problem and the compliment. im gonna go look at lemons for a while. dont tell nana anything"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "text": "paige is level. paige is fine. paige is in the darkroom looking at a bowl of lemons. (not a metaphor) (ok a little)" },
+    { "type": "bulletin", "from": "yvette", "delay": 30, "subject": "THE COVER IS DONE", "text": "The cover is final and has gone to the printer. The photograph was supplied by Paige on time and adjusted without complaint, which I would like noted as professionalism and not as defeat. Thank you to the committee. Thank you to the 340. The credit reads PHOTO: PAIGE. It is level and so is the caption. I did not need the red pen once. ~Yvette" },
+    { "type": "wallpost", "from": "kayla", "to": "paige", "delay": 90, "text": "paige the cover is SO pretty but we all look so STIFF. in the leaning one i look like im falling in love w/ the bleachers. is there a leaning version for the back. asking 4 me. xox" }
+   ]
+  },
+  "end_poll": {
+   "them": [
+    "its up. 'LEVEL or LEANING' bulletin is LIVE. 31 votes in 4 minutes. chad voted 4 times and left a comment on each one",
+    "yvette has viewed it 9 times. she hasnt said anything. i can hear a spreadsheet opening somewhere. i think i started something. i think its called a democracy"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "bulletin", "subject": "VOTE: LEVEL or LEANING (the cover, the people decide)", "text": "ok. 2 files. 1 yearbook cover. the committee is stuck so now the whole site votes. A: LEVEL (340 people stand up straight, everything looks normal). B: LEANING (340 people lean, nothing looks normal, its the one i actually shot). comment A or B. one vote each. i will know. i keep a list. ps if u vote A i will still pc4pc ur pics. i am not a monster. i am a tilter." },
+    { "type": "status", "from": "yvette", "delay": 25, "text": "yvette is counting votes by hand in a spreadsheet in two colors. she has no feelings about the democratic process. (she has so many feelings about the democratic process)" },
+    { "type": "status", "from": "chad", "delay": 60, "text": "chad is Voting in the Cover Poll. He voted Leaning. He then voted Leaning again to Make Sure it Counted. It's a Free Country." },
+    { "type": "wallpost", "from": "tony", "to": "paige", "delay": 110, "text": "hey ;) voted leaning, then level, then leaning. im a swing voter. 0 for 56 but 3 for 3 on democracy ;)" }
+   ]
+  },
+  "end_adjusted": {
+   "them": [
+    "update. the committee met. she told me herself in the hallway by the trophy case. 'we are going with level.' no sorry. she said 'I have made the adjustment myself so that you do not have to.' she ROTATED my PICTURE. for me. like it was a favor",
+    "the credit says 'PHOTO: PAIGE (adjusted).' adjusted. in parentheses. im a person in parentheses on the cover of a book. i would like everyone to know the original was better. i would like that on a plaque"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "text": "paige is (adjusted). paige is in parentheses on the cover of the yearbook. paige would like it known that the original was better." },
+    { "type": "bulletin", "from": "yvette", "delay": 40, "subject": "COVER: FINAL (PENDING PRINTER)", "text": "The cover has been adjusted for consistency and approved. The credit reads PHOTO: PAIGE (ADJUSTED). Several of you have asked about the original. The original exists. It is on my desk. I have looked at it more than I have looked at anything I have ever approved. That is all I am prepared to say. ~Yvette" },
+    { "type": "wallpost", "from": "greg", "to": "paige", "delay": 100, "text": "paige the original is framed over the amp. 'PHOTO: PAIGE (TILTED)' not 'adjusted.' practice is at 6. come look at it. bring the holga, we need a pic of the pic" }
+   ]
+  }
+ }
+}

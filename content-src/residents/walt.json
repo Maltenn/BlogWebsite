@@ -1,0 +1,186 @@
+{
+  "id": "walt",
+  "name": "grandpa_walt",
+  "tag": "Dear Sir or Madam, I am told this is a 'headline.' Regards, Walt",
+  "avatar": "assets/avatar_walt.gif",
+  "gender": "Male",
+  "age": 78,
+  "hometown": "Garland, Texas",
+  "loc": "Garland, Texas (Route 14, retired. The den, most days)",
+  "zodiac": "Born in March. My daughter Linda says that makes me a fish. I have no comment",
+  "status": "Widower (married to Dorothy 51 years. I still set out two cups)",
+  "hereFor": "Correspondence",
+  "mood": "Fair to partly cloudy",
+  "lastLogin": "Oct 2 2026 5:52 AM",
+  "theme": { "bg": "#fdfaf0", "fg": "#1c1c1c", "accent": "#1f3a6e" },
+  "blogTitle": "Letters From Walt (Route 14, Ret.)",
+  "about": "To Whom It May Concern, My name is Walter. My granddaughter Kayla set up this electric mail for me on Dorothy's old sewing table and showed me where to type. I carried the mail on foot in Garland, Texas for 34 years, Route 14, and I have never seen a post office run like this one. Letters arrive at all hours. Many are not addressed to me. Some are only one word. I answer them anyway, as a letter that goes unanswered is a small unkindness. I grow Better Boy tomatoes, I play 42 on Thursdays at the VFW hall, and I have a cat. Please write. I will write back. Regards, Walt",
+  "aboutMore": "A few notes on the service. First, when I send a letter here it is posted on a wall where anyone may read it, like a notice at the feed store. I have raised this with the Postmaster, a Mr. Todd, who replied 'that's how it works, Walt :)'. I do not know what the colon is for. Second, I am told I am 'friends' with nine people. I have met three of them, and I raised two of those. Third, there is a great deal of music. Mine is Bob Wills, which my granddaughter chose, and which is correct.",
+  "meet": "Dear Reader, I would like to meet the young man Patrick, who writes me three times a day and whose questions about tomatoes are better than the ones on the radio. I would like to shake the hand of Postmaster Todd. And I would not mind one more dance with Dorothy at the Longhorn Ballroom, though I understand that is not the kind of thing this box is for. Regards, Walt",
+  "interests": {
+    "General": "Better Boy tomatoes (14 plants), the rain gauge, 42 on Thursdays at the VFW hall, the Rangers on the radio, the crossword in pen, my Buick, a broken-in pair of walking shoes, answering my mail",
+    "Music": "Bob Wills and his Texas Playboys, Hank Williams, Ernest Tubb, Patsy Cline, Glenn Miller, Lefty Frizzell, Ray Price. I am told a young man named Bryan plays the drums. I have not heard him, but I approve of anyone with a trade",
+    "Movies": "Shane, The Quiet Man, It's a Wonderful Life, Rio Bravo, The Postman Always Rings Twice (a misleading title, there is no mail in it to speak of), any picture with Jimmy Stewart",
+    "Television": "the evening news, the Rangers when they are on, Lawrence Welk reruns on the public station, Wheel of Fortune with the sound low, The Price Is Right (Patrick and I have discussed the Showcase at length)",
+    "Books": "The Old Farmer's Almanac, Lonesome Dove, the carrier's handbook (I still have mine), Louis L'Amour (all of them, some twice), the King James, and Dorothy's recipe box, which I count",
+    "Heroes": "Dorothy. My father, who farmed cotton and never complained of it in my hearing. Every substitute carrier who took Route 14 in August. Nolan Ryan. My girls"
+  },
+  "song": {
+    "name": "San Antonio Rose",
+    "artist": "Bob Wills & His Texas Playboys",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/03/a6/fc/03a6fc65-c500-c83f-43ab-418ca12777d3/mzaf_6237303202207778071.plus.aac.p.m4a",
+    "pattern": [0, 4, 7, 9, 7, 4, 2, 0],
+    "bpm": 96
+  },
+  "decor": ["assets/badge_coffee.gif", "assets/deco_guestbook_sign.gif"],
+  "friends": ["patrick", "todd", "debbie", "linda", "kayla", "whiskers", "bill", "henderson", "adam"],
+  "wall": [
+    { "from": "patrick", "text": "dear walt. i got your letter about tomatoes. i read it three times. i put a tomato next to dwayne like you said so he has company. regards, patrick. p.s. what does regards mean. p.p.s. i like it", "time": "Sep 30 2026 3:15 PM" },
+    { "from": "todd", "text": "Hi Walt! Friendly admin note: you don't need to write the person's full street address at the top of each wall post, the site already knows where to deliver it :) Also thank you for the stamp you mailed me. I stuck it on the laptop.", "time": "Sep 25 2026 9:02 AM" },
+    { "from": "kayla", "text": "grandpa!! u dont have to write 'dear kayla' n sign it every time lol. but dont stop. also 'going steady' isnt a thing anymore but i told bryan u said it n he got scared. ily xox", "time": "Sep 20 2026 7:44 PM" },
+    { "from": "marcus", "text": "walt. this is the 4th wall post u have formatted as a letter. walls are for comments. letters go in messages. read the rules. ...ok there are no rules about this. i am writing one. thread locked.", "time": "Sep 16 2026 11:30 PM" },
+    { "from": "whiskers", "text": "The Mailman has written to me. He does not know. He asked after my health and described his own cat as 'a good fellow, if stubborn.' I am choosing to accept this.", "time": "Sep 12 2026 2:14 PM" },
+    { "from": "bill", "text": "Walt. 34 years on foot before dawn and you never saw anything on two legs you couldn't explain? Not once? Think hard. I'm not leading the witness. I'm just leaving the question on your porch.", "time": "Sep 7 2026 5:38 AM" },
+    { "from": "linda", "text": "Daddy!! Beautiful letter!! I printed it for the binder. You do not have to put 'Regards' to your own daughter!! FW: FW: an angel is sitting on your mailbox right now, pass it on ~*~ (((hugs)))", "time": "Sep 3 2026 6:10 AM" }
+  ],
+  "replies": [
+    "Dear Friend, Your letter arrived in good order. I have read it and am thinking it over. Regards, Walt",
+    "Dear Sir or Madam, I do not follow, but I can tell you meant it kindly. Regards, Walt",
+    "Thank you for writing. Most people don't. Regards, Walt",
+    "Dear Friend, That is the best news to cross this desk today, and I have had two seed catalogs. Regards, Walt",
+    "I showed your letter to the cat. He sat on it, which is his way of filing. Regards, Walt",
+    "Dear Friend, I am sorry to hear it. In my experience most things look different after a night's sleep and a hot breakfast. Regards, Walt",
+    "Received. Will answer at length after the ball game. Regards, Walt",
+    "Dear Friend, I do not know what that word means and I am too old to pretend. Please advise. Regards, Walt",
+    "A short letter is still a letter. Thank you. Regards, Walt"
+  ],
+  "thanksAdd": "Dear Friend, I am informed that you have 'accepted' me. Thank you. I was not aware I had applied. I will write as time allows, usually before six in the morning, and I will answer anything you send. A letter means somebody sat down. I do not take that lightly. Regards, Walt",
+  "ambient": [
+    "To Whom It May Concern, The first tomato of the fall crop came off the vine this morning, 11 ounces on the kitchen scale. I ate it over the sink with salt. I report this because nobody else was here to see it. Regards, Walt",
+    "Dear Postmaster Todd, I have received 14 letters this week from a Mr. Smoove concerning a 'track.' I did not order a track. Kindly look into it. Regards, Walt",
+    "A note to the young people: in 34 years I delivered a great many letters that began 'I'm sorry it took me so long to write.' Every one of them got opened anyway. Regards, Walt",
+    "Lost at 42 last night to Earl Pickett, who has been shaking the dominoes in the same suspicious manner since the Eisenhower administration. I will be ready Thursday. Regards, Walt",
+    "The rain gauge showed six tenths of an inch overnight. The cat watched it fall for two hours from the window and seemed to take it personally. Regards, Walt",
+    "Dear Sir or Madam, I pressed a button marked 'Add to Friends' beneath a photograph of a banana. I do not know what I have agreed to. If the banana is reading this, I meant no offense. Regards, Walt"
+  ],
+  "saltyDm": "Dear Sir, I am told my request was 'denied.' In 34 years I had doors closed on me, dogs set on me, and one screen door come clean off in my hand, and I delivered to every one of those houses the next morning. So I will simply try again tomorrow. No hard feelings. Regards, Walt",
+  "keywords": {
+    "mail": "Thirty-four years, Route 14, 412 boxes, on foot. I knew who was getting a birthday card and who was getting a second notice, and I never said a word about either. That is the job. Regards, Walt",
+    "cat": "I have an orange cat named Mr. Whiskers. Dorothy named him. He is a good fellow, if stubborn. Oddly, there is a gentleman on this very service by the same name, and I have begun a correspondence with him. Regards, Walt",
+    "tomato": "Better Boys. Plant them deep, water at the root and never the leaf, and talk to them if you are so inclined. I do. They have never once interrupted. Regards, Walt",
+    "email": "I am told that is what this is. My daughter says it is not. My granddaughter says 'kind of.' Whatever it is, I am treating it as first class. Regards, Walt",
+    "dorothy": "My wife. Fifty-one years. She wrote me every day I was overseas and I wrote back every day, and when I came home we had a shoebox apiece. I suppose that is why I answer everything. Regards, Walt",
+    "baseball": "The Rangers lost again. I listen on the radio so that I can be disappointed while doing something useful with my hands. Regards, Walt"
+  },
+  "banter": {
+    "patrick": [
+      "Dear Patrick, To answer your three questions in order: yes, a tomato is a fruit. No, your rock does not need watering, though it will not hurt him. And 'Regards' means I thought well of you the whole time I was writing. Regards, Walt",
+      "Dear Patrick, I have received your drawing of Dwayne delivering the mail. The uniform is accurate. I have put it on the icebox with the magnet shaped like Texas. Regards, Walt"
+    ],
+    "todd": [
+      "Dear Postmaster Todd, I wish to commend your service. Delivery is prompt, often instant. However, I must report that my letters are being displayed in public upon arrival. In my day that was a federal matter. Regards, Walt",
+      "Dear Postmaster Todd, I understand the entire operation is run from one small machine beneath your bed. I ran Route 14 out of a leather satchel for 34 years. You have my respect and my sympathy. Regards, Walt"
+    ],
+    "kayla": [
+      "Dear Kayla, Your page says 'it's complicated.' In my day we said 'going steady' or we said nothing at all, and both were easier to spell. Your grandmother would say call the boy. So I am saying it for her. Regards, Grandpa",
+      "Dear Kayla, Thank you for the Bob Wills. It plays each time I sit down. Your mother tells me that is a problem at her place of work, but I find it sets the right tone for correspondence. Regards, Grandpa"
+    ],
+    "debbie": [
+      "Dear Debbie, The casserole was very good. You need not vacuum on Sunday. The cat has asked me, in his way, to mention it. Regards, Walt (your father)",
+      "Dear Debbie, I did not put the bank's name on the wall. I put the bank's ADDRESS, so that the young man would know where it is. These are different things. Regards, Walt (your father)"
+    ],
+    "whiskers": [
+      "Dear Mr. Whiskers, I was surprised to learn there is another by that name. I also have a cat called Mr. Whiskers, orange, about six years old. I see from your photograph that you are orange as well. Small world. Regards, Walt",
+      "Dear Mr. Whiskers, I am sorry to read of your troubles with the vacuum. My own cat has the very same complaint about my Kirby. Perhaps the two of you should correspond. Regards, Walt"
+    ],
+    "bill": [
+      "Dear Bill, In 34 years of walking before sunup I never saw your Bigfoot. I did see a great many dogs, one loose emu, and a man in a bathrobe who I believe was avoiding a certified letter. I hope that is of use. Regards, Walt",
+      "Dear Bill, I have studied your photograph for some time with my good glasses. I believe it is a stump. But it is a fine photograph of a stump, and I have been wrong about stumps before. Regards, Walt"
+    ],
+    "henderson": [
+      "Dear Mr. Henderson, Thank you for your letter from the school. I have no children enrolled at present, my youngest having finished some time ago, but I have read the reminder about Chapter 4 and will keep it in mind. Regards, Walt",
+      "Dear Mr. Henderson, I regret that I can not sign the planetarium permission slip, as I am 78 and nobody has invited me. Should that change, I own a thermos. Regards, Walt"
+    ]
+  },
+  "statuses": [
+    "walt is writing to inform you that he is fine. Regards, Walt",
+    "walt is in the garden. Please hold all mail until nine. Regards, Walt",
+    "walt is listening to the Rangers lose on the radio and shelling pecans about it",
+    "walt is at the VFW hall for 42. Earl Pickett will not win twice. Regards, Walt",
+    "walt is not certain what a status is but has been told to keep his current. It is current. Regards, Walt",
+    "walt just received a letter consisting only of the word 'herp.' He has replied in full. Regards, Walt",
+    "walt is answering six letters from Patrick, in the order they were received",
+    "walt is asleep in the recliner with the ball game on. This was typed beforehand. Regards, Walt"
+  ],
+  "bulletins": [
+    {
+      "subject": "Dear Residents (a notice regarding proper addressing)",
+      "body": "To All Concerned, I have now been on this service one month and have received 211 pieces of mail. I wish to make three observations from a professional standpoint. One: a letter should say who it is to and who it is from. 'lol' is neither. Two: capital letters cost nothing. I mention this for the benefit of nearly everyone, with the exception of a Mr. Banana Phone, who might consider using fewer. Three: if you are sorry, say so plainly and early. I carried a great many apologies in my time, and the short ones always seemed to weigh the most. That is all. Carry on. Regards, Walt (Route 14, Ret.)"
+    },
+    {
+      "subject": "Tomatoes: free to a good home",
+      "body": "Dear Neighbors, The fall crop has come in heavier than one man and one cat can manage. As of this morning there are 30 pounds of Better Boys on my kitchen table. Any resident may have some. I am told I can not send a tomato through this machine, which strikes me as its chief failing, so you will have to come to the porch. If I am not home I am at the VFW hall. Take what you need and leave the sack. The young man Patrick has asked whether his rock may have one. He may. Regards, Walt"
+    },
+    {
+      "subject": "A correction",
+      "body": "Dear Residents, Yesterday I wrote that I had become 'friends with a banana.' My granddaughter has explained that the banana is a person. I apologize to the person. I would also like it known that I did not make a page for my cat, as has been suggested by both of my daughters. I can barely make one for myself. Whoever is typing on behalf of that animal, it is not me, though I will say the spelling is excellent. Regards, Walt"
+    }
+  ],
+  "pcComments": [
+    "Dear Sir or Madam, I have received your photograph. It arrived in good condition. Thank you. Regards, Walt",
+    "A fine picture. I can not tell where it was taken, but everyone in it appears to have somewhere to be. Regards, Walt",
+    "Dear Friend, You have photographed yourself at arm's length. In my day we asked a stranger, and that is how I met a number of nice people. Regards, Walt",
+    "I looked at this with my good glasses. I still have questions, but none of them are urgent. Regards, Walt",
+    "Dear Friend, The picture is crooked. I tilted my head and it was fine. No need to resend. Regards, Walt"
+  ],
+  "dmSeed": [
+    { "text": "Dear Malten, I am told you are new to the route. Welcome. My name is Walt. I carried the mail for 34 years and I am now, apparently, receiving it. My granddaughter says this message is private, though I have been told that before and it was on a wall by supper. If you ever care to write, I answer everything, usually before six in the morning. Regards, Walt" }
+  ],
+  "dms": [
+    "Dear Malten, A question, if you have a moment. What is a 'top 8'? My granddaughter has one and I am not on it. I am not upset. I would only like to know whether it is the sort of thing a man can apply for. Regards, Walt",
+    "Dear Malten, I am writing to report that the squirrel has returned. He took one Better Boy off the vine at 7:10 this morning, looked me in the eye, and ate it on the fence like a man at a lunch counter. The cat watched from the window and did nothing. I expected more from both of them. Regards, Walt",
+    "Dear Malten, A young lady has written asking for my 'birth time' so that she may read my stars. I do not know the time. My mother's only remark on the occasion was 'before the biscuits were done.' I passed that along and am told it makes me a 'morning person,' which I could have told her for free. Regards, Walt",
+    "Dear Malten, Found a letter today in the sewing table drawer, in Dorothy's hand, addressed to me, never mailed. It is a grocery list. Flour, thread, 'the good coffee,' and at the bottom, 'remind Walt he is not as funny as he thinks.' I have read it three times. I believe the young man Patrick has the right idea about that. Regards, Walt",
+    "Dear Malten, A point of information. The word 'lol' does not appear in my dictionary, which is the big Webster's. My daughter Debbie says it means 'laughing.' My daughter Linda says it means 'lots of love.' I have been using it for both and no one has complained. Regards, Walt",
+    "Dear Malten, I walked the old route this morning for the exercise, all 412 boxes. It took three hours where it used to take five, because I was not carrying anything and nobody was expecting me. I did not care for it. A man likes to be expected. I thought you ought to know that at your age, while it is still useful. Regards, Walt",
+    "Dear Malten, Would you happen to know who 'Mr. Whiskers' is? He writes a fine letter, very direct, and he seems to know a great deal about my house. He has described my recliner. I am not alarmed. I am only curious, and I have started locking the back door. Regards, Walt",
+    "Dear Malten, Thursday night I mentioned to the 42 table that I am 'on the OurSpace.' Earl Pickett asked what that was. I said it is where you write to people and they write back within the hour. He said that sounds like the telephone. I said no, Earl, it is better, because you get to think first. I won that hand. Regards, Walt"
+  ],
+  "blog": [
+    {
+      "title": "A Letter Concerning The Nature Of Letters",
+      "date": "Sep 28 2026 5:50 AM",
+      "mood": "reflective",
+      "body": "Dear Reader, My granddaughter tells me that nobody on this service writes letters. They write 'comments,' and a comment does not need a greeting or a signature. I have thought about this and I respectfully decline. When I carried Route 14 I could tell a good deal about a letter without opening it. A bill is flat and in a hurry. A greeting card is stiff and smells like a drugstore. But a real letter has a little weight on one side, where somebody leaned on the pen. That means a person sat down. They cleared a spot at the table and gave you ten minutes they could have spent on anything else. So I put 'Dear' at the top because you are, for those ten minutes. And I put 'Regards' at the bottom because I had them the whole time I was writing. If that makes me slow, well, I was never fast. I was only always there by two o'clock. Regards, Walt"
+    },
+    {
+      "title": "A Letter To The Squirrel",
+      "date": "Sep 14 2026 6:15 AM",
+      "mood": "resolute",
+      "body": "Dear Squirrel, I am writing because I believe in giving notice. You have taken nine Better Boy tomatoes since the first of the month. I have counted. You do not eat the whole tomato. You take one bite out of each and leave the rest on the fence rail facing my kitchen window, which I take to be a message. Here is my reply. I have hung pie tins. I have laid chicken wire. I have, on the advice of a young man named Patrick, placed a rock in the garden 'to keep watch,' and I will say the rock has been more reliable than the cat. I do not want a war. I am 78 and you are, I would guess, two. I ask only that you finish what you start. Dorothy used to say you can tell everything about a creature by whether it cleans its plate. She was speaking of a son-in-law at the time, but it applies. Regards, Walt"
+    },
+    {
+      "title": "A Letter To Dorothy, Regarding The Computer",
+      "date": "Aug 31 2026 5:40 AM",
+      "mood": "fair",
+      "body": "Dear Dot, You would not believe what is on your sewing table. Kayla put a computer there, the old one from Debbie's office, and I write letters on it now. No stamps. You type the thing and it is simply gone, and before the coffee is done somebody has written back. I have a pen pal named Patrick who owns a rock. I have a Postmaster named Todd who keeps the whole works under his bed. There is a science teacher, a man who hunts for Bigfoot, and a cat with your cat's name who writes better than most of them. Linda sends me angels by the dozen. Debbie signs everything 'Love, Mom,' even to me. You would have had this machine figured out in an afternoon and been running the place by Friday. I am slower. But I wanted you to know the house is not as quiet as it was. Somebody writes every day now. I still set out your cup. Regards, and then some, Walt"
+    }
+  ],
+  "survey": {
+    "title": "A Questionnaire Forwarded By My Daughter Linda, Answered In Full",
+    "qa": [
+      ["Full name?", "Walter Eugene. Walt. 'Mr. Walt' to the children on Route 14, some of whom are now grandparents."],
+      ["What did you have for breakfast?", "Two eggs, one biscuit, black coffee. The same as every morning since the Truman administration."],
+      ["What is your favorite color?", "Postal blue. I wore it 34 years and never tired of it."],
+      ["Have you ever been bitten by a dog?", "Eleven times. Nine of them were the same dog. His name was Duke and we made our peace in the end."],
+      ["What is the last thing you bought?", "Chicken wire and a book of stamps. I do not need the stamps. It is a habit."],
+      ["Do you have any pets?", "One cat, orange, name of Mr. Whiskers. He does not have a page on here, regardless of what you may have heard."],
+      ["What is your best quality?", "I show up. Dorothy said it was my only quality, but she said it kindly."],
+      ["What song is stuck in your head?", "San Antonio Rose. It plays whenever I sit down at this machine, so it has little choice."],
+      ["Who was the last person to write you?", "A young man named Patrick, at 6:02 this morning, to tell me he had found a stick."],
+      ["If you could send a letter to anyone?", "I already do. I write Dorothy every Sunday. I have not worked out the address, so I keep them in the shoebox with hers."],
+      ["How many people will answer this questionnaire?", "I could not say. But I will read every one that does."],
+      ["Are you supposed to forward this to ten people?", "I am told so. I have instead tacked it to the bulletin board at the VFW hall with a pencil on a string."]
+    ]
+  }
+}

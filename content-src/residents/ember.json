@@ -1,0 +1,294 @@
+{
+  "id": "ember",
+  "name": "xFadingEmberx",
+  "tag": "thanks for the add!! FADING EMBER // screamo // demo $3 // lineup: ask us tomorrow",
+  "avatar": "assets/avatar_ember.gif",
+  "gender": "Band (run by the vocalist)",
+  "age": 19,
+  "hometown": "Mansfield, OH (storage unit 14, behind the car wash)",
+  "loc": "Unit 14, Midway Self-Storage (our practice space) (52 degrees in there)",
+  "zodiac": "we are a Cancer (the vocalist) (the rest of us are TBD)",
+  "status": "Seeing other drummers",
+  "hereFor": "Friends, Booking, Drummers (urgent), A van",
+  "mood": "fragile but loud",
+  "lastLogin": "Oct 4 2026 12:37 AM",
+  "theme": {
+    "bg": "#0d0d12",
+    "fg": "#cfd3dc",
+    "accent": "#ff5a1f"
+  },
+  "bgTile": "assets/tiles/tile_web.png",
+  "blogTitle": "FADING EMBER // tour diary (we have not toured) // lineup history",
+  "about": "thanks for the add!! we're FADING EMBER, a screamo band from Mansfield, Ohio. we sound like the inside of a hoodie at 3 am, but with a bridge. our demo 'Cold Hands, Warm Amps' is 4 songs, $3 at shows or free if you tell 3 friends. current lineup: vocals, guitar, bass, and a drum machine named Dr. Beat who has never missed a practice. former members: 14 (see about me, part 2). we are always looking for a drummer, a second guitarist, and a van. we will play anywhere with an outlet. we scream about the abyss and we are SO happy you're here. (we're fine.)",
+  "aboutMore": "a note on the lineup. we keep an alumni list and mail every former member a card on their birthday. they're still FADING EMBER in spirit. the Alumni Association meets the first Sunday of the month at the Dairy Dip. attendance: 11 of 14. Big Tom came to every one even after he left to join a ska band, which we're fine with. (this is the vocalist. hi. i'm Cory. i type 'we' because the band is bigger than me. it's not. but it's bigger than me.)",
+  "meet": "Who we'd like to meet: a drummer who stays. a van owner with an open heart and a sliding door. the sound man at the VFW hall (we have a note for him, written on the back of a flyer). Saosin, just to say we're a band too. anybody who has asked 'are you guys the ones from the garage' and then actually listened to track 3. and whoever invented the word 'bridge,' because we owe you a tribute.",
+  "interests": {
+    "General": "the demo (4 songs, $3), flyers (MS Paint, 11 versions of each), load-in, the 10 seconds of soundcheck we get, the storage unit (52 degrees, 1 outlet, a neighbor with a very large ceramic angel collection), Dr. Beat (technically a metronome with pads, we've made peace), alumni birthday cards, merch (a CD-R and a sticker), the first Sunday of the month",
+    "Music": "Saosin, Thursday, Funeral for a Friend, Finch, Silverstein, Alexisonfire, Underoath, From Autumn to Ashes, Taking Back Sunday (the early records), Dashboard Confessional (the loud-quiet-loud ones), Static Prophecy (Greg put us on a bill, we owe him an amp cable)",
+    "Movies": "Donnie Darko (everyone says that, so do we), The Crow, Edward Scissorhands, Napoleon Dynamite (rest day), The Lion King (the vocalist cries at the stampede and it's in a song)",
+    "Television": "Fuse at 4 PM (the screamo block), Invader Zim (sorry, Misery), the weather channel (the only thing that goes down on purpose), reruns of MythBusters",
+    "Books": "the lyrics notebook (labeled MATH so nobody reads it), the tour budget spreadsheet (it's mostly gas money), The Giving Tree (the vocalist cried at 12 and has not recovered), the oil change price list (the vocalist's day job)",
+    "Heroes": "the sound man at the VFW hall, every drummer who ever sat behind the kit, Big Tom (the best one), Greg's dad (the extension cord), the lemonade lady next door to the garage, Dee at Perk Avenue (she clapped), Penny (the pick, the bracelet), whoever cleans up after load-out"
+  },
+  "song": {
+    "name": "Seven Years",
+    "artist": "Saosin",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e6/7b/91/e67b91da-1a6e-1b68-26ba-a3c6fe82603a/mzaf_1500605476871609881.plus.aac.p.m4a",
+    "pattern": [
+      0,
+      3,
+      7,
+      3,
+      10,
+      7,
+      3,
+      0
+    ],
+    "bpm": 150
+  },
+  "decor": [
+    "assets/deco_flames_bar.gif",
+    "assets/deco_moon.gif"
+  ],
+  "friends": [
+    "greg",
+    "misery",
+    "lucas",
+    "vince",
+    "evan",
+    "skip",
+    "penny",
+    "darkangel",
+    "aaron"
+  ],
+  "wall": [
+    {
+      "from": "greg",
+      "text": "ember. thank u for not scaring the neighbors. (u scared them a little.) mrs. dombrowski brought lemonade and asked if the singer was ok. i said he's fine. she said 'does he need a sandwich.' i said probably. also the drum machine hit every beat. bryan has been quiet about it since",
+      "time": "Oct 2 2026 7:08 PM"
+    },
+    {
+      "from": "misery",
+      "text": "EMBER omg i have the demo on repeat!!! track 3 is the one where u scream n then go quiet n then scream again like u forgot something. i did that in the car yesterday n lexi pulled over. rawr XD <3 can u play my birthday?? its in march. im booking early",
+      "time": "Sep 30 2026 9:41 PM"
+    },
+    {
+      "from": "lucas",
+      "text": "ember. i submitted 14 more pages of lyrics. u used one line from the dishwasher one. i'd like to say that's the best day of my life and also i wasn't ready. i'm going to need a minute. can i scream one word at the next show. just 'dishwasher.'",
+      "time": "Sep 29 2026 11:58 PM"
+    },
+    {
+      "from": "vince",
+      "text": "EMBER!!! u are gonna be HUGE!!! the rink show was a start!!! 7 people showed, 4 skated, 3 stood and nodded, that's a 100% nod rate!!! next TEEN NITE u headline!!! first 50 people free!!! (do u have a drummer)",
+      "time": "Sep 27 2026 3:20 PM"
+    },
+    {
+      "from": "darkangel",
+      "text": "~*~ ember. i listened to 'Parking Lot Funeral' at 11:11 pm and the candle went out by itself. i would like to offer 'crimson tears (part 7)' as a song title. no charge. a gift from the void. xX",
+      "time": "Sep 26 2026 11:11 PM"
+    },
+    {
+      "from": "aaron",
+      "text": "Ember, I played the quiet part of track 2 at the open mic. Dee said 'is that the loud band?' I said 'it's the quiet part.' She said 'oh.' I think that's the best thing anyone has said about the quiet part.",
+      "time": "Sep 24 2026 9:30 PM"
+    },
+    {
+      "from": "gina",
+      "text": "ember i played your demo in the school auditorium for case #14 and there was an unexplained auditory event at 1:50 on track 3 (the quiet part). i'm not saying it's a ghost. it's probably the fridge. (there is no fridge in the auditorium.) (it's under review.) 10/10 would investigate again",
+      "time": "Sep 21 2026 11:47 PM"
+    },
+    {
+      "from": "skip",
+      "text": "ember hi!! This is Skip. Big Tom says hi. He wants you to know he still has the cymbal stand and it's yours. He's afraid to bring it. He says you gave him 'a look.' Please don't give him a look. =D",
+      "time": "Sep 19 2026 5:02 PM"
+    },
+    {
+      "from": "penny",
+      "text": "EMBER!!! TEEN NITE!!! u played right after Cotton Eyed Joe!!! the skaters did a BREAKDOWN with their skates!!! a boy skated backwards the WHOLE time!!! i made u a bracelet: SO LOUD SO GOOD!!! it's black and orange (like fire!!!) PLUR!!!",
+      "time": "Sep 12 2026 10:15 AM"
+    }
+  ],
+  "replies": [
+    "thank you!! we're writing that on the back of a flyer. we write everything on flyers.",
+    "we appreciate it. we'd say more but the drummer just left.",
+    "that means a lot to all of us (all 3 of us) (it might be 4 by tonight)",
+    "we're going to scream about that. in a good way. in a loud, grateful way.",
+    "thank you!! you're officially on the mailing list (it's a clipboard in the storage unit)",
+    "that's the nicest thing since the lemonade lady. we think about her a lot.",
+    "we hear you. we're a screamo band, we're built to hear.",
+    "we're fine!! we're totally fine!! (we're building a bridge.)",
+    "oh!! tell your friends!! tell 3!! the demo's free if you tell 3!!",
+    "we'll put that in a song. or a flyer. probably a flyer. possibly both."
+  ],
+  "thanksAdd": "thanks for the add!!! we're FADING EMBER. check out our demo 'Cold Hands, Warm Amps' (4 songs, $3, free if you tell 3 friends). we'd like to formally welcome you to the Fading Ember family (it's us, Dr. Beat, 14 alumni, and now you). our next show is TBD. our lineup is TBD. our hearts are 100% not TBD. we're so happy you're here. (this is a screamo band. we're allowed to be happy. we checked.)",
+  "ambient": [
+    "current lineup (as of 4:15 pm): vocals, guitar, bass, Dr. Beat. as of 4:16: vocals, guitar, Dr. Beat. a bassist said 'it's not you, it's community college.' we love community college.",
+    "storage unit update: the neighbor in unit 15 has a collection of ceramic angels. she came to practice today. she said 'is this the loud kind or the sad kind.' we said 'yes.' she gave us a thumbs up and a cookie.",
+    "we wrote a song in the oil change bay today (the vocalist did). it's called 'Cabin Air Filter (Part 1).' it's about replacing something that was fine for 12,000 miles. we think it will hit people hard.",
+    "did you know 14 people have been in this band? we'd like to thank all of them. in a card. there will be cake. the first Sunday. the Dairy Dip. be there.",
+    "if you're at a show and the drummer looks like he's seen something, that's not drama. that's a drummer. we love them. we're looking for one."
+  ],
+  "saltyDm": "we saw that you denied our request. that's okay. we're a screamo band, we've been denied by experts. flyers on your wall by Friday (virtually). our demo is still $3. our offer is still free if you tell 3 friends. please tell 3 friends. any 3. we'll take what we can get.",
+  "keywords": {
+    "demo": "'Cold Hands, Warm Amps.' 4 songs: 'Apology to the Sun,' 'Parking Lot Funeral,' 'Carbon Copy Heart,' and 'Dr. Beat Is a Machine (We Love Him).' $3 at shows, free if you tell 3 friends. recorded in a basement on a laptop with a mic that is mostly a sock.",
+    "drummer": "we're currently seeing other drummers. the current one is Dr. Beat (a metronome with pads, never late, never quits, never smiles). past ones: 14. we're not bitter. we send them cards. one's in a ska band. he's happy. we're so happy for him.",
+    "lineup": "we've had 14 lineups since March. Static Prophecy has had 1. we think about that. we don't know what it means. we just think about it. current lineup: ask us tomorrow.",
+    "screamo": "it's like emo but we mean it harder and we apologize less. our sound is described by our mothers as 'a lot.' by our fans as 'a lot, in a good way.' by us as 'the inside of a hoodie at 3 am, with a bridge.'",
+    "show": "next show is TBD. last show: the Friday garage bill, 9 minutes (the extension cord rule), one lemonade lady, and a standing ovation of one (Chad). we're booking. find us. we're in a storage unit behind the car wash. it's a little cold."
+  },
+  "banter": {
+    "greg": [
+      "greg we'd like to apologize for the drum machine volume. Dr. Beat has one setting and it's 'emotional.' your dad's kitchen timer went off at 9 minutes and we stopped. he nodded. we nodded. most professional moment of our career.",
+      "greg 14 lineups since March. you've had 1. we're not saying you're boring. we're saying we're jealous. teach us stability. we'll pay in demos."
+    ],
+    "misery": [
+      "misery thank you for the 11 comments on our flyer. you were the only one who noticed the typo (it said screamoo). we kept it. it's the logo now.",
+      "misery we heard you want us to play your birthday. we'd love to. we'll need an outlet, 10 feet of clearance, and a promise that nobody films the part where the vocalist climbs the amp. (it's a hobby.)"
+    ],
+    "lucas": [
+      "lucas we used your line about the dishwasher. we didn't change it. we put your name on the flyer. it says 'lyrics: lucas (one line).' we hope that's okay. we know it's one line. it's the best line.",
+      "lucas you asked to scream a single word. we say yes. the word is 'dishwasher.' we'll cue you at 2:14 of track 3. you have until then to feel something."
+    ],
+    "vince": [
+      "vince thank you for TEEN NITE. we'd do it again. we'd bring a drummer. we'll bring 2 drummers. one will be a machine. we'll be fine.",
+      "vince 'first 50 people free' is a beautiful phrase. we want it printed on the demo cover. we only need 3 people to come to make it true."
+    ],
+    "evan": [
+      "evan we got your note. we put it in the folder with the other 3. we read the line where you said our set was 'sincere.' we won't read into it. we read into it. we think you're a good person. we'd like to do a split.",
+      "evan you carried our amp up greg's driveway. we didn't ask. you didn't say. that was the whole thing. we wrote you a thank-you note back. it says thank you. it's the whole note. we learned it from you."
+    ],
+    "skip": [
+      "skip we're not looking at the picture of big tom smiling. we're looking at the picture of big tom smiling. he's so happy. we're so happy for him. we're writing a bridge about it. it's called 'Major Key.' it's a joke. it's also a song.",
+      "skip we'd like to say yes to the split. 20 minutes each. you bring the horns, we bring Dr. Beat. we'll call it 'The Offbeat Abyss.' you're welcome to the name. we thought of it at 3 am."
+    ],
+    "darkangel": [
+      "darkangel we accept 'crimson tears (part 7)' as a song title. we'd like parts 1 through 6 as well. we'll make a concept album. we'll need a drummer. we'll need a cello. we'll need to cry a little.",
+      "darkangel your poems on our wall are better than our lyrics. we'd like to hire you. we pay in demos and sandwiches."
+    ]
+  },
+  "statuses": [
+    "xFadingEmberx is a 4-piece again (new bassist: the drummer's cousin) (he's 15) (his mom drives him)",
+    "xFadingEmberx is a 3-piece. it's fine. it's a trio. it's a Tuesday.",
+    "xFadingEmberx is at practice in the storage unit. 52 degrees. Dr. Beat is thriving.",
+    "xFadingEmberx is making flyers. this is version 11. the font changed. the heart didn't.",
+    "xFadingEmberx just got a standing ovation at an open mic (the chair broke) (we're still counting it)",
+    "xFadingEmberx is mailing 15 birthday cards. Alumni Association only. we love you. you left. we love you.",
+    "xFadingEmberx is on day 5 without a drummer (Dr. Beat doesn't count) (he counts) (he's a metronome)"
+  ],
+  "bulletins": [
+    {
+      "subject": "FADING EMBER: SHOW THIS FRIDAY (lineup: TBD)",
+      "body": "THIS FRIDAY. location: TBD (probably Greg's garage, ask Greg). time: 7 PM (done by 8:15, Greg's dad's rule). lineup as of right now: vocals, guitar, bass, Dr. Beat. lineup as of Friday: we'll let you know. admission: free or $3, your call. merch: the demo (4 songs) and a sticker (it's a heart on fire (it's not on fire (it's orange))). if you tell 3 friends the demo is free. we'd like to remind you that we are a screamo band and we are very excited to see you. we'd also like to remind you to bring earplugs. xFadingEmberx"
+    },
+    {
+      "subject": "A Message To Our Alumni (14 of you, we love you)",
+      "body": "dear Alumni Association: the first Sunday of the month is at the Dairy Dip. this month's agenda: 1) cake (Big Tom is bringing it, he says it's checkerboard, we're not going to ask) 2) a moment of silence for the van we never had 3) a vote on whether Dr. Beat can be a member (he has been to every practice, he's earned it) 4) a group photo (13 smiling, 1 vocalist). if you can't come we understand. we'll save you a spoon. you're still in the band. you were always in the band. xFadingEmberx"
+    },
+    {
+      "subject": "THE LINEUP (updated hourly)",
+      "body": "VOCALS: the vocalist. GUITAR: Jamie (week 3) (we're proud). BASS: TBD (the last one is at community college). DRUMS: Dr. Beat (technically a metronome) (we've made peace). MERCH: the vocalist's mom (she brings cookies). VAN: a rumor. PRESS: us. THANK-YOU NOTES: Evan (he sent us one and we're framing it). check back at 4. it'll change."
+    }
+  ],
+  "pcComments": [
+    "this photo has really good lighting. if this were an album cover we'd buy it. we'd pay $3.",
+    "we saved this one. we're putting it on the next flyer. with permission. (this is us asking.)",
+    "nice pic!! we'd like to add that you look like you could scream really well. that's a compliment.",
+    "the background of this one is so sad and so beautiful. we love it. please tell us where.",
+    "this made us feel something. we're not going to say what. we're going to put it in a song."
+  ],
+  "dmSeed": [
+    {
+      "text": "thanks for the add!! we're FADING EMBER (screamo, Mansfield OH). check out our demo 'Cold Hands, Warm Amps' (4 songs, $3, free if you tell 3 friends). this is a message from the band. (this is the vocalist. hi. we're a band of 3 right now. it was 4. it's fine.)"
+    },
+    {
+      "text": "also, if you know a drummer, we're looking. no experience necessary. just no 'community college' excuses. (we love community college.)"
+    }
+  ],
+  "dms": [
+    "malten we have a question. if a band has 14 lineups in 6 months, is it a band or a rotating exhibit? asking for the vocalist. he's fine.",
+    "storage unit update: the ceramic angel lady in unit 15 brought us a casserole. she said 'you boys are too thin to be that loud.' we said thank you. the casserole was great. the vocalist has been in a good mood for 2 days.",
+    "we want to tell you about the rink show. we played TEEN NITE right after Cotton Eyed Joe. nobody told the DJ. he said 'and now, a band.' a kid skated backwards in time to the breakdown. best moment of our career. no cameras.",
+    "the vocalist's day job is at the oil change place on Route 30. he says 'would you like a cabin air filter' 40 times a day. it's the same voice, just quieter. he says it's good practice for the bridge.",
+    "we mailed Big Tom a birthday card. it said 'happy birthday, we're so happy for you.' he wrote back 'thanks, i'm so happy for you too.' we think he means it. we cried in the unit. the angel lady came over with a tissue.",
+    "question: how do you tell a guitarist the quiet part is the loud part? asking for the vocalist, who is also the guitarist right now.",
+    "do you have a van. it doesn't have to be good. it has to have wheels and a side door. we have a lot of amps and a very small hope.",
+    "we got a bracelet from Penny that says IT GETS BETTER. we wear it on the mic hand. we wore it to the garage show and it got better. we're not sure it was the bracelet. we're keeping the bracelet. we sent her a guitar pick with a tiny heart on it."
+  ],
+  "blog": [
+    {
+      "title": "TEEN NITE, FADING EMBER, AND A BOY ON SKATES (a review)",
+      "date": "Sep 12 2026 12:40 AM",
+      "mood": "we're fine",
+      "body": "we were booked for the 9:30 slot at the Rollerdome. at 9:28 the DJ said 'and now, a band' and played Cotton Eyed Joe by mistake. we stood there. 40 kids skating in circles. the song ended. we started. the first scream hit the disco ball and the ball did something. a boy about 11 skated backwards the entire song and kept eye contact with the vocalist. at the breakdown he did a spin. 7 people showed up for us: 3 stood by the wall, 4 skated, and 1 was a rink employee who asked if we could do it 'a little less.' we did it a little less. Vince said we were gonna be HUGE. we think he meant volume. we got paid in pizza. after, the boy skated up and said 'was that sad?' we said yes. he said 'cool.' that was the whole review. we're so grateful. we're printing it."
+    },
+    {
+      "title": "THE ALUMNI ASSOCIATION (a history of everyone who ever left)",
+      "date": "Aug 23 2026 10:05 PM",
+      "mood": "sentimental",
+      "body": "1) Brandon (drums, March): left because of 'a thing.' we still don't know what. sends a postcard every August. 2) Tanner (bass, April): left for community college. sends calculus jokes. 3) Big Tom (drums, May to July): left for a ska band. sends cake. 4) Colby (guitar, 11 days): found a new hobby. it was woodworking. he made us a pick holder. 5) Zach (bass, one weekend): just wanted to see what it was like. 6 and 7) the two Dylans (both drums, different weeks, never met). 8 to 14) we'll do them next time. we meet the first Sunday of the month at the Dairy Dip. nobody orders. we share a sundae. there are 14 spoons. the vocalist always says 'thanks for coming, you were all great.' they always say 'we know.' then everybody laughs. that's the meeting. that's the whole meeting. it's the best thing we do."
+    },
+    {
+      "title": "we wrote a song at the oil change place (a process)",
+      "date": "Sep 8 2026 9:50 PM",
+      "mood": "tired but productive",
+      "body": "the vocalist's day job is at the oil change place on Route 30. it's a pit. you stand under the car and look up. it's a very good place to write a song because every customer is a stranger and every stranger has a story that's mostly about a funny noise. today a lady said 'it makes a sound like it's trying to say something.' he wrote that on a rag. 'Cabin Air Filter (Part 1)' is about the thing in your car nobody looks at until it's 12,000 miles overdue. it's a metaphor. he's not going to say for what. it has 2 screams and a bridge and a quiet part where the vocalist just says 'it was fine' over and over. the manager heard it and said 'is that about the filter?' he said yes. the manager said 'that's the best thing anybody's ever said about a filter.' that's our whole career. that's the bridge."
+    }
+  ],
+  "survey": {
+    "title": "BAND SURVEY (copy and paste to your demo)",
+    "qa": [
+      [
+        "band name:",
+        "FADING EMBER (xFadingEmberx online)"
+      ],
+      [
+        "genre:",
+        "screamo, but the nice kind. we apologize to the neighbors."
+      ],
+      [
+        "members:",
+        "3 right now. 4 if you count Dr. Beat. 5 if you count the vocalist's mom (merch)"
+      ],
+      [
+        "former members:",
+        "14. we mail them cards. they mail back. it's a thing."
+      ],
+      [
+        "longest practice:",
+        "5 hours in the storage unit. we lost feeling in our fingers. we kept the take."
+      ],
+      [
+        "biggest show:",
+        "Greg's garage, 34 people (9 minutes, the extension cord rule)"
+      ],
+      [
+        "smallest show:",
+        "TEEN NITE. 7 people and a boy on skates."
+      ],
+      [
+        "tour van:",
+        "a rumor. we've seen it in a dream. it's blue."
+      ],
+      [
+        "favorite venue:",
+        "Greg's garage. the lemonade lady next door. 10/10."
+      ],
+      [
+        "pre-show ritual:",
+        "Dr. Beat's startup chime, one deep breath, the vocalist says 'we're fine,' everybody says 'we're fine,' we go."
+      ],
+      [
+        "post-show ritual:",
+        "load-out. every single time. Evan carries something. we thank him in writing."
+      ],
+      [
+        "describe your sound:",
+        "the inside of a hoodie at 3 am, with a bridge."
+      ],
+      [
+        "who would you tour with:",
+        "Saosin (they'd say no), Skip's band (they'd say yes, they say yes to everything), Penny (to hold the glowsticks)"
+      ]
+    ]
+  }
+}

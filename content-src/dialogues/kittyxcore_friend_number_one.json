@@ -1,0 +1,215 @@
+{
+  "id": "kittyxcore_friend_number_one",
+  "with": "kittyxcore",
+  "opener": [
+    "malten. EMERGENCY. adam posted a pic of me.",
+    "u know adam. add_me_adam. the 10,412 friends guy. he went 2 the mall sat like i told him 2 n we met irl (HES REAL (hes 6'1 n very shy)). we split a pretzel. it stormed at 4 like always n we got caught running 2 the car.",
+    "n he took a pic of me under the fountain awning n put it UP. caption says 'friend #1 (MET!!!!)'. malten my hair is FLAT. like a wet hello kitty pillow. its UNTEASED. nobody has ever seen me untouched. it has 11 comments already n under pc4pc law i have 2 comment it back."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "breathe. open the pic. tell me what you actually see, not what you're scared of.", "next": "a_look" },
+        { "say": "pc4pc is your law. you comment back. so what's the first word?", "next": "b_law" },
+        { "say": "didn't you owe him a pile of comments anyway? pay the whole debt tonight, loudly.", "next": "c_debt" }
+      ]
+    },
+
+    "a_look": {
+      "them": [
+        "ok. looking. i see a girl w/ NO hair n a big dumb laugh n the fountain behind her. n the edge of adam's elbow, bc he's holding a hat for me under his arm. he bought me a bucket hat. it was a surprise. it was in a bag. its still in the bag in the pic.",
+        "i look... happy. i hate it. i look like i dont know someones looking. thats not a face i make on purpose. i dont have a name 4 that face."
+      ],
+      "choices": [
+        { "say": "that's the best photo of you anywhere on this site. say it out loud.", "next": "a_best" },
+        { "say": "read me the 11 comments. all of them. don't skip the weird ones.", "next": "read_comments" }
+      ]
+    },
+
+    "b_law": {
+      "them": [
+        "its the one thing ive never broken. 1,184 comments, not 1 missed. ask anyone. its my first rule from when i had 12 friends. i comment back so nobody feels like me-w/-12-friends.",
+        "so if i skip adam, adam is me. n adam has 10,412 friends n has met ONE of them. so i cant skip. but i also cant type the 3 words i always type, 'cute pic!! pc4pc?', on THIS one."
+      ],
+      "choices": [
+        { "say": "then it's easy. what would you have wanted someone to say to you when you had 12?", "next": "draft_comment" },
+        { "say": "he commented all 47 of your pics back in august, remember? you owe him 44 more.", "next": "c_debt" }
+      ]
+    },
+
+    "c_debt": {
+      "them": [
+        "...u remembered that. ok yeah. i have a note in my sidekick that says 'owe adam 47.' i paid 3. n u know why? he never asked. not once. he just said 'thanks 4 the add' n kept commenting. its the worst, bc u cant even be mad.",
+        "n the thing is, adam has 3 pics total. a vending machine, a train, n somebody's elbow. i literally cant pay 47 on 3 pics. unless... i pay them all on THIS one."
+      ],
+      "choices": [
+        { "say": "yes. 47 on the new pic. one a minute. flood him with so much nice he has to sit down.", "next": "flood_plan" },
+        { "say": "no flood. one long comment. forty-seven words, and count every one.", "next": "draft_comment" }
+      ]
+    },
+
+    "a_best": {
+      "them": [
+        "stoppp. ur making me cry in my hair. (its flat so it absorbs it. thats new.) marisa would say the same thing. she said it at the salon last week when i held still for an hour: 'u look like urself when ur not working so hard.' i threw a comb at her.",
+        "ok but if i leave it UP, ppl will see the real me. n the real me has a rat tail comb n no top-8. i think. i think thats what im scared of. not the hair. the NO ONE COMMENTING."
+      ],
+      "choices": [
+        { "say": "leave it up and comment back for real. the real you has a way better top 8 than you think.", "next": "draft_comment" },
+        { "say": "tell lexi and misery. let your girls see it first and decide if it's a disaster.", "next": "friends_rally" }
+      ]
+    },
+
+    "read_comments": {
+      "them": [
+        "ok. 1) lexi: 'OMG KITTY?? UR SO PRETTY?? (not that ur not usually) (u know what i mean)'. 2) misery: 'rawr XD u look like a wet kitten n i love it (i said it first)'. 3) holly (the hot topic girl): 'you got caught in the rain. relatable. you may keep your card.'",
+        "4) some guy named todd: 'Hi!! lovely photo!!' 5) paige: 'tilt next time. also, this is good.' they're ALL nice. why r they all nice. is it a trap. is the trap the nice."
+      ],
+      "effects": [
+        { "type": "status", "text": "kittyxcore is looking at a pic of herself w/ flat hair. it has 11 comments. none r mean. she's checking again. =^.^=" }
+      ],
+      "choices": [
+        { "say": "it isn't a trap. they're doing to you what you do to them: commenting back. go comment adam.", "next": "draft_comment" },
+        { "say": "but you hate it. tell adam honestly and ask him to take it down.", "next": "ask_takedown" }
+      ]
+    },
+
+    "draft_comment": {
+      "them": [
+        "ok. typing. 'cute pic!! pc4pc?' ...no. thats my 3-word default, n its fine for a stranger. its not fine for a guy who wrote 'friend #1' about me. i deleted it. i typed 'u look happy' n deleted that 2.",
+        "what do i say to a guy who has met 1 of 10,412 n picked me. i cant write 'thanks 4 the add.' he wrote that. its HIS line."
+      ],
+      "choices": [
+        { "say": "say the true thing. 'best day of my summer.' it's not a default. it's a comment.", "next": "adam_reply" },
+        { "say": "dm him first. tell him what scares you about the pic. then decide about the comment.", "next": "truth_to_adam" }
+      ]
+    },
+
+    "adam_reply": {
+      "them": [
+        "i wrote: 'friend #1 back at u. best day of my summer. i look like a wet kitten n id do it again. pc4pc (this 1 counts double).' i hit post. i didnt even check 4 typos. thats a first.",
+        "he answered in 3 seconds. 'THANKS 4 THE COMMENT!!!' n then, a second later: 'sorry, that was autopilot. i meant it. i meant THANK YOU. nobody ever commented a real thing before.' malten. i have to go sit on the bathroom floor."
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "adam", "to": "kittyxcore", "delay": 15, "text": "thanks 4 the comment!!! (sorry. autopilot.) i meant it. i printed it. it's the first one i ever printed. it's in my room, next 2 the vending machine pic. the pretzel was a 10. you're friend #1 and i'm saying it on purpose." }
+      ],
+      "choices": [
+        { "say": "he's your friend #1 too. say that in public, out loud, with a heart on it.", "next": "end_honest" },
+        { "say": "ask him to bring the hat next saturday. wear it. flat hair and all.", "next": "end_honest" }
+      ]
+    },
+
+    "ask_takedown": {
+      "them": [
+        "ok. i'm typing 2 him. 'adam can u take the pic down.' ...no thats mean. 'adam i look like a drowned hello kitty pillow.' ...he'll say thank u 4 the compliment. 'adam its not u its me.' ...i look 12 yrs old. who sends that.",
+        "i hate that i'm even asking. he finally had a thing 2 post that wasn't a vending machine. malten. he posted something REAL. n i want 2 delete it."
+      ],
+      "choices": [
+        { "say": "be kind. ask him to swap it for one where the hat's on. he still gets 'friend #1 (met)'.", "next": "hat_compromise" },
+        { "say": "tell him the actual truth. you're scared of your own flat hair, not of him.", "next": "truth_to_adam" }
+      ]
+    },
+
+    "truth_to_adam": {
+      "them": [
+        "i told him. i wrote the whole thing. 'my hair is flat n i've never let anybody see it n im scared nobody will comment.' i hit send n put my face in the hello kitty pillow (the real one, not the one i look like in the pic).",
+        "he wrote back: 'i'll take it down if u want. i like it flat. i like it every way. its a lot of hair either way (i mean that as a compliment).' malten. he said 'i'll take it down' FIRST. before 'don't.' he said it first."
+      ],
+      "choices": [
+        { "say": "keep it up. let him keep the best day of his summer. you lose a little hair-pride, he gets a lot.", "next": "end_honest" },
+        { "say": "ask for the hat swap. half the face, all the hat. keep the rest for when you're ready.", "next": "hat_compromise" }
+      ]
+    },
+
+    "hat_compromise": {
+      "them": [
+        "a hat swap. ok. its in the bag. he bought me a bucket hat, pink n black, 14.99 plus tax. he asked the girl at the kiosk 'is it casual or formal' n she said 'its a hat.' he said 'ok.' he tells that story like its a speech.",
+        "so we'd use the shot after, w/ the hat on, hair UNDER it, n he keeps the caption. 'friend #1 (MET!!!!)'. thats a good deal. thats a deal where nobody loses. except i kinda do. i just dont know which part."
+      ],
+      "choices": [
+        { "say": "tell him you'll post a flat one yourself, someday, when you pick it. not him. you.", "next": "end_hat" },
+        { "say": "ask him to keep the original on his computer. just for him. he'll treasure it.", "next": "end_hat" }
+      ]
+    },
+
+    "friends_rally": {
+      "them": [
+        "ok. i told lexi n misery. lexi said 'kitty ur not allowed 2 hate a pic where u look happy. thats the rule.' misery said 'rawr XD i love u i said it first.' they both said they'll comment adam's pic, which has NEVER had 3 comments before.",
+        "they're making a thing of it. lexi's making a banner. its in pink. ok. so now adam's getting a LOT of attention n i'm still the one who has to say the first nice thing."
+      ],
+      "effects": [
+        { "type": "status", "from": "lexi", "text": "is gonna comment adam's pic. he has met kitty ONE time n it was the best thing he ever posted. (not that anyone asked about my pics) (nate) (not that its about that)" }
+      ],
+      "choices": [
+        { "say": "go first. say it for real, in your own words. then your girls pile on.", "next": "draft_comment" },
+        { "say": "all three of you flood him. 47 comments. make a festival out of it.", "next": "flood_plan" }
+      ]
+    },
+
+    "flood_plan": {
+      "them": [
+        "47. on one pic. ok. its the weirdest repayment plan in the history of pc4pc n i'm doing it. i have 47 compliments. i have a list. 'ur hat is a 10.' 'ur elbow is photogenic.' 'the awning is a good awning.'",
+        "i'm starting now. comment 1: 'friend #1 deserves a parade.' n i'm doing 1 a minute so he can read them. wait, can he read them? his page is gonna look like a guestbook."
+      ],
+      "choices": [
+        { "say": "yes, one a minute. different every time. no repeats. you can do 47.", "next": "flood_midway" },
+        { "say": "forget the flood. one real comment beats forty-seven fast ones. go back to the real one.", "next": "draft_comment" }
+      ]
+    },
+
+    "flood_midway": {
+      "them": [
+        "comment 31: 'ur the only person who's ever asked if a hat is casual or formal.' comment 32: 'the pretzel was OURS.' adam is replying to every single one. n now hes writing 'please stop (im happy)' w/ a smiley. n im not stopping.",
+        "my fingers r cramping. 16 left. my mom just came in n said 'what is happening.' i said pc4pc. she said 'ok.' she brought me a glass of juice. shes the best."
+      ],
+      "effects": [
+        { "type": "wallpost", "to": "adam", "text": "comment 31 of 47: ur the only person who ever asked a mall kiosk if a hat is casual or formal. i'm still thinking about it. pc4pc (REPAID IN FULL (n then some)). =^.^=" }
+      ],
+      "choices": [
+        { "say": "finish it. sixteen more. it's the law and it's love.", "next": "end_flood" },
+        { "say": "stop at 31. write the last one big and real. one. the rest are in your pocket.", "next": "adam_reply" }
+      ]
+    },
+
+    "end_honest": {
+      "them": [
+        "ok. its up. my comment, his pic, my flat hair. i'm leaving all 3. i'm putting my hand on my own hair, its so soft its like a wet mouse.",
+        "thanks, malten. i thought if i let anyone see it nobody would comment. instead i got 16 comments n a guy who printed one. i'm gonna keep the hat in the bag until next saturday. n then i'm gonna wear it. n then i'm gonna leave my hair flat in the car on the way home. =^.^="
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "kittyxcore commented back. one pic. 61 words. her hair is flat in it n shes leaving it up. marisa says 'finally.' pc4pc: PAID (this 1 counts double) =^.^= <3" },
+        { "type": "wallpost", "from": "lexi", "to": "kittyxcore", "delay": 50, "text": "KITTY ur hair is FLAT n ur SO pretty omg i cant. i printed the pic. i put it on my fridge. my mom said who's that. i said thats kitty, shes a rockstar. (nate hasnt commented my pics since aug but THIS isnt about that) (ok its a little about that)" },
+        { "type": "wallpost", "from": "holly", "to": "kittyxcore", "delay": 120, "text": "kitty. a flat-hair photo. posted by choice. it's the most goth thing you've ever done. (don't repeat that.) (i have a reputation.) (it's still the truth.) you may keep your card. also bring the hat in, i'll put it on the display." },
+        { "type": "status", "from": "adam", "delay": 190, "text": "adam has met 1 of 10,412 friends. 1 is a number. it's his favorite number. he printed it. thanks 4 the add, kitty. (that's not autopilot.)" }
+      ]
+    },
+
+    "end_flood": {
+      "them": [
+        "47. DONE. his page looks like a parade n i feel like i'm gonna throw up from happiness. adam wrote 'thanks 4 the comment' 47 times in a row n then 'ok that was autopilot but also i meant every one.' i'm so tired. my fingers hurt. its the best pain ever.",
+        "pc4pc: PAID IN FULL. n a debt isn't a debt when u laugh the whole time. thanks 4 saying go big. i'd do it again. ...no i wouldn't. my wrist says no. =^.^="
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "PC4PC REPAYMENT: 47 COMMENTS (LIVE) =^.^=", "text": "ok so. in august adam commented all 47 of my pics n I paid 3. last night I paid 47 on ONE pic in 47 minutes (44 owed + 3 interest). highlights: 'ur elbow is photogenic.' 'the awning is a good awning.' 'friend #1 deserves a parade.' pc4pc is a debt of love n I always pay. (late. very late.) go look. leave him a comment. he'll say thanks 4 the comment. it'll be real. -kitty =^.^= <3" },
+        { "type": "status", "from": "adam", "delay": 40, "text": "adam just got 47 comments in 47 minutes from a person he met in real life. he'd like to say thanks 4 the comment. 47 times. he has typed it twice. it's going to be 47." },
+        { "type": "status", "from": "nate", "delay": 100, "text": "some people... did 47 comments in 47 minutes. some people took 3 days to reply to a pic. (it was me.) (my sidekick died.) (it's fine.)" },
+        { "type": "wallpost", "from": "misery", "to": "kittyxcore", "delay": 170, "text": "rawr XD KITTY 47?? i said it first. (i said 'rawr' first, kitty said '47' first. fair.) im commenting back on that guys elbow right now. it IS photogenic. i hate that u were right." }
+      ]
+    },
+
+    "end_hat": {
+      "them": [
+        "ok. the hat pic is up, the hair is under it, the caption stays: 'friend #1 (MET!!!!)'. adam says 'thanks 4 the swap' like it was a gift. n i said ur welcome. n i didn't type pc4pc. its the first time i didn't.",
+        "the flat one is on his computer, in a folder, called 'friend #1'. he told me. he thought i'd be mad. i'm not mad. i'm a little sad n a little glad n those r both allowed. i'll post one on my own someday. n it'll be MY pick. not the weather's."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "kittyxcore is wearing a hat. its the right hat. the hair under it is flat n shes ok w/ that for now. 'for now' is a real thing. =^.^=" },
+        { "type": "wallpost", "from": "adam", "to": "kittyxcore", "delay": 45, "text": "thanks 4 the swap!!! the new one is great!!! (i kept the old one. on my computer. just for me. in a folder called 'friend #1'. i hope that's ok. u can say no. i'll delete it. it's ok if u say no.)" },
+        { "type": "wallpost", "from": "misery", "to": "kittyxcore", "delay": 130, "text": "rawr XD kitty u wore a hat to hide the flat hair?? thats ok. i hid under a hat for ALL of 8th grade. (i said it first.) (the hat was a beanie.) (in july.) ur gonna be ok. XD" },
+        { "type": "dm", "delay": 420, "text": "hey malten. ok i did it. i posted 1 flat pic. its tiny. its the back of my head on a bench at the salon w/ marisa's hand in it. its my hair from behind. 4 comments already. nobody can see my face. but u can see my hair. ok. i can do this. baby steps =^.^=" }
+      ]
+    }
+  }
+}

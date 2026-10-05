@@ -9,15 +9,27 @@
 const Presence = {
   online: {}, away: {},
 
+  // how many residents are believably signed on at once: about half of a small cast, ~21 of the full ~92
+  target() {
+    const n = Object.keys(MS.people).length;
+    return Math.round(Math.min(n * 0.5, 12 + n * 0.1));
+  },
+
   init() {
-    Object.keys(MS.people).forEach(id => {
-      if (Math.random() < 0.55) {
+    // your friends are likelier to be around than strangers
+    const friends = new Set((MS.state && MS.state.friends) || []);
+    Object.keys(MS.people)
+      .map(id => ({ id, r: Math.random() * (friends.has(id) ? 2.5 : 1) }))
+      .sort((a, b) => b.r - a.r)
+      .slice(0, this.target())
+      .forEach(({ id }) => {
         this.online[id] = true;
         if (Math.random() < 0.3) this.away[id] = this.awayMsg(id);
-      }
-    });
+      });
     this.online.todd = true;               // todd is always online. he is load-bearing.
     delete this.away.todd;
+    // whoever has a scripted conversation waiting on you is signed on
+    (MS.activeTreeIds ? MS.activeTreeIds() : []).forEach(tid => { this.online[MS.trees[tid].with] = true; delete this.away[MS.trees[tid].with]; });
     setInterval(() => this.tick(), 22000);
   },
 
@@ -38,9 +50,20 @@ const Presence = {
   tick() {
     if (Math.random() < 0.45) return;
     const ids = Object.keys(MS.people).filter(i => i !== 'todd');
-    const id = ids[Math.floor(Math.random() * ids.length)];
+    // drift toward the target headcount: a coin flip per random resident would fill the room at 92 residents
+    const on = ids.filter(i => this.online[i]), off = ids.filter(i => !this.online[i]);
+    const goal = this.target();
+    const pJoin = on.length < goal - 2 ? 0.8 : on.length > goal + 2 ? 0.15 : 0.45;
+    const friends = new Set(MS.state.friends || []);
+    const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+    const offFriends = off.filter(i => friends.has(i));
+    const id = (off.length && (!on.length || Math.random() < pJoin))
+      ? ((offFriends.length && Math.random() < 0.5) ? pick(offFriends) : pick(off))
+      : pick(on);
+    if (!id) return;
     if (this.online[id]) {
-      if (Math.random() < 0.35) {
+      // nobody signs off in the middle of a scripted conversation with you
+      if (Math.random() < 0.35 && !(MS.activeTreeFor && MS.activeTreeFor(id))) {
         delete this.online[id];
         delete this.away[id];
         if (this.audible()) Sfx.doorSlam();
@@ -89,21 +112,33 @@ const BuddyList = {
     if (!list) return;
     list.innerHTML = '';
     const ids = Object.keys(MS.people);
-    const on = ids.filter(id => Presence.online[id] && !Presence.away[id]);
-    const away = ids.filter(id => Presence.away[id]);
-    const off = ids.filter(id => !Presence.online[id]);
+    // ✉ = a scripted conversation is waiting on you (several can be open at once); those float to the top,
+    // then your friends, then everyone else
+    const mail = new Set(MS.activeTreeIds ? MS.activeTreeIds().map(tid => MS.trees[tid].with) : []);
+    const friends = new Set(MS.state.friends || []);
+    const rank = id => (mail.has(id) ? 0 : friends.has(id) ? 1 : 2);
+    const sorted = arr => arr.map((id, i) => [id, i]).sort((a, b) => rank(a[0]) - rank(b[0]) || a[1] - b[1]).map(x => x[0]);
+    const on = sorted(ids.filter(id => Presence.online[id] && !Presence.away[id]));
+    const away = sorted(ids.filter(id => Presence.away[id]));
+    const off = sorted(ids.filter(id => !Presence.online[id]));
+    // with the full ~92-resident roster the offline group is ~70 rows: it starts folded, click the header to open
+    if (this.showOffline === undefined) this.showOffline = ids.length <= 45;
 
-    const group = (label, arr, cls) => {
+    const group = (label, arr, cls, folded) => {
       const g = document.createElement('div');
       g.className = 'bl-group';
-      g.textContent = `▼ ${label} (${arr.length})`;
+      g.textContent = `${folded ? '►' : '▼'} ${label} (${arr.length})`;
       list.appendChild(g);
+      if (cls === 'off') {
+        g.classList.add('bl-fold');
+        g.addEventListener('click', () => { this.showOffline = !this.showOffline; Sfx.click(); this.paint(); });
+      }
+      if (folded) return;
       arr.forEach(id => {
         const p = MS.people[id];
         const row = document.createElement('div');
         row.className = 'bl-row ' + cls;
-        const ds = (MS.state.dialogueState || {})[id];
-        const activeConvo = MS.dialogues[id] && ds && !ds.done;
+        const activeConvo = mail.has(id);
         row.innerHTML = `<span class="bl-dot"></span>${p.name}${activeConvo ? ' <span class="bl-mail blink">✉</span>' : ''}`;
         if (cls === 'away') row.title = 'away: ' + Presence.away[id];
         row.addEventListener('click', () => {
@@ -124,7 +159,7 @@ const BuddyList = {
     };
     group('Buddies', on, 'on');
     group('Away', away, 'away');
-    group('Offline', off, 'off');
+    group('Offline', off, 'off', !this.showOffline);
   },
 };
 
@@ -197,10 +232,13 @@ const Chat = {
       const pairs = [];
       pool.forEach(a => {
         const b = MS.people[a].banter || {};
-        Object.keys(b).forEach(t => b[t].forEach((line, i) => {
-          const key = `${a}>${t}:${i}`;
-          if (!this.chatUsed[key]) pairs.push({ a, t, line, key });
-        }));
+        Object.keys(b).forEach(t => {
+          if (!MS.people[t]) return;       // banter aimed at a resident whose content isn't loaded
+          b[t].forEach((line, i) => {
+            const key = `${a}>${t}:${i}`;
+            if (!this.chatUsed[key]) pairs.push({ a, t, line, key });
+          });
+        });
       });
       if (!pairs.length) { this.chatUsed = {}; return; }
       const p = rnd(pairs);
@@ -218,8 +256,9 @@ const Chat = {
       const id = rnd(withS);
       this.addLine({ kind: 'me', from: id, text: rnd(MS.people[id].statuses) });
     } else if (roll < 0.86 && MS.bank && MS.bank('chatLines').length) {
-      // authored 2006 chatroom one-liners from the line bank
-      this.addLine({ kind: 'msg', from: rnd(pool), text: rnd(MS.bank('chatLines')) });
+      // authored 2006 chatroom one-liners from the line bank (written in the original cast's voice, so they say them)
+      const cast = pool.filter(id => !MS.people[id].isNew);
+      this.addLine({ kind: 'msg', from: rnd(cast.length ? cast : pool), text: rnd(MS.bank('chatLines')) });
     } else if (roll < 0.9) {
       this.addLine({ kind: 'msg', from: 'herp', text: rnd(['herp.', 'herp herp.', 'HERP.', 'herp?', '...herp 💜']) });
     } else {
@@ -239,12 +278,18 @@ const Chat = {
     // who answers? name/keyword match first, otherwise maybe a random reaction
     const lower = text.toLowerCase();
     const ids = Object.keys(MS.people);
-    let target = ids.find(id => lower.includes(id) || lower.includes((MS.people[id].name || '').toLowerCase()));
+    // named = whole words only: with ~92 residents, ids like "min", "tim", "wes" hide inside ordinary words
+    const words = new Set(lower.split(/[^a-z0-9_]+/));
+    let target = ids.find(id => {
+      const name = (MS.people[id].name || '').toLowerCase();
+      return words.has(id) || words.has(name) || (name.length >= 6 && lower.includes(name));
+    });
     if (!target) {
-      target = ids.find(id => {
-        const kw = MS.people[id].keywords || {};
-        return Object.keys(kw).some(k => lower.includes(k));
-      });
+      // keyword match: any resident who has one (not just the first in the roster), people in the room first
+      const hits = ids.filter(id => Object.keys(MS.people[id].keywords || {}).some(k => lower.includes(k)));
+      const here = hits.filter(id => Presence.online[id]);
+      const pool = here.length ? here : hits;
+      target = pool[Math.floor(Math.random() * pool.length)];
     }
     if (!target && Math.random() < 0.45) {
       const online = ids.filter(id => Presence.online[id]);
@@ -331,11 +376,18 @@ const Nudge = {
     MS.toast('you nudged ' + MS.people[id].name + '.');
     setTimeout(() => {
       const t = MS.state.inbox[id] = MS.state.inbox[id] || { unread: false, msgs: [] };
-      t.msgs.push({ who: 'them', text: MS.botReply(id, 'nudge'), time: MS.now() });
-      MS.save();
-      if (MS.view.page === 'inbox' && MS.view.arg === id) MS.render();
-      else { t.unread = true; MS.paintTabs(); }
-      if (Math.random() < 0.5) { Sfx.buzz(); this.shake(); MS.toast(MS.people[id].name + ' nudged you back. obviously.'); }
+      const last = t.msgs[t.msgs.length - 1];
+      // they answer a nudge in words once (a line this thread hasn't seen); nudging again before you say anything
+      // just gets a nudge back — and never a stock line dropped into the middle of a scripted conversation
+      const wordless = (last && last.n) || (MS.activeTreeFor && MS.activeTreeFor(id));
+      if (!wordless) {
+        t.msgs.push({ who: 'them', text: MS.botReply(id, 'nudge', t), time: MS.now(), n: 1 });
+        t.at = Date.now();
+        MS.save();
+        if (MS.view.page === 'inbox' && MS.view.arg === id) MS.render();
+        else { t.unread = true; MS.paintTabs(); }
+      }
+      if (wordless || Math.random() < 0.5) { Sfx.buzz(); this.shake(); MS.toast(MS.people[id].name + ' nudged you back. obviously.'); }
     }, 2500 + Math.random() * 3000);
   },
 
@@ -544,7 +596,7 @@ const Glitter = {
       MS.toast('posted to your wall, at maximum sparkle');
     } else {
       Guestbook.postExternal('malten', text);
-      MS.toast('the guestbook has been glitterized');
+      MS.toast('the guestbook has been glitterized', 'guestbook');
     }
     Sfx.tada();
   },
@@ -583,6 +635,7 @@ const Customizer = {
     body.dataset.built = '1';
     const mp = MS.state.myProfile || {};
     const songs = [
+      { name: '(none — my spotify top songs do the talking)', none: true },
       { name: 'malten_theme.mid', pattern: [0, 0, 7, 5, 3, 5, 7, 10], bpm: 140 },
       { name: 'untitled banger.mid', pattern: [0, 3, 7, 3, 10, 7, 12, 7], bpm: 130 },
       { name: '4am insomnia loop.mid', pattern: [12, 10, 7, 10, 5, 7, 3, 0], bpm: 96 },
@@ -608,6 +661,7 @@ const Customizer = {
       </div></div>
       <div class="cz-sec"><b>🔤 font</b><select id="cz-font" class="cz-select"></select></div>
       <div class="cz-sec"><b>🎵 profile song</b><select id="cz-song" class="cz-select"></select></div>
+      <div class="cz-sec"><b>⭐ top 8 (friends only. choose wisely.)</b><div class="cz-swatches" id="cz-top8"></div></div>
       <div class="paint-toolbar">
         <button class="btn98" id="cz-save">💾 save my page</button>
         <button class="btn98" id="cz-reset">↩ reset to default</button>
@@ -649,6 +703,27 @@ const Customizer = {
       songSel.appendChild(o);
     });
 
+    // top 8: one dropdown per slot; picking someone who's already ranked swaps the two slots
+    const t8 = body.querySelector('#cz-top8');
+    const top8 = MS.myTop8();
+    const pool = [...new Set([...top8, ...MS.state.friends.filter(id => MS.people[id])])];
+    top8.forEach((id, i) => {
+      const sel = document.createElement('select');
+      sel.className = 'cz-select';
+      pool.forEach(fid => {
+        const o = document.createElement('option');
+        o.value = fid; o.textContent = `#${i + 1} ${MS.people[fid].name}`;
+        if (fid === id) o.selected = true;
+        sel.appendChild(o);
+      });
+      sel.addEventListener('change', () => {
+        const j = top8.indexOf(sel.value);
+        if (j >= 0 && j !== i) { top8[j] = top8[i]; t8.children[j].value = top8[j]; }
+        top8[i] = sel.value;
+      });
+      t8.appendChild(sel);
+    });
+
     body.querySelector('#cz-save').addEventListener('click', () => {
       const selSwatch = sw.querySelector('.cz-swatch.sel');
       const theme = selSwatch ? this.swatches[+selSwatch.dataset.i] : null;
@@ -659,8 +734,9 @@ const Customizer = {
         theme: theme ? { bg: theme.bg, fg: theme.fg, accent: theme.accent } : (MS.state.myProfile || {}).theme,
         bgTile: tile && tile.value ? tile.value : undefined,
         font: font || undefined,
-        song,
+        song: song && !song.none ? song : undefined,
       };
+      MS.state.top8 = top8.slice();
       MS.save();
       Sfx.tada();
       MS.toast('your page has been renovated ✨');
@@ -678,6 +754,7 @@ const Customizer = {
     });
     body.querySelector('#cz-reset').addEventListener('click', () => {
       MS.state.myProfile = null;
+      delete MS.state.top8;
       MS.save();
       MS.toast('back to factory settings. respectable.');
       if (MS.view.page === 'home') MS.render();
@@ -693,7 +770,7 @@ const ControlPanel = {
     body.dataset.built = '1';
     const curCursor = localStorage.getItem('malten_cursor') || 'default';
     const curTrail = localStorage.getItem('malten_trail') || 'stars';
-    const curSaver = localStorage.getItem('malten_saver') || 'starfield';
+    const curSaver = localStorage.getItem('malten_saver') || 'pipes';
 
     const radio = (name, value, label, checked) =>
       `<label class="cp-opt"><input type="radio" name="${name}" value="${value}" ${checked ? 'checked' : ''}> ${label}</label>`;

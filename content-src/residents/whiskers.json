@@ -1,0 +1,195 @@
+{
+  "id": "whiskers",
+  "name": "mr_whiskers_official",
+  "tag": "Official page of the cat. My owner denies involvement. Do not mention the vacuum.",
+  "avatar": "assets/avatar_whiskers.gif",
+  "gender": "Male",
+  "age": 6,
+  "hometown": "Garland, Texas (a feed-store box behind the hardware store, then the den)",
+  "loc": "The sewing table, behind the monitor (warm)",
+  "zodiac": "Taurus, per the vet's paperwork ('approx. April'). I was not consulted",
+  "status": "Single (in an ongoing war with an appliance)",
+  "hereFor": "Surveillance, Warm laps, Networking (rodents excluded)",
+  "mood": "dignified. mostly. it is 3 AM",
+  "lastLogin": "Oct 3 2026 3:07 AM",
+  "theme": { "bg": "#26160a", "fg": "#ffe8c8", "accent": "#ff8a1f" },
+  "blogTitle": "Incident Reports (Filed By The Cat, Not By The Man Who Lives Here)",
+  "about": "This is the official page of Mr. Whiskers: orange, age six, resident of the den. Clarifications. One: I have had no help with this page. The tall gentleman I live with, whom I call The Mailman, has stated in writing that he did not make a page for the cat. I agree with his statement. We hold a joint position, and the position is that nobody typed this. Two: I sleep 17 hours a day, which leaves seven for administration. Three: my interests are windows, the 5:00 AM bowl, a squirrel (personal), and the appliance known as the Kirby (adversarial). Friend requests are accepted from anyone not holding a vacuum. Please do not wave at the screen. I can see you.",
+  "aboutMore": "Dorothy named me. She is not here at the moment and I do not elaborate on this. The sewing table is hers, and The Mailman types at it each morning, so I am there too, in the warm spot behind the monitor, which happens to be where her elbow used to rest. This is a coincidence of geography. Please do not read into the geography. Also: yes, the spelling is excellent. I read the whole dictionary. I sat on it for a week.",
+  "meet": "Who I'd like to meet: whoever invented the cat door, to shake his hand (firmly, claws in). The rock named Dwayne, who I understand does not move, which I respect. Whoever the hamster is, for professional reasons. The squirrel, at a neutral location, with no tomatoes present. And the president of the Kirby company, in a legal setting.",
+  "interests": {
+    "General": "windows (south facing), the 5:00 AM bowl (5:04 is a breach), gravity research (114 pens so far, all falling), boxes of any size, the warm spot behind the monitor, supervising the tomatoes, cardio in the hall at 3 AM, the Kirby (adversarial)",
+    "Music": "Bob Wills and his Texas Playboys, played at volume from the den, which I tolerate. The refrigerator hum (one sustained note, restful). The can opener from three rooms away, the finest instrument ever built. My profile song was chosen by whoever is typing this and it concerns a stray. I was not a stray. I was found in a feed-store box, which is a different legal category",
+    "Movies": "The Aristocats (accurate on cheese, inaccurate on pianos), Lady and the Tramp, Homeward Bound (Sassy is correct about everything), Shane (a stranger rides in, nobody trusts him, he leaves: I relate), Jaws, for the way its music announces the Kirby",
+    "Television": "The Rangers on the radio, narrated by The Mailman. Wheel of Fortune with the sound low. The bird feeder (a channel The Mailman does not realise he subscribes to). The Weather Channel, because the rain gauge is my business too",
+    "Books": "The Old Farmer's Almanac (sat on, so I know it well), the seed catalog (extremely comfortable), the carrier's handbook, chapter 9, 'Dogs,' read with sympathy, Dorothy's recipe box (strong lid, good fit), the big Webster's",
+    "Heroes": "Sassy from Homeward Bound. The first cat to try a closed door and then a better one. The pigeon who has beaten the squirrel to the feeder three times. Dorothy. (No further comment)"
+  },
+  "song": {
+    "name": "Stray Cat Strut",
+    "artist": "Stray Cats",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/1f/4c/a0/1f4ca09a-63ee-8dd7-e4f7-98fa8e6f2c39/mzaf_9862813633616290613.plus.aac.p.m4a",
+    "pattern": [0, 3, 5, 6, 7, 5, 3, 0],
+    "bpm": 132
+  },
+  "decor": ["assets/deco_hamster.gif", "assets/deco_moon.gif"],
+  "friends": ["patrick", "herp", "meg", "walt", "luna", "debbie", "kyle", "adam"],
+  "wall": [
+    { "from": "debbie", "text": "Mr. Whiskers, I know exactly who you are. I am not telling anyone. I would only like it noted that I have now tripped over you on the back stairs twice, and that I vacuum my father's den because he is 78 and a cat is not a housekeeper. Love, Mom", "time": "Oct 2 2026 1:42 PM" },
+    { "from": "henderson", "text": "Mr. Whiskers, your incident report was well organized: date, time, parties, sequence of events. However, the conclusion ('the vacuum began it') lacks a control group. Might you document one Sunday with the vacuum left in the closet? I would be glad to review the data. - Mr. H", "time": "Sep 27 2026 4:31 PM" },
+    { "from": "ben", "text": "mr whiskers its me ben (the orange boy w the headband). im sorry about the capture. nana says if a cat doesnt want to be a mission then its not a mission. i put a band-aid on my own arm and it looks really cool. D-rank complete. (i quit)", "time": "Sep 22 2026 4:48 PM" },
+    { "from": "tj", "text": "Mr. Whiskers, official poll question #14: pirate or ninja? Cats are stealthy (ninja) but they also push things off tables (pirate). I need an answer for the tally. 'Neither' counts as a vote for ninja because you are a cat. Please respond in the comments.", "time": "Sep 18 2026 9:15 PM" },
+    { "from": "luna", "text": "*the orange one watches from the ridge, tail flicking. the pack goes still. the alpha steps forward, ears up* Mr. Whiskers. You may enter our territory. But you walk NEXT to the alpha, never in front. *lowers her head. a quiet howl*", "time": "Sep 10 2026 8:02 PM" },
+    { "from": "meg", "text": "MR WHISKERS i drew u as a HORSE!!! ur orange w a flaming mane n ur the fastest horse in the whole stable!!! u didnt ask for wings but i gave u wings anyway!!! its in ur inbox!!! u can have a rainbow one too if u want", "time": "Aug 29 2026 5:55 PM" },
+    { "from": "linda", "text": "Beautiful kitty!! Bitsy saw your picture and went and stood in the closet but she says hi!! You look EXACTLY like Daddy's cat. Same orange, same face, same look like you know something. ~Aunt Linda", "time": "Aug 20 2026 7:12 AM" },
+    { "from": "patrick", "text": "hi mr whiskers. dwayne says hi. i told him you are a cat and he said nothing which is how he agrees. do you like tomatoes. walt says they are good. regards, patrick (i am practicing regards)", "time": "Aug 2 2026 4:40 AM" }
+  ],
+  "replies": [
+    "Your correspondence has been received and filed. Under the couch.",
+    "Noted. I will consider it during the 3 PM nap.",
+    "Acknowledged. Do not expect a follow-up. Do not rule one out.",
+    "I looked at this for a long time and then I looked out the window. I have reached no conclusion.",
+    "This is acceptable. You may continue.",
+    "Understood. For the record, the vacuum started it.",
+    "I am touched. Please do not touch me.",
+    "A thoughtful remark. Are you, by any chance, holding tuna?",
+    "I have read this twice. The second time was for the pleasure of stepping on the keyboard.",
+    "Thank you. It is 3 AM. I am available."
+  ],
+  "thanksAdd": "Request accepted. This is not a favor. It is an administrative decision. You may now view my page, comment upon it, and send tuna to the den, Garland, Texas. You may NOT mention the vacuum by name. Refer to it as 'the appliance.' Welcome. Please do not wave at the screen.",
+  "ambient": [
+    "3:12 AM. The hall has been cleared for cardio. Please remain in your rooms.",
+    "The Mailman set out two cups again this morning. I sat beside the second one for a while. I did not knock it over. I could have.",
+    "Gravity: tested again. 114 trials, 114 results. The pen has fallen every time. I will continue until it does not.",
+    "There is a squirrel on the fence holding a tomato in my direction. This is a message. I am drafting a reply. The reply is staring.",
+    "I have been informed that the Kirby is 'only for the carpet.' I have been informed of many things."
+  ],
+  "saltyDm": "Request denied. Noted. Please be advised that I will remember this, and that I know where you will be sitting. I do not know where you live, being a cat, but I know where the box is. Anyway. Good luck with your day. Do not look under the bed.",
+  "keywords": {
+    "vacuum": "I do not discuss it. I will say that it screams, that it follows, and that it is operated by a woman who says 'it's only 15 minutes' as if time were not already one of the things I resent about it.",
+    "hamster": "The hamster is a private matter. I have asked three questions about him and been described as 'concerning.' I am simply a well-informed neighbor.",
+    "tuna": "Yes. The answer is yes. Whatever the question was. The can opener is in the second drawer and I will be at your feet in two seconds.",
+    "squirrel": "He has taken nine tomatoes. He eats one bite of each and leaves the rest facing the kitchen window. I do not have the word for what that is. I think it is a threat with manners.",
+    "box": "If I fit, I sit. If I do not fit, I sit anyway and the box adjusts. It is a very simple system and I am surprised more people have not adopted it.",
+    "dorothy": "She named me. She is not here at the moment. I would prefer to leave it at that, and I thank you for not asking me to say more.",
+    "mailman": "The Mailman is the tall gentleman who lives here. He is in my debt in a number of ways. He knows about some of them. He is a good fellow, if stubborn, and I will not be taking questions."
+  },
+  "banter": {
+    "walt": [
+      "Dear Sir, Thank you for your letter regarding the tomatoes. I did not 'do nothing' about the squirrel. I observed him. Observation is a form of action, ask any federal agency. I accept your apology in advance. Regards, Mr. Whiskers",
+      "Dear Sir, You may continue to set out two cups. I wish to state for the record that I will not be knocking either of them off the table. I have knocked 114 objects off 114 tables. Not those. Regards, Mr. Whiskers"
+    ],
+    "debbie": [
+      "Madam. The Kirby is not 'for his own good.' A hair on a rug is not a crime. I note that the Mailman's cardigan sheds more than I do, and no one has run a Kirby at the cardigan. This is not a request for a vacuum. Please note that it is also not a request for a casserole. (It is a request for a casserole.) Respectfully, Mr. W.",
+      "Madam. I will be under the recliner on Sunday at 1. I want it understood that I have a right to be there and that you have a right to the carpet, and that one of us has a longer memory. Respectfully, Mr. W."
+    ],
+    "kyle": [
+      "Master Chief. I have been told the hamster's name. I wish to state that I have no designs on Master Chief. I would only like to know when he sleeps, when he wakes, and whether the wheel is loud. As a friend. Is the cheeto still available.",
+      "Kyle. You asked whether I could press 'A.' I can. I decline. Not because I would lose. Because you have said you are fourteen, and I would hate to take that from you."
+    ],
+    "henderson": [
+      "Mr. Henderson. Your note on my methodology has been received and filed. I do possess a control cat. He is also me. I would like to propose that the Sunday trial be run without the vacuum, and I would like it overseen by the Mailman, who has not objected to anything since spring.",
+      "Mr. Henderson. I read your report on the newt. I wish to offer my services as a newt-retrieval specialist. My fee is one can of tuna and no follow-up questions about the can opener. I have never once lost a newt. I have also never had one. Make of that what you will."
+    ],
+    "bill": [
+      "Sir. The photograph you posted as 'Subject A, fence line, 4:12 AM, large dark shape' is me. I was on the fence on business. I am not large. The camera was close. I would like a credit, and I would like you to stop calling me 'the individual.'",
+      "The plaster cast you took behind the hardware store: four toes, small, round, no heel. It is a paw. It is mine. I was found in that lot as a kitten, so I consider it a birthplace marker. It came out nicely. Please do not send it to a university."
+    ],
+    "gina": [
+      "Ms. Gina. I have read your note listing the corner by the hall closet as 'animal reacts to a presence.' The presence is a spider. I would like your notebook to reflect that I have been staring at him with great professionalism for six years.",
+      "Ms. Gina. You asked whether I 'sense something' in the den. I sense the Kirby, the pigeon, and a draft from the sewing-table window. I do not rule out other things. I am a cat. We rule nothing out and tell nobody."
+    ],
+    "patrick": [
+      "Patrick. The rock Dwayne is a colleague I respect. He sits, he watches, he asks for nothing. The Mailman says the garden rock has been more reliable than I have, and I cannot disprove it, because the rock has never been tested.",
+      "Patrick. You found a stick. I have seen it in the photograph. It is a fine stick. If you throw it I will not retrieve it. I will watch it fall. Then I will look at you. This is not unkind. It is simply the way I say thank you."
+    ],
+    "herp": [
+      "Herp. Acknowledged. We are in agreement. Everyone else has asked for clarification and you have not, and that is the difference between a friend and a correspondent.",
+      "Herp. I have said it back to the window. The pigeon did not respond. I take this to mean the pigeon understood and is thinking it over."
+    ],
+    "meg": [
+      "Meg. The horse you drew of me has a rainbow mane and wings. I did not ask for wings. I have decided not to ask for their removal. It is an improvement on the original design in two ways, and I am only naming one.",
+      "Meg. I have had the horse placed on the icebox, at my eye level, by The Mailman, who described it as 'quite a cat.' It is the best thing in the house. Please do not tell the rock."
+    ],
+    "adam": [
+      "Adam. You have thanked me for the add four times. I have not added you. I am being thanked in advance. I accept. I note that you are awake at hours I keep as well, and that is all I will say about it.",
+      "Adam. The keyboard is warm over here and there is room behind the monitor. It is 3 AM and neither of us is asleep. That is not a problem. That is simply a schedule we share."
+    ]
+  },
+  "statuses": [
+    "whiskers is on the sewing table. The monitor is warm. This is my spot.",
+    "whiskers has been informed the vacuum is 'only for 15 minutes.' Time is a construct invented by people with vacuums.",
+    "whiskers is staring at a wall. There is nothing there. Yet.",
+    "whiskers just knocked a pen off the desk. For science.",
+    "whiskers is not involved with this account. See the Mailman's statement.",
+    "whiskers is under the bed. It is tactical. The Woman arrives Sunday at 1.",
+    "whiskers is at the window. The pigeon has been put on notice.",
+    "whiskers just sat in a box that was too small and has no regrets and now lives there"
+  ],
+  "bulletins": [
+    {
+      "subject": "OFFICIAL NOTICE: This Account Is Not Operated By My Owner",
+      "body": "To all residents. It has come to my attention that certain parties believe the man who lives in my house operates this page. For the record: 1. He has stated in writing that he did not. 2. He cannot attach a photograph. 3. He does not know what a 'status' is. 4. The spelling is excellent. These are not the marks of a gentleman typing with two fingers. I do not rule out that someone is typing and I do not rule it in. I am a cat. Signed, Mr. Whiskers (witnessed by the pigeon)."
+    },
+    {
+      "subject": "FEEDING SCHEDULE (PLEASE POST ON THE ICEBOX)",
+      "body": "5:00 AM first bowl. 5:04 AM is a breach. 11:30 AM second bowl, same dish, the good dish. 3:00 PM nap, do not discuss. 4:00 PM I will be in the chair in the corner, and I would like that left alone. 6:00 PM the can opener (this is a performance, please attend). 3:00 AM cardio. This schedule is not negotiable. The bowl will be refilled even if it is not empty, because 'empty' is a state of mind. Thank you for your cooperation. Do not make eye contact with the Kirby."
+    }
+  ],
+  "pcComments": [
+    "I have studied this photograph for some time. There is a chair in it. I would like the chair.",
+    "Is that a bird in the upper left? Please advise me of its schedule.",
+    "I rate this three paws and a hesitation. The hesitation is the lighting.",
+    "Good picture. I would have been in it, but I was not asked, and I was in the next room, available.",
+    "You appear to be holding something warm. I will be over.",
+    "This photograph contains no cat. I regret to inform you it is incomplete."
+  ],
+  "dmSeed": [
+    { "text": "Good evening. This is the cat. It is 3:09 AM and I have access to the machine until The Mailman rises at 5:30. I have been informed that you are new. Welcome. The couch is not available. The sewing table is a shared space. You may view the page. Please do not mention the vacuum. If anyone asks, this message was sent by no one. We have agreed on this." }
+  ],
+  "dms": [
+    "Malten. I would like to file a complaint about the Kirby, and I am told you are the person one files things with. It was run at 1:05 PM on Sunday for eleven minutes. I counted. I count everything. Please forward this to whoever handles appliances. If no one does, please forward it to the appliance.",
+    "A question of logistics. How does one make the letter 'q' with a paw? I have been trying for six nights. I have produced qqqqqqqqqqqq on The Mailman's page twice. He wrote back, 'Dear Sir, I do not follow.' Nor do I, sir. Nor do I.",
+    "I have a few questions about hamsters. They are for a friend. The friend is also me. The questions are purely academic and the academic field is 'where is he.'",
+    "I have found a box. It is a shoebox. It does not fit me. I am in it. This is the position I will be holding for the foreseeable future. The Mailman has put a sock in with me. I will allow it.",
+    "Someone in this house keeps shining a small red dot across the floor. I have chased it 14 times. I do not respect it and I do not stop. I would like to know who is operating it and what they want from me.",
+    "The boy in the headband returned. I permitted six seconds this time. He announced 'D-rank complete' to an empty yard. I do not know what he was awarded. I believe I was the prize."
+  ],
+  "blog": [
+    {
+      "title": "INCIDENT REPORT #47: The Kirby, Sunday, 1:07 PM",
+      "date": "Sep 28 2026 3:14 AM",
+      "mood": "aggrieved",
+      "body": "INCIDENT REPORT #47. Date: Sunday. Time: 1:07 PM. Location: the den, under the recliner, which I had held since 12:40. Parties: myself; The Woman (daughter of The Mailman); the Kirby. Summary: The Woman entered the den carrying the Kirby and said, 'I'll just do under the recliner.' I would like it recorded that I was under the recliner. I remained there until the Kirby was within 14 inches, at which point I withdrew to the bedroom, lost approximately 3 percent of my tail fluff, and was spoken to as though I were a cat. Damages: one sock, one dust bunny (deceased), my dignity (minor). The Mailman stood in the doorway and said, 'Debbie, he's upset.' She said, 'He's a cat, Dad.' I am a cat. It is not an argument. Corrective action: none. Status: ONGOING."
+    },
+    {
+      "title": "INCIDENT REPORT #52: The Squirrel, And A Matter Concerning A Rock",
+      "date": "Sep 17 2026 3:40 AM",
+      "mood": "wounded",
+      "body": "INCIDENT REPORT #52. Subject: the squirrel; also a rock. Over the past month the squirrel has taken nine tomatoes from the garden, one bite apiece, and left them on the fence rail facing the kitchen window. The Mailman has written the squirrel a letter. I have read it. It is a good letter. In it he states that a rock placed in the garden 'has been more reliable than the cat.' I would like that statement withdrawn. In my defense: I was at the window every morning at 6:50 AM in a supervisory capacity. The rock was not at the window. The rock has sat in the garden for three days doing exactly what a rock does, and has never once been asked to do more. Reliability is easy when nothing is expected. I have been expected for six years. Yesterday the squirrel looked at me and I looked back. That is a stalemate. I am told that counts as progress."
+    },
+    {
+      "title": "INCIDENT REPORT #38: The Second Cup (Not An Incident)",
+      "date": "Aug 31 2026 3:55 AM",
+      "mood": "quiet",
+      "body": "This one is not an incident. I am filing it anyway because there is no other form. Every morning at 5:20 The Mailman sets out two cups on the kitchen table. One is for him. The other is for a person who does not come. He fills both. He lets the second one sit, and when his own is empty he pours the second one down the sink, rinses both, and does not mention it. I sit on the chair beside the second cup. I do not drink coffee. I have never knocked that cup over, and in six years I have knocked over 114 objects. I would like that entered into the record. After breakfast he types at the sewing table and I sit in the warm place behind the monitor, which is where her elbow was. He believes I do this for the heat. I have let him believe it. There is no corrective action. Status: ONGOING, and I intend to see it through."
+    }
+  ],
+  "survey": {
+    "title": "A Questionnaire (Someone Left It Open On The Screen. I Completed It. Nobody Typed This)",
+    "qa": [
+      ["Name?", "Mr. Whiskers. Just that. 'Whiskers' alone is a kind of cat. 'Mr. Whiskers' is a position."],
+      ["Age?", "Six. In people years Dorothy said 'forty-ish.' She said it kindly."],
+      ["What did you have for breakfast?", "Wet food at 5:00 AM. I would have been fed at 4:58 had the alarm been correct. I hold nothing against The Mailman. I hold it against the alarm."],
+      ["Favorite color?", "The orange of a sunbeam on the kitchen floor at 3 in the afternoon."],
+      ["Who is your best friend?", "Not a term I use. There is a rock in a garden in another county that I think of with respect."],
+      ["What is the last thing you broke?", "I do not break things. I relocate them to the floor. The last was a pen, 3:12 AM, from the second shelf."],
+      ["Are you afraid of anything?", "The Kirby. No further questions."],
+      ["Do you believe in ghosts?", "I stare at the corner by the hall closet for a reason, and the reason is a spider, but I have noticed that people prefer the other explanation, and I have let them have it."],
+      ["Who was the last person to write you?", "A young man named Patrick. He told me he found a stick. I have read it nine times, to be fair."],
+      ["What song is stuck in your head?", "The one with the fiddles. It plays whenever The Mailman sits down. He believes it is for him."],
+      ["If you could be any animal?", "I am good, thank you."],
+      ["Are you supposed to forward this to ten people?", "I have no one to forward it to. I have the rock. I will try the rock."]
+    ]
+  }
+}

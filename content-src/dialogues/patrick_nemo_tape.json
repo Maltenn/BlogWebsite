@@ -1,0 +1,390 @@
+{
+  "id": "patrick_nemo_tape",
+  "with": "patrick",
+  "opener": [
+    "hi malten. i have a problem. it's small but it's also big. i can't tell which",
+    "brad called my house. he never calls. he said 'bud, we're doing inventory saturday and the tape's gonna get written off.' i asked what that means. he said 'it means the store stops waiting.'",
+    "the store stops waiting. i didn't know the store was WAITING. i thought it was just me. now i don't know what to do with my hands"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        {
+          "say": "hey. i'm here. that sounds like a lot. what's the part that's hardest to say out loud?",
+          "next": "a1"
+        },
+        {
+          "say": "patrick. quick math: the tape is eight months late and brad stopped charging in june. the store isn't mad. so what's this really about?",
+          "next": "b1"
+        },
+        {
+          "say": "ok but have you considered never returning it. we change our names. dwayne becomes 'the rock formerly known as dwayne.'",
+          "next": "c1"
+        }
+      ]
+    },
+    "a1": {
+      "them": [
+        "...it's the dad fish part. when he swims across the whole ocean to find his son. i cry every time",
+        "and when i bring it back somebody else is going to rent it and get to that part and i won't be there. i won't know if they cried",
+        "dwayne watched it with me nine times and he never cries. he's a rock. he's very supportive but it's not the same"
+      ],
+      "choices": [
+        {
+          "say": "so the real worry is the next person crying alone. patrick, that's the nicest worry i've ever heard.",
+          "next": "kind"
+        },
+        {
+          "say": "ok. let's lay out what you've actually got to work with before saturday.",
+          "next": "hub"
+        }
+      ]
+    },
+    "b1": {
+      "them": [
+        "it's not the money. i looked it up. 412 dollars is a lot of spaghetti nights but brad says it's 'just a number' and i believe him the way i believe in the sun",
+        "it's the part where the dad fish swims across the whole ocean. i cry at it every time. if i bring it back i won't be there for the next person's cry. that's the real thing. i don't know why i just said it. it came out like a sneeze",
+        "oh. walt just wrote on my wall. i don't know how he knew. maybe the mail told him"
+      ],
+      "effects": [
+        {
+          "type": "wallpost",
+          "to": "patrick",
+          "from": "walt",
+          "delay": 6,
+          "text": "Dear Patrick, Mr. Brad has informed me of a matter concerning a tape. I know nothing of tapes. I know something of things that arrive late: they are still received. I have enclosed stamp number 42. Regards, Walt"
+        }
+      ],
+      "choices": [
+        {
+          "say": "you said it out loud and nobody died. read me what walt wrote.",
+          "next": "walt"
+        },
+        {
+          "say": "ok. first things first. what have you actually got to work with before saturday?",
+          "next": "hub"
+        }
+      ]
+    },
+    "c1": {
+      "them": [
+        "never? like... forever?",
+        "i kind of already did that. eight months. i didn't know it was a plan. is it a plan",
+        "dwayne says nothing but he looks very sure of himself"
+      ],
+      "choices": [
+        {
+          "say": "it's a plan with one flaw: brad's counting the shelves saturday. nobody beats a clipboard.",
+          "next": "hub"
+        },
+        {
+          "say": "ok, scrap that. what's the actual reason you can't just walk in and return it?",
+          "next": "a1"
+        },
+        {
+          "say": "or we go big. a getaway. dwayne rides shotgun. we leave tonight.",
+          "next": "getaway"
+        }
+      ]
+    },
+    "getaway": {
+      "them": [
+        "a GETAWAY?? with dwayne?? he can't drive. he's a rock. but he's very good in the passenger seat",
+        "where would we go. i've been out of ohio one time and it was to the next state and it was also nice",
+        "i don't have a car anyway. i have a bike with one flat. and a mom who works at the post office, she 'sorts,' and she'd say 'patrick, it's a tape'"
+      ],
+      "effects": [
+        {
+          "type": "status",
+          "from": "zorp",
+          "delay": 12,
+          "text": "zorp_51 can provide normal car transportation for one (1) human and one (1) rock. the car is a normal car. it hums in a normal way. no promises about the lights. (they are headlights.)"
+        }
+      ],
+      "choices": [
+        {
+          "say": "she's right, it's a tape. so no running. the opposite: you walk in with dwayne and your head up.",
+          "next": "hub"
+        },
+        {
+          "say": "ok, getaway's cancelled. but tell me the real thing. why can't you just return it?",
+          "next": "a1"
+        }
+      ]
+    },
+    "walt": {
+      "them": [
+        "ok. he says he knows nothing about tapes, but he knows things that arrive late still get received. and he put in stamp number 42. i have 42 stamps now!!",
+        "i read it three times and then three more. i don't know if it means i can keep the tape forever or bring it back whenever. i think both. i think walt knows a lot about waiting"
+      ],
+      "choices": [
+        {
+          "say": "i think walt's right. late isn't the same as wrong. so what do you want to do with the tape?",
+          "next": "hub"
+        },
+        {
+          "say": "he's saying it'll be received whenever. maybe it's time to send it back with something of you on it?",
+          "next": "postit"
+        }
+      ]
+    },
+    "kind": {
+      "them": [
+        "...oh.",
+        "i didn't know that was the worry. i thought it was a tape worry. it's a people worry. it's a what-if-somebody-cries-at-a-fish-alone worry",
+        "...is that why i'm like this. i leave sticks for people. i've left a lot of sticks"
+      ],
+      "choices": [
+        {
+          "say": "yes. that's exactly it. so leave something for the next person. on the tape. a note.",
+          "next": "postit"
+        },
+        {
+          "say": "or you keep it. buy it from brad. then nobody rents it and cries without you.",
+          "next": "buy"
+        }
+      ]
+    },
+    "hub": {
+      "them": [
+        "ok. so here's what i have. the tape. 41 stamps (42 maybe). a coin that isn't mine. dwayne. and until saturday",
+        "brad said bring it in and he'll talk to me. he said 'we'll figure it out, bud.' that's the nicest thing a man with a clipboard has ever said to me"
+      ],
+      "effects": [
+        {
+          "type": "status",
+          "from": "brad",
+          "delay": 8,
+          "text": "brad has a gap on shelf 4. it's tape-shaped. it's been there since spring. inventory is Saturday and i'm supposed to write it off. i am not good at writing it off. have you seen FINDING NEMO. it's about a dad who doesn't stop"
+        },
+        {
+          "type": "status",
+          "delay": 22,
+          "text": "patrick has until saturday to decide something. i made a list. it says 1. the tape 2. spaghetti. spaghetti is winning but the tape is closing in"
+        }
+      ],
+      "choices": [
+        {
+          "say": "get clever: return it and rent it again in the same breath. clean slate, new due date.",
+          "next": "rerent"
+        },
+        {
+          "say": "buy it. 'previously viewed.' then it's yours forever and nobody has to cry without you.",
+          "next": "buy"
+        },
+        {
+          "say": "bring it back. but leave a note on it for whoever rents it next. you can't be there. the note can.",
+          "next": "postit"
+        }
+      ]
+    },
+    "rerent": {
+      "them": [
+        "return it AND rent it again. at the same time. like a hug that's also a handshake",
+        "brad can't do that. is brad allowed to do that. he says 'it's a number' a lot but he also says 'policy' sometimes",
+        "if i rent it again it has a due date. i've never had a due date. is that what being old enough feels like"
+      ],
+      "choices": [
+        {
+          "say": "ask him. worst case he says no and all it costs you is a sentence.",
+          "next": "end_rerent"
+        },
+        {
+          "say": "hmm. clever's risky with brad. maybe simpler: keep it.",
+          "next": "buy"
+        }
+      ]
+    },
+    "buy": {
+      "them": [
+        "buy it?? with money? i have 41 stamps and one coin that isn't mine",
+        "the coin is for the person who lost it. i've held it three weeks. i'm good at waiting. i'm not spending it. but stamps are real. mom says the post office takes stamps for postage so they're like money but with a flag on them",
+        "brad sells the used ones. 'previously viewed.' it's $4.99. i'd be previously viewing it forever"
+      ],
+      "choices": [
+        {
+          "say": "pay in stamps. keep holding the coin, it isn't yours. ask brad what he'll take.",
+          "next": "end_buy"
+        },
+        {
+          "say": "or the other way: a shelf wants its tape. send it back, and leave the next person a gift.",
+          "next": "postit"
+        }
+      ]
+    },
+    "postit": {
+      "them": [
+        "a post-it. on the tape. for the NEXT person. malten that's so good. that's better than a stick",
+        "what do i write. i have a pen from the post office. it has a little eagle on it"
+      ],
+      "choices": [
+        {
+          "say": "'the dad fish part is the part. you can cry. patrick did. it's ok.' start with that.",
+          "next": "legs"
+        },
+        {
+          "say": "too much pressure for a note? then tell brad you'll bring it when you're ready. the shelf is patient.",
+          "next": "end_wait"
+        }
+      ]
+    },
+    "legs": {
+      "them": [
+        "'the dad fish part is the part. you can cry. patrick did. it's ok.' ...i wrote it. it's the best thing i've ever put on a post-it. it's the only thing i've ever put on a post-it",
+        "but malten. what if i get to the store and my legs do the thing. they do a thing when it's important. it's mostly knees"
+      ],
+      "choices": [
+        {
+          "say": "i'll stay on the line till you're through the door. you're not walking in alone.",
+          "next": "end_postit"
+        },
+        {
+          "say": "not today, then. tomorrow. you, me, dwayne, the tape. one more night with it.",
+          "next": "end_wait"
+        }
+      ]
+    },
+    "end_postit": {
+      "them": [
+        "i'm in. i'm INSIDE. the door made a ding. there's a lady. there's a brad. he's looking at me. he's holding a clipboard but he put it down",
+        "i gave him the tape. he said 'thank you, bud.' i said i wrote a note for the next person. he read it. he didn't say anything for a really long time. then he said 'every time.' that's his way of saying it's the best thing he ever read"
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "status",
+          "delay": 10,
+          "text": "patrick returned the tape!! i went in the door. there was a ding. i gave brad finding nemo. i left a post-it on it for the next person. it says 'the dad fish part is the part. you can cry. patrick did. it's ok.' i feel lighter. it's mostly my hands"
+        },
+        {
+          "type": "status",
+          "from": "brad",
+          "delay": 25,
+          "text": "brad has received a returned tape (FINDING NEMO) with a Post-it on it. eight months late. on the receipt i wrote 'honesty.' there's no field for it. i wrote it anyway. the Post-it stays on. it's store policy now. i just made it policy"
+        },
+        {
+          "type": "wallpost",
+          "to": "patrick",
+          "from": "brad",
+          "delay": 45,
+          "text": "Patrick. The tape is on the shelf. It has your note on it. Somebody has already asked for it. I said it's the best one we've got. Thank you, bud. Have you seen THE SANDLOT? There's a dog. Nothing in it gets worse. -Brad"
+        },
+        {
+          "type": "wallpost",
+          "to": "patrick",
+          "from": "walt",
+          "delay": 70,
+          "text": "Dear Patrick, Mr. Brad informs me you walked through the door. In 34 years the hardest part of any route was the first door. Everything after it is only walking. Regards, Walt"
+        },
+        {
+          "type": "status",
+          "from": "zorp",
+          "delay": 90,
+          "text": "zorp_51 has learned of a fish who swam across an entire ocean to find his son. this is a normal fish story. i have not seen it. i am told it is relatable. i am moved. (normally.) (by a fish.)"
+        }
+      ]
+    },
+    "end_wait": {
+      "them": [
+        "ok. i'm not going today. my legs said not yet and i listened to them. they've never been so loud",
+        "brad said 'the shelf is patient.' i said 'is that a thing shelves are.' he said 'this one is.' so i'm keeping it a little longer. i'll know when it's time. it'll feel like the dad fish part, but in my legs"
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "status",
+          "delay": 10,
+          "text": "patrick isn't returning the tape today. my legs said not yet. mom says that's allowed. brad says the shelf is patient. i'm going to watch it one more time with dwayne and see how we feel. dwayne said nothing in a ready-when-you-are way"
+        },
+        {
+          "type": "status",
+          "from": "brad",
+          "delay": 25,
+          "text": "brad's shelf has a Nemo-shaped gap. inventory is Saturday. i checked the system. the tape has been marked 'in good standing.' i don't know how. it's a software thing. it is not a software thing. i marked it. -Brad"
+        },
+        {
+          "type": "wallpost",
+          "to": "patrick",
+          "from": "walt",
+          "delay": 45,
+          "text": "Dear Patrick, in 34 years I delivered one letter that took eleven years to reach the woman it was written to. She opened it at her kitchen table and said thank you. There is no late. There is only the day a thing arrives. Regards, Walt"
+        },
+        {
+          "type": "wallpost",
+          "to": "patrick",
+          "from": "josh",
+          "delay": 65,
+          "text": "patrick no pressure on the tape thing but youth group is wednesday if u want company bringing it back. ill bring pizza. ill sit on the floor with u. thats kinda what i do =]"
+        }
+      ]
+    },
+    "end_buy": {
+      "them": [
+        "brad said 'previously viewed, four ninety-nine.' i put down my stamps and he counted every one very slowly like it was real money. then he said 'the post office takes these so i take these.' and he wrote 'paid in full' on the receipt",
+        "it's MINE. it's a thing that's mine that also makes me cry. i kept the coin. it's still not mine. i'm going to watch the dad fish part with mom tonight and she doesn't know yet. she's going to cry at the fish. we all are"
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "status",
+          "delay": 10,
+          "text": "patrick bought finding nemo!! brad said previously viewed, 4 dollars and 99 cents. i paid in stamps and brad said the post office takes those so he takes those. it's MINE. i kept the coin. it's still not mine. i'm watching it with mom tonight"
+        },
+        {
+          "type": "status",
+          "from": "brad",
+          "delay": 25,
+          "text": "brad just sold a previously viewed copy of FINDING NEMO for 42 stamps. the register said ERROR. i wrote 'accepted' on the receipt. there is no field for that either. i have now filled in two fields that don't exist. i feel like a poet"
+        },
+        {
+          "type": "wallpost",
+          "to": "patrick",
+          "from": "brad",
+          "delay": 45,
+          "text": "Patrick. Account closed. 'Paid in full.' It was never a number. Enjoy it. Also, when you're in next: have you seen THE PRINCESS BRIDE? It has everything. Nothing in it gets worse. -Brad"
+        },
+        {
+          "type": "wallpost",
+          "to": "patrick",
+          "from": "tina",
+          "delay": 70,
+          "text": "PATRICK. u bought a tape with STAMPS?? that is the most romantic thing i have ever heard (it's a fish movie) (it's STILL romantic) edmund (my novel) would never. i'm crying. repost this to 5 people or nothing happens but do it anyway"
+        }
+      ]
+    },
+    "end_rerent": {
+      "them": [
+        "brad looked at me for a long time. then he looked at the tape. then he said 'that's technically a renewal.' and he scanned it in and then out again. beep. beep",
+        "i have a due date. it's FRIDAY. i've never had a due date. is this what being old enough feels like. mom says 'it's what being a customer feels like.' i think mom and i mean the same thing"
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "status",
+          "delay": 10,
+          "text": "patrick returned finding nemo and rented it again in the same minute. brad said it's technically a renewal. i have a due date now. it's friday. i've never had a due date. dwayne has one too (he shares mine)"
+        },
+        {
+          "type": "status",
+          "from": "brad",
+          "delay": 22,
+          "text": "brad has performed a return and a rental on the same tape in 4 seconds. corporate calls it 'a renewal.' i call it 'patrick.' the $412 is cleared. the new fee is $1.00 a day. i will remind him on thursday. (i will remind him with a movie.)"
+        },
+        {
+          "type": "wallpost",
+          "to": "patrick",
+          "from": "yvette",
+          "delay": 40,
+          "text": "Patrick. Congratulations on your first due date. A deadline is the beginning of every great thing. Please see me about a planner. I will color-code Friday for you. Thursday is the day to rewind. VOTE YVETTE."
+        },
+        {
+          "type": "wallpost",
+          "to": "patrick",
+          "from": "walt",
+          "delay": 60,
+          "text": "Dear Patrick, I am informed you now owe the store a tape on Friday. A man who owes something to a place is a man who belongs to it. Welcome to the route. Regards, Walt"
+        }
+      ]
+    }
+  }
+}

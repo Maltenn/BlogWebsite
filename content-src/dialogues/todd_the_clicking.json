@@ -1,0 +1,288 @@
+{
+  "id": "todd_the_clicking",
+  "with": "todd",
+  "opener": [
+    "Hi malten. Are you awake? (Silly question. You're online.)",
+    "The laptop has started making the CLICK sound. The one from the Field Guide. The one we do not discuss. It has been going for eleven minutes and it is 2:07 AM.",
+    "I know the answer is 'back it up.' I'm backing it up. I'm asking about the OTHER thing, and I don't know how to say it, so can I just talk at you for a second."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "of course. what's the other thing?", "next": "a_other" },
+        { "say": "how far apart are the clicks. be precise, todd.", "next": "a_numbers" },
+        { "say": "put it in the freezer. i read that works on drives.", "next": "c_freezer" }
+      ]
+    },
+
+    "a_other": {
+      "them": [
+        "The other thing is that if it dies, I have to say so. Out loud, on the site. 'I can't fix this.'",
+        "In four years on the old board and all these months here, I have never posted that sentence. I post 'back in 20 mins.' That has been my away message since March."
+      ],
+      "choices": [
+        { "say": "'back in 20 mins' since march is the most honest status on the site. you're allowed to say the other one too.", "next": "what_to_save" },
+        { "say": "so you're scared of an away message. okay. then let's make sure there's nothing to announce.", "next": "what_to_save" }
+      ]
+    },
+
+    "a_numbers": {
+      "them": [
+        "Thank you. Nobody ever asks for the numbers. Okay: it started at one click every nine seconds. Then seven. Now it's about every five.",
+        "The gap is shrinking, and that's the part I can't stop listening to. In the Field Guide I wrote what to do about a rattle. I did not write what to do about a click that is learning to count."
+      ],
+      "effects": [
+        { "type": "status", "text": "Todd is sitting up with the laptop and a stopwatch. One click every five seconds. He would like everyone to know this is a normal amount of timing for 2 AM." }
+      ],
+      "choices": [
+        { "say": "then the clock is the plan. what has to get copied before it runs out?", "next": "what_to_save" },
+        { "say": "you're not alone in that room, todd. i'm here. the stopwatch doesn't count as company.", "next": "what_to_save" }
+      ]
+    },
+
+    "c_freezer": {
+      "them": [
+        "...A freezer. malten. I want to respect the suggestion. It's a real thing people do. I have even seen it work, once, on a drive that was already a ghost.",
+        "The problem is the peas. My mom's freezer is a delicate ecosystem and there is a bag of peas she calls 'the good peas.' I can't move the good peas."
+      ],
+      "choices": [
+        { "say": "move the good peas. admins make sacrifices.", "next": "freezer_do" },
+        { "say": "ok fine. forget the freezer. what do we actually save?", "next": "what_to_save" }
+      ]
+    },
+
+    "freezer_do": {
+      "them": [
+        "...okay. I'm doing it. I put the laptop in two freezer bags and it looks like a sandwich for a very large, very tired person.",
+        "It's in. The good peas are on the counter, looking at me. And the clicking stopped. But I can't tell whether I fixed it or just muffled it, because the freezer is louder than the clicking."
+      ],
+      "choices": [
+        { "say": "give it ten minutes, then check the site from another computer.", "next": "freezer_wait" },
+        { "say": "take it out. you muffled it. we need an actual plan.", "next": "what_to_save" }
+      ]
+    },
+
+    "freezer_wait": {
+      "them": [
+        "Ten minutes. The site is up. I checked from my mom's computer in the den while she slept. I used the mouse like a burglar.",
+        "And malten, it's loading FAST. It's the fastest it has been all week. I think the laptop is happier cold. I think that's a thing about me, too, and I'm going to need a minute."
+      ],
+      "choices": [
+        { "say": "leave it in there. the good peas will understand.", "next": "end_freezer" },
+        { "say": "post about it. this is the best thing that has ever happened to the site.", "next": "end_freezer" }
+      ]
+    },
+
+    "what_to_save": {
+      "them": [
+        "Okay. Here's my math, and I did it twice. The code is safe: it's on Disc #15, so the site itself can be rebuilt. What can't be rebuilt is everything since Sunday.",
+        "That's three piles. The new people: nine profiles and all the friend requests. The pictures, a lot of which are Paige. And the words: wall posts, blogs, bulletins. The drive will let me fully copy ONE pile before it gets tired of me. Which one first?"
+      ],
+      "choices": [
+        { "say": "the new people. nobody should have to sign up twice. that was your promise.", "next": "save_people" },
+        { "say": "the words. people can retake a picture. they can't retake what they said to each other.", "next": "save_words" },
+        { "say": "the pictures. nobody gets a second first day. paige would never recover.", "next": "save_photos" }
+      ]
+    },
+
+    "save_people": {
+      "them": [
+        "The new people. Nine profiles. I was braced for you to say 'the pictures,' and I had already prepared to be sad about it.",
+        "You said the promise. I wrote that on a sticky note in March: NOBODY HAS TO START OVER. I think you read it through the wall."
+      ],
+      "effects": [
+        { "type": "status", "text": "Todd is copying the newest profiles to a CD-R first. If you signed up this week: you are on the disc. You were never not on the disc." }
+      ],
+      "choices": [
+        { "say": "then it's the right pile. what's the clock say?", "next": "the_ask" },
+        { "say": "frame that sticky note. now keep copying.", "next": "the_ask" }
+      ]
+    },
+
+    "save_words": {
+      "them": [
+        "The words. Every wall post, every bulletin, every blog. Darkangel's poems, including the one she says she deleted, which is not deleted, I'm sorry, it is a very sturdy poem.",
+        "I'll be honest, I'm reading them as they copy. It's the best part of the job. It would be a shame to lose a whole Tuesday of Patrick."
+      ],
+      "effects": [
+        { "type": "status", "text": "Todd is saving every wall post since Sunday. He is also reading them. He is a host and a pack rat. Apart from the clicking, this is the best 2 AM he has ever had." }
+      ],
+      "choices": [
+        { "say": "read them. that's the whole point of having them.", "next": "the_ask" },
+        { "say": "is my guestbook in that pile? your 'todd was here' entry is the best thing in it.", "next": "the_ask" }
+      ]
+    },
+
+    "save_photos": {
+      "them": [
+        "The pictures. Okay. Because everybody looks at the pictures first, don't they, before they read a single word.",
+        "Paige alone is sixty of them since Sunday, with captions. One is just a parking lot. The caption says 'important.' I can't decide whether to preserve it or build it a shrine."
+      ],
+      "effects": [
+        { "type": "status", "text": "Todd is copying the photos. All of them. Yes, the parking lot one too. Paige says it's important and he believes her. It is 2 AM." }
+      ],
+      "choices": [
+        { "say": "save the parking lot. paige knows what she saw.", "next": "the_ask" },
+        { "say": "build it a shrine. but finish copying first.", "next": "the_ask" }
+      ]
+    },
+
+    "the_ask": {
+      "them": [
+        "That's going. Four seconds between clicks now. It's a number I can live with, for a while.",
+        "So this is where you tell me to ask somebody, and I tell you I don't ask. I'm the one who gets asked. It's the whole job.",
+        "But Marcus is online. He's been online since 1 AM. He sent draft 7 of his application, and under it he wrote 'I have noticed increased latency and am prepared to assist.' It's the kindest sentence anyone has typed at me this week."
+      ],
+      "choices": [
+        { "say": "he noticed before you told anyone. that's loyalty. give marcus a real job.", "next": "marcus_job" },
+        { "say": "tell everybody. post a bulletin. last time you got 63 messages and not one was angry.", "next": "bulletin_draft" },
+        { "say": "you've been up 21 hours. power it down, go to sleep, face it at 8.", "next": "power_down" }
+      ]
+    },
+
+    "bulletin_draft": {
+      "them": [
+        "A bulletin. To everybody. Saying the laptop is sick. I typed 'Dear all,' and my hands went cold. It feels like announcing that I'm tired.",
+        "I have two drafts. Draft A says 'scheduled maintenance tonight.' (It IS scheduled. By me. Just now.) Draft B says 'the laptop is dying and I'm scared I'll lose the week.' Which one is the bulletin?"
+      ],
+      "choices": [
+        { "say": "draft b. the true one. you wrote it for a reason.", "next": "truth_sent" },
+        { "say": "draft a, with a smile at the end. calm people are easier to help.", "next": "maint_marcus" }
+      ]
+    },
+
+    "maint_marcus": {
+      "them": [
+        "Posted. 'Scheduled maintenance tonight.' It sounds so professional. I feel like a man with a department.",
+        "Marcus replied in eleven seconds: 'Who scheduled it? I do not see it on the calendar.' ...What calendar. There is a sticky note on my mom's fridge. It says DENTIST."
+      ],
+      "choices": [
+        { "say": "come clean. post draft b underneath. marcus will respect it more than you think.", "next": "truth_sent" },
+        { "say": "hand marcus the calendar. build one together. he's been waiting his whole life.", "next": "marcus_job" }
+      ]
+    },
+
+    "truth_sent": {
+      "them": [
+        "It's up. The honest one. I posted it and put my hands in my lap like I was waiting at the dentist.",
+        "...Malten. People are already replying. Brittany posted 'if anyone sees todd tell him it's ok.' She did it AGAIN. Lars says he has a spare 40 GB drive. Larry says he has a spare 'drive' (I did not ask follow-up questions).",
+        "Patrick wrote 'is the laptop ok' and then 'is todd ok.' In that order. Then he swapped them. I have to go stand in the hall for a second."
+      ],
+      "effects": [
+        { "type": "bulletin", "subject": "Server Status (the honest version)", "text": "Hi everybody, Todd here. The hard drive in the laptop that runs OurSpace is going, and tonight it started to click, which is the sound I once asked you all not to discuss. Here is what I know. The site's code is safe on a disc. Everything from the last week is being copied now. I'm scared I'll lose some of it, and I wanted you to hear that from me instead of from a blank page. I'll be back as soon as I can. I mean that. It's not 'back in 20 mins.' It's just back. - Todd :)" },
+        { "type": "wallpost", "from": "brittany", "to": "todd", "delay": 40, "text": "todd it's ok!! (i know i said it already. i'm saying it where u can SEE it.) the whole top 8 is rooting 4 the laptop. u are not allowed to apologize 4 being tired. xoxo" }
+      ],
+      "choices": [
+        { "say": "say yes to lars's drive. let the people who use the place help fix it.", "next": "end_community" },
+        { "say": "thank them all, then give marcus the 'is the site down' questions.", "next": "marcus_job" },
+        { "say": "read the replies out loud to the laptop. it deserves to hear them.", "next": "end_community" }
+      ]
+    },
+
+    "marcus_job": {
+      "them": [
+        "A real job. Okay. I do have a list. Number one is: someone to answer 'is the site down?' all night, calmly, in complete sentences. That is Marcus's entire dream.",
+        "But he'll ask what title it comes with. He always asks about the title. I don't have titles. I have a laptop, a shoebox, and a .gif of a badge. What do I give him?"
+      ],
+      "choices": [
+        { "say": "an honorary title. wall monitor, with the badge. start small and mean it.", "next": "end_marcus_badge" },
+        { "say": "the keys for one night. you haven't slept. he's earned one shot.", "next": "end_marcus_keys" }
+      ]
+    },
+
+    "power_down": {
+      "them": [
+        "Okay. Shutting down. I'm going to say it out loud so I don't change my mind: I'm turning it off.",
+        "...There. The clicking stopped. And now it's very quiet. In the Field Guide I wrote that SILENCE is 'the one.' I just caused the one. On purpose. I did the thing I'm most afraid of, to protect the thing."
+      ],
+      "choices": [
+        { "say": "that's not 'the one,' todd. that's the other kind of quiet. the kind where somebody finally gets to rest.", "next": "alone_night" },
+        { "say": "put on the green album. you said 'hash pipe' is good. prove it.", "next": "alone_night" },
+        { "say": "i'm staying on until morning. type at me if it gets too quiet.", "next": "alone_night" }
+      ]
+    },
+
+    "alone_night": {
+      "them": [
+        "Disc #16 is burning. Eleven minutes. Then I lie down eleven inches from a very quiet laptop. People say that sounds lonely.",
+        "I keep wanting to refresh the page to see if anyone posted. The page is the thing that's off. I said that out loud to nobody. Hi, nobody."
+      ],
+      "choices": [
+        { "say": "post one status before you sleep. tell them you're resting. the place can keep itself for one night.", "next": "end_dark" },
+        { "say": "give me the refresh button for tonight. i'll watch the wall. go lie down.", "next": "end_dark" }
+      ]
+    },
+
+    "end_community": {
+      "them": [
+        "Okay. Yes to the drive. Lars is bringing it Saturday. He promised not to install Linux on it. He said it twice, so I'd call it a 70 percent promise.",
+        "I'm going to do something I've never done: close the lid, let the clicking be, and read the replies out loud to the laptop. It deserves to hear them. So do I.",
+        "Thank you for staying on. I think I came here for permission to ask for help, and you handed me the form."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "Todd asked for help and it was not as bad as he thought. Lars is bringing a drive. Larry is bringing a drive (a different kind). The site goes dark about four hours on Saturday and comes back better. Thank you, all of you." },
+        { "type": "wallpost", "from": "lars", "to": "todd", "delay": 60, "text": "todd. spare 40GB drive, still in the bag, no linux on it. i'll bring it saturday with a screwdriver and no cds. (one cd. in my pocket. i won't take it out.) i said i wouldn't mention it [0] --- [0] i mentioned it" },
+        { "type": "wallpost", "from": "patrick", "to": "todd", "delay": 120, "text": "todd i made the laptop a card. the card is a picture of dwayne (rock). it says get well soon. you can tape it on the laptop. dwayne is really good at being there" },
+        { "type": "wallpost", "from": "larry", "to": "todd", "delay": 180, "text": "todd i have a spare hard drive!! its 80gb. its like 79 full. i can delete some (move some). u can keep the rest. i dont know whats on it but it hums nicely" }
+      ]
+    },
+
+    "end_marcus_badge": {
+      "them": [
+        "I told him. Honorary Wall Monitor, badge and all. He didn't say anything for nine seconds, which for Marcus is a short film. Then he typed: 'Understood. I will answer in complete sentences.' And then: 'Thank you.' No period.",
+        "He is the only person I know who can make 'no period' mean everything. Okay. The laptop gets another hour, and I get one hour of sleep, and Marcus holds the wall."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "Please welcome Marcus, Honorary Wall Monitor", "text": "Hi everybody. As of tonight, Marcus is OurSpace's first Honorary Wall Monitor. His job is to answer 'is the site down?' in complete sentences while the laptop and I work through a thing. He does not have admin powers. He has a badge. It's a .gif. Please be nice to him, or at least be quiet about it. Thank you, Marcus. - Todd :)" },
+        { "type": "status", "from": "marcus", "delay": 30, "text": "marcus is the Honorary Wall Monitor. The position did not exist until tonight. He was not asked to apply. He is monitoring. He is not crying. It is the glow of the screen." },
+        { "type": "wallpost", "from": "banana", "to": "marcus", "delay": 90, "text": "HONORARY WALL MONITOR!!! I RECEIVED WARNING 117 FOR THE LETTER B AND I WANT YOU TO KNOW IT WAS THE BEST WARNING OF MY LIFE. I TAPED IT TO THE BANANA. THE BANANA IS NOW OFFICIAL!!!" },
+        { "type": "dm", "from": "marcus", "delay": 240, "text": "malten. A procedural question. Does an Honorary Wall Monitor issue 'warnings' or 'friendly reminders'? I have drafted both. Also: whatever you said to Todd, thank you. I have never been given a badge. It blinks. I am not going to say anything else about it. (Thread unlocked.)" }
+      ]
+    },
+
+    "end_marcus_keys": {
+      "them": [
+        "Keys. Okay. You do know there are no actual keys. Admin is a text file called admin.txt in a folder called 'misc.' I'm giving Marcus the folder.",
+        "He just typed: 'I accept the responsibility.' Then: 'Where do the rules go.' Then: 'Disregard that, I have already decided.' ...I'm going to bed. If I wake up and there's a new rule about glitter, I'll consider it my fault."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "Todd is going to sleep. First time since March. The laptop is clicking, but Marcus has admin.txt until 8 AM. Todd regrets nothing. (Todd will regret something by 8 AM.)" },
+        { "type": "bulletin", "from": "marcus", "delay": 40, "subject": "ANNOUNCEMENT FROM THE INTERIM ADMINISTRATOR", "text": "Effective immediately and until 8 AM, OurSpace is under interim administration. RULES v4.0: 1. No all caps. 2. No glitter above 40 pixels. 3. No posting on a wall that is not yours without a reason. 4. Thread locked (all of them). Todd is resting. Please do not disturb the laptop. It is making a sound. I have named the sound Sticky II. Warnings are not binding. Yet. -- Marcus (Interim)" },
+        { "type": "status", "from": "banana", "delay": 100, "text": "BANANA_PHONE HAS BEEN WARNED BY THE INTERIM ADMINISTRATOR FOR A B THAT WAS 'LOUD IN SPIRIT.' THIS IS WARNING 117. THE BANANA IS UNAFRAID. THE BANANA IS UNLOCKED." },
+        { "type": "status", "from": "dave", "delay": 150, "text": "hax0r_dave is not trying to h4ck the interim admin. dave is just l00king at admin.txt. it is not password protected. it is in a folder called misc. dave is going to bed. dave is not going to bed." },
+        { "type": "dm", "delay": 600, "text": "Hi malten. It's 8:02 AM. I slept five hours, the best five since March. There are 41 warnings, a new rule about 'tone,' and the best-run walls this site has ever had. The laptop is still clicking. Marcus left a note: 'handing back the folder. it was an honor. reply when convenient.' I'm going to need to think about all of this and eat something." }
+      ]
+    },
+
+    "end_dark": {
+      "them": [
+        "Okay. Posting. Resting. The place can keep itself for one night. Nobody ever told me that was allowed, and I don't think I would have believed them.",
+        "Goodnight, malten. The clicking is gone and I can hear the fridge, and the house, and my own breathing. It's the quietest it's been since March. I think I might like it for about an hour."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "Todd is resting. The laptop is resting. OurSpace is closed for the night and will reopen in the morning (not in 20 mins. In the morning.) Please be gentle with each other. Goodnight." },
+        { "type": "wallpost", "from": "vinyl_witch", "to": "todd", "delay": 45, "text": "todd. i lit a candle on the counter at the store in your name. a real one, not the LED, the cat is guarding it. don't read this until you've slept. the place isn't going anywhere. neither are we." },
+        { "type": "bulletin", "from": "brittany", "delay": 90, "subject": "QUIET HOURS (until 8am)", "text": "the site is sleeping!! todd is resting!! nobody post anything dramatic until morning. this includes tony. this ESPECIALLY includes tony. if u need to say something write it in ur head & save it 4 the morning. xoxo" },
+        { "type": "wallpost", "from": "patrick", "to": "todd", "delay": 200, "text": "todd are you ok. todd are you ok. todd are you ok. (i asked 3 times to be safe) (ur allowed to not answer, ur sleeping) (night)" }
+      ]
+    },
+
+    "end_freezer": {
+      "them": [
+        "Okay. It stays. Two bags, cold shelf, peas on the counter. I'll tell my mom in the morning. I'll say I made the server 'comfortable.'",
+        "Thank you for the worst advice I have ever acted on, malten. It's the best night the laptop has had since March."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "Todd is keeping the server in a cool place. (The freezer.) (It's in two bags.) (The good peas are on the counter and Todd is not discussing it.) The site is faster than it has ever been. Nobody tell his mom." },
+        { "type": "wallpost", "from": "debbie", "to": "todd", "delay": 50, "text": "Todd, Kayla told me Brittany told her there is a COMPUTER in your FREEZER?? Sweetheart, a frozen computer is not a meal. Have you eaten? Also how do I turn off the music. Love, Mom" },
+        { "type": "status", "from": "dave", "delay": 120, "text": "hax0r_dave just read that todd put the server in a FREEZER. dont tell him i found the same trick on 4 forums. 3 said 'it worked.' 1 said 'it didnt.' i like those 0dds." },
+        { "type": "wallpost", "from": "lars", "to": "todd", "delay": 200, "text": "todd. freezing a bare drive is a real technique. freezing the whole laptop is a bold and unreviewed choice. i'm not mad. i'm taking notes. i'll bring a proper drive saturday. leave the peas out of it. the peas have nothing to do with the problem." }
+      ]
+    }
+  }
+}

@@ -1,0 +1,191 @@
+{
+ "id": "min",
+ "name": "maple_min",
+ "tag": "lvl 71 ranger ★ tips 4 sale (5k mesos) ★ sorry i fell asleep. what was the question",
+ "avatar": "assets/avatar_min.gif",
+ "gender": "Female",
+ "age": 15,
+ "hometown": "Harrisonburg, Virginia",
+ "loc": "Henesys, by the fountain (my body is above the bakery, room 2, asleep)",
+ "zodiac": "Pisces (starxgazer said pisces 'dream a lot.' i said 'sleep a lot.' she said 'same thing.' i fell asleep before i could agree)",
+ "status": "Single (zzz) (sorry. single)",
+ "hereFor": "Friends, Party quests, Naps (competitive)",
+ "mood": "sleepy (always) (sorry)",
+ "lastLogin": "Oct 4 2026 3:51 AM",
+ "theme": { "bg": "#f7ecd0", "fg": "#4a2a10", "accent": "#e0561b" },
+ "blogTitle": "grinding notes (also naps)",
+ "about": "hi. min. maple_min. level 71 ranger. i have been level 70-ish for 41 days bc i fall asleep in the dead mine, the zombies get me, and i lose the exp. i have gained level 71 eleven times. i sell tips for mesos. 5k each. the tips are good. tip #1: hit the monster until it dies. tip #2: if the red number goes up thats bad. tip #3: potions heal u. i have sold 14 tips total and every buyer said 'wow.' i also fall asleep in henesys by the fountain and people think im a merchant and try to buy things from me. i have sold 3 mushrooms that way. i didnt know i had them. (zzzzzz) sorry. what was the question",
+ "aboutMore": "the real thing about the sleep: my dad is a baker (sunrise bakery, opens at 6). he gets up at 4:10 and every morning he walks past the back office and my face is on the keyboard. he puts a blanket on me. at 5:45 he leaves a warm roll on the desk. i never wake up for either. the keyboard leaves a line on my cheek, m n and the space bar in a row. my mom says its a map. in the morning the blanket is on me and my character is still in henesys. we both slept.",
+ "meet": "Who I'd like to meet: whoever designed the henesys fountain (best place to sleep in any game). a boss that lets u nap between phases. anyone who hit level 50 without falling asleep (how). a ribbon pig, in person. and my dads dough, before it rises. he says dough has feelings. i think he is not wrong.",
+ "interests": {
+  "General": "maplestory (henesys, ellinia, the dead mine, the free market), grinding (the thing between naps), scrolling gear (60% scroll, 14 fails in a row), ribbon pigs (my first love), naps (competitive), the bakery back office (the heater, the dough smell), my little brother gabe (9, level 9 in maple, very proud), selling tips, being awake (rarely)",
+  "Music": "the henesys theme (its a lullaby, i didnt know it was a lullaby until i fell asleep to it), the maplestory login screen music (i sleep to it ON PURPOSE), green day (wake me up when september ends is my song and the title is just a request), the radio at the bakery at 5 am (mostly weather)",
+  "Movies": "kiki's delivery service (the bakery lady is my moms idol), my neighbor totoro (the cat bus is the best nap), spirited away (the bathhouse is basically a free market room), sleeping beauty (relatable), finding nemo (ryans, i watched it for him)",
+  "Television": "avatar (the sleeping bison), spongebob (the nap episodes), pokemon (snorlax: my guy, i would also block a road), anything with a couch in it",
+  "Books": "my dads cookbook (his margin notes say 'more butter' 11 times, his handwriting is the best handwriting), charlotte's web (the barn at night is perfect), the phantom tollbooth (the doldrums chapter is a perfect description of 3 pm), the maplestory comics from the book fair (they are just screenshots)",
+  "Heroes": "my dad (the baker, up at 4:10 for 22 years), my grandma (calls me wilhelmina, i answer), snorlax, the person who made the free market (a place where u can just sit and sell and its fine to just sit), usagi (says my sleeping is a 'power-up arc,' i dont know what that is, i like it), ryan (his sentence about free is my best seller)"
+ },
+ "song": {
+  "name": "Wake Me Up When September Ends",
+  "artist": "Green Day",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6d/1e/01/6d1e01bf-4389-bc76-74d3-80cc1eb24b35/mzaf_18076976258909915107.plus.aac.p.m4a",
+  "pattern": [0, 7, 9, 7, 5, 4, 2, 0],
+  "bpm": 100
+ },
+ "decor": ["assets/deco_moon.gif", "assets/deco_sparkle_bunny.gif", "assets/badge_winamp.gif"],
+ "friends": ["usagi", "ryan", "rick", "penny", "nat", "hunter", "josh", "patrick", "meg"],
+ "wall": [
+  { "from": "usagi", "text": "min-chan!! you fell asleep in ANIME CLUB again and when i asked 'who is the protagonist' you said 'the snail' and the club VOTED. the snail arc is canon. ganbatte!! also sleeping through the whole screening is a 'power-up arc' and i respect it. room 204. friday. bring the blanket", "time": "Oct 3 2026 5:12 PM" },
+  { "from": "penny", "text": "MIN!!! how is the KEEP GOING bracelet?? i made u a second one!! it says SLEEP in tiny blue raspberry beads bc i figured u might want both (it fits on ur keyboard wrist too!!). i also brought u a slushie at the bakery and u were asleep so i drank it for u. i hope that counts. PLUR!!", "time": "Sep 30 2026 4:45 PM" },
+  { "from": "ryan", "text": "min i put the jar of mesos next to the monitor. its labeled MIN. i dont know what mesos are but the jar looks serious. tip #7 is my best work. can u make a tip #15: 'if a guy has a party hat he is not doubling anything.' 5k. ill buy it. in lobsters", "time": "Sep 26 2026 7:18 PM" },
+  { "from": "rick", "text": "Min. I read your attendance. Eleven hours at the keyboard, four hours of activity, no complaints. I have no notes. I would like to hire you as night security. Not for the pay. For the stamina. (I am joking. It is 3:58 AM and I am also tired.)", "time": "Sep 21 2026 3:58 AM" },
+  { "from": "hunter", "text": "min i put ur faceplant in vol. 10. credits: 'min (asleep).' u get a title card. u are the ONLY person in the whole montage who looks happy. my dad watched it and said 'thats a good sleeper.' i think its the nicest thing hes said about a clip", "time": "Sep 16 2026 9:02 PM" },
+  { "from": "nat", "text": "min its 4:02. i am awake. u are asleep. ur character is standing next to a stranger who is trying to buy a mushroom from u. i bought it. 2k mesos. i dont have mesos. i left a note on ur screen. it says np", "time": "Sep 11 2026 4:02 AM" },
+  { "from": "josh", "text": "min =] u came to youth group w/ penny and slept thru the whole lesson. then u woke up exactly when the pizza came. thats not a coincidence thats a gift. pastor dan wants to know if ur free for lock-in. its overnight. u'd be great. u'd be asleep. u'd be the best at it", "time": "Sep 4 2026 8:50 PM" },
+  { "from": "dave", "text": "m1n i h4cked ur tips list. i didnt need 2. u posted it as a bulletin. it has 14 tips. 12 of them r variations of 'dont die.' i changed #14 to 'the matrix has u.' u changed it back in ur sleep. i respect that", "time": "Aug 28 2026 11:30 PM" }
+ ],
+ "replies": [
+  "mm. ok.",
+  "sorry. i fell asleep. say that again",
+  "thats nice. i was dreaming about a pig. also nice",
+  "tip: ur welcome. (5k mesos)",
+  "hold on. waking up. ok. awake. what",
+  "thats a good tip. ill charge u 5k for it",
+  "sorry. awake now. which one of u said something nice. thank u",
+  "one sec im leveling. ok. i leveled. 71. again",
+  "sleepy. but listening. mostly listening",
+  "i read this twice. once awake. once asleep. both times it was good"
+ ],
+ "thanksAdd": "ok. thanks for the add. sorry im slow. i fell asleep after u sent it and woke up and it was accepted. i didnt do it. i think my dad did. he clicks things on the computer when i sleep. anyway ur my friend now. first tip is free. potions heal u.",
+ "ambient": [
+  "level 71. level 70. level 71. level 70. hm. i think theres a pattern. i fall asleep, the zombies get me, i lose the exp. the next 9% is always mine. the last 1% belongs to the dead mine",
+  "woke up on the keyboard. the m key left a print on my cheek. my little brother says its a tiny 'm.' it says min. its a coincidence. its m",
+  "sold tip #12 today. 'if the snail is slow, wait.' 5k mesos. bought by a stranger. he said 'wow, thank u.' i dont know what for. but it works. even for me",
+  "my dad left a warm roll on the desk with a sticky note that says 'eat.' i ate. i fell asleep. the sticky note is on my forehead. it still says 'eat' jjjjjjjj",
+  "scrolled my gloves. 14 fails. the 15th worked. i fell asleep and missed it. my friend said 'it worked' i said 'what' he said 'ur gloves are +2 dex now.' the luckiest i have ever been unconscious",
+  "ellinia at night is so pretty i fell asleep in it. 3 times. its the best napping spot in maple world. the trees hold u"
+ ],
+ "saltyDm": "ok. u denied it. thats ok. i probably fell asleep before i saw it so its technically still pending. im going to believe that. tip #4 (free): people say yes more when theyre tired. ur the one denying. u are probably tired. think about it. zzzzz",
+ "keywords": {
+  "maple": "maplestory. level 71 ranger. henesys main. i have fallen asleep in every town. my favorite is henesys. my least favorite is the dead mine bc thats where i die",
+  "meso": "5k per tip. 14 tips sold. thats 70k. i spent 60k on scrolls and all of them failed. i have 10k and a very solid sense of when to stop",
+  "tip": "#1 hit the monster until it dies. #2 if the red number goes up thats bad. #3 potions heal u. #7 if its free its not free (credit: ryan). #12 if the snail is slow, wait. #14 go to bed. 5k each. #14 is free",
+  "sleep": "its not that i choose to. my face just finds the keyboard. i wake up and its been 3 hrs and my character is fine. shes better at being awake than me",
+  "henesys": "best town. the fountain, the pig farm, the music. i fell asleep next to the fountain and someone bought a mushroom off me. i didnt know i had one. he said 'thx.' i said nothing. i was asleep",
+  "nap": "competitive. current record: 11 hrs, at a keyboard, with a blanket. my dad says its 'not a record, its a concern.' i say its both",
+  "bakery": "sunrise bakery. my dad is up at 4:10. i get the computer after closing, in the back office, next to the heater. the heater is a lullaby. the whole building smells like bread. best place to be asleep",
+  "level": "71. sometimes 70. for 41 days. i have gained level 71 eleven times. the exp bar is a tide"
+ },
+ "banter": {
+  "ryan": [
+   "ryan i sold ur tip #7 again. 6 times this week. u have 3k mesos in the jar by the fountain. its me. im the one by the fountain. dont be scared. its just me. asleep",
+   "ryan i wrote tip #15: 'if a guy has a party hat, he is not doubling anything.' 5k. u get 10%. credit: ryan (the sign). kyle already bought it. he said 'wow.' i said 'r u ok.' he said 'my gold is still doubling.' i gave him #14 for free"
+  ],
+  "rick": [
+   "rick i read ur offer. i cant raid at 8, i fall asleep at 7:15. but if u need someone in aisle 14 at 3 am i am awake until about 3:54. i can keep u company. in the chat. before i faceplant",
+   "rick u taped tip #12 to ur locker. thats the nicest thing anyone has done w/ one of my tips. im going to tell my dad. he will say 'thats good.' then he will say 'go to bed.' its tip #14"
+  ],
+  "hunter": [
+   "hunter u put my faceplant in the montage. i watched. i look so peaceful. my dad watched too. he asked what a montage is. i said 'its when u put things together.' he said 'like a bakery.' i dont know. he is right",
+   "hunter i tried the no scope. not in halo. in maple. i shot a pig without looking. i looked away. then i fell asleep. the pig is fine. so am i. is that a no scope"
+  ],
+  "nat": [
+   "nat we share an hour. at 3:54 i type 'hi' and then my face lands. at 4:00 u type 'hi' back. i see it at noon. its the longest conversation i have ever had",
+   "nat i read ur restock guide. step 6 is cocoa. my dad doesnt do cocoa. he does a warm roll. step 6 can also be a roll. tell the guild. u can use my name. small print"
+  ],
+  "usagi": [
+   "usagi-chan the snail arc: thank u. i voted for the snail. i dont know why. i just like a protagonist who takes his time. he is also very small. i relate in 2 ways",
+   "usagi the power-up arc: i looked it up. i would like to say i felt it. i woke up in anime club with a blanket on me. it wasnt mine. it was a bedsheet cape. i am now technically cosplaying. thank u. it was warm"
+  ],
+  "josh": [
+   "josh the pizza woke me up at youth group. its the only thing that does. my dad says if i had a pizza alarm clock i would be a morning person. i said i would be asleep again by 8. he said thats true",
+   "josh pastor dan asked me to do the lock-in. i said ok. i didnt say i would be awake. i brought 3 blankets and a pillow. he said 'its a lock-in not a sleepover.' i said ok. i'm in my blankets. locked in"
+  ],
+  "dave": [
+   "dave u changed tip #14 to 'the matrix has u.' i changed it back in my sleep. u changed it again. so did i. 11 times. we should just keep both. 'go to bed. the matrix has u.' its better",
+   "dave how do u hack a nap. asking for me. i think u cant. i think the nap hacks u. u wake up and its 3 hrs later and ur laptop is on ur face. thats called a rootkit"
+  ]
+ },
+ "statuses": [
+  "min is awake (briefly)",
+  "min is level 71. again. (long story)",
+  "min is selling tips. 5k mesos. first one is free if ur under level 10",
+  "min is asleep in henesys. a stranger just bought a mushroom from her",
+  "min just woke up and the keyboard left a map on her cheek. a small map",
+  "min is in the bakery back office. the heater is on. the heater is a lullaby",
+  "min is grinding. zzz. sorry. grinding",
+  "min is reading her dads cookbook. margin note #11: more butter",
+  "min just got a 91 on a test she fell asleep during"
+ ],
+ "bulletins": [
+  {
+   "subject": "TIPS 4 SALE (5k mesos each) (limited stock: 14)",
+   "body": "#1 hit the monster until it dies. #2 if the red number goes up thats bad. #3 potions heal u. #4 people say yes more when theyre tired. #5 the dead mine is not a bed. #6 sit with ur back to a wall. #7 if its free its not free (credit: ryan, he gets 10%). #8 scrolls fail. #9 scrolls fail again. #10 scrolls fail 14 times, work once, and u sleep through it. #11 if the thing hits u stop standing in the thing. #12 if the snail is slow, wait. #13 pigs are fine. #14 go to bed (free). all tips guaranteed true. nobody asked"
+  },
+  {
+   "subject": "SURVEY: how sleepy r u (copy paste)",
+   "body": "1. hours slept last night: 2. last place u fell asleep: 3. what the keyboard printed on ur cheek: 4. who put a blanket on u: 5. did u say thank u: --- mine: 1) 4, in pieces 2) henesys 3) 'm' 'n' and the space bar 4) my dad 5) in my sleep. he says he heard. repost with yours. if nobody put a blanket on u, say so. i have 2 spare. dad bought extra"
+  },
+  {
+   "subject": "HENESYS RULES FOR VISITORS (if u see a sleeping player by the fountain)",
+   "body": "1) do not buy her mushrooms. she doesnt know she has them. 2) do not wake her. 3) if u must say something say 'ok.' she can hear 'ok.' 4) the exp bar is a tide. 5) if she wakes up level 70 again tell her 'nice.' 6) sit next to her. be quiet. thats the whole thing. thank u for being a nice town"
+  }
+ ],
+ "pcComments": [
+  "nice pic. tip: smile more. its free",
+  "cute. im going to fall asleep looking at this. thats a compliment. its calming",
+  "this pic is soft. i mean that nicely. like a roll",
+  "good pic. is that a pillow in the background. is it for sale. asking for me",
+  "i saw this and thought: nap spot. the couch. its perfect. u have a good couch"
+ ],
+ "dmSeed": [
+  { "text": "hi malten. min. im awake right now. it wont last. i just wanted to say thanks for accepting and heres ur free tip: if u dont know what to do on a website, nap on it. i do. it works. its called the long way. ok bye hhhhhhhhh" }
+ ],
+ "dms": [
+  "malten my dad put a blanket on me again. it was a new blanket. i dont know where he got it. it has foxes on it. i think he went to a store at 3 am on his way to the bakery and bought a blanket with foxes. im 15. i love the blanket. i will never tell him. if u see him say nothing",
+  "ok so a guy bought a mushroom from me in henesys while i was asleep. 2k mesos. i didnt think i had a mushroom. i checked. i had 3. i have 2 now. i think my character sells things when i sleep. i think she is better at this than me",
+  "my little brother gabe (9) asked how to beat a boss. i said 'wait until hes asleep.' he said 'they dont sleep.' i said 'then wait until u are.' he said 'that doesnt work.' i said 'it works for me.' he looked at me like im a genius. he is not wrong",
+  "usagi told me my sleeping in anime club is a 'power-up arc.' i said whats that. she said 'when the hero rests before the final battle.' i said what is the final battle. she said 'english class.' shes right. its at 8",
+  "i got a 91 on a history test i fell asleep during. the first half i was awake. the second half i dreamed the answers. i checked. i dreamed them right. im going to keep doing that. u cant tell me not to",
+  "somebody asked what level i am and i said 71 and he said 'for how long' and i said 41 days and he went quiet. then he said 'do u need help.' i said no i need sleep. he said 'then why r u playing.' i said its the only time the computer is free. he gave me 10k mesos. then i fell asleep. i hope he was nice",
+  "ryans tip #7 is my best seller. 'if its free its not free.' i give him 10%. he doesnt play maple. he keeps the mesos in a jar. i keep his half in a jar. the jar is in my room. its the most honest thing i own",
+  "my grandma calls me wilhelmina. its on my birth certificate. nobody on here knows. i answer to it. its the only name i never fall asleep to. she says it very slowly like its a song. maybe thats why. dont tell anyone. tell everyone. i dont know. nnnnnn"
+ ],
+ "blog": [
+  {
+   "title": "how to sleep in henesys (a guide) (i am qualified)",
+   "date": "Sep 24 2026 4:20 AM",
+   "mood": "sleepy",
+   "body": "step 1. pick a town. henesys. the fountain is the best seat. step 2. dont pick the dead mine. the dead mine is not a bed. i have learned this 11 times. step 3. sit with your back to a wall (a pixel wall). step 4. stop pressing keys. step 5. let your face find the keyboard. this takes about 4 seconds. step 6. wake up. step 7. check if you sold anything. i sold a mushroom. i dont know how. step 8. check your exp. it hasnt changed. its a tide. step 9. repeat. step 10. when u wake up someone has put a blanket on u. this is not in the game. this is real life. it is the best part. i recommend it. i recommend having a dad."
+  },
+  {
+   "title": "my dads cookbook (the margin notes)",
+   "date": "Sep 10 2026 6:30 AM",
+   "mood": "warm",
+   "body": "my dad has a cookbook he has had for 22 years. the bakery is built on it. he never writes a recipe down. he just writes in the margins. 'more butter' (11 times). 'not enough salt, again.' 'ask mom.' 'dont rush the proof.' on the page for plain rolls it says 'these are for Min' in pencil with a little drawing of a roll with a face. i found it when i was 9 and i didnt say anything. now every time he leaves a warm roll on the desk at 5:45 i think about the face on the page. i never wake up for it. but i know he was there. i can smell it. the keyboard smells like bread. i have decided thats what a good morning is."
+  },
+  {
+   "title": "the exp bar is a tide (a theory)",
+   "date": "Aug 29 2026 11:50 PM",
+   "mood": "scientific",
+   "body": "i have been level 70-ish for 41 days. i have a theory. every night i grind from 8 pm to about 3:54 am. i gain 9% a night. then i fall asleep (usually in the dead mine, which is a mistake) and the monsters take about 8% back. i net 1%. sometimes minus. the exp bar is not a ladder. its a tide. it comes in, it goes out, and every so often it leaves a shell on the beach. the shell is a level. i have found the same shell 11 times. my dad says its a metaphor. i said for what. he said 'baking.' i said bread doesnt go backward. he said 'no. but it falls if u open the oven.' i have opened the oven 11 times. i dont know. im tired."
+  }
+ ],
+ "survey": {
+  "title": "THE MAPLESTORY SURVEY (copy paste) (sorry if i fall asleep mid-copy)",
+  "qa": [
+   ["name / ign:", "maple_min. real name: min. full name: wilhelmina (grandma only)"],
+   ["level / job:", "71 ranger. for 41 days. 11 repeat levels"],
+   ["favorite town:", "henesys. the fountain. i sleep there"],
+   ["how many tips have u sold:", "14. 70k mesos. i spent 60k on scrolls. they all failed"],
+   ["best tip:", "#7. 'if its free its not free.' credit: ryan"],
+   ["worst place to fall asleep:", "the dead mine. i have been killed asleep 11 times. the zombies are very polite about it"],
+   ["do u scroll your gear:", "yes. 60% scrolls. 14 fails in a row. the 15th worked. i missed it. i was asleep"],
+   ["favorite monster:", "ribbon pig. they look like theyre having a nice day"],
+   ["what time do u fall asleep:", "3:54 am. nat says its right before she wakes up. weve never really talked"],
+   ["who puts a blanket on u:", "my dad. at 4:15 am. then a roll at 5:45. he doesnt know i know"],
+   ["what do u want to be when u grow up:", "a baker. or a boss that lets u nap between phases. or both"],
+   ["message to ur friends:", "thank u for waiting. i know i dont reply fast. i was awake for the first half of this one"]
+  ]
+ }
+}

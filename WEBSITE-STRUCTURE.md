@@ -7,10 +7,52 @@ Personal blog / homepage for **Marc** ("Malten"), rebuilt (July 2026) as a full 
 ```
 Static HTML/CSS/JS (works fully standalone — backends are optional enhancements)
   ├── msgserver/     (Express + lowdb)  → http://localhost:3001  guestbook goes "live" if running
-  └── spotifyserver/ (Express + Spotify API) → http://localhost:8080  MaltenAmp plays real top tracks if running
+  └── spotifyserver/ (Express + Spotify API) → http://localhost:8080  My Page shows the owner's real top songs if running
 ```
 
-Both backends degrade gracefully: guestbook falls back to localStorage, MaltenAmp falls back to built-in WebAudio chiptunes ("MIDI demos").
+Both backends degrade gracefully: guestbook falls back to localStorage; the Spotify list falls back to the last result cached in localStorage, then to a snapshot baked into `apps.js`.
+
+## October 2026 update — read this first (it supersedes older notes further down)
+
+A 20-item bug/QOL pass plus a large content expansion. What changed:
+
+**Shell (`desktop.js`, `index.html`)**
+- Only OurSpace opens on load, via `data-start-maximized` (born maximized above 820px — no snap). The **About Me** and **Guestbook** windows are gone (both live inside OurSpace now); `top-10-favorites.html` is deleted.
+- Windows stay `visibility:hidden` until `WM.init` adds `body.wm-ready`. Open / minimize / restore play a Win95-style **zoom outline** (`WM.zoom`/`endZoom`, ~220ms; skipped for reduced-motion, ≤820px, or `document.hidden`). `WM.close` keeps `maximized`; windows open at their `data-x`/`data-y`.
+- `WM.maximize(id, on?)` and viewport resizes dispatch `CustomEvent('app-resize', {detail: id})`. Paint (`Paint.fit()` grows the bitmap 1:1 inside a scrolling `.paint-stage`), Minesweeper (`Mines.fit()`), My Pictures, Navigator and Glitter all fill a maximized window.
+- Launchers (`.desk-icon`, `#start-menu li`, `a.launcher`) take `data-open`, or `data-mstab` (+ optional `data-msarg` / `data-msjump`) to open OurSpace on a tab. Start menu: Blog Posts, OurSpace, Guestbook, MaltenAmp (→ Spotify box on My Page), games/tools, Control Panel, toggles, Shut Down.
+- **Pipes** is the default screensaver (3D lattice, ~5 minute runs before the dissolve-and-restart). An explicit saved choice is kept.
+- The news ticker and badge bar each have a collapse button (`Toggles.ticker()` / `Toggles.badges()`, localStorage `malten_ticker` / `malten_badges`).
+
+**OurSpace pages (`ourspace.js` UI, `apps.js`)**
+- Tabs: Feed, My Page, **Blog**, **Guestbook**, Browse, #ourspace, Requests, Inbox, Bulletins. Sub-routes: `MS.show('blog', id)` (a resident's blog), `'pics'`/`'videos'` with an id, `'post'` with an index. `MS.jumpTo(anchor)` scrolls to a `data-anchor` box on My Page (`spotify`, `guestbook`).
+- **MaltenAmp is gone.** `Spotify` (apps.js) renders "malten's Top Songs" on My Page: live from `Spotify.API` (`/top-tracks?limit=10`, now returns `image_small` + `url`) → localStorage cache `malten_spotify_top` → baked snapshot. `localBackendOk()` skips localhost fetches when the page isn't served locally (avoids the browser's local-network prompt on a deployed site); it guards the guestbook API too.
+- `Guestbook.mount(container)` — no window; `filter` / `postExternal` unchanged. My Page has a "sign my guestbook" box; the tab shows a NEW! marker until opened (`malten_gb_seen`) and one nudge toast (`malten_gb_nudged`).
+- `MS.blogPosts` is the single list of malten's real posts (one line per post, plus `blog-hub.html`).
+- `MS.top8` is 8 resident ids rendered with `avatarEl`; reorderable in Edit My Page (optional `state.top8`).
+- Profiles render optional `aboutMore`, `blog` (latest entry + "view all"), `survey`, and working View My: Pics | Videos | Blog links.
+- **`ourspace.js` now exports `window.MS`** (`const MS` alone never did — old `window.MS` guards were dead).
+
+**Media**
+- `ourtube()` and `ytPlayer()` share one player bar (`playerBar`) with a **volume slider** (localStorage `ourspace_volume`), a fixed 4:3 screen, posters (`poster` field in `posts.js`), and a "removed by the user" card (`playerDead`) instead of a black box. Playing videos keep their card across feed refreshes (`players`; `render()` does not clear the root on feed→feed).
+- `pruneOrphanPosts()` (first feed render) drops saved feed posts whose source left `posts.js` and re-links the rest by `src`/`ytId`/`was` (old file names); `state.postsSig` tracks `posts.js` changes.
+- `ImageViewer.open(src, title)` / `.attach(img, title)` (apps.js): Win98 picture viewer used by the feed, My Pictures and profile Pics pages.
+- Local videos are `ufo_flir.webm` and `zoetrope_horse.webm` (the `.ogv` was re-encoded — Chromium no longer plays Theora), each with a `.jpg` poster.
+
+**Engine (`ourspace.js`, `extras.js`)**
+- **Content packs.** `content-pack.js` (generated, loads after `posts.js`) calls `MS.applyPack({people, depth, dialogues, posts})`: new residents (flagged `isNew`), depth merged into existing residents, conversation trees, extra media posts. `load()` applies `window.MS_PACK` as a fallback. Never edit `content-pack.js` by hand.
+- **Inbox no longer repeats.** Unsolicited DMs come only from a resident's `dms` pool (else unused `ambient`), once each per save (`state.usedDms`), never twice in a row unanswered. `botReply(id, text, thread)` never repeats a line in a thread until the pool is exhausted; keywords match whole words. `migrateV2` de-duplicates old saves and upgrades `dialogueState`.
+- **Conversation engine v2.** `MS.trees` keyed by tree id (several per resident; the 6 originals are `<id>_original`). At most 2 open, 1 per resident; first one ~24s after load, next 90–210s after one ends. `effects: [...]` on any node: `status`, `wallpost` (→ another resident's wall), `wall`, `bulletin`, `dm`, `friend`, with optional `from` (another resident reacts) and `delay`. Delayed effects sit in `state.fxQueue` and survive reloads; a 4s timer started by `startAmbient()` fires them.
+- **Scale.** 92 residents: sampled feed seeding, newcomers arrive as a few friend requests then a trickle (`state.packArrived`), Browse has counts, a "new here" chip, NEW! tags and paging; ~half the cast online (capped); weighted ticks.
+
+**Content source (`content-src/`, `tools/content.mjs`)**
+- `content-src/residents/<id>.json` (54 new residents → 92 total), `depth/<id>.json` (38 depth packs), `dialogues/<treeId>.json` (48 new conversation trees → 54 with the 6 originals; every original resident has one, plus 16 newcomers), `assets-manifest*.json` (avatars / post gifs), `avatar-overrides.json`, `rewrites/wes.json`, `SCHEMA.md` (formats, roster, voice rules), `reference/` (dumps of the original data).
+- `node tools/content.mjs check [files]` validates (schema, banned modern slang, contrast, tree reachability/effects); `node tools/content.mjs build` writes `content-pack.js`. **Edit JSON → build → refresh.**
+- Written by Sonnet agents in clique batches; cross-batch details (hometowns, a few names) are only loosely consistent.
+- Avatars: 8 newcomers (ben, devon, doug, faye, leo, maddie, tj, trevor) still use the placeholder `assets/deco_smiley.gif` because gifcities.org rate-limited the hunt; add `assets/avatar_<id>.gif` and rebuild. `content-pack.js` is ~2.4 MB (text; compresses well when served gzipped).
+
+**Data fixes**
+- wes: profile rewritten so CRT/TV jokes appear in 3 of 78 lines (was 23); new avatar. liz, josh, kevin avatars replaced (`assets/avatar_<id>_v2.gif`).
 
 ## Frontend files
 
@@ -25,14 +67,15 @@ Both backends degrade gracefully: guestbook falls back to localStorage, MaltenAm
 | `styles.css` | Everything: Win98 chrome (purple title gradient `#4b2d83→#9370DB`; grey when unfocused — desktop mode only), desktop/taskbar/start menu, app skins (winamp LCD green-on-black, minesweeper cells, paint palette), sparkles/CRT/BSOD/screensaver, classic `.container` layout for blog pages, `@media (max-width: 820px)` stacks windows statically. |
 | `blog-hub.html` | Post archive page (classic layout). Case-correct links, real preview images. |
 | `First-blog.html` | Post #001 "Why do we create?" — real content now. |
-| `top-10-favorites.html` | Post #002 "Top 10 Favorite Things". (Replaced the old `Top-10-Hate.html` — July 2026 the user asked for ALL "hater" theming to be removed site-wide: bios, moods, taglines ("a place for friends" now), BSOD codes, buddy lines, OurSpace persona. Don't reintroduce it.) |
-| `blog-post-template.html` | Copy for new posts; has step-by-step comments. New posts must be linked in `blog-hub.html` + the Blog window in `index.html`. |
+| ~~`top-10-favorites.html`~~ | **Deleted Oct 2026** at the owner's request (it had replaced the old `Top-10-Hate.html`). Standing rule from July 2026: ALL "hater" theming was removed site-wide (bios, moods, taglines — "a place for friends" now —, BSOD codes, buddy lines, OurSpace persona). Don't reintroduce it. |
+| `blog-post-template.html` | Copy for new posts; has step-by-step comments. New posts must be linked in `blog-hub.html`, the Blog window in `index.html`, and `MS.blogPosts` in `ourspace.js` (the OurSpace Blog tab + My Page "Latest Blog Entry"). |
+| `content-pack.js` | **Generated** by `node tools/content.mjs build` from `content-src/`. New residents, depth, conversation trees. See the October 2026 update above. |
 | `404.html` | The digging-dog not-found page ("error code: 404_NO_PAGE_ONLY_DOG", 15s auto-redirect). Linked as the "members only area" in The Internet window; real static hosts (GitHub Pages/Netlify) will also serve it for actual 404s — `npx http-server` won't. |
 
 **Deleted** (superseded): `toptracks.js` (→ Amp in apps.js), `titlebarborder.js` (→ desktop.js).
 
 ### Windows on the desktop (`data-app` ids)
-**OurSpace is the hub now (Sept 2026 consolidation).** Open on load: `about`, `guestbook`, `myspace` (OurSpace — last in DOM so it starts focused, and `MS.build()` **maximizes it** on screens > 820px). Via icons/Start menu: `blog`, `mines`, `paint`, `pics`, `internet`, `glitter`, `customize`, `settings` (Control Panel), `webring` (Maltenscape Navigator). The former `welcome`, `top8`, `winamp`, `buddylist`, `horoscope`, and `chat` windows were REMOVED — their content lives inside OurSpace: My Page (bio, hit counter, mood, Top 8 via `MS.top8`, live Spotify top-5 list, blog links, badge wall, webring widget), the persistent **sidebar** (`#ms-side`: buddy list, MaltenAmp player via `Amp.init(container)`, horoscope; hidden below 720px window width via `.ms-narrow`), and the **#ourspace tab** (`Chat.onOpen(container)` / `Chat.onClose()` on tab leave). Start menu items with `data-mstab` open OurSpace on a tab. Header has a search box (Enter → Browse with query). Positions via `data-x/data-y/data-w`, clamped to viewport; maximize via title-bar button or double-click.
+**OurSpace is the hub now (Sept 2026 consolidation; Oct 2026: `about` and `guestbook` windows removed, `winamp`/MaltenAmp removed — see the update above).** Open on load: `myspace` only (OurSpace, `data-start-maximized`). Via icons/Start menu: `blog`, `mines`, `paint`, `pics`, `internet`, `glitter`, `customize`, `settings` (Control Panel), `webring` (Maltenscape Navigator). The former `welcome`, `top8`, `winamp`, `buddylist`, `horoscope`, and `chat` windows were REMOVED — their content lives inside OurSpace: My Page (bio, hit counter, mood, Top 8 via `MS.top8`, live Spotify top-5 list, blog links, badge wall, webring widget), the persistent **sidebar** (`#ms-side`: buddy list, MaltenAmp player via `Amp.init(container)`, horoscope; hidden below 720px window width via `.ms-narrow`), and the **#ourspace tab** (`Chat.onOpen(container)` / `Chat.onClose()` on tab leave). Start menu items with `data-mstab` open OurSpace on a tab. Header has a search box (Enter → Browse with query). Positions via `data-x/data-y/data-w`, clamped to viewport; maximize via title-bar button or double-click.
 
 **Gotcha (bit us hard):** top-level `const` in classic scripts does NOT create `window.X` — every module now ends with `Object.assign(window, {...})` so cross-file `window.Foo` guards work. Don't remove those lines.
 

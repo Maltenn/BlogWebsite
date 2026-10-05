@@ -1,0 +1,210 @@
+{
+ "id": "trevor",
+ "name": "thefacebook_trevor",
+ "tag": "ourspace is for kids. i'm only here ironically. (daily.) (my other site is college only)",
+ "avatar": "assets/avatar_trevor.gif",
+ "gender": "Male",
+ "age": 18,
+ "hometown": "Cuyahoga Falls, OH (go eagles) (it's past tense now) (i visit my parents' house. most weekends. every weekend)",
+ "loc": "Henley Hall, room 304 (a building with a NAME)",
+ "zodiac": "Libra (it came up at orientation. 4 people laughed. i was 1 of the 4. the other 3 were also alone)",
+ "status": "Single (it's a big campus. i'm focused on academics. and a waffle group)",
+ "hereFor": "Friends (from home), Networking (the grown-up kind), Checking In (ironically)",
+ "mood": "mature",
+ "lastLogin": "Oct 4 2026 11:51 PM",
+ "theme": {
+  "bg": "#3b5998",
+  "fg": "#ffffff",
+  "accent": "#dfe3ee"
+ },
+ "blogTitle": "dispatches from the college level (for people still in high school. you'll get here)",
+ "about": "hey. trevor. freshman at lakeview state (go herons). i'm on thefacebook, which is a website for college students only. you need a .edu address to get in, so everybody on it is an adult with a future. it's clean. there's no glitter. nobody's song starts by itself. so i'm only on ourspace ironically, like an alumnus, checking in on some people from home. is it for kids? it's for kids. i say that with love. i log in once a day. ok it's more. it's research. i live in a building with a name (henley hall) with a roommate named brent who i've met 3 times. we respect each other's independence. at the college level you learn to be alone with a lot of people. it's a skill. i'm getting good.",
+ "aboutMore": "updates from campus: intro to philosophy (prof halvorsen asked 'what is a friend' and i said 'someone in your top 8' and he wrote on the board for 11 minutes). intramural flag football, THE DEAN'S LIST, 0-6 (we've scored one time. it was a gift). i call my mom sundays at 6. it's scheduled. it's not homesickness, it's a calendar. she's watched my graduation trailer 11 times. she says the cross dissolve is where she cries. i've watched it once. at 2 AM. for research.",
+ "meet": "Who I'd like to meet: a girl in my philosophy section named Priya who laughed at one of my points (i'm not sure it was a joke) (it was a point). my RA derrick, who has a whiteboard and no friends on it. whoever invented the poke, so i can ask what it MEANS (everyone says 'nothing, that's the feature'). and everybody from home, in person, when it's not weird. (it's not weird.)",
+ "interests": {
+  "General": "college (the level), thefacebook (college only), the cereal dispenser, flag football (0-6), floor meetings on thursdays (attendance: me), being in 14 groups (one is a waffle group, i founded it, 6 members), laundry day (a skill), calling my mom (sundays, 6 PM, scheduled), saving seats",
+  "Music": "jack johnson (the whole album. it's for studying), dave matthews band (a requirement, i've been told), the killers, coldplay (i'm 'discovering' it), whatever brent plays when he's here (he's never here, so it's mostly rumor)",
+  "Movies": "garden state (everybody on my floor has seen it and we all feel the same about it), old school (we quote it in the dining hall in unison and none of us know each other), good will hunting (for philosophy), the sandlot (a field. a friend group. not relevant.)",
+  "Television": "the office (thursdays in the lounge, i'm on the beanbag by the door), scrubs, the weather channel in the laundry room (it's what's on), jeopardy with my mom on the phone (she says the answers, i say them back, we both win)",
+  "Books": "intro to philosophy reader (spiral bound, $64), the syllabus (3 pages, read twice), catcher in the rye (every freshman owns the same copy), the thefacebook terms of use (i read all of it. nobody else did)",
+  "Heroes": "my mom, professor halvorsen, my RA derrick (he's trying), chad (can't work a computer, nicest guy i know), the dining hall lady who says 'have a good one' and means it"
+ },
+ "song": {
+  "name": "Better Together",
+  "artist": "Jack Johnson",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/78/f7/f0/78f7f024-c299-c3d9-585b-4e5955c52cb9/mzaf_14926015658032188993.plus.aac.p.m4a",
+  "pattern": [0, 4, 7, 9, 7, 4, 2, 4],
+  "bpm": 92
+ },
+ "decor": [
+  "assets/badge_coffee.gif",
+  "assets/badge_aim.gif"
+ ],
+ "friends": ["brittany", "chad", "tyler", "fred", "miles", "todd", "kayla", "josh"],
+ "wall": [
+  {
+   "from": "chad",
+   "text": "TREVOR i tried to join thefacebook. it asked for a .edu. i typed chad.edu. it said no. i typed eagles.edu. no. coach says u need a diploma first. i said i HAVE a jersey. coach said thats not the same. GO EAGLES (miss u dude) (its not a big deal) (its a LITTLE deal)",
+   "time": "Oct 2 2026 5:20 PM"
+  },
+  {
+   "from": "brittany",
+   "text": "trevor ur in my top 8. spot 8. as a COURTESY. u said ourspace is 'for kids' and then commented on my pic at 1:14 AM. nobody who thinks a site is for kids is up at 1:14 AM. xoxo. also does thefacebook have a top 8?? no?? how do u LIVE",
+   "time": "Sep 29 2026 9:14 PM"
+  },
+  {
+   "from": "tyler",
+   "text": "bro. trevor. bro. the dog still walks to your house at 4. sits on your porch. your mom gives him half a biscuit. bro. i just thought u should know. bro. come home for a weekend. bring ur laundry. my mom will do it. bro.",
+   "time": "Sep 24 2026 4:37 PM"
+  },
+  {
+   "from": "miles",
+   "text": "Trevor. Update on the intramural trailer. I have footage of the pre-game stretch, the coin toss and the walk back to the car. It's tighter than it sounds. Pending: one (1) win. Also, the graduation trailer is backed up. Twice. In two places. Tell your mom it's safe.",
+   "time": "Sep 21 2026 3:10 PM"
+  },
+  {
+   "from": "fred",
+   "text": "Trevor, a piece of advice from someone who has been in your exact position: you are not 'ironically' here. Nobody has ever been ironically anywhere. You are here because it has people in it. Sit down. Stay a while. (I say this as a man who has announced his departure six times.)",
+   "time": "Sep 19 2026 8:02 PM"
+  },
+  {
+   "from": "todd",
+   "text": "Hi Trevor! Quick admin note: you've logged in 31 days in a row. That's a streak! I made you a certificate (.txt, it's in your inbox). I also looked at thefacebook out of professional curiosity and it is very clean and I am a little jealous of its servers. Please don't tell the laptop. - Todd :)",
+   "time": "Sep 8 2026 7:44 AM"
+  },
+  {
+   "from": "tony",
+   "text": "trevor!! u went to college!! do they have girls there. i have a plan. the plan is hey ;) i've been polishing it. also is it true u have to wear a lanyard",
+   "time": "Aug 30 2026 9:48 PM"
+  }
+ ],
+ "replies": [
+  "haha ok. that's a good point for someone at the high school level",
+  "noted. i'll bring it up at the next floor meeting (attendance: me)",
+  "no offense but at the college level that's called a thing everyone knows",
+  "ok that actually made me laugh. out loud. in the dining hall. a guy looked",
+  "i'm not homesick. i'm just here. checking in. it's a different thing. i looked it up",
+  "fair. i'm not saying you're wrong. i'm saying i've taken a philosophy course",
+  "this is a site for kids and i just replied in 4 seconds. ignore that",
+  "wow. ok. i have to go to a thing. there's no thing. wow",
+  "that's sweet. don't tell anyone i said sweet. i'm in a dorm",
+  "p.s. how's everybody. (not everybody. just, you know. everybody)"
+ ],
+ "thanksAdd": "oh, you accepted. cool. just so you know, i'm only on here ironically. my real profile is on thefacebook, which is college only (you'd need a .edu). but you can check in on mine here, i guess. i'm on every day. for research. anyway, welcome. the kids' table has the best snacks.",
+ "ambient": [
+  "went to the dining hall at 8 AM. cereal from the dispenser. sat alone. a guy asked if the seat was taken. it wasn't. we didn't talk. but it felt like a connection",
+  "intramural update: the dean's list lost 34-0 to a team made entirely of grad students. one of them had a whistle. he wasn't the ref",
+  "called my mom at 6 like every sunday. 40 minutes. 12 of them were about my laundry. i don't know why that's the part i keep thinking about",
+  "everyone here is so mature. a guy on my floor microwaved a fish. in a dorm. nobody said anything. that's what maturity is",
+  "looked at thefacebook for 20 minutes. then ourspace for 3 hours. i'm not saying which is better. i'm saying one of them has more people i know",
+  "my RA put up a sign that says QUIET HOURS 10 PM - 8 AM. i read it twice. it's a good sign. nobody else reads it. i feel like i'm the only one who's paying attention to the sign"
+ ],
+ "saltyDm": "ok. denied. that's fine. i'm used to selective admissions, we have those in college. (you didn't even ask for a transcript.) i'll just keep checking your page as a visitor. daily. for research. the offer stands.",
+ "keywords": {
+  "college": "it's a lot of freedom. my first week i stayed up until 2 AM on a tuesday for no reason. just because. that's college. i then slept through a 9 AM and learned a lot about myself.",
+  "facebook": "thefacebook. it's like this but clean, and you need a .edu to get in, so it's just people who are going places. there's a wall and pokes. very mature. i have 86 friends. 83 are from my floor. 3 are the dining hall guy.",
+  "poke": "a poke is when you poke someone. it doesn't mean anything. that's the feature. i've been poked 4 times by the same guy. his name is dale. we've never spoken. he pokes every day at 4. i've started to wait for it.",
+  "dorm": "henley hall, third floor. it has a name AND a number. my room has 2 beds, 2 desks, and a window that looks at a different dorm. the other dorm has a name too. they're all named after people nobody's heard of.",
+  "mom": "she calls on sundays. i mean i call her. sundays at 6. it's a scheduled call. i know her number by heart, it's the same as the house. i know that. it's not a big deal.",
+  "kids": "ok i said 'kids.' i meant it nicely. i mean people who still have a locker. i'm not saying i don't miss my locker (114, top row). i'm saying it's behind me. a long way behind me. i drove 90 minutes.",
+  "high school": "high school was fine. everybody knew my name. here nobody does. it's like being a new kid but the new kid is everyone and there's no one to look at your pic and say hey that's trevor"
+ },
+ "banter": {
+  "miles": [
+   "miles ok the footage. (1) the huddle. (2) me, jogging, in slow motion if possible. (3) the handshake line after the game, which is the strongest sequence of our season. (4) a guy on the other team caught a flag. he wasn't ours but he stood near us. that's the whole cut. title: THE DEAN'S LIST. it should fly in",
+   "miles at the college level nobody is impressed by a macbook. but i played your trailer on mine and 11 people watched the whole thing. 3 asked for one. i said you're 'a guy i know.' i'm sorry for 'a guy.' you're a friend. a guy i know AND a friend. both"
+  ],
+  "fred": [
+   "fred i read your leaving bulletin. the sixth one. it's the nicest thing on this site. nobody writes like that. in college a leaving post is 'k bye.' yours has paragraphs. i read it twice. don't leave. (this isn't a request. it's an observation.)",
+   "fred you're 25 so you're not eligible for thefacebook but i looked and there's no 'friend of a student' option. i checked twice. i'm sorry. you'd be great at the wall. you'd write everybody a nice paragraph and it would be the only nice paragraph on there"
+  ],
+  "marcus": [
+   "marcus in a dorm the RA is the moderator. his name is derrick. he has a whiteboard. he writes REMINDER: QUIET HOURS every thursday and nobody reads it except me. i think you'd love it. i think he'd love you. i'm not introducing you.",
+   "marcus rule 4 says stay on topic and rule 4b says i decide the topic. i took philosophy this semester and i can confirm that's not a contradiction, that's a constitution. i mean that as a compliment. i'm 18. i've read about it"
+  ],
+  "brittany": [
+   "brittany. yes i'm in your top 8. no i wasn't kidding about 'for kids.' also thank you for spot 8. at the college level there's no top 8. there are groups. i'm in 14. one is I Heart Dining Hall Waffles. it has 6 members. i'm the founder. it's not high school. it's a waffle.",
+   "brittany if you could put a little note by my spot that says 'trevor: 18, college' i'd appreciate it. not for me. for the juniors. they should know it's possible. (it's possible. you just have to want it a lot and also do the paperwork)"
+  ],
+  "chad": [
+   "chad it's not that hard to get on thefacebook. you need a .edu. and a diploma. and a college. and to be accepted. and to go. you'd be the loudest person in the building. they'd love it. (they'd ask you to leave the dining hall. but they'd love it first)",
+   "chad GO EAGLES. i said it out loud in the dining hall on thursday. nobody knew what it meant. a guy said 'what's an eagle.' i said 'a bird but with meaning.' i miss the field by the good gas station. i didn't say that. delete this"
+  ],
+  "todd": [
+   "todd. thefacebook never goes down. i say that as information. i'm not comparing. yours has character. the 7 PM thing when the vacuum goes. i've started planning my evening around it. it's the only thing on a schedule here that isn't a class",
+   "todd you were the first person i added on this site and i don't know why i'm telling you this. in a dorm your first friend is whoever's assigned to your floor. mine's derrick. he's trying. yours is todd. i think you're doing better"
+  ]
+ },
+ "statuses": [
+  "trevor is at the college level. (back later. dining hall closes at 8.)",
+  "trevor is not homesick. trevor is just checking.",
+  "trevor is on his 4th bowl of cereal. the dispenser is free. he's learning the rules of freedom.",
+  "trevor has a philosophy midterm. topic: 'what is a friend.' he has 31 days of data.",
+  "trevor is 0-6 and optimistic. the dean's list plays thursday. field 4. bring a flag.",
+  "trevor just got poked by a stranger named dale. trevor poked back. this is how it starts.",
+  "trevor is calling his mom. don't tell anyone. it's sunday. it's scheduled."
+ ],
+ "bulletins": [
+  {
+   "subject": "PSA from the college level (re: ourspace being 'for kids')",
+   "body": "ok. i said it and i meant it. i'm not taking it back. but a clarification, because 4 people messaged me: 'for kids' is not an insult. it's a category. like 'for dogs.' i love dogs. i'm just not a dog. i'm saying this site is for people who still have a locker, a bedtime and a mom who yells up the stairs. and i'm saying i checked it 9 times today. those are two different statements and they can both be true. that's philosophy. i took a class. p.s. if you're a junior or a senior reading this: it gets bigger. it also gets quieter. enjoy the loud."
+  },
+  {
+   "subject": "SURVEY (college edition) (like the high school ones but you have to explain your answers)",
+   "body": "copy, paste, explain. 1) what's your major (undecided counts) 2) who did you eat dinner with last night 3) did you call your mom this week 4) what's the name of your RA 5) how many people know your name. my answers. 1) undeclared. it sounds like i'm going somewhere. 2) a guy named dale. we didn't speak. but we were at the same table. 3) sunday. 6 PM. 40 minutes. 4) derrick. he's very into quiet hours. 5) brent knows it. i think. i've told him 3 times. repost with yours. honestly i want to see what everybody's doing."
+  }
+ ],
+ "pcComments": [
+  "nice pic. very high school. i mean that fondly. 7/10. (it's an 8)",
+  "this looks like a field i know. is this the field by the good gas station. i'm not asking for me",
+  "in college you'd be in a group for this. i'd start one. 'i heart your haircut.' it would have one member. me",
+  "good photo. i'm saving it. not on thefacebook. in a folder. on my desktop. it's called 'people.'"
+ ],
+ "dmSeed": [
+  {
+   "text": "hi malten. trevor. i'm on thefacebook, which is college only, so you probably haven't heard of it. i'm on here as a favor to some people from home. i noticed you're new. welcome to the kids' table. it's a good table. i sat there for four years. i just. you know."
+  },
+  {
+   "text": "also i should say i'm not on here every day. it's more like most days. ok every day. it's a habit. like laundry."
+  }
+ ],
+ "dms": [
+  "malten what's your major. don't say you're in high school. say undeclared. everybody says undeclared. it sounds like you're going somewhere.",
+  "my philosophy professor asked us to define 'home.' i wrote 'the place with the good gas station.' he gave me a B-plus. he wrote 'be specific.' i have never been more specific in my life.",
+  "the dean's list lost again. 41-0 against a team of RAs. one RA had a whiteboard. he used it for plays. we've never had plays. we have a huddle and a feeling.",
+  "do you know how to say 'i'm fine' so it sounds like you're fine. asking for my mom. she asked on the phone if i was eating. i said 'yes, a lot of cereal.' she was quiet for a while. then she said 'what kind.'",
+  "my roommate brent talked to me today. he said 'is that your hoodie.' it was. he said 'nice.' that's 4 words. i've been telling people at the dining hall about it for 6 hours.",
+  "it's 1 AM and i just checked everybody's page in order. brittany, chad, tyler, fred. in that order. i do it every night. it's like a lap. don't tell anyone i do laps.",
+  "is it weird to leave a comment on a page you said was for kids. at 2 AM. on a friend's pic. asking for a friend. the friend is the person typing this."
+ ],
+ "blog": [
+  {
+   "title": "things nobody tells you about college (a guide for juniors who are mature enough to read it)",
+   "date": "Sep 22 2026 11:10 PM",
+   "mood": "knowledgeable",
+   "body": "1) there's a cereal dispenser. it's free. it's more than you think. 2) your roommate might be a rumor. mine is real but i've seen him 3 times, so, rumor. 3) everyone is also pretending. this one took me 3 weeks and a laundry room. a guy on my floor said 'i don't know anyone either' while folding a towel. we're now acquaintances. 4) laundry takes 2 hours and nobody tells you that the 2 hours are for thinking. 5) the phone call home gets shorter and then it gets longer. mine was 11 minutes in august. now it's 40. my mom says it's because she has more to tell me. she doesn't. 6) you will find a website that has everyone you know on it and you'll leave it open in the second tab. that's all. that's the whole list."
+  },
+  {
+   "title": "my graduation trailer (a review)",
+   "date": "Oct 1 2026 9:40 PM",
+   "mood": "reflective (briefly)",
+   "body": "so miles made me a trailer for my graduation. 52 seconds. opens on black. a slow zoom on me in the gown. a cross dissolve to me walking across the stage. then a cross dissolve to me walking across the stage again, from a different angle, because he only had two photos and one was a mistake. the title flies in. it says TREVOR: THE NEXT CHAPTER. the music is a loop called 'Inspire 04.' my mom has watched it 11 times. she says it's 'our song.' i don't know what 'our' is. i watched it once, at 2 AM, in my dorm, with the sound off, and then with the sound on. in the second photo, behind me, you can see chad. he's in the bleachers. he's holding a sign. the sign says GO TREVOR. in caps. i didn't know that. i watched it 4 more times."
+  }
+ ],
+ "survey": {
+  "title": "the freshman survey (found on thefacebook) (it's for college students) (i'm making it public as a service)",
+  "qa": [
+   ["name:", "trevor. thefacebook_trevor on here. 'trev' to people who don't know i don't like it"],
+   ["school:", "lakeview state. go herons. (a heron is a bird that stands there. i've never felt more represented)"],
+   ["major:", "undeclared. it sounds like i'm going somewhere"],
+   ["roommate:", "brent. met 3 times in 41 days. we're basically brothers who've never spoken"],
+   ["best thing about college:", "freedom. the cereal dispenser. nobody knows what you did in 9th grade"],
+   ["worst thing about college:", "nobody knows what you did in 9th grade. also nobody knows my name. also laundry"],
+   ["what do you miss about high school:", "nothing. (the field by the good gas station.) (the way chad says my name from across a parking lot.) i said nothing"],
+   ["intramural record:", "0-6. we're rebuilding. the dean's list. it's a metaphor"],
+   ["what site are you on right now:", "ourspace. for research. 11:51 PM. it's a study break"],
+   ["did you call your mom this week:", "sunday. 6 PM. 40 minutes. 12 were about laundry. i don't want to talk about it"],
+   ["describe yourself in one sentence:", "i'm 18 and i live in a building with a name and i'm doing great. (i'm doing ok. i'm doing great at the cereal)"]
+  ]
+ }
+}

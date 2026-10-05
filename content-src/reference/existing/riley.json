@@ -1,0 +1,160 @@
+{
+ "id": "riley",
+ "name": "rawr_xd_riley",
+ "tag": "rawr means i love u in dinosaur xD",
+ "avatar": "assets/avatar_riley.gif",
+ "age": 15,
+ "loc": "under my side-swept bangs",
+ "mood": "random!!! :3",
+ "lastLogin": "Jul 3 2026 10:56 PM",
+ "theme": {
+  "bg": "#000000",
+  "fg": "#39ff14",
+  "accent": "#ff00ff"
+ },
+ "about": "HIIII i'm riley!!! i did my raccoon stripes myself in a gas station bathroom and honestly?? iconic. my most prized possession is my hair straightener (her name is Destiny, we've been through a lot together). things i love: GIR, tacos, being SO random, invisible cookies (i have an unlimited supply, ask me), and making my bangs defy at least two laws of physics before 8am. if u add me i will comment on ur page within four minutes. this is a promise AND a warning. rawr xD",
+ "interests": {
+  "General": "Destiny (my straightener), checkered everything, raccoon stripes, glow bracelets, random!!, invisible cookies, tacos!!, arm-swoosh dancing, my GIR sticker (he's on my binder and in my heart)",
+  "Music": "metro station, hellogoodbye, cute is what we aim for, brokencyde (don't tell my mom), the caramelldansen (nikki made me) (i love it)",
+  "Movies": "napoleon dynamite (i can do the dance) (for real) (randy can't), mean girls (i quote the cool mom part daily)",
+  "Television": "INVADER ZIM!!! (GIR is me), spongebob, the suite life (zack) (no cody) (ok both)",
+  "Books": "the GIR comic thing at hot topic, the back of my hairspray can (it's a thriller)",
+  "Heroes": "Destiny. GIR. the taco guy. randy (don't tell him) (ok tell him)"
+ },
+ "song": {
+  "name": "Shake It",
+  "artist": "Metro Station",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/bf/d7/06/bfd706cc-f35c-2215-e165-0613c9b6e793/mzaf_8887892479915896447.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   4,
+   7,
+   4,
+   0,
+   4,
+   7,
+   12
+  ],
+  "bpm": 120
+ },
+ "decor": [
+  "assets/deco_blinkie_zim.gif",
+  "assets/deco_sparkle_bunny.gif",
+  "assets/deco_smiley.gif"
+ ],
+ "bgTile": "assets/tiles/tile_skulls.png",
+ "friends": [
+  "nikki",
+  "darkangel",
+  "randy",
+  "brittany",
+  "tina",
+  "sk8rboi"
+ ],
+ "wall": [
+  {
+   "from": "darkangel",
+   "text": "your new stripe looks like a moonbeam trapped in a raven's wing... that's a compliment. it's 11:11 somewhere. probably.",
+   "time": "Jun 21 2026 11:11 PM"
+  },
+  {
+   "from": "randy",
+   "text": "riley i handed you an invisible cookie yesterday and you just ATE IT. no questions. FINALLY someone who understands the technology. PIE.",
+   "time": "Jun 25 2026 3:33 PM"
+  },
+  {
+   "from": "brittany",
+   "text": "ur poof is literally famous. it defies GRAVITY. teach me ur ways??? i'll trade u glitter eyeliner xoxo text me!!",
+   "time": "Jun 29 2026 7:45 PM"
+  },
+  {
+   "from": "nikki",
+   "text": "made u a getting-ready mix where every song is 1.5x so ur hair takes HALF the time. that's math. that's just math working. UNTZ",
+   "time": "Jul 2 2026 4:18 PM"
+  }
+ ],
+ "replies": [
+  "OMG hi!!! *hands u an invisible cookie* it's chocolate chip, u can't tell but it is. rawr xD",
+  "this comment is so random i love it. TACOS. ok continue.",
+  "*trips over nothing* haha i'm SO clumsy!! anyway HI HI HI",
+  "AKJSDHFKJSDH ur amazing, that's the whole reply, rawr."
+ ],
+ "thanksAdd": "OMG YAY *tackle hugs ur profile* malten!!! welcome to my top 8 consideration zone!!! here's ur welcome gift: one invisible cookie. no takebacks. it has ur name on it (invisibly). rawr xD",
+ "ambient": [
+  "my straightener has a name now. Destiny. we've been through a lot. mostly hairspray incidents.",
+  "spent 2 hours on my bangs and it's WINDY outside. staying in. i have priorities and they are all hair.",
+  "TACOS TACOS TACOS ok that's the whole post. wait. NINJAS. ok NOW it's done."
+ ],
+ "saltyDm": "aww denied :( it's ok!! *hands u an invisible cookie through the screen anyway* no takebacks, it already has ur name on it (invisibly). the friendship offer never expires, kinda like the cookie (invisible things can't go stale, look it up) rawr xD",
+ "keywords": {
+  "hair": "OMG ok so step one is u NEED a straightener u would trust with ur life. step two is hairspray until the smoke alarm gets involved. step three is BELIEVE.",
+  "tacos": "TACOS!!! ok u said the password, u get TWO invisible cookies AND an invisible taco. today is huge for u."
+ },
+ "banter": {
+  "darkangel": [
+   "we are NOT the same!! ur bangs cover ur LEFT eye and mine cover my RIGHT eye. but together?? we can see one (1) entire room. teamwork!! rawr xD",
+   "wrote u a poem: roses are black, my soul is black, TACOS. it's called a fusion of our styles. u may cry (glitter tears)"
+  ],
+  "randy": [
+   "randy i said something SO random in class today that the teacher said 'riley, that's enough' which means i WON. u would've been so proud. the word was WAFFLES.",
+   "fact: chuck norris can see through BOTH eyes AND his bangs. wait. chuck norris doesn't have bangs. FACT INVALID. PIE. ok bye"
+  ],
+  "tina": [
+   "tina i will read twilight IF u let me give edward a raccoon stripe with a sharpie in ur copy. he would look SO scene. this improves the book. i've never read the book.",
+   "got ur chain letter and reposted it TWICE which means DOUBLE good luck. that's how it works. probably. don't check."
+  ],
+  "patrick": [
+   "patrick i drew whiskers on ur pet rock (in my head, i didn't touch him, don't worry). he looks SO random now. i think his name should be Mr. Biscuit. tell him i said hi.",
+   "u read my comment three times?? that means i said hi to u three times. hi hi hi!!! that's the most hellos anyone has ever gotten. ur welcome xD"
+  ],
+  "misery": [
+   "misery i watched ur 'first video ever' and u said rawr means i love u in dinosaur at 0:04. RILEY SAID THAT FIRST. it's on my page. it's in my HEADLINE. we can be friends but that's MINE. rawr (mine) xD",
+   "ok ok ok truce. u can say rawr. but u have to say 'rawr (riley's)' like a brand. haha jk!! (not jk) *hands u an invisible cookie* (it's a peace cookie)"
+  ],
+  "kittyxcore": [
+   "kittyxcore ur new pics are SO cute!!! commented ALL of them (4 minutes) (i timed it) pc4pc?? mine are up too!! the raccoon stripe is fresh. rawr xD",
+   "ur hello kitty bed is literally my dream bed. mine is checkered. we should trade for a week. our moms would never know. (they would immediately know)"
+  ],
+  "epic": [
+   "epic ur ytmnd of the GIR taco thing made me laugh so hard i inhaled an invisible cookie. that's dangerous!! do it again!! XD",
+   "u said 'lol ur mom' to randy and randy said PIE and u said 'ur mom is pie' and i have never seen two people so random at once. i felt like i was watching history. rawr"
+  ]
+ },
+ "statuses": [
+  "is so random rn it's basically a medical situation xD",
+  "is out of invisible cookies. or AM i. no one can prove anything.",
+  "is having a staring contest with the GIR sticker on my binder. he's winning. he always wins.",
+  "is having a fight with Destiny (my straightener) (she pulled) (we're ok now)",
+  "hey SOME people are saying they invented rawr. u didn't. i've been saying rawr since 7th grade. i have witnesses. (my mom). rawr xD (that's MINE)",
+  "is bringing invisible cookies to the sk8 off. invisible slushies too. the hose is real tho. derek's hose.",
+  "TACOS!!! ok that's the status. wait. NINJAS. ok now it's done. rawr"
+ ],
+ "bulletins": [
+  {
+   "subject": "50 RANDOM THINGS ABOUT MEEE!!! (stolen from brittany) (she stole it first) (it's mine now)",
+   "body": "1. my hair has its own weather forecast 2. i can quote every GIR line (this is a threat) 3. invisible cookies are real and the doubters know what they did 4. TACOS 5-50. also tacos. repost with UR 50 things or a raccoon judges u in ur sleep (affectionately)!!",
+   "time": "Jun 27 2026 9:14 PM"
+  }
+ ],
+ "dmSeed": [
+  {
+   "who": "them",
+   "text": "OMG ur new here!!! *throws invisible confetti* WELCOME WELCOME ok here's ur first invisible cookie, they're free, they're all free, that's the business model. rawr xD",
+   "time": "Jun 30 2026 8:03 PM"
+  }
+ ],
+ "gender": "Female",
+ "hometown": "Parma, OH!!! (the checkered part) (i checkered it)",
+ "zodiac": "Aquarius!! starxgazer said it means 'random and can't be tamed' and i said TACOS and she said 'yeah that's it' xD",
+ "status": "is SO random rn. like. u don't even know. WAFFLES. see.",
+ "hereFor": "Friends!!! (and invisible cookie distribution) (and rawr) (that's not an option but it should be)",
+ "blogTitle": "RAWR MEANS I LOVE U IN DINOSAUR (i said it first)",
+ "meet": "GIR!!! (he's real to me). the guy who invented tacos so i can hug him!! anyone who's SO random that i actually get scared xD. also whoever keeps saying THEY invented rawr so we can settle this with a staring contest. rawr.",
+ "pcComments": [
+  "OMG ur bangs in this!!! they're covering the CORRECT eye. rawr xD <3",
+  "*throws invisible confetti at this pic* SO CUTE. comment back!! (u already did) (comment AGAIN)",
+  "RAWR!!! this pic is so random i love it!!! is that a taco in the background. it's not. it should be.",
+  "ur poof is defying gravity here. Destiny (my straightener) says hi to ur straightener. they should hang out xD",
+  "AKJSHDKJSHD this is my new favorite pic of u. i'm printing it. i don't have a printer. i'm printing it in my HEART"
+ ]
+}

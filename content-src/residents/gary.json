@@ -1,0 +1,287 @@
+{
+  "id": "gary",
+  "name": "gamefaqs_gary",
+  "tag": "FAQ v1.07. Ctrl+F before you email me. Section [4.2b] was wrong. Please update.",
+  "avatar": "assets/avatar_gary.gif",
+  "gender": "Male",
+  "age": 18,
+  "hometown": "Dubuque, Iowa (see [0.4], 'Where I Live,' for directions)",
+  "loc": "Desk, bedroom, 2nd floor (see [0.5], 'Desk Layout')",
+  "zodiac": "Virgo (everyone says 'of course.' see [0.6], 'Of Course')",
+  "status": "Single (Section 12, 'Relationship Status,' is v0.1 and incomplete)",
+  "hereFor": "Friends, Networking, Corrections (send the section number)",
+  "mood": "v1.07 (stable)",
+  "lastLogin": "Oct 4 2026 3:02 AM",
+  "theme": {
+    "bg": "#0000aa",
+    "fg": "#ffffff",
+    "accent": "#ffff55"
+  },
+  "blogTitle": "FAQS, GUIDES & CORRECTIONS (v2.3) (Table of Contents at the bottom)",
+  "about": "=== GAMEFAQS_GARY: PROFILE FAQ (v2.3) === [1.0] ABOUT: This is a profile. It is also a FAQ. [1.1] AUTHOR: Gary, 18. [1.2] WHAT I DO: I write walkthroughs. Nine are on GameFAQs. Together they are about 300KB of ASCII, which my mom calls 'a lot of typing' and the site calls 'a lot of typing.' [1.3] WHY: Somebody is always stuck in a room and scared of the next one. I'd like them to have a map. [1.4] CORRECTIONS: welcome. Send the section number, the error and a source. You go in the Credits. [1.5] SECTION [4.2b]: a wrong paragraph in v1.04 of my RuneScape guide. Removed in v1.05. If you have v1.04, please update. I am sorry. [1.6] LEGAL: printing this is fine. Framing it is a little much.",
+  "aboutMore": "[2.0] THINGS NOT IN THE FAQ: [2.1] My mom brings a sandwich at 9 PM and I update the Credits. [2.2] My cousin Danny (7) is my official tester. He can't read yet, so I read each guide aloud, and when he gets bored I cut the section. This is why the guides are good. [2.3] I have never been to a LAN party. Dave invited me. I have prepared a 4-page Attendance Plan. [2.4] I answer every email within 48 hours. Every one.",
+  "meet": "Who I'd like to meet: whoever wrote the first walkthrough ever (v1.0, probably on a napkin). The editor who rejected v1.0 of my FF7 FAQ for a line-length error (I want to thank them, and also ask about line 41). Dave, at a LAN, with my Attendance Plan. And the person who keeps citing section [4.2b]. I need to know where you found it.",
+  "interests": {
+    "General": "writing FAQs (9 on GameFAQs), version control (a folder per version, v1.01 through v1.07), ASCII art, 100% completion runs, tables of contents, line width (79 columns, no exceptions), Ctrl+F, correcting people politely, sandwiches (mom), my cousin Danny (tester, critic)",
+    "Music": "video game soundtracks (Nobuo Uematsu, Koji Kondo, the Melee menu theme), Radiohead (Everything In Its Right Place is about me and I'm told it isn't), Weezer (the blue album: a document is a document), the Zelda soundtrack on my CD player when I proofread",
+    "Movies": "WarGames (a kid, a computer, a happy ending), The Princess Bride (the book is better, see [8.2]), Apollo 13 (checklists save lives), Back to the Future (Doc Brown keeps notes), Hackers (I fact-checked it, found 41 errors, filed them)",
+    "Television": "How It's Made (a proper methodology), Jeopardy (I score myself), Mythbusters, G4's X-Play (I disagree with 14% of the reviews, in writing)",
+    "Books": "Prima strategy guides (the ones with maps), the Nintendo Power Player's Guide, the Chicago Manual of Style (mom bought it for me), The Hitchhiker's Guide to the Galaxy (a FAQ for a whole universe, I'm impressed), my own documents (proofread on the bus)",
+    "Heroes": "the person who wrote the first FAQ ever, the Nintendo Power map-makers, Mr. Henderson (corrects grammar by reflex, I felt seen), my mom (sandwiches), Danny (tester), the dad who emailed me about the Water Temple"
+  },
+  "song": {
+    "name": "Everything In Its Right Place",
+    "artist": "Radiohead",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c5/eb/e3/c5ebe37f-2f48-0daf-dfe3-2a138386925d/mzaf_12219830978364632777.plus.aac.p.m4a",
+    "pattern": [
+      0,
+      5,
+      7,
+      5,
+      0,
+      5,
+      7,
+      3
+    ],
+    "bpm": 110
+  },
+  "decor": [
+    "assets/badge_best_viewed_with_eyes.gif",
+    "assets/badge_built_with_microsoft_notepad.gif"
+  ],
+  "friends": [
+    "wes",
+    "sephiroth",
+    "ryan",
+    "marcus",
+    "dmitri",
+    "sara",
+    "gus",
+    "todd",
+    "dave"
+  ],
+  "wall": [
+    {
+      "from": "wes",
+      "text": "gary u said my row 214 is off by one frame. i checked on 3 CRTs. ur right. i hate it. thank u. melee night is friday, u dont have to play, u can just sit there and take notes. u'd love it. i have a chair with a back",
+      "time": "Oct 2 2026 9:41 PM"
+    },
+    {
+      "from": "sephiroth",
+      "text": "Gary. I have read your Jenova footnote. It is a footnote. It is not a refutation. Part 8 of my essay will address it. It will be 4,000 words. I will cite you as 'a source of resistance.' Do not take this as an insult. It is an honor. -- Sephiroth (1st Class)",
+      "time": "Sep 29 2026 11:05 PM"
+    },
+    {
+      "from": "tim",
+      "text": "gary i audited the gold chocobo breeding chart. 41 pages. one arithmetic error, page 17: 14 + 27 is 41 not 42. my fee is $2. i am waiving it because it is the only one. entered in the ledger under 'impressive.'",
+      "time": "Sep 23 2026 6:17 PM"
+    },
+    {
+      "from": "henderson",
+      "text": "Gary, I'd like to commend the rigor of your methodology. However, in section 5.2 of the FF7 guide, 'less materia' should read 'fewer materia.' Otherwise I would grade it an A-. I have attached a gold star. It's an element. (Au.) -- Mr. Henderson",
+      "time": "Sep 18 2026 7:50 AM"
+    },
+    {
+      "from": "walt",
+      "text": "Dear Gary, I understand you write instructions for games. Dorothy wrote hers for recipes in the same manner, and I found them clear. Would you be willing to write one for my Buick? The previous owner (myself) did not leave a manual. Regards, Walt",
+      "time": "Sep 9 2026 5:44 AM"
+    },
+    {
+      "from": "larry",
+      "text": "gary ur ff7 faq is the most downloaded thing in my shared folder!! its labeled britney_spears_hit_me.mp3 (214 downloads) and nobody complained!! some people even wrote back. its not stealing its SHARING",
+      "time": "Aug 26 2026 10:12 PM"
+    }
+  ],
+  "replies": [
+    "[REPLY v1.0] Thank you for your comment. It has been filed under [9.4] FEEDBACK (Positive).",
+    "NOTE: Your comment contains one factual claim. I have checked it. It is correct. This is rare. Enjoy it.",
+    "[!] SPOILER WARNING: I agree with you.",
+    "Noted. This will appear in the next version (v1.08). Credit: you.",
+    "Per [2.1] I answer all comments within 48 hours. This one took 3 minutes. Please do not expect this.",
+    "I have corrections, but I'm keeping them to myself this time. See [0.7], 'Restraint.'",
+    "Q: Was that a compliment? A: I have decided it was. [RESOLVED]",
+    "(Reading... Reading... Done.) Section [4.3a] applies. Briefly: yes.",
+    "Thanks! (One exclamation point per 10KB is my style guide. I've spent it.)",
+    "I'd cite a source, but this is a conversation. Sources available on request. Please request them.",
+    "TIP: if you're ever unsure what to say to me, 'where is the Gold Chocobo' is always a good opener. See [3.1]."
+  ],
+  "thanksAdd": "[ADD ACCEPTED] Thank you. QUICK START: [1] Your name has been added to CREDITS (section 14.0, 'Friends'). [2] I answer messages within 48 hours (see [0.3]). [3] If you are on v1.04 of my RuneScape guide, please update. Section [4.2b] was wrong and I am sorry. -- Gary (FAQ v1.07)",
+  "ambient": [
+    "UPDATE v1.08: fixed a typo in section 3.2 ('teh' to 'the'). 14 hours of work. Worth it.",
+    "Q: Why was I up until 3 AM aligning one ASCII 'S'? A: It was off by one space. See [2.3], 'Standards.'",
+    "REMINDER: if your copy of the RuneScape guide has a section 4.2b, it is v1.04 and it is wrong. Please download v1.07. I update because one wrong line can cost somebody something. See [0.9], 'Why I Care.'",
+    "Received 212 emails about the Gold Chocobo chart. 190 thank-yous. 14 'where is the chocobo.' 7 'you are wrong.' 3 of those 7 were right. I thanked them. It took a week to forgive myself.",
+    "NEW: FAQ for OurSpace (v0.1, 11 sections). Section 1: What is the laptop. Section 2: Please do not unplug the laptop.",
+    "My mom just brought a sandwich. Updating the Credits: [14.2] Mom: sandwiches (continuous)."
+  ],
+  "saltyDm": "[DENIED] Request acknowledged. For the record, that is your right (see [0.8]). I do not take it personally. NOTE: the offer remains in the FAQ under [13.0], 'Future Friends (Pending).' I have left a space. It is a small space. It is still there. -- Gary",
+  "keywords": {
+    "walkthrough": "[Q] What is a walkthrough? [A] A document that tells you what to do, in order, so you don't have to be scared of the next room. I write them because nobody should be stuck alone. See [0.1], 'Purpose.'",
+    "faq": "FAQ: Frequently Asked Questions. Mine: 'Where is X?' (see [3.1]). 'Why is it so long?' (see [0.2]). 'Can I copy this?' (see LEGAL). 'Is this accurate?' (every claim has a source, and when it doesn't, it says so).",
+    "4.2b": "Section [4.2b] was a paragraph in v1.04 of my RuneScape guide. It said trimmed armor was offered free. I took it from a forum post and did not check. It was a scam. I removed it in v1.05, wrote the Scam Guide (v2.3), and now cite a source for everything. Please update to v1.07. I'm sorry, Ryan.",
+    "ascii": "I make ASCII art for every header. The GAMEFAQS header took 14 hours. The 'S' was off by one space for two of them. See [2.3], 'Standards.'",
+    "ff7": "Final Fantasy VII FAQ (v2.2, 312KB). Includes: Gold Chocobo breeding chart (41 pages), Materia guide, Jenova footnote. Excludes: opinions about Aerith (see [0.5], 'Not Now').",
+    "email": "I answer every email within 48 hours. 212 received. 190 thank-yous, 14 'where is X,' 7 'you are wrong.' 3 were right. I fixed those. I thanked them. I still think about them.",
+    "mom": "[14.2] CREDITS: Mom. Sandwiches (continuous). Rides to the library. 'Gary, eat something.' Appears in every FAQ since v1.0.",
+    "version": "Current: v1.07. Next: v1.08 (typo in 3.2). I update when I find an error. I find errors constantly. I'm no longer sure this is a hobby. It may be a condition."
+  },
+  "banter": {
+    "wes": [
+      "Wes: per [11.3.1], wavedashing was not 'intentional.' It was a discovery, not a design. I'm told this upsets you. I'm citing it anyway. I also found exactly one error in your 340-row spreadsheet: row 214. It's a very good spreadsheet. -- Gary",
+      "Wes: regarding melee night. I'd like to attend. I will not play. I will take notes on frame data. I have prepared a 3-page Etiquette Guide for visiting CRTs. Section 1: Do not touch the CRT. Section 2: See section 1. -- Gary"
+    ],
+    "sephiroth": [
+      "Sephiroth: per [6.4], Jenova is not your mother in the biological sense. That is Lucrecia (see the Nibelheim basement notes, [6.4b]). Jenova is who he believes it is. Your Part 7 is 'controversial' because it is incorrect. -- Gary",
+      "Sephiroth: I've added a footnote to my FF7 FAQ: 'See also xXSephirothXx, Part 7 (disputed).' It's the only time I've cited someone I disagree with. It's a compliment. Please take it as one."
+    ],
+    "todd": [
+      "Todd: OurSpace collapses multiple spaces into one. This destroys ASCII art. I'd like to propose a 'pre' tag. Draft proposal (v1.0, 4 pages, flowchart in Appendix B) is attached. -- Gary",
+      "Todd: I've written a Site FAQ for OurSpace (v0.1, 11 sections). Section 1: What is the laptop. Section 2: Please don't unplug the laptop. No reply needed. It's free. It's what I do."
+    ],
+    "ryan": [
+      "Ryan: that was my error, not yours. [4.2b] was a paragraph I did not check. I have mailed you v1.07 on a CD (it says LATEST in Sharpie). Your Lumbridge sign (NO FREE TRIM. DONT TRADE ANY1. ty) is now Figure 3.1 in the Scam Guide. Credited. -- Gary",
+      "Ryan: you counted 41 skulls. It's 42. One is hidden in the 'W.' I'm not telling you which. You are the first person who has ever counted. Thank you for counting. -- Gary",
+      "Ryan: [7.2] THE WILDERNESS. You don't need to be terrified. You need to be prepared. My checklist has 14 items. Item 1: leave your good armor at home. Item 2: leave your pride at home. I think you're ready for items 3 through 14."
+    ],
+    "marcus": [
+      "Marcus: re 'Rule 4b supersedes Rule 4 when I say so.' Per my notes [1.6], an amendment procedure that depends on the author's say-so is not a procedure. It is a mood. I've attached a 2-page memo to Rules v3.2. You may keep it in the drawer. -- Gary",
+      "Marcus: re 'no notes.' Thank you. It is the highest review I have received since v1.0. I have printed it and framed the printout. It hangs next to the dad's email."
+    ],
+    "dmitri": [
+      "Dmitri: [3.2] 'Rush Strategies' rates rush B as 'situational.' Your 61% win rate is acknowledged in [14.0], CREDITS. I ran the numbers: 58.7%, not 61%. You said 'close enough.' It isn't. -- Gary",
+      "Dmitri: confirmed: AWP = $4750. Corrected in Buy Guide v2.1 (see [15.0]: 'Thanks to Dmitri for the price correction'). Your 'new guy gets the AWP once' rule is now [8.1], 'Etiquette.' Credited. -- Gary"
+    ],
+    "sara": [
+      "Sara: re Episode 14. I read it. Section [11.4] stands. I have added an appendix, [A.3], 'Narrative Uses of the Missing Ladder,' and credited you as the only primary source. -- Gary",
+      "Sara: your series bible is 41 pages and I would call it 'excellent' if it had a table of contents. Please add one. I've drafted one. It is attached. It has 14 entries. The last one is 'Porch.' -- Gary"
+    ],
+    "gus": [
+      "Gus: [7.3] was written about the song, not about you. Please do not take 'endurance, not skill' personally. 'Endurance' is the highest category I have. I only use it for things I respect. -- Gary",
+      "Gus: re your request for 'How to Get Into a Real Band (With a Plastic Guitar).' Draft v0.1 is attached. Section 1: Acquire a real guitar. Section 2: See section 1. -- Gary"
+    ]
+  },
+  "statuses": [
+    "gary is updating a FAQ (v1.07 to v1.08, one typo, 2 hours)",
+    "gary is at 100% in a game he has no plans to write about. (He will write about it.)",
+    "gary has added a table of contents to his table of contents.",
+    "gary has received an email that begins 'you are wrong.' he has checked. he is not. he is drafting a polite reply (v1.0, 3 pages).",
+    "gary is aligning an ASCII header. one space off. this will take until 3 AM.",
+    "gary's mom has brought a sandwich. updating the Credits.",
+    "gary submitted v2.3 of the RuneScape Scam Guide. section 3.1: free armor trimming does not exist.",
+    "gary has received 3 emails citing section [4.2b]. it was removed in v1.05. it was wrong. he replied to all three with the corrected section. he is not annoyed. (he is a little annoyed.) (at himself.)",
+    "gary finished a guide for his cousin. title: 'Danny's Guide to Level 3-2 (v1.0).' length: 6 lines. it is his favorite."
+  ],
+  "bulletins": [
+    {
+      "subject": "RULES FOR EMAILING ME (v1.04)",
+      "body": "[1] Check the FAQ first. [2] Check the Table of Contents. [3] Check the Index. [4] If still stuck, send an email. [5] The subject line must include the game and the section. [6] 'help' is not a subject line. [7] I answer within 48 hours. [8] 'You are wrong' is allowed if you cite a source. [9] 'Where is X' see [3.1]. [10] Thank you for reading. I get 14 emails a month. I read all of them. I am not complaining. I am simply pointing out that sections 1 through 3 exist."
+    },
+    {
+      "subject": "WANTED: CORRECTIONS (credit in the document, I promise)",
+      "body": "Looking for errors in: FF7 FAQ (v2.2), Melee Frame Data (v3.1), Sims 2 FAQ (v1.03), CS 1.6 Buy Guide (v2.1), RuneScape Beginner's Guide (v1.07), RuneScape Scam Guide (v2.3), Guitar Hero II Expert Notes (v1.04). If you find an error, send: (a) the section number, (b) the error, (c) a source. I will fix it and put your name in the Credits. It's the only reward I can offer. I'm told it's also my best one."
+    },
+    {
+      "subject": "SITE FAQ FOR OURSPACE (DRAFT v0.1)",
+      "body": "[1.0] What is OurSpace? A place for friends. [1.1] Who runs it? Todd. [1.2] Where is the server? Under Todd's bed (a laptop). [1.3] Is that all right? Todd says yes. [1.4] What happens if the laptop is unplugged? Everything. [2.0] What is a Top 8? A ranked list of people. Do not take rank personally. [2.1] Why is Brittany in position 1 on 11 pages? Unknown. [3.0] What do I do if my page is broken? Tell Todd. Gently. [4.0] What is [4.2b]? An old mistake of mine, since fixed. Please see the RuneScape guide, v1.07."
+    }
+  ],
+  "pcComments": [
+    "[IMAGE REVIEWED] Composition: 8/10. Lighting: 7/10. Subject: [REDACTED]. Notes: none. (I have notes.)",
+    "Resolution detected: 640x480. Acceptable. See [5.1], 'Image Standards.'",
+    "NOTE: this picture is crooked. I've checked it against a level. I approve.",
+    "TIP: smiling in a photo is a Gold Chocobo move. Rare, effective, underused.",
+    "[SPOILER] I like this picture.",
+    "File size noted: small. Doug would like it too."
+  ],
+  "dmSeed": [
+    {
+      "text": "[WELCOME] Hello. I'm Gary. I write walkthroughs (FF7, Melee, Sims 2, others). If you're ever stuck in a game, a room or a conversation, I have a document for it. It's probably 40KB. Start at [1.0]. -- Gary"
+    },
+    {
+      "text": "P.S. I answer every message within 48 hours. If it's been 47, I'm drafting. -- G"
+    }
+  ],
+  "dms": [
+    "Walt (grandpa_walt) asked me to write an FAQ for his Buick. I'm at v0.4. Contents: 1. Starting. 2. Stopping. 3. The Radio (Rangers only). 4. The Glove Box (maps, flashlight, 11 pens). 5. Sounds the Buick Makes (see Appendix). He sent a picture of the dashboard. I've labeled every light. I have never been this happy.",
+    "Ryan told me a friend of his was hit by 'free armor trimming' last Thursday. v1.04 again, a cousin's copy. I burned the friend a CD of v1.07. It says LATEST in Sharpie. It's in the mail. I burned 3 more in case. I know how that sounds. There is one in my drawer for the next kid.",
+    "Got an email today. A dad. He and his son were stuck on the Water Temple for two weeks. They beat it using my section 6. He wrote: 'my son cheered. I didn't know he could.' I have nothing to add. I printed it. It's above my monitor. I read it when I get an email that says 'you are wrong.'",
+    "My mom has a rule: no FAQ after 10 PM. She taped it to the door. I had 3 sections of FF7 left to proof. I read them by flashlight. I am not a rebel. I'm a documentarian.",
+    "My cousin Danny (7) asked me for a guide to level 3-2. I said sure. He said 'can it be short.' I said how short. He said 'the shortest.' It's 6 lines. It's the best thing I've written. v1.0. No errors. Only credit: Danny. I'll keep it.",
+    "I found my FF7 FAQ on LimeWire. Labeled 'britney_spears_hit_me.mp3.' 214 downloads. Larry says it's the most popular file in his shared folder. I am trying to be angry. I am also trying to work out what 214 readers is. I think it's my biggest audience ever.",
+    "I aligned an ASCII header at 2:58 AM. One space. That is the difference between art and a mistake. I don't expect anyone to notice. That's what makes it correct.",
+    "Danny asked me to put sound effects in the Water Temple section. I explained that it's ASCII. He said 'then do it in ASCII.' I've added WHOOSH and SPLASH in 7 places. It's the best section now. I'm credited as the guy who typed it."
+  ],
+  "blog": [
+    {
+      "title": "FAQ: How to Write a FAQ (v1.2)",
+      "date": "Sep 25 2026 3:10 AM",
+      "mood": "v1.2 (stable)",
+      "body": "[1] Play the game to 100%. Not 99. [2] Take notes in order. [3] Write the table of contents first. It's a promise. [4] Every section gets a number. If it doesn't have a number it isn't a section, it's a feeling. [5] 79 columns. No exceptions. [6] Test the guide on someone who has never played. For me that's Danny. [7] When Danny gets bored, cut it. [8] Put a Credits section at the end. Longer than you think. [9] Version everything. You will find an error at 3 AM. [10] Remember that on the other end somebody is stuck in a room, scared of the next one, and you've been there. That's [10]. The rest is formatting."
+    },
+    {
+      "title": "Section 4.2b: What Happened (v1.0)",
+      "date": "Sep 13 2026 11:48 PM",
+      "mood": "honest",
+      "body": "In v1.04 of my RuneScape guide there was one paragraph, 4.2b. It said trimmed armor was offered free by friendly players. I got it from a forum post. I did not check it. It was a scam. I found out when Ryan, 14, emailed to say he'd lost his armor, very politely, and that he was still on v1.04 and not mad. I deleted the paragraph that night. That's v1.05. Then I wrote the Scam Guide. Now every document begins: every claim has a source, and when it doesn't, it says so. People still cite 4.2b. Old copies are out there, being wrong in the dark. I don't mind being cited. I mind that I'm not in the room to stop them. So I answer every email. To be continued (v1.1)."
+    },
+    {
+      "title": "My Inbox: a retrospective (v1.0)",
+      "date": "Aug 20 2026 9:57 PM",
+      "mood": "grateful",
+      "body": "Statistics since v1.0. Emails received: 212. Thank-yous: 190. 'Where is X': 14. 'You are wrong': 7. Of those 7, three were right and I thanked them. Two were rude and I thanked them anyway. Two were Wes. I answer every one within 48 hours. People ask why. It's because the one I can't forget came from a dad whose son was stuck on the Water Temple. They finished it together. He wrote that his boy cheered. I'm 18 and I've never made anyone cheer. I think that's what the 300KB is for. Not the ASCII. Not the version numbers. Somebody sits next to a person who's stuck and says: left, then up, you're nearly there."
+    }
+  ],
+  "survey": {
+    "title": "THE FAQ WRITER'S SURVEY (v1.0) (answers in order)",
+    "qa": [
+      [
+        "Name:",
+        "Gary. gamefaqs_gary. Author, FAQ v1.07."
+      ],
+      [
+        "Games you've completed to 100%:",
+        "41. Documented: 12. Planned: 6."
+      ],
+      [
+        "Longest FAQ you've written:",
+        "FF7 (312KB). 3 months. My mom brought 61 sandwiches (counted)."
+      ],
+      [
+        "Favorite ASCII character:",
+        "'#'. It's a hash. It's load-bearing."
+      ],
+      [
+        "Shortest FAQ you've written:",
+        "Danny's Guide to 3-2. 6 lines. My favorite."
+      ],
+      [
+        "Worst email you've received:",
+        "'Your FAQ is garbage.' I replied 'Thank you for your feedback.' He replied 'what.' I replied 'Section 0.3.'"
+      ],
+      [
+        "Best email you've received:",
+        "The dad. I do not share it. I have it."
+      ],
+      [
+        "Favorite number:",
+        "1.07. The first version with no typos. It lasted 11 hours."
+      ],
+      [
+        "What are you proudest of:",
+        "The Credits section. 211 names. It's the longest part."
+      ],
+      [
+        "Biggest regret:",
+        "4.2b. Not the deleting. The writing."
+      ],
+      [
+        "Dream:",
+        "A FAQ with zero corrections. (I know. I know.)"
+      ],
+      [
+        "One sentence about yourself:",
+        "I write instructions so that nobody has to go into the next room alone."
+      ]
+    ]
+  }
+}

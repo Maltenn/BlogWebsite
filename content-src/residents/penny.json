@@ -1,0 +1,287 @@
+{
+  "id": "penny",
+  "name": "plur_penny",
+  "tag": "PLUR!!! ★ bracelets to the elbow ★ blue raspberry slushie in hand ★ wanna trade??",
+  "avatar": "assets/avatar_penny.gif",
+  "gender": "Female",
+  "age": 16,
+  "hometown": "Lexington, OH (home of the Gas-N-Go with the GOOD slushie machine!!!)",
+  "loc": "the Rollerdome snack bar, booth 4 (brain freeze in progress)",
+  "zodiac": "Leo (the sparkly one!!!)",
+  "status": "Single (but i love EVERYONE!!!)",
+  "hereFor": "Friends, Trading kandi, Dance partners (all of u!!!)",
+  "mood": "ELECTRIC BLUE (brain freeze)",
+  "lastLogin": "Oct 4 2026 11:20 AM",
+  "theme": {
+    "bg": "#1537d6",
+    "fg": "#ffffff",
+    "accent": "#7df9ff"
+  },
+  "bgTile": "assets/tiles/tile_stars_neon.png",
+  "blogTitle": "kandi diaries!!! (tutorials, trades, brain freeze reports)",
+  "about": "HI!!! i'm penny!!! i make kandi (BRACELETS) and i wear ALL OF THEM. left arm 38, right arm 31, i counted this morning, the left is WINNING!!! PLUR means Peace Love Unity Respect and it's also the trade handshake: you make a heart with your hands, you slide a bracelet onto their wrist, and you say one nice thing before you let go. i go to every TEEN NITE at the Rollerdome with glowsticks and a blue raspberry slushie (i keep a spreadsheet of the best machines in 4 counties, the Gas-N-Go on Route 30 is a 9/10!!!). my mom's rules: home by 11, glowsticks stay in the glove compartment while the car is moving, and NO brain freeze in the car (it's a safety thing).",
+  "aboutMore": "(the secret part!!!) every few weeks i make a bracelet and leave it on a locker for somebody who looks like they're having a bad Monday. no note, just the bracelet. 31 so far. nobody knows it's me. i watch from the water fountain and scream silently into my sleeve. last week a boy wore his to gym class. he'll never know it's me and i'm NEVER telling and it's the best thing i do!!!",
+  "meet": "Who i'd like to meet: whoever invented blue raspberry (is it even a berry???). a DJ who will play 169 bpm for a WHOLE night. the people at the glowstick factory (i have SO many questions). and everybody who has ever stood at a dance with their arms crossed, so i can hand you a bracelet and tell you ur doing great!!!",
+  "interests": {
+    "General": "kandi (pony beads, letter beads, elastic cord, 4 spools!!!), blue raspberry slushies, glowsticks (green for spelling, pink for hugging), trading, the Rollerdome, TEEN NITE (12 in a row!!!), sorting beads by color and then by mood, brain freeze (i don't mind), hugs",
+    "Music": "happy hardcore (169 bpm AND a piano!!!), eurodance, Darude, Eiffel 65 (it's literally my slushie), Daft Punk, Scooter, Cascada, DJ Sammy (nikki says the 1.5x one is better), and the TEEN NITE mix (it's mostly top 40 but i bring my own CD-R and he plays ONE song!!!)",
+    "Movies": "Tron (the GLOW!!!), Save the Last Dance, Bring It On, Spy Kids 3-D (the glasses are basically kandi), Finding Nemo (so much blue!!!)",
+    "Television": "Totally Spies, Lizzie McGuire reruns, TRL (the countdown!!!), Teen Titans, and Cartoon Network at 6 AM (that's when i make bracelets)",
+    "Books": "The Rainbow Fish (still undefeated), Charlotte's Web (Wilbur is a bracelet person), the Big Book of Bead Patterns from the library (it's a kids' craft book but it's my bible), and the back of the slushie cup (the fun facts!!!)",
+    "Heroes": "my mom (she's strict but she's RIGHT!!!), Ruth at the Gas-N-Go who always says 'blue again?', the girl in the parking lot who taught me the handshake when i was 12, whoever invented elastic cord, anybody who has ever worn a bracelet i made to a place where they weren't sure they belonged"
+  },
+  "song": {
+    "name": "Blue (Da Ba Dee)",
+    "artist": "Eiffel 65",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/5c/2a/4f/5c2a4f09-ac01-be90-d6b2-a0b94bd82b7e/mzaf_3916619128344794117.plus.aac.p.m4a",
+    "pattern": [
+      0,
+      3,
+      7,
+      3,
+      0,
+      3,
+      7,
+      10
+    ],
+    "bpm": 128
+  },
+  "decor": [
+    "assets/deco_rainbow_bar.gif",
+    "assets/deco_sparkle_bunny.gif",
+    "assets/deco_new_blue.gif"
+  ],
+  "friends": [
+    "nikki",
+    "kevin",
+    "sven",
+    "min",
+    "vince",
+    "meg",
+    "evan",
+    "ember",
+    "skip"
+  ],
+  "wall": [
+    {
+      "from": "aaron",
+      "text": "Penny, I wore the bracelet you made me ('SOMEONE LISTENS') to the open mic and I want you to know I didn't cry until the second chorus. That's a record. This isn't about a girl. Well, it kind of is. It's about you being nice. That's all.",
+      "time": "Oct 3 2026 8:14 PM"
+    },
+    {
+      "from": "nikki",
+      "text": "PENNY i nightcored a happy hardcore track at 1.5x and it's 254 bpm and my speakers made a sound i've never heard. i'm NOT scared. i'm AMAZED. sending it. UNTZ UNTZ. also my subwoofer has a bracelet on it now. thank u",
+      "time": "Oct 2 2026 9:20 PM"
+    },
+    {
+      "from": "kevin",
+      "text": "penny the glow tape u gave me for the pad is INSANE. at tilt the arrows glow a little now. the manager said 'that's not allowed' and looked at it for a minute and said 'it's fine.' u are a legend. my legs are two bracelets (tired)",
+      "time": "Sep 30 2026 6:03 PM"
+    },
+    {
+      "from": "sven",
+      "text": "Penny. I have counted: in Sweden we have also this thing, but we call it 'armband.' It is not a good name. I have worn yours for 9 days, also in the shower. It is bright blue. Eurodance forever. Please explain 'brain freeze' once more. I still do not understand.",
+      "time": "Sep 29 2026 4:40 PM"
+    },
+    {
+      "from": "ember",
+      "text": "penny thank you for the bracelet. it says IT GETS BETTER in black beads. our drummer is a machine and it got better anyway. we wear it on the mic hand. we are crying a little. this is the good kind. xFadingEmberx",
+      "time": "Sep 28 2026 10:11 PM"
+    },
+    {
+      "from": "min",
+      "text": "penny ur bracelet was on my keyboard when i woke up. i fell asleep in henesys again. i think the bracelet was the only thing keeping my hand on the mouse. it says KEEP GOING in pink beads. i did. level 71. thank u",
+      "time": "Sep 27 2026 7:52 AM"
+    },
+    {
+      "from": "vince",
+      "text": "PENNY!!! u were #1 at the door at TEEN NITE for the 12th time in a row!!! that's a RECORD!!! u get a free slushie coupon, first 50 people free, u are 1 of 1!!! next month is gonna be HUGE!!!",
+      "time": "Sep 26 2026 1:05 AM"
+    },
+    {
+      "from": "meg",
+      "text": "PENNY!!! PONY BEADS!!! they're called PONY BEADS!!! u've been making bracelets out of PONIES this whole time!!! i drew u as a rainbow pony w/ kandi on all four legs!! it's in ur inbox!! the hooves took forever!!",
+      "time": "Sep 23 2026 5:25 PM"
+    }
+  ],
+  "replies": [
+    "OMG!!! thank u!!! that's the nicest thing i've heard since the slushie machine said 'ready'!!!",
+    "PLUR!!! (peace love unity respect!!! all four!!! at once!!!)",
+    "ok but did u know u can make a bracelet in 11 minutes??? i'm making u one RIGHT NOW",
+    "aww!!! i'm putting that on a bracelet!!! (it won't fit!!! i'll try!!!)",
+    "!!!!! that made my whole day blue (that's good) (blue is good)",
+    "hugs!!! (invisible ones!!! but they count!!!)",
+    "hahaha!!! i'm going to remember that at TEEN NITE, u'll see!!!",
+    "YES!!! also did u eat today??? i have a granola bar in my bag and 3 bracelets",
+    "aaa brain freeze!!! hold on!!! ok i'm back!!! what were we saying!!!",
+    "ok that was beautiful and now i'm making u a bracelet about it"
+  ],
+  "thanksAdd": "OMG THANK U!!! welcome to the PLUR family!!! (it's me, my mom, and about 140 people i've given a bracelet to!!!) the handshake is: heart with ur hands, bracelet on the wrist, one nice thing. i'll go first: ur page is NICE. ur turn!!! also i'm making u a bracelet. it's blue. i don't have a choice. PLUR!!!",
+  "ambient": [
+    "just made bracelet #214 of the summer!!! it says DANCE ANYWAY. i'm going to leave it somewhere. don't tell. i said DON'T TELL!!!",
+    "the Gas-N-Go blue raspberry machine got a new flavor pack!!! it's STRONGER!!! my tongue is the color of a swimming pool!!! 10/10!!!",
+    "PSA: glowsticks do NOT glow longer if u put them in the fridge!!! i tested it 6 times!!! the fridge is just cold!!! my mom is NOT happy!!!",
+    "if ur at a dance and standing by the wall, u are my favorite person there and i'm coming over right now. this is a threat (a nice one)",
+    "formula for the perfect bracelet: 40 pony beads, 1 letter bead per feeling, and a heart in the middle that nobody asks about. the heart is for whoever needs it!!!"
+  ],
+  "saltyDm": "oh!!! u denied me!!! that's OK!!! totally fine!!! i'm gonna make u a bracelet anyway and leave it on ur page (virtually) (it says MAYBE LATER in white beads) (that's a nice one) no hard feelings!!! hugs!!! PLUR!!!",
+  "keywords": {
+    "kandi": "KANDI!!! it's bracelets made of pony beads!!! i have 38 on my left arm and 31 on my right!!! u can trade them!!! the one rule is u have to give one to somebody who has none!!! that's the whole thing!!!",
+    "slushie": "blue raspberry!!! the only flavor!!! cherry is too red, grape is too sad, and the mixed one is just drama!!! the Gas-N-Go on Route 30 is a 9/10!!! the 1 point off is for the lid!!!",
+    "glowstick": "TUTORIAL!!! 1) crack it with ur thumbs not ur teeth 2) shake it 3 times (30 is too much!!!) 3) green = spelling, pink = hugging, blue = slushie 4) tie two together and u have a DOUBLE and u are royalty!!!",
+    "plur": "PEACE LOVE UNITY RESPECT!!! four words and i know them all by heart!!! the handshake is a heart with ur hands + a bracelet on the wrist + one nice thing!!! u can't skip the nice thing!!!",
+    "bpm": "169!!! that's the happy hardcore number!!! it's the speed of ur heart when the DJ plays ur song!!! nikki says she can make it 254!!! i said NO!!! i said YES!!! i said let me hold the glowsticks!!!",
+    "brain": "brain freeze is just ur head saying hi!!! hold ur tongue to the roof of ur mouth and count to 7!!! i've done it 400 times!!! it's the only thing that works!!! (the other thing is waiting)"
+  },
+  "banter": {
+    "nikki": [
+      "nikki NO WAY 254 bpm???? i shook the glowsticks at 254 and my arm has a rhythm of its own now!!! send me the whole track!!! i'll put a bracelet on it (the file) (virtually)!!!",
+      "nikki challenge: nightcore the sound of a slushie machine!!! the slurpy noise!!! at 1.5x it's a DOLPHIN!!! i bet u!!! PLUR!!!"
+    ],
+    "kevin": [
+      "kevin!!! i made u glow tape for the DDR arrows!!! GREEN for left, PINK for right, BLUE for the ones u don't know yet!!! u need color!!! u need joy!!! u need to blink!!!",
+      "kevin ur sweatband is the best thing at the arcade!!! i made a matching bracelet!!! it's black n white and has ur initials!!! it's a SWEATBRACELET!!! u can wear both!!! PLUR!!!"
+    ],
+    "sven": [
+      "SVEN!!! u are the only other person who thinks eurodance and happy hardcore are the same thing!!! we argued for 40 minutes and then we both said 'oh it's the BPM' and then we hugged!!! best day!!!",
+      "sven the FIKA bracelet is DONE!!! (41 beads!!! the F glows!!! there's a MOOSE!!!) the next one is VEMOD, in blue and gray beads, because u said it's a sweet kind of sad and i looked it up and i AGREE!!! PLUR!!!"
+    ],
+    "vince": [
+      "VINCE!!! u said TEEN NITE is gonna be HUGE and i believe u!!! i've been to all 12!!! i'm the one in the blue wig!!! (ok it's a hat) (ok it's a headband) (ok it's me)",
+      "vince can u tell the DJ to play one slow song for the kids by the wall??? just ONE!!! i'll handle the glowsticks!!! it'll be HUGE (in a small way!!!)"
+    ],
+    "meg": [
+      "MEG!!! PONY BEADS!!! that's literally what they're called!!! u are the best artist AND the best name for beads!!! i'm making u a bracelet with 12 pony beads (a DOZEN PONIES!!!) and a horseshoe charm!!!",
+      "meg i love the rainbow pony!!! it has kandi on all 4 legs!!! i counted 38 and 31 on the front ones!!! it's me!!! it's a horse that's me!!!"
+    ],
+    "evan": [
+      "EVAN!!! u wore it!!! UNDER the X!!! it's the one in black beads w/ a red X in the middle!!! i've been SO happy since!!! the R in PLUR is RESPECT and u are the most respectful person i know!!! PLUR!!!",
+      "evan ur hardcore is not happy hardcore but it's still hardcore!!! it's 7 minutes of meaning!!! that's like 3 songs at 169 bpm!!! we're the same!!! (we're not the same) (we're friends)"
+    ],
+    "aaron": [
+      "AARON!!! the bracelet says SOMEONE LISTENS!!! it's TRUE!!! i listen!!! to everything!!! even the 7 minute ones!!! also the toaster song made me cry and i'm not even sure what a toaster IS to u!!! it's beautiful!!!",
+      "aaron hi!!! i'm making a bracelet for every song title!!! HANDS IN MY POCKETS is yellow, TRACK FOUR SKIPS is silver, SPOT NUMBER SEVEN is pink!!! u can wear all 3 on stage!!!"
+    ]
+  },
+  "statuses": [
+    "penny is at the Gas-N-Go!!! the blue machine is FULL!!!",
+    "penny just made bracelet #214!!! she is not stopping!!!",
+    "penny has a brain freeze (it's ok) (it's fine) (it's... ok it's over!!!)",
+    "penny is teaching a glowstick tutorial in the school hallway!!! 6 kids!!! 1 teacher!!! 0 problems!!!",
+    "penny is leaving something on a locker. she can't say what. shhh!!!",
+    "penny is at TEEN NITE (the 13th!!!) (a streak!!!) (a lifestyle!!!)",
+    "penny is hugging someone in the hallway!!! (they said yes!!! always ask!!!)"
+  ],
+  "bulletins": [
+    {
+      "subject": "GLOWSTICK TUTORIAL (read this before Saturday!!!)",
+      "body": "OK EVERYBODY!!! 1) crack it with ur thumbs, NOT ur teeth (it's a safety thing AND a taste thing) 2) shake it 3 times (not 30!!! 30 is too much!!!) 3) colors: green = spelling words in the air, pink = hugging, blue = slushie, yellow = emergency 4) two glowsticks tied together is a DOUBLE (u are royalty) 5) after the dance, glowsticks go in the garbage, NOT the street (the street is not a trash can!!!) 6) share!!! if somebody has none, hand them yours!!! that's the whole thing!!! PLUR!!!"
+    },
+    {
+      "subject": "KANDI TRADE before TEEN NITE (Friday, booth 4, snack bar, 8:30!!!)",
+      "body": "BRING: 5+ bracelets, 1 friend, 1 nice thing to say. I'LL BRING: a shoebox of 40 (all different!!!), a bag of blue raspberry sour belts, and a very sticky smile. RULES: 1) trade, don't sell 2) if somebody has none, give them one 3) say the nice thing OUT LOUD 4) no wearing a bracelet that has somebody else's name on it. i'll know. i always know. PLUR!!!"
+    },
+    {
+      "subject": "THE LOCKER BRACELET PROJECT: a thank-you (it's not me!!!)",
+      "body": "to whoever keeps leaving bracelets on lockers at our school (it's NOT me!!!) (it's totally not me!!!) THANK U!!! a boy in my homeroom wore his to gym class and he looked SO happy!!! i've counted 31 of them (not that i'm counting!!!) (i'm not the one who's counting!!!). to whoever it is: u are the best person at our school!!! please keep going!!! (it's not me!!!)"
+    }
+  ],
+  "pcComments": [
+    "OMG!!! this pic is so GLOWY!!! i'm hanging it on my wall (in my head)!!!",
+    "u look SO happy!!! i can tell ur about to dance!!! do it!!! PLUR!!!",
+    "this is a 10/10!!! also i'm making u a bracelet to match the color of ur shirt!!!",
+    "can i borrow ur smile??? i'll return it with a slushie!!!",
+    "AAAA the background!!! is that a rainbow??? it's a rainbow!!! it's a sign!!!"
+  ],
+  "dmSeed": [
+    {
+      "text": "HI!!! it's penny!!! (plur_penny!!!) THANK U for adding me!!! i make bracelets (kandi!!!) and i already made one with ur name on it!!! (M-A-L-T-E-N!!!) (it's 6 letters, it fits!!!) can i give it to u at the next TEEN NITE??? it's blue. everything's blue. PLUR!!!"
+    },
+    {
+      "text": "also!!! if u ever want a slushie recommendation i'm ur person!!! 4 counties!!! i have a SPREADSHEET!!!"
+    }
+  ],
+  "dms": [
+    "malten!!! i did the math: if i make 3 bracelets a day i'll have 1,095 by next year!!! my mom says that's 'a lot of beads.' i said 'it's a lot of friends.' she said 'it's both.' she's right!!!",
+    "TIP: if ur ever at TEEN NITE and the DJ plays something u don't know, do the bracelet handshake with the person next to u!!! it works on EVERYONE!!! i did it with a security guard once!!! he gave me a thumbs up!!!",
+    "Ruth at the Gas-N-Go said 'blue again?' today and i said 'always!!!' and she gave me a SMALL one for free!!! i said 'it's not small, it's LARGE in spirit!!!' she laughed!!! best day!!!",
+    "i got a brain freeze in math and the teacher asked if i was ok and i said 'it's just the slushie!!!' (it was lunch, it's allowed) and the whole class said 'oh' and then like 5 of them wanted one!!! it's a MOVEMENT!!!",
+    "malten do u have a favorite color??? i'm making u a bracelet!!! don't say black!!! black is a mood!!! (it's a color) (it's a good color) (but make it blue!!!)",
+    "my mom said i can host a glowstick night in our basement but there's a list!!! no strobe!!! (greg's dad's rule!!! i LIKE it!!!) no more than 12 people!!! no brain freeze on the stairs!!!",
+    "my little cousin (she's 7) calls my arm 'the rainbow arm' and she wants one!!! i'm making her a baby one (12 beads)!!! it'll be her first kandi!!! i'm so proud i could cry!!! (i cried)",
+    "i've given away 140 bracelets and not gotten many back!!! but evan sent a thank-you note, aaron wrote me a song title ('Seven Beads, One of Them Blue'), and ember sent a guitar pick with a tiny heart on it!!! i keep them in a shoebox marked MINE!!!"
+  ],
+  "blog": [
+    {
+      "title": "TEEN NITE #12 (the garage first, THEN the Rollerdome!!!)",
+      "date": "Sep 26 2026 12:20 AM",
+      "mood": "GLOWING",
+      "body": "ok so FRIDAY. first Greg's garage (his dad ruled glowsticks are NOT a strobe!!! it's in the binder now!!!) then my mom drove me to the Rollerdome for TEEN NITE #12. SCORE: 9.5/10 (the .5 is for the floor being sticky). the DJ played 14 songs i knew, 1 i didn't, and 1 Cotton Eyed Joe (not mine but the whole rink loved it!!! sven was SO proud). Vince said 'first 50 people free' and 38 came so we're 12 short of HUGE!!! the best part: a girl was standing by the wall with her arms crossed and i handed her a bracelet and said 'ur doing great' and she said 'i don't dance' and i said 'me neither, i just stand here and glow' and she SMILED. the WHOLE smile!!! then she walked onto the floor (5 steps) and did a little spin!!! that's the whole review!!! that's why i go!!! my mom picked me up at 10:58!!! PLUR!!!"
+    },
+    {
+      "title": "HOW TO TRADE KANDI (the handshake, step by step!!!)",
+      "date": "Sep 5 2026 4:45 PM",
+      "mood": "TEACHY!!!",
+      "body": "1) find a person!!! (any person!!! even the one who looks scared!!!) 2) say 'PLUR!!!' (it's a greeting AND a spell) 3) make a heart with BOTH hands, fingertips touching, so the middle is a heart-shaped hole 4) slide the bracelet down through the heart onto their wrist (the slide makes it official!!!) 5) say one nice thing OUT LOUD, and u can't say the same nice thing twice in one day (that's the rule) 6) they give u one back, OR they say 'i'll make u one' and then they DO. no skipping!!! 7) hug (if they said yes) (if not, high five!!!). i learned it from a girl in a parking lot when i was 12. she had bracelets all the way to her elbow and i thought she was the coolest person alive. now i'm her!!! (i never got her name!!!) (if ur reading this, HI!!!)"
+    },
+    {
+      "title": "BLUE RASPBERRY: THE RESULTS (a very serious survey)",
+      "date": "Aug 14 2026 3:10 PM",
+      "mood": "SCIENTIFIC!!!",
+      "body": "after 40 days and 4 counties, i present the rankings!!! GAS-N-GO ON ROUTE 30: 9/10. perfect ice size, fast pump, the 1 point off is for the lid that never fits!!! STOP-N-SHOP IN SHELBY (skip said it was good and he was RIGHT): 8/10, the cashier gave me a free refill because i said 'ur machine is a work of art!!!' THE ROLLERDOME: 7/10, more of a puddle but it's EMOTIONAL because it's where TEEN NITE is. THE DAIRY DIP: 6/10, it's soft serve in a trench coat. THE MALL FOOD COURT: 5/10, the 'blue' is cherry in disguise and i can tell!!! methodology: 1 large each, 3 sips, tongue check, brain freeze check. my mom has asked me to stop 'researching.' i said it's called a hobby!!! she said it's called a lot!!!"
+    }
+  ],
+  "survey": {
+    "title": "THE ULTIMATE KANDI KID SURVEY!!! (copy n paste!!!)",
+    "qa": [
+      [
+        "name:",
+        "Penny (plur_penny!!!) (PLUR = Peace Love Unity Respect!!!)"
+      ],
+      [
+        "bracelets on left arm:",
+        "38!!! (as of Sunday!!!)"
+      ],
+      [
+        "bracelets on right arm:",
+        "31!!! i'm working on it!!!"
+      ],
+      [
+        "favorite color:",
+        "BLUE (raspberry)"
+      ],
+      [
+        "favorite glowstick color:",
+        "green!!! it's best for spelling!!!"
+      ],
+      [
+        "slushies per week:",
+        "7!!! (my mom says it's a lot!!! i say it's a lifestyle!!!)"
+      ],
+      [
+        "fastest bpm you've danced to:",
+        "198!!! my legs have not forgiven me!!!"
+      ],
+      [
+        "what's your handshake:",
+        "heart, slide, nice thing, hug (if allowed)!!!"
+      ],
+      [
+        "worst brain freeze:",
+        "the one at the 4th of July!!! 11 seconds!!! i saw colors!!! i'd do it again!!!"
+      ],
+      [
+        "do u have a secret:",
+        "yes!!! it's blue!!! (it's not about slushies!!!) (it's a different blue!!!) (i can't say!!!)"
+      ],
+      [
+        "who would u give a bracelet to if u could give it to anyone:",
+        "everybody at our school who looks like they need one!!! so about 40 kids!!! i'm working on it!!!"
+      ],
+      [
+        "describe urself in one sentence:",
+        "i'm penny and i'm covered in beads and i love u (yes u!!!) (the one reading this!!!)!!!"
+      ]
+    ]
+  }
+}

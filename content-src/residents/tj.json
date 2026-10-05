@@ -1,0 +1,225 @@
+{
+ "id": "tj",
+ "name": "ninja_tj",
+ "tag": "pirates 507. ninjas 499. unsolvable 1. the poll is open. i dont vote. i count.",
+ "avatar": "assets/avatar_tj.gif",
+ "gender": "Male",
+ "age": 15,
+ "hometown": "Westerville, OH (tally headquarters: the basement, next to the furnace)",
+ "loc": "the basement desk, 6 feet from the furnace (warm, the ledger likes it)",
+ "zodiac": "Gemini. two sides. (coincidence. filed as coincidence.)",
+ "status": "Single (neutral)",
+ "hereFor": "Friends, Respondents, Data",
+ "mood": "counting",
+ "lastLogin": "Oct 4 2026 6:41 PM",
+ "theme": {
+  "bg": "#1a1a1d",
+  "fg": "#f2e9d0",
+  "accent": "#e0b84c"
+ },
+ "bgTile": "assets/tiles/tile_checker.png",
+ "blogTitle": "the ledger (open to the public) (do not touch the clipboard)",
+ "about": "hi. tj. i run the poll. u know the one. pirates or ninjas. since 7th grade ive asked 1,014 people (incl. a substitute, a mailman, and a dog, invalid) and the tally stands at pirates 507, ninjas 499, unsolvable 1. i have never voted. a pollster who votes is just a guy with an opinion. the rules are posted: one vote per person per season, no shadow clones, no 'both,' no zombies (different poll), no changing it after lunch. everything goes in the ledger, a green hardcover from the office aisle at kroger, volume 3. i also own a katana. it opens mail. it says FIRST NATIONAL BANK on the handle. i know. i will explain.",
+ "aboutMore": "how it works: i ask 1 question. u get a minute. i dont lead the witness. if u ask 'which would u pick' i say 'noted.' if u ask 'whos winning' i say pirates by 8. ninjas say 8 is inside the margin of error. i said i didnt calculate one. they said 'thats the point.' the best part is the second column: reason given. people say 'a ninja can be in a tree' and 'pirates get a parrot' and 'because it is.' i write all of it down. i know more about people from the reason column than from anything they say at lunch.",
+ "meet": "Who I'd like to meet: one (1) actual ninja (i know. i know what i told ben. thats why im asking nicely) and one (1) actual pirate in the same room with a clipboard (randy wants this too, we are drafting the paperwork). a statistician. whoever picked the gift at first national for my pop-pop 38 years in a row, so i can say thank u. and whoever hasnt voted yet. u. u havent voted.",
+ "interests": {
+  "General": "the poll, the ledger, clipboards (i own 3), sharp pencils (#2, both ends), sorting the family mail (my job, $1 a week), columns, the sound a letter opener makes when it goes in right, ben's training (as clerk), margins of error, not voting",
+  "Music": "dilemma by nelly (its a two option song, i respect the format), the pirates of the caribbean soundtrack (research), the music from ninja warrior on G4 (also research), whatever derek skates to (he says its a ninja song), the sound of pop-pops adding machine",
+  "Movies": "pirates of the caribbean (3 times, dead man's chest twice, i brought a notepad), the goonies (a pirate map in a basement, thats basically my house), treasure planet, muppet treasure island, the karate kid (ben says it counts for ninjas. ruling: it does not), 3 ninjas (the youngest is a ninja, the other two are brothers), the turtles (do not count. they are turtles. ben disputes this)",
+  "Television": "ninja warrior on G4 (a real obstacle course, no actual ninjas, i log it under 'ninja (disputed)'), samurai jack (a samurai, not a ninja, but i watch it), avatar the last airbender, mythbusters (they TEST things), the price is right (the numbers part), election night coverage (the numbers part, but louder)",
+  "Books": "my ledger (volume 3), the almanac (the census pages), the encyclopedia volumes P (pirates) and N (ninja), both read in full, how to lie with statistics (my aunt gave it to me. i read it twice. i did NOT lie. i checked), a choose your own adventure book (read all 4 ways, havent picked an ending)",
+  "Heroes": "my pop-pop gene (loan officer, 38 years, opens mail like it matters), mr dobbs (7th grade math, first person to say 'thats a good question' about the poll), ben (squad 7 witness, #1 respondent, tries SO hard), randy (the only vote that ever got its own column), the guy who counts the votes on election night"
+ },
+ "song": {
+  "name": "Dilemma",
+  "artist": "Nelly",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/09/fb/c9/09fbc90d-0900-3164-bd6b-dcb3aff01238/mzaf_1722221375269571338.plus.aac.p.m4a",
+  "pattern": [0, 3, 7, 3, 0, 3, 7, 10],
+  "bpm": 84
+ },
+ "decor": ["assets/deco_skull.gif", "assets/badge_anybrowser.gif"],
+ "friends": ["ben", "devon", "derek", "sk8rboi", "randy", "patrick", "hailey", "henry", "marcus"],
+ "wall": [
+  {
+   "from": "derek",
+   "text": "tj i voted ninja. REASON: a ninja lands the trick and nobody sees it. i landed one at the safeway tuesday and nobody saw. same thing. ALSO i submitted a reason for mikes pirate vote: 'wrecked at sea (library stairs).' u kept it even tho it was invalid. best reason in the whole ledger. print it. my gap was bigger",
+   "time": "Sep 26 2026 6:48 PM"
+  },
+  {
+   "from": "randy",
+   "text": "TJ. i voted. i voted 31 TIMES. u counted 1. i accept the system. but i would like it noted that i am the only person who voted UNSOLVABLE and that makes me 100% of unsolvable and THAT is called a MOVEMENT. PIE.",
+   "time": "Aug 20 2026 4:04 PM"
+  },
+  {
+   "from": "patrick",
+   "text": "hi tj. i voted for my rock. he said ninja. he doesn't move. i think that's the reason. is that ok. he also likes pirates for the sea part. he is confused. i love him",
+   "time": "Sep 2 2026 5:15 AM"
+  },
+  {
+   "from": "marcus",
+   "text": "TJ. Re: your Poll Rules (v1). I reviewed them. The poll is sound. Two notes. (1) The 'invalid' column needs a defined cause for each entry. I have drafted definitions (see my wall). (2) Rule 2 contains the name of a specific user. A rule should not have a name in it. Ben has been informed. I have voted: pirates. For order. Thread locked. -- Marcus, Moderator (unofficial)",
+   "time": "Sep 14 2026 8:41 AM"
+  },
+  {
+   "from": "henderson",
+   "text": "TJ - A fine piece of data collection. n = 1,014 is respectable. Two suggestions: record each respondent's grade level, and replace 'the margin of error is large' with an actual number. I have appointed myself neutral observer. No one appointed me. I accept. - Mr. H",
+   "time": "Aug 27 2026 3:22 PM"
+  },
+  {
+   "from": "ben",
+   "text": "tj u left the clipboard on the monkey bars so i did 4 pull-ups next to it and wrote the 4 myself. u can check the handwriting. (it looks like a 4.) (its a 4.) BELIEVE IT",
+   "time": "Oct 1 2026 5:20 PM"
+  },
+  {
+   "from": "whiskers",
+   "text": "Dear Sir, Regarding poll question #14. I decline to answer. Cats do not vote. We observe, and then we leave the room. I note, however, that I have knocked one pen off the sewing table in your honor (trial 115). Please regard that as a form of participation. Respectfully, Mr. Whiskers",
+   "time": "Sep 20 2026 3:12 AM"
+  },
+  {
+   "from": "zorp",
+   "text": "tj. i have considered your poll as a normal human. a ninja avoids detection, which is a skill i admire in a person. i would be a ninja. i mean a human would be a ninja. i am a human. please enter this as the vote of a human. pirates travel by water, which i find upsetting. no reason.",
+   "time": "Jul 29 2026 3:33 AM"
+  }
+ ],
+ "replies": [
+  "noted.",
+  "thats a good reason. ive added it to the reason column",
+  "i cant tell if that was a vote. ill mark it pending. pending is a real column",
+  "interesting. n=1 but interesting",
+  "for the record i have no opinion. for the record that is my opinion",
+  "ok. but which one. (i dont vote. i just ask nicely every time)",
+  "i wrote that down. its on page 31 under 'miscellaneous (good)'",
+  "give me a sec. im sorting the mail. the katana has to be clean first",
+  "the margin of error says u might be right. the margin of error is large",
+  "that is the nicest thing anyone has said to me this quarter. logged"
+ ],
+ "thanksAdd": "request accepted. u are respondent #1,015. i have one question and it is the only question i have ever asked anyone: pirates or ninjas. u dont have to answer now. u can answer at lunch. u can answer in 6 weeks. the ledger waits. u start in the 'pending' column. everybody does. (randy is the exception. randy has his own.)",
+ "ambient": [
+  "mail came at 2:14. 1 bill, 1 catalog for my mom (shoes), 1 letter from the bank for pop-pop (a calendar. they still send it). opened all 3 with the katana. clean cuts. nobody has lost a coupon on my watch",
+  "polled the 8th grade lunch table on a side question: robots vs dinosaurs. 14 to 11 robots. then a kid said 'what about robot dinosaurs' and i had to close the poll. the poll is closed. the kid has a column",
+  "randy has now voted unsolvable 31 times. i counted him once. the other 30 are in a folder called 'randy (enthusiasm).' it is the thickest folder in the ledger",
+  "got a new vote this morning from a sub. pirates. reason: 'they get to go anywhere.' ive never had that reason before. 1,015. i did a small fist pump in the hallway. nobody saw. (ben would say that makes me a ninja. i am a clerk.)",
+  "ben did 4 pull-ups today. i wrote it down and he asked if i was proud. i said 'noted.' i was a little proud. that is off the record"
+ ],
+ "saltyDm": "request denied. noted. for the record im not mad. i will put 'denied' in the margin with a small asterisk and move on. (the asterisk means 'tj would have asked u pirates or ninjas.' its a small asterisk.) if u change ur mind the poll is open. its always open. thats the whole point of it",
+ "keywords": {
+  "pirate": "pirates: 507. top reasons: 'parrot' (41), 'treasure' (38), 'the ship' (29), 'the hat' (24). most surprising: 'because theyre always on vacation.' its in the ledger. page 12",
+  "ninja": "ninjas: 499. top reasons: 'stealth' (62), 'they can climb stuff' (37), 'smoke bombs' (31), 'ben' (11, all ben, none counted). derek says 'a ninja lands the trick and nobody sees it' and thats the best sentence anyone has said about ninjas",
+  "katana": "its a letter opener. i know. (devon told u.) it says FIRST NATIONAL BANK on the handle and it was my pop-pops. he said every man needs 1 sharp thing and 1 thing to open mail with and if ur lucky its the same thing. so. its a katana. in spirit. in the mail",
+  "poll": "the poll: pirates or ninjas. one vote per person per season. no shadow clones, no 'both,' no zombies (different poll). i dont vote. never have. i know thats weird. ill tell u why if ur still here in 10 minutes",
+  "vote": "to vote say 'pirates' or 'ninjas' and a reason. the reason is optional. the reason is the whole point. i have 1,014 reasons. none are the same",
+  "tally": "507 to 499 to 1 (invalid: 7). pirates lead by 8. ninjas say its 'within the margin.' there is no margin. there is only me and a pencil",
+  "ben": "ben is my best witness. #1 respondent and the reason 'shadow clone' is a rule. hes training to be a ninja. im there with a clipboard. i didnt plan it. somebody just has to write down the 4th pull-up"
+ },
+ "banter": {
+  "ben": [
+   "ben. in 3 years of polling nobody has made me write a rule about shadow clones. rule 2 is yours. be proud. also u have 4 pull-ups in the log. 1 more. the pencil is ready. ill write the 5 so big the clipboard hurts",
+   "orange is not stealth. im not arguing. im just noting that i found u at the park from 300 yards without looking. u were the park. also im not squad leader, im the clerk. the squad leader doesnt carry a clipboard. i observe squad 7. from inside it"
+  ],
+  "devon": [
+   "devon ur 'whoever's paying' vote is filed under pending. ur also the only respondent in pending who tried to invoice me. the dibs on the strike ninja expired friday. i counted that as a vote of 'wait.' wait is a real column. ur the only person i know who sells to both sides and i have a name for that and the name is business",
+   "the katana is a letter opener. i know. u said it in front of ben, hes still processing. FIRST NATIONAL BANK on the handle is not a flaw, its provenance. look it up. dont look it up. (thats ur line.) ill sell it for $2 when u can open a bank statement as cleanly as pop-pop. u cant. ive seen u open a booster"
+  ],
+  "hailey": [
+   "hailey. 3 weeks of 'what team' data: 41 asked, 38 teams, 3 'what.' i count 'what' as a team. sample size 3, very loyal. i am not sending the spreadsheet. i am sending a one page summary with a bar chart. 9 bars. 8 are teams. the 9th is 'what.' it is in wildcat red",
+   "table 9 is the most consistent data set i have. 13 people, 11:52 daily, zero absences from the stool. i dont know what it means. i just know its the only table where everybody answers AND the cymbals come in on 6. can i sit there. as an observer. ill bring my own milk carton"
+  ],
+  "derek": [
+   "derek ur reason ('a ninja lands the trick and nobody sees it') is the #1 reason in the ninja column. i read it to 3 people and 3 changed their votes. ur my best recruiter. ur page in the ledger is 2 pages. one page is just the word 'gap'",
+   "i ran 'whose gap is bigger' as a side poll. results: derek 14, mike 14, 'the hose' 3. its a tie. i am not telling mike. tell mike. dont tell mike. i am telling both of u now"
+  ],
+  "sk8rboi": [
+   "mike ur reason for ninja is 'a ninja is a guy who bails and nobody sees.' filed under 'honesty.' its the only reason in the ledger that mentions a camcorder. also sorry about the page where derek's name is in a bigger font. he asked. i said no. its size 12 for everybody. the gap column just looks bigger",
+   "mike u voted ninja at lunch and pirate after school. rule 6. the second one is invalid. derek submitted a reason for it ('wrecked at sea (library stairs)') and i kept it in a folder called 'mike (rail).' its the best reason in the ledger. i dont say which side it helps"
+  ],
+  "randy": [
+   "randy ur 31 votes for unsolvable are in a folder called 'randy (enthusiasm).' its the thickest folder in the ledger. i count u once. i read all 31. #14 had a drawing of a waffle. i think about it",
+   "'unsolvable' is the only vote i ever had to make a whole column for. it has 1 person in it. u. thats 100%. ur winning something. i dont know what. but ur 100% of it. re: ur room with 1 real ninja and 1 real pirate: i am drafting the paperwork. 3 pages. halloween"
+  ],
+  "patrick": [
+   "patrick ur rock voted ninja. i have it as 'rock (ninja) (reason: doesnt move).' its the only reason in the ledger that is also a drawing. i drew a little rock next to it. its my favorite page",
+   "patrick u asked what the poll is FOR. i said 'to know.' u said 'know what.' i said 'who everybody is.' u said 'oh. ok. i know who u are. ur tj.' and i didnt know what to say so i said 'noted.' ive been thinking about it for 4 days"
+  ],
+  "luna": [
+   "luna ur alpha votes ninja bc 'ninjas move like a pack, in silence.' ur beta votes pirates bc 'they have a crew.' its a split decision. the pack is a perfect 50% which is the most scientific thing ive seen all year. tell the pack the ledger has a page for them",
+   "luna ur the first respondent to send me 3 paragraphs. i counted. the 3rd said real wolves would join neither. ive made a column called 'wolves.' it has 1 entry (u). i dont know what ooc means but i respected the format"
+  ],
+  "henry": [
+   "henry rule 3 stands. but u are the second person to ask for a 'both' exception in writing (pop-pop was first, 38 years at a bank, he got nothing). the napkin form is in the ledger. its the only form on a napkin and i respect it",
+   "unsolvable: 1 (randy) plus 1 pending (henry). 'wheeled shoes are neither' is a real reason, i wrote it down. i need u to say it once in person, not in a mall. no, u cant hold the letter opener. u can look at it from the doorway"
+  ]
+ },
+ "statuses": [
+  "tj is sorting the mail. 4 pieces. all opened clean. the katana is back in its drawer",
+  "tj is running a side poll: robots vs dinosaurs (the pirate/ninja poll is still open) (they run in parallel)",
+  "tj is at the park with the clipboard. ben has 4 pull-ups. tj has a headache from the sun and a very sharp pencil",
+  "tj just got a 'pirates' from a lunch lady. reason: 'the hats.' logged",
+  "tj is not voting. tj has never voted. tj would like that on the record. (the record is a green hardcover) (its page 1)",
+  "tj is waiting for the margin to change. it hasnt. pirates by 8. he is on the porch with a pencil",
+  "tj just closed a poll early because a kid said 'what about robot dinosaurs.' the kid is a genius. the kid has a column",
+  "tj is at the card shop buying nothing. observing devon's bargaining style for 'a study.' its not a study"
+ ],
+ "bulletins": [
+  {
+   "subject": "OFFICIAL TALLY (updated) + THE RULES (read the rules) (marcus reviewed them)",
+   "body": "PIRATES 507 / NINJAS 499 / UNSOLVABLE 1 / INVALID 7 (shadow clones x4, a dog, 'both' x2). total respondents: 1,014. rules: 1) one vote per person per season (a season is 3 months). 2) no shadow clones (ben). 3) no 'both.' pick. 4) no zombies, robots, dinosaurs or cowboys (separate polls). 5) a reason is optional but recommended. the reason is the point. 6) no changing ur answer after lunch. 7) the poll is never closed. to vote, comment 'pirates' or 'ninjas' on this page. i dont vote. i count. -tj (clerk) (squad 7, observer)"
+  },
+  {
+   "subject": "THE POLL SURVEY (5 questions) (i timed it: 40 seconds)",
+   "body": "copy paste and answer: 1) pirates or ninjas: 2) reason: 3) have u ever seen a real one: 4) which would win in a fight (different poll, but im collecting): 5) parrot or smoke bomb: mine: 1) i dont vote (see ledger) 2) n/a 3) a guy at the mall in a pirate hat. he was selling phone cases 4) need more data 5) a parrot. (thats not a vote. its a preference. i keep those in a separate drawer.)"
+  }
+ ],
+ "pcComments": [
+  "nice pic. i rate it a 9. n=1",
+  "noted. the lighting favors the left side. the respondents left, not mine",
+  "is this a pirate pose or a ninja pose. dont answer. i cant be seen asking. ok answer",
+  "ive logged this under 'good.' there are 2 columns for pics. good and also good"
+ ],
+ "dmSeed": [
+  {
+   "text": "hi malten. tj. i have one question. pirates or ninjas. u dont have to answer. u can think about it. take a week. ill put u down as pending. pending is a column. everybody starts there."
+  },
+  {
+   "text": "ok it has been a day. no pressure. u are still pending. but i want u to know that 'unsolvable' is also a valid choice. its column 3. it has 1 person in it (randy). u would be 2."
+  }
+ ],
+ "dms": [
+  "my pop-pop has 31 letter openers. first national sent him one every december for 38 years (some years they skipped). theyre all the same. he keeps them in a folgers can in the garage. he let me pick one. i picked the one with the dent. that is the katana. i have never been so honored by a coffee can",
+  "my mom pays me $1 a week to open the family mail. i am very careful. i cut along the top. i have never cut a bill in half. in a month i will have $4. thats enough for a strike ninja card. (ben says i should buy it. i said im neutral.)",
+  "the dog next door barks at the clipboard. 4 times today. i added a column: 'tank (invalid) (loud).' i have never been more respected by a dog",
+  "a sub voted today. she said pirates. reason: 'they get to go anywhere.' it was the first reason in 8 months that made me quiet. i wrote it on a sticky note and stuck it inside my locker. i dont know why. its not even a good reason. its a really good reason",
+  "ben put in a shadow clone vote again and signed it 'ben (clone).' i threw it out. then i took it out of the trash and put it in a folder called 'ben (belief).' i dont have a column for it. i have a folder. dont tell him",
+  "i saw dead man's chest again and brought a notepad. i wrote a tick every time somebody said 'pirate.' 61. then i counted 'ninja' for balance: 0. i felt bad for the ninjas. i said so out loud in the theater. a kid behind me said 'shh.' he was a pirate vote. i got his name after"
+ ],
+ "blog": [
+  {
+   "title": "WHY I NEVER VOTE (a statement) (its long)",
+   "date": "Sep 12 2026 8:40 PM",
+   "mood": "steady",
+   "body": "everybody asks. so here it is, once, in order. the poll started in 7th grade as a math project. 20 people. mr dobbs said pick a question people actually care about, so i picked the one the whole lunch room was already fighting about. respondent #1 was my pop-pop. he thought for a long time and said 'both. and he works at a bank.' i wrote down 'both.' mr dobbs said it has to be one. so i made rule 3, the rule i like least, and pop-pop is the reason it exists. 3 years later its 1,014 people. the answers are fine. the REASONS are the thing. 'parrot' means u like company. 'stealth' means u like to be left alone. 'treasure' means u like to find stuff. i could go down the ledger and tell u who u are. i wont. what i will say is, if i vote, half of u are on the other side, and then its a fight and not a question. i would rather be on everybodys side. so i hold the clipboard."
+  },
+  {
+   "title": "THE KATANA (an inventory)",
+   "date": "Aug 30 2026 4:15 PM",
+   "mood": "sharp (not really)",
+   "body": "devon is right. it is a letter opener. it says FIRST NATIONAL BANK on the handle and under that, smaller, MEMBER FDIC, which devon left out, and i think it matters. my pop-pop gene was a loan officer there for 38 years. every december the bank sent him one letter opener. some years they skipped. he has 31, all the same, in a folgers can in the garage. the day i turned 13 he took the can down, set it on the workbench and said 'pick one.' i picked the one with a dent in it from the time he dropped it on the driveway. he said every man needs one sharp thing and one thing to open mail with, and if youre lucky its the same thing. i named it the katana in 7th grade as a joke. now everybody does. it is 7 inches. not sharp. the cat sleeps on it. i use it every day at 2:14 when the mail comes, along the top, one pass. i have never cut a bill in half. the most useful sword i will ever own."
+  }
+ ],
+ "survey": {
+  "title": "RESPONDENT SURVEY (the one i give people) (40 seconds) (i timed it)",
+  "qa": [
+   ["name:", "tj (the letters dont stand for anything. 'tj' is a complete name)"],
+   ["age:", "15. the ledger is 3 years old. we are growing up together"],
+   ["pirates or ninjas:", "i dont vote. next question"],
+   ["what do u do for fun:", "count things. sort things. watch ben fall off the monkey bars (carefully)"],
+   ["weapon of choice:", "a pencil (#2, sharpened on both ends, a regulation i made up). and the katana (mail only)"],
+   ["biggest fear:", "a tie. the poll is 8 apart. if it ties i will have to say something"],
+   ["best reason ever given:", "'because pirates get to go anywhere.' (a sub, wednesday)"],
+   ["worst reason ever given:", "'because it is.' (a 6th grader, 2 years ago). i wrote it in bold"],
+   ["best invalid vote:", "'both. and he works at a bank.' (pop-pop, respondent #1)"],
+   ["hidden talent:", "i can open a letter in 1.5 seconds without touching the letter. pop-pop timed it"],
+   ["last thing u counted:", "4 pull-ups (ben). 31 letter openers (the can). 4 barks (tank)"],
+   ["tag 5 people:", "ben, randy, derek, sk8rboi, and anyone who hasnt voted (u)"]
+  ]
+ }
+}

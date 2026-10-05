@@ -1,0 +1,193 @@
+{
+  "id": "gus",
+  "name": "guitarhero_gus",
+  "tag": "On tour (the den). Expert. 5 stars. Greg, call me. \\m/",
+  "avatar": "assets/avatar_gus.gif",
+  "gender": "Male",
+  "age": 15,
+  "hometown": "Mansfield, OH (4 blocks from Greg's garage. I can hear every show. I can play it back)",
+  "loc": "On tour (the den, couch, 6 feet from the TV)",
+  "zodiac": "Leo. A Leo is a frontman. A Leo is not a 'second guitar.' (Greg.)",
+  "status": "Single (my fans are mostly my sister and a beagle)",
+  "hereFor": "Friends, Networking, a band (one (1) garage band, any garage, outlet required)",
+  "mood": "pumped (thumbs: sore)",
+  "lastLogin": "Oct 3 2026 10:51 PM",
+  "theme": { "bg": "#2b0a14", "fg": "#fff1dc", "accent": "#ffc400" },
+  "bgTile": "assets/tiles/tile_stars_neon.png",
+  "blogTitle": "TOUR DIARY: the Plastic Axe Tour (all dates sold out) (Dani counted)",
+  "about": "What's up, I'm Gus. I play lead guitar. Expert. 5 stars on everything in Guitar Hero II, and I mean EVERYTHING, including the stuff you're not supposed to be able to do. My axe is a Gibson. It's technically red, technically plastic, and technically plugs into a PS2, but when I'm in the middle of a Free Bird solo at 98% the crowd goes quiet. (The crowd is a beagle named Axl.) I've been on the road since 3:30 (the den). I'm looking for a band. Weekends, weekdays after 4, and any time Greg texts. My hands are ready. My wrists are not. But my hands are. \\m/",
+  "aboutMore": "Rider, for any promoters out there: a clear path to the TV, two snacks, the good remote, and no dog on the strum bar. My roadie is my sister Dani (11, paid in Fruit Roll-Ups). My tour bus is my mom's minivan, which only goes to school and the Kroger. I also have a side project. It's quiet. It's unplugged. It has strings. I'm only filling in. It's a guest spot. That's all I can say. Rock on.",
+  "meet": "Who I'd like to meet: Greg's second guitarist (there isn't one. I'm him). The guy in the Guitar Hero ads who stands up in the living room and the whole house cheers. Slash, for a quick question about the hat. Anybody who has ever held a real guitar and can tell me what the colors are for.",
+  "interests": {
+    "General": "Guitar Hero II (Expert, every song, 5 stars), the Gibson (red), touring (the den), soundcheck, my sister Dani (roadie, security, merch), my beagle Axl (the crowd), thumb stretches, wrist braces, setlists, saying 'when I was on the road,' standing near amps",
+    "Music": "Lynyrd Skynyrd (Free Bird: 98%), Kansas, Aerosmith, the Police, Kiss, Cheap Trick, Wolfmother, Megadeth (Hangar 18 is a lot), Buckethead (don't ask me to explain), STATIC PROPHECY (Greg: call me), whatever my cousin's truck is playing",
+    "Movies": "School of Rock (the best training montage ever filmed), Wayne's World (the car scene is a tour van), Almost Famous (I'm the kid. I'm also the band), Rock Star (a fan gets the gig. you see where I'm going), Bill & Ted (be excellent)",
+    "Television": "VH1 Behind the Music (all of them, I take notes), Guitar Hero commercials (the only commercials I stand up for), the episode of The Simpsons where Homer's in a band, any concert on public TV at 2 AM",
+    "Books": "the Guitar Hero manual (page 4 is the strap section, I read it twice), Rolling Stone (Dani gets them from the dentist), a beginner's chord book Mr. Hollis lent me (it's under my bed) (it's for a friend)",
+    "Heroes": "Slash, Eddie Van Halen, Ace Frehley, Joe Perry, Dani (best roadie in Mansfield), Mr. Hollis (next door, has a real one), Greg (has a garage), Axl the beagle (named after you know who)"
+  },
+  "song": { "name": "Free Bird", "artist": "Lynyrd Skynyrd", "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/8b/f3/20/8bf3209b-c5ce-55fa-1320-b915e1cc9d7b/mzaf_17498709224846484637.plus.aac.p.m4a", "pattern": [0, 7, 9, 7, 4, 7, 0, -3], "bpm": 84 },
+  "decor": ["assets/deco_flames_bar.gif", "assets/deco_dragon.gif"],
+  "friends": ["greg", "bryan", "kevin", "skip", "hunter", "dmitri", "gary", "nikki", "chad"],
+  "wall": [
+    { "from": "greg", "text": "gus. i watched your free bird twice (dani held the camera). it was good. it was also on a plastic guitar. the issue isnt quality. the issue is amps. a plastic guitar can only plug into a TV and my dad says anything with a cord needs approval and the TV is 83 lbs. come stand by the amp friday. i'll find something. also skip says u played a REAL one at his rehearsal. i'm not saying anything about that. i'm saying tuesday, bring a cord.", "time": "Oct 1 2026 8:19 PM" },
+    { "from": "bryan", "text": "gus. sick. (thats not a yes. its not a no.) free bird starts at like 63 bpm. i counted. idk what happens in the middle. it changes. thats all i got", "time": "Sep 27 2026 11:40 PM" },
+    { "from": "chad", "text": "GUS!!! I YELLED FREEBIRD AT GREG'S SHOW AND THE BAND DIDN'T KNOW IT. THEN I HEARD YOU CAN. I WOULD LIKE TO FORMALLY REQUEST A PRIVATE SHOW AT MY HOUSE. MY MOM SAID YES. BRING THE GIBSON. BRING THE DOG!!", "time": "Sep 22 2026 6:03 PM" },
+    { "from": "kevin", "text": "gus a 98% on Expert is a legit stamina run. the last 90 seconds of Free Bird is basically the last stage of Butterfly but with your thumbs. we should do a double bill at the Tilt. my feet, your hands. doug (arcade guy) says he'll 'think about it.' that means no. but i believe.", "time": "Sep 15 2026 5:12 PM" },
+    { "from": "nikki", "text": "GUS i nightcored free bird. its 6 minutes now instead of 9. the solo is just a LOT. UNTZ UNTZ. made it for ur setlist. ur crowd (the dog) will lose it. u have to play it at 1.5x. i believe in u", "time": "Sep 8 2026 10:22 PM" },
+    { "from": "skip", "text": "gus!! the recording of your first rehearsal came in and every note was PERFECT. you stared at the amp the whole time didnt you. the drummer is Big Tom. he is in charge of WHEN. look at Big Tom!! luis says his mouth is healing so you are on for two more Sundays. welcome to the Fellowship (nine, you are the tenth, we are making it work) =D", "time": "Sep 30 2026 3:44 PM" },
+    { "from": "hunter", "text": "gus the MLG has no guitar division. i checked. i emailed them. they said 'who.' idk. i'll be ur manager. i get 10%. 15% if i make u a montage (its 11 min)", "time": "Aug 17 2026 9:01 PM" }
+  ],
+  "replies": [
+    "Appreciate it, man. That one's going in the setlist. \\m/",
+    "That's a solid comment. I'd give it 4 stars. Working on 5.",
+    "Dude. Thanks. Hold on, I'm in the middle of the bridge. ...Okay. Back.",
+    "You're the best crowd I've had all week. (It's been the dog.)",
+    "I'll have my people call your people. My people is my sister.",
+    "Rock on. Seriously. Hit me with a request.",
+    "That's hammer-on good. The kind where you didn't even try.",
+    "Noted. Adding it to the rider.",
+    "Say that again, but over a drum fill.",
+    "Thanks. Sorry for the delay. Touring is brutal. I was in the den.",
+    "Respect. Encore?",
+    "That's a 98%. The 2% is a sneeze. I'm working on it."
+  ],
+  "thanksAdd": "Welcome to the crowd!! Front row is the beanbag. The setlist is on my wall. If I'm in the middle of a song when you message me I'll reply after the encore (Free Bird, no skipping). Thanks for the add. \\m/",
+  "ambient": [
+    "Soundcheck done. The strings are fine. (There are no strings. They're colors.) Show's at 7. The den. Doors open when Dani says.",
+    "Spilled grape soda on the strum bar. Show must go on. It's sticky. It's got character. It's got MORE character.",
+    "New high score on Carry On Wayward Son. Expert, 99%. The 1% was a sneeze. I'll fix it on tour.",
+    "Axl barked twice in the middle of the solo. Somehow, in time. He's getting a co-writing credit.",
+    "My thumb has a callus in the exact shape of an orange button. I'm proud of it. My mom says it's 'a lot.' She's right. It's a lot of rock.",
+    "Thinking about starting a side project. Quiet. Very quiet. I'll say more when I know more. \\m/"
+  ],
+  "saltyDm": "Hey, no worries. I get it. Every tour has a few empty seats. Respect for keeping it honest. The offer's still on: front row, beanbag, whenever. I'll save you a pick. I have one pick. I found it in my dad's drawer. I've never used it. Don't ask.",
+  "keywords": {
+    "guitar": "My axe is a Gibson SG. Technically a replica. Technically a controller. But it has the shape, the weight, the neck. Put the strap on and you just know. \\m/",
+    "band": "Looking for a band. Any band. Garage preferred, outlet required, TV optional but encouraged. Greg has a band. Greg said 'we'll see.' vinyl_witch says 'we'll see' from her is basically a hug. So I'm choosing to be hugged.",
+    "free bird": "The greatest song ever written. 98% on Expert. The whole second half is the solo. It's like climbing a mountain with one thumb. Dani timed it. I don't want to know the number.",
+    "expert": "Expert is a different animal. Easy is a hobby. Medium is a weekend. Hard is a job. Expert is a vocation. You don't pick it. It picks you. Dani says I picked it. I say it picked me.",
+    "tour": "Current tour: the Plastic Axe Tour. 42 dates, all in the den, all sold out (Dani counted). Merch: a T-shirt I made with a Sharpie. It says GUS. Size M. One of one.",
+    "dog": "Axl. Beagle. 4 years old. Best crowd I've ever played for. Never heckled. Howls on the key change. I don't know how he knows.",
+    "greg": "Greg is a man with a vision and a garage and a 27 minute set. I respect him. I'd like to be in the set. Please pass it along.",
+    "real": "A real guitar? Sure. I've thought about it. Strictly hypothetical. Why, did somebody say something?"
+  },
+  "banter": {
+    "greg": [
+      "Greg. Gus. I've reviewed your needs. Second guitar: check. Own amp: check (it's my TV). Dad's extension cord rule: check, I bought my own cord (25 ft, orange). Please advise.",
+      "Greg I wrote out Voltage Heart in colors on notebook paper. 40 pages. Dani drew the notes. Green, red, yellow. I can play it on the Gibson with the TV muted. It's not on the game. It's on MY game.",
+      "Greg I know the TV is 83 lbs. I weighed it. The garage has a basketball hoop and a rake. I could play under the hoop. It's a natural acoustic space. Think about it.",
+      "Greg re: the rumor. Yes, I played a real guitar at Skip's. Two Sundays. Strictly a favor. I did NOT enjoy it. (I enjoyed it.) It doesn't change my commitment to plastic. Tuesday. I'll bring a cord."
+    ],
+    "bryan": [
+      "Bryan. The tempo of Free Bird, per my count, is 63 at the start and 'hard to tell after.' Is that right? You're the rhythm section. I'm the other section. Text me a number.",
+      "Bryan whatever's going on with Kayla, I get it. I can't fix it. But if you need a solo to play over it, I have 14 in my head. Take one. Free of charge."
+    ],
+    "kevin": [
+      "Kevin. Rhythm brothers. My hands, your feet. The complete musician. I say we do a double bill at the Tilt. Doug (arcade) says he'll 'think about it.' I believe in thinking.",
+      "Kevin an AAA with no witnesses is real. Same as a sold-out show where Dani counted the tickets. We're both artists nobody saw. Respect."
+    ],
+    "skip": [
+      "Skip I looked at Big Tom like you said. He's in charge of 'when.' I had no idea. It's a whole job. Where was that in the manual?",
+      "Skip I put colored stickers on Luis's neck (green, red, yellow, blue, orange). Luis said okay with a mouth full of gauze. Ska upstrokes are orange, orange, orange. It's my cleanest chart ever.",
+      "Skip I'm not saying ska is dead. I'm saying it's alive, you needed a guitar, I had one, and it's mostly Luis's."
+    ],
+    "hunter": [
+      "Hunter I accept your theory about the MLG's one-word reply. 'Who' means they're curious. I'm sending them my tour dates. All 42. Be my manager. 10%. 15% with the montage, if it has the whole solo.",
+      "Hunter I'll go head to head with you any time. Any song. You pick the song. I'll pick Free Bird. We play at the same time. Whoever stops first loses. You'll stop first. Not because you're bad. Because the solo is 4 minutes."
+    ],
+    "dmitri": [
+      "Dmitri. Tour manager. Job: yell 'go go go' before each set. Pay: one energy drink. The contract is one sentence. I wrote it on my hand.",
+      "Dmitri your callouts have rhythm. 'Two long. One short. Rush B.' That's 4/4. I put it in my chart. Dani says it's the best song I've written."
+    ],
+    "gary": [
+      "Gary your Guitar Hero walkthrough is 112KB. I read it. Section 7.3 says 'the final solo is a test of endurance, not skill.' That's the nicest and rudest thing anyone has said to me. I'm printing it.",
+      "Gary can you add a section 'How to Get Into a Real Band (With a Plastic Guitar)'? I'll be a tester. I'll be in the credits. I'll be the cautionary tale."
+    ]
+  },
+  "statuses": [
+    "gus is on tour (the den). tonight: 1 show. Expert. No openers.",
+    "gus is warming up (rolling his thumbs like a surgeon)",
+    "gus just went 5 stars on Carry On Wayward Son (Expert). Dani's applause: 4 seconds. Axl's: 1 bark.",
+    "gus is writing a setlist. 14 songs. one of them is a secret.",
+    "gus has a sore thumb. calling it a 'tour injury.' his mom is calling it 'enough.'",
+    "gus is standing near the amp in Greg's garage. not playing. just near it. it's research.",
+    "gus is subbing on rhythm guitar for the Pork Pie Patrol. real strings. colored stickers. he is not calling it a real guitar. he is calling it 'a guest spot.'",
+    "gus broke the orange button. show must go on. playing the set on four colors.",
+    "gus has a side project. it's very quiet. don't ask. \\m/",
+    "gus's sister says he 'doesn't play real guitar.' he's not mad. he's thinking."
+  ],
+  "bulletins": [
+    {
+      "subject": "TOUR DATES: THE PLASTIC AXE TOUR (all sold out)",
+      "body": "FRI: the den (7 PM). SAT: Dani's room (different TV, better speakers, strict dog policy). SUN: Grandma's house (2 PM, she's requested 'something gentle,' I'm working on it). WED: my cousin's graduation party (they said I can plug into their TV in the living room, I said 'I'll need 4 outlets,' they said 'we have 2'). MERCH: GUS T-shirt (Sharpie, one of one) $2. RIDER: a clear path to the TV, two snacks, the good remote, no dog on the strum bar. \\m/"
+    },
+    {
+      "subject": "WANTED: A BAND (read the whole thing)",
+      "body": "Lead guitarist seeking band. Experience: 3 years, 4,000+ songs, Expert. Influences: Skynyrd, Kansas, Aerosmith, the Police. Gear: Gibson SG (red). Availability: after 4 on weekdays, all weekend. Willing to relocate to any garage in Mansfield. Must have an outlet. TV preferred. Please no polka (unless it's good). Replies to my wall or my sister, who handles all bookings and charges 2 Fruit Roll-Ups per call. \\m/"
+    },
+    {
+      "subject": "PSA: A PLASTIC GUITAR IS AN INSTRUMENT (a letter to the music teacher, copied to all)",
+      "body": "Dear Mr. Pruitt. Last Tuesday you told me 'a controller is not an instrument.' I said 'a bow is a controller for a violin.' You said 'no.' I said 'is it?' You closed the door. I've since refiled the argument under 'extracurricular.' My guitar has a neck, a body, a strap, five frets, a strum bar and a whammy bar. It is one thing away from being a real guitar, and that thing is strings. I'd like credit for the other five-sixths. Sincerely, Gus (lead guitar, detention 4:00)"
+    }
+  ],
+  "pcComments": [
+    "Great shot! Soundcheck approved. \\m/",
+    "That pose is 5 stars. Hold it for the album cover.",
+    "Whoa, lighting! You're a natural frontperson. I'd open for you.",
+    "This photo is Expert level. Not Hard. Not Medium. Expert.",
+    "Nice! Putting this on the back of the CD. The front is me. The back is you. It's a team thing.",
+    "Dani says the photo is 'okay.' That's 4 stars from her. Take it."
+  ],
+  "dmSeed": [
+    { "text": "Hey! Gus here. Lead guitar. 42 dates (the den). I saw you joined and figured you could use a friend with a Gibson. If you're ever bored, I can play you something. I'll hold the phone up to the TV. Long story. \\m/" },
+    { "text": "Also, if you know any bands looking for a lead guitarist, my rates are reasonable (free). Don't tell Greg I asked. He knows I asked." }
+  ],
+  "dms": [
+    "malten. Axl howled at the key change in Carry On Wayward Son today. Not a bark. A HOWL. On the key change. I've played to 40 crowds. Nobody has ever hit the key change. The dog knows. I told my mom. She said 'that's the vacuum next door.' It was not the vacuum.",
+    "Dani asked what I'd do if I got famous. I said tour. She said where. I said everywhere. She said are you taking the TV. I said obviously. She said then I'm coming, because I'm the only one who knows how to unplug it right. That's my roadie. That's my whole crew.",
+    "Don't tell anybody. Mr. Hollis next door has an old Gibson in a case. A real one. He's 71. He let me hold it. I said 'it's heavier than mine.' He said 'it's real.' I said 'where are the colors.' He laughed until he coughed. I'm going over Tuesdays. Strictly research.",
+    "I lost the orange button during a solo last night and finished the whole set on four colors. Nobody noticed except Dani. It was the hardest I've ever played. I think I'm better on four. That's how legends are made. Or how you end up with a broken guitar.",
+    "I stood by Greg's amp for 3 songs on Friday. Nobody said anything. At the end Greg said 'thanks for carrying the amp.' I said 'anytime.' It's the best thing anyone has ever said to me. I carried an amp. I didn't play. But I carried it. That's a gig.",
+    "I played Grandma's 80th birthday. Requests: Amazing Grace, Don't Stop Believin', and 'the one that goes on forever.' I played Free Bird. She cried. I said 'is it the solo?' She said 'it's the length.' Okay. Best show of the year.",
+    "We loaded the TV into the minivan for Grandma's show. Dani said 'just drive.' So we did, with the TV seat-belted in the back. At a red light a lady looked in. She saw a TV in a seat belt, a boy with a red guitar and a girl in the front holding a remote. She waved. I waved. I think she's a fan.",
+    "My thumbs hurt. My mom's friend (a nurse) said 'rest.' I said 'I can't, I'm on tour.' She said 'then rest on tour.' I'm making that my slogan. REST ON TOUR. \\m/"
+  ],
+  "blog": [
+    {
+      "title": "TOUR DIARY: Day 42 (the den) (sold out)",
+      "date": "Sep 29 2026 9:14 PM",
+      "mood": "electric",
+      "body": "Got to the venue (couch) at 3:30. Load-in took 4 minutes (the TV was already there). Soundcheck: the TV, plugged in, volume at 14. Dani counted the house: 2 (herself and Axl). 'It's a full house.' 7 PM. Opened with Carry On Wayward Son. First note and the whole room (Axl) sat up. By the solo I felt something. Hard to describe. It's like the TV knew. Closed with Free Bird, 98%, Expert. Backstage (the kitchen), my mom handed me a sandwich and said 'it was loud.' That's a review. I'm putting it on the poster. Tomorrow: Dani's room. Dani says the load-in's rough. The load-in is a pillow fort. I respect the vision."
+    },
+    {
+      "title": "Why a plastic guitar is a real guitar (an essay, 5 paragraphs, 1 paragraph per button)",
+      "date": "Sep 12 2026 4:48 PM",
+      "mood": "argumentative",
+      "body": "Green: it's got a body, a neck, and a strap. That's three out of three. Red: it's got a whammy bar. A real guitar has a whammy bar. Not all of them, but some. I've seen one. Yellow: the strum bar. A pick and a strum bar are cousins. Blue: I've played 4,000 songs on it, and they've all been played correctly, which is more than I can say for most people who own the other kind. Orange: it's one thing away from being a real guitar, and that thing is strings. If someone told you a bike with training wheels isn't a bike, you'd say 'it's a bike with extra support.' That's my guitar. A guitar with extra support. I rest my case. (Dani: 'your case is 12 sentences.' It's five paragraphs.)"
+    },
+    {
+      "title": "a quiet entry (don't repost)",
+      "date": "Aug 24 2026 11:37 PM",
+      "mood": "humble",
+      "body": "Mr. Hollis next door is 71. He played in a wedding band for 30 years. Tuesday he handed me a real guitar and said 'G.' I put my fingers where the book said. I strummed. It buzzed. He said 'that's what it's supposed to sound like when you're starting out.' I said 'it sounds terrible.' He said 'it sounds like you.' I'm not sure what he meant. I think it's a compliment. There are no colors. You have to just know where the notes are. My fingertips hurt in a way my thumbs never did. I went home and played Free Bird on the Gibson, and it felt different. Not worse. Like meeting the person who wrote a song you love. I'm not telling Greg. Not yet. I want two more chords first. Then I'll ask again."
+    }
+  ],
+  "survey": {
+    "title": "THE GUITARIST SURVEY (musicians only, sorry if it's a bad time)",
+    "qa": [
+      ["Name / stage name:", "Gus. Stage name: GUS. I'm told it's the same."],
+      ["Instrument:", "Guitar. Red. Five buttons. Plastic. (There's a strap.)"],
+      ["Years playing:", "3. Since the first game. Dani says 2. She wasn't there."],
+      ["Band:", "Looking. Greg has one. I'd like to be in it. See wall."],
+      ["Favorite song to play:", "Free Bird. 98% on Expert. Next goal: 100%. Dani says never. I say tour."],
+      ["Most embarrassing moment onstage:", "Sneezed in the middle of the solo. Axl howled. Best moment of the show."],
+      ["Best compliment you've ever received:", "Greg: 'thanks for carrying the amp.'"],
+      ["Worst thing anyone has said about your playing:", "'It's a controller.' (Mr. Pruitt.) I've thought about it. It is. But it's also not. You'd have to be there."],
+      ["Dream venue:", "Greg's garage. Any night. Any song. Bring a chair."],
+      ["If you could play with anyone:", "Kansas. They have a violin. I've always wanted to play with a violin. That's how you know it's real."],
+      ["Pre-show ritual:", "Roll thumbs. Drink water. Dani says 'break a leg.' I say 'break a string.' She says 'there are no strings.' I say 'that's why it's safe.'"],
+      ["If you could never play again, what would you do?", "Learn the other kind. (Hypothetical. I'm not saying I would.)"]
+    ]
+  }
+}

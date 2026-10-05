@@ -1,0 +1,211 @@
+{
+ "id": "nick",
+ "name": "newgroundz_nick",
+ "tag": "STICK FURY 7 is OUT. current score 3.41. go vote 5. i can tell when u dont",
+ "avatar": "assets/avatar_nick.gif",
+ "gender": "Male",
+ "age": 15,
+ "hometown": "Rochester, New York",
+ "loc": "computer lab B, row 2, the one with flash on it",
+ "zodiac": "Aries (24 frames per second)",
+ "status": "Single (under judgment)",
+ "hereFor": "Friends, Networking, votes (5s only)",
+ "mood": "refreshing the page",
+ "lastLogin": "Oct 2 2026 4:11 PM",
+ "theme": {
+  "bg": "#171008",
+  "fg": "#ffe7c2",
+  "accent": "#ff8a00"
+ },
+ "bgTile": "assets/tiles/tile_bolts.png",
+ "blogTitle": "STICK FURY production blog (ep 8: 2,214 frames down, a lot to go)",
+ "about": "ok so im nick. i make STICK FURY. its a stick figure fight series, 7 episodes out, all frame by frame, zero tweens, drawn with a mouse (a ball mouse. i clean it weekly). episode 7 is on the portal right now with a 3.41 out of 5 and i check it roughly every 4 minutes. story: a stick named kaze fights THE ERASER, a giant pink eraser who is erasing the stick world one guy at a time. every sound effect is my little sister pip (shes 8) making noises into a $6 headset mic and she gets first credit, thats in her contract (fruit snacks). i animate at lunch in computer lab B bc thats the computer with flash on it. if u watched it, vote 5. if u voted 2, i know. i dont know who. but i know.",
+ "aboutMore": "we dont talk about episode 4. it got blammed in 11 minutes. somebody wrote 'my eyes' and that was the whole review. i replied 'thanks for watching' bc i reply to every review, thats the rule, even the zeros. then i went and drew 300 frames out of spite and that became episode 5, which hit daily 4th and is the best day i have had as a person. so really episode 4 was important. but we dont talk about it.",
+ "meet": "Who I'd like to meet: the guy who made the stick fights that made me want to do this (i watched them in 5th grade on my uncles computer and never recovered). whoever voted 0 on episode 6 at 3:14 pm on a tuesday. the person who runs the portal, to say thank u and also ask about my score. and a hand. just one hand that i can actually draw.",
+ "interests": {
+  "General": "flash (the lab B copy), frame by frame, onion skinning, my 256mb usb drive (on a lanyard) (i sleep with it), refreshing my score, replying to reviews, drawing sticks, drawing better sticks, the pencil tool, NOT the tween button",
+  "Music": "whatever is in the audio portal under 'techno' and loops clean, dragonforce, the prodigy, the mortal kombat theme (ep 2 used it. everyone uses it. i get it now), video game music, pips mouth noises (all of ep 7)",
+  "Movies": "the matrix (the lobby scene is basically a stick fight with coats on), kung fu hustle, crouching tiger hidden dragon, anything with jackie chan, the incredibles, spirited away (i watch it to feel bad about my backgrounds)",
+  "Television": "samurai jack (the greatest. barely any talking. just LINES), avatar the last airbender, dragon ball z (ep 3 of stick fury is 40% powering up, i learned from the best), teen titans",
+  "Books": "the animators survival kit (library copy, renewed 9 times, the librarian has stopped asking), flash for dummies, a flipbook i drew in the corner of my math book (ep 0. unreleased. the true pilot)",
+  "Heroes": "my sister pip (sound dept), whoever drew the first stick fight, the lab B librarian for the lunch pass, samurai jack, the 9 ppl who voted 5 on episode 5 at launch. i think about u"
+ },
+ "song": {
+  "name": "Through the Fire and Flames",
+  "artist": "DragonForce",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a8/b8/74/a8b87443-5940-8eeb-f697-3baeb8b19d00/mzaf_18094134972631153481.plus.aac.p.m4a",
+  "pattern": [0, 3, 7, 12, 10, 7, 3, 7],
+  "bpm": 180
+ },
+ "decor": [
+  "assets/badge_8bit.gif",
+  "assets/deco_flames_bar.gif"
+ ],
+ "friends": ["mika", "epic", "andy", "miles", "larry", "angela", "doug", "sephiroth"],
+ "wall": [
+  {
+   "from": "mika",
+   "text": "nick i watched stick fury 7. the fight at 1:12 is actually really good?? the smear frames!! but i am NOT letting u put Mika Destruction in ep 8 as a stick. she has HAIR. she has a SCYTHE. she has a 40 page backstory. a stick has a circle. art trade tho? i draw kaze w/ hands n u owe me 24 frames",
+   "time": "Sep 30 2026 7:48 PM"
+  },
+  {
+   "from": "epic",
+   "text": "lol ur score is 3.41. u know what else is a 3.41. ur mom. jk it was good. the eraser guy is funny. i made a ytmnd of him. it has 4 votes and 2 r me",
+   "time": "Sep 29 2026 3:30 PM"
+  },
+  {
+   "from": "miles",
+   "text": "Watched Stick Fury 7. Charming. Have you considered a soundtrack that isn't your sister? I made you one in GarageBand. Eleven loops. Took four minutes. It just works.",
+   "time": "Sep 27 2026 8:02 PM"
+  },
+  {
+   "from": "andy",
+   "text": "DUDE stick fury 7 w/ linkin park over it = INSTANT AMV. i already made it. its on my page. theres a watermark in the corner the whole time but if u squint its kind of like a second villain",
+   "time": "Sep 24 2026 10:19 PM"
+  },
+  {
+   "from": "angela",
+   "text": "~*~ Hello Nick! ~*~ Thank you for the Flash intro for my site! It is very... energetic! I did not expect so many kicks before the word 'Welcome'. Could the next version have Legolas in it? He is also good at fighting, but more graceful. Please sign my guestbook! ~ Angela, Webmistress",
+   "time": "Sep 18 2026 5:25 PM"
+  },
+  {
+   "from": "doug",
+   "text": "nick i finally watched stick fury 7. it took 2 days to load. worth it. the part where the eraser comes up over the hill?? i gasped. out loud. in the kitchen. i would vote 5 but the vote button is still loa",
+   "time": "Sep 12 2026 6:44 PM"
+  },
+  {
+   "from": "larry",
+   "text": "nick i burned all 7 stick furys on a cd 4 doug. well. 6. one of them turned out 2 be a cooking show. its a good one tho, he might like it",
+   "time": "Sep 3 2026 11:09 PM"
+  }
+ ],
+ "replies": [
+  "thanks for watching. (i say that to every review. even the zeros. its the rule)",
+  "ok but did u vote. and was it a 5. u dont have to say. (say)",
+  "graphics 8, sound 6, humor 7. overall: good comment",
+  "hold on i have to refresh my score. ok. still 3.41. go on",
+  "that would take like 200 frames. so yes. obviously. im doing it",
+  "pip says hi. she says it like 'pshhhh' but thats hi",
+  "no tweens. ever. dont even joke",
+  "saving this comment to the usb drive",
+  "lunch is 26 minutes. i cant reply AND animate. replying anyway",
+  "this comment passed judgment. congrats. it gets to stay"
+ ],
+ "thanksAdd": "thanks for the add. ok so STICK FURY 7 is on the portal. its 2 minutes 40 seconds. 3,840 frames, all by hand, sound by my sister. watch it and vote whatever u honestly think it deserves (5). i reply to every review so say hi",
+ "ambient": [
+  "score went from 3.41 to 3.42 during 4th period. somebody out there believes in me. might be pip on the family computer. still counts",
+  "drew 96 frames at lunch. thats 4 seconds. didnt eat. worth it. it was a really good 4 seconds",
+  "pip wants a raise. she is currently at 2 fruit snack pouches per episode and she wants 3 plus 'voice of the eraser.' the eraser doesnt talk. shes negotiating hard",
+  "the librarian kicked me out of lab B at 4:15 mid-punch. kaze has been frozen with his fist 2 inches from the eraser since thursday. the tension is unreal",
+  "someone reviewed ep 7 with 'sticks again?' yes. sticks again. sticks forever. thanks for watching",
+  "tried to draw a hand today. it looked like a glove full of soup. back to circles"
+ ],
+ "saltyDm": "request denied. ok. graphics 2, sound 0, overall 1.3. jk. kind of. look, i got blammed once and came back stronger, so this is nothing. the offer stands. thanks for watching (my friend request) (briefly)",
+ "keywords": {
+  "flash": "frame by frame or nothing. the tween button is right there and i have never touched it. lab B, row 2, lunch. thats the studio",
+  "score": "3.41. it was 3.44 on launch day and then the zero voters showed up. i refresh every 4 minutes. it is not healthy. it is currently still 3.41",
+  "vote": "5. the answer is 5. im not telling u how to vote. but there are 6 numbers on there and only one of them is right",
+  "stick": "people say 'why sticks.' because a stick can do a backflip in 12 frames and a guy with elbows takes 40. sticks are FAST. also i cant draw elbows",
+  "sister": "pip. shes 8. she did every sound in ep 7 with her mouth, including the explosion, which was just her yelling into a pillow. first credit, always",
+  "animation": "24 frames a second. 60 seconds a minute. u do the math and then u get sad and then u draw them anyway"
+ },
+ "banter": {
+  "mika": [
+   "mika ok hear me out. Mika Destruction in STICK FURY 8. as a stick. BUT with the green hair. thats 3 extra lines per frame. for u i will draw 3 extra lines 4,000 times",
+   "mika how do u draw hands. no really. how long does one hand take u. i drew one at lunch and the librarian asked if i was ok"
+  ],
+  "epic": [
+   "epic a ytmnd is ONE picture and a sound. i draw 24 pictures for ONE second. we are not the same. (the eraser one was funny tho. i voted 5 on it. see how easy that is)",
+   "epic if u write 'lol ur mom' as a review it still counts as a review and i still have to say thanks for watching. thats the rule. so thanks for watching. again. 9 times"
+  ],
+  "miles": [
+   "miles an imovie 'trailer' of ur cat with the ken burns effect is not animation. the cat didnt even move. the PHOTO moved. graphics 3, sound 5, overall 2.1",
+   "miles i listened to ur garageband soundtrack for ep 8. its 11 loops and i have heard all 11 in a car commercial. pip stays. shes cheaper and she can do a laser"
+  ],
+  "angela": [
+   "angela the flash intro v2 is done. its 30 seconds, kaze fights the under construction sign, then it says WELCOME. theres a skip button like u asked. nobody will press it. right. nobody will press it",
+   "angela i got my cool site award application back and it says 'needs more whimsy.' its a fight series. the whimsy is the kicks"
+  ],
+  "larry": [
+   "larry STOP downloading stick fury from weird places. its free. its on the portal. the real one doesnt come with a toolbar. also u owe me a vote, the casino one doesnt count",
+   "larry thanks for the mix cd. track 2 is honestly perfect for a fight scene. what is it. u dont know. ok. the cd says 'weird al - track 02.' its bagpipes. im using it"
+  ],
+  "andy": [
+   "andy u put linkin park over ep 7 and now it has more views than MY version. with the watermark on it. the watermark has more fans than kaze. im not mad. overall 4.0",
+   "andy collab idea: u stop filming my flash off the screen and i just GIVE u the file. no watermark. clean. think about it. ...u like the watermark dont u"
+  ],
+  "doug": [
+   "doug i made a 56k version of ep 7 just for u. its 9 frames. kaze looks at the eraser. the eraser looks back. the end. it loads in 40 seconds. honestly it might be the best cut",
+   "doug u said u would vote 5 and then u vanished in the middle of a word. its been 3 days. did the vote go through. doug. DOUG"
+  ]
+ },
+ "statuses": [
+  "nick is refreshing his score. 3.41. refreshing. 3.41. refreshing",
+  "nick is in lab B drawing frame 2,214. do not talk to him. (talk to him. hes lonely)",
+  "nick just got a review that says 'not bad.' he is framing it",
+  "nick is paying his sound department in fruit snacks",
+  "nick is NOT tweening. nick has never tweened. nick will never tween",
+  "nick just hit daily 5th!! for 9 minutes. then 6th. he has a screenshot",
+  "nick is thinking about episode 4. nick is going to stop thinking about episode 4"
+ ],
+ "bulletins": [
+  {
+   "subject": "STICK FURY 7 IS OUT (vote 5) (or dont) (do)",
+   "body": "ok its up. 2 minutes 40 seconds. 3,840 frames. 6 weeks of lunches. kaze vs THE ERASER round 2, plus a new guy named triangle (hes a stick with a triangle head, hes the comic relief, pip designed him). all sound effects by pip. music from the audio portal. its under judgment RIGHT NOW which means every vote counts double in my heart. if it gets blammed i will act fine and i will not be fine. go watch. vote what u feel (5). leave a review, i reply to all of them. thanks for watching. -nick"
+  },
+  {
+   "subject": "SURVEY: review ur day like its on the portal",
+   "body": "copy and fill out. graphics (how did today look): / sound (how did it sound): / violence (did anyone get hit in dodgeball): / humor: / overall: . mine: graphics 6 (rained). sound 9 (pip learned a new explosion noise). violence 2 (stubbed my toe on the computer cart). humor 4. overall 3.41. everything is 3.41. i see it when i close my eyes. repost and tag 5 people. i only know like 6 people so one of them is u"
+  }
+ ],
+ "pcComments": [
+  "graphics 9. style 8. overall: default pic material",
+  "nice. this would make a good frame 1. hold still for 3,839 more",
+  "ok who took this. the angle is good. is this paige. this is a paige angle",
+  "ur hands are in this picture and i just want to say i respect anyone who has hands. hardest thing in the world to draw",
+  "voted 5. i know thats not a thing here. i voted 5 anyway"
+ ],
+ "dmSeed": [
+  {
+   "text": "hey malten. ok so i make a stick figure fight series called STICK FURY and episode 7 is under judgment on the portal right now. current score 3.41. u seem like a person who votes fair (5). no pressure. i can see the score from here. its still 3.41"
+  }
+ ],
+ "dms": [
+  "malten quick question for the script. if a giant pink eraser was coming to erase u, what would u say. i need a line for kaze. right now he says 'no.' pip thinks its weak",
+  "ok the score hit 3.50 for like a minute. i took a screenshot. i printed the screenshot. its on the fridge next to pips spelling test. we both got a 3.5 actually. hers is out of 4",
+  "do u have a mic. i need a voice for a guy who gets erased in the first 2 seconds of ep 8. the whole part is 'wait' and then hes gone. pip refuses bc she says its beneath her",
+  "the librarian found out what i do in lab B at lunch. she watched ep 7 over my shoulder. all of it. then she said 'the eraser is a metaphor' and walked away. is it?? did i do a metaphor",
+  "malten can i put u in the credits. theres a section called 'special thanks' and right now its pip, the librarian, and the ball inside my mouse",
+  "someone left a 10 paragraph review on ep 7 and it was all about how the stick physics are wrong. i replied 'thanks for watching.' then i fixed every single thing he said. dont tell him",
+  "drew a hand today. a real one. 5 fingers. took the whole lunch period. its in ep 8 for exactly 1 frame. u will never see it. but its there"
+ ],
+ "blog": [
+  {
+   "title": "STICK FURY 8 production log: week 3",
+   "date": "Sep 26 2026 4:52 PM",
+   "mood": "96 frames closer",
+   "body": "frames done: 2,214. frames redone bc i hated them: 600. lunches skipped: 14. ok so heres where we are. scene 1 (kaze wakes up, the sky is half erased) is done and its the best thing i have ever drawn, which means in a month i will hate it. scene 2 is the bridge fight. the bridge is a line. the fight is on the line. THE ERASER erases the line from both ends so they have to fight toward the middle, and thats either genius or a thing i came up with bc i didnt want to draw a background. pip recorded 31 new sounds on saturday. the best one is 'eraser footstep,' which is her slapping a piece of bologna on the counter. mom was not happy about the bologna. the take was perfect tho so it stays. remaining problem: lab B closes at 4:15 and the fight gets good at around 4:10 every single day. i asked for a key. the answer was a laugh."
+  },
+  {
+   "title": "what i learned from getting blammed (ok fine we can talk about episode 4)",
+   "date": "Sep 8 2026 9:20 PM",
+   "mood": "at peace (3.41 out of 5 at peace)",
+   "body": "episode 4 lasted 11 minutes on the portal. i know bc i was refreshing. it went 2.1, 1.8, 1.4, gone. the one review said 'my eyes.' and look. he wasnt wrong. i had just found the gradient tool and i used it on everything. the sky was a gradient. the ground was a gradient. kaze, who is a stick, was a gradient. it looked like a fight inside a sunset. so heres what i learned. 1) one new tool per episode, max. 2) if pip says 'i cant tell which one is the good guy,' she is the test audience and she is right. 3) u can reply 'thanks for watching' to a guy who said 'my eyes' and feel ok about it by dinner. 4) episode 5 got daily 4th and it only exists bc i was mad. so thank u, my eyes guy. the file is still on my usb drive. nobody gets to see it. except pip. she asks for it when shes sad bc it makes her laugh."
+  }
+ ],
+ "survey": {
+  "title": "the creator survey (found on a flash forum) (tag 5 animators) (i know 1)",
+  "qa": [
+   ["name / what u make:", "nick. STICK FURY. 7 episodes. 1 we dont discuss"],
+   ["tools:", "flash in lab B, a ball mouse, a 256mb usb drive on a lanyard"],
+   ["frames per second:", "24. all of them drawn. a guy in a review told me this is insane. thanks for watching"],
+   ["biggest influence:", "the stick fights i saw in 5th grade. also samurai jack. also spite"],
+   ["who does ur sound:", "pip. age 8. contract: 2 fruit snack pouches per episode, first credit, veto on all explosions"],
+   ["current score:", "3.41. hold on. 3.41"],
+   ["thing u cant draw:", "hands. faces. horses (meg offered lessons). anything that isnt a line and a circle"],
+   ["have u ever used a tween:", "no. and i think about it every single day"],
+   ["dream:", "front page. just once. id screenshot it and then id lie down on the lab B floor"],
+   ["tag 5 animators:", "mika (she does art, close enough), andy (he does watermarks), miles (he does the ken burns effect), pip, the librarian"]
+  ]
+ }
+}

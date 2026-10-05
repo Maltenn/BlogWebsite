@@ -1,0 +1,443 @@
+{
+  "id": "banana_smoothie_threat",
+  "with": "banana",
+  "opener": [
+    "RING RING RING RING. MALTEN. PICK UP. THIS IS NOT A DRILL. THIS IS A BLENDER.",
+    "THEY DELIVERED A BLENDER TO THE ROLLERDOME TODAY. CHROME. 14 SPEEDS. THERE IS A SETTING CALLED 'PULSE.' IT LOOKED AT ME. I DID NOT BLINK. IT DID NOT BLINK. WE BOTH KNEW.",
+    "VINCE JUST TOLD THE WHOLE SITE 'SMOOTHIE BAR AT TEEN NITE FRIDAY, IT'S GONNA BE HUGE.' I RUN THE SNACK BAR. THE SMOOTHIES ARE MINE. THE SMOOTHIES ARE 80% BANANA. I AM A BANANA (SPIRITUALLY). I NEED ADVICE AT FULL VOLUME."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        {
+          "say": "banana. breathe in. what scares you more: the blender, or letting vince down?",
+          "next": "a1"
+        },
+        {
+          "say": "it's a banana smoothie, banana. you ate four bananas yesterday and did a cartwheel. where's the line?",
+          "next": "b1"
+        },
+        {
+          "say": "then we don't blend them. we FREE them. operation yellow rail 2. i'll bring the wax.",
+          "next": "c1"
+        }
+      ]
+    },
+    "a1": {
+      "them": [
+        "...BOTH. BOTH IS MY ANSWER. I HAVE NEVER GIVEN AN ANSWER THAT SOUNDED THIS QUIET.",
+        "VINCE BELIEVES IN FRIDAY SO LOUDLY. HE PRINTED 50 TICKETS THAT SAY 'FIRST 50 FREE.' 14 PEOPLE CAME LAST TIME. I CAN'T BE THE REASON THE 15TH DOESN'T."
+      ],
+      "choices": [
+        {
+          "say": "vince has believed in 14 people and a nacho pump. he can handle one honest banana.",
+          "next": "rehearse"
+        },
+        {
+          "say": "ok. let's lay out every way this can go, then pick the one you can live with.",
+          "next": "plan"
+        }
+      ]
+    },
+    "b1": {
+      "them": [
+        "EATING IS DIFFERENT. EATING IS A HANDSHAKE. WE CHOOSE EACH OTHER. THE BLENDER DOES NOT ASK.",
+        "I SAW THE BOX. THERE IS A PICTURE ON THE BOX. THE PICTURE HAS A SMILING STRAWBERRY. THAT STRAWBERRY KNEW NOTHING."
+      ],
+      "choices": [
+        {
+          "say": "fair. so what does a banana-friendly friday look like? build it with me.",
+          "next": "plan"
+        },
+        {
+          "say": "they're fruit, banana. it's what fruit is for. it's the circle of snack.",
+          "next": "existential"
+        }
+      ]
+    },
+    "c1": {
+      "them": [
+        "THE SECOND RAIL?!",
+        "I'D NEED 40 BANANAS. WAX. A RAMP. SK8RBOI'S CAMCORDER. A DISTRACTION FOR THE MANAGER (VINCE. VINCE IS ALWAYS A DISTRACTION BY ACCIDENT).",
+        "MY HANDS ARE SHAKING. IT'S POTASSIUM. IT'S ALSO HOPE."
+      ],
+      "choices": [
+        {
+          "say": "do it. all 40. free them on the rail and let the first 50 people clap.",
+          "next": "c2"
+        },
+        {
+          "say": "hang on. if every banana is a rail, what do the 50 free people drink?",
+          "next": "plan"
+        }
+      ]
+    },
+    "c2": {
+      "them": [
+        "YES!!! THE RAIL IS HAPPENING. I AM WAXING IT IN MY MIND AS WE SPEAK.",
+        "I TOLD SK8RBOI. HE SAID 'BRO.' I DON'T KNOW IF THAT'S A YES. HE SAID IT TWICE. THAT'S A YES.",
+        "BUT MALTEN: WHERE DOES A RAIL END. AT THE FLOOR. WHAT'S ON THE FLOOR. 50 PEOPLE. WHAT ARE THEY HOLDING. BANANAS. FREE ONES. I THINK I JUST INVENTED SOMETHING."
+      ],
+      "effects": [
+        {
+          "type": "status",
+          "from": "sk8rboi",
+          "delay": 10,
+          "text": "sk8rboi_mike has been recruited for banana rail II. needs: wax, a ramp, 40 bananas, one camcorder battery (est. 14 hrs). rail I lasted 0.4 seconds. if II hits 1.0 i skate it backwards. dad says the camcorder goes back by dinner"
+        }
+      ],
+      "choices": [
+        {
+          "say": "you invented the banana giveaway. the rail is just the opening act.",
+          "next": "free"
+        },
+        {
+          "say": "it's still a stunt. will a stunt keep the snack bar open? think about the manager.",
+          "next": "plan"
+        }
+      ]
+    },
+    "existential": {
+      "them": [
+        "...THE CIRCLE OF SNACK.",
+        "I AM A FRUIT. THE BLENDER IS A MIRROR. IS THERE A 'PULSE' SETTING IN ME. MALTEN I AM HAVING A THOUGHT AND IT IS QUIET AND I DO NOT LIKE HOW MUCH I LIKE IT.",
+        "...OK. IF IT HAS TO HAPPEN, IT HAPPENS WITH RESPECT. A CEREMONY. OR I TELL VINCE TO HIS FACE THAT I CAN'T. I DON'T KNOW WHICH ONE MY HANDS CAN DO."
+      ],
+      "effects": [
+        {
+          "type": "status",
+          "delay": 8,
+          "text": "BANANA_PHONE QUIT THE SNACK BAR AT 4:12 PM. UNQUIT AT 4:13 PM. THE MANAGER DID NOT NOTICE. IT WAS A VERY BIG MINUTE AND I HAVE NOTHING FURTHER TO SAY (RING RING)"
+        }
+      ],
+      "choices": [
+        {
+          "say": "the ceremony. give the banana the send-off it deserves. i'll help you write it.",
+          "next": "ceremony"
+        },
+        {
+          "say": "or you tell vince. you're the best snack bar he's got. you've never missed a nickel.",
+          "next": "rehearse"
+        }
+      ]
+    },
+    "rehearse": {
+      "them": [
+        "OK. REHEARSAL. I WILL DO IT ON THE BANANA PHONE. YELLOW. CORDED. CONNECTED TO NOTHING. THE COUCH CUSHION LISTENS. (THE CUSHION WILL BE VINCE.)",
+        "I TOLD THE CUSHION 'VINCE, I CAN'T BLEND A BANANA.' THE CUSHION SAID NOTHING, WHICH IS A KIND OF 'HUGE.' I NEED A BETTER VINCE."
+      ],
+      "choices": [
+        {
+          "say": "i'll be vince. ready? 'BANANA!! blender's here!! gonna be HUGE.' go.",
+          "next": "call"
+        },
+        {
+          "say": "rehearsal's over. before you call, let's put every option on the table.",
+          "next": "plan"
+        }
+      ]
+    },
+    "call": {
+      "them": [
+        "...OK. THAT WAS GOOD. YOU ARE A GOOD VINCE. YOU PUT THE RIGHT AMOUNT OF CHEESE IN 'HUGE.'",
+        "I AM DIALING THE REAL ONE. THE KITCHEN PHONE, NOT THE BANANA. RINGING. RINGING. 'PROMOTER VINCE.' I SAID 'IT'S BANANA.' HE SAID 'BANANA!!! DID YOU SEE THE BLENDER?? GONNA BE HUGE.'",
+        "MY MOUTH IS OPEN. NOTHING IS COMING OUT. THIS IS A FIRST. WHAT DO I SAY. HE IS WAITING. I CAN HEAR THE DISCO BALL."
+      ],
+      "choices": [
+        {
+          "say": "the true thing first: 'i love teen nite and i can't blend a banana. i'll do everything else louder.'",
+          "next": "end_honest"
+        },
+        {
+          "say": "say it like a nacho order, loud and certain: 'ONE BANANA-FREE FRIDAY, PLEASE.' he'll ask what you'll serve.",
+          "next": "recipe"
+        }
+      ]
+    },
+    "plan": {
+      "them": [
+        "OK. OPTIONS. I AM LISTENING. I AM LISTENING SO LOUD.",
+        "VINCE JUST POSTED THE FLYER AGAIN. IT HAS THE BLENDER ON IT. HE DREW IT A LITTLE FACE. THE FACE IS HAPPY. I DO NOT TRUST THE FACE."
+      ],
+      "effects": [
+        {
+          "type": "bulletin",
+          "from": "vince",
+          "delay": 6,
+          "subject": "TEEN NITE #15: SMOOTHIE BAR!!! (FIRST 50 FREE) (IT'S GONNA BE HUGE)",
+          "text": "WHAT: TEEN NITE #15!!! WHEN: FRIDAY, DOORS AT 7. NEW THIS WEEK: THE SMOOTHIE BAR!!! (chrome blender, 14 speeds, the rink bought it, i didn't ask how much) MENU: banana, strawberry-banana, banana-banana, and a surprise. RUNNING IT: banana (a LEGEND, she has never missed a nickel). FIRST 50 THROUGH THE DOOR FREE. IT'S GONNA BE HUGE. -vince"
+        },
+        {
+          "type": "status",
+          "from": "penny",
+          "delay": 18,
+          "text": "penny is SO excited for the smoothie bar!!! blue raspberry is not a smoothie flavor but i'm going to ask anyway!!! also i heard a rumor about MANGO!!! mango is the new blue raspberry!!! (it's not) (it's a little bit)"
+        }
+      ],
+      "choices": [
+        {
+          "say": "plan a: a smoothie with no bananas in it. so good nobody asks.",
+          "next": "recipe"
+        },
+        {
+          "say": "plan b: one banana, a real ceremony, and then the blender does its thing.",
+          "next": "ceremony"
+        },
+        {
+          "say": "plan c: nobody gets blended. bananas go out whole. first 50 free.",
+          "next": "free"
+        }
+      ]
+    },
+    "recipe": {
+      "them": [
+        "OK. NO BANANAS. THEN WHAT. I HAVE NEVER KNOWN ANOTHER FRUIT. I KNOW THE BACK OF EVERY CEREAL BOX AND THEY ARE ALL ABOUT YELLOW.",
+        "PENNY SAID 'MANGO.' SHE SAID IT LIKE A SECRET. EVERYBODY SAYS IT LIKE A SECRET. THERE IS A NEW FRUIT IN TOWN. IT IS ORANGE. IT HAS A PIT. AND I AM... FINE. I AM TOTALLY FINE. (I AM NOT FINE.)"
+      ],
+      "choices": [
+        {
+          "say": "strawberry and peach. and name it after your problem: 'The Alibi.' no bananas were harmed. it's an alibi.",
+          "next": "end_alibi"
+        },
+        {
+          "say": "so mango's a rival. fine. put it on the menu and beat it with how much you care.",
+          "next": "mango"
+        }
+      ]
+    },
+    "mango": {
+      "them": [
+        "...ON THE MENU?? IN MY OWN SNACK BAR? WITH A LITTLE SIGN?",
+        "OK. OK. I WILL SHAKE HANDS WITH THE MANGO. I WILL BE A BIG BANANA ABOUT IT. BUT IF THE PEOPLE LOVE IT MORE, I WILL PUT MY HEAD ON THE NACHO COUNTER AND I WILL NOT LIFT IT."
+      ],
+      "choices": [
+        {
+          "say": "they'll love both. you're the one standing there loving them. that's the secret ingredient.",
+          "next": "end_alibi"
+        },
+        {
+          "say": "or you make the banana send-off so big that mango is just a guest at the funeral.",
+          "next": "ceremony"
+        }
+      ]
+    },
+    "ceremony": {
+      "them": [
+        "ONE BANANA. THE LAST SLOW SKATE. THE LIGHTS GO DOWN. I STAND BEHIND THE COUNTER AND I SAY SOMETHING TRUE. THEN: PULSE.",
+        "BUT I CAN'T DO IT WITH A STRANGER BANANA. IT HAS TO BE ONE I KNOW. I HAVE SIX AT HOME. THEY ARE ALL MY FRIENDS. MALTEN, HOW DO YOU PICK ONE FRIEND."
+      ],
+      "choices": [
+        {
+          "say": "pick the one who's already bruised. he's earned the spotlight. name him and give him a speech.",
+          "next": "name_him"
+        },
+        {
+          "say": "keep it to sixty seconds. a speech, a pulse, a moment of silence, then cups for everybody.",
+          "next": "end_funeral"
+        }
+      ]
+    },
+    "name_him": {
+      "them": [
+        "HIS NAME IS KEITH. HE IS BRUISED ON ONE SIDE AND BRAVE ON THE OTHER. HE HAS BEEN ON THE COUNTER SINCE TUESDAY AND HE HAS NEVER ONCE COMPLAINED.",
+        "I READ HIM THE RINK SCHEDULE. HE LOOKED INTERESTED. HIS STEM MOVED. (THE FAN MOVED THE STEM.) (HE IS READY.)"
+      ],
+      "choices": [
+        {
+          "say": "write him a three-sentence eulogy and read it at the last slow skate. then pulse. with love.",
+          "next": "end_funeral"
+        },
+        {
+          "say": "or keith lives. keith is the mascot. nobody is ever blended. free the whole bunch.",
+          "next": "free"
+        }
+      ]
+    },
+    "free": {
+      "them": [
+        "THE CREW: SK8RBOI ON CAMERA. PENNY ON BRACELETS (EVERY BANANA GETS ONE). ME ON THE RAIL. AND VINCE, WHO IS A WILD CARD AND ALSO THE PROMOTER.",
+        "TWO WAYS: I TELL VINCE FIRST AND HE YELLS 'BANANA DROP' ON THE MIC. OR I SAY NOTHING AND IT JUST... HAPPENS. AT 7:00. LIKE A WEATHER EVENT. I CAN'T DECIDE. I AM SPINNING AT 2X."
+      ],
+      "choices": [
+        {
+          "say": "loud. tell vince. 'BANANA DROP' on the mic. he'll say huge and he'll mean it.",
+          "next": "end_drop"
+        },
+        {
+          "say": "quiet. surprise at 7:00 sharp. let it become legend.",
+          "next": "end_surprise"
+        }
+      ]
+    },
+    "end_honest": {
+      "them": [
+        "HE SAID... HE SAID 'BANANA, I NEVER EVEN LIKED THE BLENDER. THE RINK BOUGHT IT. I JUST SAID HUGE.' HE SAID 'YOU HAVE NEVER MISSED A NICKEL. NACHOS ARE HUGE.'",
+        "SO IT IS NACHO NITE. THE BLENDER GOES BACK IN ITS BOX WITH ITS LITTLE FACE. I TOLD THE TRUTH AND THE SKY DID NOT FALL. I AM GOING TO LIE DOWN. (I AM NOT GOING TO LIE DOWN.) (RING RING.)"
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "status",
+          "delay": 5,
+          "text": "BANANA_PHONE TOLD THE TRUTH TO A PROMOTER AND NOBODY GOT BLENDED. 36 NACHOS ARE ALREADY READY. THE EXTRA 22 ARE FOR HOPE. I FEEL LIKE A DOOR THAT FINALLY OPENED (RING RING)"
+        },
+        {
+          "type": "status",
+          "from": "vince",
+          "delay": 20,
+          "text": "vince just cancelled the smoothie bar. the blender goes back in its box. NEW HEADLINE: NACHO NITE!!! banana told me the truth on the phone and i said 'huge' and she cried (i think) (the line was bad). it's still gonna be HUGE (nachos are huge)"
+        },
+        {
+          "type": "wallpost",
+          "to": "banana",
+          "from": "herp",
+          "delay": 40,
+          "text": "herp ♥ herp. (herp herp herp.) herp!!"
+        },
+        {
+          "type": "wallpost",
+          "to": "banana",
+          "from": "walt",
+          "delay": 65,
+          "text": "Dear Banana Phone, I am told you spoke plainly to a man this evening and he took it well. In 34 years of delivery I found that most men do. Capital letters notwithstanding. Regards, Walt"
+        }
+      ]
+    },
+    "end_alibi": {
+      "them": [
+        "IT IS CALLED THE ALIBI. STRAWBERRY, PEACH, AND ONE SECRET INGREDIENT (LOVE) (AND A SQUEEZE OF LEMON). NO BANANAS WERE HARMED. NO BANANAS WERE EVEN PRESENT. THEY WERE IN THE NEXT ROOM. THEY HAVE AN ALIBI.",
+        "I HELD THE LID DOWN WITH BOTH HANDS AND PRESSED 'PULSE' AND CLOSED MY EYES AND WHEN I OPENED THEM THERE WAS A PINK THING AND IT WAS... GOOD?? THE BLENDER AND I HAVE AN UNDERSTANDING NOW. IT IS THE PUMP'S COUSIN."
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "status",
+          "delay": 8,
+          "text": "BANANA_PHONE INVENTED A SMOOTHIE WITH NO BANANAS IN IT. IT IS CALLED THE ALIBI. I TASTED IT. IT IS PINK. IT IS GOOD. I FEEL STRANGE ABOUT THAT AND ALSO PROUD (IT IS THE PUMP'S COUSIN)"
+        },
+        {
+          "type": "status",
+          "from": "vince",
+          "delay": 22,
+          "text": "vince has pre-sold 40 cups of THE ALIBI on the strength of the NAME ALONE. nobody knows what's in it. banana said 'no bananas were harmed' and a line formed. friday is gonna be HUGE (46 people, 40 cups) (i counted twice)"
+        },
+        {
+          "type": "wallpost",
+          "to": "banana",
+          "from": "penny",
+          "delay": 38,
+          "text": "BANANA!!! 'THE ALIBI'!!! i'm making a bracelet that says ALIBI in pink beads and u get the first one!!! and mango is invited to the party!!! PLUR!!! (peace love unity respect AND fruit!!!)"
+        },
+        {
+          "type": "status",
+          "from": "patrick",
+          "delay": 60,
+          "text": "patrick is going to try the alibi on friday. banana says there are no bananas in it. i said that's ok. i'll bring one to eat on the side so it doesn't feel left out"
+        }
+      ]
+    },
+    "end_funeral": {
+      "them": [
+        "KEITH. THAT IS HIS NAME. I NAMED HIM ON THE WAY OVER HERE. HE WILL BE REMEMBERED IN A CUP. THE SPEECH HAS THREE SENTENCES. THE LAST ONE IS 'THANK YOU FOR THE POTASSIUM.' I CRIED WRITING IT. THE FERN SAW. (ANDREW.)",
+        "FRIDAY. THE LAST SLOW SKATE. THE LIGHTS GO DOWN. I STAND BEHIND THE COUNTER AND I SAY IT. THEN PULSE. IT WILL BE THE QUIETEST I HAVE BEEN IN 37 HOURS. (40 SECONDS.)"
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "bulletin",
+          "delay": 6,
+          "subject": "A CEREMONY (FRIDAY) (LAST SLOW SKATE) (BRING A TISSUE)",
+          "text": "FRIDAY AT THE ROLLERDOME, DURING THE LAST SLOW SKATE, THERE WILL BE A MOMENT OF SILENCE FOR ONE BANANA NAMED KEITH. HE IS BRUISED ON ONE SIDE AND BRAVE ON THE OTHER. HE WILL GO INTO THE BLENDER AT THE END OF THE EVENING. IT WILL BE QUICK. IT WILL BE LOVING. THE SMOOTHIE IS FREE TO ANYONE WHO CRIES. DRESS: YELLOW. ATTENDANCE: LOUD. -BANANA_PHONE (RING RING)"
+        },
+        {
+          "type": "wallpost",
+          "to": "banana",
+          "from": "sk8rboi",
+          "delay": 30,
+          "text": "the banana rail was real. i grinded it. it did not survive. keith is going to a better rail. moment of silence. i'll bring the camcorder. dad says it goes back by dinner"
+        },
+        {
+          "type": "wallpost",
+          "to": "banana",
+          "from": "josh",
+          "delay": 48,
+          "text": "banana i'll be there for keith. youth group's gonna come too, its kinda our thing to show up for stuff. i'll bring pizza (no bananas on it) =]"
+        },
+        {
+          "type": "wallpost",
+          "to": "banana",
+          "from": "walt",
+          "delay": 70,
+          "text": "Dear Banana Phone, I will be unable to attend the ceremony, as I do not drive after dark. But in 34 years I stood at a good many services. The best ones were short and somebody said thank you. Yours is three sentences. That is correct. Regards, Walt"
+        }
+      ]
+    },
+    "end_drop": {
+      "them": [
+        "I SAID 'BANANA DROP.' HE SAID 'IS THAT A BAND.' I SAID 'IT IS A BANANA GIVEAWAY.' HE SAID 'FIRST 50 FREE???' I SAID YES. HE MADE A SOUND LIKE A KETTLE. 'THAT'S OUR WHOLE THING,' HE SAID. 'THAT'S HUGE.' HE DID NOT ASK ABOUT THE BLENDER.",
+        "FRIDAY, 7:00 SHARP. SK8RBOI ON THE RAIL. PENNY ON BRACELETS. ME IN THE MIDDLE OF 40 BANANAS. THE BLENDER STAYS IN ITS BOX AND WATCHES. IT CAN LEARN SOMETHING."
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "bulletin",
+          "delay": 6,
+          "subject": "BANANA DROP!!! (FRIDAY) (7:00 SHARP) (FIRST 50 FREE)",
+          "text": "40 BANANAS. WHOLE. PEELS ON. NO BLENDER INVOLVED. THE FIRST 50 THROUGH THE DOOR GET ONE (FREE). SK8RBOI WILL ATTEMPT BANANA RAIL II: THE REVENGE OF THE PEEL. PENNY IS MAKING 40 BRACELETS (ONE PER BANANA). VINCE WILL SAY 'HUGE.' I AM SAYING IT FIRST. HUGE. -BANANA_PHONE (RING RING)"
+        },
+        {
+          "type": "status",
+          "from": "vince",
+          "delay": 20,
+          "text": "vince has called it: TEEN NITE #15 = THE BANANA DROP!!! the smoothie bar is 'on hold' (the blender hasn't been told) (it's in a box). 50 FREE BANANAS FOR THE FIRST 50 FREE PEOPLE. that's double free. that's a promoter's dream. IT'S GONNA BE HUGE"
+        },
+        {
+          "type": "status",
+          "from": "sk8rboi",
+          "delay": 40,
+          "text": "sk8rboi_mike is assembling banana rail II (the revenge of the peel). 40 bananas, 2 tubes of wax, 1 ramp. rail I survived 0.4 seconds. banana says if this one hits 1.0 i have to skate it backwards. fine. dad says the camcorder goes back by dinner"
+        },
+        {
+          "type": "wallpost",
+          "to": "banana",
+          "from": "penny",
+          "delay": 60,
+          "text": "BANANA!!! 40 bracelets for 40 bananas!!! each one says RING RING in yellow beads!!! i'm already at 11!!! my fingers are yellow!!! PLUR!!!"
+        }
+      ]
+    },
+    "end_surprise": {
+      "them": [
+        "NOTHING. I WILL SAY NOTHING. AT 7:00 I WALK OUT WITH A CRATE LIKE I AM DELIVERING THE MAIL AND I SAY 'FREE' ONCE. ONE WORD. AND THEN I AM UNDER A WAVE OF TEENAGERS.",
+        "I MAY HAVE FORGOTTEN THAT THE MANAGER IS ALSO COMING FRIDAY. I AM NOT WORRIED. I AM 2X WORRIED. THAT IS HALF OF 4X. I AM FINE."
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "status",
+          "delay": 6,
+          "text": "BANANA_PHONE KNOWS SOMETHING YOU DON'T. FRIDAY. 7:00. WEAR SOMETHING YELLOW AND STAND NEAR THE SNACK BAR. NO I WILL NOT TELL YOU. YES IT INVOLVES 40 BANANAS. I HAVE SAID TOO MUCH. RING RING"
+        },
+        {
+          "type": "wallpost",
+          "to": "banana",
+          "from": "vince",
+          "delay": 25,
+          "text": "BANANA!!! why does sk8rboi say he's 'on rail duty' friday. what rail. i didn't book a rail. is the rail part of the show. is it part of the show WITHOUT ME. i'm the show. (gonna be HUGE) (what rail)"
+        },
+        {
+          "type": "status",
+          "from": "sk8rboi",
+          "delay": 42,
+          "text": "sk8rboi_mike has been sworn to secrecy about friday. i am not talking about the 40 bananas. i am not talking about the wax. i have said too much. dad says the camcorder goes back by dinner"
+        },
+        {
+          "type": "status",
+          "from": "marcus",
+          "delay": 60,
+          "text": "marcus has received reports of a 'non-sanctioned banana event' on Friday. rink rules do not cover it. neither do his. he is drafting an amendment and will be attending, location unknown."
+        }
+      ]
+    }
+  }
+}

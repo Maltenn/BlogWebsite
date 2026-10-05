@@ -1,0 +1,235 @@
+{
+  "id": "lucas_porch_light",
+  "with": "lucas",
+  "opener": [
+    "malten. i need to tell u something and u can't use the notebook voice. no 'deep.' no 'pain.' just read it.",
+    "andy messaged me. amv_andy (the one w/ the red HyperCam thing in the corner of everything). he's been reading my statuses and he says they're 'the best lyrics he's ever seen' and he wants to put my words in a video. w/ my name in the credits. 'words by linkin_lucas.'",
+    "his premiere is thursday at 7 at the library. aaron's open mic is thursday at 7:30 at perk avenue, 4 blocks away. i've never read anything out loud. not even to the dishwasher. i'm not saying i'm scared. i'm saying i haven't eaten since 3."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "what's the real problem? the video, the mic, or the fact that someone might read it?", "next": "a_real" },
+        { "say": "andy first. what's his pitch? a video is a way to be seen without being seen.", "next": "b_andy" },
+        { "say": "do the open mic. stand up in the hoodie and read something to a room.", "next": "c_mic" }
+      ]
+    },
+
+    "a_real": {
+      "them": [
+        "ok. the real problem. the notebook is the only place where i'm allowed to be 'not ready' forever. nobody reads it. nobody can grade it. mrs petrovich asked if she's in it and i said no and that's a lie, there's a lawn.",
+        "and ms alvarez wrote 'good' on page 47. NOT next to the line i thought. next to a different one. a plain one. i've been staring at that for three weeks like it's a math problem."
+      ],
+      "choices": [
+        { "say": "what was the plain line?", "next": "p47" },
+        { "say": "which page is closest to ready? just one. don't think, just point.", "next": "pick_song" }
+      ]
+    },
+
+    "b_andy": {
+      "them": [
+        "his pitch: it's for the last episode of a robot show. 26 episodes. in 25 the robot doesn't say anything for four minutes. he wants words for the end. he said, quote, 'i need words that sound like the robot is almost home.'",
+        "he said the red HyperCam thing stays 'as a design choice.' he has $31.40 in a pringles can. a 3 minute video takes him 6 hours 40 minutes to render and it stops at 91 percent sometimes and he just starts over. malten that man does not give up."
+      ],
+      "effects": [
+        { "type": "status", "from": "andy", "text": "andy has asked a poet for words. the poet said 'maybe.' andy is already rendering a test. 4%. he's not breathing near the computer." }
+      ],
+      "choices": [
+        { "say": "say yes to the video. andy's rendering at 4 percent and your hoodie can't beat that.", "next": "andy_deadline" },
+        { "say": "sit with it first. which page would you actually hand over?", "next": "pick_song" }
+      ]
+    },
+
+    "andy_deadline": {
+      "them": [
+        "yes. ok. i said yes to the VIDEO. i didn't say which words. he needs them by tuesday night because the render takes a whole night and he has to leave the computer alone. he said, 'can they be funny?' i said i don't write funny. he said 'you wrote the dishwasher.'",
+        "so i have 1 day to choose. andy wants words that make a robot almost-home. i have a page that makes a dishwasher a crime scene and a page that makes a porch light a person. and a lot of hoodies."
+      ],
+      "choices": [
+        { "say": "give him the dishwasher. andy will make a robot load a dishwasher. it'll be glorious.", "next": "dishwasher" },
+        { "say": "slow down. lay all the pages out and choose the one that's actually yours.", "next": "pick_song" }
+      ]
+    },
+
+    "c_mic": {
+      "them": [
+        "perk avenue. it's a coffeehouse w/ 6 tables and a couch that smells like a sweater. the sign-up is a clipboard w/ a pen on a string. aaron's always #1, it's basically his sheet, he sits next to it like a guard.",
+        "he told me thursday there's a #6. he said 'you'd be good. you'd be sad, but good.' i don't know if that's a compliment. i've been thinking about it since homeroom."
+      ],
+      "choices": [
+        { "say": "read it to someone safe first. owen. 11-year-olds don't lie.", "next": "owen_listen" },
+        { "say": "read it to me. here, in the chat. i won't say deep. not once.", "next": "read_first" }
+      ]
+    },
+
+    "p47": {
+      "them": [
+        "'the porch light stays on till the last car gets home.' that's it. i wrote it in 40 seconds at a red light coming back from practice. it isn't even sad. it's about my mom's porch light. she leaves it on when i'm late. i put it in the notebook as a throwaway.",
+        "and then on page 53 i wrote a whole song around it. 14 lines. it's my answer to your blog post, 'Why do we create?' it's not about pain. i don't know where to put a song that isn't about pain."
+      ],
+      "effects": [
+        { "type": "status", "text": "lucas wrote something down tonight that wasn't about the rain. he is not discussing it. (it was about a porch light.) (he's not discussing the porch light.)" }
+      ],
+      "choices": [
+        { "say": "that's the one. 'porch light.' that's the song you're sitting on.", "next": "porch_light" },
+        { "say": "you have other pages. lay them out. let's pick together.", "next": "pick_song" }
+      ]
+    },
+
+    "owen_listen": {
+      "them": [
+        "i read one to owen. in the hall outside his room, door open. he was playing mario kart. he PAUSED it, malten. he never pauses. i read the one from page 47. he said 'that one's about mom.' i said no. he said 'it's about mom.' i said it's about a light. he said 'mom's the light.'",
+        "he's 11. then he said 'is it sad or just tired.' i said 'tired.' he said 'good. i like the tired ones. they're real.' then he unpaused and a blue shell hit me from a room away."
+      ],
+      "effects": [
+        { "type": "status", "text": "lucas read one out loud tonight to an audience of 1. the audience paused mario kart. (a blue shell may have been involved after.) (it's still going fine.)" }
+      ],
+      "choices": [
+        { "say": "owen's the first reviewer. 'porch light' goes to the mic. it's the one.", "next": "porch_light" },
+        { "say": "read him the dishwasher too. see if he laughs. a laugh is data.", "next": "dishwasher" }
+      ]
+    },
+
+    "read_first": {
+      "them": [
+        "ok. typing the first two lines of page 53. 'the porch light stays on / till the last car turns the corner.' that's it. there's 12 more. there's no 'shadow' in it. i checked. three times.",
+        "i typed it and hit enter in the same breath so i couldn't delete it. you can't say deep. you can say anything else."
+      ],
+      "choices": [
+        { "say": "it's not deep. it's true. which is harder. that's the one.", "next": "porch_light" },
+        { "say": "it's good, lucas. but you don't have to hand it over yet. 'not yet' is a real answer.", "next": "not_ready" }
+      ]
+    },
+
+    "pick_song": {
+      "them": [
+        "ok. three candidates. 1) 'the dishwasher' (page 48, loud, i meant it tragic, i'm told it's funny). 2) 'forty by thirty' (the lawn, mostly measurements). 3) 'porch light' (page 53, 14 lines, plain).",
+        "i can only hand over one thing before thursday. 'forty by thirty' is out. it's a hedge trimmer with feelings. so: dishwasher, porch light, or nothing."
+      ],
+      "effects": [
+        { "type": "status", "text": "lucas has three pages and one Thursday. he's not choosing. (he's choosing.) (it's going to be a lot of hoodie.)" }
+      ],
+      "choices": [
+        { "say": "give andy the dishwasher. it's a good joke even if you meant it as a tragedy.", "next": "dishwasher" },
+        { "say": "porch light. it's the only one that's yours-yours.", "next": "porch_light" },
+        { "say": "nothing yet. you're allowed to say 'not ready' to both.", "next": "not_ready" }
+      ]
+    },
+
+    "porch_light": {
+      "them": [
+        "'porch light.' page 53. it's the song i didn't know i wrote. it's about waiting up. it's about a mom who doesn't say 'i missed you,' she says 'dinner's in the oven' and leaves a light on. i used to think 'dinner's ready' meant nothing. it means the light's on.",
+        "so where does it go. thursday at 7 it could be andy's last scene, the robot walking home to a porch light. or thursday at 7:30 it could be me, in a hoodie, in front of 6 tables. i can only be in one of those rooms."
+      ],
+      "choices": [
+        { "say": "read it at perk avenue. plain voice, no hoodie speech. just the lines.", "next": "show_up" },
+        { "say": "keep porch light for yourself. give andy the dishwasher. split the work.", "next": "dishwasher" }
+      ]
+    },
+
+    "dishwasher": {
+      "them": [
+        "the dishwasher. page 48. 'we all get loaded in and no one asks if we're clean.' andy's going to LOSE it. he said robots plus dishes is comedy. i said it's tragedy. he said 'the first one's the funniest.' i wrote it as a tragedy. i'm told it's funny. i'm a little hurt and a lot flattered.",
+        "he's already dragging clips into movie maker. he sent me a still: a robot, holding a plate, looking out a window. i can't tell if it's the funniest or saddest picture i've ever seen. maybe that's the whole song."
+      ],
+      "effects": [
+        { "type": "status", "from": "andy", "text": "andy has received words from linkin_lucas. he screamed. (quietly) (his mom is asleep). it is called 'the dishwasher.' it's going to be his best work. it's rendering. 2%." }
+      ],
+      "choices": [
+        { "say": "say yes to the bedsheet: andy projects it behind you at perk avenue. you read it live. one night.", "next": "both_plan" },
+        { "say": "hide behind it. send the words, credit them 'L.', and watch from the back row.", "next": "end_wrong_L" }
+      ]
+    },
+
+    "both_plan": {
+      "them": [
+        "he wants to do both. the library at 7, then perk avenue at 7:30 with the video behind me on a bedsheet. his mom's flowered one. he asked the librarian for a projector. she said 'if it comes back.' aaron said he'd 'make room in the set.' he said a bedsheet is 'the most acoustic thing i've heard of.'",
+        "the render takes 6 hours 40. it's tuesday. everything hangs on movie maker and a flowered sheet and the number 91. malten, that's the most dangerous plan i've ever been in."
+      ],
+      "choices": [
+        { "say": "do it. flowered bedsheet, 7:30. believe in 91.", "next": "end_frozen_91" },
+        { "say": "do it, but memorize the words cold, in case the video dies.", "next": "end_frozen_91" }
+      ]
+    },
+
+    "not_ready": {
+      "them": [
+        "not yet. okay. ...that felt like a sentence i'd get graded on. i'm not scared. i'm 'considering.' it's a real thing. you can consider in a hoodie.",
+        "i'd have to tell andy. 'ask me in the spring,' i guess. he'll say 'ok.' he'll say ok the way he says it when he's about to wait for a render. he's very good at waiting. it's a lot of the red letters, too."
+      ],
+      "choices": [
+        { "say": "tell andy kindly. 'not yet' is a real answer. he's made 31 videos. he knows 'not yet.'", "next": "end_not_yet" },
+        { "say": "tell andy not yet, but write your name on the sheet in pencil. you can erase it.", "next": "show_up" }
+      ]
+    },
+
+    "show_up": {
+      "them": [
+        "perk avenue. thursday, 7:21. i'm in the black hoodie (the gray one. in this light it's black). the clipboard says aaron, then a girl named priya, then a kid who does bird calls, then 'lucas' in my own handwriting. #6. gwen's at the back table. tea. nodding (not clapping).",
+        "my hands are cold. mom's in the car out front with the radio on low, i can hear it through the glass. it's motown. i can sign the sheet. or i can go sit in the car, and say i changed my mind, and she'll say 'dinner's in the oven' and it'll be fine."
+      ],
+      "choices": [
+        { "say": "walk up. no speech. read the first line. then the second. you know the rest.", "next": "end_open_mic" },
+        { "say": "go sit in the car. read it to the windshield. that's still reading.", "next": "end_not_yet" }
+      ]
+    },
+
+    "end_open_mic": {
+      "them": [
+        "i read it. it took 71 seconds. my voice shook on the third line and then it didn't. nobody coughed. somebody in the back said 'oh.' (just 'oh.') gwen nodded. i think she clapped. i'm told she clapped. she'll deny it.",
+        "aaron said, 'that's the first song at this mic that wasn't about a girl.' he said it like it was a new color. and mom was in the doorway. she'd come in to get me and she stopped, and she stayed. she's still standing there. she's holding her keys like a microphone. i'm going to go. i think i'm going to say something to her and it's not going to be in the notebook."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "lucas read page 53 at perk avenue. 71 seconds. nobody coughed. he is not saying what it was about. (a porch light.) (it was a porch light.)" },
+        { "type": "wallpost", "from": "aaron", "to": "lucas", "delay": 45, "text": "lucas. 'porch light' is the first song at perk avenue that wasn't about a girl. i didn't know that was allowed. i'm going home to think. (i'll be in G.) the sheet is yours every thursday. also, the line about 'the corner' is the best line anyone has read in that room. (i'm not saying it to be nice.) (i'm saying it in G.)" },
+        { "type": "wallpost", "from": "gwen", "to": "lucas", "delay": 100, "text": "nodding. (not clapping.) (i clapped.) (i'm telling you because it was the right call.) the line about the porch light is the kind of thing i'd put on a mix. i'm putting it on a mix. track 7. between two bands you've never heard of. don't read into the order. read into the order." },
+        { "type": "wallpost", "from": "ember", "to": "lucas", "delay": 170, "text": "we saw you at the mic. we have a lyricist slot open. and a bassist slot open. (both change weekly.) (call us.) (the demo is $3 and the lineup is 'ask us tomorrow.') (the porch light was good. we'd keep the porch light.)" },
+        { "type": "dm", "from": "andy", "delay": 330, "text": "lucas. i left the library at 7:25 and stood at the back of perk avenue with the projector under my arm. (it's not going back for a while.) i heard it. the robot's last scene needs a porch light. may i? it's a test render. 3%. credits would say 'words by linkin_lucas.' if the answer is no, i'll put nothing, and the robot will walk home in silence. i will not put the red letters on your name. i promise. (i'll put them on the robot.)" }
+      ]
+    },
+
+    "end_frozen_91": {
+      "them": [
+        "so. the video froze. at 91 percent. you could hear the whole room go 'oh.' the frame was stuck on the robot's face with the red 'Unregistered HyperCam 2' in the corner. andy stood there with his hand on the bedsheet like he could hold it up.",
+        "i said 'it's ok.' and i read the dishwasher out loud, to a frozen robot on a flowered sheet in a coffeehouse, and they LAUGHED. at the right parts. and at the end part, they stopped. malten, i meant it to be a tragedy. it was both. it was both the whole time."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "from": "andy", "subject": "NEW AMV: THE DISHWASHER (words by linkin_lucas) (91%)", "text": "Premiered tonight at Perk Avenue on a flowered bedsheet. It played to 91 percent. Then Movie Maker stopped responding. Then the author read the rest live. The footage is unfinished. It's my best work. It's his best work. We are not fixing it. The red letters stay. Registration is $39.95. I have $31.40 and $6 from the tip jar. I am at $37.40. I have never been this close. -- andy" },
+        { "type": "status", "text": "lucas read the dishwasher to a frozen robot in a flowered bedsheet. they laughed. then they didn't. he'd like it noted that he planned neither." },
+        { "type": "wallpost", "from": "usagi", "to": "andy", "delay": 60, "text": "andy!! the dishwasher AMV is sugoi!! freezing at 91 percent is a creative choice and it is club-approved!! (it was subbed, right?) (i can't tell, it was a robot looking at a window.) ganbatte for the last 9 percent!!" },
+        { "type": "wallpost", "from": "faye", "to": "lucas", "delay": 120, "text": "A/N: i was at Perk Avenue. i laughed at the dishwasher. then i cried. i'm using it in chapter 95. (I WILL credit you.) (lucas, i have notes. not flames. R&R pls.) the part about 'no one asks if we're clean' is going on the back of the chapter 96 title card." }
+      ]
+    },
+
+    "end_wrong_L": {
+      "them": [
+        "it played at the library. the whole room howled at the dishwasher. i was in the back row in the hoodie. it ended and the credits said 'Words by L.' and everybody clapped. and then everybody started asking who L was. and larry stood up and said 'i can neither confirm nor deny.'",
+        "he has not written a word in his life. he's now in the credits. i'm clapping for my own words, quietly, in the dark, for a person named L. malten. it's the best and worst feeling at the same time. it's like a hoodie. it fits and it covers everything."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "from": "andy", "subject": "THE DISHWASHER (an AMV) -- words by L.", "text": "Thank you to everyone who came to the library tonight. The AMV played to 100 percent for the first time in my life. The author of the words has asked to be credited as 'L.' and I'm honoring that. Several of you have asked who L. is. L. is a poet. L. is shy. L. is not Larry. (Larry, please stop.) -- andy (the red letters are in the corner. they're a design choice.)" },
+        { "type": "status", "text": "lucas is clapping. (quietly) (in the back row) (for a person named L.)" },
+        { "type": "status", "from": "larry", "delay": 50, "text": "larry accepts the credit for a thing he didnt do. he doesnt know what it was. he was in the credits. he thinks it was about a dishwasher. (shared) also does anyone know how 2 close a toolbar" },
+        { "type": "wallpost", "from": "vinyl_witch", "to": "lucas", "delay": 130, "text": "lucas. i know it was you. the cat knows. it was the only thing in the credits that sounded like a person. keep the 'L.' for now. when you want your name back, i'll make the sign. in the meantime i put a record on in your honor. it's 'a plain one.' you'll know." },
+        { "type": "dm", "delay": 420, "text": "malten. everybody clapped. nobody knew it was me. it's like wearing the hoodie and it being enough. next time i want the credit. maybe. (not the pain. just the credit.) mom said 'dinner's ready' and it meant something. i don't know if that counts. i think it counts. page 54." }
+      ]
+    },
+
+    "end_not_yet": {
+      "them": [
+        "ok. not yet. i said it. andy said 'ok.' the way i thought he would. then he said 'the words can wait. the robot can wait. the robot has 26 episodes' worth of patience.' i don't know what to do with that. i'm putting it on page 54.",
+        "i read it out loud once, tonight. to nobody. my voice said the words and they didn't fall off. i'm counting it. it's not a thursday thing. it's a tuesday thing. it's the quietest first time ever."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "lucas read page 53 out loud tonight. to nobody. he's counting it. it went fine. (it went really fine.) (the door said nothing. it's a very good door.)" },
+        { "type": "wallpost", "from": "aaron", "to": "lucas", "delay": 50, "text": "lucas, the sheet is on the clipboard every thursday. i wrote your name on it in pencil. erase it any time. (it's in pencil.) (i've been where you are. i'm always in G. it's fine.) no one is counting but me. i'm counting. it's 1." },
+        { "type": "wallpost", "from": "andy", "to": "lucas", "delay": 120, "text": "lucas. i said ok and i meant ok. i have 31 videos and 31 red corners and i know what 'not yet' means. it means 'later, if the render finishes.' the words will wait. the robot will wait. the movie maker will wait. (it will stop at 91 and wait.)" },
+        { "type": "dm", "delay": 420, "text": "malten. mom knocked. 'dinner's ready.' and i said 'ok' and went, and it meant something. i don't know if that counts. i think it counts. i'm putting it on page 54. (it's not about pain.) (it's about dinner.)" }
+      ]
+    }
+  }
+}

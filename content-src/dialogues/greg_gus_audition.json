@@ -1,0 +1,217 @@
+{
+  "id": "greg_gus_audition",
+  "with": "greg",
+  "opener": [
+    "malten. band emergency. not a fire (dad checked, it's a different kind of emergency)",
+    "guitarhero_gus messaged the band account. he wants to audition for static prophecy. thursday, 4pm, my garage. he said he'd bring 'his axe.'",
+    "i asked what kind. he said 'a gibson.' i asked what model. he said 'it's red.' malten it's the plastic one. it plugs into a PS2. it has FIVE BUTTONS"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "he's got 5 stars on expert, greg. that's nerve and timing. hear him out.", "next": "a_hear" },
+        { "say": "five buttons, greg. you've got six strings. let him down easy.", "next": "b_no" },
+        { "say": "make him play 'voltage heart' on the plastic one through your amp. it's the only fair test.", "next": "c_amp" }
+      ]
+    },
+
+    "a_hear": {
+      "them": [
+        "ok. nerve, yes. he sent a video: him in the den, bandanna on, playing at 98%, a beagle in the front row. malten the beagle looked MOVED. i've played to 3 people and a lawn chair. he's got a beagle and a fanbase.",
+        "but then bryan texted me. bryan. one full sentence: 'we are a 4 piece and 1 of the 4 is a guitar and it is you.' that's 17 words. i counted. bryan has never spent 17 words on anything and he spent them on THIS."
+      ],
+      "effects": [
+        { "type": "status", "text": "garageband_greg is holding ONE audition thursday at 4. guitar. the candidate asked me not to say what color his guitar is. it's red. (it's red.) (that's all i'm saying.)" }
+      ],
+      "choices": [
+        { "say": "bryan spent 17 words. that means he's scared of something. ask him what.", "next": "bryan_worry" },
+        { "say": "run it like a real audition: two songs, no gimmicks. fair is fair.", "next": "the_secret" }
+      ]
+    },
+
+    "bryan_worry": {
+      "them": [
+        "i asked. it took him 40 minutes because his phone was in the truck and he had to go to the truck.",
+        "he said: 'if he's good it'll be weird and if he's bad it'll be weird.' then: 'i don't want it weird.' then: 'i also want him in.' then: 'idk anymore.' then: 'practice at 6.' that's the whole bryan. that's the whole thing in 5 texts."
+      ],
+      "choices": [
+        { "say": "he wants gus in but not weird. so make it normal. a regular audition, regular rules.", "next": "the_secret" },
+        { "say": "give bryan a veto and a cymbal. a veto is a way of saying you trust him.", "next": "the_secret" }
+      ]
+    },
+
+    "b_no": {
+      "them": [
+        "that's what i said. out loud. to the amp. 'no.' the amp didn't argue.",
+        "then i opened his message again and there's a picture attached: gus, bandanna on, and the beagle (axl) sitting in front of him like a front row. malten the DOG is in the FRONT ROW. how do i say no to that."
+      ],
+      "choices": [
+        { "say": "a no with a job in it. 'not yet, but we need a roadie.' that's not really a no.", "next": "soft_no" },
+        { "say": "just send it. rip the bandaid off. he's got a beagle, he'll cope.", "next": "the_secret" }
+      ]
+    },
+
+    "soft_no": {
+      "them": [
+        "roadie. he'd carry the amp. but nate already says 'i'm in the band' when HE carries the amp, so it'd be two guys carrying one amp, and my dad says that's 'a safety issue and a union issue.'",
+        "i typed 'we love ur energy but we need someone on REAL guitar' and then i stared at the word REAL. it looks so mean on a screen. i deleted it. i've deleted it 4 times. my thumb is just standing there."
+      ],
+      "choices": [
+        { "say": "you're stalling. what's actually bugging you, greg?", "next": "the_secret" },
+        { "say": "send it with a CD-R. a sharpie one. that's your whole way of saying sorry.", "next": "the_secret" }
+      ]
+    },
+
+    "c_amp": {
+      "them": [
+        "...ok. i did it. except there's no way to plug a PS2 guitar into an amp. no cable. so i held a microphone up to the strum bar and the whole garage heard CLACK CLACK CLACK, perfectly in time with the song, which is a better rhythm section than we've had since march.",
+        "bryan came out of the house, listened to ten seconds of clacking and said 'yea.' then he went back in. it was a different 'yea' than normal. it had a little rise on the end."
+      ],
+      "effects": [
+        { "type": "status", "text": "garageband_greg is recording a plastic guitar's strum bar through a microphone. it's perfectly in time. dad says 'is that the dishwasher.' it's not the dishwasher. (it's a little bit the dishwasher.)" }
+      ],
+      "choices": [
+        { "say": "bryan said 'yea' with a rise. that's an invitation. tell gus to come.", "next": "the_secret" },
+        { "say": "burn it on a CD-R. 'The Strum Bar Sessions.' it's your b-side.", "next": "the_secret" }
+      ]
+    },
+
+    "the_secret": {
+      "them": [
+        "ok. before i send ANYTHING. i have to tell you what i saw saturday, because it changes the whole thing.",
+        "the music store at the mall, back wall, past the amps. gus. with a REAL guitar. a used acoustic-electric with an $89 sticker and a crack by the sound hole with tape on it. he was playing the same four notes over and over and wincing, malten. his fingertips had BAND-AIDS on them. eight of ten. the thumbs were free.",
+        "he didn't see me. i hid behind the pick rack. i've told nobody for three days, including my dad and including gus. and i don't know if it's his secret or if it's the audition."
+      ],
+      "choices": [
+        { "say": "he's doing it for the band. tell him you know. tell him to bring the real one thursday.", "next": "tell_him" },
+        { "say": "don't tell him. say 'bring whatever you've got' and let him open the case himself.", "next": "protect" },
+        { "say": "book a duel. friday, your garage: his plastic vs your real one. winner takes the 5th slot.", "next": "duel_plan" }
+      ]
+    },
+
+    "tell_him": {
+      "them": [
+        "done. i typed: 'bring the real one thursday.' then sat with my thumb over SEND like it was a detonator.",
+        "four minutes. FOUR MINUTES of the typing bubble on and off. then: 'how did u know.' then: 'i only know 2 and a half chords.' then: 'the half is G. its a hard G.' then: 'my fingers r in bandaids.' then: 'dont tell dani.'"
+      ],
+      "effects": [
+        { "type": "status", "from": "gus", "delay": 20, "text": "gus is practicing something he cannot name, in the den, under a blanket. axl is guarding it. do not ask. gus has no comment. (the comment is G.)" }
+      ],
+      "choices": [
+        { "say": "tell him two and a half is a song. 'voltage heart' is 3 chords and you wrote it next to the dishwasher.", "next": "end_real" },
+        { "say": "mention skip's ska band is short a guitar. two chords, all night, on the offbeat. perfect warm-up.", "next": "skip_offer" }
+      ]
+    },
+
+    "protect": {
+      "them": [
+        "ok. i'll send: 'thursday 4pm. bring whatever you've got. whatever's in the case.' that's not lying. that's a thing a manager says.",
+        "...he replied in 9 seconds. 'ok.' then 'what do u mean whatever's in the case.' then 'greg what do u mean.' then 'i have to go.' and then, malten, i heard through the PHONE: something wooden hitting a carpet."
+      ],
+      "choices": [
+        { "say": "now wait for thursday. don't push. let him decide to open it.", "next": "thursday_case" },
+        { "say": "text 'no pressure, i've got a spare real one if you ever need it.' make it easy.", "next": "thursday_case" }
+      ]
+    },
+
+    "thursday_case": {
+      "them": [
+        "4:00. he's on time. he comes in with the red plastic guitar AND a second case, a black one, the kind that's been in a trunk. he puts the second case down by the amp, very carefully, like it's asleep.",
+        "he plays 'voltage heart' on the plastic one. 100%. no misses. the clacking, the garage goes dead quiet, even dad's extension cord seemed to hold its breath. then he looks at the black case and says 'that's all i've got.' and doesn't open it."
+      ],
+      "choices": [
+        { "say": "tell him you know about the case. say 'open it.' say it like a manager.", "next": "end_real" },
+        { "say": "applaud the plastic set. give him your tab book (page 40 of 200) like it's a promotion.", "next": "end_book" }
+      ]
+    },
+
+    "duel_plan": {
+      "them": [
+        "a DUEL. i love it. i hate that i love it. rules: one song, 'voltage heart.' him on plastic, me on real, bryan scores it on the cymbal. winner gets to 'be right.' (we don't know about what yet.) (probably the 5th slot.)",
+        "also xFadingEmberx just messaged: 'we heard there's a guitar duel. we'd like to be on the bill. we're a 3-piece. we could be a 4-piece by friday, cousin permitting.' and skip heard from ember and now skip's asking if horns count as guitars. (they don't.) (he says they have 'a lot of strings in spirit.')"
+      ],
+      "choices": [
+        { "say": "say yes to everyone. ember, skip, the beagle. a whole festival in a garage.", "next": "bill_plan" },
+        { "say": "keep it a duel. one song, bryan on the cymbal, done by 8:15.", "next": "end_duel" }
+      ]
+    },
+
+    "skip_offer": {
+      "them": [
+        "skip. SKIP. i hadn't thought of skip. i messaged him and he answered in a minute: 'ska is built on two chords and a dream. he can have the dream for free.' then: 'the offbeat is the whole thing, you just don't play on the one.' (i don't know what that means.) (bryan says he does.)",
+        "the pork pie patrol is at the elks lodge saturday and skip says a tenth person would 'fit right between the trombone and fitz.' fitz is the hype guy. fitz would hype him. that's the best deal any beginner has ever gotten."
+      ],
+      "choices": [
+        { "say": "make it one night: your garage, ska first, screamo second, you last. friday.", "next": "bill_plan" },
+        { "say": "ska saturday, static prophecy after. let him build up to the audition.", "next": "bill_plan" }
+      ]
+    },
+
+    "bill_plan": {
+      "them": [
+        "ok it's a bill. i made the flyer in word art in 11 minutes. three fonts. one is Jokerman. lineup: THE PORK PIE PATROL (9!) / FADING EMBER (3, maybe 4) / STATIC PROPHECY (4, maybe 5) / special guest: a beagle named Axl.",
+        "dad's rule: done by 8:15. so that's 20 minutes a band. ska at 6:30, ember 7:05, us 7:40 sharp. the extension cord is going to need a power strip summit."
+      ],
+      "choices": [
+        { "say": "let gus play a song with each band. he's the secret weapon of the whole night.", "next": "end_bill" },
+        { "say": "tell bryan the order first. he gets to veto the lineup but not the night.", "next": "end_bill" }
+      ]
+    },
+
+    "end_real": {
+      "them": [
+        "ok. i said it: 'two and a half is a song.' he typed 'ok' then 'ok ok ok' then 'ok' WITH A PERIOD which for a 15 year old is a speech.",
+        "thursday, 4pm, real guitar, the taped one. i'm going to teach him the hard G. i hit it wrong for a whole year and nobody knew because the amp was loud. thank u for telling me to say it. i'd have sent him a CD-R and a no."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "garageband_greg has a new member of STATIC PROPHECY. 5-piece. rhythm guitar. two and a half chords (three by friday). he's playing a REAL guitar and he'd like that on the flyer. in word art. in every font." },
+        { "type": "status", "from": "gus", "delay": 30, "text": "gus has a real guitar. it was $89. it is not plastic. it has a crack with tape on it that he is calling 'character.' his fingertips are a different color now. axl howled at the G. (the hard one.)" },
+        { "type": "wallpost", "from": "bryan", "to": "gus", "delay": 80, "text": "gus. yea. welcome. (greg said i had to type 'sick.' sick.) (phone's in the truck. if you need me ask greg.)" },
+        { "type": "wallpost", "from": "skip", "to": "greg", "delay": 140, "text": "greg!! congrats on the second guitar!! if he ever gets tired of chords the pork pie patrol has a spot. we always have a spot. it's between the trombone and fitz. ska is not dead, it's waiting for him to play the offbeat (the AND)." }
+      ]
+    },
+
+    "end_book": {
+      "them": [
+        "so i said: 'great set. you're definitely in the band. but the audition is for the real one and the real one is song 6, and i'm not writing song 6 until fall.' which is a speech and i KNOW it's a speech.",
+        "then i gave him the guitar tab book. page 40 of 200. mine. christmas. i wrote 'for gus (page 41 is the good one)' on the front in sharpie and he held it like a gift from a king. he said 'i'll have it back by song 6.' malten, i'm not taking it back. i have a heart, apparently."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "garageband_greg gave away the guitar tab book he got for christmas. it was on page 40. he didn't need page 41 that much. (he needs page 41 a little.)" },
+        { "type": "status", "from": "gus", "delay": 40, "text": "gus got a book with a sharpie note in the front. 200 pages. gus is on page 1. page 1 is 'how to hold it.' he's holding it right. axl thinks he's holding it wrong. axl is a beagle." },
+        { "type": "wallpost", "from": "bryan", "to": "gus", "delay": 90, "text": "gus. come to practice anyway. carry the kick drum. i'll show you the pedal. everybody in a band hits something. yea." },
+        { "type": "wallpost", "from": "vinyl_witch", "to": "greg", "delay": 160, "text": "greg. i heard about the book. the copy you hand to someone with your name written in the front is the one that gets a history. that's the whole point of a first pressing. that was a first pressing. -vw" }
+      ]
+    },
+
+    "end_duel": {
+      "them": [
+        "ok. THE GREAT GUITAR DUEL. friday, 7pm, my garage. one song, 'voltage heart.' gus on plastic, me on real. bryan scores it with a cymbal. i've decided the winner 'gets to be right.' about what? we'll know friday.",
+        "dad says it's fine if it's done by 8:15 and nobody touches the extension cord. i'm taking that as a blessing. malten if i lose to a PS2 controller i want you there when i find out."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "FRIDAY: THE GREAT GUITAR DUEL (real vs. plastic)", "text": "STATIC PROPHECY presents: ONE SONG. 'Voltage Heart.' In the left corner: garageband_greg, a REAL guitar, 4 songs, one power chord of confidence. In the right corner: guitarhero_gus, a PLASTIC guitar, 5 stars on expert, a beagle named Axl. Bryan scores it on the cymbal. Garage, 7pm, free, done by 8:15 (dad's rule). Bring a chair. Bring a friend. Bring a ruling. -greg" },
+        { "type": "status", "from": "gus", "delay": 25, "text": "gus has accepted a duel. gus has stretched his thumbs. axl is the judge. axl is a beagle. (axl is biased.) (axl is biased toward whoever is holding the sandwich.)" },
+        { "type": "wallpost", "from": "chad", "to": "greg", "delay": 60, "text": "GREG!!! I AM THE CROWD!!! I WILL BE LOUD AT BOTH OF YOU EQUALLY!!! IS IT OK IF I BRING A FOAM FINGER??? IT SAYS EAGLES. I WILL FLIP IT SO IT SAYS NOTHING. I AM VERY FAIR" },
+        { "type": "wallpost", "from": "ember", "to": "greg", "delay": 120, "text": "we heard about the duel. we're not on the bill and that's ok. we would like to say, from the driveway, that we will be there. screaming. politely. (3 of us. maybe 4. the cousin is pending.)" }
+      ]
+    },
+
+    "end_bill": {
+      "them": [
+        "flyer's up. three bands, one garage, a beagle. all ages, free, 8:15 sharp. gus is playing a song with the ska band (2 chords, offbeat) and ONE song with us (the half-G, the hard G, we'll see). he doesn't know it's two songs yet. i'm telling him tonight.",
+        "i'll end the message with 'sick.' so he knows it's good. bryan says 'sick' counts if you type it. so that's what i'm doing."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "FRIDAY: THREE BANDS, ONE GARAGE (and a beagle)", "text": "THE PORK PIE PATROL (9!) / FADING EMBER (3, maybe 4) / STATIC PROPHECY (4, maybe 5) / special guest: a beagle named Axl. My garage, Friday, 6:30pm. All ages, free, done by 8:15 (dad's rule). Ska first, then screamo, then us. There will be a guest guitarist in two of the three sets. He is 15. He has a beagle. Bring a chair. -greg" },
+        { "type": "status", "from": "skip", "delay": 30, "text": "skip is writing a horn chart for a guitar player who doesn't know he's in the band yet. (he knows. he's 15. he has a beagle.) the pork pie patrol is a 10-piece by friday. ska is not dead, it's in a garage." },
+        { "type": "status", "from": "ember", "delay": 75, "text": "xFadingEmberx is a 4-piece friday (the cousin confirmed) (his mom is driving) (she's staying, she's bringing a folding chair). we're playing the middle. we love the middle. we have never been in the middle." },
+        { "type": "wallpost", "from": "gus", "to": "greg", "delay": 150, "text": "greg. two songs?? TWO?? i'm going to need a second bandanna. (it's for the second band.) axl says yes. axl says it twice. (i won't say anything about the tape on my fingers if u don't.) (that's a deal.)" }
+      ]
+    }
+  }
+}

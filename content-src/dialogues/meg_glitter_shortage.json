@@ -1,0 +1,212 @@
+{
+  "id": "meg_glitter_shortage",
+  "with": "meg",
+  "opener": [
+    "AAAAAA malten!! crisis!! (the glitter kind)",
+    "ashley (CHEER CAPTAIN ashley!!) ordered glitter from me for the competition!!! 12 jars, one per girl, in SILVER and EAGLE BLUE. i said YES because it's my first real order!!! i have a business!!! it's called Glitterpony Supply!! (it's me)",
+    "and i counted my glitter and i have SEVEN jars. and the craft store on route 9 is OUT. a lady said 'there's a shortage.' there's a SHORTAGE, malten. it's due saturday. ashley sent me a legend. it has colors."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "tell ashley the truth tonight. a short order delivered honestly beats a full one delivered late.", "next": "a_truth" },
+        { "say": "go on a quest. every drawer, every cousin, every craft closet within three miles.", "next": "a_quest" },
+        { "say": "post a bulletin: GLITTER EMERGENCY. trade horse portraits for jars. the site loves you.", "next": "c_bulletin" }
+      ]
+    },
+
+    "a_truth": {
+      "them": [
+        "tell her the TRUTH?? but i've never said no to anyone in my whole life!! i say yes and then i draw 14 horses at 2 AM!! ashley is the scariest person at my school and also once she said 'meg, you're doing great' and it was a [PINK] and i wore it like a medal for a week.",
+        "if i say 'seven' she'll say 'we'll find another vendor.' i'M the only vendor. there is no other vendor. there is me, and a lady at the craft store, and a shortage."
+      ],
+      "choices": [
+        { "say": "say it plain: 'i have seven jars.' she can handle plain.", "next": "ashley_reply" },
+        { "say": "say it as a plan: 'seven now, five by friday.' captains like plans.", "next": "plan_msg" }
+      ]
+    },
+
+    "plan_msg": {
+      "them": [
+        "i wrote it with three bullet points, like her. '1. i have 7 jars. 2. i will have 5 more by friday. 3. i have no idea how.' (i took #3 out. i put 'i am working on it.') she replied in two minutes: '[RED] 5 more by FRIDAY. [GREEN] thank you for the plan. [YELLOW] I need to know HOW.'",
+        "so now i have to ACTUALLY get five jars by friday. i said the number out loud. it's real now. numbers are so mean."
+      ],
+      "effects": [
+        { "type": "wallpost", "to": "ashley", "text": "ashley!! glitter update from Glitterpony Supply: 1. i have 7 jars of silver + eagle blue ready for the squad. 2. i will have 5 more by friday. 3. i am working on it (very hard) (like a horse). love, meg" }
+      ],
+      "choices": [
+        { "say": "then find them. every drawer, every cousin, every craft closet.", "next": "a_quest" },
+        { "say": "or ask the site. it's a big site. it has a lot of drawers.", "next": "c_bulletin" }
+      ]
+    },
+
+    "ashley_reply": {
+      "them": [
+        "ashley replied!!! in COLORS. '[RED] 7 jars. 12 needed. [GREEN] thank you for telling me on a WEDNESDAY and not on the bus. [PURPLE] what is the minimum viable sparkle per girl.' meg. a MINIMUM VIABLE SPARKLE. i've never been asked a question like that. i love it. i'm scared of it.",
+        "she says the four flyers on top need a FULL jar (so the judges can see them from row 20) and the base girls can have a pinch (row 3). i did the math on my arm. it works if everybody is nice about it."
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "ashley", "to": "meg", "delay": 20, "text": "[GREEN] Meg: thank you for the honest number. [RED] The competition is Saturday, bus at 5:30 AM, no exceptions. [PURPLE] Flyers: full jar. Base: a pinch. I will accept a pinch if the pinch is real. [PINK] You're doing fine. (Don't tell anyone I used PINK.)" }
+      ],
+      "choices": [
+        { "say": "tell her yes. tell her you'll do the pinch math tonight, in writing.", "next": "split_plan" },
+        { "say": "offer more than she asked: your unicorn jar, for the flyers. captains remember who showed up.", "next": "unicorn_jar" }
+      ]
+    },
+
+    "split_plan": {
+      "them": [
+        "the pinch math!! a pinch is about a quarter teaspoon, which is about the size of a very small horse's sneeze. three jars for eight girls = a pinch each plus a little extra for the girl who's always last in line (it's a [PINK] thing). i made a chart. i used a RULER.",
+        "it works. it's honest. it's not a LOT of glitter. it's the amount i have. do i lock it in or do the other thing."
+      ],
+      "choices": [
+        { "say": "lock it in. flyers full, base a pinch. send it. ask her to stamp it [GREEN].", "next": "end_honest" },
+        { "say": "lock it in, but the top of the pyramid deserves more than a pinch. give her the unicorn jar.", "next": "unicorn_jar" }
+      ]
+    },
+
+    "unicorn_jar": {
+      "them": [
+        "my unicorn jar. i've had it since i was 8. it's pink-gold and it has UNICORN on the lid in my handwriting. i said i'd open it the day i rode a horse for real. i've never ridden a horse for real. i've sat on one that was standing still in a field. visit #6 is soon. if i give it away, there's no 'first ride' glitter.",
+        "is that dumb? is it dumb to save glitter for a horse that doesn't exist yet?"
+      ],
+      "choices": [
+        { "say": "it's not dumb. but a promise to a horse isn't a promise to a jar. give it. the ride will make its own sparkle.", "next": "end_unicorn" },
+        { "say": "keep it. you're allowed. tell ashley exactly what you have and let her plan around it.", "next": "end_honest" }
+      ]
+    },
+
+    "a_quest": {
+      "them": [
+        "OK!! QUEST MODE!! i made a list!! 1. mom's craft closet. 2. cousin kelsey (she has a drawer of 'mistakes'). 3. ms. dolores at the stable (horse people always have sparkle). 4. the church rummage sale. 5. the girl behind me in homeroom (her pencil case glitters).",
+        "i have one flashlight and one carrot. where do i START?"
+      ],
+      "choices": [
+        { "say": "start at the stable. horse people always have sparkle.", "next": "quest_results" },
+        { "say": "start at mom's craft closet. moms always have glitter and don't know it.", "next": "quest_results" }
+      ]
+    },
+
+    "quest_results": {
+      "them": [
+        "results!!! mom's closet: 1 jar of 'wedding silver' from a very old wedding. a little yellow. very vintage. cousin kelsey: 1 jar that's 40% glitter and 60% dust (i didn't ask). ms. dolores: a pinch of 'show glitter' in a film canister marked HOOVES. it's PERFECT. total: 10 of 12!!",
+        "but the silver is the problem. the two missing jars are silver, and every jar i found is blue or pink or 'seasonal orange.' the squad is the EAGLES. you can't have eagles with orange sparkle. ashley would see it from space."
+      ],
+      "effects": [
+        { "type": "status", "text": "glitterpony_meg has found glitter in three places glitter should not be: a wedding closet, a drawer of mistakes, and a film canister marked HOOVES. 10 of 12!! (the two missing jars are the silver ones) (of course they are)" }
+      ],
+      "choices": [
+        { "say": "call tina. she laminates things. ask what she can do with a pinch.", "next": "tina_call" },
+        { "say": "the unicorn jar is pink-gold and it's the real thing. do it for the top of the pyramid.", "next": "unicorn_jar" }
+      ]
+    },
+
+    "tina_call": {
+      "them": [
+        "i called tina (twilight_tina!! the lamination one!!). i said 'i have 10 jars and need 12' and she said 'how much glitter per girl' and i said 'a pinch' and she said 'meg. i can laminate glitter. 12 stickers per teaspoon. 25 cents a page, free if it's sad.' and i said 'it's GLITTER!!' and she said 'sad enough.' she's a genius.",
+        "a laminated glitter sticker is a sticker with glitter INSIDE, forever, no mess. the eagles could wear it on a cheek. NO FALLOUT. i didn't even think of it. what do i do?"
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "tina", "to": "meg", "delay": 15, "text": "meg!! i can laminate 12 glitter stickers per teaspoon. free, it's an emergency. bring the glitter (any glitter) (even the orange) and i'll bring pouches. 4 PM. also: do you want a tiny horse on the stickers? asking for a friend (me) ~*~" }
+      ],
+      "choices": [
+        { "say": "yes. laminate it. eagles on the front, a tiny horse on the back. sparkle that never falls off.", "next": "end_laminate" },
+        { "say": "do the stickers AND give the flyers your unicorn jar for the top of the pyramid. best of both.", "next": "unicorn_jar" }
+      ]
+    },
+
+    "c_bulletin": {
+      "them": [
+        "OK!! bulletin!! i wrote it in the kitchen at midnight!! 'GLITTER EMERGENCY!! SILVER + EAGLE BLUE!! IN EXCHANGE: ONE (1) HORSE PORTRAIT OF YOU!! NO REFUNDS!!' i hit post and then my mom walked in and asked who i was 'trading with' and i said 'the whole internet' and she said 'honey.'",
+        "it's been 3 minutes and there are already replies and i can't read them yet because my heart is going UNTZ (that's a nikki word). i've promised 40 horses. i have to DRAW 40 horses. i'm so happy."
+      ],
+      "effects": [
+        { "type": "bulletin", "subject": "GLITTER EMERGENCY!! (horses for glitter)", "text": "HI EVERYONE!! this is meg (glitterpony supply). the cheer squad needs 12 jars of SILVER and EAGLE BLUE glitter by saturday and there is a shortage!! if u have any (any!!) (even a little!!) leave it on my wall or bring it to school. IN EXCHANGE: u get ONE (1) horse portrait, drawn by me, in MS paint, forever. no refunds. no take-backs. i promise 40 horses. i will draw 40 horses. thank u!! <3 meg" }
+      ],
+      "choices": [
+        { "say": "read the replies. all of them. out loud to the stable animals.", "next": "drive_results" },
+        { "say": "wait. check your own house first, then read the replies. drawers before bulletins.", "next": "a_quest" }
+      ]
+    },
+
+    "drive_results": {
+      "them": [
+        "ok i read them!!! darkangel is sending a jar of BLACK glitter ('for tears') (she says it's 'the color of a horse that has seen things'). patrick sent a ROCK (it sparkles) (it's mica) (he says it's 'the one who listens'). linda sent 14 angel gifs and a candle (not glitter). zorp is sending 'a normal human amount of glitter (4 pounds).' FOUR POUNDS.",
+        "total: 38 jars. only 3 are silver. 4 are blue. one is 'rainbow.' one is a rock. one is 'tears.' i am rich and also everything is wrong."
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "darkangel", "to": "meg", "delay": 20, "text": "meg. the black glitter is not for the squad. it is for the one who stands at the back of the pyramid and thinks about the rain. i am sending it. use it for a tear. just one tear. ~*~ (i would like my horse to have a tear too.)" },
+        { "type": "wallpost", "from": "patrick", "to": "meg", "delay": 70, "text": "meg i sent you rocky's cousin. he sparkles. he's not glitter but he's the same idea. you can put him on the squad's bus seat. he listens. please draw me a horse made of rocks." }
+      ],
+      "choices": [
+        { "say": "sort it. someone has to. you own a ruler.", "next": "sort_pile" },
+        { "say": "skip the sorting. call tina. she can make 12 stickers from one teaspoon.", "next": "tina_call" }
+      ]
+    },
+
+    "sort_pile": {
+      "them": [
+        "sorting!! i made piles. SILVER (3). EAGLE BLUE (4). OTHER (31). ROCK (1). TEARS (1). zorp's four pounds is in a bucket. it's the biggest bucket i own. it's a horse bucket. it's sparkling like an actual horse that won an actual ribbon.",
+        "so i have 7 usable jars and 31 jars of every color except the ones i was asked for. ashley's legend does not have a color for 'other.' what do i do."
+      ],
+      "choices": [
+        { "say": "forget sorting. use all of it. every color. tell ashley it's a 'bold look.'", "next": "end_flood" },
+        { "say": "use the usable 7 and stretch the rest. call tina. stickers.", "next": "tina_call" }
+      ]
+    },
+
+    "end_honest": {
+      "them": [
+        "i told her. i said 'i have what i have, and here's the plan.' she said '[GREEN]' and then she said 'thank you for not promising me 12 and handing me 7 on the bus at 5:30 AM. you have no idea how many people do that.' i didn't know that. i thought everybody told the truth. (my mom says i'm 'an optimist.')",
+        "the flyers got full jars. the base got a pinch each. the squad sparkled exactly where it counted. ashley wrote me a legend entry. my color is [SILVER]. it means 'dependable.' i have a color!! i have a COLOR."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "glitterpony_meg told the cheer captain the truth about the glitter shortage and the cheer captain said [GREEN]. she now has a color on the legend. it's [SILVER]. it means dependable. she is going to draw a horse about it." },
+        { "type": "wallpost", "from": "ashley", "to": "meg", "delay": 40, "text": "[GREEN] Meg: Glitter was exactly what you said it would be. [SILVER] You are now on the legend: dependable. [RED] The squad placed 3rd and the flyers were visible from row 20. [PINK] You should come to the next competition. There's a seat on the bus. It's yours. (It has no horse on it. I checked.)" },
+        { "type": "wallpost", "from": "brittany", "to": "meg", "delay": 110, "text": "ok who is the 14 year old that told ashley the TRUTH about a deadline and lived. i need her tips. meg. xoxo. put me down for a horse. i want to be a palomino. (a palomino is the pretty one. don't tell me i'm wrong.)" }
+      ]
+    },
+
+    "end_unicorn": {
+      "them": [
+        "i gave her the unicorn jar. i walked it to her locker and said 'for the flyers' and she looked at the lid (it says UNICORN in my handwriting) and didn't say anything for a second and then said '[...]' and i couldn't tell what color. then she said 'meg. i can't take this.' and i said 'you can.' and she held it like an egg.",
+        "the top flyer wore it on her cheekbones. she was the sparkliest person in the building. the judge said 'the top of the pyramid was luminous.' LUMINOUS. i drew the jar a horse. i'll open the next jar when i ride for real. (visit #6 is soon.) (it doesn't have to be pink-gold.)"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "glitterpony_meg gave away her unicorn jar (pink-gold, 8 years old, saved for her first real ride) so the top of the cheer pyramid could glow. the judge said 'luminous.' meg drew the jar a horse. (it's a very proud horse.)" },
+        { "type": "wallpost", "from": "ashley", "to": "meg", "delay": 50, "text": "[PURPLE] Meg: I'm bringing something Saturday. It's a silver pom-pom from the squad's old set. A horse can have it for a tail. [RED] This is not a joke. [GREEN] When you ride for real, the horse wears the tail. [PINK] I wrote that on the legend." },
+        { "type": "wallpost", "from": "walt", "to": "meg", "delay": 130, "text": "Dear Meg, I once gave away my best fishing lure to a boy who had none. I have never regretted it. (I regret it every Tuesday.) A jar of glitter given freely is a kind of lure: it catches something good. Regards, Walt" }
+      ]
+    },
+
+    "end_laminate": {
+      "them": [
+        "we DID it!!! 12 stickers per teaspoon!!! tina laminated them in her basement (the laminator's name is Gloria) and each one has a tiny eagle on the front and a tiny silver horse on the back, where only the wearer knows. they didn't fall off. NOT ONE. the squad did a whole routine and the stickers stayed on and the judge said 'a unique detail.'",
+        "ashley said '[GREEN]. all [GREEN].' and then she said 'meg, you're on the bus next time.' i don't know what that means. i think it means a seat. i'm going to sit in it SO hard."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "glitterpony_meg and twilight_tina laminated glitter. 12 stickers per teaspoon. every cheer girl wore a tiny eagle with a tiny horse on the back. not one fell off. the judges noticed. (the laminator's name is Gloria.)" },
+        { "type": "status", "from": "ashley", "delay": 40, "text": "ashley is [GREEN]. glitter: done (via laminator) (do not ask how). squad placed 2nd. flyers visible from row 20. checklist item #14 is complete. next item: [PINK] thank the 14-year-old. (it's on the legend. it's a color.)" },
+        { "type": "wallpost", "from": "tina", "to": "meg", "delay": 100, "text": "meg. 60 stickers. free. i'm keeping the leftover pouch with the horse on it. it's laminated. it's a very small, very sparkly horse. it's going on the fridge. also: you're my first glitter customer. my price is now 25 cents a page (free if it's sad). ~*~" },
+        { "type": "wallpost", "from": "nat", "to": "meg", "delay": 170, "text": "meg i'd like to buy 12 laminated glitter stickers for my guild's pet pages. 40 NP each. i'll pay in NP or snacks. restock is at 4 AM so please send them to my wall (my wall will be awake)." }
+      ]
+    },
+
+    "end_flood": {
+      "them": [
+        "so the squad went with EVERYTHING. all colors. the bus smelled like a craft store had a party. ashley stood at the front with the legend and said '[RED]... [PURPLE]... [BLACK GLITTER]...' and then she just said 'sparkle.' and the judges loved it. they said it was 'a bold look' and 'a lot.' we placed SECOND. second!!",
+        "there is glitter in the gym. there is glitter in the bus. there is glitter in the coach's coffee. the janitor sent a bill (to nobody). i drew 40 horses in 4 days. my hand is a claw. it's the best week of my life."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "GLITTER DRIVE RESULTS (everybody gets a horse!!)", "text": "HI EVERYONE!! the glitter drive is OVER and the cheer squad placed SECOND with 38 jars of every color on earth!! thank u darkangel (black glitter, 1 tear), patrick (mica rock), linda (candle), zorp (4 pounds, normal human amount), and everyone else!! i drew 40 horses and every single one has a sparkle. if u haven't gotten yours, look at ur wall!! <3 meg (glitterpony supply, now closed for glitter, open for horses)" },
+        { "type": "status", "from": "ashley", "delay": 30, "text": "ashley is [RED]. there is glitter in the gym. there is glitter in the bus. there is glitter in the coach's coffee. the squad placed 2nd. the judges called it 'a bold look.' [PURPLE] (this is not a complaint) [PINK] (it's a compliment) [GREEN] (the glitter will outlive us all)" },
+        { "type": "wallpost", "from": "brittany", "to": "meg", "delay": 100, "text": "meg. i saw the squad on the local news (11 seconds) and it was the most glitter i've ever seen on people and i've been to a prom. you are a LEGEND. put me down for 1 horse. xoxo" },
+        { "type": "wallpost", "from": "darkangel", "to": "meg", "delay": 170, "text": "meg. the black glitter was on the back of the pyramid. one girl cried a single sparkling tear. it was the best moment of the competition. she said it was the glitter. i said it was the rain. ~*~ thank you for the horse." }
+      ]
+    }
+  }
+}

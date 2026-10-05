@@ -1,0 +1,236 @@
+{
+ "id": "sephiroth_original",
+ "with": "sephiroth",
+ "opener": [
+  "malten. cease all activity. the appointed hour has arrived.",
+  "i have completed part 14 of my 40-part essay series and achieved clarity: you have never taken the OFFICIAL MATERIA ALIGNMENT QUIZ. this ends tonight.",
+  "three questions. answer truly, for the lifestream records all. do you accept your Destiny (the quiz) (the quiz is your Destiny)"
+ ],
+ "nodes": {
+  "start": {
+   "choices": [
+    {
+     "say": "hit me with the quiz. i was born ready. or at least born",
+     "next": "q1"
+    },
+    {
+     "say": "will this go on my permanent record",
+     "next": "record"
+    },
+    {
+     "say": "weren't you supposed to be doing the dishes",
+     "next": "dishes"
+    }
+   ]
+  },
+  "q1": {
+   "them": [
+    "so be it. steel yourself. the masamune (yardstick, electrical tape) rests against my desk as witness.",
+    "QUESTION ONE. you possess a single elixir. the finest item you will ever own. do you hoard it until the end of time like a COWARD... or do you USE IT"
+   ],
+   "choices": [
+    {
+     "say": "use it. immediately. probably on a random tuesday for no reason. items are for living",
+     "next": "q2_use"
+    },
+    {
+     "say": "i'd save it for a friend who needs it someday. the right moment finds you",
+     "next": "q2_friend"
+    },
+    {
+     "say": "secret third option: sell it. an elixir is just money wearing a costume",
+     "next": "q2_sell"
+    }
+   ]
+  },
+  "record": {
+   "them": [
+    "everything goes on your permanent record. the lifestream records ALL. it recorded this conversation before either of us was born.",
+    "QUESTION ONE. you possess a single elixir. the finest item you will ever own. do you hoard it until the end of time like a COWARD... or do you USE IT"
+   ],
+   "choices": [
+    {
+     "say": "use it. immediately. probably on a random tuesday for no reason. items are for living",
+     "next": "q2_use"
+    },
+    {
+     "say": "i'd save it for a friend who needs it someday. the right moment finds you",
+     "next": "q2_friend"
+    },
+    {
+     "say": "secret third option: sell it. an elixir is just money wearing a costume",
+     "next": "q2_sell"
+    }
+   ]
+  },
+  "dishes": {
+   "them": [
+    "the dishes are DONE, malten. i completed them at 4:15 with terrible purpose. even now the drying rack stands as monument.",
+    "do not deflect. QUESTION ONE. you possess a single elixir. your finest item. do you hoard it until the end of time like a COWARD... or do you USE IT"
+   ],
+   "choices": [
+    {
+     "say": "use it. immediately. probably on a random tuesday for no reason. items are for living",
+     "next": "q2_use"
+    },
+    {
+     "say": "i'd save it for a friend who needs it someday. the right moment finds you",
+     "next": "q2_friend"
+    },
+    {
+     "say": "secret third option: sell it. an elixir is just money wearing a costume",
+     "next": "q2_sell"
+    }
+   ]
+  },
+  "q2_use": {
+   "them": [
+    "'on a random tuesday.' you would burn the finest fuel of life simply to feel warm. the lifestream shudders. i confess... i respect it.",
+    "QUESTION TWO. the marshes. before you rises the MIDGAR ZOLOM. forty feet of serpent and judgment. do you FLEE... or do you stay, and PERCEIVE IT"
+   ],
+   "choices": [
+    {
+     "say": "flee. obviously. i respect the snake by not dying to it",
+     "next": "q3_cid"
+    },
+    {
+     "say": "perceive it. how often does life hand you a forty foot snake to really look at",
+     "next": "q3_aerith"
+    },
+    {
+     "say": "neither. i tame it and charge admission. zolom rides, two gil",
+     "next": "q3_shop"
+    }
+   ]
+  },
+  "q2_friend": {
+   "them": [
+    "...you would save it. for another. do you comprehend what you have typed. i must step away from the keyboard. (i have returned. mom needed the phone.)",
+    "QUESTION TWO. the marshes. the MIDGAR ZOLOM rises before you. forty feet of serpent and judgment. do you FLEE... or do you stay, and PERCEIVE IT"
+   ],
+   "choices": [
+    {
+     "say": "perceive it. something that big deserves to be witnessed by somebody",
+     "next": "q3_aerith"
+    },
+    {
+     "say": "flee, but respectfully. maybe wave goodbye",
+     "next": "q3_cid"
+    },
+    {
+     "say": "i'd wonder what it's guarding. snakes guard treasure. that's just economics",
+     "next": "q3_shop"
+    }
+   ]
+  },
+  "q2_sell": {
+   "them": [
+    "SELL the elixir??? that option does not exist on the quiz. i am consulting my notes. the notes are silent. the LIFESTREAM is silent.",
+    "very well... merchant. QUESTION TWO. the MIDGAR ZOLOM. forty feet of serpent. do you FLEE... or do you stay, and PERCEIVE IT"
+   ],
+   "choices": [
+    {
+     "say": "appraise it. forty feet of snake is worth something to somebody",
+     "next": "q3_shop"
+    },
+    {
+     "say": "perceive it. some things are beyond money. not many things. but some",
+     "next": "q3_aerith"
+    },
+    {
+     "say": "flee. you can't spend money if a snake eats you",
+     "next": "q3_cid"
+    }
+   ]
+  },
+  "q3_cid": {
+   "them": [
+    "the pattern emerges. the lifestream stirs against my monitor. one question remains, and it is the heaviest.",
+    "FINAL QUESTION. someone you care about is about to do something brave and foolish. do you TELL THEM how you feel... or do you grumble and quietly help them anyway"
+   ],
+   "choices": [
+    {
+     "say": "grumble and help. you show feelings by building someone an airship, not by talking",
+     "next": "end_cid"
+    },
+    {
+     "say": "tell them. life is too short to grumble. sephiroth are you writing this down",
+     "next": "end_aerith"
+    }
+   ]
+  },
+  "q3_aerith": {
+   "them": [
+    "i have administered this quiz to eleven residents. none have answered as you answer. i am composed. i am entirely composed.",
+    "FINAL QUESTION. the party must one day go on without you. do you tell them everything, a true farewell... or slip away quietly so their grief cannot find you"
+   ],
+   "choices": [
+    {
+     "say": "slip away quietly. they'd understand eventually. the flowers would explain",
+     "next": "end_aerith"
+    },
+    {
+     "say": "no goodbyes. i'd secretly fix all their gear first so they find out a week later",
+     "next": "end_cid"
+    },
+    {
+     "say": "i'd leave a note saying 'back in 10' and return in 9. suspense builds loyalty",
+     "next": "end_shop"
+    }
+   ]
+  },
+  "q3_shop": {
+   "them": [
+    "remarkable. the quiz has never bent in this direction. i am recording your answers on loose leaf. the GOOD loose leaf.",
+    "FINAL QUESTION. a stranger enters your shop at closing time. broke. desperate. needs one (1) potion to save a friend. name your price."
+   ],
+   "choices": [
+    {
+     "say": "free. but they tell everyone my shop saved the day. that's not charity, that's marketing",
+     "next": "end_shop"
+    },
+    {
+     "say": "free, no strings. some transactions are between you and the lifestream",
+     "next": "end_aerith"
+    },
+    {
+     "say": "i close the shop and go save the friend myself. some things you handle in person",
+     "next": "end_cid"
+    }
+   ]
+  },
+  "end_cid": {
+   "them": [
+    "it is decided. the lifestream has spoken and i am merely its keyboard.",
+    "you are a CID, malten. gruff exterior. airship interior. you would fix the engine AND the friendship. wear it with honor. part 15 of my essay series will cover this."
+   ],
+   "end": true,
+   "effect": {
+    "type": "wall",
+    "text": "OFFICIAL MATERIA ALIGNMENT RESULTS: i hereby declare malten a CID. grumbles on the outside, airship on the inside. loyalty rating: tremendous. it is recorded in the lifestream. — xXSephirothXx"
+   }
+  },
+  "end_aerith": {
+   "them": [
+    "...i have administered this quiz eleven times. i have never once issued this result. understand the weight of what i am about to say.",
+    "you are, and i do not say this lightly, an AERITH. i am not crying. the masamune (yardstick) is crying. sending a friend request so the lifestream knows we walked this path together."
+   ],
+   "end": true,
+   "effect": {
+    "type": "friend"
+   }
+  },
+  "end_shop": {
+   "them": [
+    "astonishing. you have broken the quiz, and in breaking it, perfected it.",
+    "you are THE SHOPKEEPER OF WALL MARKET. commerce with a soul. the heroes arrive, you provide, the plot continues BECAUSE of you. this is among the highest honors i can bestow. the town must be told."
+   ],
+   "end": true,
+   "effect": {
+    "type": "bulletin",
+    "subject": "MATERIA ALIGNMENT RESULTS: A MERCHANT OF DESTINY WALKS AMONG US",
+    "text": "hear me. i administered the OFFICIAL MATERIA ALIGNMENT QUIZ to malten and the lifestream rendered a verdict never before witnessed: THE SHOPKEEPER OF WALL MARKET. supply. demand. Destiny. reflect on this. — xXSephirothXx (part 16 of the essay series will elaborate)"
+   }
+  }
+ }
+}

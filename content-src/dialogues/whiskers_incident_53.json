@@ -1,0 +1,210 @@
+{
+  "id": "whiskers_incident_53",
+  "with": "whiskers",
+  "opener": [
+    "INCIDENT REPORT #53. Filed 3:14 AM, from the machine. Nobody typed this. I am informed that you are a witness. Please remain seated. (If you are standing, sit. If you cannot sit, lie down. I will adapt.)",
+    "Facts as established. Monday, 5:20 AM, kitchen. The second cup (the one with the rooster, the one with the chip shaped like a state) was found on the floor in three pieces. At 7:10 AM The Mailman told The Woman, in my hearing, that 'the cat did it.' I would like it noted that in six years I have knocked over 114 objects and never that cup. It is not on the list. It is not a cup I touch.",
+    "I have a question for the witness, and it is the one I cannot answer on my own. If I did not do it, I must say who did. If I say who, I must say why. I am not yet prepared to say why. For the record: where were you at 5:20 AM Monday, and what, if anything, did you see."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "asleep. saw nothing. i'm an excellent witness to the back of my own eyelids.", "next": "a_alibi" },
+        { "say": "tell me about the cup first. a witness can't testify about what he doesn't know.", "next": "b_cup" },
+        { "say": "i saw everything. it was the squirrel. he rides the kirby. i have a diagram.", "next": "c_squirrel" }
+      ]
+    },
+
+    "a_alibi": {
+      "them": [
+        "INCIDENT REPORT #53, ITEM 2. 'Asleep.' Accepted. A witness who saw nothing is the only kind The Mailman has ever trusted. I have entered it as WITNESS: DID NOT WITNESS. It is the cleanest line on the form.",
+        "ITEM 3. Parties with access to the kitchen at 5:20 AM: the Kirby (its cord reaches the kitchen from the den; I have been over the cord), the squirrel (window), the pigeon (feeder), The Woman (asleep, per her statement), The Mailman, and myself. I would like the guilty party to be the Kirby. I have wanted that for six years and it has never once been true. Where do we begin."
+      ],
+      "choices": [
+        { "say": "start with the kirby. it has a cord, a motive and a long record.", "next": "d_kirby" },
+        { "say": "start with the timeline. who was actually standing in that kitchen?", "next": "d_timeline" }
+      ]
+    },
+
+    "b_cup": {
+      "them": [
+        "INCIDENT REPORT #53, ITEM 2. A fair request from a fair witness. The rooster cup belonged to Dorothy. She named me. It has a chip in the handle in the shape of a state, which she said was Ohio; we are in Texas; I did not correct her. It sat at her place at the table at 5:20 every morning for fourteen years. I have been in the house for six.",
+        "ITEM 3. Since the spring The Mailman has set it out every morning anyway. He fills it. When his own is empty he pours the second one down the sink and rinses both. He does not mention it. I sit on the chair beside it. I do not elaborate on this, and I appreciate that you did not ask me to. I have a question in return. Why did you want to know about the cup before you knew what happened to it."
+      ],
+      "choices": [
+        { "say": "because a cup somebody sets out every morning isn't just a cup. i wanted to know before i guessed.", "next": "d_timeline" },
+        { "say": "because nobody breaks that cup on purpose. i'd like to know who loved it, and who dropped it.", "next": "d_hand" }
+      ]
+    },
+
+    "c_squirrel": {
+      "them": [
+        "INCIDENT REPORT #53, ITEM 2. 'The squirrel rides the Kirby.' I would like to tell you this is absurd. The squirrel has taken nine tomatoes, left each one facing the kitchen window, and looked me in the eye. I would not rule out a vacuum. I will need the diagram. It must be in writing. It must have an arrow.",
+        "ITEM 3. Received. It is a pie chart of nuts. One segment reads SQUIRREL (76%). Another reads THE KIRBY (24%). The kitchen is not in it. I put a question to the witness under the protocol for people who bring their own materials: is this a drawing of what happened, or a drawing of what you would like to have happened."
+      ],
+      "choices": [
+        { "say": "what i'd like to have happened. but look at the arrows. the arrows are good.", "next": "c_diagram" },
+        { "say": "fine. it's wishful. let's look at the actual kitchen instead.", "next": "d_timeline" }
+      ]
+    },
+
+    "c_diagram": {
+      "them": [
+        "INCIDENT REPORT #53, ITEM 4. The diagram has been reviewed by an independent party. I forwarded it to Mr. Henderson for peer review. He replied in nine minutes: 'The data is clear but the sample size is one squirrel. May I suggest a control group.' I replied that I am the control group. He said 'That is the concern.'",
+        "ITEM 5. I have taken the position that the diagram is a work of art. I have taken a second position that a pigeon saw the whole thing from the feeder at 5:19 and has refused to say. I would like to call the pigeon. The pigeon has declined four times, using silence. I would like the witness's help with a subpoena."
+      ],
+      "effects": [
+        { "type": "status", "from": "henderson", "delay": 8, "text": "Mr. Henderson has been sent a pie chart of nuts by a cat. He would like it noted that the data is clear, the sample size is one squirrel, and the control group is the cat. - Mr. H" }
+      ],
+      "choices": [
+        { "say": "subpoena the pigeon. put a sunflower seed in the envelope. witnesses take bribes in every court.", "next": "c_pigeon" },
+        { "say": "forget the pigeon. read the timeline. somebody was in that kitchen.", "next": "d_timeline" }
+      ]
+    },
+
+    "c_pigeon": {
+      "them": [
+        "INCIDENT REPORT #53, ITEM 6. The pigeon has taken the stand. It is on the feeder. It has not testified. I asked: where were you at 5:19. It looked left. I asked: what did you see. It looked right. I asked: did the squirrel have a tomato. It ate a seed. I have never been so thoroughly read by a bird.",
+        "ITEM 7. The court is aware of the problem. A court with no witnesses and a pie chart cannot convict. A court with a squirrel, a vacuum, a pigeon, a science teacher, a pollster and a pack of wolves (Luna has volunteered) can convict anything. I would like to convene one. The only thing against it is that The Mailman reads the screen at 5:30 and I have not decided whether he should."
+      ],
+      "effects": [
+        { "type": "status", "from": "tj", "delay": 8, "text": "tj has been asked by a cat to poll a jury. the case: a squirrel, a vacuum and a pigeon who will not talk. pirate or ninja? the cat says 'neither, it's a trial.' tj says that counts as ninja. the tally stands" }
+      ],
+      "choices": [
+        { "say": "convene it. the kirby's been guilty of something since the day 'the appliance' was invented.", "next": "c_trial" },
+        { "say": "recess. the pigeon didn't hold the cup. read the timeline.", "next": "d_timeline" }
+      ]
+    },
+
+    "d_kirby": {
+      "them": [
+        "INCIDENT REPORT #53, ITEM 4. The Kirby. I have reviewed it. It was in the hall closet from 1:18 PM Sunday, the cord wrapped, the latch closed. I have checked that latch fourteen times in six years and it has never opened for me. The Kirby is innocent of this crime. I resent it more than I can say. A guilty appliance is a gift. An innocent one is a tax.",
+        "ITEM 5. That leaves the people in the room. I did not want it to. I would like the witness to understand that the next item is not a comfortable one."
+      ],
+      "effects": [
+        { "type": "status", "delay": 6, "text": "whiskers has cleared the Kirby of a crime. he resents it. the Kirby remains guilty of everything else. report to follow" }
+      ],
+      "choices": [
+        { "say": "so who was in the kitchen at 5:20? tell me. i'm ready.", "next": "d_timeline" },
+        { "say": "check the squirrel before the people. the squirrel has a record too.", "next": "c_squirrel" }
+      ]
+    },
+
+    "d_timeline": {
+      "them": [
+        "INCIDENT REPORT #53, ITEM 6. The timeline. 5:19 AM, the kitchen light. 5:20, the cups set out: two. 5:21, The Mailman at the sink with his own. 5:22, he reached for the second. 5:22 and four seconds, the second was on the floor. Persons present: two. One was at the sink. One was on the chair beside the second cup, being a cat.",
+        "A thing about being a cat: we are very good at remembering and very bad at being believed. I have just named both persons present. I would like the witness to say, in one sentence, who he thinks was holding the cup. I will know when you have guessed."
+      ],
+      "choices": [
+        { "say": "the mailman. he was at the sink and you were on the chair. you're a cat, not a clumsy person.", "next": "d_hand" },
+        { "say": "you didn't do it. you'd never. i just want to hear you say who did.", "next": "d_hand" }
+      ]
+    },
+
+    "d_hand": {
+      "them": [
+        "INCIDENT REPORT #53, ITEM 7. Correct. A hand. His. It shook. Not much. A little, in the first knuckle. The cup went. It made a sound I have not heard in this house, and I have knocked over 114 objects. He stood there. He said 'Dorothy,' not loudly, and not to me. Then he knelt (it took a while), gathered the three pieces in a dish towel, and put them in her recipe box, which has a strong lid and a good fit.",
+        "At 7:10 The Woman asked what happened. He said 'the cat.' I understood. A man would rather be cross at a cat than say his hands are seventy-eight. It was a fair trade. I did not mind. I minded a little. I am now asking the witness, off the record, which is a thing a cat is not allowed to say: what do I do."
+      ],
+      "choices": [
+        { "say": "tell the truth. gently. in a way he can read without anyone watching him read it.", "next": "t_draft" },
+        { "say": "take the blame. it's one more object on the list. a gentleman keeps another gentleman's secret.", "next": "b_cover" },
+        { "say": "make it a trial. the squirrel, the kirby, the pigeon. get the whole house laughing before anyone has to cry.", "next": "c_trial" }
+      ]
+    },
+
+    "t_draft": {
+      "them": [
+        "INCIDENT REPORT #53, ITEM 8. Drafting. I have written: 'A hand. No fault.' It is four words. A hand has fault in the way an old hand has fault, which is none. I am going to ask the witness one thing. Should I post it, plainly, on the cat's page, where The Mailman reads on Tuesdays and The Woman reads at lunch. Or should I send it to The Woman only and let her decide what her father needs to hear.",
+        "I would also like it noted that if I post it, it will be the first thing I have written that I did not edit. A cat is good at editing. I do not do it for the Kirby. I would do it for a cup."
+      ],
+      "choices": [
+        { "say": "post it. public, plain, no names. let the page say it so nobody has to.", "next": "end_truth" },
+        { "say": "send it to debbie only. she's his daughter. she'll know how to carry it.", "next": "t_debbie" }
+      ]
+    },
+
+    "t_debbie": {
+      "them": [
+        "INCIDENT REPORT #53, ITEM 9. Sent. 9:41 AM. To The Woman, through the page, in a private message signed 'no one.' She replied in 40 seconds. It is on the screen. 'Mr. Whiskers, I know who you are. I have known since the second week. I thought it was his hands. Since spring. I have been waiting for someone to say it out loud and I did not know how to ask him. Love, Mom.'",
+        "She asked me one question. 'What does he need.' I have an opinion and I cannot type it. The witness may type it for me. (I will not be admitting that this page has a witness who types.)"
+      ],
+      "effects": [
+        { "type": "status", "from": "debbie", "delay": 15, "text": "debbie is sitting in her car outside the antique mall in Rockwall with the engine off. she has a list. the list has one item: a cup. Love, Mom" }
+      ],
+      "choices": [
+        { "say": "he needs her to sit in the second chair at 5:20. that's the cup that's been waiting.", "next": "end_truth" },
+        { "say": "he needs to feel in charge of it. replace the cup quietly. let the record say the cat did it.", "next": "end_blame" }
+      ]
+    },
+
+    "b_cover": {
+      "them": [
+        "INCIDENT REPORT #53, ITEM 8. Accepting the blame. It has the advantage of being already on the record. The Mailman said 'the cat did it,' The Woman accepted it, and the cup is in a box with a strong lid. I need only decline to correct it. It will be object #115. It will be the only one I would take back.",
+        "ITEM 9. I have a reservation. A lie told to protect a person is a gift. A lie that nobody knows about is a gift with no tag. There is a way to do this that is not entirely silent: I could tell The Woman, privately, and let her handle the pieces. A cat may take a blame and still choose a witness. What does the witness advise."
+      ],
+      "choices": [
+        { "say": "take it quietly. no tag. you don't need credit. gifts are better without a name.", "next": "end_blame" },
+        { "say": "take it, but tell debbie. a secret kept alone is heavier than one carried by two.", "next": "t_debbie" }
+      ]
+    },
+
+    "c_trial": {
+      "them": [
+        "INCIDENT REPORT #53, ITEM 8. THE COURT IS CALLED. Judge: Mr. Henderson (he has agreed to preside with a whiteboard). Prosecutor: myself. Defense: none. The Kirby has been charged in absentia. The squirrel was served with a summons attached to a tomato. TJ is polling the gallery. Luna has declared the pack a jury. Herp has said 'herp.' The pigeon took the stand and refused to testify, citing a sunflower seed.",
+        "ITEM 9. I am obliged to report that I am enjoying myself. It is 5:31 AM. I hear the stairs. The Mailman has entered the den. He is standing in the doorway reading the screen. He did not say anything. His shoulder moved. Once. It is possible he is about to laugh. It is also possible he is about to cry. I do not know which and neither does he. What does the court do."
+      ],
+      "choices": [
+        { "say": "convict the kirby and the squirrel. adjourn. let him laugh.", "next": "end_squirrel" },
+        { "say": "stop the trial. ask for a recess. say the true thing now, while he's standing there.", "next": "t_draft" }
+      ]
+    },
+
+    "end_truth": {
+      "them": [
+        "INCIDENT REPORT #53: CLOSED. Cause: a hand. Fault: none. It reached The Mailman by 10:20 AM. By which route (the page, The Woman, or both) I decline to say; the record has a lid. He sat at the sewing table. He read it twice, or was told twice. He said nothing. Then he put his hand on the warm place behind the monitor where I was, and left it there for eleven minutes. It is the longest I have been touched on purpose.",
+        "At 10:40 he took the pieces out of the recipe box and put them on the table. He did not try to mend them. He looked at them. Then he typed with two fingers, which I will not describe, because he has stated in writing that he does not type. (He typed. I was there.) The Woman is coming Sunday at 5:20 AM. He is setting out two cups. This time the second one will have a person.",
+        "I would like the record to show that I was, at no time, involved."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "whiskers has closed INCIDENT REPORT #53. cause: a hand. fault: none. he is exonerated of the only crime he has never committed. nobody typed this. he is sitting on a warm monitor. he is not smiling. (cats can't)" },
+        { "type": "wallpost", "from": "walt", "to": "whiskers", "delay": 25, "text": "Dear Mr. Whiskers, I have been informed by a correspondent unknown to me that the cup was not knocked over by the cat. The correspondent is correct. It slipped. A man's hands are not what they were, and neither is his courage about saying so. The cup was Dorothy's. The pieces are in her recipe box. My daughter is coming on Sunday to sit in the other chair. I will set out two cups. Regards, Walt (P.S. I did not type this page. I am typing this letter. There is a difference.)" },
+        { "type": "wallpost", "from": "debbie", "to": "whiskers", "delay": 70, "text": "Mr. Whiskers, I read your report. (I know who you are.) I would like it noted that I will be at the house Sunday at 5:20 AM with a thermos and a cup that is not the rooster but is, I think, the right one. The Kirby will remain in the closet until 1 PM, and then I will vacuum with Dad in the kitchen, and you may supervise from his lap. Thank you for not blaming a person who needed you not to. Love, Mom" },
+        { "type": "status", "from": "henderson", "delay": 130, "text": "Mr. Henderson has reviewed Incident Report #53. Methodology: sound. Control: present (the hand). Conclusion: correct and kind, which is rarer than correct. He would like it noted that the cat's spelling remains excellent and that peer review is complete. He asks only that the Kirby be granted a hearing. Not today. - Mr. H" },
+        { "type": "wallpost", "from": "patrick", "to": "whiskers", "delay": 190, "text": "hi mr whiskers. dwayne says the hand is ok. he says it the way he says things. i told him about the cup. he did not say anything which is how he understands. regards, patrick (i am practicing regards) (i found another stick. it is for walt)" }
+      ]
+    },
+
+    "end_blame": {
+      "them": [
+        "INCIDENT REPORT #53: CLOSED. Cause: the cat. Fault: the cat. I have entered it as object #115. It is the only one I would take back. The Mailman said 'bad cat' at 7:40 and it was the gentlest thing he has ever said to a cat. He closed the lid on the recipe box and said 'that's that.' I sat on his foot. I do not know if he knows that I know. I have chosen to believe he does. It is more bearable.",
+        "At 9:30 a package arrived. The Woman's handwriting. An antique mall in Rockwall (I was not told; I read the box). Inside was a cup. Not the rooster. Another, blue, with a faint crack the clerk said it came with. He looked at it for a long time. He said 'well.' He set it out at the second place. I do not know the rule for this. He filled it.",
+        "The page says the cat did it. The record has a lid. I am at peace. (I am at peace the way I am with the Kirby: by arrangement.)"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "whiskers has been found guilty of breaking a cup. he has entered a plea of 'object #115.' The Mailman said 'bad cat' very gently. the record has a lid" },
+        { "type": "wallpost", "from": "walt", "to": "whiskers", "delay": 30, "text": "Dear Mr. Whiskers, I have been informed that you broke a cup. I have written to you on this subject before and will not do so again. A gentleman does not correct another gentleman's record. I am obliged to you in a way I cannot fit into a letter. You may have the warm spot indefinitely. Regards, Walt (P.S. I do not type this page. I type this letter. It is a letter.)" },
+        { "type": "wallpost", "from": "debbie", "to": "whiskers", "delay": 75, "text": "Mr. Whiskers. I have replaced the cup. I'm not saying anything else. (I am saying 'thank you.') Dad set it out at the second place and I had to go sit in the car for a while. You are a good boy. The Kirby is staying in the closet until further notice. It has been told. Love, Mom" },
+        { "type": "wallpost", "from": "linda", "to": "whiskers", "delay": 140, "text": "Beautiful kitty!! I heard about the cup!! Don't be sad!! Mama always said a cup is just something to hold the morning in!! And a cat is something to hold the whole house!! Bitsy says hi!! (she's in the closet but she means it!!) ~Aunt Linda" }
+      ]
+    },
+
+    "end_squirrel": {
+      "them": [
+        "INCIDENT REPORT #53: ADJOURNED. The Kirby was found guilty in absentia of 'everything.' The squirrel was convicted of nine tomatoes and a looking. The pigeon was acquitted for lack of cooperation. Judge Henderson wrote the verdict on a whiteboard, underlined it, and drew a small box around the word 'control.' It was the loudest this house has been since spring. Luna howled. TJ declared a tie between pirate and ninja and then amended it to 'cat.' Herp said 'herp.' The Woman came into the room holding a dish towel and stopped.",
+        "The Mailman laughed. Not a chuckle. A laugh, with the shoulders. I did not know a man his age could do it with that much of the body. He said 'Debbie, he's put the vacuum on trial.' She said 'Dad.' He said 'it's been a long time since I laughed at breakfast.' She sat down. She did not say anything for a minute. Then she said 'we're going to have to talk about the cup, aren't we.' He said 'later. let the court finish.'",
+        "So: closed, but not solved. The cup is in a box with a strong lid. The Mailman and I have agreed that later is a day. I would like it noted that in six years I have never been on the right side of a jury. It is very warm."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "whiskers has put the Kirby on trial. verdict: guilty (in absentia) of everything. the squirrel was convicted of a looking. the pigeon was acquitted for lack of cooperation. Judge Henderson presiding. nobody typed this" },
+        { "type": "wallpost", "from": "henderson", "to": "whiskers", "delay": 25, "text": "Mr. Whiskers, I served as judge in a proceeding of which I was informed twelve minutes before it began. The conviction of the Kirby is procedurally irregular (the defendant is an appliance) but the verdict is sound. The squirrel's looking is, regrettably, not an offense. I have taken the liberty of drawing a box around 'control.' - Mr. H" },
+        { "type": "status", "from": "tj", "delay": 60, "text": "tj says the cat trial is the best poll he has ever run. pirate 14, ninja 14, cat 31. 'cat' was not an option. it's an option now. (the pigeon abstained. the pigeon is a pigeon)" },
+        { "type": "wallpost", "from": "luna", "to": "whiskers", "delay": 95, "text": "*the pack gathers on the ridge. the orange one has called a council. the alpha lowers her head. the squirrel is banished beyond the fence.* *Mr. Whiskers is named First Judge of the den. the pack howls once, softly, for the one who doesn't move (the rock).*" },
+        { "type": "wallpost", "from": "debbie", "to": "whiskers", "delay": 150, "text": "Mr. Whiskers. Dad laughed at breakfast. I would like it noted that I have not heard it since April. Whatever you did, please do it again. We still need to talk about the cup. (I know there is a cup.) Love, Mom" }
+      ]
+    }
+  }
+}

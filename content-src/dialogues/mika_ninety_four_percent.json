@@ -1,0 +1,228 @@
+{
+  "id": "mika_ninety_four_percent",
+  "with": "mika",
+  "opener": [
+    "ok malten i need to tell someone and usagi-chan is at the dentist and she would be so disappointed and she has the projector",
+    "faye asked me to draw the COVER for chapter 95!! Seraphina coming out of the lake, one hand up. its due friday. its an art trade (she writes me a side chapter of Mika Destruction) (my first real one) and i got stuck on the pose so i opened my FMA artbook for 'reference'",
+    "i made an overlay. of MY drawing. on the artbook page. i did it for fun (i did it bc i couldnt breathe). its 94 percent. malten the number is 94. THE SAME NUMBER"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "breathe. 'reference' and 'trace' aren't the same thing. what did you actually keep?", "next": "what_kept" },
+        { "say": "forget the artbook. redraw it from scratch tonight, ugly hands and all.", "next": "redraw" },
+        { "say": "post the overlay yourself with 11 arrows. 'TRACER FOUND.' be the first to turn yourself in.", "next": "confess_loud" }
+      ]
+    },
+
+    "what_kept": {
+      "them": [
+        "ok. what i kept. the arm angle. the hair blowing the wrong way (wind) (theres no wind in a lake). and the HAND. arakawa draws hands RIGHT n i copied the right hand n it looks SO good n i hate that it looks good",
+        "n i turned the sleeve into seraphinas cloak but the lines UNDER the sleeve r hers. i traced UNDER THE SLEEVE malten. thats a layer. thats a whole layer"
+      ],
+      "effects": [
+        { "type": "status", "delay": 8, "text": "is staring at an overlay of her OWN drawing. 94%. its a coincidence. (its not a coincidence)" }
+      ],
+      "choices": [
+        { "say": "then you know the answer. redo the arm, hand included. yours, wrong and all.", "next": "redraw_arm" },
+        { "say": "or credit it. 'pose referenced from [book].' that's what grown-up artists do.", "next": "credit_note" }
+      ]
+    },
+
+    "redraw": {
+      "them": [
+        "from SCRATCH. 6 hours. the hands took 4 last time. its tuesday. its 9pm. i have 5 copics n a dream. i havent eaten",
+        "the thing is the artbook pose is the only pose i can SEE. when i draw it myself seraphina just stands there like a coat rack"
+      ],
+      "choices": [
+        { "say": "then be your own reference. mirror, your own arm up in the air. best model you own.", "next": "mirror" },
+        { "say": "ask paige for a photo of someone reaching up. fisheye. a photo taken with permission isn't tracing.", "next": "paige_ref" }
+      ]
+    },
+
+    "confess_loud": {
+      "them": [
+        "OH. oh my GOSH. 11 arrows pointing at ME. the title: 'I FOUND THE TRACER (it was me) (partially).' usagi-chan would WEEP. she would put it on the projector",
+        "but then everybody would know. nate would know. sephiroth would write 11 pages of notes. meg would say 'its ok!!' n i would have to hear it n be loved"
+      ],
+      "choices": [
+        { "say": "that's the point. you'd be the only artist who ever said it first. people forgive the ones who say it first.", "next": "public_confess" },
+        { "say": "fine, smaller. tell faye first. she's the one with the deadline and the lake.", "next": "tell_faye" }
+      ]
+    },
+
+    "redraw_arm": {
+      "them": [
+        "ok redrawing the arm. its worse. its SO much worse. the elbow is a sausage. but its MY sausage",
+        "n the hand has 6 fingers. i didnt mean to. is that Seraphina canon or Mika canon. i dont know if 6 fingers is allowed on a cover for someone elses lake"
+      ],
+      "choices": [
+        { "say": "mika canon. six fingers is your brand, and it's a lake, anything could've happened down there.", "next": "overlay_again" },
+        { "say": "send it to usagi when she's out of the dentist. she'll tell you straight. she has the projector.", "next": "usagi_back" }
+      ]
+    },
+
+    "credit_note": {
+      "them": [
+        "credit. like in the description. 'pose referenced from p.114 of the FMA artbook, everything else by me.' thats... thats a sentence. thats honest. sephiroth would call it 'proper citation' n then add 11 pages",
+        "but does it count if the lines under the sleeve r still hers. does a credit fix a layer"
+      ],
+      "choices": [
+        { "say": "credit it AND fix the layer. redraw the arm, keep the note. belt and suspenders.", "next": "description" },
+        { "say": "ask faye. it's her cover. author's notes are her whole thing, she'll have rules about citations.", "next": "faye_call" }
+      ]
+    },
+
+    "mirror": {
+      "them": [
+        "ok. mirror. my REAL arm up in the air like seraphina. i have a mirror on my closet door n a lamp n 5 copics n my aunt jos cat hair on my sleeve (it stays)",
+        "ok its working. its an ugly arm. its a real arm. its got a wrist that does a thing. i didnt know wrists did that. arakawa knew. i did NOT know"
+      ],
+      "choices": [
+        { "say": "draw the wrist as it is. weird wrist, honest wrist. then run the overlay again, just for the thrill.", "next": "overlay_again" },
+        { "say": "stop at the arm. get a second pair of eyes. usagi's back from the dentist soon.", "next": "usagi_back" }
+      ]
+    },
+
+    "paige_ref": {
+      "them": [
+        "paige!! ok. i dm'd her. she said 'omg yes' and then 'tilted?' and i said NO not tilted STRAIGHT n she said 'ok but what if tilted.' she took a pic of kittyxcore reaching for a shelf at the mall. kitty has a nice arm. it has bracelets",
+        "so now i have a REAL photo. with permission. is that allowed. is that how it works. i dont know the rules of photos. i only know the rules of tracing"
+      ],
+      "choices": [
+        { "say": "photo reference with permission is how half the art in the world gets made. write it in the description.", "next": "description" },
+        { "say": "use it for the pose and nothing else. draw the rest yourself, then run the overlay to prove it.", "next": "overlay_again" }
+      ]
+    },
+
+    "public_confess": {
+      "them": [
+        "ok. ok ok ok. the bulletin. left: artbook page. right: my cover. 11 arrows. one points at my own elbow. one points at the sleeve. one just points at me, sitting there",
+        "usagi-chan would do a whole presentation. i can already hear the gasp. but the cover isnt DONE malten. i would be confessing to a drawing that doesnt exist yet"
+      ],
+      "choices": [
+        { "say": "then do the presentation anyway. 'the honorable overlay.' anime club needs a story like this.", "next": "usagi_back" },
+        { "say": "write the bulletin and hold it. post it next to the finished cover. tell the whole story at once.", "next": "description" }
+      ]
+    },
+
+    "tell_faye": {
+      "them": [
+        "ok. i told her. all of it. the artbook, the overlay, the 94, the layer under the sleeve. she was quiet for 40 seconds (long, for faye) n then she wrote 'Mika. I have borrowed a sentence from a book I love in at least nine chapters. I put it in the A/N. Can you put it in the description?'",
+        "so shes... not mad?? she says authors cite. she says its a 'polite way to say i was inspired.' but she still needs it by friday n i dont know if i can draw seraphina WITHOUT the artbook"
+      ],
+      "choices": [
+        { "say": "take her deal. cite it, redo the arm by friday. sources in the description, pride on the page.", "next": "description" },
+        { "say": "ask her for a day or two. an honest extension beats a rushed cover.", "next": "faye_call" }
+      ]
+    },
+
+    "overlay_again": {
+      "them": [
+        "ok. overlay. new drawing on the artbook page. 50 percent. ... eleven. ELEVEN percent. malten the 11 is the number of arrows i used before. i dont know whats happening. the numbers keep matching",
+        "the hand is different. the arm is different. ok the wrist is a little the same bc wrists only go so many ways. but its MINE. its my sausage. its wrong in a specific way. MY specific way"
+      ],
+      "choices": [
+        { "say": "post it. cover, overlay and number in the description: '11% match to my own reference. hands are mine (wrong).'", "next": "end_original" },
+        { "say": "send it to faye with the new number and the old pose credited. thank the artbook for starting it.", "next": "end_credit" }
+      ]
+    },
+
+    "faye_call": {
+      "them": [
+        "faye called. a REAL call, on the house phone, my mom answered n said 'a girl named fanfic wants you.' she said 'Mika. it's a lake. there's a girl in it. nobody in the history of the fandom has been this precise about a lake.'",
+        "she says if i need till monday she'll move chapter 95 to monday. she said 'author's note: the chapter arrives when the cover arrives. define arrives.' malten shes giving me a choice n i dont know which one is the brave one"
+      ],
+      "choices": [
+        { "say": "friday. credit the artbook, keep the pose, finish what you can. faye can live with an honest cover.", "next": "end_credit" },
+        { "say": "monday. a cover that's all yours is worth three days. she said so herself.", "next": "end_stick" }
+      ]
+    },
+
+    "usagi_back": {
+      "them": [
+        "usagi-chan is BACK from the dentist. her mouth is numb. she typed 'mika-chan whts wrng' in lowercase which has NEVER happened",
+        "i told her everything. she said 'put it on the projector. i will do the presentation.' she said 'honor is a hand that is wrong the SAME wrong every time.' malten i think she is crying. her typing is crying"
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "usagi", "to": "mika", "delay": 30, "text": "mika-chan!!! i saw the overlay on YOUR OWN drawing. that is the most honorable thing i have ever seen at anime club and i have seen a boy dub a subbed episode by himself in the cafeteria. anime club is behind u. subs not dubs, honesty not tracing. ganbatte!!" }
+      ],
+      "choices": [
+        { "say": "do the presentation. 'the honorable overlay.' let anime club hear the whole thing.", "next": "end_loud" },
+        { "say": "ask usagi the one question: redo it or credit it? then do exactly what she says.", "next": "end_original" }
+      ]
+    },
+
+    "description": {
+      "them": [
+        "ok. the description. what do i write. 'Seraphina Rising. Pose referenced from p.114 of the FMA artbook (credit to Arakawa), hand redrawn by me, wrist from my own arm in a mirror, photo ref by paige (tilted).' thats a lot of credits for a girl in a lake",
+        "but i like it. it looks like someone who has nothing to hide. it looks like the opposite of whoever posted 'Miko Destruction.' n i want to be the opposite of that so bad"
+      ],
+      "choices": [
+        { "say": "post it like that. long credits are a signature. be the artist who shows her sources.", "next": "end_credit" },
+        { "say": "or go all in. 11 arrows at yourself, title 'I FOUND THE TRACER (it was me).' teach the site what honest looks like.", "next": "end_loud" },
+        { "say": "hold the post until the cover is all yours. faye can wait a few days for a real one.", "next": "end_stick" }
+      ]
+    },
+
+    "end_original": {
+      "them": [
+        "ok. DONE. cover. hands wrong in MY way. the arm is mine, the wrist is mine, the elbow is a sausage n i love it. i ran the overlay one more time just to hear the number: 11. i havent told the number to anyone but u",
+        "faye is gonna see it in 4 min. i have never been so nervous or so... clean? i feel clean. is that a thing. like i washed my hands (they r wrong) (theyre mine). thx malten. i think 'DO NOT TRACE' is a promise i get to keep now"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "delay": 5, "text": "is DONE. the cover. the hands are wrong. the hands are MINE. (11% overlay on the reference) (it was 94 once) (we dont talk about 94)" },
+        { "type": "wallpost", "from": "faye", "to": "mika", "delay": 40, "text": "Mika!! The cover!! Seraphina is coming out of the lake and she is slightly cross-eyed and she is PERFECT. Chapter 95 posts Friday. You are in the acknowledgments as 'cover artist (paid in feelings and one (1) side chapter).' R&R pls, no flames ♥ (A/N: that was a love letter.)" },
+        { "type": "wallpost", "from": "usagi", "to": "mika", "delay": 80, "text": "mika-chan!!! the cover is SO good!! i showed it to anime club n sephiroth stood up n said 'the wrist.' then he SAT DOWN. he has never stood and sat for a drawing. ganbatte!!" },
+        { "type": "wallpost", "from": "nick", "to": "mika", "delay": 115, "text": "mika. saw the cover. the wrist is great. i do sticks so i have never had to be wrong about a wrist. i gave it a 5.00 in my head (my head is a portal) (i am the only voter) (it counts)" },
+        { "type": "dm", "delay": 150, "text": "ok i ran my own overlay one more time (just looking) n its still 11. aunt jo scanned the cover at 600 dpi n theres a cat hair in the corner so its SIGNED. faye says the lake is 'canon' now. i might put a horse in it for meg. ok go away im happy" }
+      ]
+    },
+
+    "end_credit": {
+      "them": [
+        "ok. posted. with the credits. the description is longer than the chapter summary. 'Seraphina Rising. Pose referenced from p.114 of the FMA artbook (credit to Arakawa). Everything else by me.' faye said it was the 'most polite cover in the history of the fandom'",
+        "i feel like i just handed in a permission slip. but u know what. its MY permission slip. n i wrote a bulletin about it bc i have 11 arrows left over n nothing to point them at"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "delay": 8, "subject": "HOW TO REFERENCE (a bulletin by someone who almost didn't)", "text": "ok. short. 1) a reference is looking at something to learn how it works. a trace is putting something on top of it so u dont have to learn. 2) if u r not sure which one u did, u did one of them. 3) say where u got it, in the description. 4) hands can be wrong. mine r wrong. its fine. 5) i ran an overlay on my OWN cover once. it was 94 percent. i redrew it. u can too. this is not about anyone else. this is about me. (its a little about them) (but mostly me)" },
+        { "type": "wallpost", "from": "faye", "to": "mika", "delay": 45, "text": "Mika! The credits are the best part of the cover. 'Pose referenced from p.114' reads like a poem. I am adding a citations section to chapter 95's author's note (it is 1,200 words now) ♥ R&R pls!" },
+        { "type": "wallpost", "from": "sephiroth", "to": "mika", "delay": 90, "text": "Mika. I read your bulletin. It contains five numbered points and one parenthetical. Point 2 is a legitimate maxim. I have notes: eleven pages, all about the word 'trace.' I withhold them. This is the first time. I would like it logged." },
+        { "type": "wallpost", "from": "meg", "to": "mika", "delay": 125, "text": "mika!! i read ur bulletin!! 'say where u got it'!! i got my horses from horses!! n i got my hooves from a calendar!! i dont have to say but i SAID!! love u!! (the green horse is canon now) (u did that)" },
+        { "type": "dm", "delay": 160, "text": "ok malten the second ive posted it 12 ppl said 'cute!!' n one of them was faye n one was my art teacher n one just said 'nice lake' (angela?). the point is nobody asked me to prove anything. i think thats what honest feels like. its quiet. i didnt know it was quiet" }
+      ]
+    },
+
+    "end_loud": {
+      "them": [
+        "ok. its posted. 'I FOUND THE TRACER (it was me) (partially).' 11 arrows. one points at my own elbow. usagi-chan is doing the presentation tomorrow. she has a title slide. it says THE HONORABLE OVERLAY. she made it in powerpoint w/ a sparkle transition",
+        "the thing is the house phone is ringing. its faye. she said 'Mika. the lake is empty. it has no girl.' i said 'the cover isnt done.' she said 'i can see that.' ok. i think i confessed before i finished. is that bad. the arrows r SO good tho"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "delay": 6, "subject": "I FOUND THE TRACER (it was me) (partially) (arrows inside)", "text": "left: p.114 of the FMA artbook. right: my cover for chapter 95. overlay at 50%: 94 percent. arrows: 11. arrow 1 points at the arm. arrow 2 points at the hand (right, hers). arrow 3 points at the lines UNDER the sleeve (traced). arrows 4-10 point at me being dramatic. arrow 11 is just pointing at me. i did this. i made an overlay on myself, which is the most embarrassing thing ive done in photoshop 7. usagi-chan is doing a presentation. please do not trace me. (please trace the lesson)" },
+        { "type": "wallpost", "from": "usagi", "to": "mika", "delay": 35, "text": "mika-chan!!! the presentation is TOMORROW at lunch!!! title: THE HONORABLE OVERLAY. it has 11 slides (one per arrow). attendance: mandatory. subs: mandatory. tracing: not tonight!! ganbatte!!" },
+        { "type": "status", "from": "faye", "delay": 70, "text": "faye is waiting for a cover. the lake has no girl in it yet. chapter 95 is next. (A/N: 'next' just moved to Monday.)" },
+        { "type": "wallpost", "from": "nate", "to": "mika", "delay": 105, "text": "mika. u put arrows at YOURSELF. ive never been so impressed or so scared. i can only do 'some people' n let ppl guess. u drew 11 arrows n named the person n the person is u. thats the bravest bulletin on here n ive read all of mine. do u do art trades" },
+        { "type": "wallpost", "from": "meg", "to": "mika", "delay": 140, "text": "mika!!! u confessed!! its ok!! i traced my own horse once (the first horse) (it was a calendar horse) (i drew a hat on it so now its a different horse) (we all start somewhere)!!" }
+      ]
+    },
+
+    "end_stick": {
+      "them": [
+        "ok. i told faye monday. she said 'Mika. take the time.' n then she said 'but chapter 95 posts friday so i asked Nick to do a stand-in cover. just for the week.' malten. NICK. a STICK. Seraphina as a stick. coming out of a lake with one hand up. the hand is a line",
+        "n i love it. thats the worst part. it will be the best stand-in in the history of the fandom n my cover will come monday n look like a REAL drawing next to a stick. i feel like i lost friday. but i didnt lose the hands. the hands r still mine. i have to go draw an arm. in a mirror"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "delay": 5, "text": "is drawing the cover for chapter 95. in a mirror. due MONDAY. the hands r wrong. (the hands r MINE)" },
+        { "type": "status", "from": "nick", "delay": 40, "text": "nick is drawing STICK SERAPHINA for fanfic_faye's chapter 95 (stand-in cover). frame 1. one frame. the hand is a line. this is the easiest job ive ever had. (do not tell mika) (mika knows)" },
+        { "type": "wallpost", "from": "faye", "to": "mika", "delay": 80, "text": "Mika. A stick is a stand-in. You are the cover. Chapter 95 posts Friday with Nick's Stick Seraphina and a note that says 'the real cover is coming Monday, drawn by a person with a mirror.' People will wait. People waited 94 chapters. ♥ (A/N: I'm not worried.) (A/N: I'm a little worried.) R&R pls." },
+        { "type": "wallpost", "from": "usagi", "to": "mika", "delay": 120, "text": "mika-chan!!! u said 'monday' out loud!! thats the bravest sentence at anime club since 'dubs r fine' (nobody said it) (but u would have been bravest)!! i will bring snacks. ganbatte!!" },
+        { "type": "dm", "delay": 165, "text": "ok nick sent me the stick. the stick is holding a tiny scythe. it turns into a guitar in frame 2. he says frame 2 is free. aunt jo scanned it n theres a cat hair in the corner so its signed. i might not draw anything till monday. i might just look at the stick. the stick has no hands. i envy it" }
+      ]
+    }
+  }
+}

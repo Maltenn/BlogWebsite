@@ -1,0 +1,190 @@
+{
+  "id": "brad",
+  "name": "blockbuster_brad",
+  "tag": "Late fees are not personal. Have you seen GROUNDHOG DAY? Please rewind.",
+  "avatar": "assets/avatar_brad.gif",
+  "gender": "Male",
+  "age": 19,
+  "hometown": "Centerville, Ohio (the store is across the lot from the mall, 40 seconds on foot, I timed it)",
+  "loc": "behind the counter. the counter is where I live. the return slot is where I work",
+  "zodiac": "Libra. starxgazer said 'you see both sides of everything.' I said that's why we have an Action section and a Drama section. she wrote that down",
+  "status": "Single (I know exactly which movie to rent for a first date. I have never gotten past the part where I ask)",
+  "hereFor": "Friends, Networking, Recommendations (unrequested)",
+  "mood": "overdue",
+  "lastLogin": "Oct 3 2026 11:20 PM",
+  "theme": { "bg": "#0b2a7a", "fg": "#fff6d6", "accent": "#ffd21f" },
+  "blogTitle": "STAFF PICKS (you didn't ask. here they are anyway)",
+  "about": "Hi. I'm Brad. I'm a shift supervisor at the Blockbuster across the lot from the mall. I've worked here since I was 16, which is long enough to know three things. One: every situation has a movie. Two: the late fee is $1.00 per day, I don't set that number, I just read it to you off the receipt, slowly, with respect. Three: nobody ever asks me for a recommendation and everybody needs one. So I give them. You're welcome in advance. I take one class at the community college (INTRO TO FILM, Mondays, 6 PM) and I'm told I 'talk during the movies.' That's the point of them. If you're reading this you probably owe us something. Check your bag. Check your car. Check under the couch.",
+  "aboutMore": "Things the receipt doesn't say. I pre-watch the last ten minutes of anything I recommend to someone who's having a rough week, in case of a dog. Dogs die in more movies than you'd think. I keep a list. I also keep a shelf behind the counter called Brad's Picks, with handwritten cards. Nobody has ever rented one. A customer once said 'these look like homework.' I said they're gifts. She rented BIG FISH. I think about her sometimes.",
+  "meet": "Who I'd like to meet: whoever at corporate decided on 'No More Late Fees' (it's still a fee, it has a new hat). The customer who returns a movie early with a note. Jimmy Stewart, if that were possible. Someone to ask to a movie. And Patrick, who has had THE SPONGEBOB SQUAREPANTS MOVIE since March and has never once been anything but delighted about it.",
+  "interests": {
+    "General": "late fees (the $1.00 kind), the return slot (it jams open in January), the previously viewed bin ($4.99, or 3 for $12), microwave popcorn, the New Releases wall (Tuesdays), the cardboard standee by the door (his name is Gerald, he's an ogre, we talk on slow Sundays), rewinding (a lost art), arranging the Comedy section by mood instead of alphabet",
+    "Music": "soundtracks (the Rocky one, the Sandlot one, the Back to the Future one, the one with the credits song you can never find), Simple Minds (the profile song, it's the credits song, I don't have to explain), the theme from CHARIOTS OF FIRE (I hum it when someone returns a tape on time), whatever Holly is humming on her break across the lot (I don't ask)",
+    "Movies": "everything. Favorites: GROUNDHOG DAY (a good Monday), THE PRINCESS BRIDE, BIG FISH, THE SANDLOT, OCTOBER SKY, APOLLO 13, BACK TO THE FUTURE, THE GOONIES, IT'S A WONDERFUL LIFE (Walt approves), SPIRITED AWAY, THE MUPPET MOVIE. I've heard all the commentary tracks. Most of them are better than the movie",
+    "Television": "Ebert & Roeper (thumbs, always), MST3K marathons on Sundays, the Blockbuster demo loop on the store TVs (40 minutes long, I've seen it 900 times, I could do the voiceover), whatever's on the monitor over the counter when it's slow",
+    "Books": "the Blockbuster employee handbook (page 14: 'greet every customer within 10 seconds'), the Leonard Maltin movie guide (the fat paperback, all 1,600 pages, it has a star system, I've disputed 4), the backs of video boxes (they're the shortest stories ever written and some of them are lies)",
+    "Heroes": "Gerald (the standee). My manager Mr. Dwyer, who has never once said 'it's just a store.' The woman who returned ANNIE nine years late, with a card, and paid the whole replacement price and brought a muffin basket. Jimmy Stewart. Whoever the first person was who said 'you've gotta see this'"
+  },
+  "song": {
+    "name": "Don't You (Forget About Me)",
+    "artist": "Simple Minds",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/a7/f3/33/a7f333bb-e8a9-abb7-2dec-8047fc7c44dc/mzaf_1962801421075449361.plus.aac.p.m4a",
+    "pattern": [0, 5, 7, 9, 12, 9, 7, 5],
+    "bpm": 112
+  },
+  "decor": ["assets/deco_new.gif", "assets/badge_best_viewed_with_eyes.gif"],
+  "friends": ["tina", "leo", "patrick", "sara", "ben", "holly", "tim", "todd"],
+  "wall": [
+    { "from": "patrick", "text": "hi brad. i still have the spongebob tape. it's very safe. i read the box three times and dwayne watched it with me. is it time to bring it back. you said 'no rush' in march and i believe you. i believe you the way i believe in spaghetti. it's my favorite thing i've ever borrowed. i've borrowed a lot of sticks", "time": "Oct 2 2026 4:20 PM" },
+    { "from": "tina", "text": "BRAD. u recommended ladyhawke. its about a man who turns into a wolf at night and a woman who turns into a hawk by day and they can NEVER be together. THAT'S TWILIGHT. i cried in the parking lot. i'm not mad. repost my letter or ur late fees double (it says that, not me) ~*~", "time": "Sep 29 2026 6:44 PM" },
+    { "from": "leo", "text": "brad. i rented CAST AWAY for the 4th time. i've been going frame by frame. there are no numbers on the island. none. which is exactly what they WANT me to think. it's 4 days late. i'll pay. i'll pay in theories. i put the receipt on the board and drew a string to the next receipt", "time": "Sep 25 2026 11:02 PM" },
+    { "from": "ben", "text": "brad the naruto movie came out right?? i heard. u said 'not in this region.' i said what region. u said 'the one ur in.' i checked the map. i AM in that region. i'll check saturday. and tuesday. and saturday. also i returned seven samurai 2 days late and u charged me $2 and u were right and u were kind about it. believe it", "time": "Sep 21 2026 3:30 PM" },
+    { "from": "thad", "text": "(He enters, clutching an empty case.) Brad. HAMLET. Four hours. Returned late. I know. I pay the fee gladly, as one pays a toll to cross into a kingdom. But I must ask: why do you charge by the day and not by the act? I have lived through five. (He exits, pursued by a late fee. He is fine.)", "time": "Sep 17 2026 8:08 PM" },
+    { "from": "walt", "text": "Dear Mr. Brad, I returned IT'S A WONDERFUL LIFE on Tuesday, one day early, closed and rewound as the sign requested. I would like it known that I have never owed a fee to any establishment. In 34 years I did not return a library book late and I do not intend to begin. Please thank the young man at the register for the popcorn. Regards, Walt", "time": "Sep 9 2026 6:12 AM" },
+    { "from": "ashley", "text": "[RED] BRAD. BRING IT ON is 98 minutes. [ORANGE] I need it for team film study (snacks provided). It is due back FRIDAY. [GREEN] It will be back FRIDAY. [BLUE] I have laminated the receipt. If you charge me a late fee I will pay it and ALSO make a poster. [YELLOW] Optional: advise if the poster is billable. (It's not optional.) -Ashley, Capt.", "time": "Sep 3 2026 2:15 PM" }
+  ],
+  "replies": [
+    "Noted. Have you seen GROUNDHOG DAY? It's about Mondays.",
+    "Thanks for the comment. Because of it I'm recommending THE SANDLOT. The reason is the comment.",
+    "That's fair. For fairness: RUDY.",
+    "I'd say more but there's a customer at the counter holding a movie with the wrong expression.",
+    "Sorry to hear that. Try BIG FISH. Not now. Tonight.",
+    "I read that twice. Rule of thumb: if you read something twice, it's a movie.",
+    "Understood. Please rewind.",
+    "That's an APOLLO 13 kind of problem. It'll work out. There will be a moment where it doesn't look like it.",
+    "Okay. I'll put a card on it.",
+    "Is this the part where I tell you the late fee? Kidding. Is it? No. It isn't."
+  ],
+  "thanksAdd": "Thank you for the add. I've opened your account. You have 0 rentals, 0 late fees and one recommendation, which I'll deliver now: THE PRINCESS BRIDE. It's good for new friendships. It's about people who say what they mean. Welcome. Please rewind.",
+  "ambient": [
+    "A customer returned a tape with a Post-it that said 'I'm so sorry, it's 9 days late.' I waived the fee. On the receipt I wrote 'honesty.' The register doesn't have a field for it. I wrote it anyway.",
+    "Someone asked what to watch tonight. I asked what kind of day it was. They stood there for 40 seconds. Then they said 'a long one.' I gave them BACK TO THE FUTURE. They said 'that's it?' I said it's two hours and nothing in it gets worse. They rented it. That's the job.",
+    "Day 206 on the SpongeBob tape. I'm not saying whose. I'm saying the account is 'in good standing.' I don't know how. The register says it is. I think it's a software thing.",
+    "The return slot froze open in the cold. Four tapes came out damp. I dried them with the hair dryer I keep behind the counter for exactly this. Nobody knew it was me. They just found their movie slightly warm. It's the best part of January.",
+    "A customer named Tim returns every tape 11 minutes early and asks for a receipt for the return. I put a card on PROOF for him. He read it. He didn't rent it. He said the late fee is 'a risk I've priced.' I respect him more than anyone who has ever stood at this counter.",
+    "Hollywood Video across the highway has a sign that says LOWER PRICES. I've checked. They aren't. I walked over to check. The guy was nice. He has recommended 0 movies. I don't know how he sleeps."
+  ],
+  "saltyDm": "I see you denied the request. That's fine. I won't charge a fee. (That was a joke. There's no fee for friend requests. Probably.) For what it's worth, I'd recommend GROUNDHOG DAY. You get another chance. Every day. Same time. Please rewind.",
+  "keywords": {
+    "movie": "Which kind of day was it. That's my first question. A bad day is a different movie than a slow day. The best movie is the one that fits the day, not the one that wins the awards. Tell me about your day.",
+    "late": "The fee is $1.00 per day. It's printed on the receipt. I've been over this. I don't set the number. I read it respectfully and slowly, and if you cry I hand you a tissue and then I read it again. That's the job. (We call it a 'restocking fee' now. It has a new hat. It's the same fee.)",
+    "netflix": "The red envelopes. I've seen them. They come in the mail and people think it's the future. I'll say this: an envelope can't tell you what you'd like on a Tuesday night. I can. It's called a person. Gerald says it's not a competitor, it's a pen pal.",
+    "popcorn": "Microwave popcorn, 3 for $2. I don't set that number either. Tip: when the bag goes quiet for two full seconds, stop. That's the whole secret. It's the only thing I know that isn't about movies.",
+    "sad": "I'm sorry to hear that. First: tell me what happened, if you want. Second: BIG FISH or THE SANDLOT, depending. Third: I've checked both endings. No dogs. You're safe.",
+    "bored": "Bored is just a movie you haven't picked yet. Tell me the last thing you watched twice. Then I'll tell you the next one. It's like a map.",
+    "patrick": "Patrick is a regular. A very loyal regular. His account has some notes on it. I'm not able to discuss his account. I will say he has excellent taste and a very small footprint. Next question.",
+    "recommend": "Great. Do you have a few minutes. I have a few hundred."
+  },
+  "banter": {
+    "patrick": [
+      "Patrick, the SpongeBob tape has been out for over 200 days. This is not a problem. I'd like to say that clearly. It's not a problem. If you want to bring it back, you can. If you want to keep it, you can. I'll recommend FINDING NEMO either way. It's about a dad who doesn't give up. Like you with the tape.",
+      "Patrick, you asked if Dwayne can rent a movie. The answer is yes. His account is under 'Dwayne (Rock).' He gets one free. I put it on my own card. He doesn't have to watch it. I'll leave it on the counter and he can look at it as long as he likes."
+    ],
+    "tina": [
+      "Tina, six requests for a vampire movie. I have nothing in the store you haven't seen. But LADYHAWKE is a wolf and a hawk who can't be in the same place at the same time, and I think it will help. Bring tissues. Bring the letter. I'll read it.",
+      "Tina, your chain letter says my late fees double if I don't repost. I appreciate the warning. They're already $1.00 a day. I looked into it. I did not repost. But I put a card on LADYHAWKE that says 'for Tina.' It's a very small card."
+    ],
+    "leo": [
+      "Leo, CAST AWAY is 143 minutes. I checked the island for numbers. There are none. I'm not saying your show is lying. I'm saying THE TRUMAN SHOW is about a man who thinks he lives on an island and he's actually on a stage. You'll hate it. Rent it.",
+      "Leo, you wrote 'the numbers' on the back of a return receipt. I put it on the corkboard behind the counter. Customers have started asking about it. One of them added a number. I don't know whose. We're a store with a theory now."
+    ],
+    "sara": [
+      "Sara, I read part 11 of the saga on my lunch break. The family has a home theater and no couch. As a clerk I have to ask: where do they sit.",
+      "Sara, THE TRUMAN SHOW is about a man whose life is run by an unseen writer who removes things 'for the plot.' It's a documentary about your Sims, from the Sims' point of view. Please rent it. Then please put the ladder back on the pool."
+    ],
+    "holly": [
+      "Holly, the CD you dropped in our return slot says START HERE and it's in lost and found. I played it once to check for damage. Track 12 isn't damage. I'm not saying anything. I'm only saying I put a card on BEETLEJUICE, and it says 'for Holly (she knows).'",
+      "Holly, you've said 'I own it' to every recommendation I've made since April. I've started recommending things I think you don't own. It's a puzzle. So far you've owned all of them. I'm going to find the one you don't. I have a list. It has footnotes."
+    ],
+    "thad": [
+      "Thad, HAMLET (the 4 hour one) is due back Friday. It was due back the previous Friday. The fee is $7.00. You're the only customer who has ever apologized to me in iambic pentameter. I accepted it. I still charged the fee. Those are separate transactions.",
+      "Thad, I heard about the lead going to a sophomore. I'm sorry. I put a card on MUCH ADO ABOUT NOTHING with your name on it. It's a comedy. Nobody dies. I checked. You need one where nobody dies."
+    ],
+    "tyler": [
+      "Tyler, I heard about Moose. Not details. Just that he's fifteen and that you're good to him. I recommend HOMEWARD BOUND. It's the one where the old dog makes it. I pre-watched the ending. I put a card on it. It says 'for Moose.' It's the same card I'd give anybody.",
+      "Tyler, 'bro' is not a valid reason for an extension. I considered it. I considered it for a while. The policy is silent on 'bro.' I'm making a new category. It's $1.00 a day. It's the same as before. I'm just calling it something different."
+    ]
+  },
+  "statuses": [
+    "brad is at the counter. have you seen GROUNDHOG DAY. it's about Mondays",
+    "brad just waived a $9 fee because someone wrote 'sorry' on the box. he wrote 'honesty' on the receipt. there's no field for it",
+    "brad is drying 4 damp tapes with a hair dryer. the return slot froze. they are slightly warm. you're welcome",
+    "brad is answering 'what's new' with 'Tuesday.' it's new every Tuesday. that's the whole answer",
+    "brad is pre-watching the last 10 minutes of a movie for a customer. no dogs. no dogs. no dogs. ok. no dogs",
+    "brad is 3 hours into the commentary track of a movie he's seen 40 times. it's better than the movie. don't tell the movie",
+    "brad has class tonight. intro to film. the teacher said the first frame matters. brad wrote it down. he already knew",
+    "brad is waving at the mall entrance across the lot. Holly is on her break on the bench. she raised a hand without looking up. he'll take it"
+  ],
+  "bulletins": [
+    {
+      "subject": "STAFF PICKS BY SITUATION (a guide)",
+      "body": "Bad day: BIG FISH. Good day: THE SANDLOT. Monday: GROUNDHOG DAY. You lost the big game: COOL RUNNINGS. Deadline tomorrow: APOLLO 13. It's raining: SINGIN' IN THE RAIN. Parents are visiting: THE PRINCESS BRIDE. You're moving: SPIRITED AWAY. Your friends are drifting: THE GOONIES. You can't decide: ask me. Late fees apply to all of the above. They're $1.00 a day. (We call it a 'restocking fee' now. It's the same fee.) Please rewind everything."
+    },
+    {
+      "subject": "A NOTICE ABOUT THE DROP BOX",
+      "body": "The drop box is for MOVIES. It is not for: library books (3 this week), a hamster cage (empty), a sub sandwich (unopened; I ate it; I'm sorry), or a burned CD that says START HERE (it's in lost and found, the owner knows who she is). Also: please rewind. It's not hard. It's a courtesy. It's the one thing that holds civilization together. Thank you. Gerald says thank you too."
+    },
+    {
+      "subject": "SURVEY: which movie are you (answer honestly) (Brad will assign one)",
+      "body": "1. What kind of day was it. 2. Do you cry at the end of movies (yes / no / in the car). 3. What's your favorite snack. 4. Who do you call when something good happens. 5. Do you need the dog to make it. Post your answers on my wall. I'll assign you a movie. I'll be right. I'm always right about this. I'm wrong about everything else."
+    }
+  ],
+  "pcComments": [
+    "Great picture. It reminds me of the poster for THE GOONIES. Specifically the part where they're all together. Not the cave. The together part.",
+    "Nice shot. If this were a movie the music would swell right here. I'd recommend a soundtrack. I'd recommend several.",
+    "This looks like a COOL RUNNINGS kind of day. Keep going. Don't let the sled flip.",
+    "Good lighting. Very 'the end of a movie where everyone's okay.' Which is the best kind. I checked.",
+    "I'd rent this. Five stars. Please return it by Thursday."
+  ],
+  "dmSeed": [
+    { "text": "Hi malten. Brad here, shift supervisor at the Blockbuster. I looked at your page and you didn't list any movies. A person who doesn't list movies is either a mystery or hasn't been asked. So I'm asking: what's the last good one? Also your account has 0 late fees. Keep it that way. Please rewind." },
+    { "text": "Also, I should say I will recommend something to you eventually. I can't help it. It's not personal. It's a condition. It starts with THE PRINCESS BRIDE and it goes from there." }
+  ],
+  "dms": [
+    "Malten. A man just returned a tape with a Post-it that said 'sorry, the dog ate it.' I said did the dog eat it. He said no. I said I appreciate that you said no. I waived the fee. On the receipt I wrote 'honesty.' There's no field for honesty. There should be. I'm going to raise it with corporate. Corporate is a building in another state. I've never met it.",
+    "I just signed up for a second class. Film History, Wednesdays. My mom said 'that's good, honey.' I said it's a plan. She said 'it's a good plan.' I've never had a plan before. It feels like wearing a new coat.",
+    "A girl asked me what I'd recommend for a first date. I said THE PRINCESS BRIDE because it has everything. She said 'that's it? That's what you'd pick?' I said I've thought about this a lot. She said 'have you ever been on one?' I said I know exactly which movie. I've never gotten past asking. She said 'oh.' She rented RUDY. I don't know what that means.",
+    "Fun fact: the average person spends about 3 minutes in the aisle deciding a movie isn't for them. I've timed it. The ones who read the back of the box for 20 seconds rent it 90% of the time. I think it means people want to be told. So I tell them.",
+    "Gerald (the standee) fell over during close. I put him back up. He has a dent in the head. I'm not saying it was me. I'm saying I've said goodnight to a piece of cardboard every night for 14 months and tonight I said it twice. That's all. I thought you should know.",
+    "I've worked here 3 years and I've learned people in the movie aisle fall into two types: the ones who look at me and the ones who don't. The ones who don't need me most. I keep a few movies near the end of the aisle for them. No cards. They just find them. Last week a boy found one. He looked at the cover for a long time. He rented it. That's the job.",
+    "Slow Sunday question: if you could only watch one movie for the rest of your life, which one. Not your favorite. The one you'd still love after 4,000 viewings. I've narrowed it to three. The third surprised me. It's THE MUPPET MOVIE. Please don't tell Holly.",
+    "Hollywood Video across the highway sells a 5 for $15 deal and ours is 3 for $12. I did the math on a napkin. Theirs is better by 40 cents a movie. I told Mr. Dwyer. He said 'Brad.' I said I'm only telling you. I walk over sometimes. To check. Not to rent."
+  ],
+  "blog": [
+    {
+      "title": "The Patrick Situation (a hypothetical)",
+      "date": "Sep 23 2026 11:15 PM",
+      "mood": "neutral. (not neutral)",
+      "body": "Hypothetically, suppose a customer rented a tape in March. Suppose it was THE SPONGEBOB SQUAREPANTS MOVIE and suppose he has watched it three times a week since, with a rock. Suppose he believes 'rental' means 'borrowing, like a library you visit with a friend.' Suppose the late fee, capped by policy at the replacement price, hit $19.99 on day 20, and suppose a clerk, hypothetically, paid that cap in April out of his own pocket, in ones, and watched the screen change to ACCOUNT IN GOOD STANDING, and felt, hypothetically, fine. Suppose his manager, Mr. Dwyer, asked what happened to the account, and the clerk said 'software,' and Mr. Dwyer said 'software,' and nodded, and has never brought it up since. If that had happened, it would not be policy. It would be a mistake. And the clerk would make it again."
+    },
+    {
+      "title": "How to recommend a movie (the last ten minutes)",
+      "date": "Sep 12 2026 10:40 PM",
+      "mood": "thoughtful",
+      "body": "Before I recommend anything to someone who's having a rough week, I watch the last ten minutes. This is not in the handbook. It's in me. Last month a girl came in and said 'nothing sad.' I gave her COOL RUNNINGS. She came back Tuesday. She said 'it was a little sad.' I said the sled. She said 'THE SLED.' I said they finish. They carry it. She said 'I know. I just panicked.' We had a moment. A man behind her said 'is this line for movies?' I said this line is for everything. People think the job is renting. The job is knowing the last ten minutes. Dogs, by the way, die in more movies than you'd think. I keep a list. It's on the back of the Comedy shelf card. I'm not going to say what's on it."
+    },
+    {
+      "title": "Intro to Film, week 6: the first frame matters",
+      "date": "Sep 21 2026 11:02 PM",
+      "mood": "surprised",
+      "body": "The professor wrote THE FIRST FRAME MATTERS on the board and underlined it. I wrote it down. Then I raised my hand and said I'd noticed that in THE GOONIES the first frame is a jailbreak and the last frame is a treasure, so it's basically the whole movie in two shots. The room was quiet. A girl in the back said 'yeah.' She asked me to get coffee after class so we could talk about it. We did. For 40 minutes. Her name is Priya. She has never seen BACK TO THE FUTURE. I said that's the second thing I need to talk to you about. She asked what the first was. I said the late fee policy. She laughed. I didn't mean it as a joke. I'm learning that's the best kind. She asked. I didn't have to. I'm choosing to see that as the system working."
+    }
+  ],
+  "survey": {
+    "title": "the survey Tina forwarded (answered in movie titles where possible)",
+    "qa": [
+      ["name:", "Brad. Blockbuster Brad. It's on the vest. I didn't choose the vest. I didn't choose 'Blockbuster Brad' either but it's alliterative so I allowed it"],
+      ["age:", "19. Old enough to supervise. Young enough to be asked 'is your manager here' by people who have met my manager"],
+      ["job:", "Shift supervisor. I supervise shifts. Mostly mine. Sometimes a 16 year old named Dev, who thinks I'm intense"],
+      ["last movie you watched:", "THE GOONIES, last night. 42nd time. 5th time with the commentary. I know the commentary better than the movie"],
+      ["favorite movie:", "That's like asking for a favorite customer. GROUNDHOG DAY. It's about doing the same job every day and getting better at it, which is my life. (I'm not complaining)"],
+      ["do you cry at movies:", "Yes. In the car. I park behind the store. Cried at: BIG FISH (3 times), OCTOBER SKY, TOY STORY 2 (the song), E.T. (the bike). It's normal. I have a list"],
+      ["worst thing a customer ever said:", "'I didn't know it was due.' It's on the receipt. In bold. Under the date. I printed it. I took them through it. I said it with warmth. I don't think warmth works on receipts"],
+      ["best thing a customer ever said:", "'I watched what you picked and it was exactly what I needed.' It was a Tuesday. She'd had a hard day. She didn't say what. I didn't ask. THE SANDLOT does a lot"],
+      ["do you have a crush:", "Yes. No. A person who rents a different genre every Friday. I've never said a word. My theory is she's testing something. I've been rooting for her"],
+      ["pets:", "A fish named Rental. He's always a little overdue. I haven't given up on him"],
+      ["what's in your fridge:", "Mountain Dew, leftover lo mein, and a note from my mom that says RETURN YOUR TAPES, which is a joke between us. I haven't returned anything late in 3 years. It's about integrity"],
+      ["describe yourself in one sentence:", "I think there's a movie for everybody, I just haven't found yours yet, and that's the best part of my day"]
+    ]
+  }
+}

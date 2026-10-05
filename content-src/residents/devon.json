@@ -1,0 +1,229 @@
+{
+ "id": "devon",
+ "name": "duelist_devon",
+ "tag": "locals champ @ dragon's den. i believe in the heart of the cards. all trades final.",
+ "avatar": "assets/avatar_devon.gif",
+ "gender": "Male",
+ "age": 14,
+ "hometown": "Reynoldsburg, OH (domino city, basically)",
+ "loc": "dragon's den cards & comics, table 3, the chair that faces the door",
+ "zodiac": "Scorpio (starxgazer says 'that explains the binder.' i asked what the chart was worth. she said 'no.')",
+ "status": "Single (open to offers) (all offers reviewed)",
+ "hereFor": "Friends, Networking, Trades, More Trades",
+ "mood": "calculating",
+ "lastLogin": "Oct 3 2026 6:15 PM",
+ "theme": {
+  "bg": "#0f3d2e",
+  "fg": "#f3f0d8",
+  "accent": "#ffd24a"
+ },
+ "blogTitle": "table 3 (tournament reports & market analysis)",
+ "about": "name's devon. 14. reigning locals champion at dragon's den cards & comics (saturdays at noon, $3 entry, i'm the name at the top of the whiteboard). i run a 40 card deck called Final Offer and i have never once stacked it, bc i don't have to. i believe in the heart of the cards. i talk to my deck. it listens. tim says drawing what i need that often is 'statistically concerning.' i say the deck knows who sleeves it. i also trade. u got a binder? i got a binder. every trade i make is fair bc u agreed to it, that's how fair works. house rules: all trades final, condition is an opinion, and ask ur mom BEFORE, not after. i set one card face down and end my turn.",
+ "aboutMore": "three things that are NOT for trade, so don't ask. (1) my kuriboh. it's creased down the middle and it lives in a screw-down case on my desk. my big brother dre gave it to me the day he left for the navy and said 'hold it down til i'm back.' a guy offered me $20 once. i said no so fast it scared him. (2) the title. (3) the shoebox marked COMMONS. that's where i build first decks for the little kids at the shop. first deck's free. i don't trade with anybody under 10. that's not charity, that's growing the player base.",
+ "meet": "the guy who writes the ban list (we need to talk about table 3). kazuki takahashi, to shake his hand. anybody with a first edition blue-eyes in a shoebox who hasn't looked it up yet (hi) (call me). and my brother, at the airport in june, with my name still on the whiteboard.",
+ "interests": {
+  "General": "dueling, trading, my binder (9-pocket pages, alphabetical inside rarity), sleeving cards while the tv's on, locals at dragon's den, shuffling (i can riffle AND bridge), reading the ban list like it's the newspaper, checking ebay prices (the high ones)",
+  "Music": "fort minor (remember the name is my walk-up song. there's no walk-up at locals. i hum it), linkin park, eminem (the clean versions, my mom checks), the music from the show when somebody draws the exact right card, whatever big stan has on the shop radio (classic rock) (it's growing on me)",
+  "Movies": "yu-gi-oh the movie (i still have the promo cards from the theater. make me an offer), ocean's eleven, rounders (my uncle let me watch the card parts), the color of money (stan made me), anything with a tournament at the end",
+  "Television": "yu-gi-oh (saturday mornings), yu-gi-oh GX (it's fine. he doesn't thank his deck enough), pokemon (retired), poker on espn (they wear sunglasses inside. i'm looking into sunglasses), antiques roadshow (it's a trade show for old people. i take notes)",
+  "Books": "the official rulebook (i can quote rulings), the price guide magazine at the shop (i read it there, i don't buy it, that's called margins), shonen jump (for the promo card stapled inside), how to win friends and influence people (zorp lent it to me. i got 3 trades out of chapter 2)",
+  "Heroes": "yugi (he believes). kaiba (he owns the building). my brother dre. big stan (he let me run a tab once. once). my mom (best trader i know). petey, age 9 (he beat me fair. respect)"
+ },
+ "song": {
+  "name": "Remember the Name",
+  "artist": "Fort Minor",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/a6/c2/bb/a6c2bb44-5ca1-a4f7-65ab-98d497c053b4/mzaf_17356832300357930871.plus.aac.p.m4a",
+  "pattern": [0, 0, 3, 0, 7, 0, 3, -2],
+  "bpm": 85
+ },
+ "decor": [
+  "assets/deco_dragon.gif",
+  "assets/deco_new.gif"
+ ],
+ "friends": ["ben", "tj", "ryan", "wes", "tim", "andy", "dave", "luna", "kyle"],
+ "wall": [
+  {
+   "from": "ben",
+   "text": "DEVON!! i challenge u!! i learned the rules!! (some of them) (tj read them to me) saturday at the card shop. if i win u have to admit ur my rival. if u win i will train for 100 more days. BELIEVE IT",
+   "time": "Sep 25 2026 4:40 PM"
+  },
+  {
+   "from": "tim",
+   "text": "ran the numbers on ur 'heart of the cards.' u drew the 1 card u needed 3 games in a row. odds are about 1 in 27,000. im not accusing u of anything. im entering it in the ledger under 'unexplained.'",
+   "time": "Sep 13 2026 8:02 PM"
+  },
+  {
+   "from": "ryan",
+   "text": "selling lobs 200 ea. also buying blue eyes white dragon 10k gp. also do u trim armor at the card shop. a guy said he would trim mine 4 free and then he logged out. twice. u seem like u would know how that works",
+   "time": "Aug 31 2026 9:26 PM"
+  },
+  {
+   "from": "wes",
+   "text": "devon i watched a full round of your locals. zero movement, zero tech skill, and i could not look away. your bracket ran cleaner than most melee pools. tell stan my offer of a CRT for the back room still stands.",
+   "time": "Sep 6 2026 1:30 PM"
+  },
+  {
+   "from": "kyle",
+   "text": "hi im kyle im 14. do u have any cheat codes for yugioh. like a code that makes u draw exodia. also can i have a free deck my brother said u give out free decks. im 14",
+   "time": "Sep 20 2026 3:12 PM"
+  },
+  {
+   "from": "luna",
+   "text": "*sets the card gently on a flat stone and stands guard over it* devon. you called the silver fang 'a ten cent common.' you were wrong. he is the fifth member of the pack. ((ooc: thank you for the other 3. i wont tell anyone. the pack remembers))",
+   "time": "Sep 28 2026 8:19 PM"
+  },
+  {
+   "from": "maddie",
+   "text": "Devon: Slytherin. Ambition, resourcefulness, and that trade you did with Ben. Before you object: I also noted the anonymous booster packs in his locker. That's in your file too. It didn't change your house. It changed my opinion.",
+   "time": "Sep 12 2026 6:33 PM"
+  }
+ ],
+ "replies": [
+  "i'll allow it.",
+  "interesting offer. counter: the same thing, but i also get a common.",
+  "i'm setting that comment face down. we'll see what it does next turn.",
+  "u activated my trap card. (the trap card is me agreeing with u.)",
+  "listen. i like u. that's why i'm only gonna overcharge u a little.",
+  "the heart of the cards says yes. the binder says maybe. i say bring cash.",
+  "good talk. all talks final.",
+  "condition of this comment: near mint. slight wear on the edges.",
+  "hold that thought, i'm mid-shuffle. u don't interrupt a shuffle.",
+  "is that ur final answer or ur opening offer. be honest."
+ ],
+ "thanksAdd": "smart move. u just made a friend with a binder. first trade between friends is always fair (that's a devon guarantee) (the guarantee is not transferable). come by dragon's den saturday and i'll teach u to play. first deck's on me. i draw. i end my turn.",
+ "ambient": [
+  "new ban list is out and they took another one of my cards. that's 3 this year. at this point i think they got a guy watching table 3",
+  "top-decked the exact card i needed in the finals again. kid across from me said 'that's so lucky.' luck is for people who don't talk to their deck",
+  "big stan wrote my name on the whiteboard in permanent marker by accident. now i HAVE to keep winning. he says the board was $40",
+  "mr dawkins still has my second best deck in his desk drawer. since march. i see it every time i get called in. i think he's been sleeving them. the sleeves look new",
+  "taught a 7 year old named marisol the rules today. she beat me in game 2. i let her. (i did not let her.) she keeps the deck. that's the rule",
+  "mom found my binder open on the kitchen table and asked what it's worth. i said 'depends who's asking.' she said 'ur mother.' i said '$11.' she didn't believe me either"
+ ],
+ "saltyDm": "denied. ok. bold play. i respect a guy who doesn't take the first offer. here's my counter: same friend request, but i throw in a holo common and a free lesson at dragon's den. that's me losing money. think it over. (don't think too long. this offer expires when i say it does.)",
+ "keywords": {
+  "trade": "now ur speaking my language. what do u got, what's it worth to u, and have u looked it up yet. (don't look it up.) the binder's open. rules: all trades final, ask ur mom BEFORE.",
+  "yugioh": "dragon's den, saturday, noon, $3. bring 40 cards and a good attitude. i'll bring Final Offer and a pen for ur life points. new players come at 11:30, i teach for free",
+  "duel": "i don't do the voice from the show. but yes. any time, table 3. i go second, i always go second, it's polite and it's also better",
+  "heart of the cards": "it's real. u sleeve em, u shuffle em right, u say something nice before u draw, and they show up for u. tim calls it 'a 1 in 27,000 anomaly.' me and the cards call it a relationship",
+  "kuriboh": "not for trade. not for sale. not for looking at too long. my brother gave me that card. it's got a crease down the middle and it's worth more than ur whole binder. change the subject",
+  "exodia": "we don't say that name at table 3. a 9 year old named petey laid down all five pieces on turn 4 and ended my 7 week streak. i shook his hand. i went home. i lay on the floor. i came back"
+ },
+ "banter": {
+  "ben": [
+   "ben i'm not ur 'sasuke.' i'm ur card guy. there's a difference and the difference is i don't have to stand on a statue. see u saturday. bring the 40 cards i lent u. LENT. write that down",
+   "ok who told u the blue-eyes was worth more than the naruto card. was it tim. listen. value is a feeling. u felt good. i felt good. that's two good feelings off one trade. and no, i don't know anything about ur locker"
+  ],
+  "tj": [
+   "tj put me down as 'whoever's paying.' also i got a Strike Ninja in the binder with ur name on it, $4. also i got a pirate card for $4 in case the tally turns. i'm not picking a side. i'm picking both customers",
+   "ur 'katana' is a letter opener, chief. it says FIRST NATIONAL BANK on the handle. i'll give u $2 for it, or a holo. the holo's worth $1. that's me being honest with u for once"
+  ],
+  "luna": [
+   "luna i sold u a ten cent wolf card for $2 and u looked at it like it was a puppy. i can't have that on my record. check ur mailbox, there's 3 more in there. free. this never happened. all gifts final",
+   "no i can't make silver fang the 'alpha' of ur deck. he's got 1200 attack. he loses to a mushroom. ...fine. put him on top. the heart of the cards works in weird ways and so do u"
+  ],
+  "andy": [
+   "andy the highlight reel of my finals match is 4 minutes of my hands putting cards on a table with linkin park over it. the watermark covers my life points the entire time. best thing i've ever seen. i need 10 copies for the shop",
+   "business idea: u film locals, i sell the tapes, we split it 60-40. i'm the 60. ok 55. ok fine, even. u drive a hard bargain for a guy who didn't say anything"
+  ],
+  "wes": [
+   "wes u said card games got 'no tech skill.' then i riffled, bridged and cut one-handed in front of u and u went quiet for a full minute. that's tech. come say it to table 3",
+   "serious offer: i run a side bracket at ur next friendlies. $2 entry, a quarter off each one for the house, and u get a guy who knows how to seed. ur brackets are clean but ur prize is 'respect.' i can't sleeve respect"
+  ],
+  "dave": [
+   "dave the 'ultra rare trap card' u tried to trade me is printed on ur dad's inkjet. the back is sideways. it says 'by dave' in the corner. i'm keeping it though. it's the only one in the world. that's called scarcity",
+   "u can't 'hack' my deck, it's cardboard. but if u can get into mr dawkins' desk drawer that's a different conversation. (it's a regular drawer, dave. it isn't even locked. don't.)"
+  ],
+  "ryan": [
+   "ryan i don't know what a gp is but 10k of anything for a blue-eyes sounds low on principle. 15k. and 40 lobsters. i don't know what i'd do with them. that's not the point of a counteroffer",
+   "listen to me. nobody trims armor for free. NOBODY. i'd know, i'm exactly the kind of guy who'd offer. u wanna learn to spot it, come sit behind me at locals and watch what i do. then don't do that to people"
+  ],
+  "tim": [
+   "tim. ur the only guy on this site i can't out-trade and it's bc u bring a calculator to a handshake. i respect it. i hate it. same thing",
+   "here's the pitch: i move ur calculator games at locals. $2 a game, i keep 50 cents for distribution. u say that's 25 percent. i say that's friendship. put it in the ledger however u want"
+  ],
+  "kyle": [
+   "kyle ur not 14. i can tell by how u hold the cards. it's fine. under 10 gets a free deck and ur close enough. go ask ur mom first, that's rule 3, then come find me",
+   "there's no cheat code for exodia, kid. there's a 9 year old named petey, and he won't tell me either"
+  ]
+ },
+ "statuses": [
+  "devon is sleeving. do not talk to devon while he's sleeving",
+  "devon is at dragon's den. table 3. the usual chair",
+  "devon is reading the new ban list and taking it personally",
+  "devon is open for trades. binder's on the table. bring ur own binder and ur own mom's permission",
+  "devon is 3 saturdays into a new streak. we don't talk about why it's a new streak",
+  "devon is talking to his deck. it's a private conversation",
+  "devon is in mr dawkins' office again, visiting his second best deck",
+  "devon is building a first deck out of the commons box for a kid named marisol. free. tell nobody",
+  "devon is setting one card face down and going to bed"
+ ],
+ "bulletins": [
+  {
+   "subject": "LOCALS THIS SATURDAY @ DRAGON'S DEN (noon, $3, i'm the final boss)",
+   "body": "dragon's den cards & comics, the strip mall on route 256, between the tanning place and the subway. saturday, noon sharp. $3 entry. winner gets 4 packs and their name on the whiteboard (my name is currently on the whiteboard in permanent marker, long story, stan is upset). 16 player bracket. bring 40 cards minimum. sleeves recommended. no homemade cards (dave). new players welcome: show up at 11:30 and i'll teach u for free, and if ur under 10 u go home with a deck. if u beat me u get to tell everybody. it's happened once. he was 9. we don't say his deck's name. i set one card face down and end my bulletin."
+  },
+  {
+   "subject": "DEVON'S TRADE BINDER: updated list + the rules (read the rules)",
+   "body": "HAVES: blue-eyes white dragon x2 (one has a story), cyber dragon x1 (don't lowball me), a stack of holos i'll describe as 'near mint' until u look at them, strike ninja (tj has dibs til friday). WANTS: anything first edition, anything u haven't looked up yet. NOT FOR TRADE AT ANY PRICE: the kuriboh. don't ask. THE RULES: 1) all trades final. 2) condition is an opinion. 3) ask ur mom BEFORE, not after (i am not doing another parent meeting). 4) nobody under 10. 5) if u cry i have to trade back. that's stan's rule. he made it after the thing with the retainer."
+  }
+ ],
+ "pcComments": [
+  "nice pic. near mint. slight glare on the left side, i'd still sleeve it",
+  "this one's a holo. i can tell. don't let anybody trade u out of this pic",
+  "i'd put this on the front page of the binder. that's the page people see",
+  "good pose. u look like a guy who just top-decked the answer",
+  "condition: excellent. centering: a little off. overall: i'd pay retail"
+ ],
+ "dmSeed": [
+  {
+   "text": "malten. devon. locals champ, dragon's den, table 3. i hear ur new. question, no pressure: u got any old cards in a shoebox somewhere? under a bed? closet at ur mom's? don't look them up. just tell me what's in there. i'm asking as a friend. (friend request pending.)"
+  }
+ ],
+ "dms": [
+  "u ever notice a deck feels heavier the night before a tournament. same 40 cards. i put it on my mom's kitchen scale. same weight. but it FEELS heavier. that's the heart of the cards warming up. or it's the sleeves. i'm telling people it's the first one",
+  "hypothetical. a kid's mom calls ur house about a trade. the trade was fair. the kid agreed. the kid is also crying in the background. what do u say to the mom. i said 'ma'am, the market is the market' and now i'm not allowed at the carters' house",
+  "got a letter from my brother today. he asked if the kuriboh's still in the case. it's still in the case. i took it out to check and put it back and then checked again. it's a card with a crease in it. i don't know why i do that",
+  "do u wear sunglasses indoors. the guys on the poker show do it so nobody can read their eyes. i tried it at locals and i couldn't read my own cards. played a whole turn from memory. won, though. the deck had my back",
+  "big stan had me watch the register for ten minutes today. TEN MINUTES. ALONE. i sold one pack, counted the change twice, and gave a guy a fair price on a single. he said 'really?' and i said 'store policy.' i felt sick. is that what honest feels like",
+  "there's a 9 year old at my shop named petey. he beat me once. now every saturday he waves at me with all five fingers spread out. FIVE. u know what has five pieces. he knows what he's doing. i wave back. it's called sportsmanship and it's killing me",
+  "quick appraisal, free of charge: u said something decent to me last week and i been holding onto it. condition: mint. not for trade. anyway. u need any cards",
+  "my mom wants to know why i own 600 penny sleeves and zero clean socks. i said one of those protects my investments. she said so do socks. she's got a real good trade game, my mom. i get it from her"
+ ],
+ "blog": [
+  {
+   "title": "TOURNAMENT REPORT: the Incident (i'm ready to talk about it)",
+   "date": "Aug 15 2026 7:22 PM",
+   "mood": "humbled (temporarily)",
+   "body": "i been putting this off. seven saturdays in a row i took locals. seven. stan stopped asking how to spell my name. then week eight, round 2, i sit down across from petey. petey is 9. his deck box is a sandwich container. DRAW PHASE: i open strong. MAIN PHASE: i set two, i tell my deck 'nice.' his turn 2, he plays three cards that just let him draw more cards. turn 3, same. he's humming. turn 4 he lays down five cards, one at a time, real slow, like he's setting a table for dinner. all five pieces. game over. no attack, no nothing. the shop went quiet and stan said 'well, would ya look at that.' i shook the kid's hand. u always shake the hand. then i went home and lay on my floor for an hour. next saturday i top-decked the out in the finals, so me and the deck are good. petey's mom brings orange slices now. i eat them. END PHASE."
+  },
+  {
+   "title": "the kuriboh (why it's not for trade) (i'm only saying this once)",
+   "date": "Sep 7 2026 9:48 PM",
+   "mood": "not for trade",
+   "body": "people keep asking, so here it is, one time. my brother dre taught me to play when i was 8. he had the binder and the title at dragon's den before i did. his name was on the whiteboard first. the day he left for the navy he gave me the binder, the deck, and one card out of his own pocket: a kuriboh with a crease straight down the middle, bc he'd carried it in his wallet since 6th grade. it's got 300 attack. it's worth about nothing. he said 'hold it down til i'm back' and i said 'the card or the title' and he said 'yeah.' so it's in a screw-down case on my desk. a kid offered me $20. a guy offered me a first edition something. no. i will trade u out of ur shoes and sleep fine, but that one's not mine to trade. i'm just holding it. he's back in june. i plan to still be on the whiteboard."
+  },
+  {
+   "title": "MARKET ANALYSIS: the ben trade (since everybody's got an opinion)",
+   "date": "Sep 10 2026 6:05 PM",
+   "mood": "reinvesting",
+   "body": "the trade: ben gets one (1) naruto card that came stapled inside a magazine. i get one (1) blue-eyes white dragon, tin promo, light play. tim audited it and says the dragon is worth $6 and the naruto card is worth 'the staple.' ok. but watch the guy's face. ben carries that card IN his headband. he showed it to his nana. u can't put a price on that, and if u could, i'd have charged it. was it fair? he agreed. that's fair. did i sleep great? i slept fine. did two booster packs turn up in his locker the next morning from an unknown party? i wouldn't know. the unknown party would like it noted that it wasn't guilt, it was reinvestment. he pulled a holo out of one and came across the cafeteria with his arms straight back to show me. worst part: it's a good card and he won't trade it. i taught him that. this is what i get."
+  }
+ ],
+ "survey": {
+  "title": "DUELIST SURVEY (repost or lose 1000 life points)",
+  "qa": [
+   ["Name:", "devon. duelist_devon. 'that kid from table 3.'"],
+   ["Deck name:", "Final Offer. 40 cards exactly. a 41st card is a lack of confidence"],
+   ["Favorite card:", "kuriboh. don't ask to see it"],
+   ["Rarest card u own:", "why. who's asking. who sent u"],
+   ["Best trade u ever made:", "can't say. his mom reads this site now"],
+   ["Worst trade u ever made:", "a holo for a sandwich in 5th grade. i was hungry. the sandwich was fine. the holo's $15 now. i think about that sandwich a lot"],
+   ["Do u believe in the heart of the cards?", "i believe in it, i talk to it, and i say thank u after. manners cost nothing. that's the only thing i'll ever tell u costs nothing"],
+   ["Sleeves or no sleeves?", "if u don't sleeve ur cards i'm not judging u. i'm just adjusting my offer"],
+   ["Biggest rival:", "petey (9). the ban list. tim's calculator. ben says it's him. it's not him"],
+   ["Pre-duel ritual:", "deck under the pillow friday night. saturday i shuffle 7 times, cut once, say 'let's go to work.' then cereal"],
+   ["Ever lost on purpose?", "once. to a 7 year old named marisol. don't print that"],
+   ["Where will u be in 10 years?", "owner of dragon's den 2. stan doesn't know there's gonna be a 2. stan's gonna be fine with it. i'll cut him in"]
+  ]
+ }
+}

@@ -1,0 +1,218 @@
+{
+  "id": "brad_the_audit",
+  "with": "brad",
+  "opener": [
+    "Hi malten. Brad. Blockbuster. I have an emergency that is exactly the size of a movie, and I don't have the movie. That has never happened. I'm shaking a little. The receipt printer can tell.",
+    "Mr. Dwyer got a call from corporate. A District Audit, Friday, 9 AM. A Mr. Teague, with a clipboard. He's auditing 'long-term outstanding rentals.' There is exactly one: THE SPONGEBOB SQUAREPANTS MOVIE. Out 214 days. Rented by a customer I'm not able to name. (It's Patrick. It's always been Patrick.)",
+    "Here's what the receipt doesn't say. In April I paid the replacement cap, $19.99, in ones, out of my own pocket. The account says GOOD STANDING. Mr. Dwyer asked what happened and I said 'software.' I prescribe a movie for every person who walks through that door. I can't read the back of my own box. Please. Prescribe."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "say it out loud tonight. dwyer first, before the clipboard says it for you.", "next": "a_truth" },
+        { "say": "get the tape back before friday and say nothing about april. quiet, like a heist.", "next": "b_tape" },
+        { "say": "make it a party. 'Patrick Day.' let the auditor walk into a good time.", "next": "c_event" }
+      ]
+    },
+
+    "a_truth": {
+      "them": [
+        "Tonight. Mr. Dwyer is cashing out. He has never once said 'it's just a store.' I'd be confessing two violations: an employee may not pay a customer's fee, and an employee may not pay a customer's fee and write 'software.' It's one confession. It counts as three.",
+        "Prescription: IT'S A WONDERFUL LIFE. It's about a man whose private fix turns out to be the whole town's business. I've pre-watched the last ten minutes. No dogs. It works out. It works out loudly."
+      ],
+      "choices": [
+        { "say": "walk up. no card, no script. 'i paid it. i'd do it again.' six words.", "next": "a_say" },
+        { "say": "write it on a card first. a card calms you down. you have a whole shelf of them.", "next": "a_card" }
+      ]
+    },
+
+    "a_say": {
+      "them": [
+        "...Said it. 'I paid the cap on Patrick's tape in April. In ones. I wrote software. I'd do it again.' Mr. Dwyer looked at the register for eleven seconds. I counted. Then he said, 'I know.'",
+        "He knew in April. The ones were in a rubber band. He counts the drawer. He wrote 'software' on the log too. We both wrote 'software,' malten. For six months. Two people telling the same small lie, neither willing to say it first. I don't think either of us was lying. I think we were each waiting for the other one to need a movie."
+      ],
+      "effects": [
+        { "type": "status", "delay": 8, "text": "brad just told his manager something true. the register has no field for it. brad wrote 'honesty' in the margin of the receipt book anyway. it's a thick margin" }
+      ],
+      "choices": [
+        { "say": "ask him what pruitt actually wants. the rule, not the rumor.", "next": "dwyer_plan" },
+        { "say": "ask what he'd do about patrick. a boss who writes 'software' has an opinion.", "next": "dwyer_plan" }
+      ]
+    },
+
+    "a_card": {
+      "them": [
+        "A card. Yes. Index card, black pen. 'Mr. Dwyer: Re: Patrick. I paid the cap in April ($19.99, ones). I wrote software. I am sorry. I am not sorry. Please advise.' It's the longest card I've ever written. It has four colons.",
+        "I handed it over. He read it. Then he read it again (that's MY move; I didn't know it was contagious). He said 'I counted the drawer in April, Brad. The ones were in a rubber band.' He pinned the card to the corkboard next to Leo's receipt. 'Software,' he said, and nodded. It's the first time anyone has said it back to me."
+      ],
+      "choices": [
+        { "say": "ask him what the audit really needs. you can't fix what you can't read.", "next": "dwyer_plan" },
+        { "say": "ask if he's mad. you need it in a sentence, not a nod.", "next": "dwyer_plan" }
+      ]
+    },
+
+    "dwyer_plan": {
+      "them": [
+        "The audit isn't about my $19.99. Mr. Teague wants every tape out over 90 days either returned or written off. Written off, it's previously viewed stock: $4.99, or 3 for $12. And Mr. Dwyer says a tape that's been loved for 214 days and watched maybe 600 times is, quote, 'a clean write-off, and nobody's counting who buys it.' I've never seen him wink. It wasn't a wink. It was a very slow blink, with intent.",
+        "So the tape can be sold. To Patrick. For $4.99. Now the real problem. Patrick thinks 'rental' means 'borrowing, like a library you visit with a friend.' He's going to hear 'bring it back' as 'goodbye.' I've drafted three openers. A prescription for ME isn't coming. I need you to choose HOW."
+      ],
+      "choices": [
+        { "say": "go to his house. thursday after school. receipt book, a stick, say it on the porch.", "next": "p_visit" },
+        { "say": "call him. he picks up on the second ring and he'll hear your voice, not a clipboard.", "next": "p_phone" }
+      ]
+    },
+
+    "b_tape": {
+      "them": [
+        "A heist. Quietly, at lunch, one tape moves from one house to one store, and nobody's April is on the table. ...I like it more than I should. Prescription: OCEAN'S ELEVEN. It's about getting something out of a building before anyone finds out. It's an excellent movie and I need you to hear that it is not about honesty.",
+        "Two ways. One: tell Patrick it's 'for an inventory check,' borrow the tape for the audit, return it Friday. He believes me the way he believes in spaghetti. Two: don't. Mr. Dwyer first, then Patrick, the whole story, like an adult in a vest. Which one."
+      ],
+      "choices": [
+        { "say": "do the inventory check. one day. he'll never know. you're on a job.", "next": "b_borrow" },
+        { "say": "no heist. dwyer first, then patrick. he believes you, so say a true thing.", "next": "a_truth" }
+      ]
+    },
+
+    "b_borrow": {
+      "them": [
+        "It worked. Patrick opened the door in pajamas with a bowl of cereal. I said 'the store needs the tape for a checkup.' He said 'is it sick?' I said 'a little.' He gave it to me with both hands and said 'tell it I said it's okay.' Then he said 'Dwayne is going to be brave.' Dwayne is a rock.",
+        "I'm in the car behind the store. It's been four minutes. I feel like I took a sandwich from a toddler. Prescription: E.T. It's about a boy who has to say goodbye to someone he loves, and at least he's told. I wasn't going to say that part."
+      ],
+      "effects": [
+        { "type": "status", "from": "patrick", "delay": 10, "text": "patrick is waiting for the tape to come back from its checkup. he told it it's okay. dwayne is being very brave. he's a rock. he's good at it" }
+      ],
+      "choices": [
+        { "say": "go back. tell him it's a goodbye. the tape deserves one, and so does he.", "next": "p_visit" },
+        { "say": "keep it till friday, then tell dwyer all of it. pruitt gets the tape and the truth.", "next": "dwyer_plan" }
+      ]
+    },
+
+    "c_event": {
+      "them": [
+        "An EVENT. ...a customer appreciation day. I've never run an event. The handbook has one sentence about events: 'consult your manager.' But I've seen the last ten minutes of THE GOONIES forty-two times and I know what to do when someone shows up to take a place from you: you get everybody to show up.",
+        "Prescription: THE GOONIES. It's about a neighborhood that arrives all at once for a thing that matters. Question: do I run it as an AMNESTY for everyone's overdue stuff, or keep it small? Patrick, Dwayne, a cake shaped like a tape. You're deciding. I'm told that's how this works."
+      ],
+      "choices": [
+        { "say": "amnesty. one day, no fees, everybody brings it back with a note. let the list hit zero.", "next": "c_amnesty" },
+        { "say": "keep it small. patrick, dwayne, a cake shaped like a tape.", "next": "c_small" }
+      ]
+    },
+
+    "c_amnesty": {
+      "them": [
+        "Amnesty. A day when the late fee takes the day off. 'Return Whatever Day.' Everything overdue in the county comes home Thursday, no fees, with a note ('sorry' is accepted). Mr. Teague arrives Friday and the list says zero. It's not a loophole. It's a policy I haven't been authorized to have.",
+        "Prescription: FERRIS BUELLER'S DAY OFF. It's about a day nobody was authorized to have. I could post it tonight, as a bulletin. Or I could ask Mr. Dwyer. One of those is a bulletin and one is a conversation."
+      ],
+      "choices": [
+        { "say": "post it tonight. every overdue tape in the county comes home thursday. commit.", "next": "c_posted" },
+        { "say": "ask dwyer first. you're a clerk with a bulletin, not a bandit.", "next": "c_dwyer" }
+      ]
+    },
+
+    "c_small": {
+      "them": [
+        "Small. Mrs. Tran at the bakery across the lot says she can do a cake in the shape of a tape. (It'll be a rectangle. She calls that 'abstract.') But a party where the guest of honor doesn't know he's being asked to give up his friend isn't a party. It's an ambush with frosting.",
+        "Prescription: BIG FISH. It's about a man everybody gets wrong until they hear the whole story at the end. I'm going to need to tell Patrick the whole story. I don't know where to start. Before the cake or after the cake."
+      ],
+      "choices": [
+        { "say": "before. a party is a yes you get to say. call him first.", "next": "p_phone" },
+        { "say": "at the party. he keeps the tape tonight, hears it kindly, and decides after cake.", "next": "p_visit" }
+      ]
+    },
+
+    "c_posted": {
+      "them": [
+        "It's up. 9:14 PM. At 9:16 Thad commented in verse. At 9:19 Leo asked whether CAST AWAY counts as 'late on a technicality of time.' At 9:22 Walt wrote that he has never owed a fee and finds the amnesty 'a discourtesy to the punctual.'",
+        "At 9:31 the store line rang. I let it ring twice (that's the standard). It's Mr. Dwyer. I'm holding the phone like a tape in a flood. I have a prescription for every situation except one where my manager and my own bulletin are both waiting."
+      ],
+      "effects": [
+        { "type": "bulletin", "delay": 5, "subject": "RETURN WHATEVER DAY: THURSDAY ONLY (NOT AUTHORIZED)", "text": "Everything overdue in this county comes home Thursday. No fee. Any condition. Write 'sorry' on it if you feel it; a Post-it is fine, a note is better. It's called an amnesty. I've been told I'm not allowed to call it that. Thursday. Please rewind. (If you can't rewind, bring it anyway. I'll rewind it for you.) - Brad, Shift Supervisor" }
+      ],
+      "choices": [
+        { "say": "pick up. 'it's a store. it's a party. it's the audit.' commit to all three.", "next": "end_amnesty" },
+        { "say": "pick up and tell him about april too. all of it, in one breath.", "next": "a_say" }
+      ]
+    },
+
+    "c_dwyer": {
+      "them": [
+        "Mr. Dwyer listened to the entire idea in a silence long enough to rewind a tape. He's never said more than a sentence to me about corporate. He said: 'Amnesty is a hat on a fee, Brad. We already wear one.' Then he said: 'Thursday. Every overdue, no fee. I'll stand by the slot.'",
+        "I said 'what about corporate?' He said 'Corporate is a building in another state. You told me that.' I did tell him that. He has been listening for three years. Patrick's tape is the first one back; he wants it handled right. He's asking how."
+      ],
+      "choices": [
+        { "say": "write the bulletin together. dwyer's name on it. a manager's name makes it legal.", "next": "end_amnesty" },
+        { "say": "make patrick's return the headline. start with the porch.", "next": "p_visit" }
+      ]
+    },
+
+    "p_visit": {
+      "them": [
+        "Thursday, 4:30. Patrick lives by the pond. His door has a pizza sticker. I knocked the way I knock at the return slot: twice, with respect. He opened it with Dwayne in his hand. 'Brad!' he said. 'Is it time?' I said 'time for what?' He said 'I don't know. I just always wonder.'",
+        "I told him. The audit, the shelf, and the one other option: the store can sell it to a customer for $4.99, previously viewed, which is what happens to every tape that's been loved this long. He thought for four seconds. He said, 'oh. so it was never mine. it was just ours for a while.' Then: 'that's okay. that's how most things are.' ...malten. I had a movie ready for every other answer. I did not have one for that.",
+        "He's holding it with both hands. Dwayne is on the porch rail, facing the tape. He asked 'what happens now.' It's my line. I give it to everyone. I'm standing on a porch and I don't know the next ten minutes."
+      ],
+      "choices": [
+        { "say": "tell him the price. '$4.99.' say it like a gift, not a fee. let him pick.", "next": "end_sold" },
+        { "say": "take it back with thanks. then you buy it, and put it on your shelf. 'on loan: P. (standing).'", "next": "end_gone" }
+      ]
+    },
+
+    "p_phone": {
+      "them": [
+        "Thursday, 4:30. He picked up on the second ring. 'Hello, this is Patrick. Dwayne can't come to the phone. He's a rock.' I said 'Patrick, it's Brad.' He said 'Brad! Is it time?' I said 'time for what?' He said 'I don't know. I just always wonder.'",
+        "I explained. The audit, the shelf, and the one other option: a customer can buy it for $4.99, previously viewed. He listened to every word. Then he asked if Mr. Teague likes SpongeBob. I said I didn't know. He said 'then I'd better bring it in, so he can see how well it's been looked after.' ...that's the right instinct. I want it noted. He's right.",
+        "Then: 'I'm going to write the tape a card. What do you write to a tape?' I had no prescription for that. Then: 'is this the part where it goes home?' It's the question I ask everybody at the end of a movie. He asked it back. I'm holding the store phone cord like a railing."
+      ],
+      "choices": [
+        { "say": "offer him the previously viewed price. $4.99. it goes home for good.", "next": "end_sold" },
+        { "say": "say yes, it goes home to the shelf. you buy it, and Patrick gets a standing loan.", "next": "end_gone" }
+      ]
+    },
+
+    "end_sold": {
+      "them": [
+        "UPDATE, Thursday, 5:20 PM. He bought it. $4.99. He paid in nickels, one sock of dimes, and a stick (a good stick, with a bend, he said it's 'for the late fee'). I wrote 'honesty' on the receipt and then under it 'paid in full.' It's the first time I've written two things.",
+        "He put the tape in its box with the receipt, and he said 'now it comes with a story.' Then he said 'can I still borrow it? from me?' I said yes. I said it's the only account in the store where that's the policy.",
+        "Mr. Teague will find a list with zero names on it. I finally have a prescription for myself: THE MUPPET MOVIE. It's about people who stick together because the plan is silly and the person is real. (Please don't tell Holly.)"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "brad just rang up a previously viewed copy of THE SPONGEBOB SQUAREPANTS MOVIE for $4.99. paid in nickels and one very good stick. on the receipt he wrote 'honesty.' then he wrote 'paid in full.' then he sat down in the Comedy aisle" },
+        { "type": "wallpost", "from": "patrick", "to": "brad", "delay": 30, "text": "hi brad. i have the tape. it is mine. it cost 4.99 and a stick. dwayne is the co-owner. i put the receipt in the box so the tape came with a story. i said thank you to the tape and then i said thank you to you. you said you're welcome like a person who needed to sit down. i have borrowed a lot of things. this is the first thing i ever owned that i also borrowed. it's my favorite" },
+        { "type": "wallpost", "from": "walt", "to": "brad", "delay": 85, "text": "Dear Mr. Brad, I am informed that a young man named Patrick purchased a used picture for $4.99 and a stick, and that you wrote the receipt. In my day a clerk who gave a fellow a fair price was called a gentleman. I do not know what you are called now. I would still say it. A thing borrowed long enough becomes a thing owed, and a thing owed, paid, becomes a thing given. A good clerk knows the difference. Regards, Walt" },
+        { "type": "wallpost", "from": "holly", "to": "brad", "delay": 140, "text": "brad. i know about THE MUPPET MOVIE. dana told me. a customer told dana. the mall is very small. i don't own it. i'd like to rent it. i'll bring it back early. (a boy at my register said patrick paid in nickels and the clerk wrote 'honesty' on the receipt. i said nothing. i'm saying it here.) there's a cd in the return slot. it's not an accident this time. - holly" }
+      ]
+    },
+
+    "end_gone": {
+      "them": [
+        "UPDATE, Thursday, 5:40 PM. The tape is back. It's on the shelf behind the counter, Brad's Picks, with a card that says ON LOAN: P. (STANDING). Patrick handed it to me with both hands and said thank you to the tape, then to me, then to Dwayne for being brave.",
+        "I bought it. Out of my own register ones, $4.99, and the receipt says 'sold.' Mr. Dwyer didn't say anything. He found the line in the log that says 'software' and drew a small line through it. It's the first time I've seen him cross something out.",
+        "Patrick gets it every Friday for three days. It's a library. A friend's library. He said 'that's my favorite kind.' I said 'I know.' I held it together until the door chimed. Then I went to the back and rewound a tape that was already rewound, for the whole length of a rewind. Prescription, for me: E.T. I know. I park behind the store."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "brad bought a tape for $4.99 and put it on a shelf with a card. the card says ON LOAN: P. (STANDING). it's the only standing loan in the store. there's no field for it" },
+        { "type": "status", "from": "patrick", "delay": 40, "text": "patrick gave the tape back to the store. he is not sad. he is sad in a different way that is also okay. dwayne is being held. he understands. he's a rock" },
+        { "type": "wallpost", "from": "tim", "to": "brad", "delay": 95, "text": "brad. ledger update. outstanding rental: 214 days. closed. account 'patrick' reopened as 'standing loan, fridays, 3 days.' i have never seen a rental structure this long. i did the math. it is the best deal in the store. i am requesting the same terms. i would return it 11 minutes early. i would put it in the ledger under 'friends.' (new column.)" },
+        { "type": "dm", "delay": 220, "text": "Malten. It's 11:20 PM. I've looked at the card on the shelf four times. ON LOAN: P. (STANDING). It's the best receipt I've ever written. There's no field for it. I'm going to ask corporate for one. Corporate is a building. I'm going to ask the building. Thank you for staying on the line. Please rewind." }
+      ]
+    },
+
+    "end_amnesty": {
+      "them": [
+        "UPDATE, Friday, 9:40 AM. Mr. Teague arrived at 9:00 with the clipboard. The list of long-term outstanding rentals: zero. Thursday we took in 213 tapes, 41 DVDs, a library book, a hamster cage (empty, again) and a movie from before I worked here with a Post-it that said 'sorry.' I wrote 'honesty.' The line went across the parking lot to the mall. Gerald wore a party hat. I didn't put it on him.",
+        "Mr. Teague looked at the log, the corkboard, and Mr. Dwyer. He said 'this is irregular.' Mr. Dwyer said 'it's a store.' It's the first time I've heard him say it. He said it kindly.",
+        "Patrick returned his first thing Thursday and rented it again at 9:03. 'Is that allowed?' he asked. I said it's an amnesty. He said 'what's that?' I said it's when everybody gets another chance on the same Monday. (That's GROUNDHOG DAY. I didn't even prescribe it. It prescribed itself.)"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "RETURN WHATEVER DAY: FINAL TALLY", "text": "Tapes: 213. DVDs: 41. Library books: 1. Hamster cage (empty): 1. Notes saying 'sorry': 88. Notes saying 'sorry' in iambic pentameter: 1 (Thad). Late fees collected: $0.00. Overdue rentals remaining in the county: 0. The district auditor reported it was the cleanest file he has seen. Mr. Dwyer said 'it's a store.' Prescription for the whole town: GROUNDHOG DAY. Please rewind. Everything. Forever. - Brad" },
+        { "type": "wallpost", "from": "thad", "to": "brad", "delay": 25, "text": "(He processes into the Blockbuster holding HAMLET above his head.) Brad. Thursday. Four hours, returned nineteen days late, forgiven. I wept in the parking lot. I stood in the line. A man behind me returned a hamster cage and I felt seen. I rented HAMLET again. (He exits with it clasped to his chest. He is fine.)" },
+        { "type": "status", "from": "leo", "delay": 60, "text": "leo returned CAST AWAY (4th rental, 9 days late) in the amnesty. he attached a string to the case. the string leads to the counter. the counter leads to the auditor. the auditor leads to 'them.' the number on the receipt was 214. this is not nothing" },
+        { "type": "wallpost", "from": "tina", "to": "brad", "delay": 100, "text": "BRAD. i returned LADYHAWKE (3 days late) in the amnesty & i left the letter in the case. its 11 pages. its about a wolf and a hawk and ME. u said bring tissues. i brought 2 boxes. ur welcome. the late fee doubling is CANCELLED bc ur a ~*~ SOULMATE ~*~ (a friend soulmate. a store soulmate.)" },
+        { "type": "wallpost", "from": "walt", "to": "brad", "delay": 150, "text": "Dear Mr. Brad, I wish to register that I attended your 'Return Whatever Day' with nothing to return, having never been late in my life, and stood in the line anyway because the line was friendly. A young woman gave me a cookie. I do not know why. Please thank the young man at the register for the popcorn. I have kept the receipt. It says 'honesty.' It is the finest receipt I own. Regards, Walt" }
+      ]
+    }
+  }
+}

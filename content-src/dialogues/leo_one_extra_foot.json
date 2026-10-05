@@ -1,0 +1,209 @@
+{
+  "id": "leo_one_extra_foot",
+  "with": "leo",
+  "opener": [
+    "EXHIBIT 1. malten. It is 4:08 PM. I am not saying anything about the time. I am saying that at 6:50 this morning I measured the string and it was 214 feet. On Tuesday it was 213. I have not added any.",
+    "EXHIBIT 2. Subtraction is theft. ADDITION is a message. One foot of blue string was added to my board between Tuesday at 9 PM and this morning. It is tied with a knot I do not use (a bowline; mine are always granny; I'm not proud). It runs from card #1, which is me, to card #212, which is you. It is the only string on this wall I did not pull myself.",
+    "EXHIBIT 3. You are on my board as a reference point, not a suspect. I want to be clear that as of 4:08 PM you are both. The show returns tonight at nine. Where were you Tuesday between 9 PM and 6:50 AM. Please answer in a calm voice."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "asleep, in my own house, with zero string. check your cat.", "next": "a_alibi" },
+        { "say": "i'm a witness, not a suspect. walk me through the board. what touches what?", "next": "b_walk" },
+        { "say": "i confess. i have very long arms. take me in.", "next": "c_confess" }
+      ]
+    },
+
+    "a_alibi": {
+      "them": [
+        "EXHIBIT 4. 'Asleep.' Noted. I have never once heard anyone say they were awake when something happened. 'Asleep' is the most common alibi in the history of the form and the least verifiable. I'm writing it on your card anyway. In pencil. (Pencil is my respect.)",
+        "EXHIBIT 5. You said 'check your cat.' I do have a cat. Walnut. He is not on the board; I've been told that's a mistake. He was in my room Tuesday night. He sleeps on the third shelf of the bookcase, four feet from the wall. I could question him. Or I could examine the knot. You choose the order. I'm told that's how this works."
+      ],
+      "choices": [
+        { "say": "question the cat. he had access and a motive. he's never been on the board.", "next": "a_cat" },
+        { "say": "start with the knot. cats can't do bowlines. even yours.", "next": "a_knot" }
+      ]
+    },
+
+    "a_cat": {
+      "them": [
+        "EXHIBIT 6. Interview with Walnut, 4:21 PM. I asked 'did you tie a string.' He looked at me. I asked 'did you see who did.' He looked at the board, then at me, then climbed the third shelf and turned his back. I have never been so thoroughly read.",
+        "EXHIBIT 7. For the record: a cat cannot tie a bowline, with or without a slip. But Walnut walked across the board at 9:40 PM Tuesday (I heard six pins fall) and I have a photograph of the path. It leads from the shelf to the corner where the new string is tied. He did not tie it. He walked beside the person who did. He is a witness who has declined to cooperate."
+      ],
+      "effects": [
+        { "type": "status", "delay": 6, "text": "leo is interviewing a cat. the cat is declining to answer. leo has made a card for 'declined.' the card is blue. do not ask why" }
+      ],
+      "choices": [
+        { "say": "so someone was in the room after 9:40. read the knot. people leave habits in their knots.", "next": "a_knot" },
+        { "say": "check what else is new. a person who adds a string leaves something else behind.", "next": "crux_receipt" }
+      ]
+    },
+
+    "a_knot": {
+      "them": [
+        "EXHIBIT 6. The knot. A bowline with a slip: a loop that doesn't tighten, and lets go if you tug the free end. It's a knot you tie when you want to be able to undo it. That is the opposite of every knot on this wall. Mine are for staying. This one was tied by someone who wanted me to be able to take it down.",
+        "EXHIBIT 7. Think about that. A stranger doesn't tie a knot you can undo. A stranger ties a knot you can't. This was tied by someone who wanted me to be allowed to say no. That list is short. That list is the people who know me best. I'm not putting names on it yet. I'm putting on a card that the list exists."
+      ],
+      "choices": [
+        { "say": "that's a kind knot. somebody who wants you to be free to say no. who knows you like that?", "next": "crux_receipt" },
+        { "say": "check the string itself. a color, a spool, a store. strings come from somewhere.", "next": "crux_receipt" }
+      ]
+    },
+
+    "b_walk": {
+      "them": [
+        "EXHIBIT 4. Fine. A tour. Few people are given one. North wall. Card #1 is me, center left. Blue strings from me: Mom, Maddie, Todd's laptop, Brad, Bill, Andy, Patrick (and Dwayne), Gina, Zorp (with reservations), Star. Ten, or eleven if the laptop counts twice. You are card #212, center right, near the polar bear. Your card used to run to nothing. Zero blue. I was holding the spot until I found out who you knew.",
+        "EXHIBIT 5. Now it has one. It runs to me. It's the only blue string on the board I did not pull. It completes a triangle: me, you, Todd's laptop (which holds the site, and therefore us). A triangle is the most stable shape. That is either very good news or a trap. Which do you think it is."
+      ],
+      "choices": [
+        { "say": "a triangle is the strongest shape there is. that's good news. call maddie. she's your rival, so she'll be honest.", "next": "d_maddie" },
+        { "say": "forget the triangle. read the knot. whoever tied it left a habit in it.", "next": "a_knot" }
+      ]
+    },
+
+    "d_maddie": {
+      "them": [
+        "EXHIBIT 6. I called Maddie. She was in the middle of sorting someone into a house. She said: 'Leo. It is a string. A person made a decision. Nobody ties a knot at midnight to cause harm. It's a thoughtful knot.' Then she told me she has an alibi (two essays, both timestamped) and asked me to 'please remove my sock drawer from this conversation.'",
+        "EXHIBIT 7. Then she said the one thing I didn't expect. 'You've spent six months making sure nobody on that board is floating. It's possible somebody noticed.' I put the phone down. I looked at the string. It's a very good string. No fray. Cut with scissors. Not mine; mine are in the drawer."
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "maddie", "to": "leo", "delay": 15, "text": "Leo. For the record, my alibi is two essays and a cat who is in neither of them. I will add one item to your investigation, free of charge: you have hung 312 pins to prove that everything is connected, and the first time something connects on its own, you ask who is responsible. I am not saying it is a sign. I am saying you might consider letting it be a string. Also: sock drawer. - Maddie" }
+      ],
+      "choices": [
+        { "say": "she's right. somebody noticed. who in your house has a key to your room? not the cat.", "next": "crux_receipt" },
+        { "say": "ask the board what else is new in the room. something else came in with that string.", "next": "crux_receipt" }
+      ]
+    },
+
+    "c_confess": {
+      "them": [
+        "EXHIBIT 4. A confession. Unprompted. Under no pressure. In the show that is always the second suspect. The first is whoever is standing nearest the string with a calm face. You are calm. I'm adding 'LONG ARMS' to your card. In pen. I'm sorry; it felt like the moment for pen.",
+        "EXHIBIT 5. But I'm trained. Before I accept a confession I test it. If you did it, you know the knot. Describe the knot. Three words. I'll accept any three words."
+      ],
+      "choices": [
+        { "say": "a bowline. around the pin. with... flair.", "next": "c_quiz" },
+        { "say": "i panicked. it's a knot. i tied it regularly. like a normal knot.", "next": "c_quiz" }
+      ]
+    },
+
+    "c_quiz": {
+      "them": [
+        "EXHIBIT 6. That was not the knot. Not one word of it. A person who tied it knows what they tied. A person who confesses to a knot he can't describe wanted to be on the board. You are cleared. I've put a small line through LONG ARMS. It's pen. It will be visible forever.",
+        "EXHIBIT 7. Which brings me to something I don't put on cards. People confess to things they wish they'd done. So I'm going to ask once, in a calm voice, and I want a true answer. If you'd had the chance, would you have tied the string."
+      ],
+      "choices": [
+        { "say": "yes. a card with no blue shouldn't stay that way. i'd have tied it.", "next": "crux_receipt" },
+        { "say": "no. i'm better on the wall than on the string. but i'm glad somebody did.", "next": "crux_receipt" }
+      ]
+    },
+
+    "crux_receipt": {
+      "them": [
+        "EXHIBIT 9. The kitchen drawer. Receipt #14 in my file (I keep her receipts; I have a folder; she doesn't know). Tuesday, 3:41 PM, a craft store: one spool YELLOW string, $3.29. One spool BLUE string, $3.29. I asked for yellow. I asked her in the morning. She said 'of course.' I did not ask for blue.",
+        "EXHIBIT 10. The blue spool is on the kitchen counter. Three feet are missing. One foot is on my wall. I don't know where the other two went. (I have a theory. It involves the cat.) I'm not saying who bought the string. I'm saying the person who bought it is in the next room making dinner. Dinner is at six. Six is not one of the numbers.",
+        "EXHIBIT 11. I have never asked her about anything on the board. She asks me to stop putting her on it. I say I will. I don't. What do I do."
+      ],
+      "effects": [
+        { "type": "status", "delay": 5, "text": "leo has found a receipt (#14 in his file). it is $6.58. it's from a craft store. there are two spools on it. he is not saying whose. he has made a card for dinner at six" }
+      ],
+      "choices": [
+        { "say": "ask her. walk in and say 'thank you for the blue.' dinner's at six, not a lineup.", "next": "ask_mom" },
+        { "say": "ask me instead. blue means 'they know each other.' ask the person on the other end.", "next": "blue_question" },
+        { "say": "it's premiere night. get everyone on the couch at nine and run the stakeout during the show.", "next": "stake_plan" }
+      ]
+    },
+
+    "ask_mom": {
+      "them": [
+        "EXHIBIT 12. I went down. She was at the stove. I said 'did you buy blue string.' She said 'I bought what you asked for and one extra. In case.' I said 'did you tie a string between me and malten.' She didn't turn around. She said 'you've said his name at dinner four times this week. I counted. That's a lot, for you. I thought it ought to be on the wall.'",
+        "EXHIBIT 13. I stood in the kitchen for four minutes. I said 'it's not a clue, Mom.' She said 'it's a string, honey. I used a slip knot so you could take it down if you wanted.' I'm back in my room. The string is still on the wall. I have a question for you and I want you to answer it plainly, because I'm a little shaky and the show is in five hours."
+      ],
+      "effects": [
+        { "type": "status", "delay": 8, "text": "leo's mother has tied a string. leo stood in the kitchen for four minutes. dinner is at six. he doesn't know what to say. he has made a card. it says 'mom: blue (the whole wall)'" }
+      ],
+      "choices": [
+        { "say": "tell him his mom just did the nicest thing anyone's ever done on his board. leave it where it is.", "next": "blue_question" },
+        { "say": "tell him it's okay to be embarrassed. then ask what he wants the string to mean.", "next": "blue_question" }
+      ]
+    },
+
+    "blue_question": {
+      "them": [
+        "EXHIBIT 14. Blue means 'they know each other.' That's the only rule. It isn't about liking. It isn't even about friends. It's about whether two cards have ever touched. So I'm asking, as plainly as I know how, with nothing on a card: do we know each other. I have to be able to put it on the wall.",
+        "EXHIBIT 15. If you say yes, the string stays, and it goes from unexplained to blue. I'll re-tie it myself with a knot I choose. If you say no, I'll respect it. But I've run 212 cards on this wall and nobody has ever said no. I think that's a sign people want to be on it. I haven't put that on a card. I'm putting it on one now."
+      ],
+      "choices": [
+        { "say": "yes. we know each other. tie it your own way. blue, for good.", "next": "end_blue" },
+        { "say": "honestly? not yet. keep the string, call it pending, and let me earn the blue.", "next": "end_red" }
+      ]
+    },
+
+    "stake_plan": {
+      "them": [
+        "EXHIBIT 12. A stakeout. Tonight at nine, the premiere. Everyone who knows about the string, everyone who might have tied it, everyone who has ever been near a cat, in one room, watching one thing. If the person who tied it is among us they'll react when the string is mentioned during the ad break. That's a trap. A very small, very polite trap. It's 90 seconds. I've been training.",
+        "EXHIBIT 13. I'd need a location. The couch fits four. The living room fits eight if two stand. Maddie says she'll bring a stair. Andy says he'll bring a dryer (he said it as a joke; I'm taking it seriously). Zorp will stand in a field. I need your word that I'm not the only one who thinks this is a good idea."
+      ],
+      "choices": [
+        { "say": "do it. invite everybody. one couch, one string, one polite trap. what's the worst that happens?", "next": "stake_prep" },
+        { "say": "keep it small. you, me and the string. a stakeout for two is just a conversation.", "next": "blue_question" }
+      ]
+    },
+
+    "stake_prep": {
+      "them": [
+        "EXHIBIT 14. Roles assigned. Maddie: the stair (witness, rival). Andy: the dryer (timekeeper). Zorp: the field (any field; he has not said no). Bill: footprints (he'll check the carpet). Gina: EVP (she'll record the fridge; it's the fridge). Brad: late-fee policy, in case. Patrick: Dwayne (in case of a rock emergency). Todd: the laptop (if the server drops at 9:00 exactly, I'll know).",
+        "EXHIBIT 15. Pizza at 8:30. The good couch. It's the largest group I've ever put in this room. My mother asked how many chairs. She said 'for the string?' I said 'for the show.' She said 'of course.' I think she knows. I think she knows I know. This is the most connected I've ever been to a plan. Say go."
+      ],
+      "choices": [
+        { "say": "go. nine o'clock. let the string meet the room.", "next": "end_stakeout" },
+        { "say": "go, but ask your mom first. she's already on the wall. she's blue.", "next": "ask_mom" }
+      ]
+    },
+
+    "end_blue": {
+      "them": [
+        "EXHIBIT 16. 8:52 PM. I re-tied it. A square knot. It holds; it stays. It's the first blue string I've tied to someone who wasn't on the board before I met them. I pinned a new card next to #212: MALTEN (KNOWN). I've never used the word 'known.' I don't know what it does to a wall.",
+        "EXHIBIT 17. My mother left a plate of pizza on the arm of the good couch and said nothing. There are five chairs. One is extra. It's for you. It's empty. I'm not asking you to come. I'm saying there's a chair, and it's blue."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "BOARD UPDATE: A STRING WAS ADDED BY A THIRD PARTY AND IT STAYED", "text": "On Tuesday night one foot of blue string appeared on the north wall. I investigated. I interviewed a cat. I reviewed a receipt. I'm not releasing the name of the third party because she asked not to be on the board (she is on the board; she is blue; she is the bluest). The string connects me to someone I know. It has been re-tied. It is staying. Nothing is a coincidence. Some things are just kind. Premiere: 9 PM. Pizza at 8:30. Please do not touch the string. - Leo" },
+        { "type": "status", "delay": 10, "text": "leo re-tied a string. it is a square knot. it will not come undone. the show returns in 8 minutes. he is on the couch. there is an extra chair. it's blue" },
+        { "type": "wallpost", "from": "maddie", "to": "leo", "delay": 45, "text": "Leo. I read your update. 'Some things are just kind.' You put that on a card and I am putting it in my notes. Not because I agree with the theory. Because it is the first sentence on your board with no string attached to it. I'll be on the stair at nine. (Sock drawer.) - Maddie" },
+        { "type": "status", "from": "zorp", "delay": 80, "text": "zorp has been informed that a string was added to a wall by a mother and that it was not a field. zorp is relieved. zorp will also be watching the show at nine. in a field. it is a normal field. like all normal humans" },
+        { "type": "wallpost", "from": "patrick", "to": "leo", "delay": 125, "text": "leo dwayne says thank you for the blue string. he says it means the board is going to be ok. he says it the way he says things. he's a rock but he is right. i'll be on the couch at 8:30. i'm bringing sticks" }
+      ]
+    },
+
+    "end_red": {
+      "them": [
+        "EXHIBIT 16. 8:52 PM. Understood. That was a fair answer and it took courage, and I'm writing both on a card. I did not take the string down. I re-tied it (square knot; I'm keeping the string, not the slip). Then I recolored the foot with a red marker. Red is for the unexplained. A pending friend is a kind of unexplained. It's the first time the red has meant something good.",
+        "EXHIBIT 17. There's a tag now, in my handwriting: PENDING (CHAIR KEPT). The chair is the extra one by the couch. When I told my mother about it she said 'of course.' It's empty. It will be empty at nine when the show begins. I'm not worried. I've watched a clock for six years waiting for a number. I can wait for a chair."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "leo changed the color of a string from blue to red. it's the only string on the board that was both. the tag says PENDING (CHAIR KEPT). he is not sad. he is waiting. he is very good at waiting" },
+        { "type": "wallpost", "from": "maddie", "to": "leo", "delay": 45, "text": "Leo. I read your tag. 'Pending.' I looked up how many cards on your board have ever said that. It's one. This one. For six months you have labeled every connection 'blue' without being asked. 'Pending' is the first honest label you've made. I am proud, which I'm not supposed to be in public. Stair. Nine. Sock drawer. - Maddie" },
+        { "type": "status", "from": "brad", "delay": 95, "text": "brad has a recommendation for someone who is waiting to be added to something. it's THE SANDLOT. it's about a boy who is invited into the game one inning at a time. he put a card on it. it says 'for L. (pending).' he wasn't asked. nobody ever asks" },
+        { "type": "dm", "delay": 240, "text": "malten. 9:41. i left the chair where it was. i looked at it for three minutes during the opening. i've never looked at anything that wasn't the screen during the opening. it's the first time. i don't mind. i wrote the time down anyway. it was 9:13. it's on a card." }
+      ]
+    },
+
+    "end_stakeout": {
+      "them": [
+        "EXHIBIT 16. 9:41 PM. Debrief. The living room held eleven people, a stair, a dryer (Andy pulled it from the basement; it's 'in the hall'), a cooler, a field (Zorp stood in the backyard), a rock, and my mother in the kitchen doorway holding a tray of ziti. At 9:22, during the ad, I said in a calm voice 'someone added one foot of string to my wall.' Eleven heads turned. Ten looked at me. One looked at the ziti.",
+        "EXHIBIT 17. She said 'I did.' Out loud. In front of the entire stakeout. Maddie said 'a thoughtful knot.' Bill said 'it's a very good bowline.' Zorp said through the window 'greetings, this is a normal string.' Patrick asked if Dwayne could be a witness. Gina's recording says that at 9:22 a voice says 'ziti.' It is the fridge. It is definitely the fridge.",
+        "EXHIBIT 18. The numbers appeared at 9:13 and I missed them. First time in six years. I was looking at the room. I've never looked at the room. It was blue. Everyone in it was on the board. Everyone on the board was in the room. I'm calling it solved. I've never closed a card before. I'm holding it."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "leo closed a card. the first card he has ever closed. the stakeout held 11 people, a stair, a dryer, a field and a rock. the culprit confessed over ziti. he's not saying who. he's saying the string stays. (blue)" },
+        { "type": "status", "from": "zorp", "delay": 25, "text": "zorp stood in a field for the premiere. it was a normal field. a normal human brought him ziti through the window. zorp has never been so seen. zorp is not scared. zorp is a little scared. it is fine" },
+        { "type": "wallpost", "from": "bill", "to": "leo", "delay": 60, "text": "Leo. Bill here. Size 11 sneaker prints in your living room carpet, all accounted for. One print under the couch was a 15. Not a number. A size. It was mine. I'm keeping the plaster cast. You have a very good home. Please tell your mother the ziti was a first for me. -- Bill" },
+        { "type": "wallpost", "from": "gina", "to": "leo", "delay": 100, "text": "leo. i recorded the stakeout for EVP. at 9:22 a voice says 'ziti.' it's the fridge. (it's the fridge.) but it's also a very good ziti. i've put it on the tape as the first EVP with a recipe. hope that's ok. the stair is on the tape too. it creaks in an F" },
+        { "type": "wallpost", "from": "maddie", "to": "leo", "delay": 150, "text": "Leo. I sat on the stair. I held it for ninety minutes. At 9:22 I did not move. I have never been so still in my life. Your mother is the most rigorous investigator I have ever met, and she confessed to everything with a spoon in her hand. I am putting her on my board. (Sock drawer.) - Maddie" }
+      ]
+    }
+  }
+}

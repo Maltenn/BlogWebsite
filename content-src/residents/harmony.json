@@ -1,0 +1,279 @@
+{
+ "id": "harmony",
+ "name": "hackysack_harmony",
+ "tag": "circle behind the gym, 12:20, all welcome ~ bring a sack, a drum, or just your feet",
+ "avatar": "assets/avatar_harmony.gif",
+ "gender": "Female",
+ "age": 17,
+ "hometown": "Shelby, OH (three stoplights, one circle)",
+ "loc": "the circle behind the gym (it's a circle, so, everywhere)",
+ "zodiac": "aquarius sun, pisces rising, and a moon in a drum circle (that's starxgazer's phrase. i've had it embroidered)",
+ "status": "single (but in a circle)",
+ "hereFor": "friends, good conversations, someone to carry the djembe, someone to share the granola with",
+ "mood": "mellow (second set)",
+ "lastLogin": "Oct 3 2026 6:02 PM",
+ "theme": {
+  "bg": "#fbf3df",
+  "fg": "#3a2b1c",
+  "accent": "#2e7d4f"
+ },
+ "bgTile": "assets/tiles/tile_flowers.png",
+ "blogTitle": "set list: notes from the circle (it goes on a while)",
+ "about": "hi, friend ~ i'm harmony. (my mom picked it. my sister is juniper, my brother is ted, mom was tired by the third.) every day at 12:20 there's a circle behind the gym (thursdays are the big one, with drums). it's for hacky sack, mostly, but there are also drums, and sometimes a kid who just wants to sit, which is the best part ~ you don't have to be good, you just have to be in the circle. my longest streak is 148 kicks. my longest song is 41 minutes. i have 212 live shows on cd-r (from tapers, with permission), a binder of every set list, and a hemp necklace for everyone i've really talked to. yours is in the mail. (it's not in the mail. it's in my hands. i'm working on the clasp.) peace ~",
+ "aboutMore": "a few things people ask. yes, i wear one sandal to school (the vice principal and i have an understanding). no, i don't think a song can be too long ~ i think we're all in a hurry. yes, i can make granola for 40. on saturdays i walk the dogs at the shelter, and one of them, biscuit, has been there 211 days, and i'm his fan club president and also the only member. i believe everybody is a good song that just hasn't found its second set yet.",
+ "meet": "who i'd like to meet: the tapers, the people who stand at the back of the room holding up the microphone, so i can say thank you for the shows i wasn't alive for. the man who invented the hacky sack (he was just trying to fix his knee, which is the most beautiful kind of accident). someone who's never been in a circle, so i can pass them the bag. and biscuit's person. they're out there. they're just running late.",
+ "interests": {
+  "General": "hacky sack (148, personal best), the circle behind the gym, hemp necklaces (about 14 minutes each, longer if there's conversation), my djembe (his name is barnaby), granola (oats, honey, cinnamon, tested on the whole lunch table), walking shelter dogs, tie-dye (cold soak, patience), the vanagon in our driveway (bernadette, resting since june), set lists, porches",
+  "Music": "phish (the long ones), the grateful dead (the tapes, the whole tape), dave matthews band (the live ones), widespread panic, moe., string cheese incident, bob marley, jack johnson (for porches), michael franti, béla fleck, and my own band, mild weather advisory (four members, three songs, two hours)",
+  "Movies": "almost famous (the bus part), march of the penguins (i cried at the egg part, and then at the other egg part), fantasia (it's basically a jam), spirited away, princess mononoke (usagi would approve), fern gully",
+  "Television": "planet earth (the cave episode), bob ross (a jam, honestly), the pbs pledge drive (i watch all of it and never change the channel), reading rainbow reruns, the weather channel with the sound off and a record on",
+  "Books": "where the sidewalk ends (twice a year), walden (i got halfway, found a clearing, and stopped), the moosewood cookbook (the granola page is stained), siddhartha, the giving tree (i can only read it near a tree), my set list binder",
+  "Heroes": "my mom (picked harmony and then lived up to it), the tapers, whoever invented the hacky sack, biscuit (a dog, 211 days, hasn't given up), mr. alvarez the custodian (he unlocks the stairwell for our band), and every kid who has ever walked up to the circle and asked 'can i?'"
+ },
+ "song": {
+  "name": "Harry Hood",
+  "artist": "Phish",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/2a/c2/87/2ac287f1-0f34-6f6a-eef0-c0f4ae5db4b4/mzaf_17474894176165886514.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   4,
+   7,
+   9,
+   7,
+   4,
+   2,
+   0
+  ],
+  "bpm": 88
+ },
+ "decor": [
+  "assets/deco_rainbow_bar.gif",
+  "assets/deco_moon.gif"
+ ],
+ "friends": [
+  "gwen",
+  "skip",
+  "starxgazer",
+  "sk8rboi",
+  "penny",
+  "vince",
+  "tyler",
+  "greg",
+  "evan"
+ ],
+ "wall": [
+  {
+   "from": "vince",
+   "text": "HARMONY!!! the drum circle in the parking lot was HUGE (11 kids, i counted, i counted twice). i put 'DRUM CIRCLE (PARKING LOT, 9:15)' on the flyer. rhonda says it's allowed as long as nobody drums on a car. (somebody drummed on a car. it was mine. it sounded great.)",
+   "time": "Sep 26 2026 11:15 PM"
+  },
+  {
+   "from": "skip",
+   "text": "harmony!! i brought the trombone to the circle. slide AND kicking at the same time. the sack didn't touch the ground for 63. history made. ska is not dead and neither is the circle. also at minute 22 of your song i think the bass player almost did an upstroke. we're close. peace!!",
+   "time": "Sep 23 2026 5:40 PM"
+  },
+  {
+   "from": "tyler",
+   "text": "harmony. bro. the 'ants marching' bootleg u sent is 17 minutes. i didn't know ants could march that long. it's my pregame now. coach asked what it was. i said it's about ants. he said it's 17 minutes. i said they're dedicated. moose slept through the whole thing which is the highest compliment a dog gives. bro.",
+   "time": "Sep 19 2026 8:22 PM"
+  },
+  {
+   "from": "gwen",
+   "text": "harmony. i said 'you've probably never heard of them' to you eleven times. you said 'oh i love them' eleven times. i've made a list of bands you haven't heard of. it has two names. they're both my cousin's. i don't know what to do with my life. (also the necklace came. it's in my cardigan pocket with the ticket stub. do not tell anyone.)",
+   "time": "Sep 14 2026 4:03 PM"
+  },
+  {
+   "from": "sk8rboi",
+   "text": "yo harmony thx for the ankle strap. u handed it to me at the circle n said 'for the other shoe' n i never told u i lost one. how'd u know. it's holding the shoe i still have on. also what u said about 'almost' being the best part of a trick. i wrote that on my board. in sharpie. mike",
+   "time": "Sep 9 2026 6:47 PM"
+  },
+  {
+   "from": "starxgazer",
+   "text": "harmony your chart is done (you did ask. it took so long because i did everyone who didn't ask first.) aquarius sun, pisces rising, and a moon that's basically in a drum circle. mercury in your 3rd house means you speak at length, venus agrees. mercury goes direct thursday so your messages will finally arrive in order. the stars trust you. so do i.",
+   "time": "Aug 29 2026 9:10 PM"
+  },
+  {
+   "from": "penny",
+   "text": "HARMONY!!! i went to the stop-n-shop in shelby (8/10!!!) and a girl in one sandal gave me a necklace and said 'it's for you, you looked like you were between songs.' i asked her name!!! it's YOU!!! it's the brown one and i'm wearing it under 38 bracelets!!! PLUR!!!",
+   "time": "Aug 22 2026 5:55 PM"
+  }
+ ],
+ "replies": [
+  "aw, thank you ~ that landed. i'm going to carry it around for a while like a smooth stone.",
+  "i love that. it reminded me of something, and the something reminded me of something else, and i think we just jammed ~ <3",
+  "mm. yes. maybe? ... yes. let's let that one breathe.",
+  "peace and granola, friend ~",
+  "that's beautiful. can i put it in the binder? the binder is for beautiful things. (it's mostly set lists.)",
+  "i'm so glad you said that. i think i'd been holding it too, just not in words.",
+  "you can come sit in the circle sometime. you don't have to kick. you can just be a circle person.",
+  "i'll think about it for a bit, no rush, there's no clock in the circle. (there's one in the gym. we face away from it.)",
+  "wow. okay. okay!! yes!! ~ sorry, that was a long second ~ i was in a bridge.",
+  "that's the nicest thing anyone's said to me since a goose let me pet it."
+ ],
+ "thanksAdd": "thank you for the add ~ i'm so happy. you're officially in the circle (a figurative one, but there's also a real one, behind the gym, noon-ish, you're welcome any day). i'm making you a necklace. it takes about 14 minutes, or longer, depending on how the conversation goes. peace ~ <3",
+ "ambient": [
+  "longest streak today: 63 kicks. a freshman broke it by waving at his mom. best thing that's happened all week. we cheered. he cried a little. he's in the circle now.",
+  "made six pounds of granola last night. oats, honey, cinnamon, one secret ingredient (it's salt. the secret is that you should salt things). come find me behind the gym.",
+  "sometimes i leave the music running after the song ends, just to hear what the room does ~ that's the best part of the show.",
+  "the vice principal asked me to wear shoes today. i asked which kind. she said 'any.' so i wore one. we're both learning ~",
+  "there's a hawk on the gym roof again. we kicked quietly, out of respect.",
+  "biscuit got walked for two hours today. he's still at the shelter. but he knows the sound of my name now, which to a dog is the same as a name."
+ ],
+ "saltyDm": "aw, it looks like the request didn't go through ~ that's okay, truly. it's a circle, not a door. if you ever want in, it stays open. i'll hold a spot. it's probably a draft, but also a spot. peace ~ <3",
+ "keywords": {
+  "granola": "oats, honey, cinnamon, a pinch of salt. bake it slow. it's the only thing i make that's shorter than a song. the secret is you stir it every ten minutes, which is a lot like a conversation.",
+  "hacky": "the rule is you can't use your hands, and there's no winning. you just keep it up together. that's the whole game. it's the nicest game anyone ever invented, and it was invented by accident, by a man with a bad knee.",
+  "drum": "my djembe is named barnaby. he's carved from one piece of wood and he has opinions about tempo. the circle meets at 12:20 behind the gym. you don't need to be good. you need to be there. i'll hold the beat while you find yours.",
+  "phish": "i have 38 of their shows. my favorite has a 17-minute harry hood that goes somewhere i can't explain. i heard it on a porch in the rain and the whole world sort of exhaled. the preview on this page is 30 seconds. the song is 14 minutes. in my heart it's 40.",
+  "dog": "biscuit is a beagle with a gray muzzle who has been at the shelter 211 days. he leans on your knee when you sit. he doesn't ask for anything. if you know anyone with a porch and a patient heart, tell them. the shelter is open saturdays. i'm there at 10.",
+  "song": "a song is as long as it needs to be. mine need a little more room than most. i'm not saying 40 minutes is the right length. i'm saying you don't know it's too long until you're in it, and then you don't want it to end."
+ },
+ "banter": {
+  "gwen": [
+   "gwen, i heard your 5 am show (i listen on the porch with the dog). you said 'and that was something' after track three and i said it back to the dog and the dog agreed. it's a good thing to say. i'm going to say it after my set ~",
+   "gwen, i've been thinking about it and i don't think you're a snob. i think you love things really hard and it comes out sharp. like a pinecone. you're a very good pinecone. peace ~"
+  ],
+  "skip": [
+   "skip, thank you for listening to all 40 minutes. i know the bass player thought about an upstroke at minute 22. i saw it. he's very brave. i'll tell him about the horn part. he'll like that. ~",
+   "skip, the trombone in the circle was the best thing that's happened behind the gym all year. the slide went the whole time and the sack never touched the ground for 63. i think the slide was the circle's missing limb. we'll need you at 12:20 every day. we'll move the lunch table."
+  ],
+  "penny": [
+   "penny, thank you for finding me. i'm sorry about the secret. i like secrets, but i like names better. the necklace is the quiet one, you wear the loud ones. every band needs a rhythm section ~",
+   "penny, i've been thinking that kandi is just hacky sack for your wrist: you pass it to someone and nobody keeps score. i'd like to trade, a necklace for a bracelet. i'll be at the stop-n-shop at 4 ~"
+  ],
+  "vince": [
+   "vince, thank you for teen nite. rhonda said hand drums aren't allowed on the floor because it's 'for wheels,' which is a beautiful sentence. so we did the circle in the parking lot at 9:15, and 11 kids came out, and then cotton eyed joe came through the door and the circle turned into a line dance. best hour of my month.",
+   "vince, you said 'gonna be huge' to eleven strangers and eleven strangers came. i don't think it's the number. i think it's the way you say it like it's already true. it's what the tapers do when they hold up the microphone ~"
+  ],
+  "starxgazer": [
+   "starxgazer, thank you for 'pisces rising, moon in a drum circle.' it's embroidered on my djembe strap now. i said it to my mom and she said 'that's the nicest thing a planet has ever said about you.' i took 40 minutes to say thank you the first time. i hope you got all of it.",
+   "there was a big moon last night and i played it a drum solo. it wasn't requested. i think it liked it. could you check? i'd like a second opinion from the sky. also the amethyst is still charging. it's fine. it's been 3 weeks."
+  ],
+  "sk8rboi": [
+   "mike, i'm glad the ankle strap fits. i made it for the other shoe, in case it ever tries to leave too. the first shoe is somewhere, learning. also: you sat at the circle on thursday with no board for the whole lunch. that's the longest i've seen you be still. i think your shins sighed ~",
+   "i watched the 'almost' video again. i think almost is the best part of a trick. it's the bridge before the chorus. you're allowed to stay in the bridge as long as you want, mike."
+  ],
+  "greg": [
+   "greg, i brought a tambourine to your friday show and played it softly during voltage heart. it fit. i think the song said thank you. i'm not saying i'm in the band. i'm saying the song wanted a little shimmer ~",
+   "your shows end at 8:15 (your dad's rule). i have a song that's 31 minutes. could the circle play just the intro, outside, after the show, on the driveway? a song needs somewhere to end. i'll bring the sack. your dad can watch from the window."
+  ],
+  "smoove": [
+   "smoove, you played a bucket at the circle and it was the best take i've ever heard. i'm not saying a bucket is better than a laptop. i'm saying the bucket doesn't need a charger. also you said my songs are '10 tracks.' you're right. they're 10 tracks that don't know they're separate yet ~",
+   "smoove, i listened to the 12-minute version of your track, the one you let breathe. it breathed. at minute 9 it exhaled and i think the air horn cried a little. bring the van to the circle thursday. we'll do a bucket and a drum and a laptop turned off."
+  ]
+ },
+ "statuses": [
+  "harmony is in the circle (12:20, behind the gym, you're welcome)",
+  "harmony just hit 91 kicks ~ a personal best for a tuesday",
+  "harmony is weaving a necklace and talking to the dog and not at the same time",
+  "harmony has been told the song is 'too long' by four different people and is writing a longer one to thank them",
+  "harmony is walking biscuit. day 211. he's coming around.",
+  "harmony is baking granola for the lunch table. bring your own spoon (a spoon is a gift)",
+  "harmony is on a porch with a tape from a long time ago. second jam. unreachable until the encore"
+ ],
+ "bulletins": [
+  {
+   "subject": "THE CIRCLE: all are welcome (a gentle reminder) (a few rules)",
+   "body": "hi friends ~ a few things about the circle behind the gym at 12:20. 1) you can't be bad at it. 2) if the sack hits the ground we say 'oh well,' and we say it nicely. 3) if someone new walks up, the nearest person says 'want in?' and the answer is always yes. 4) you can kick, you can drum, you can sit, you can hold somebody's lunch. 5) no screens in the circle (a drum machine is a drum, if you play it by hand). 6) shoes are optional, but the school wants one. i've compromised with one. 7) nobody leaves until the sack is passed to somebody else. that's how you leave: you pass it. peace and granola ~"
+  },
+  {
+   "subject": "GRANOLA (the recipe, by popular request) (it's free, it's a gift)",
+   "body": "4 cups oats. half a cup honey. half a cup oil (any kind, i use sunflower). a big handful of cinnamon. a small handful of salt (the secret is the salt). stir it all with your hands. spread it on a pan. bake at 300 for 40 minutes (i know. of course it's 40). stir every 10 minutes like you're checking on a friend. let it cool all the way. add raisins at the end, in a separate little bag so everyone can choose. makes about six pounds, or one lunch table. pass it on ~"
+  },
+  {
+   "subject": "MILD WEATHER ADVISORY PLAYS SATURDAY (the stairwell by the band room) (the acoustics are excellent)",
+   "body": "saturday at 3, the stairwell outside the band room at shelby high (mr. alvarez unlocks it, bless him). four of us: me (djembe, vocals), lyle (guitar), priya (bass, she reads the whole time), and ted (my brother, tambourine, he's 14 and plays it like an apology). three songs. about two hours. bring a cushion. bring a friend. bring a snack, there's a pause in the middle of song 2 (we call it a breath). free. peace ~"
+  }
+ ],
+ "pcComments": [
+  "this picture feels like the first minute of a really good song ~",
+  "everybody in this photo looks like they're about to say something kind. i hope they did.",
+  "aw. i'd put this on the wall of the circle if we had a wall. we have a fence. it's going on the fence.",
+  "you look like you're in the middle of the second set, and i mean that so warmly.",
+  "there's a dog in the corner of this and i've decided he's the best person in it."
+ ],
+ "dmSeed": [
+  {
+   "text": "hi malten ~ it's harmony. i think we haven't talked yet, which is a shame, because i think we're going to. i'm behind the gym right now with a hacky sack and three drums and a freshman named jake who is learning to breathe in time with the djembe. come sit with us whenever. there's granola. ~ p.s. don't feel any pressure to reply today. or this week. it's a long song."
+  }
+ ],
+ "dms": [
+  "malten, quick question ~ if i make you granola, do you want it with the raisins or without? i'm going to put the raisins in a separate little bag so you can sprinkle them in or not, according to your heart. it's already made. it's already in the bag. you can tell me which it is on thursday.",
+  "biscuit, day 212. a man came to see him today. he looked at biscuit. biscuit looked at him. then the man looked at the dog in the next kennel. i told biscuit it was a very good effort. he didn't understand the words. i think he understood the tone. i cried a little behind the shelter. the circle held it for me, from a distance.",
+  "my dad found a hacky sack in the dryer. a hacky sack in a dryer sounds exactly like a song: thump... thump... thump... and a pause, and thump. it ran for about four minutes. the sack came out clean and warm. i held it for a while. it's my favorite sack now.",
+  "my parents have agreed to three shows next summer. i've ranked fourteen. each one is longer than the last. i keep looking at the list and the list keeps looking back. do you think a person can go to a six-hour show and only be 'a little tired'? i think yes. i think it's mostly about snacks.",
+  "i got a letter from a band today. a real one. it says 'you may tape our shows, please don't sell the tapes.' it's the nicest letter i've ever gotten. i don't sell anything. i trade for love, and sometimes granola. i put it in the binder next to my learner's permit.",
+  "148. i want to tell you what 148 felt like. it felt like kick 147, and then kick 148, and then i thought 'huh, i wonder if it'll keep going,' and then it didn't. and i was so happy. because the wondering is the best part of a streak. anyway: 148. do you want to see the circle someday?",
+  "i taught a first grader to play the djembe at the library thing today. he played for four seconds and said 'i'm done.' i said 'that's the right length for you.' he looked at me like i'd given him a medal. a song is the length it needs to be. mine are just for bigger kids.",
+  "the vice principal kicked the sack back to us today. it landed on my foot. she said 'oh.' i said 'do you want to?' she said 'i have a meeting.' and then she stood there for four more minutes. she's an 'observer' now. we gave her a clipboard (it's a lunch tray). she wrote something down. i think it was 'nice.'"
+ ],
+ "blog": [
+  {
+   "title": "set list: a tuesday at the circle (a recap)",
+   "date": "Oct 1 2026 9:12 PM",
+   "mood": "glowing",
+   "body": "set I: warm-up kick > gym door opens (jam) > a freshman breaks the streak by waving at his mom (63) > the bell almost rings (false start) > granola intermission. set II: jake learns to breathe in time > skip arrives with the trombone > the sack goes up and doesn't come down (91) > a goose joins at the fence (guest vocals) > the vice principal watches from the doorway and nods once. encore: the real bell. everybody passes the sack. nobody wants to be the one holding it last. so we hold it together. i think that's the whole song. i think it was 41 minutes. i didn't check the clock. we face away from it."
+  },
+  {
+   "title": "on long songs (a defense)",
+   "date": "Sep 16 2026 10:30 PM",
+   "mood": "peaceful",
+   "body": "people say my songs are too long. they're right. they're 41 minutes. but here's the thing: the first four minutes of anything are just introductions. the real song starts around minute nine, after both people have stopped being polite. minute 14 is when it goes somewhere you didn't plan. at minute 22 the bass player thinks about doing something and doesn't, and that's the best part, the thing he thought about. by minute 30 you've forgotten the song has a name. and then it comes back, the same melody, but you're not the same, and you cry a little, or you don't, but your feet are tired in a good way. a short song is a postcard. a long song is a visit. i like both. i send postcards. but i'd rather you stayed for dinner."
+  },
+  {
+   "title": "mild weather advisory: a review of our own show (the stairwell)",
+   "date": "Aug 30 2026 8:40 PM",
+   "mood": "grateful",
+   "body": "saturday we played the stairwell outside the band room. four people came. three of them were us (lyle, priya and me; ted worked the tambourine from the landing). the fourth was mr. alvarez, the custodian, who unlocks the stairwell for us, and who sat on an upside-down bucket for the whole thing and nodded. it was two hours. at hour one he got up, refilled his coffee, and came back. at the end he said 'that was nice' and i said 'which part?' and he said 'the part in the middle.' there was no part in the middle. it was all middle. i think that's the nicest review we've ever gotten. he's on the list for the next one. there wasn't a list. i made one."
+  }
+ ],
+ "survey": {
+  "title": "THE 'WHAT KIND OF LISTENER ARE YOU' SURVEY (i took my time) (it came back 3 days later)",
+  "qa": [
+   [
+    "favorite song length:",
+    "as long as the room wants. (usually 20.)"
+   ],
+   [
+    "last song you listened to:",
+    "a 38-minute 'dark star' on the porch with a cup of tea and a dog on my feet. it's the best part of my week, and it's over by tuesday."
+   ],
+   [
+    "how many live shows have you been to:",
+    "7 in person, 212 on cd-r. i count both. the 205 are just further away."
+   ],
+   [
+    "can you do a handstand:",
+    "no. but i can sit very still, which is also a skill."
+   ],
+   [
+    "favorite snack:",
+    "granola, obviously. second place is a clementine. third place is a granola bar that was a clementine."
+   ],
+   [
+    "what's in your backpack:",
+    "one sandal (spare), a hacky sack (3), a djembe strap, the set list binder, a granola bar, a necklace for someone i haven't met yet."
+   ],
+   [
+    "who is your hero:",
+    "the person who unlocks the stairwell. i don't know his full name. i know his bucket."
+   ],
+   [
+    "worst thing about school:",
+    "the bell. it ends everything at the same time. i'd like a bell that fades out."
+   ],
+   [
+    "best thing about school:",
+    "the bell. it starts everything at the same time. i'd like to keep that."
+   ],
+   [
+    "do you believe in luck:",
+    "i believe in streaks. a streak isn't luck. it's 148 small yeses in a row."
+   ],
+   [
+    "forward this to 10 people:",
+    "i forwarded it to 10 people and then to an 11th, so the 11th wouldn't feel left out. the 11th is a dog."
+   ]
+  ]
+ }
+}

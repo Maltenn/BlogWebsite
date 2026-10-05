@@ -1,0 +1,157 @@
+{
+ "id": "nate",
+ "name": "n3on_nate",
+ "tag": "some people...",
+ "avatar": "assets/pfp/pfp_nate.jpg",
+ "gender": "Male",
+ "age": 18,
+ "hometown": "Tampa, FL",
+ "loc": "Tampa, FL",
+ "zodiac": "Aries",
+ "status": "In a Relationship",
+ "hereFor": "Friends, Networking",
+ "mood": "idk :/",
+ "lastLogin": "Sep 5 2026 2:04 AM",
+ "theme": {
+  "bg": "#000000",
+  "fg": "#e0e0e0",
+  "accent": "#39ff14"
+ },
+ "bgTile": "assets/tiles/tile_skulls.png",
+ "blogTitle": "some people. (a blog. not about anyone.)",
+ "about": "nate. 18. red hair (its not orange its RED). i do the merch table for static prophecy n greg says im 'in the band' which means i carry the amp. i drew my own default bc i dont like pics of me n i can draw. i post bulletins n ppl think theyre about them n theyre not. usually. i dont txt back fast, its not personal, my sidekick is always dead. lexi is at #1. as of thursday. dont.",
+ "meet": "Who I'd like to meet: people who get it. u know who u are. also pete wentz so i can ask how he gets ppl to txt him back.",
+ "interests": {
+  "General": "drawing (myself mostly), shutter shades (neon green, got them before anyone, say what u want), the merch table, carrying gregs amp, not txting back, bulletins, my hair being red not orange, staying up till 3 thinking about things",
+  "Music": "Static Prophecy (im basically in it), Bring Me The Horizon, Escape the Fate, The Used, From First To Last, Alesana, MCR, Hawthorne Heights when im posting a bulletin, Chiodos",
+  "Movies": "Donnie Darko (i get it) (i dont), Fight Club, The Nightmare Before Christmas, Garden State, SLC Punk, whatever lexi picks (The Notebook) (i was awake for most of it)",
+  "Television": "Invader Zim, Viva La Bam, Headbangers Ball, Fuse, Aqua Teen at 2am",
+  "Books": "the perks of being a wallflower (lexi gave it to me) (i read it) (some people dont believe me), band lyrics count, my sketchbook",
+  "Heroes": "gerard way, bert mccracken, greg (dont tell him), my little brother who thinks i actually play in the band"
+ },
+ "song": {
+  "name": "Situations",
+  "artist": "Escape the Fate",
+  "pattern": [
+   0,
+   4,
+   7,
+   4,
+   0,
+   4,
+   7,
+   12
+  ],
+  "bpm": 120
+ },
+ "decor": [
+  "assets/deco_skull.gif",
+  "assets/badge_aim.gif"
+ ],
+ "friends": [
+  "lexi",
+  "greg",
+  "bryan",
+  "misery",
+  "kittyxcore",
+  "josh",
+  "smoove",
+  "lucas"
+ ],
+ "wall": [
+  {
+   "from": "lexi",
+   "text": "nate. ur bulletin. 'some people need 2 grow up'. WHO. u posted it 20 min after i txted u. if its not me say its not me. on here. where everyone can see. <3 (im not mad) (im a little mad)",
+   "time": "Sep 4 2026 10:31 PM"
+  },
+  {
+   "from": "greg",
+   "text": "dude ur not IN the band, u run the merch table, but honestly the merch table made more money than the show sat so maybe u ARE the band. practice thurs. bring the amp. ur the amp guy.",
+   "time": "Sep 3 2026 4:47 PM"
+  },
+  {
+   "from": "lucas",
+   "text": "nate. 'some people' is the most honest thing anyone has posted on here. u didnt finish the sentence because the sentence cant be finished. thats the point. linkin park wrote a whole album about that. respect",
+   "time": "Sep 2 2026 12:15 AM"
+  },
+  {
+   "from": "bryan",
+   "text": "idk man. same. txt me back. jk i wont txt back either lol",
+   "time": "Aug 31 2026 3:22 PM"
+  }
+ ],
+ "replies": [
+  "thanks. its about some people. not u tho. probably.",
+  "haha yeah. idk. sorry i took 3 days to comment back my sidekick died",
+  "cool. u should come to a static prophecy show. i run the merch table. ill get u a sticker",
+  "i drew that myself btw. the default. ppl think its a pic. its a drawing. thanks",
+  "some people would say thanks. i am some people. thanks"
+ ],
+ "thanksAdd": "thanks for the add. i post bulletins a lot n theyre not about u so dont worry about it. come to a static prophecy show, i do the merch table. ill hook u up w/ a button",
+ "ambient": [
+  "posted a bulletin that says 'some people...' n 6 people txted me asking if its them. it was about the guy at hot topic.",
+  "changed my status back. it was a misclick. ok it was a 2 day misclick. its back",
+  "greg says im 'in the band' at shows n 'the merch guy' at practice. i notice that.",
+  "drew a new default. red hair, shutter shades, hoodie. it looks like me if i was cooler. so it looks like me"
+ ],
+ "saltyDm": "hey. saw i got moved. its fine. im used to it, i get moved every thursday. some people... nvm. comment my drawings tho",
+ "keywords": {
+  "some people": "look. when i say some people i mean SOME PEOPLE. its a general statement. its about society. its about the guy at hot topic who wouldnt let me use my coupon. its not about lexi. ok one of them was about lexi. the tuesday one.",
+  "band": "im in static prophecy. ok im not IN it, i run the merch table n carry gregs amp n he says 'nate's with us' at shows which counts. bryan plays drums. sometimes. when he shows up. some people..."
+ },
+ "banter": {
+  "lexi": [
+   "lex. its not about u. the bulletin. its about a general group of people who need 2 grow up n u r not in that group. ur in the other group. the good group. <3",
+   "changed my status back. its in a relationship. its been in a relationship. the 2 days were a misclick. ok they werent but its back. #1. dont move me again"
+  ],
+  "greg": [
+   "greg the merch table made 40 bucks sat n the band made 0 so who is really in the band. think about it. see u thurs. bringing the amp",
+   "ok i drew a new static prophecy logo, its on my page. its the old one but w/ lightning. u can have it. im basically the art guy now too"
+  ],
+  "bryan": [
+   "bryan. u didnt show to practice n greg posted a bulletin n it was about u n not about me for once. felt good honestly",
+   "kayla is on lexis wall asking abt u. i said nothing. im not getting involved. txt her back man. or dont. idk. same"
+  ],
+  "misery": [
+   "mis i finished the sentence. it was about the hot topic guy. u can stop asking",
+   "ur video was good. the cat was the best part. i say that as an artist"
+  ],
+  "josh": [
+   "josh ur the only person on here who doesnt think my bulletins r about them n its bc theyre actually not about u. ur too nice to post about",
+   "ok ill come to youth group thurs if u dont tell lexi. she thinks im at practice. i am at practice. after. its complicated"
+  ]
+ },
+ "statuses": [
+  "some people...",
+  "is not going to say anything. some ppl know what they did.",
+  "is at practice (the merch table) (its practice)",
+  "changed his status back. it was a misclick. 2 days is a misclick.",
+  "thinks if u have to ask if the bulletin is about u it probably isnt. probably."
+ ],
+ "bulletins": [
+  {
+   "subject": "some people.",
+   "body": "some people need to grow up. thats all. thats the whole bulletin. dont txt me asking if its u. if u have to ask its not u. if u dont have to ask its also not u. its about a general situation. ok.",
+   "time": "Sep 4 2026 10:09 PM"
+  },
+  {
+   "subject": "clarification (READ)",
+   "body": "ok the last bulletin was NOT about lexi. it was about the guy at hot topic who wouldnt take my coupon bc it 'expired' n then i saw him at the show n he said he liked static prophecy n i said thanks bc im in the band n he said 'arent u the merch guy' n thats what it was about. lexi is at #1. we r fine. we r in a relationship. ive said this 4 times now. also greg i am bringing the amp thurs stop posting about it",
+   "time": "Sep 5 2026 1:48 AM"
+  }
+ ],
+ "pcComments": [
+  "sick. i could draw this",
+  "is that my hoodie",
+  "cool pic. some people would say more. im not some people",
+  "haha nice. come to the show sat, merch table",
+  "ur hair is almost as red as mine. almost."
+ ],
+ "dmSeed": [
+  {
+   "who": "them",
+   "text": "hey. ur new. cool. i post a lot of bulletins that say 'some people' n ppl get weird about it, theyre not about u, u just got here. anyway static prophecy is playing sat, i run the merch table, ill get u a sticker if u come. thats it. later",
+   "time": "Aug 31 2026 1:56 AM"
+  }
+ ]
+}

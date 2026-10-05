@@ -1,0 +1,226 @@
+{
+  "id": "lexi_pretzel_saturdays",
+  "with": "lexi",
+  "opener": [
+    "ok. i need to say something out loud and it is NOT about nate. please. im serious. check my status. it says what it says. i am not on that",
+    "the pretzel stand at the mall (the one by the carousel) wants me. like WANTS me. denise saw leonard in the parking lot and said 'cute, is that leopard' and then said 'can you start saturday'",
+    "and saturday is chester day. 8-12. at the shelter. and the pretzel place needs saturdays, and leonard needs a new belt ($140), and my mom said 'then work' and shes RIGHT and i hate it. so. help"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "do the math first. pay, hours, the belt. write it down like kitty would.", "next": "a_math" },
+        { "say": "talk about chester. who walks the old dogs if you don't?", "next": "b_chester" },
+        { "say": "take the job AND the shelter. bring chester to the interview. denise loves a mascot.", "next": "c_both" }
+      ]
+    },
+
+    "a_math": {
+      "them": [
+        "ok ok. $6.15 an hour. an 8 hour saturday is like $49 before taxes. the belt is $140. thats 3 saturdays. 3 saturdays is 3 chesters, in my head, bc i count in dogs",
+        "i made a chart (kitty style, w colors) and one column is NATE and i left it empty on purpose. then i looked at it and it WASNT empty. i had to make a second column called 'not about nate' and move the first column into it. dont tell kitty"
+      ],
+      "choices": [
+        { "say": "ask denise if saturday can start at noon. chester gets the morning.", "next": "ask_denise" },
+        { "say": "call the shelter. ask what happens to the old dogs if you cut back.", "next": "shelter_call" }
+      ]
+    },
+
+    "b_chester": {
+      "them": [
+        "chester's 13. he's got a hip. he does 3 trees and then he lies down, and thats the walk. he lies down and looks at me like 'ok. now we both know.' its the best part of my week. if im not there he gets 'the fast volunteer' and the fast one drags him to a 4th tree and he HATES it",
+        "my record w him is 3 trees. ive been working on 4. if i quit saturdays ill never find out if theres a 4th tree. does that sound dumb. it sounds dumb out loud. it sounded better in my head"
+      ],
+      "choices": [
+        { "say": "then chester wins. figure the belt out another way. mix cds, anything.", "next": "belt_ideas" },
+        { "say": "chester will survive a saturday. ask the shelter who else could walk him.", "next": "shelter_call" }
+      ]
+    },
+
+    "c_both": {
+      "them": [
+        "BRING CHESTER. to the food court. ok. ok ok. so theres a rule: no animals except service animals. but ALSO a rule that says 'pretzel stand employees must be friendly,' and chester IS friendly. hes the friendliest. hes a service dog for being 13",
+        "also dennis works saturdays. dennis is the mall security guard. HENRY'S dennis. the one that took henry's heelys. he looks at u like ur a shoplifter even when ur a customer. he's gonna look at chester. hes gonna look at ME"
+      ],
+      "choices": [
+        { "say": "do it. bring him to the interview. let denise fall in love with him.", "next": "chaos_interview" },
+        { "say": "ok too far. ask denise for different hours like a normal person.", "next": "ask_denise" }
+      ]
+    },
+
+    "belt_ideas": {
+      "them": [
+        "ok ideas. 1) sell mix cds $3 each. ive made 71. 2) wash cars in the parking lot. 3) ask my mom for the belt and let her say 'then work' again. (no.)",
+        "mix cds are the one. i have 14 left over from before. each has a theme and a leopard sticker. 'songs for driving w the windows down.' 'songs for when ur friend is wrong but u love her.' and 'songs for old dogs' (its all slow songs and one sneeze)"
+      ],
+      "choices": [
+        { "say": "do the mix cds. sell 47 of them. that's the belt. chester's saturday stays.", "next": "stay_chester" },
+        { "say": "do the cds AND hear what denise says. maybe there's a middle.", "next": "the_deadline" }
+      ]
+    },
+
+    "ask_denise": {
+      "them": [
+        "ok. i wrote the ask. 'hi denise, i can do sundays and weeknights, and saturdays after 12.' i practiced it in the mirror. in leonard. out loud. my voice goes up at the end like a question and denise doesnt answer questions, she answers statements",
+        "she said 'ill think about it, hon.' HON. ive been called hon by exactly 3 people: my mom, the deli lady, and now denise. she said she'd have an answer by 6 PM. its 2:14. thats 3 hours and 46 minutes of hon"
+      ],
+      "effects": [
+        { "type": "status", "text": "lexi is going to ask a pretzel lady for a favor. wish her luck. do not mention any other thing. there is no other thing. (this status is NOT about nate.)" }
+      ],
+      "choices": [
+        { "say": "wait it out. go walk a dog. your hands need a job.", "next": "nate_margin" },
+        { "say": "write the ask again in a stronger voice. practice the statement version.", "next": "nate_margin" }
+      ]
+    },
+
+    "shelter_call": {
+      "them": [
+        "i called. ms pruitt said 'chester will be fine, hon. dont plan your life around a dog.' then she said 'but hell look at the door.' she says that and then she WAITS. like shes holding a hot dish. shes SO good at it",
+        "she said she can put me on sundays, but sundays are the nobody-comes days, the dogs are bored by 2, and the volunteers are all grandmas who dont walk past tree 1. malten then she said the real thing. 'he doesnt have a lot of saturdays.'"
+      ],
+      "choices": [
+        { "say": "that's the heaviest sentence anyone has said to you. sit with it a second, then decide.", "next": "nate_margin" },
+        { "say": "ask denise for noon. chester gets the mornings. a dog and a pretzel can share a saturday.", "next": "ask_denise" }
+      ]
+    },
+
+    "nate_margin": {
+      "them": [
+        "ok. dont be mad. nate just texted. NOT about this. but i HAVE to tell u. he said 'u got a job?? some people r getting 2 busy for some people.' thats his 'some people' voice. i can hear the 'some.' hes been like this since tuesday (we dont talk about tuesday)",
+        "i could fix it. 2 texts. he'd say 'sorry i was dumb' and id say 'its ok' and wed be fine until thursday. im NOT doing it. this conversation is not about nate. say it with me. 'this conversation is not about nate.'"
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "nate", "to": "lexi", "delay": 25, "text": "lexi congrats on the job. (some people are doing really great.) (thats all.) (i meant it nicely. i cant tell if it reads nicely. it reads nicely in my head.)" }
+      ],
+      "choices": [
+        { "say": "this conversation is not about nate. say it out loud. now go decide.", "next": "the_deadline" },
+        { "say": "send him one line: 'congrats to me. talk later.' that's not fixing. that's a footnote.", "next": "the_deadline" }
+      ]
+    },
+
+    "chaos_interview": {
+      "them": [
+        "OK. i did it. i walked chester into the food court. 3 trees worth of dignity. he did the whole walk like a duke. nobody said anything. the pretzel lady looked at him. she looked at me. she looked at him. she said 'is he allowed.' i said 'no.' she said 'hes very polite.' i said 'hes 13.' she said 'in dog years thats a senior.' she said 'he can sit under the table.'",
+        "SHES CHARMED. but here comes dennis. across the food court. he has the walk. the walk of a man w a radio. and his eyes are on chester. malten HE IS LOOKING AT CHESTER"
+      ],
+      "effects": [
+        { "type": "status", "from": "kittyxcore", "delay": 20, "text": "kitty made a chart: 'WILL LEXI BRING THE DOG?' columns: yes / yes / yes. (its a color coded chart.) (the colors are all the same.) (its very pink.) =^.^=" }
+      ],
+      "choices": [
+        { "say": "stay calm. let chester do his thing. stand tall, no sudden moves.", "next": "chaos_day" },
+        { "say": "wave dennis over and introduce them. confidence wins.", "next": "chaos_day" }
+      ]
+    },
+
+    "chaos_day": {
+      "them": [
+        "dennis is standing over chester. chester is lying down. hes done tree 3. dennis CROUCHED. his knees made a noise. he said 'how old.' i said 13. he said 'whats his name.' i said chester. he said 'my dog was a chester.' he said 'is he on a leash.' i said yes. he said 'then hes an employee.'",
+        "denise heard. she said 'hes a mascot.' i said 'hes not trained.' she said 'neither is the carousel.' malten i think the mall just hired my dog. i dont think i'm the one who got hired. i think im his coworker"
+      ],
+      "choices": [
+        { "say": "take a picture of chester with dennis. paige would. it's the shot of the year.", "next": "end_chaos" },
+        { "say": "ask for saturdays 10 to 5 AND the dog under the table. press the advantage.", "next": "end_chaos" }
+      ]
+    },
+
+    "the_deadline": {
+      "them": [
+        "its 5:52 PM. denise's final answer (i asked her out loud, like a person): 'noon to 9 on saturdays or nothing, hon. thats the shift.' she said it nicely, which is worse. and ms pruitt texted: 'chesters fine. he looked at the door once. thats all.' once. malten. ONCE.",
+        "i have 8 minutes to answer denise. ive never had a deadline w a 6 in it. ive been at this window for 40 minutes and a pigeon has joined me. help"
+      ],
+      "choices": [
+        { "say": "take the job. chester will survive. leonard can't. be practical.", "next": "take_job" },
+        { "say": "stay with chester. figure the belt out another way.", "next": "stay_chester" },
+        { "say": "call denise one more time. one question, one chance.", "next": "final_ask" }
+      ]
+    },
+
+    "final_ask": {
+      "them": [
+        "ok. calling. its ringing. its ringing. she picked up. 'pretzel stand, this is denise.' i said 'hi its lexi, the leopard corolla' and she said 'hon, i said noon.' i said 'i know.' and then i froze. malten i FROZE. my mouth is a drawer with nothing in it",
+        "shes waiting. she said 'hon?' what do i say. i have like 20 seconds of denise's patience. she has a pretzel in the oven"
+      ],
+      "choices": [
+        { "say": "tell her the real reason. 'there's a 13 year old dog who looks at the door.' no dressing it up.", "next": "end_both" },
+        { "say": "charm her. offer a mix cd, a leopard sticker and your best smile. it's a negotiation.", "next": "end_job" }
+      ]
+    },
+
+    "take_job": {
+      "them": [
+        "ok. calling denise. 'ill take noon to 9.' she said 'great! you start saturday. come at 11:45. wear closed shoes.' thats it. thats the whole thing. 'wear closed shoes.' i cried a little in leonard. leonard has a leopard steering wheel cover, its soft",
+        "now i have to tell ms pruitt. and chester. im going to the shelter now. one last walk before the schedule changes. he doesnt know the difference between days. im gonna walk 3 trees and sit and tell him"
+      ],
+      "choices": [
+        { "say": "tell chester in person. bring him a biscuit. it's not an apology, it's a see-you-sunday.", "next": "end_job" },
+        { "say": "tell ms pruitt first. ask if you can take chester on sunday afternoons.", "next": "end_job" }
+      ]
+    },
+
+    "stay_chester": {
+      "them": [
+        "ok. im not taking it. i texted denise 'thank you, i cant do saturdays.' she wrote 'ok hon. doors open.' thats it. shes nice. i hate that shes nice. i wanted her to be a villain so itd be easier",
+        "leonard stays broken. the belt squeals at the red light by the dollar store and everyone turns around. misery says it sounds like a cat in a bag. i said thats the nicest thing shes said all week. now i have to sell 47 cds and i have 14. im going to the shelter. chester's gonna get 4 trees"
+      ],
+      "choices": [
+        { "say": "go to the shelter now. walk him tonight. don't wait for saturday.", "next": "end_chester" },
+        { "say": "make the cd sign first. 'songs for old dogs (all proceeds: leonard's belt).' it's a cause.", "next": "end_chester" }
+      ]
+    },
+
+    "end_both": {
+      "them": [
+        "she was quiet for 3 seconds. then: 'hon. my first dog was 14. noon saturday. you open sundays at 7 for prep. you walk your dog in the morning. and you bring the dog to meet me, one time, on a day i'm not busy.' i said 'hes not trained.' she said 'neither is the carousel.'",
+        "malten i got the job AND the dog. ill walk chester at 8, get to the food court at noon, smell like cinnamon till 9, and get leonard's belt in 3 saturdays. my mom's gonna say 'see, work.' shes gonna be right. ill say 'rawr.' thats all ive got. thank u. (nothing about nate this whole time. im so proud of that)"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "lexi has a JOB. (pretzels.) (she smells like cinnamon.) she walks chester at 8 and starts at noon. leonard is getting a belt. this status is about leonard, chester and cinnamon. nate is not in it. nate is in the margins. =]" },
+        { "type": "status", "from": "kittyxcore", "delay": 40, "text": "kitty's chart has a new column: JOB. (the NATE column is still there. its smaller now.) (its like 6 pixels.) (she made a pie chart and its mostly pretzel.) =^.^= proud of u lexi!!!" },
+        { "type": "wallpost", "from": "nate", "to": "lexi", "delay": 90, "text": "lexi. congrats on the job. i meant that. i'm not doing a 'some people.' i'm saying: you. you got a job. i'm proud of you. (ur still #1.)" },
+        { "type": "wallpost", "from": "misery", "to": "lexi", "delay": 150, "text": "LEX. rawr. u got the job AND the dog?? the whole mall is gonna smell like u. in a good way. im coming saturday at 1 and im eating a pretzel and being loud. misery says rawr (so does chester) (i know he does)" }
+      ]
+    },
+
+    "end_job": {
+      "them": [
+        "so i took the job. 'wear closed shoes.' i told chester in person. i brought him a biscuit. he ate the biscuit and looked at me and then at the door and then at me. he doesnt know the difference between thursday and saturday, thank god. i walked 3 trees. i sat on the 3rd one w him and told him id be back on sundays",
+        "ms pruitt said 'its ok hon. thats what a hard choice looks like. you did it with a biscuit.' leonard gets a belt in 3 weeks. its the practical thing and i did the practical thing and i feel like a grown up and i hate it. im gonna put 'songs for old dogs' on in leonard on the way home. all one sneeze"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "lexi has a JOB. pretzels. saturdays noon to 9. chester gets sundays. leonard gets a belt in 3 weeks. this is the practical thing and she did it and she feels like a grown up and she would like a minute. =]" },
+        { "type": "wallpost", "from": "misery", "to": "lexi", "delay": 60, "text": "lex. u cried at the shelter AND in leonard. i know bc i was in the passenger seat both times. rawr. ur doing the grown up thing. ill ride to every shift. ill scream. (its a thing i do.)" },
+        { "type": "wallpost", "from": "paige", "to": "lexi", "delay": 130, "text": "lexi. i took a pic of chester on the 3rd tree last month. its tilted. its the best one i've taken. im printing it. its going on leonard's visor next to the rules. -p" }
+      ]
+    },
+
+    "end_chester": {
+      "them": [
+        "i went tonight. ms pruitt said 'he was waiting.' he was at the gate. he did 4 trees. FOUR. he stopped at the 4th and lay down and looked at me like 'ok. now we both know.' i sat on the grass and cried and he sniffed my shoe. malten thats the best thing thats ever happened to me and its not about anyone",
+        "leonard stays broken. im selling cds. $3. i have 14. i need 33 more. im making 33 more tonight. 'songs for old dogs (all proceeds: leonard's belt).' in the leopard case. ill write 'chester approves' on every one. its a lie. he hasnt heard them. he'll hear them"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "lexi turned down a job. (pretzels.) (its fine.) chester walked 4 trees tonight. FOUR. leonard still squeals at red lights. mix cds are $3 and every one comes with a leopard sticker. 'songs for old dogs.' all proceeds go to leonard's belt. =]" },
+        { "type": "wallpost", "from": "kittyxcore", "to": "lexi", "delay": 45, "text": "LEXI i'll buy 5. i'll buy the whole stack. i made a pledge chart. its pink. it has a column for 'cds' and a column for 'chester.' im putting it in a bulletin. =^.^= ily. u r the best person who ever walked a dog" },
+        { "type": "bulletin", "from": "brittany", "delay": 100, "subject": "EVERYONE BUY LEXI'S MIX CDS", "text": "ok everybody. lexi's mix cds are $3. they have a leopard sticker. they're for a GOOD CAUSE (her car and an old dog named chester) (he's 13). 'songs for old dogs' is the best one. u have to buy it. if u dont i'll know and ur not in my top 8. xoxo" },
+        { "type": "wallpost", "from": "nate", "to": "lexi", "delay": 170, "text": "lexi. ill buy one. the 'songs for when ur friend is wrong but u love her' one. i know its about me. i KNOW. im buying it anyway. (thats all.)" }
+      ]
+    },
+
+    "end_chaos": {
+      "them": [
+        "ok the mall is weird now. dennis took a picture of chester with the carousel. denise gave chester a pretzel (plain, no salt, 'for the dogs heart'). the whole food court clapped when he did the 3rd tree. he lay down. they clapped for THAT too. hes famous. i dont know how to be a coworker to a famous dog",
+        "denise said 'saturdays 10 to 5, dog under the table, and he gets a name tag.' it says CHESTER (MALL MASCOT). he doesnt know. hes asleep. i start saturday. and henry is going to lose his mind. malten, ive never gotten a job by bringing a 13 year old dog to a pretzel stand. it turns out its the only way"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "lexi got the job at the pretzel stand (saturdays 10-5) AND her dog got one too. chester is now the (unofficial) (official) mall mascot. he has a name tag. dennis took a picture. leonard is getting a belt. rawr. (nothing about nate. nate is somewhere. he is fine.)" },
+        { "type": "status", "from": "henry", "delay": 30, "text": "henry is on the verge. dennis took my heelys in august. dennis let a DOG into the food court. dennis took a PICTURE of the dog. ive been banned from 3 stores and the dog has a NAME TAG. im rolling. im not ok. (im rolling.)" },
+        { "type": "wallpost", "from": "kittyxcore", "to": "lexi", "delay": 80, "text": "lexi!!!! my chart said yes yes yes and i was RIGHT. im gonna print a pic of chester and put it in the 'proof' column. also hi dennis. =^.^=" },
+        { "type": "wallpost", "from": "misery", "to": "lexi", "delay": 150, "text": "i was in the passenger seat the WHOLE TIME and i didnt say anything bc chester was being a hero. rawr. i bought a pretzel. i bought 3. i gave chester one. he lay on it. its a family now." }
+      ]
+    }
+  }
+}

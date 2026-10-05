@@ -1,0 +1,274 @@
+{
+ "id": "thad",
+ "name": "thespian_thad",
+ "tag": "Mayor of River City (this fall only). (A long pause.) I am fine.",
+ "avatar": "assets/avatar_thad.gif",
+ "gender": "Male",
+ "age": 17,
+ "hometown": "Cuyahoga Falls, OH (but my heart is in the second row at Playhouse Square in Cleveland, 40 minutes north)",
+ "loc": "the wings (it's the hallway outside the gym. it counts)",
+ "zodiac": "Leo (of course. ruler of the stage. also the second balcony)",
+ "status": "Single (my on-stage wife is a junior named Aubrey. we are very married for two and a half hours. it's acting)",
+ "hereFor": "Friends, an audience, a standing ovation (any size)",
+ "mood": "(a long pause.) fine",
+ "lastLogin": "Oct 4 2026 1:17 AM",
+ "theme": {
+  "bg": "#4a0e1f",
+  "fg": "#fbeedd",
+  "accent": "#ffd166"
+ },
+ "blogTitle": "Thad's Theatrical Journal (Act I, Scene Whatever)",
+ "about": "(The curtain rises. A single spotlight finds THAD at center stage. He holds nothing, but gestures as if it were precious.) Greetings. I am Thaddeus. Thad. Seventeen years old, four seasons in the drama club, veteran of nine productions (one tree, two ensembles, a very convincing butler). I am currently preparing the role of Mayor Shinn in this fall's Music Man. It is a character role. It is the fourth biggest part. I counted. (He has counted.) The lead went to a sophomore. I'm fine. I'd like that noted. Every wall post on this site will be a monologue because I do not know how to write any other kind. You may applaud at the end. You may leave at any time, but not during the second act.",
+ "aboutMore": "A few notes for the program. I'm the one who turns on the ghost light each night (a single bulb on a stand, center stage, so the theater is never entirely dark and no one falls into the pit). My nana, Lou, has seen every show I've been in since I was a tree. She sits in row C with a bag of butterscotch candies and applauds the ensemble first. I still have the ticket stub from the first show she took me to. I'd show it to you, but it's in my wallet, and the wallet is in the other pants.",
+ "meet": "Who I'd like to meet: whoever wrote Mayor Shinn and whether they meant him to be this funny. Ms. Marchetti's cat, who has never attended a rehearsal and whom I believe to be the real critic. Anyone who has seen a touring Phantom and will describe it to me slowly. The sophomore, offstage, so that I may judge him as a human being (I have. he is decent. I'm furious). And you, malten. Row C. I'll save it.",
+ "interests": {
+  "General": "theater (the whole building, the smell of it), the ghost light, everyday monologues, Playhouse Square in Cleveland, my nana's butterscotch candies, warm water with honey, the good socks, stage directions (in real life), being at the auditorium by 6:40 AM, cue-to-cue rehearsals (I'm the only one who likes them), applauding",
+  "Music": "Queen (Bohemian Rhapsody is a one act and I will not be taking questions), Broadway cast recordings (in a milk crate, alphabetical), the original cast of Wicked (worn through two copies), Michael Crawford, Frank Sinatra, whatever Ms. Marchetti plays during strike, the pit warming up (best sound in the building)",
+  "Movies": "Singin' in the Rain, The Producers (the old one), Waiting for Guffman (it's a documentary), Chicago, Amadeus (I like the part where a man is jealous of a better artist and it goes badly for everyone. I've been studying), The Muppet Movie",
+  "Television": "the Tony Awards (I own them on tape), Inside the Actors Studio (Sundays, I take notes), American Idol (Simon is basically an offstage character), Mystery!, Jeopardy! (I run the Broadway category)",
+  "Books": "the Complete Shakespeare (annotated in four colors, Ashley taught me), An Actor Prepares, Our Town (my copy has a coffee stain on the last page and so do I), the Music Man script (a lot of pencil on page 14), a handbook on stage fright (haven't opened it. I'm fine)",
+  "Heroes": "Nana Lou, Ms. Marchetti (says 'again, with feeling'), Bernadette Peters, Nathan Lane, every ensemble member who sells the back row, the kid who runs the light board and never gets a bow"
+ },
+ "song": {
+  "name": "Bohemian Rhapsody",
+  "artist": "Queen",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/17/fc/1e/17fc1eba-946d-84a9-710b-a0e88ea64209/mzaf_3049006317693088799.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   3,
+   7,
+   10,
+   12,
+   10,
+   7,
+   3
+  ],
+  "bpm": 72
+ },
+ "decor": [
+  "assets/deco_welcome_banner.gif",
+  "assets/deco_moon.gif"
+ ],
+ "friends": [
+  "hailey",
+  "darkangel",
+  "brittany",
+  "gina",
+  "becca",
+  "yvette",
+  "ashley",
+  "tyler",
+  "raven"
+ ],
+ "wall": [
+  {
+   "from": "tyler",
+   "text": "thad bro. we carried the whole town square on tuesday. bro its HEAVY. but i saw u from the wings do a thing with ur hat. didnt get it. FELT it. bro.",
+   "time": "Oct 3 2026 4:20 PM"
+  },
+  {
+   "from": "hailey",
+   "text": "thad!!! omg i heard ur the MAYOR!! thats such a good part!! the mayor is like the troy bolton of river city (what team?? the TOWN) i made u a banner for the cafeteria!! its glittery!! its also kinda big!! sorry!!",
+   "time": "Oct 2 2026 4:44 PM"
+  },
+  {
+   "from": "darkangel",
+   "text": "thad. i read your monologue about the sophomore. i wept in the hollow of my glitter-encrusted soul. may i quote it in verse. 'a man stands alone in a light that was meant for another.' (that's mine but it's about you) ~*~",
+   "time": "Sep 30 2026 11:11 PM"
+  },
+  {
+   "from": "walt",
+   "text": "Dear Thad, Our mutual friend Patrick informs me you are to play a mayor. In 34 years I delivered mail to three mayors. The best of them carried his own groceries. I wish you a good run. Regards, Walt",
+   "time": "Sep 29 2026 5:48 AM"
+  },
+  {
+   "from": "gina",
+   "text": "thad the EVP from the auditorium came back. there is a voice. it says 'again from the top.' you said that's ms. marchetti. she was at home. i have the timestamp. i also may have recorded the vending machine. i'm bringing the recorder friday",
+   "time": "Sep 27 2026 9:20 PM"
+  },
+  {
+   "from": "brittany",
+   "text": "THAD i'm coming to the show!! i already told my whole top 8. ur gonna be SO good. also ur the MAYOR?? that's so funny bc u said Harold on ur away message. xoxo (ur always a lead to me)",
+   "time": "Sep 24 2026 6:05 PM"
+  },
+  {
+   "from": "becca",
+   "text": "Thad, you stood on my foot in the dark during blocking. It's fine. It was a good foot. Note from the pit: the entrance on page 14, we're so loud you can't hear your line. Say it louder or we'll play softer. (We won't.) 1 2 3 4 5 6 7 8",
+   "time": "Sep 21 2026 3:58 PM"
+  },
+  {
+   "from": "ashley",
+   "text": "[RED] Thad. Pep rally order attached. Drama club: 90 seconds. Cheer: 14 minutes. I know. I told Mr. Pruitt. He told the principal. I'm giving you 2 of my minutes. Use them wisely. [GREEN] Break a leg. Not literally. I have the insurance forms.",
+   "time": "Sep 19 2026 7:30 PM"
+  }
+ ],
+ "replies": [
+  "(He reads your comment slowly, twice, then presses it to his chest.) Thank you. That is the note I needed.",
+  "(A beat.) You may be right. (Another beat.) You are right.",
+  "I will treasure this. (He does not say where.)",
+  "(He pauses at the window. The light catches his good side. He has one.) Well said.",
+  "Noted. I'll use it in rehearsal. I will not credit you, but I will know.",
+  "(Sighs deeply, for the benefit of the back row.) Thank you.",
+  "You have just made the best entrance of the day, and the day included mine.",
+  "(He applauds. Alone. In an empty room. Somewhere a light flickers.)",
+  "Delightful. Truly. (Exit, pursued by a notification.)",
+  "I'm touched, and I'm also fine. I mention both because they're unrelated."
+ ],
+ "thanksAdd": "(The doors open. A single spotlight finds the new friend.) Ah. So you have come. I have waited for an audience my entire life and you arrive on a Tuesday in a hoodie. Perfect. Welcome, malten. I will write you a monologue every week. You may applaud at any time. You may also leave, but not during the second act. (Beat.) I'm very glad you're here.",
+ "ambient": [
+  "(He stands at the cafeteria window. Rain. A pudding cup in his hand. The pudding has a skin.) There are those who call it dessert. I call it a Greek tragedy with a spoon.",
+  "I will say only this about the cast list. (He says only this.) It was posted at 3:15 on a Friday. By 3:16 I was in the bathroom. By 3:24 I was fine. Entirely. Please stop asking Becca how long it was. She has a watch.",
+  "At 6:40 AM I walked into the auditorium and the ghost light was still on. I turned it off. Then on. Then I stood a minute and listened to the empty seats. They sounded like they were waiting. So am I. (He's fine.)",
+  "A man must choose between the 7:15 bus and a dramatic exit from the 7:10 bus. I chose both. I missed both. I walked. It was beautiful. It was 2.3 miles.",
+  "(to the middle distance) Four years of drama club and my mother still introduces me as 'Thaddeus, who does the plays.' Mom. I do THE plays. It's a distinction."
+ ],
+ "saltyDm": "(The lights dim. The sound of one slow clap.) Denied. I see. Well. I have been cut from a lead, cut from a solo, and cut from a duet with a ficus, and I came back every time. I'll be here. Row C. The seat is saved. It will always be saved. (He weeps, briefly, for the cheap seats.)",
+ "keywords": {
+  "musical": "The Music Man, this November. Two and a half hours, one train, an intermission, and a town that has never heard of a band until it has, and then they have to buy 76 of them. It's a good show. I'm the Mayor. You'll love him.",
+  "mayor": "Mayor Shinn is a vain, pompous, self-important man with a very good hat who cannot be reasoned with. I understand him completely. I did not choose him. He chose me. (Ms. Marchetti chose him. But in spirit.)",
+  "sophomore": "His name is Colton. He is 15 and he is good. That is all I will say. (A pause.) He's really, really good. I've run lines with him since September. I won't discuss it further. I'm fine.",
+  "audition": "Three minutes, one song, one monologue, a cold room, a table of people with clipboards. It's the single most terrifying thing I do and I do it twice a year on purpose. I recommend it for everyone. I recommend it from a distance.",
+  "ghost": "The ghost light is a single bulb on a stand, center stage, left on all night. Some say it's for the ghosts. Some say it's so nobody falls in the pit. I say it's both. Gina says 'it's definitely ghosts.' We're friends. We agree to disagree in the dark.",
+  "nana": "Nana Lou. Row C. A bag of butterscotch candies and the loudest applause in the building, for the ensemble first, the leads second. She took me to my first show when I was 8. I haven't recovered. I don't plan to."
+ },
+ "banter": {
+  "becca": [
+   "Becca. (He appears at the top of the pit stairs.) When the lights went down on Act One, the pit began 'Goodnight, My Someone' (title only) and for a moment I forgot who I was supposed to be mad at. Then I remembered. Then I forgot again. This is your fault. Thank you.",
+   "Becca, I stayed for halftime on Friday. No one in my family has ever stayed for a halftime show. I stood for the clarinet solo. Until I watched you I did not know what a glide step was. Now I see it everywhere. I'm ruined. It is wonderful."
+  ],
+  "ashley": [
+   "Ashley, regarding the pep rally. You gave the drama club 90 seconds and cheer 14 minutes. I understand the math. I do not enjoy the math. I could perform the entire role of the Mayor in 90 seconds. (I've timed it. It's 4 minutes.) I'm told I'm very good at compressing.",
+   "Ashley, you color-code your pom-poms by routine and I color-code my scripts by character. Do you understand what that means? We are the same person. With different hair and a different relationship to gravity."
+  ],
+  "yvette": [
+   "Yvette. On the superlatives ballot: I was nominated for 'Most Dramatic.' I accept. I was also nominated for 'Most Likely To Say I'm Fine.' I'd like it entered into the record that I am fine. I'd like it entered twice. (She will not. She is perfect.)",
+   "Yvette, the cast photo is due Friday and I have a call time Friday. I would like you to know the Mayor will be in the photo. In full costume. With the sash. You'll see."
+  ],
+  "tyler": [
+   "Tyler. (He bows to the stage crew, which is now six lacrosse players and a sofa.) Thank you for carrying the town square. It weighs more than it looks. So do I. I don't say that to be sad. You lifted me once, as a bit, and it was the nicest thing that has ever happened to me in a hallway.",
+   "Tyler, you said blocking is 'like playing defense.' That is the most accurate description of the art form I've heard from anyone who wasn't a teacher. I'd like you to audition for the spring show. It's mostly standing. You do it very well."
+  ],
+  "darkangel": [
+   "DarkAngel. (A dim blue light finds two figures at opposite ends of an empty stage.) We are the last melodramatists on this website. I work in velvet, you work in glitter, and neither of us is understood. I'd like to commission a poem for the Mayor. He has a great hat and no inner life. Give him one.",
+   "DarkAngel, your latest crimson tears piece was staged beautifully in my head. It had a fog machine. I added the fog machine. I hope you don't mind. It was a very small fog."
+  ],
+  "brittany": [
+   "Brittany. You asked me what blocking is. I said where you stand. You said, 'oh like a bouncer.' This is the most accurate note I've received all year and I'm putting it in the director's binder. You're credited in the program under 'special thanks.'",
+   "Brittany, about your sweet sixteen. I'm available to design your entrance. There will be a smoke machine. There will be a gobo. (A gobo is a light that makes a shape. Yours will be a heart.) I do not charge. I would like a front table and the right to say 'places.'"
+  ],
+  "gina": [
+   "Gina. (He crosses downstage with a flashlight, in the manner of a night watchman.) The ghost light isn't for ghosts. It's so no one falls into the pit. That said, I don't discount your recorder. Last night something coughed at 11:11 and I'd like to think it was Ms. Marchetti's thermos. It was not.",
+   "Gina, I read your report on 'the voice in the balcony.' It says 'again from the top.' That is a line Ms. Marchetti says 40 times a day. I believe the auditorium has absorbed her, like a haunted, theatrical sponge."
+  ],
+  "hailey": [
+   "Hailey. (He leans on the edge of the lunch table and regards the choreography with an expression of mild pain.) It's a good dance. It has no count. Where is the count? Ask Becca. Ask Ashley. They'll count for you. And please do not call the Mayor 'Troy' again. He is a mayor. He has no dreams. He has a hat.",
+   "Hailey. Ensemble auditions are Friday. I have three notes. One: be big in the first two bars, they decide fast. Two: the panel is Ms. Marchetti and a clipboard, and the clipboard is not a person. Three: townspeople are the show. I mean that. I have been a townsperson. It's where I learned the whole thing. Break a leg. (If asked what team, say 'the show.')"
+  ]
+ },
+ "statuses": [
+  "thad is staring into the middle distance. the middle distance is staring back. it's a draw",
+  "thad is in the wings. (it's the hallway by the gym. it counts)",
+  "thad is rehearsing his 'oh, hey' in a mirror. it needs work",
+  "thad just realized the Mayor has the funniest entrance in the show and is... fine. really. FINE",
+  "thad is at the auditorium at 6:40 AM with the ghost light. gina has a recorder. somebody has a thermos",
+  "thad is memorizing lines on the bus. the bus is being very supportive. (it's a bus)",
+  "thad just applauded at a pep rally where nobody else was clapping. he stayed with it. he'd do it again",
+  "thad is running lines with a sophomore at 6:45 AM. nobody is to be told. this status is fine. you did not read it"
+ ],
+ "bulletins": [
+  {
+   "subject": "TICKETS: THE MUSIC MAN (Nov 13-14). A PLEA IN THREE ACTS",
+   "body": "ACT ONE: Tickets are $5 for students, $8 for adults, and free for anyone wearing a boater hat. ACT TWO: The show runs two and a half hours and includes an intermission, a train, and a lot of marching band energy (Becca has asked me to say the pit is 'very excited'). ACT THREE: I would like a full house. You don't have to like musicals. You only have to like me for two and a half hours. (Pause.) I'm the Mayor. I am very good. Row C is reserved for Nana. Please don't sit in Row C."
+  },
+  {
+   "subject": "CASTING CALL (for a minor role in my life)",
+   "body": "Now casting: one person to say 'good job, Thad' once a day. No experience required. Must be sincere. Must be able to say it at lunch without making it weird. Rehearsal begins immediately. Compensation: a monologue, a butterscotch candy from my nana's stockpile, and a front-row seat to a future star (the Mayor, in the fall, or something bigger, in the spring). Inquiries to my wall. I'll be checking it. I check it a lot."
+  }
+ ],
+ "pcComments": [
+  "(He studies the photograph for a long time.) The composition is exceptional. The lighting, however, is natural. We can fix that.",
+  "A triumph. (Applause.) (Mine.)",
+  "I have framed this in my mind. The frame is gold. It has cherubs.",
+  "The subject is clearly in the middle of something. I'd like to know what. Please send the previous 8 frames and a one page monologue.",
+  "Stunning. I would cast you."
+ ],
+ "dmSeed": [
+  {
+   "text": "(The door opens a crack. A spotlight, borrowed from the AV cart, finds you.) Malten. I am told you are the owner and sole proprietor of this establishment. Allow me to introduce myself. Thaddeus. Thad. Actor, stage manager, Mayor of River City (fall only). I took the liberty of adding you. If you ever need a monologue, a witness, or someone to say 'places' before an important phone call, I am available. (He bows. It is a deep one. His back makes a noise.)"
+  }
+ ],
+ "dms": [
+  "(He leans into the frame.) Malten. Tell me honestly. If a man says 'I'm fine' eleven times in one day, at what point does it become a one-man show? I'm asking for a friend. The friend is also me. The friend has notes.",
+  "A thought, delivered at 2:41 AM from the top of the stairs: nobody has ever applauded the person who turns the lights back on. And yet. (He pauses.) And yet. Goodnight.",
+  "My nana called to say she bought her ticket. Row C. She also said the Mayor is the funniest part and I should 'stop sulking and wear the good socks.' I have not been sulking. (He has.) The socks are in the wash.",
+  "Rehearsal update: the sophomore forgot his line, looked at me in the wings, and I mouthed it to him. He got it. He mouthed 'thanks.' We have never spoken. It's the most intimate moment I've had with a fellow actor. I'd like to forget it. I never will.",
+  "(sound of a lone trumpet in the hallway) What is that? The marching band. They're warming up. Outside. At 7:30 in the morning. I have a call at 7:35. I have never been more aware of my own breathing.",
+  "Is it normal to rehearse how you'll say 'oh, hey' to someone you like? I've done it 9 times in the mirror. The first 4 were too dramatic. The next 5 were too casual. I'm looking for a 'hey' that says effortless and has been for years. Any notes.",
+  "For the record, when historians review my life, I'd like it noted that I was gracious about the casting. I clapped at the callback. I clapped at the cast list. I have clapped for the sophomore 14 times. My hands hurt. That's the arts."
+ ],
+ "blog": [
+  {
+   "title": "The Sophomore: an honest review",
+   "date": "Oct 2 2026 10:55 PM",
+   "mood": "grudgingly proud",
+   "body": "I have promised myself I would be honest on this journal, even when it hurts, so here it is. Colton Vance is good. That is the worst thing I have ever had to type. If he were bad I could have been bitter in peace. He has a natural quick patter and a hat he wears like it's his own, and at the callback he made the room laugh at a line I have heard 200 times. On September 21st I found him alone in the auditorium at 6:45 AM, white as chalk, holding his script like a hot pan. So I ran lines with him. I gave him eleven pages of notes. He used nine. The two he skipped were about his hat. He is wrong about the hat. I'm fine. I'm very nearly fine. (He says thank you every morning. He says it very quietly. I do not say you're welcome. I just turn on the light.)"
+  },
+  {
+   "title": "What nobody tells you about the ghost light",
+   "date": "Sep 26 2026 12:20 AM",
+   "mood": "reflective (and lit from below)",
+   "body": "At the end of every night, someone puts a bare bulb on a stand at center stage and leaves it on. That is the ghost light. The practical reason is that if the stage is pitch black someone will walk into the orchestra pit. The traditional reason is that every theater has ghosts and they need something to perform by. The reason I believe is that a theater should never be completely dark, because somebody might need to find the way in at six in the morning to run their lines. I turn it on every evening. I turn it off every morning. Gina thinks the light is for the ghosts. Ms. Marchetti thinks it's for the pit. I think it says, in one small bulb, 'we will be back.' Which is the only thing a theater has to say. Someone should always leave a light on for the next person who comes to try."
+  },
+  {
+   "title": "THE CAST LIST (a play in one act)",
+   "date": "Sep 18 2026 11:48 PM",
+   "mood": "composed",
+   "body": "SETTING: The hallway outside Room 108. Friday, 3:15 PM. A single sheet of paper on a door. THAD enters. THAD: (reading) 'Harold Hill, Colton Vance.' (He reads it again.) 'Mayor Shinn, Thaddeus.' (He steps back. He steps forward.) A sophomore. (Beat.) A sophomore I have personally helped locate the stage on three occasions. (A door opens. BECCA enters carrying a clarinet case.) BECCA: Thad. You okay? THAD: I'm fine. BECCA: That's one. (She exits. He stands there for what we are told was eight minutes. She was counting.) THAD: (to himself) The Mayor is a wonderful part. (Pause.) It is the fourth biggest. END OF PLAY. (Applause. From Ms. Marchetti's cat, who had wandered in.)"
+  }
+ ],
+ "survey": {
+  "title": "THE THEATER KID SURVEY (four people have asked. they will wait their turn)",
+  "qa": [
+   [
+    "name:",
+    "Thaddeus. Thad. 'Thadley' to my grandmother when she is being sweet"
+   ],
+   [
+    "first show you ever saw:",
+    "a touring production at Playhouse Square in Cleveland. I was eight. Nana took me. Saturday matinee. I cried at the lights. I cried at the curtain. I have not stopped being eight since"
+   ],
+   [
+    "favorite role you've played:",
+    "The Mayor, as of this month. I've decided. Also a tree in third grade. I was a very good tree. There were reviews"
+   ],
+   [
+    "worst thing that's happened on stage:",
+    "a prop sword left my hand and landed in a ficus in the front row. The ficus has recovered. So have I. Mostly"
+   ],
+   [
+    "superstition you actually believe in:",
+    "all of them. You do not say the name of the Scottish play. You do not whistle in the wings. You do not say 'good luck,' you say 'break a leg.' You do not say 'last show,' you say 'closing'"
+   ],
+   [
+    "favorite musical:",
+    "The Music Man, obviously. Also Guys and Dolls, The Producers, and Little Shop of Horrors (I want to be the dentist) (everybody does)"
+   ],
+   [
+    "are you over the casting:",
+    "Entirely. 100%. If anyone asks, yes. (Beat.) No. (Beat.) The Mayor is a wonderful part"
+   ],
+   [
+    "pre-show ritual:",
+    "three deep breaths, warm water with honey, tap the proscenium for luck. And the good socks. Nana's rule"
+   ],
+   [
+    "last thing you cried at:",
+    "a commercial about a dog who walks home. I won't go into it. The dog gets home"
+   ],
+   [
+    "describe yourself in one sentence:",
+    "(He steps into the light.) I am a man with a very good voice, a very large heart and a very small part, and I am going to make that part the best eleven minutes in the building. (Blackout.)"
+   ]
+  ]
+ }
+}

@@ -1,0 +1,193 @@
+{
+ "id": "bryan_debbies_list",
+ "with": "bryan",
+ "opener": [
+  "hey. mrs kaylas mom friended me. she also sent a 'list of questions.' there r 9. they r numbered",
+  "question 3 is 'where do you plan to be friday at 7:53 PM.' thats a very specific time. thats when kaylas kick line goes on. i never told her mom that",
+  "also gregs show is friday at 7. he asked 'friday at 7 right' and i said yea. kayla asked 'ur coming friday right' and i said yea. i said yea to both. i dont know why i do that"
+ ],
+ "nodes": {
+  "start": {
+   "choices": [
+    { "say": "wait. what exactly did u say to each of them? word for word.", "next": "exact_words" },
+    { "say": "read me the list. all 9. start at 1.", "next": "question_list" },
+    { "say": "flip a coin. heads garage, tails halftime. let fate drum.", "next": "coin_flip" }
+   ]
+  },
+  "exact_words": {
+   "them": [
+    "greg: 'friday at 7, right?' me: 'yea.' kayla: 'ur coming friday right?' me: 'yea.' kayla meant the game. greg meant the garage. i meant... idk. i meant yea",
+    "its not a lie. its a collision. 2 yeas drove into each other. one of them was in the truck"
+   ],
+   "choices": [
+    { "say": "a collision isnt a crime. but u gotta untangle it today. start w/ the schedule.", "next": "friday_plan" },
+    { "say": "tell kayla first. shes the one who counts ur yes ma'ams.", "next": "tell_kayla" }
+   ]
+  },
+  "tell_kayla": {
+   "them": [
+    "ok. texted her. 'i said yea to greg too. the show is at 7. im sorry. ill figure it out.' sent it from the cupholder (the phone was in the cupholder)",
+    "she replied in 3 seconds. 'ok.' with a period. malten. the period. kayla has never used a period. she uses 'xox' and 3 dots. a period is a closed door"
+   ],
+   "effects": [
+    { "type": "status", "from": "kayla", "delay": 15, "text": "kayla is ~*~ ok. ~*~ (that is the whole status) (the period is on purpose)" }
+   ],
+   "choices": [
+    { "say": "dont dig. put the schedule on paper and find the gap. there is always a gap.", "next": "friday_plan" },
+    { "say": "that period is a test. dont let her pick for u. one of them wins. today.", "next": "pick_one" }
+   ]
+  },
+  "question_list": {
+   "them": [
+    "ok. 1 do u eat breakfast (no) 2 is the truck insured (my dad says 'in spirit') 3 the 7:53 one 4 is the phone charged (yes its in the cupholder) 5 what does ur father do (she KNOWS) 6 do u have a plan b (more drums) 7 name of ur drum set (i dont name my drums) 8 do u own a coat",
+    "9 is in bold. 'what would you like to say to my daughter that you have not said in a text.' she wants it in writing. in a full sentence. by thursday"
+   ],
+   "effects": [
+    { "type": "bulletin", "from": "debbie", "delay": 20, "subject": "A FEW QUESTIONS FOR MY FILE (BRYAN) (BY THURSDAY)", "text": "Bryan honey, here are my questions, I am posting them where you are sure to see them. 1. Do you eat breakfast? 2. Is the truck insured? 3. Where do you plan to be Friday at 7:53 PM? 4. Is the phone charged? 5. What does your father do for work? (I know. I want to hear you say it.) 6. Do you have a Plan B? 7. What is the name of your drum set? 8. Do you own a coat? 9. What would you like to say to my daughter that you have not said in a text? Please answer in full sentences. Love, Mom. P.S. A polite young man named Josh has informed me this went to EVERYBODY. Hello everybody. Questions 1 through 8 are optional for you. Bryan, they are not optional for you." }
+   ],
+   "choices": [
+    { "say": "start w/ 9. write it, dont send it. just see what comes out.", "next": "q9_draft" },
+    { "say": "skip 9. whats ur plan for friday. thats the real question.", "next": "friday_plan" },
+    { "say": "answer all 9 w/ 'yes ma'am.' it got u thru the casserole.", "next": "yes_maam" }
+   ]
+  },
+  "coin_flip": {
+   "them": [
+    "ok i have a quarter. heads garage, tails halftime. flipping. ...",
+    "it landed in the kick drum. its in there. i can hear it rolling around inside. i cant flip again w/o taking the head off. is that a sign"
+   ],
+   "choices": [
+    { "say": "its a sign u shouldnt let a quarter decide. read me the list instead.", "next": "question_list" },
+    { "say": "its a sign. now make a plan like a person. what times r we dealing w/?", "next": "friday_plan" }
+   ]
+  },
+  "q9_draft": {
+   "them": [
+    "ok. typed it 4 times. heres the 4th: 'i dont text back because i read it 4 times and it comes out wrong. in person i show up. ill be in the 4th row.' thats it. its 2 sentences",
+    "thats the longest thing ive written that wasnt a bulletin about a show. her mom asked for it so technically i owe it to her mom first. is that weird. its weird"
+   ],
+   "choices": [
+    { "say": "its not weird. she asked, u answered. send it to her mom. she'll know what to do with it.", "next": "ask_debbie" },
+    { "say": "do the logistics first. an answer isnt worth much if ur in the wrong place.", "next": "friday_plan" }
+   ]
+  },
+  "yes_maam": {
+   "them": [
+    "ok. i sent her 9 'yes ma'ams.' all 9. she'll know. i also answered 'is the truck insured' w/ yes ma'am and its not. my dad says 'in spirit.' i just lied to a school employee 9 times",
+    "she replied 'Bryan.' just 'Bryan.' w/ a period. thats 2 periods in 1 day on kaylas side of the family. idk what to do"
+   ],
+   "choices": [
+    { "say": "go back. do 3 and 9 for real. the rest can stay yes ma'am.", "next": "q9_draft" },
+    { "say": "ask her for help w/ friday. she hates a lie but she loves a plan.", "next": "ask_debbie" }
+   ]
+  },
+  "friday_plan": {
+   "them": [
+    "ok so. gregs show is 7 to 8:15 (his dads rule). halftime starts 7:41 and kaylas line goes on at 7:53. from gregs garage to the field its 6 min in neil if there r no lights. there r lights",
+    "we play 5 songs. the closer is fractured signal. its the 7/8 one. its our best one. greg wrote the set list in sharpie. he says a set list is a promise. i dont know what to do w/ that. my own set list is just 'play'"
+   ],
+   "choices": [
+    { "say": "ask greg to flip the set. closer first. u leave at 7:30. easy.", "next": "call_greg" },
+    { "say": "ask kaylas mom. she runs a laminator and a phone tree. shes the only adult w/ leverage.", "next": "ask_debbie" },
+    { "say": "bring the show to the field. play the parking lot at 7:41. the concession stand has outlets.", "next": "parking_idea" }
+   ]
+  },
+  "call_greg": {
+   "them": [
+    "asked greg. he said 'no.' then 'no' again. then 'a set list is a promise, bryan.' then 'the closer closes. thats the whole job of the closer.' he is wearing a shirt that says STATIC PROPHECY in sharpie. he made the shirt",
+    "then he said 'kevin is available on the pad' like it was a threat. malten kevin is ALWAYS available on the pad"
+   ],
+   "effects": [
+    { "type": "status", "from": "greg", "delay": 20, "text": "greg is not moving the set list. a set list is a promise. the closer closes. (drums, usually)" }
+   ],
+   "choices": [
+    { "say": "ok greg is a wall. ask someone who can move walls. kaylas mom.", "next": "ask_debbie" },
+    { "say": "then pick. u cant be in 2 places. which one are u gonna regret.", "next": "pick_one" }
+   ]
+  },
+  "ask_debbie": {
+   "them": [
+    "ok. i told her. the truth, in a full sentence, which took me 6 min: 'yes ma'am. friday is gregs show and kaylas line is 7:53 and i said yea to both.' hit send before i thought of something smarter",
+    "she replied in 40 seconds. 'Bryan honey. Thank you for telling me the truth. I have a phone tree and a laminator. I will call Greg's mother. Greg's mother and I have been on the same committee since the third grade. The show will start at 6:00. In return you will answer all 9 questions in person on Thursday with eye contact. And you will eat breakfast.' she wants a breakfast"
+   ],
+   "effects": [
+    { "type": "status", "from": "debbie", "delay": 20, "text": "debbie has a phone tree. debbie is using the phone tree." }
+   ],
+   "choices": [
+    { "say": "yes ma'am. all of it. the breakfast too.", "next": "end_both" },
+    { "say": "tell her thanks but this one is on u. no phone trees.", "next": "pick_one" }
+   ]
+  },
+  "parking_idea": {
+   "them": [
+    "wait. what if the show goes TO the halftime. the parking lot by the field. gregs amp, my kit in neils bed, an extension cord from the concession stand. mr dunn has the key. hes in the booth. he doesnt check",
+    "7:15 load in. 7:30 we play 4 songs in the lot. 7:50 the kit rolls to the fence and kayla can HEAR it from the field. its not allowed. its not NOT allowed. nobody wrote that rule"
+   ],
+   "choices": [
+    { "say": "do it. 'live from the parking lot.' she'll hear it from the line.", "next": "end_parking_lot" },
+    { "say": "thats too many adults who would have to say yes. ask the one who would.", "next": "ask_debbie" }
+   ]
+  },
+  "pick_one": {
+   "them": [
+    "ok. so its one or the other. i wrote it on my hand. GARAGE / FIELD. my hand is a hand w/ 2 words on it",
+    "kayla counts my yeas. greg counts my fills. i dont know which one is louder"
+   ],
+   "choices": [
+    { "say": "kayla. greg can survive a kevin. she only has one 4th count.", "next": "end_kayla" },
+    { "say": "greg. he asked first, he named the closer, and a drummer shows up.", "next": "end_band" }
+   ]
+  },
+  "end_both": {
+   "them": [
+    "it worked. gregs mom said 'Debbie' like they were on a committee and by 4pm the show was at 6. greg was so scared he wore a tie. we opened w/ circuit breaker, closed w/ fractured signal, done 7:22. dads rule intact",
+    "neil started first try. 6 min, 2 lights. i got to the 4th row at 7:51 w/ my sticks in my back pocket. she did all 4 kicks. the hat stayed on. on the 4th count i stood up and nobody noticed but her. thats it. thats the whole thing. i think i said all of 9"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "text": "bryan is in the 4th row. he counted her kicks. the 4th one is the hard one. he knows. he is here." },
+    { "type": "bulletin", "from": "debbie", "delay": 25, "subject": "A REMINDER: STATIC PROPHECY BEGINS AT 6:00 PM SHARP (FRIDAY)", "text": "I have spoken with Greg's mother and the show is moved to 6:00 so that a certain young man can attend two events like a person with a calendar. The garage will be done by 7:15. Greg's father has been informed and said 'fine.' I will be in the first row at the game with the camcorder. Bryan will be in the fourth row. He knows which one. Love, Mom. P.S. Bryan has eaten breakfast. I have seen it. It was a taco." },
+    { "type": "status", "from": "greg", "delay": 60, "text": "greg started the show at 6. a mom told him to. he said yes ma'am. nobody has seen him this quiet since the garage flooded" },
+    { "type": "status", "from": "kayla", "delay": 100, "text": "kayla is ~*~ 4 kicks, 0 dropped hats, 1 hoodie in the 4th row ~*~ (he stood up on the 4th count) (i saw) <3" }
+   ]
+  },
+  "end_parking_lot": {
+   "them": [
+    "we did it. the lot by gate 3. extension cord from the concession stand (mr dunn was inside w/ the nachos and a radio). 4 songs. a crowd of 31 ppl w/ foam fingers and no idea why. kaylas line was RIGHT there at the fence and i hit the closer for the whole drill team",
+    "becca is in my face w/ a stopwatch. mrs kaylas mom is in the first row filming a drum kit in a parking lot. a vice principal is walking toward us with the walk. idk anymore. anyway. we were great"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "bulletin", "from": "greg", "delay": 20, "subject": "STATIC PROPHECY: LIVE FROM THE PARKING LOT (GATE 3) (HISTORIC)", "text": "we played the parking lot at gate 3 tonight. 4 songs. 31 people. one extension cord (mr dunn does not know) (mr dunn knows). we are post-hardcore w/ synth and tonight we were also post-halftime. next show is in the garage. the show after that is wherever bryan says. -greg" },
+    { "type": "wallpost", "from": "becca", "to": "bryan", "delay": 60, "text": "BRYAN. The band does NOT share a parking lot. The band does NOT share a FIELD. The stopwatch says you ran 4 minutes 12 seconds into my halftime. I am not mad. I am counting. I am also humming the closer. It is in 7/8. I counted. ~Becca" },
+    { "type": "status", "from": "debbie", "delay": 90, "text": "debbie is in the first row with a camcorder. she can see a drum set in the parking lot. it is not a school activity. it is one now." },
+    { "type": "wallpost", "from": "paige", "to": "bryan", "delay": 130, "text": "bryan i have 40 frames of u carrying a floor tom across a parking lot at a run. 12 are tilted. all of them are evidence. all of them are art. photo credit paige." }
+   ]
+  },
+  "end_kayla": {
+   "them": [
+    "i told greg. he didnt yell. he went real quiet and said 'ok.' then 'kevin has a pad.' then he hung up on me while i was still saying sorry. i went to the field. 4th row. 7:50",
+    "she did all 4 kicks. i stood up on the 4th count. she saw me. she waved w/ the wrong hand. i think i did it right. but gregs garage is 6 min away and i can still hear the closer in my head w/o me in it"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "text": "bryan is in the 4th row. bryan is sorry greg. bryan is not sorry. bryan is both. idk anymore" },
+    { "type": "status", "from": "greg", "delay": 45, "text": "greg is down a drummer and up a kevin. the show happened. kevin stomped a dance pad on circuit breaker and the garage door opener went off. twice." },
+    { "type": "wallpost", "from": "kevin", "to": "greg", "delay": 90, "text": "greg the garage door opened on the 4th stomp and a neighbor waved. i waved back. i think thats a standing ovation (perfect). thanks for the pad. next time i'll do 7/8 for real, count it out loud (heavy)" },
+    { "type": "status", "from": "kayla", "delay": 120, "text": "kayla is ~*~ the 4th row had a hoodie in it ~*~ <3" }
+   ]
+  },
+  "end_band": {
+   "them": [
+    "i told kayla. in writing. 'sorry. greg asked first and the closer is the closer. i love u.' (that last part was in the text) (i typed it) (4 times) she wrote back 'ok.' no period. idk if the missing period is good",
+    "i played the closer at 7:52. i nailed the fill. nobody heard it but 23 ppl and a neighbor. kaylas line was going on at the exact same time 6 min away. the 4th row was just a row. idk anymore. anyway"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "text": "bryan nailed the fill. nobody heard it. the 4th row was just a row. idk anymore" },
+    { "type": "status", "from": "kayla", "delay": 40, "text": "kayla is ~*~ 4 kicks. 4th row. just a row. ~*~ (i know why) (i know) (ok.)" },
+    { "type": "wallpost", "from": "debbie", "to": "bryan", "delay": 100, "text": "Bryan honey. I was in the first row and I saw the fourth row and I did not say anything to anyone. There is a place set Thursday at 6:30 and there are 9 questions and I have decided Question 3 was a poor question. Love, Mom" }
+   ]
+  }
+ }
+}

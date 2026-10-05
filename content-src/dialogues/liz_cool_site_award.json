@@ -1,0 +1,208 @@
+{
+  "id": "liz_cool_site_award",
+  "with": "liz",
+  "opener": [
+    "ok. ok ok ok. i need a second brain and urs is the closest one",
+    "angelfire angela messaged me. she wants to give me the Cool Site Award. GOLD class. there have been 6 golds in history and one went to a hamster fan page (biscuit). i have never won ANYTHING. i got a ribbon in 4th grade and it said 'attendance'",
+    "there r strings. she sent a list. 1) the BADGE goes on top of every layout i make. 200x200. spinning. 90kb. 2) i join her webring, rule: 'members share code FREELY.' 3) her award page says my layouts r 'inspired by the Enchanted Realm.' INSPIRED BY. she has a vulpix shrine malten"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "an award is an award. you've waited forever for someone to notice. take it, fix the credits after.", "next": "a_take" },
+        { "say": "'inspired by'?? liz. that's your whole job description getting shrunk. say no.", "next": "b_no" },
+        { "say": "make a counteroffer. she needs your layouts more than you need her badge.", "next": "c_counter" }
+      ]
+    },
+
+    "a_take": {
+      "them": [
+        "ok. i typed 'yes!!' and my fingers wouldnt hit enter. i have never been GIVEN a thing. i've given a lot. 140 pixel icons. 340 lines of css in one layout. if i say yes im 'award winning liz.' if i say no im 'liz who said no to a webmistress.'",
+        "i keep rereading #2. 'share code freely.' that doesnt sound like a rule. it sounds like a trapdoor with a nice name"
+      ],
+      "choices": [
+        { "say": "go look at her webring page. see what 'freely' looks like out in the wild.", "next": "ring_page" },
+        { "say": "ask her which string is negotiable. you won't know till you ask.", "next": "ask_angela" }
+      ]
+    },
+
+    "b_no": {
+      "them": [
+        "...ok. but my hands wouldnt type 'no.' they typed 'thank you!!' and i deleted it. 3 times. i WANT it. i want a thing with my name on it that isnt a code comment",
+        "there's 140 of my layouts out there and my name is in 140 comments nobody reads. i'd like ONE place where somebody says it out loud. even if it's a gold star that spins"
+      ],
+      "choices": [
+        { "say": "then don't say no. say 'yes if.' you write rules for a living. write hers.", "next": "ask_angela" },
+        { "say": "go look at her webring page first. see whose layouts are on it.", "next": "ring_page" }
+      ]
+    },
+
+    "c_counter": {
+      "them": [
+        "a counteroffer. i've never negotiated. the closest i've come is '$5 if u dont credit me (kidding) (not kidding).' what do i even ask 4",
+        "she has the leverage tho. she IS the award. i'm just the girl who makes websites pretty. she has 214 guestbook entries and a lot of them say 'nice layout!' and half of those layouts are mine and none of those entries say my name"
+      ],
+      "choices": [
+        { "say": "ask for credit on the award page. 'layout by liz.' that's the whole fight.", "next": "ask_angela" },
+        { "say": "ask about doug first. 90kb is 9 minutes of dial-up. for one badge.", "next": "doug_angle" }
+      ]
+    },
+
+    "ring_page": {
+      "them": [
+        "ok. i opened her webring members page and hit view source on every member. 11 of them. THREE are wearing my layout. different colors. one changed my css comment from '/* if ur reading this hi */' to '/* hi from tiffany */'",
+        "so 'share freely' means 'tiffany gets to say hi from tiffany in MY comment.' i'm not even mad. ok i'm a little mad. mostly i'm impressed she kept the sideways scroll. it's a HARD scroll"
+      ],
+      "effects": [
+        { "type": "status", "text": "liz is doing view source on 11 webring pages. 3 of them are wearing her layout. one has a comment that says 'hi from tiffany.' liz is not mad. (liz is making a text file called WHO.TXT.)" }
+      ],
+      "choices": [
+        { "say": "so 'freely' is the trap. tell angela you'll take the award but not that rule.", "next": "ask_angela" },
+        { "say": "decline politely. keep your name on your code. that's the real prize.", "next": "polite_no" }
+      ]
+    },
+
+    "doug_angle": {
+      "them": [
+        "omg doug. ok so doug messaged me 20 minutes ago (it took him 20 minutes) and he said: 'i heard about the badge. 90kb is about 9 minutes for me. i would be in the award for 9 minutes.' i'm glad he said it bc i had NOT thought about it, and the whole reason my lite layout project exists is him",
+        "my layouts load in under 4 minutes on 56k. then ANGELA'S BADGE shows up: a spinning star that arrives in stripes. on top of every layout. 'liz made this' and then 9 minutes of star"
+      ],
+      "effects": [
+        { "type": "status", "from": "doug", "delay": 15, "text": "doug is waiting for a spinning star to load. so far it is 4 pixels tall. it is a very good star. he can already tell." }
+      ],
+      "choices": [
+        { "say": "ask angela for a lighter badge. gold can be small and still be gold.", "next": "ask_angela" },
+        { "say": "just make a lighter badge yourself. 3kb. surprise her.", "next": "badge_redo" }
+      ]
+    },
+
+    "ask_angela": {
+      "them": [
+        "ok i messaged her. 'thank you for the award. i have three questions.' she replied in 40 seconds with so many ~*~. 'OH! A COUNTER-PROPOSAL! I have never received a counter-proposal! Is this allowed? I shall consult the Realm.'",
+        "she consulted the Realm. (it's a hamster and a cat. she said so.) she's back: 'The BADGE is non-negotiable (it IS the Award). The webring rule is a LONG-STANDING TRADITION. The 'inspired by' text I will DISCUSS.' she wants an answer by saturday AND she wants me to sign the guestbook either way. entry 215. 'a lucky number to Vulpix.'"
+      ],
+      "choices": [
+        { "say": "hold the line. badge in the footer at 88x31, award page says 'layout by liz.' no 'inspired by.' no 'freely.'", "next": "hold_line" },
+        { "say": "say no, thank you. politely. keep your name on your work. you don't need a hamster's blessing.", "next": "polite_no" },
+        { "say": "redo her badge for her. it's ugly and 90kb. make it small and hide 'liz made this' in the code.", "next": "badge_redo" }
+      ]
+    },
+
+    "hold_line": {
+      "them": [
+        "ok. writing it. 'Dear Angela, I accept the Cool Site Award, Gold Class, under three conditions. 1) Badge: 88x31, footer. 2) Webring: I'll join, but my layouts are not part of the shared pool. 3) Credit: the award page will say LAYOUT BY LIZ. Sincerely, Liz (layouts_by_liz).'",
+        "...and a ps. 'ps. your lake ripples very nicely. i have notes.' malten is that too much. it's not too much. it's TRUE. it's a rippling lake and i have notes"
+      ],
+      "choices": [
+        { "say": "send it. hit enter before you chicken out. the ps stays.", "next": "guestbook" },
+        { "say": "cut the ps. send the business part first. save the lake for the guestbook.", "next": "guestbook" }
+      ]
+    },
+
+    "guestbook": {
+      "them": [
+        "SENT. her answer took 11 minutes. i watched the clock. 'The Realm has met. Vulpix was consulted. The Realm agrees to terms 1 and 3. As for term 2: you may join the ring as a GUEST OF HONOR, which has no sharing obligations. (I invented the rank ten minutes ago.)'",
+        "she also said 'PLEASE SIGN THE GUESTBOOK. Entry 215.' i opened it. i've been typing in the box for two minutes. what do i write. she just changed her rules for me. it has to be right"
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "angela", "to": "liz", "delay": 15, "text": "~*~ OFFICIAL NOTICE ~*~ The Realm hereby acknowledges layouts_by_liz as the FIRST Guest of Honor in the history of the Enchanted Webring! You are visitor number 004,271! Please sign the guestbook! ~*~" }
+      ],
+      "choices": [
+        { "say": "write it plain and true: 'your lake ripples. thank you for making room.'", "next": "end_both" },
+        { "say": "sign it with a hidden comment, the liz way, and tell her to view source.", "next": "end_both" }
+      ]
+    },
+
+    "polite_no": {
+      "them": [
+        "ok i'm writing it. 'Dear Angela, thank you so much for the Cool Site Award. I'm honored. I can't accept it with those terms, because my work is my name, and my name is the only part of my layouts that's mine. I hope you'll still be my friend. -Liz'",
+        "...is that too sad. it's sad. but it's the nicest no i've ever written. i want to add 'and your lake is great' and i've said that twice already. i'm adding it a third time. my thumb is shaking. it's fine. it's SENT"
+      ],
+      "choices": [
+        { "say": "good. let her answer. don't chase it. you did the grown-up thing.", "next": "angela_hurt" },
+        { "say": "post a one-line status after. 'liz said no to gold. liz is proud.' own it.", "next": "angela_hurt" }
+      ]
+    },
+
+    "angela_hurt": {
+      "them": [
+        "she answered in 2 minutes. it's not ~*~. it's just text. 'Oh. Well. I understand. I have never been declined before and I did not expect it to feel like this. I have decided to open a new page: THE HALL OF HONORABLE REFUSALS. You will be the first entry. It will be UNDER CONSTRUCTION. Please check back.'",
+        "malten she gave me a PAGE for saying no. a whole page. i'm in a hall. it will always be under construction. it's the nicest thing anyone has ever done after i said no. i'm going to go lie down on my floor"
+      ],
+      "effects": [
+        { "type": "status", "from": "angela", "delay": 20, "text": "angela has opened a NEW PAGE: THE HALL OF HONORABLE REFUSALS. First entry: a layout girl who said no to gold and was POLITE about it. UNDER CONSTRUCTION. (the first entry is finished. the page is what is under construction.)" }
+      ],
+      "choices": [
+        { "say": "lie on the floor, then write her back. thank her for the hall. mean it.", "next": "end_decline" },
+        { "say": "ask her to put a link to your layouts in the hall. no badge, just a link. that's the credit.", "next": "end_decline" }
+      ]
+    },
+
+    "badge_redo": {
+      "them": [
+        "ok. ok ok ok. so i opened her badge in paint. it's 200x200, 90kb, the star is a gold smudge in comic sans that says COOL SITE AWARD, and the gif spins at the speed of a sad merry-go-round.",
+        "i redid it in 40 minutes. 88x31. 3kb. a pixel star (the 12 pixel heart's cousin). it twinkles on 4 frames. and in the alt text, the css, AND the least visible pixel of the gold: 'liz made this.' malten it's the best thing i've ever made and it's a BADGE and i'm not even supposed to be making her stuff"
+      ],
+      "effects": [
+        { "type": "status", "text": "liz just made a gold award badge in 40 minutes. 88x31. 3kb. a 12 pixel star twinkling on 4 frames. there is a hidden credit in it. you can't see it. you can view source. (nobody ever does.)" }
+      ],
+      "choices": [
+        { "say": "send it to angela as a gift: 'a lighter badge so everyone can see it.' let her find the credit.", "next": "badge_reveal" },
+        { "say": "send it to doug first. if doug's page loads it in under a minute, you've won.", "next": "badge_reveal" }
+      ]
+    },
+
+    "badge_reveal": {
+      "them": [
+        "sent. doug first: his page loaded the badge in 11 seconds. he wrote 'my mom picked up the phone and i didnt even mind.' then he got cut off. i think that's the nicest sentence he's ever lost",
+        "then angela. 6 minutes. 'THIS IS NOT THE BADGE. This is a NEW badge. It is... magnificent. It has 4 frames. WHO AUTHORIZED THIS.' then 'view source??' then 'LIZ.' then 'Your name is in the alt text.' then 'in the CSS.' then 'in the PIXEL??' she's typing. she's STILL typing."
+      ],
+      "choices": [
+        { "say": "tell her it's called a signature. every award designer signs the award. say it with a smile.", "next": "end_badge" },
+        { "say": "offer to make 6 more, one for each past gold. one is for the hamster.", "next": "end_badge" }
+      ]
+    },
+
+    "end_both": {
+      "them": [
+        "i signed it: 'your lake ripples and the realm has room for people who write their own code. thank you for making room. -liz (layouts_by_liz) (view source).' she wrote back 'view source?' and then 4 minutes later 'OH.' that's the whole message.",
+        "i'm a Guest of Honor. the badge is 88x31, in the footer. the award page says LAYOUT BY LIZ. i have an AWARD. it's twinkling in my footer and it's the first time someone said my name out loud on the internet and didn't say it in the past tense. i'm gonna go to my room and be insufferable. thank u malten"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "liz won the Cool Site Award, Gold Class. it is 88x31 and it lives in her footer. she is not crying. (she is in the css.) (the css is crying.) the award page says LAYOUT BY LIZ. it says so. she checked twice." },
+        { "type": "bulletin", "from": "angela", "delay": 30, "subject": "~*~ AWARD CEREMONY! ~*~", "text": "~*~ Hear ye, hear ye! ~*~ The Realm is proud to present the Cool Site Award, GOLD CLASS, to layouts_by_liz, for the div overlay with the sideways-scrolling comments box (the FIRST of its kind in the Enchanted Webring). LAYOUT BY LIZ. (There is no 'inspired by.' I checked. Twice.) Liz is our first Guest of Honor. You are visitor number 004,300! Please sign the guestbook! ~*~" },
+        { "type": "wallpost", "from": "kittyxcore", "to": "liz", "delay": 80, "text": "LIZ!!!!! omg u won an AWARD =^.^= i put it on my page (i'm still using ur layout) (i credited u) (in the css comments so it counts?) (i also changed #FF00CC back to #FF00D3 bc it was always ur pink) pc4pc??" },
+        { "type": "wallpost", "from": "doug", "to": "liz", "delay": 150, "text": "liz my page loaded the badge in 14 seconds. 14. i watched it come in 1 stripe at a time and it was gold the whole way down. congrats. my mom is about to pick up the ph" }
+      ]
+    },
+
+    "end_decline": {
+      "them": [
+        "wrote her back. 'thank you for the hall. i'll visit.' she answered with ONE ~*~. one. i have never seen her use just one. i think it was a hug",
+        "i didn't win the award, malten. but i got the part i actually wanted: somebody said out loud that my name matters, in a place that has a hall. and i'm making the 'liz made this' marquee bigger. it's not hidden anymore. it's a policy."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "liz declined the Cool Site Award, Gold Class. it was free. it's the most expensive no she's ever said. she's Entry #1 in the Hall of Honorable Refusals (UNDER CONSTRUCTION). credit me or fix ur css. still." },
+        { "type": "wallpost", "from": "angela", "to": "liz", "delay": 40, "text": "~*~ Dearest Liz, you have been entered in the HALL OF HONORABLE REFUSALS (Under Construction) as Entry #1. Your layouts are still welcome to be admired from a respectful distance. You are visitor number 004,302! Please sign my guestbook anyway (no obligation) ~*~" },
+        { "type": "status", "from": "dave", "delay": 100, "text": "hax0r_dave just watched liz turn down a Gold Class award on principle. dave did a view source on this. it is the most hax0r thing anyone has done all month. (dave's principles are free of charge.) (respect.)" },
+        { "type": "wallpost", "from": "brittany", "to": "liz", "delay": 160, "text": "liz!! u said no to GOLD?? i'm moving u up to #3. it's not a top 8 thing it's a RESPECT thing (it's a top 8 thing). also i'm sorry about #6. xoxo" }
+      ]
+    },
+
+    "end_badge": {
+      "them": [
+        "she's still typing. 14 minutes now. she's at the part where she says it's 'the most gorgeous object in the entire Enchanted Webring' and 'I would like to adopt it' and 'I am updating every award page I have.' she's replacing HER OWN badge with MINE. 6 golds in history. 7 now. 'liz made this' is going out on every one",
+        "the credit isn't in a comment anymore. it's in the PIXEL. she said 'the Realm shall always remember the Pixel.' i'm going to go yell into a pillow. a happy yell. be back in 10. doug says it loaded in 11 seconds. ELEVEN."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "from": "angela", "delay": 30, "subject": "~*~ ATTENTION ALL MEMBERS ~*~", "text": "~*~ The Cool Site Award has a NEW OFFICIAL BADGE (88x31, 3kb, twinkles on 4 frames). It was designed by layouts_by_liz and it is MAGNIFICENT. All previous badges are RETIRED (the old star will be moved to the Hall of Honorable Smudges). Please update your pages. DO NOT remove the hidden signature in the pixel. The pixel is a feature. You are visitor number 004,309! ~*~" },
+        { "type": "status", "text": "liz made the Cool Site Award badge. the new official one. 88x31. 3kb. hidden credit in a pixel. nobody asked her to. she did it for doug. (and a little for her name.)" },
+        { "type": "status", "from": "doug", "delay": 90, "text": "doug just loaded a gold badge in 11 seconds. 11. the star twinkled on frame 3 and frame 4 and doug saw BOTH. my mom is about to pick up the ph" },
+        { "type": "wallpost", "from": "nat", "to": "liz", "delay": 150, "text": "liz the new cool site badge is on the guild page. 3kb. the old one was 90. i have been paying the neopoint equivalent of rent on that star for 2 years. credit goes to LIZ. i put your name in the div. sorry about the comic sans star." }
+      ]
+    }
+  }
+}

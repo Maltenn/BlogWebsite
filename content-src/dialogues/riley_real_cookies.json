@@ -1,0 +1,232 @@
+{
+ "id": "riley_real_cookies",
+ "with": "riley",
+ "opener": [
+  "malten. ok. i need u to be SO serious for like four minutes. can u do that. u can go back to being random after, i'll hold ur invisible cookie",
+  "i have been lying to everybody on this site for a year. about the invisible cookies",
+  "they're not invisible. they were never invisible. there's a tin under my bed and flour on Destiny and i cannot explain the flour"
+ ],
+ "nodes": {
+  "start": {
+   "choices": [
+    { "say": "riley. a tin under the bed isn't a lie, it's a plot twist. what's in the tin?", "next": "a_good" },
+    { "say": "so the invisible cookies were a business plan with a really bad logo.", "next": "b_cover" },
+    { "say": "bring the tin to the mall. full raccoon stripes. let the food court decide.", "next": "c_mall" }
+   ]
+  },
+  "a_good": {
+   "them": [
+    "snickerdoodles!!! real ones. my nana roz's recipe, which is on an index card, which she laminated, because she laminates everything (tina would LOVE her) (don't tell tina, she'll come over)",
+    "i've been baking w/ her since i was 9. she says i have 'the hands.' last month i made 5 dozen for the church bazaar and mrs. petrakis CRIED. a grown lady. cried. over a cookie i made. a REAL one. and i stood behind the coat rack and never said it was me"
+   ],
+   "choices": [
+    { "say": "mrs. petrakis cried at your cookie. riley, that's the whole point of cookies. so why the coat rack?", "next": "why_hide" },
+    { "say": "describe one for me like a food critic. full snobbery. i want adjectives.", "next": "taste" }
+   ]
+  },
+  "taste": {
+   "them": [
+    "*adjusts raccoon stripes into a monocle* ahem. the edges go SNAP. the middle is soft like it's keeping a secret. the cinnamon sugar crackles on top like a tiny rainstorm and u can HEAR it when u bite. 9 out of 10 dinosaurs approve",
+    "the tenth dinosaur is nana. nana gives everything an 8. she says a 10 is for a cookie that cures something. i'm working on it"
+   ],
+   "choices": [
+    { "say": "riley. that was a real review from a real baker. why does nobody know?", "next": "why_hide" },
+    { "say": "'tiny rainstorm' just made me hungry. you can't keep that in a tin. when does the world get a bite?", "next": "saturday" }
+   ]
+  },
+  "b_cover": {
+   "them": [
+    "RUDE. first of all the logo was GOOD. the logo was nothing. nothing is a very clean logo",
+    "second of all it wasn't a business plan, it was a COVER STORY. like a spy. cover: random girl w/ invisible cookies. real job: girl w/ a stand mixer named Gir. he has one speed and it's LOUD"
+   ],
+   "choices": [
+    { "say": "ok but is the baking actually good, or just loud?", "next": "a_good" },
+    { "say": "ok but what was the cover story covering? what happened?", "next": "why_hide" }
+   ]
+  },
+  "c_mall": {
+   "them": [
+    "AAAAA no. nope. noooope. picture it: misery goes 'cookies?? that's so SWEET riley' in THE VOICE. the voice she uses on puppies and on kitty's cat",
+    "and kitty takes a pic w/ the flash and paige tilts it and by monday i'm 'the cookie girl.' i would DIE. i would die and be buried in an apron. (it's pink) (it has a ruffle) (nana bought it)"
+   ],
+   "choices": [
+    { "say": "'cookie girl' is an upgrade from 'girl who hands out nothing.' just saying.", "next": "why_hide" },
+    { "say": "then the apron IS the look. raccoon stripes plus a ruffle. nobody's done that.", "next": "apron" }
+   ]
+  },
+  "apron": {
+   "them": [
+    "...raccoon stripes + a RUFFLE. ok that's actually a look. 'scene baker.' new genre. i'd get a patch. the patch would say KISS THE COOK and under it, smaller, rawr",
+    "but misery is the real problem. she's the one person who'd do The Voice AND the one person who might not. she's my rival and my friend and i can't tell which one is on shift"
+   ],
+   "choices": [
+    { "say": "then tell her first. rivals get first look. it's practically in the treaty.", "next": "tell_misery" },
+    { "say": "ok but why does this feel like it's on a timer? what's coming up?", "next": "saturday" }
+   ]
+  },
+  "why_hide": {
+   "them": [
+    "ok. real answer. 7th grade. i brought a tin of nana's snickerdoodles to homeroom, my first batch for anybody who wasn't nana. a boy goes 'did your GRANDMA make these' in a voice",
+    "so the next day i showed up w/ an invisible one. everybody laughed WITH me. and nobody has EVER said an invisible cookie was dry or weird or grandma-ish. they're perfect. they can't fail. a real one can. i don't know if i can be a girl whose thing can fail"
+   ],
+   "effects": [
+    { "type": "status", "text": "riley is not taking questions about the flour on Destiny. there are no questions. there is no flour. (there is flour) rawr xD", "delay": 8 }
+   ],
+   "choices": [
+    { "say": "the invisible ones were never the product. they were practice for handing people something.", "next": "practice" },
+    { "say": "one boy's opinion and you built a whole personality around it. honestly? impressive engineering.", "next": "saturday" },
+    { "say": "ok but do we have the boy's name. i'm not saying anything. i'm just saying there's a bulletin button.", "next": "boy" }
+   ]
+  },
+  "practice": {
+   "them": [
+    "...practice. for handing people something. wait. wait wait wait. malten that's actually what it was",
+    "every invisible cookie was a rehearsal for somebody saying thank u. i've gotten like 400 thank-yous for NOTHING. i'm so good at the part where they say it. i've just never given anyone a real thing to say it about"
+   ],
+   "choices": [
+    { "say": "so start with one person. somebody who'll tell you the truth. your rival.", "next": "tell_misery" },
+    { "say": "then stop rehearsing. what's the actual stage? what's coming up?", "next": "saturday" }
+   ]
+  },
+  "boy": {
+   "them": [
+    "NO. no bulletin. his name is Trent. he's a junior now. he peaked in homeroom. i don't wish him anything. i wish him a SLIGHTLY dry cookie. that's the whole curse",
+    "honestly i'm like 90% over it. the other 10% is the voice he used. very specific voice. 'did your GRANDMA make these.' like grandmas were a rash"
+   ],
+   "choices": [
+    { "say": "90% over it is plenty to bake with. so what's the big thing coming up?", "next": "saturday" },
+    { "say": "the other 10% is spite. spite is a fine ingredient. use it. in a cookie.", "next": "saturday" }
+   ]
+  },
+  "saturday": {
+   "them": [
+    "ok. that's the problem. SATURDAY. there are two things on saturday and they're like two hours apart and i'm scared of both",
+    "thing 1: the parma fall fest junior bake-off, 11am, rec center. nana filled out the form already. in PEN. under 'category' she wrote 'snickerdoodle (she's good)'",
+    "thing 2: 1pm, the mall, tacos, the misery truce. we're finally friends and i can't walk in w/ a ribbon and a tin and a face. or can i. what does a person DO"
+   ],
+   "effects": [
+    { "type": "wallpost", "from": "randy", "to": "riley", "text": "riley ur page smells like cinnamon. i don't know how. i don't know why. PIE. is that the invisible cookies leaking. (if u can smell them they're not invisible) (that's science) (i did science)", "delay": 30 }
+   ],
+   "choices": [
+    { "say": "put your name on it. RILEY. the whole thing. the ribbon, the stripes, all of it.", "next": "name_fear" },
+    { "say": "go as 'a friend of the parish' like at the bazaar. win quietly. one secret at a time.", "next": "anon_plan" },
+    { "say": "skip the contest. cookie roulette at the mall: eleven invisible cookies, one real. chaos is your brand.", "next": "roulette_plan" }
+   ]
+  },
+  "name_fear": {
+   "them": [
+    "my NAME. on a ribbon. in the PROGRAM. the program gets taped to the rec center door and kitty's mom does yoga at the rec center. KITTY'S MOM. she'd see it by tuesday",
+    "also nana laminates ribbons. i'd be a laminated ribbon girl forever. ok that part is kind of awesome. but STILL"
+   ],
+   "choices": [
+    { "say": "then tell misery before the program does. she hears it from you or she hears it from yoga.", "next": "tell_misery" },
+    { "say": "then walk in with the apron on and let the program say whatever it wants.", "next": "walk_in" }
+   ]
+  },
+  "walk_in": {
+   "them": [
+    "the APRON. in PUBLIC. KISS THE COOK. w/ stripes. the whole rec center would see a raccoon in a ruffle",
+    "...what if that's just me though. what if i'm not two people. what if i'm one person with a lot more pockets"
+   ],
+   "choices": [
+    { "say": "one person with a lot more pockets. best sentence you've said all year. go win something.", "next": "end_ribbon" },
+    { "say": "pockets are great. but tell misery before the ruffle does.", "next": "tell_misery" }
+   ]
+  },
+  "tell_misery": {
+   "them": [
+    "ok i texted her. 'i have a thing to tell u and it's not about rawr.' she goes 'is it worse than zorp.' i said it's COOKIES. she went quiet for like 3 whole minutes. i held Destiny the whole time",
+    "then she called. she said 'riley. do they taste good.' i said yeah. she said 'then why are u whispering.' malten i don't know why i'm whispering"
+   ],
+   "effects": [
+    { "type": "status", "from": "misery", "text": "misery just got a text from riley that said 'it's cookies.' misery has thoughts. misery will share them at the mall. rawr (what KIND of cookies)", "delay": 20 }
+   ],
+   "choices": [
+    { "say": "you're whispering because it matters to you. say it at normal volume.", "next": "end_ribbon" },
+    { "say": "invite her to the bake-off. let her watch you win. or lose. either way she's watching.", "next": "end_ribbon" }
+   ]
+  },
+  "anon_plan": {
+   "them": [
+    "'a friend of the parish.' that's what i wrote at the church bazaar and nobody guessed. i LIKE being a mystery. mysteries can't get 'did your GRANDMA make these'd",
+    "but nana did the form. nana uses PEN. nana doesn't believe in white-out. she says white-out is 'a lie with a brush'"
+   ],
+   "choices": [
+    { "say": "ask nana for a fresh form. grandmas are the best secret keepers there are.", "next": "nana_form" },
+    { "say": "then nana already decided for you. go as riley.", "next": "name_fear" }
+   ]
+  },
+  "nana_form": {
+   "them": [
+    "so i asked. she looked at me for a long time. the laminator face",
+    "then she goes 'riley. i don't hide my cookies. but they're YOUR cookies.' and she got me a new form. and then she goes 'but if you win under a fake name i'm telling everybody at bingo'",
+    "so it's a secret with a leak. i'm a spy with a bingo problem"
+   ],
+   "choices": [
+    { "say": "a leaky secret is the best kind. ribbon AND mystery. do it.", "next": "end_anon" },
+    { "say": "if nana's telling bingo anyway, tell misery yourself first. make it your story.", "next": "tell_misery" }
+   ]
+  },
+  "roulette_plan": {
+   "them": [
+    "COOKIE ROULETTE. oh my gosh. 12 cookies in a tin. 11 invisible (i hold out my hand and say 'chocolate chip') and ONE real snickerdoodle. whoever bites down finds out",
+    "what if it's randy. what if randy bites it and says PIE. what if nobody bites it bc they think it's invisible and i trained them too well. i made a monster and the monster is my own brand"
+   ],
+   "choices": [
+    { "say": "no flag, no warning. twelve cookies, one truth. the monster can handle it.", "next": "roulette_prep" },
+    { "say": "nana already filled the form in pen though. bake-off at 11, roulette at 1. do both.", "next": "name_fear" }
+   ]
+  },
+  "roulette_prep": {
+   "them": [
+    "the rules: 1) hold out hand 2) say a flavor 3) everybody has to act like it's invisible 4) the real one is in a napkin that says RAWR (misery will say 'that's MINE' and i'll say 'it's a DINOSAUR napkin' and we'll fight again) (i miss fighting)",
+    "and the thing is. when somebody bites it. their FACE. i've never gotten to see the face. nobody's ever bitten anything i gave them. i want to see the face"
+   ],
+   "choices": [
+    { "say": "that's the real reason. you don't want applause, you want the face. go get the face.", "next": "end_roulette" },
+    { "say": "ok but do the bake-off first. the judges get the face before the food court does.", "next": "name_fear" }
+   ]
+  },
+  "end_ribbon": {
+   "them": [
+    "MALTEN. 2ND PLACE. orange ribbon. junior snickerdoodles. the lady from kowalski's bakery said 'the crackle on top is correct' and i almost fell INTO the table",
+    "then at the mall i put the tin on the table in front of misery and kitty and said 'they're real.' misery bit one. she did THE FACE. i've never seen the face!!! i waited a whole year for the face!!!",
+    "rawr stays split but 'snickerdoodle' is HERS now. it means i love u in cookie. we fought about the trademark for 9 more minutes and then ate every single one. thank u. u get the next real one. it's got ur name on it (visibly)"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "text": "riley won 2nd place, junior snickerdoodle, parma fall fest. orange ribbon. the apron stays ON. rawr xD (that means i love u in dinosaur) (and in cookie)", "delay": 15 },
+    { "type": "wallpost", "from": "misery", "to": "riley", "text": "riley i ate 4. REAL ones. in front of kitty. u have been holding out on this entire site. rawr stays split but 'snickerdoodle' is mine now, it means i love u in cookie. it's MINE. ...ok it's ours. rawr <3", "delay": 45 },
+    { "type": "status", "from": "randy", "text": "randy just ate a real cookie from riley and says it's the invisible one but LOUDER. PIE. (i have no notes) (i had 2)", "delay": 80 },
+    { "type": "wallpost", "from": "patrick", "to": "riley", "text": "hi riley!! i got a cookie and it was real and i read the napkin three times. my rock says thank you. he couldn't eat it but he got to be near it. that's a lot", "delay": 120 }
+   ]
+  },
+  "end_anon": {
+   "them": [
+    "so. i did it. 'a friend of the parish.' i won FIRST. the lady from kowalski's said 'whoever made these knows exactly what they're doing' and i was behind a pillar in my hoodie w/ the apron under it trying not to cry into a napkin",
+    "nobody knows. kitty's mom was there. she ate 2 and said 'who IS this' and i said 'no idea' and she said 'someone's grandmother!!' and i was like yes. definitely. nana was standing right next to me and said nothing. she's the best spy",
+    "it was perfect. it was SO perfect. it was also kind of lonely, like when u have a secret so good u kind of want somebody to guess it. is that bad. anyway i'm going to the mall w/ an empty tin and my regular face. it's fine. rawr xD"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "text": "riley is eating a cookie at the bus stop. a real one. by herself. it's perfect. it's a secret. (it's a little sad) (it's mostly perfect) rawr xD", "delay": 15 },
+    { "type": "status", "from": "patrick", "text": "patrick ate a mystery cookie at the rec center. it was the best cookie of his life. he looked at the recipe card for a long time. there was a tiny raccoon stripe drawn on it. he is not saying anything. dwayne is also not saying anything", "delay": 50 },
+    { "type": "dm", "from": "raven", "text": "Malten. I was at the bake-off for my aunt's pie (third place; do not ask). 'A Friend of the Parish' won first with snickerdoodles. The recipe card in the display case had a very small raccoon stripe drawn in the margin. I know exactly one person who draws those. I will not tell anyone. I am telling you because you seem to be the person people tell things to. Please let her know the card was the best-looking thing in the case. I took a cookie. It was extremely good. - Raven", "delay": 100 }
+   ]
+  },
+  "end_roulette": {
+   "them": [
+    "REPORT. 12 cookies. 11 invisible, 1 real. i said 'chocolate chip' like 40 times in a row and everybody acted SO normal. it was the most committed food court in history",
+    "kitty got the real one. she bit it. THE FACE. her lip gloss. gone. she goes 'is this a COOKIE' and misery goes 'riley what did you DO' and i said 'rawr' and then i opened my backpack and there were 6 more real ones. (i lied about it being 1) (i'm a liar and a baker)",
+    "i skipped the bake-off. nana wasn't mad. she said 'a girl who brings the cookie to the people understands cookies' and then made me call the rec center to say sorry. the lady went 'ohhh, the snickerdoodle kid' and i said 'next year' and she said 'we'll hold ur spot.' ok. i'm a snickerdoodle kid"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "bulletin", "subject": "COOKIE ROULETTE RESULTS (11 invisible, 1 real) (+6 in my backpack)", "text": "kitty: REAL. randy: invisible (he said it was 'crunchy'). misery: invisible (she said 'it's chocolate chip' and i said 'ur right'). the 6 backpack cookies: gone in 4 min. i have a new job. every saturday. bring ur hand. rawr xD", "delay": 20 },
+    { "type": "status", "from": "kittyxcore", "text": "kittyxcore is covered in cinnamon sugar and does not want to talk about it. (it was good.) (cookie roulette. ask riley.) (paige has it on film) =^.^=", "delay": 50 },
+    { "type": "wallpost", "from": "misery", "to": "riley", "text": "riley the napkin said RAWR on it. we need to talk. at the mall. with cookies. also i have never been so proud of u. rawr <3", "delay": 85 },
+    { "type": "wall", "from": "randy", "text": "malten i got an invisible one and i said 'it's chocolate chip' and riley said 'u know it' and i'm pretty sure i tasted it. PIE. ...kitty got the real one. kitty is mad at me for no reason.", "delay": 130 }
+   ]
+  }
+ }
+}

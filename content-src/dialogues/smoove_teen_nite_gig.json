@@ -1,0 +1,448 @@
+{
+ "id": "smoove_teen_nite_gig",
+ "with": "smoove",
+ "opener": [
+  "YO YO YO MALTEN. sit down. are u sitting. VINCE BOOKED ME. promoter_vince. TEEN NITE at the roller rink. FRIDAY. its a REAL GIG. the flyer says DJ SMOOVE (LIVE). LIVE malten. it says LIVE",
+  "20 minutes. a real booth. a real mic (NOT radioshack). first 50 ppl in r free. vince says its gonna be HUGE. vince says that about everything but THIS time i think he means it",
+  "ok so. small problem. SMALL. i told like 6 ppl they r on the closer. 'feat. everyone.' track 10. and the closer is 3 minutes. and i said yes 2 EVERYBODY. i need help. be honest. i can take it. (i cant)"
+ ],
+ "nodes": {
+  "start": {
+   "choices": [
+    {
+     "say": "you've got 20 minutes and one real shot. which track do you actually believe in? start there.",
+     "next": "a1_believe"
+    },
+    {
+     "say": "six features in a three minute song is 30 seconds each. that's a hostage situation, not a collab.",
+     "next": "b1_math"
+    },
+    {
+     "say": "give them ALL the mic. 'smoove-a-thon.' six verses, back to back. let the rink decide.",
+     "next": "c1_thon"
+    }
+   ]
+  },
+  "a1_believe": {
+   "them": [
+    "...ok. real talk. track 10 is not the one. u wanna know the one. 'VAN BEAT.' no features. no horn. its me, uncle rays 4-track, and the turn signal in my moms van clicking like a hi-hat",
+    "i never played it 4 anybody. my mom heard it thru the wall and said 'turn it down' and then she just kinda stood in the hallway the whole time. thats basically a review right. is that a review"
+   ],
+   "choices": [
+    {
+     "say": "that's a review. play van beat. the brand is you, the rest is packaging.",
+     "next": "a2_van"
+    },
+    {
+     "say": "send it to me first. i'll be your first honest review, nice or not.",
+     "next": "a2_review"
+    }
+   ]
+  },
+  "a2_van": {
+   "them": [
+    "play it?? no features. no air horn. just me. thats like a rapper w/o a hat. what if its boring. what if they all come 4 the horn",
+    "ok who do i play it 4 FIRST. like before the rink. who is the person. think w/ me"
+   ],
+   "choices": [
+    {
+     "say": "play it for your mom first. she already reviewed it from the hallway.",
+     "next": "a3_mom"
+    },
+    {
+     "say": "they're coming for you. the horn is a hat. take the hat off for one song.",
+     "next": "m_catch"
+    }
+   ]
+  },
+  "a3_mom": {
+   "them": [
+    "ok so i played it 4 my mom in the kitchen. she was making tacos. she turned off the stove. she SAT DOWN",
+    "she said 'thats our van.' i said yeah. she said 'i said turn it down last time cuz i didnt want u 2 see my face.' malten. my MOM",
+    "she said shes coming friday. front row. and she's gonna click her tongue like the turn signal. she practiced. in the kitchen. it was PERFECT"
+   ],
+   "choices": [
+    {
+     "say": "then that's your closer. van beat, your mom in the front row. you're done.",
+     "next": "end_van_beat"
+    },
+    {
+     "say": "run it by vince first. make sure the rink lets you play something this quiet.",
+     "next": "m_catch"
+    }
+   ]
+  },
+  "a2_review": {
+   "them": [
+    "u r the first person who's gonna hear it. like EVER. ok. ok ok ok. i sent the link. ...u r listening rn aren't u. i can feel it",
+    "1 2 10. go. i can take it. (i cant take it)"
+   ],
+   "choices": [
+    {
+     "say": "8. the beat's a 9. the first 40 seconds is you saying 'yo yo yo.' cut that and it's the real thing.",
+     "next": "a3_honest"
+    },
+    {
+     "say": "10. no notes. play it exactly like that.",
+     "next": "a3_flatter"
+    }
+   ]
+  },
+  "a3_honest": {
+   "them": [
+    "...an 8. a 9 beat and an 8 song. ok. ok. thats the first honest review i ever got. i wanna frame it and also hide it",
+    "i timed it. the intro IS 40 seconds. i say 'yo' eleven times. one of them is just 'yooooo.' cutting it. hold on. ...done. 'van beat (radio edit).' its better. i hate that ur right"
+   ],
+   "effects": [
+    {
+     "type": "status",
+     "delay": 10,
+     "text": "smoove just cut 40 seconds of 'yo' out of a song. the song got better. the 'yo' will be missed. (it will not.)"
+    }
+   ],
+   "choices": [
+    {
+     "say": "now play it for your mom before anyone else. she has the best seat in the house.",
+     "next": "a3_mom"
+    },
+    {
+     "say": "now take it to vince. a real set needs a real closer.",
+     "next": "m_catch"
+    }
+   ]
+  },
+  "a3_flatter": {
+   "them": [
+    "a TEN. a 10?!?! no notes?? malten. ok. im printing that. im laminating it",
+    "...hm. wait. i have like 3 notes. i HAVE notes. does that mean ur lying or im bad at notes. ur the nicest person on this site and i dont trust a single 10"
+   ],
+   "choices": [
+    {
+     "say": "go with it. confidence is the whole genre. open with track 10 exactly as is.",
+     "next": "end_flop"
+    },
+    {
+     "say": "...ok. one note. the first 40 seconds. it's just you saying 'yo.'",
+     "next": "a3_honest"
+    }
+   ]
+  },
+  "b1_math": {
+   "them": [
+    "HOSTAGE SITUATION. ok. thats. thats harsh. 30 seconds each is... yeah. nikki would nightcore her 30 into 20. tony would say 'hey ;)' and thats the whole verse. gregs soundcheck is 4 seconds long",
+    "who do i cut. i cant cut nikki shes the speed. i cant cut chad hes the heart. i cant cut herp he IS the hook. kevin has a pad. greg has a band. tony has... tony. help"
+   ],
+   "choices": [
+    {
+     "say": "nobody gets cut. tell them the truth: the set got shorter. you owe each of them a verse on track 11.",
+     "next": "b2_truth"
+    },
+    {
+     "say": "tell them vince has a rink rule: one guest on stage. then pick chad. he's never lied to anybody.",
+     "next": "b2_rule"
+    }
+   ]
+  },
+  "b2_truth": {
+   "them": [
+    "ok. truth. i called them all. 5 min each. nikki said 'UNTZ.' sad. like a sad UNTZ. greg said 'just dont sample the soundcheck again.' tony said 'hey ;)' and then 'its ok man.' kevin said 'will there be a pad.' herp said herp",
+    "chad said 'GREAT JOB' and hung up. he didnt even know what i was telling him. thats chad"
+   ],
+   "effects": [
+    {
+     "type": "status",
+     "from": "nikki",
+     "delay": 12,
+     "text": "nikki is NOT mad. nikki is nightcoring her feelings. (2x.) they are still feelings."
+    }
+   ],
+   "choices": [
+    {
+     "say": "good. now ask yourself which track you actually believe in. start there.",
+     "next": "a1_believe"
+    },
+    {
+     "say": "now go lock the gig with vince. you've got your friends and your nerve.",
+     "next": "m_catch"
+    }
+   ]
+  },
+  "b2_rule": {
+   "them": [
+    "A RINK RULE. omg. thats genius. thats a lie. thats a genius lie. 'due to rink insurance only ONE guest may be on stage.' vince wont even know. ok i pick chad. hes the only person who's never lied 2 anybody. (im about 2)",
+    "posting the bulletin rn. ok its posted. ...why do i feel like i just stole a car"
+   ],
+   "effects": [
+    {
+     "type": "bulletin",
+     "delay": 3,
+     "subject": "TEEN NITE UPDATE: RINK RULES (INSURANCE)",
+     "text": "yo. due 2 RINK INSURANCE RULES only ONE (1) guest feature may be on stage friday. the rink has rules. the rules r the rules. the guest is: CHAD. sry nikki greg tony kevin herp. its not me its the rink. u r all still on track 11. (rink rules). air horn."
+    },
+    {
+     "type": "wallpost",
+     "from": "nikki",
+     "to": "smoove",
+     "delay": 40,
+     "text": "smoove. the rink rule?? vinces flyer says 'ALL WELCOME ON STAGE (MAX 6).' i can read. i am holding the flyer. UNTZ. (its a flat UNTZ.)"
+    }
+   ],
+   "choices": [
+    {
+     "say": "stick with it. it's the rink's rule now. chad will be great.",
+     "next": "b3_exposed"
+    },
+    {
+     "say": "undo it. tell the truth before the flyer gets read out loud.",
+     "next": "b2_truth"
+    }
+   ]
+  },
+  "b3_exposed": {
+   "them": [
+    "nikki found the flyer. it says nothing about rules. she put it on my wall. just the flyer. just 'UNTZ.' in a TONE",
+    "and chad found out and he said 'its ok man, i dont need to be on stage, i just like the music.' and thats WORSE. thats SO much worse. id rather he yelled"
+   ],
+   "choices": [
+    {
+     "say": "apologize in the only language you speak: a track. 'sorry (feat. everyone).' and mean it.",
+     "next": "end_sorry"
+    },
+    {
+     "say": "fix it for real: tell vince you want all six on stage and take whatever catch he has.",
+     "next": "m_catch"
+    }
+   ]
+  },
+  "c1_thon": {
+   "them": [
+    "SMOOVE-A-THON. thats. THATS ICONIC. 6 verses back to back. i'd need a name for each. hold on im writing",
+    "ok 6 x 3 mins is 18 mins. 2 mins 4 the intro. thats MATH. ...is it math. im 70% sure its math"
+   ],
+   "choices": [
+    {
+     "say": "hold a lineup meeting in the van. give each person the slot they're best at.",
+     "next": "c2_lineup"
+    },
+    {
+     "say": "keep it tight. one air horn between each verse. rhythmic.",
+     "next": "c2_horn"
+    }
+   ]
+  },
+  "c2_lineup": {
+   "them": [
+    "LINEUP: nikki = the outro at 1.5x. tony = the hook ('hey ;)' pitched down). chad = says CHAD at 1:12 (he already does it, hes a natural). greg = the soundcheck (4 sec). kevin = a 90 second DDR section. herp = 40 herps (he doesnt know yet)",
+    "kevin said he'll do it ON SKATES. hes never been on skates. he said 'rhythm is rhythm.' i said 'thats not what skates r.' he said 'sweatband.'"
+   ],
+   "effects": [
+    {
+     "type": "status",
+     "from": "kevin",
+     "delay": 10,
+     "text": "kevin is learning to skate for friday. he has the sweatband. he has fallen 11 times. he fell on beat 9 of them."
+    }
+   ],
+   "choices": [
+    {
+     "say": "lock it. call vince and make it official.",
+     "next": "m_catch"
+    },
+    {
+     "say": "add the horn. every verse ends on the horn. that's the smoove signature.",
+     "next": "c2_horn"
+    }
+   ]
+  },
+  "c2_horn": {
+   "them": [
+    "AIR HORN BETWEEN EVERY VERSE. like a 6 act play. act 1 horn act 2 horn. i own 2 air horns. 1 is for emergencies. this IS an emergency. a good one",
+    "but malten. what if its too much. like what if its just noise w/ a horn. be honest. is this the best idea ive had or the loudest"
+   ],
+   "choices": [
+    {
+     "say": "it's both. lock it and call vince.",
+     "next": "m_catch"
+    },
+    {
+     "say": "or ask yourself which of your tracks is actually yours. start there.",
+     "next": "a1_believe"
+    }
+   ]
+  },
+  "m_catch": {
+   "them": [
+    "VINCE JUST CALLED. ok. so. 3 things. 1) NO AIR HORNS. rink insurance. a real rule. a REAL one. malten the real rule is no air horns",
+    "2) i checked the RSVPs. its 14. fourteen. the first 50 r free and only 14 ppl r coming. vince said 'its gonna be HUGE' and then he said 'its gonna be 14.' he said it like a prayer",
+    "3) i go on right after couples skate. like AFTER the part where they turn the lights down and play the slow songs. ok. so. what do i DO. who am i w/o the horn"
+   ],
+   "effects": [
+    {
+     "type": "bulletin",
+     "from": "vince",
+     "delay": 8,
+     "subject": "TEEN NITE FRIDAY!!! FEAT. DJ SMOOVE (LIVE)!!!",
+     "text": "FRIDAY NITE AT THE ROLLER RINK!!! DOORS AT 7 (7:30)!!! FIRST 50 PEOPLE IN FREE!!! (so far it is 14 people) (BE THE 15th) DJ SMOOVE LIVE ON THE REAL MIC!!! this is gonna be HUGE!!! (NO AIR HORNS. rink insurance. i begged.) bring a friend. bring 2. bring ur mom. skates are $3. -vince"
+    },
+    {
+     "type": "status",
+     "delay": 20,
+     "text": "smoove is not allowed an air horn on friday. smoove is sitting down. (the horn is in its case. it is looking at him.)"
+    }
+   ],
+   "choices": [
+    {
+     "say": "play it clean. no horn. play van beat. let them hear you.",
+     "next": "end_van_beat"
+    },
+    {
+     "say": "text the 14 who RSVP'd yourself, one by one, before you decide anything.",
+     "next": "m_rsvp"
+    },
+    {
+     "say": "smuggle the horn. it's a rink. nobody checks pockets. all six get their verse.",
+     "next": "end_smoovathon"
+    }
+   ]
+  },
+  "m_rsvp": {
+   "them": [
+    "ok i texted all 14. results: 4 r my cousins. 1 is vinces mom (she RSVPd 4 him). 1 is chad. 1 is nikki (she said 'UNTZ'). 1 is my mom (she said 'ill be there at 6 im driving'). and 6 r ppl ive never met who just said 'ok.'",
+    "6 ppl i never met said ok. malten thats the most ppl who ever said ok 2 me. thats 6 ppl coming 2 hear me and they dont even know my brand. they dont know about the horn"
+   ],
+   "choices": [
+    {
+     "say": "then give those six a real song. van beat. no brand, just you.",
+     "next": "end_van_beat"
+    },
+    {
+     "say": "give them the whole circus. horn, six verses, rink lights. they'll remember it.",
+     "next": "end_smoovathon"
+    }
+   ]
+  },
+  "end_van_beat": {
+   "them": [
+    "FRIDAY. 14 ppl. well 17, the cousins brought 3 more. i opened w/ van beat. no horn. no features. my mom was in the front row and at the second verse she started doing the turn signal w/ her tongue. i didnt tell her 2. she just KNEW. she was on beat the whole time",
+    "when it ended nobody screamed. they just kinda... clapped. real clapping. chad clapped 4 like 4 minutes. vince said 'HUGE.' it was 17. it was HUGE. malten. i think im a real one. dont tell nikki i said real. she'll nightcore it"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "bulletin",
+     "subject": "FRIDAY WAS REAL (a recap) (no air horn) (still me)",
+     "text": "yo. friday happened. 17 ppl (14 + cousins). 0 air horns. 1 mom doing the turn signal w/ her tongue. i played 1 song, its called van beat, its on my music page. it has no features. nobody is on it but me and the van. i thought that would feel small. it felt like the biggest thing i ever did. thank u 2 everybody who came. thank u 2 everybody who didnt (u r on track 11 anyway). GO 2 MY MUSIC PAGE. (air horn. in my heart.)"
+    },
+    {
+     "type": "wallpost",
+     "from": "chad",
+     "to": "smoove",
+     "delay": 30,
+     "text": "SMOOVE. I went. The Van Beat was the BEST one. I Hit two doubles AFTER the show which doesn't even make sense. Great job man. I mean it. Your mom is Really nice. She gave me a taco."
+    },
+    {
+     "type": "wallpost",
+     "from": "greg",
+     "to": "smoove",
+     "delay": 55,
+     "text": "ok dude. real review since nobody gave u one: van beat is actually good. the turn signal as a hi-hat is the smartest thing on ur whole page. bryan said 'the drums are the turn signal.' hes right. he also texted me back after. coincidence? yes."
+    },
+    {
+     "type": "status",
+     "from": "vince",
+     "delay": 80,
+     "text": "vince is booking dj_smoove AGAIN for teen nite. 17 people came. 17 is a number. it's gonna be HUGE. (it's gonna be 20.)"
+    }
+   ]
+  },
+  "end_smoovathon": {
+   "them": [
+    "FRIDAY. the horn went off at 8:47 in the middle of nikkis outro. it was the most beautiful sound i ever heard. security came. security LEFT. i think they liked it",
+    "all six did their verse. tonys 'hey ;)' pitched down shook a light loose. kevin fell on beat 9 times (he counted). chad said CHAD at exactly 1:12 and the whole rink said it back. 31 ppl came. vince said 'HUGE' and for once he was right and ALSO the rink is banning the horn. both things r true"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "bulletin",
+     "from": "vince",
+     "subject": "NEW RULE AT THE ROLLER RINK: NO AIR HORNS (THIS IS BECAUSE OF SMOOVE)",
+     "text": "ok so friday. 31 PEOPLE. that is the most people at teen nite EVER (the old record was 22 and it was a fire drill). it was HUGE. it was also LOUD. effective immediately: NO AIR HORNS. NO SKATE-DDR. NO 'HEY ;)' ABOVE 80 DECIBELS. dj smoove is not banned (he is banned from the HORN). teen nite is BACK NEXT FRIDAY. -vince"
+    },
+    {
+     "type": "wallpost",
+     "from": "nikki",
+     "to": "smoove",
+     "delay": 25,
+     "text": "UNTZ. SMOOVE. we nightcored the ROLLER RINK. i went 1.5x on the last verse and 3 ppl fell down HAPPY. track 11 is mine. ive already sped it up. UNTZ UNTZ."
+    },
+    {
+     "type": "status",
+     "from": "kevin",
+     "delay": 50,
+     "text": "kevin did a DDR section on roller skates. he has never been on skates. he was on the floor for 40 of his 90 seconds. the sweatband stayed on. it was heavy."
+    },
+    {
+     "type": "wallpost",
+     "from": "tony",
+     "to": "smoove",
+     "delay": 75,
+     "text": "hey ;) my 'hey ;)' pitched down is the best part of the song and i will not be taking questions. a girl at the rink said 'ok that was kinda cool.' i am walking on air. (it was the rink. the floor is very smooth.)"
+    }
+   ]
+  },
+  "end_sorry": {
+   "them": [
+    "ok so. i made the track. 'sorry (feat. everyone).' it has everyones name in it. its 2 minutes. no hook. just me saying sorry 11 times in a row, each one a different pitch. nikki said it was the worst hook she ever heard and she listened 4 times",
+    "the show was fine btw. 14 ppl. chad was on stage and the other 5 sat in the front row w/ signs they made that said BOOO (affectionate). nikkis said 'UNTZ (BOOO).' the lie is gone. i feel like a guy who told the truth. i'd recommend it. 9 out of 10. not a 10. i dont trust a 10 anymore"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "bulletin",
+     "subject": "SORRY (a track) (feat. everyone) (for real this time)",
+     "text": "there was no rink rule. i made it up cuz i didnt wanna cut anybody and then i cut everybody and thats worse. nikki, tony, chad, greg, kevin, herp: ur all on track 11. its an apology track. it has no air horn. (it has one air horn. its tiny.) sry. -smoove"
+    },
+    {
+     "type": "wallpost",
+     "from": "nikki",
+     "to": "smoove",
+     "delay": 30,
+     "text": "smoove. u could've just SAID. im sped up and still not fast enough to fix it. ok it's a good apology. UNTZ. (slowly.)"
+    },
+    {
+     "type": "status",
+     "from": "chad",
+     "delay": 60,
+     "text": "chad is Not mad at smoove. Chad does not know how. Chad listened to the Sorry track before practice and hit a Triple."
+    }
+   ]
+  },
+  "end_flop": {
+   "them": [
+    "ok so. it was fine. 14 ppl clapped. 3 of them skated backwards during the intro. i said 'yo' for 40 seconds and a little kid asked his mom if i was done",
+    "greg came up after and said 'real talk? the intro is a lot.' u said 10. i trust a 7 now. nobody said 7. ok im gonna go count 2 40. (chad said 'GREAT JOB' tho. chad is a wall. a nice wall)"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "status",
+     "text": "smoove got his first honest review today. it was 4 sentences. he has read it 11 times. he is fixing the intro. (the intro was 40 seconds.)"
+    },
+    {
+     "type": "wallpost",
+     "from": "greg",
+     "to": "smoove",
+     "delay": 25,
+     "text": "dude. real review: the beat is good. the first 40 secs is you saying 'yo.' cut it. also 'feat. everyone' is fun but a hook is not just a list of names. bryan said 'the drums were fine.' he said it like a compliment. i checked."
+    },
+    {
+     "type": "wallpost",
+     "from": "chad",
+     "to": "smoove",
+     "delay": 50,
+     "text": "SMOOVE great job!!! I Loved it. I hit 2 doubles before practice. u were On Time. u should do more of these! 10 out of 10"
+    }
+   ]
+  }
+ }
+}

@@ -1,0 +1,299 @@
+{
+  "id": "dmitri",
+  "name": "de_dust_dmitri",
+  "tag": "[pwn] dmitri. 1.6 only. rush B. don't stop. don't ask. rush B.",
+  "avatar": "assets/avatar_dmitri.gif",
+  "gender": "Male",
+  "age": 17,
+  "hometown": "Duluth, Minnesota (the lift bridge side)",
+  "loc": "ZeroPing Internet Cafe, pc 7 (back row, by the heater)",
+  "zodiac": "Scorpio (starxgazer says scorpios rotate late. i do not rotate late. i rotate EARLY)",
+  "status": "Single (a girl at the cafe register said 'nice score.' i said 'thanks.' it's going well)",
+  "hereFor": "Friends, scrims, a 5th for [pwn] (must own a mic. must not breathe into it)",
+  "mood": "caffeinated (2 cans. mom's limit. 'which kind')",
+  "lastLogin": "Oct 4 2026 1:47 AM",
+  "theme": {
+    "bg": "#262d1f",
+    "fg": "#ebe3c6",
+    "accent": "#ff9a1f"
+  },
+  "bgTile": "assets/tiles/tile_bolts.png",
+  "blogTitle": "ZeroPing logbook: hours, frags, drinks (vol. 3)",
+  "about": "dmitri. 17. [pwn]. counter-strike 1.6. not source. source is for people who like nice smoke. i play at zeroping internet cafe, duluth, second floor above a dry cleaner. $2 an hour. 14 machines. pc 7 is mine. back row. by the heater. my map is dust2. i have rushed B an estimated 4,000 times. win rate 61%. i do not know why it works. nobody does. do not ask me to stop. i also keep the cafe's books, wipe the keyboards with compressed air at 6am, and once drank 4 energy drinks in one school day. nurse called home. my mom said 'which kind.' respect.",
+  "aboutMore": "rules at my table. one: nobody gets flamed. two: nobody gets kicked. three: the new guy gets the AWP for one round. the first time i hit a headshot with it i forgot to breathe. everybody should get that. the mic is for callouts only. 'two long' is a callout. 'mom says dinner' is also a callout. i accept both. need a fifth for [pwn]? message me. must own a mic. must not say 'wallhack' unless you can show me the wall.",
+  "meet": "Who I'd like to meet: whoever drew the dust2 B tunnel (i would say thank you. then i would ask why it's so narrow). the guy who invented the AWP. one person who has beaten me 1v1 and wants to talk about it calmly. and dave. in person. i want to see the wallhack.",
+  "interests": {
+    "General": "counter-strike 1.6, rushing B, eco rounds (saving is a lifestyle), keyboard maintenance, compressed air, the cafe logbook, energy drink tasting notes (scored /10), ping (mine: 38), the warm floor by pc 7, helping new guys, being quiet at 6am, spreadsheets for the clan",
+    "Music": "system of a down (chop suey is a round start), linkin park (lucas and i do not discuss it), rammstein (my cousin burns me the cd. i don't know what they say. i know when it's loud), sandstorm (dave plays it. i allow 30 seconds), the one radio station at the cafe (3 songs, on a loop)",
+    "Movies": "the matrix (the lobby scene is a 5 man entry. paused it 11 times), enemy at the gates (it's about a sniper. i took notes), the hunt for red october (my dad's. we say the lines in russian), ocean's eleven (everybody has a role. i respect roles)",
+    "Television": "mythbusters (they test things. i test things. same department), the discovery channel ship shows (lake superior freighters. i know their names), the weather channel on mute at the cafe (it's always snowing), nothing on school nights",
+    "Books": "the zeroping logbook (current volume: 3. author: me), the manual that came in the counter-strike box (page 14 is the AWP. it's two sentences), my dad's chess book (he taught me. he still wins. i don't tell him how close it is), a math book i don't have to read and read",
+    "Heroes": "my mom (runs the dry cleaner downstairs. i can feel her ironing through the floor), my dad (chess, freighters, the same three stories at dinner, all of them true), mr. fenner (owns zeroping. 70. does not know what ping is. knows every regular's name and what they owe), lars (9 frames per second and never once blamed the map)"
+  },
+  "song": {
+    "name": "Chop Suey!",
+    "artist": "System Of A Down",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/99/1f/74/991f74a5-0f17-bf20-7c10-7150ccb452de/mzaf_6639234409564144843.plus.aac.p.m4a",
+    "pattern": [
+      0,
+      0,
+      3,
+      0,
+      5,
+      3,
+      0,
+      -2
+    ],
+    "bpm": 135
+  },
+  "decor": [
+    "assets/badge_coffee.gif",
+    "assets/deco_skull.gif"
+  ],
+  "friends": [
+    "dave",
+    "hunter",
+    "lars",
+    "rick",
+    "wes",
+    "gary",
+    "todd",
+    "kyle"
+  ],
+  "wall": [
+    {
+      "from": "dave",
+      "text": "d1mitri i checked ur cafe wifi. no password. i didnt hack it, i just typed 'zeroping.' it counts. its going in my portfolio (its a folder called taxes)",
+      "time": "Oct 2 2026 11:14 PM"
+    },
+    {
+      "from": "hunter",
+      "text": "dmitri 1v1 me on lockout. i'll send a montage first so u know whats coming (11 min, the intro is 4 of them). dont be scared its just halo",
+      "time": "Sep 29 2026 4:48 PM"
+    },
+    {
+      "from": "rick",
+      "text": "Dmitri. 39 of 40 slots are filled for Tuesday. I need one more body in front. You don't play. You don't have to. You say 'hold this position' like a man who means it. 8 PM server time. You are line 31 on the sheet. Your DKP is zero and that is an honor.",
+      "time": "Sep 24 2026 7:10 AM"
+    },
+    {
+      "from": "kyle",
+      "text": "dmitri ur the guy who gave me the AWP round?? i shot the wall the ENTIRE round. it was the BEST DAY OF MY LIFE. do u know any cheat codes 4 aim. g2g my mom is on the stai",
+      "time": "Sep 19 2026 8:31 PM"
+    },
+    {
+      "from": "gary",
+      "text": "Dmitri, re: your clan page. Under 'Weapons' the AWP is listed at $4570. It is $4750 (transposed digits). Please correct. Source: my CS 1.6 Buy Guide, v2.1, section [3.1]. Please do not cite [4.2b]. It is from a different guide, it was wrong, and I keep having to say so. -- Gary",
+      "time": "Sep 11 2026 9:45 PM"
+    },
+    {
+      "from": "doug",
+      "text": "dmitri i started counter strike. it took 3 hours to load. i got to the buy menu. i bought the pistol. the round was over. i am fine. i am very proud. the loading screen is the nicest thing i have seen in months. my mom is about to pick up the ph",
+      "time": "Sep 6 2026 7:29 PM"
+    },
+    {
+      "from": "marcus",
+      "text": "Dmitri. Re: your clan's three rules (no flaming, no kicking, new player gets the AWP once). I have reviewed them. Rule 3 is the only rule I have ever read that I did not want to amend. Request permission to cite it. -- Marcus, Moderator (unofficial)",
+      "time": "Aug 28 2026 10:02 PM"
+    },
+    {
+      "from": "wes",
+      "text": "dmitri you have 14 CRTs and 100hz and nobody calls that showing off?? i'm driving to duluth. i'll bring a 15th. it's a trinitron. it has a name. its name is also wes",
+      "time": "Aug 15 2026 1:26 AM"
+    }
+  ],
+  "replies": [
+    "copy.",
+    "roger that.",
+    "negative. but i respect it.",
+    "reading. one sec. ...'DIMA.' ...ok back. what.",
+    "nice. enemy down.",
+    "i read it twice. once for words. once for callouts.",
+    "hold this position. i'm going to think about that.",
+    "gg. one more.",
+    "you take the point on this one. i'll cover you.",
+    "stick together. i'm slow to reply. mom called me down for dinner.",
+    "fall back. regroup. try again. i mean that nicely.",
+    "sector clear."
+  ],
+  "thanksAdd": "added. welcome. you're on my team now. three rules: no flaming. no kicking. new guy gets the AWP once. say 'rush B' and i'll know you're serious. sector clear.",
+  "ambient": [
+    "6am. 14 keyboards wiped. pc 9 had a french fry under the G. i do not know whose. i know when.",
+    "mr. fenner put a new rule on the wall. he wrote it on a napkin. 'no shouting after 11.' he has never been here after 10. i love him.",
+    "tried the new blue energy drink. entered in the book. the book now has a whole page for blue ones. there are 3 so far. i have concerns.",
+    "two new kids at the cafe today. gave both the AWP round. one shot the ceiling. one shot the floor. both smiled. good day.",
+    "mom is ironing downstairs. floor is warm. pc 7 is warm. i am warm. best seat in duluth.",
+    "the lift bridge horn just blew. that's a round start. i bought armor. don't ask."
+  ],
+  "saltyDm": "denied. copy. fall back. no hard feelings. if you're ever in duluth, pc 8 is open. the W key sticks. that's not a bug. that's character. rush B.",
+  "keywords": {
+    "rush": "rush B. don't stop. don't look at the clock. 61% win rate. i do not know why it works. nobody does.",
+    "dust2": "long A, short A, B tunnels, mid doors. 4,000 rounds. i could do it asleep. i have done it asleep. mom found me at pc 7 at 6am with my hand on the mouse. i was up 11-4.",
+    "awp": "$4750. new guy gets one round with it. it's a rule. the first time you hit a headshot you forget how to breathe. everybody should get that.",
+    "energy": "tasting notes in the logbook, scored out of 10. my mom's limit is 2 a day. the nurse's limit is 'please.' i have a framed note. ask me about the framed note.",
+    "cafe": "zeroping. second floor above the dry cleaner. $2 an hour. 14 machines. pc 7, back row, warm floor. mr. fenner runs it. he thinks ping is a sound.",
+    "cheat": "show me the wall.",
+    "mom": "dry cleaner downstairs. the press is right under pc 7. i can feel her ironing. 'DIMA.' that's dinner. everybody on the floor stops playing.",
+    "linux": "lars brought it to the cafe. 9 fps on dust2. looked at the floor the whole match. said 'it's playable.' i respect that more than a headshot."
+  },
+  "banter": {
+    "dave": [
+      "dave you said you can wallhack. show me the wall. i have been waiting since august. i brought a flashlight.",
+      "dave your LAN has a rule: no energy drinks after 9. that's not a LAN. that's a library with extension cords. i respect your mom. i do not respect the rule.",
+      "dave i pinged your 'firewall.' 71. the reply came back saying 'ur firewall is ur heart.' roger that."
+    ],
+    "wes": [
+      "wes 8 CRTs. zero lag. the cafe has 14 CRTs at 100hz. mr. fenner won't switch to flat screens. he says they look like the future's bathroom mirror. you two should meet.",
+      "wes you said melee has no randomness. cs has spread. all of it is spread. you control it with patience. that's the same as wavedashing. it isn't. but i believe in you."
+    ],
+    "patrick": [
+      "patrick you got the new guy AWP round. you shot the wall. the wall is fine. you are fine. best shot of the day.",
+      "patrick the rock can have a slot on [pwn]. no mic needed. rocks hold an angle all day. best defender i know."
+    ],
+    "hunter": [
+      "hunter. 'lockout.' that's halo. i don't know halo. i know 1.6. you said 'scared.' i said 'of what.' we sat there. sector clear.",
+      "hunter i watched your montage. 14 clips. same rocket 3 times. it's a good rocket. i'd keep it."
+    ],
+    "rick": [
+      "rick you run 40 players. i run 5. you have spreadsheets. i have callouts. same job. stop one guy going the wrong way alone.",
+      "rick you stock shelves at night. i wipe keyboards at 6am. same department. tell the guild i said ok. i will stand in front. don't tell [pwn]."
+    ],
+    "gary": [
+      "gary your buy guide rates rush B 'situational.' situational. 4,000 rounds on tape. you say 58.7, i say 61. close enough. come to the cafe. i'll show you the situation.",
+      "gary i fixed it. $4750. there's a post-it on my monitor with the number. the post-it says 'per gary.' i am not joking. you're in my credits.",
+      "gary you answer in 6 minutes. your page says 48 hours. mr. fenner wants to hire you. he asked if you could also explain what ping is. i said you have a 79 column explanation."
+    ],
+    "lars": [
+      "lars 14 fps with the walls off. 'i know where they are.' that is a reverse wallhack. i'm putting it in the book.",
+      "lars next LAN you get the heater seat. pc 7. 14 fps if you stand very still. mr. fenner asked what linux is. i said 'the one with the bird.' he nodded like a man who understood."
+    ]
+  },
+  "statuses": [
+    "dmitri is at zeroping. pc 7. do not tap the glass.",
+    "dmitri just rushed B. 61% still holding.",
+    "dmitri rated the new blue energy drink: 5/10. entered in the book.",
+    "dmitri is wiping 14 keyboards. there is a french fry. there is always a french fry.",
+    "dmitri is on an eco round with his allowance. 3 weeks of saving. then one force buy. a mouse pad.",
+    "dmitri gave a new guy the AWP round. he shot the ceiling. new best friend.",
+    "dmitri heard 'DIMA.' match paused. everybody on the floor knows it means dinner.",
+    "dmitri says the snow is 14 inches and the cafe is open. all hands. mr. fenner brought soup.",
+    "dmitri notes that SOME people typed 'wallhack' and then could not show him the wall. dave. i am saying dave."
+  ],
+  "bulletins": [
+    {
+      "subject": "[pwn] RECRUITING: need a 5th. read ALL the rules first",
+      "body": "[pwn] needs a fifth. current roster: me (dmitri), oleg (my cousin), beans (headset has a hole in it, still hears everything), tripp (quiet. lethal), and a seat that rotates through whatever kid walks in. rules. 1) no flaming. 2) no kicking. 3) the new guy gets the AWP for one round. 4) mic is for callouts. 5) if you die say gg. 6) if mom calls, you go. we pause. we wait. we are not animals. practice is zeroping, pc 5 through 9, thursday 6pm, $2 an hour and you pay your own. sector clear."
+    },
+    {
+      "subject": "ENERGY DRINK TASTING NOTES vol. 3 (scholarly)",
+      "body": "scored out of 10. all logged in the book. RED BULL: 7. the classic. a handshake in a can. MONSTER (green): 6. loud. says a lot. does not listen. JOLT: 4. tastes like a battery that regrets things. CODE RED: 8. technically a soda. i allow it. BLUE ONE (new): 5. a swimming pool that had a dream. SUGAR FREE (silver): 3. tastes like a pencil case. NOTE FROM MY MOM: 'two a day.' NOTE FROM THE NURSE: 'please.' both are above pc 7. i am a scholar. i obey the notes."
+    },
+    {
+      "subject": "ZEROPING HOURS UPDATE (from the desk, for Mr. Fenner)",
+      "body": "new hours. mon-fri 3pm to midnight. sat 10am to 2am. sun 12pm to 9pm. saturday is $5 all day. please keep gum off the keys. please do not microwave the fish sticks near pc 11, it is a smell that travels. the cafe cat (his name is Latency) is not a customer. please do not charge him. mr. fenner wants everyone to know that he is not a computer person, he is a people person, and that if your account has a problem you should come and see him with the problem on a napkin. - D (typing for mr. fenner, who is standing behind me)"
+    }
+  ],
+  "pcComments": [
+    "good angle. holding it. nobody's rushing you. nice.",
+    "who took this. steady hands. i'd put them on the AWP.",
+    "ping check: this pic loaded in 38. clean.",
+    "no flash. no scope glare. 9/10. minus 1 for the thumb in the corner.",
+    "enemy spotted. it's a cute dog. cease fire.",
+    "good composition. smoke on the left, cover on the right. you know what you're doing."
+  ],
+  "dmSeed": [
+    {
+      "text": "welcome. dmitri. [pwn]. i saw you joined. you play? 1.6? if not it's ok, i'll teach. first rule: no flaming. second rule: i'll remember. third rule: rush B."
+    },
+    {
+      "text": "no reply. copy. standing by. mom called. back in 20."
+    }
+  ],
+  "dms": [
+    "malten. mr. fenner at the cafe asked me what 'ping' means. i said 'how long the computer waits to hear back.' he said 'like my daughter.' i have not been able to focus since.",
+    "the floor under pc 7 is warm. that's my mom pressing shirts downstairs. i can tell what she's pressing by how fast she goes. fast is a wedding. slow is a suit for a funeral. today was fast. somebody is getting married. good day for the floor.",
+    "update: i got a note from the nurse about energy drinks. it says 'please limit.' i wrote 'noted' on it and framed it. it hangs above pc 7. the regulars signed it. beans drew a heart. i don't know what it means. i'm keeping it.",
+    "14 inches of snow. the cafe stayed open. 6 guys walked in at 9am through a blizzard. we played 11 hours. nobody went home. mr. fenner brought soup. best LAN in the history of duluth. nothing happened. nobody said anything. it was perfect.",
+    "my dad beat me at chess last night. three moves from the end he said 'you are rushing B.' i didn't know he knew that phrase. i asked who told him. he said 'your mother.' i asked who told HER. she was in the kitchen. she did not turn around.",
+    "a kid came in today. 9 years old. asked for 'the shooting game.' i put him on pc 5 and sat next to him. after a round he asked if the people in the game were real. i said some of them are. he said 'which ones.' i could not answer. it has bothered me for four hours.",
+    "malten what is a good way to say sorry to a keyboard. i spilled a whole blue energy drink on pc 3 and the Q key will not stop sticking. it used to be the best key on the floor. i put it in the logbook. 'Q: lost in action.'",
+    "got a 94 on the math test. teacher said 'impressive.' i said 'thanks, i do the cafe's books.' she said 'the what.' it's mostly decimals and french fries. i didn't explain. it feels good to have a secret job."
+  ],
+  "blog": [
+    {
+      "title": "how to rush B (a guide from a guy who has done it 4,000 times)",
+      "date": "Sep 30 2026 11:52 PM",
+      "mood": "focused",
+      "body": "step 1. buy armor. the vest. not the helmet. you'll thank me. step 2. check the clock. it doesn't matter. check it anyway. step 3. count in your head. 3. 2. 1. you're already going. step 4. do not stop. stopping is how you die. step 5. if there's a smoke, go through the smoke. smoke is just a door that argues. step 6. do not look at your teammates. look at B. step 7. if the whole team rushes you will all arrive together, which is the whole plan and also the whole problem. step 8. plant. step 9. if you die, say gg. the guy who got you is somebody's kid and probably also waiting for his mom to call him for dinner. step 10. repeat. 4,000 times. you'll get 61%. nobody knows why. i stopped asking in the spring."
+    },
+    {
+      "title": "zeroping logbook, vol. 3 (selected pages)",
+      "date": "Sep 16 2026 6:14 AM",
+      "mood": "tired but good",
+      "body": "TUE. 14 machines. 11 occupied. pc 3 smells like pickle. cause: pickle. fixed. WED. pc 9 had a french fry under the G. i do not know whose. i know when. THU. new kid, 9 or 10. called pc 5 'the shooting TV.' gave him the AWP round. he shot the ceiling. he smiled for 9 minutes. FRI. snow. 6 inches. 3 regulars through the door by 3:05. mr. fenner made tea in the cup that says WORLD'S OKAYEST GRANDPA. SAT. mr. fenner asked me if he should retire. i said who would know what the clock is. he laughed for a long time. i wrote 'no' in the log. i underlined it. twice."
+    },
+    {
+      "title": "why the new guy gets the AWP (a short one)",
+      "date": "Aug 22 2026 10:20 PM",
+      "mood": "serious",
+      "body": "people ask. so here it is. the first time i ever got a headshot with the AWP, it was a lucky one. i had zoomed in on a door for 2 minutes. a guy walked into the door. bang. he fell. i did not breathe for about thirty seconds. i sat there with the zoom still on, looking at an empty doorway like it was a painting. nobody told me i could keep the feeling. so i make sure every new guy gets one round. they will miss. that's fine. they will shoot a wall. that's fine. but one in ten hits, and when it does i look over and i can see them forget how to breathe. that's the whole rule. that's why it's a rule. that, and the AWP is $4750 and i'm not buying it for myself."
+    }
+  ],
+  "survey": {
+    "title": "THE LAN CAFE SURVEY (copy paste fill in)",
+    "qa": [
+      [
+        "Name / clan tag:",
+        "dmitri. [pwn]"
+      ],
+      [
+        "Favorite map:",
+        "dust2. 4,000 rounds. i could do it asleep. i have."
+      ],
+      [
+        "Favorite weapon:",
+        "the AWP. i give it to the new guy and play the scout instead. my mom saw it in a screenshot and said 'the little telescope.' she's right."
+      ],
+      [
+        "Ping:",
+        "38. 41 on the day mr. fenner plugged in the space heater"
+      ],
+      [
+        "Drink of choice:",
+        "red bull (7/10) and code red (8/10). limit: 2. 'which kind.'"
+      ],
+      [
+        "Longest session:",
+        "11 hours. snowstorm. no one left. soup."
+      ],
+      [
+        "Worst teammate you ever had:",
+        "me, 3 years ago, flaming a kid named beans. he said 'ok.' he is now my best friend. i'm sorry beans."
+      ],
+      [
+        "Best round ever:",
+        "clutch 1v3 on inferno. no one saw. no demo. it exists. i remember."
+      ],
+      [
+        "What do you say when you win:",
+        "gg."
+      ],
+      [
+        "What do you say when you lose:",
+        "gg. one more."
+      ],
+      [
+        "What's your mom's favorite phrase:",
+        "'DIMA.' one word. it can mean anything. it always means dinner."
+      ],
+      [
+        "Last thing you bought:",
+        "a cloth mouse pad. it has a seam. it's perfect."
+      ],
+      [
+        "Describe yourself in one sentence:",
+        "i rush B, i wipe the keyboards, i keep the logbook, and i never kick the new guy."
+      ]
+    ]
+  }
+}

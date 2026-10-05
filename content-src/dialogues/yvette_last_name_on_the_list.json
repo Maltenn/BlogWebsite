@@ -1,0 +1,250 @@
+{
+  "id": "yvette_last_name_on_the_list",
+  "with": "yvette",
+  "opener": [
+    "malten. It is 10:47 PM on a Thursday. Ballots close tomorrow at 3:00 PM and I am in Room 112 with a granola bar, a steel ruler and a problem.",
+    "The Ghost List is down to ONE name. It was 61 in September. I have found people in the band room, the library and a freshman bathroom (long story, he's the photo editor now). One name left. Garrett Pell.",
+    "My opponent. He appears in exactly one photograph in this yearbook: the Free Pizza Friday sign-up table, shot from behind. You can see his ear. The Rule of Two says he gets a second photo. The Night Before The Election says I should ask somebody calm what to do. (Briefly. It is 10:47.)"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "he's a student. the rule has no asterisk. take the photo.", "next": "a_rule" },
+        { "say": "hold on. is the ear at least in focus? 'once and a half' might be a loophole.", "next": "b_ear" },
+        { "say": "catch him mid-slice at the pizza table. caption: 'funded to 7%.' page 61. big.", "next": "c_caption" }
+      ]
+    },
+
+    "a_rule": {
+      "them": [
+        "Correct. Annoyingly. I knew that. I needed it said by someone who is not me, at 10:49 PM, with granola in my hair.",
+        "Now the logistics, which is where it gets ugly. I can't photograph him tonight. I have a camera. I do not have him. His number is in the student directory, which means CALLING A CANDIDATE after ten on a school night to say 'hello, I need your face.' The handbook is silent on this. Silence is not permission. Silence is an invitation to be careful."
+      ],
+      "choices": [
+        { "say": "just ask him. 'i need your face for four seconds. it's yearbook, not politics.'", "next": "a_ask" },
+        { "say": "write it out first. twelve words. you love twelve.", "next": "a_draft" }
+      ]
+    },
+
+    "a_draft": {
+      "them": [
+        "Drafting. A message to an opponent should be the length of a caption. Attempt one: 'Garrett, you appear in the yearbook once. The rule says twice. May I?' Count: thirteen. I'm one over. I have never been one over.",
+        "Attempt two is polite, accurate, and fifteen. I don't know how to be polite in under fifteen. Is that something I can fix by Friday."
+      ],
+      "choices": [
+        { "say": "keep the 'may i.' thirteen is a fine number. be one over, for once.", "next": "a_ask" },
+        { "say": "make it fifteen. add a 'please.' he'll know a person wrote it.", "next": "a_ask" }
+      ]
+    },
+
+    "a_ask": {
+      "them": [
+        "Sent. He answered in forty seconds, which means he is awake, which is the first thing the two of us have ever had in common.",
+        "Transcript, for the record. He: 'sure. do I have to bring anything.' Me: 'no.' He: 'do I have to smile.' Me: 'that is up to you.' He: 'ok. I'm up redoing my budget anyway.' Then: 'am I only in the book once?'",
+        "I wrote 'yes.' He wrote: 'oh. I figured you might leave me out. for the vote.' malten, I didn't write back for eleven seconds. I counted them. I don't know why those eleven seconds happened. I do not leave people out. It is the one thing I do."
+      ],
+      "choices": [
+        { "say": "say it back to him in one sentence: nobody gets left out on your watch. that includes him.", "next": "a_where" },
+        { "say": "tell him you were never going to. then ask where he wants the photo taken.", "next": "a_where" }
+      ]
+    },
+
+    "a_where": {
+      "them": [
+        "Sent. (I asked where regardless. I am incapable of not asking where.) Not the gym. Not the cafeteria, where the pizza table lives. He wrote: 'by the second floor fountain. the one that doesn't work yet.'",
+        "I said 'that's Plank 3.' He said 'I know. I read the whole platform. it's the best one.' malten. Nobody has read the platform. Todd called it 'structured.' My own mother skimmed it for the word 'casserole.'",
+        "Then: 'I'm not going to win. I ran because nobody else would and I like pizza. I'd just like to stand next to the thing you're right about.' I have written nine drafts of a platform. I have never once written a sentence like that."
+      ],
+      "effects": [
+        { "type": "status", "delay": 8, "text": "yvette is photographing her opponent tomorrow at 2:50 PM. second floor. by the fountain. she has run the numbers four times. nobody asked her to" }
+      ],
+      "choices": [
+        { "say": "that's the nicest thing an opponent has ever said. so do it right. plan the sixty seconds.", "next": "crux" },
+        { "say": "he could be playing you. but a guy beside a broken fountain is a good photo either way.", "next": "crux" }
+      ]
+    },
+
+    "crux": {
+      "them": [
+        "Okay. The plan, in order. 2:50 PM, second floor, the fountain. Photo: four minutes. Two flights down to Room 112: ninety seconds. Swap the proof on page 114: two minutes. Ballots close at 3:00. The ladder locks at 3:01.",
+        "It works if nobody blinks. Garrett blinks. I have the retake sheet. He blinks like it's a hobby.",
+        "Mr. Dombrowski's position is 'good enough.' Mine is 'no.' I have never had to choose between them, because I'm early. Tomorrow there might not be slack. What do I do."
+      ],
+      "choices": [
+        { "say": "good enough, on time. shoot it fast, say thank you, make the deadline. he's still in the book twice.", "next": "shoot_fast" },
+        { "say": "as many takes as it needs. a blink isn't page 114. the ladder can wait a minute.", "next": "late_takes" },
+        { "say": "make it a debate instead. milk crate, two candidates, twelve words each. the debate IS the photo.", "next": "debate_set" }
+      ]
+    },
+
+    "shoot_fast": {
+      "them": [
+        "...'Good enough.' I want it noted that it hurt to type. Okay. Good enough. On time.",
+        "It's 2:49. I'm at the fountain. He's already here, leaning on the dead button like it owes him money. His sash is crooked. I'm not going to fix his sash. (I'm going to fix his sash.) Three frames. One blink. I did NOT say 'one more.' I said 'thank you.'",
+        "And now he's holding my camera out to me. 'your turn.' I'm the editor, malten. The editor is in the book once: page 3, on the end, blurred because Gerald jammed. He said 'Rule of Two.' He said it like a person who read it."
+      ],
+      "choices": [
+        { "say": "hand him the camera. the rule cuts both ways.", "next": "end_good" },
+        { "say": "hand it over. and do not say one word about the horizon.", "next": "end_good" }
+      ]
+    },
+
+    "late_takes": {
+      "them": [
+        "'As many takes as it needs.' ...Yes. That is the right answer and the wrong answer and I knew which one I'd pick.",
+        "2:49. Take one: blink. Take two: fountain dust, he sneezes. Take three: Mr. Henderson walks past asking if this is the egg drop, and he is IN the frame, and he thanks me. Take four. It's perfect. It's 3:00:40. The shoebox is two flights down.",
+        "I'm standing here holding a camera in one hand and the page 114 proof in the other, and for the first time in my life the clock has gotten ahead of me. malten. What do I DO."
+      ],
+      "effects": [
+        { "type": "status", "delay": 5, "text": "yvette is on the second floor with a perfect photograph of her opponent and about 20 seconds of slack. she has never been this far into a deadline. she says it's like standing 4 feet from the edge of a very organized cliff" }
+      ],
+      "choices": [
+        { "say": "run. stairs, two at a time. you have the shot and the shot is worth it.", "next": "end_late" },
+        { "say": "call dombrowski from the hall phone. ask for the minute. tell him it's the rule.", "next": "end_late" }
+      ]
+    },
+
+    "debate_set": {
+      "them": [
+        "A DEBATE. At the fountain. Two candidates, one milk crate (it lives in the boiler room next to the sprinkler clipboard; we've met). Twelve words per answer. One minute each. Paige photographs it. She'll tilt it. She'll say it's 'on the record.'",
+        "I need a moderator with no ballot and no bias. Mr. Henderson has a whiteboard and a timer shaped like an egg. Marcus has asked three times and is, I suspect, typing right now. malten, that would be the best thing to ever happen to this election. It would also be a disaster with a gavel. Say it out loud so I know which."
+      ],
+      "choices": [
+        { "say": "send the challenge. 'twelve words. 2:50. the crate.' let him say yes.", "next": "end_joint" },
+        { "say": "too much for one afternoon. save the debate for next year. just do the photo.", "next": "shoot_fast" }
+      ]
+    },
+
+    "b_ear": {
+      "them": [
+        "In focus. Level horizon. It is, I'm sorry to say, a very good ear. Paige would call it 'honest.' I framed it myself in September for a page I never used.",
+        "But no. An ear is a RUMOR of a photograph. If a student's entire presence in 192 pages is an ear, I've failed the Rule, and the Rule is the only one I'm not allowed to break.",
+        "Though I'm aware that if I photograph him, my opponent gets a second picture in a book 400 people will hold for forty years. And I'd be the one who put it there."
+      ],
+      "choices": [
+        { "say": "then you put him there. the book says 'you were here.' that was your own post about it.", "next": "a_rule" },
+        { "say": "or send the pie chart tonight and let the ear be a cameo. you said the chart speaks for itself.", "next": "d_chart" }
+      ]
+    },
+
+    "c_caption": {
+      "them": [
+        "'Funded to 7%.' That's three words. A caption is twelve. I'm counting. I hate that I'm counting.",
+        "'Garrett Pell, mid-slice, funded to seven percent. The class treasury weeps quietly.' Twelve. TWELVE. It fits. I do have the frame: slice at his mouth, eyes closed, the best-composed photograph of a candidate I've ever taken. It's perfect and it's a trap.",
+        "malten. I just wrote a perfect caption about being mean. What does that say about me."
+      ],
+      "choices": [
+        { "say": "it says you're good at this. spend that skill on a nice message to him instead. ask for the photo.", "next": "a_draft" },
+        { "say": "run it. caption, ear, pie chart, all of it. dombrowski says 'good enough.'", "next": "d_chart" }
+      ]
+    },
+
+    "d_chart": {
+      "them": [
+        "Then it's the Final Pie Chart. Draft one was technically accurate and slightly cold. Draft two is the same chart in a bigger font with the sentence 'Judge for yourself.' (That is a threat in a polite font.)",
+        "If I send it, it's true. Every number is audited. The treasury holds $1,212 and a button. It would also land at 11:03 PM, the night before, when Garrett can't answer with a pie chart of his own because he doesn't own one. He owns a pizza."
+      ],
+      "choices": [
+        { "say": "send it. every number's yours and every number's true. math isn't mean.", "next": "d_send" },
+        { "say": "sleep on it. take his picture first, then decide about the chart.", "next": "a_rule" }
+      ]
+    },
+
+    "d_send": {
+      "them": [
+        "Sent. It's a bulletin. It's live. It has a pie chart in words: 7% pizza, 93% 'where does this come from.' Every number is correct.",
+        "Forty-one seconds. Marcus has already replied: 'Rule 7: charts are campaigning.' Rule 7 was written at 11:03 PM. The Ghost List has one name in it. I'm looking at the green folder. It's a very thin folder."
+      ],
+      "effects": [
+        { "type": "bulletin", "delay": 6, "subject": "THE FINAL PIE CHART (for the record)", "text": "7% PIZZA. 93% 'WHERE DOES THIS COME FROM.' The class treasury: $1,212 and a button. Free Pizza Fridays: $14,300. A ranch station: $2,100. I'm not against pizza. I'm for math. Judge for yourself. Ballots close tomorrow at 3:00 PM. A Strong Finish. On Time. VOTE YVETTE." }
+      ],
+      "choices": [
+        { "say": "you were right and you were fair. go home. ballots tomorrow.", "next": "d_night" },
+        { "say": "it's not too late. say sorry in a few words and ask for the photo anyway.", "next": "d_sorry" }
+      ]
+    },
+
+    "d_sorry": {
+      "them": [
+        "...You're right. A chart can be correct and still be a thing you throw. I've known it since I hit send. I just needed a person to say it so I could stop pretending I hadn't heard myself.",
+        "Apology, in draft: 'Garrett, the chart is accurate. It was also unkind. I'm sorry. May I photograph you?' Fifteen words. I've never been over budget on an apology. It may be the first thing I've ever written that's the right length at fifteen."
+      ],
+      "choices": [
+        { "say": "send it exactly like that. don't trim it. fifteen is the right number.", "next": "a_ask" },
+        { "say": "send it, then say it again to his face tomorrow. words and a photo are a pair.", "next": "a_ask" }
+      ]
+    },
+
+    "d_night": {
+      "them": [
+        "11:40. I'm not asleep. I'm in Room 112 with the ladder on the wall, and page 114 has one square on it with an ear in it. I keep looking at the ear. It's a very good ear.",
+        "The chart is out. Brittany sent me an ellipsis. Just three dots. I have never been so thoroughly read."
+      ],
+      "choices": [
+        { "say": "it's an ear, not a verdict. go home. sleep. count ballots with clear eyes.", "next": "end_cold" },
+        { "say": "sixty out of sixty-one is still an A. but you know which grade you actually wanted.", "next": "end_cold" }
+      ]
+    },
+
+    "end_good": {
+      "them": [
+        "UPDATE, Friday, 3:04 PM. It's done. Page 114, by the fountain: two candidates, one level horizon. He took mine. I did not say one word about the horizon. (I said one word. The word was 'thanks.')",
+        "The ballot box closed at 3:00. The ladder locked at 3:01. I was in Room 112 at 2:57. On time. On time in a way that cost me something, and it was worth every second. Ghost List: zero. Including me. First time in the book twice.",
+        "Mr. Dombrowski saw the proof and said 'good enough.' I said 'no. It's right.' He said 'that's why you're the editor.' We both meant it."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "yvette is looking at page 114. two candidates. one level horizon. zero names left on the ghost list. she says she is fine. she is on page 114 too (a first)" },
+        { "type": "bulletin", "delay": 10, "subject": "THE GHOST LIST IS EMPTY (FINAL REPORT)", "text": "Final count: 171 students, 0 with fewer than two photographs. The last name to come off the list was my opponent's. He is on page 114 by the second floor fountain, level, not blinking. So am I (a first; the editor is now in the book twice). He took mine. I did not say a word about the horizon. Ballots closed at 3:00 PM. The ladder locked at 3:01. A Strong Finish. On Time. VOTE YVETTE. (Or Garrett. He is also in the book twice. That's the rule.)" },
+        { "type": "status", "from": "brittany", "delay": 45, "text": "brittany is reading yvette's bulletin for the 3rd time and she is NOT crying (ok she is crying). the candidates took each other's pictures?? i'm putting them BOTH in my top 8. spots 6 and 7. don't tell the others xoxo" },
+        { "type": "wallpost", "from": "paige", "to": "yvette", "delay": 90, "text": "yvette. i saw the pic of u at the fountain. garrett took it. i checked the horizon with a ruler. its PERFECT. im mad. its the first photo of u ive ever seen and u look like a person who just finished something. im putting it on a poster. tilted. 11 degrees. u can thank me later. or never. its fine. - paige" },
+        { "type": "status", "from": "henderson", "delay": 160, "text": "Mr. Henderson has been informed that two candidates for class president photographed each other at a broken fountain. He would like it noted that the fountain was reported in August and has now been inspected by two students and zero district employees. The pie chart still sums to 100%. - Mr. H" }
+      ]
+    },
+
+    "end_late": {
+      "them": [
+        "UPDATE, 3:04 PM. The photo is perfect. Page 114, level, nobody blinking, and he is looking at the camera like he already won something else.",
+        "I did both: I ran AND I called. (Not recommended. I dropped the strap twice.) I reached Room 112 at 3:02:22. Mr. Dombrowski had the ladder in both hands. He didn't say 'good enough.' He said 'you've got a minute.' I said 'yes.' To a MINUTE. malten, I have never said yes to a minute.",
+        "I am eighty-two seconds late. It is the first time in my life. It feels like falling off a roof, but a gentle one, onto a couch."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "yvette is 82 seconds late. for the first time in her life. she is holding page 114 in both hands. she says it feels like falling off a roof, but a gentle one" },
+        { "type": "status", "from": "todd", "delay": 40, "text": "Todd is taking a moment. Yvette was LATE (82 seconds). In the entire history of this site I have never once been the less late person. I am very proud. I am also scared. - Todd" },
+        { "type": "wallpost", "from": "becca", "to": "yvette", "delay": 85, "text": "YVETTE. i was in the hall. the clarinets stood outside room 112 in formation, all 11, 1 2 3 4 5 6 7 8, so nobody would walk in on u running. longest 8 counts of my life. u made it. the ladder says 3:01 and Mr D says it 'has a grace period now.' he made it up. i saw his face. horns UP!!" },
+        { "type": "wallpost", "from": "tim", "to": "yvette", "delay": 130, "text": "yvette. ledger update. deadline: 3:01:00. delivered: 3:02:22. variance: +82 sec. variance in every previous year: 0. i entered it under 'miracles (rare).' i bet $2 you would never be late. im out $2. i dont mind. it was the best $2 i ever lost." },
+        { "type": "dm", "delay": 300, "text": "It's 3:12. I'm fine. I want to say something I have never said: it was worth it. Please don't tell anyone. (Tell everyone.)" }
+      ]
+    },
+
+    "end_joint": {
+      "them": [
+        "UPDATE, 3:11 PM. It happened. Milk crate, two candidates, twelve words each. Mr. Henderson moderated with a whiteboard and the egg timer. I said 'a strong finish, on time' and had seven words left over. I used them to say 'and a slice, once a month.'",
+        "Garrett said 'both' in a debate where you cannot say both. Nobody could stop him. We found six planks we agree on and we're drafting a joint statement. It's Draft 10 of 9. I have never gone over my own draft count. I am very, very happy."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "JOINT PLATFORM STATEMENT (DRAFT 10 OF 9)", "text": "Following a twelve-word debate on a milk crate at the second floor fountain, the candidates agree on six of seven planks. 1) A Master Calendar. 2) The Rule of Two (the Ghost List is empty; both candidates are on page 114). 3) A working fountain. 4) Financial transparency. 5) Pizza: once a month, funded by eleven clarinets and a brownie sale. 6) A ranch station: a study committee has been formed. 7) We disagree on whether a pie chart is a threat. Ballots close at 3:00 PM. VOTE YVETTE (or Garrett). A Strong Finish. On Time. (Moderated by Mr. Henderson. Timer shaped like an egg.)" },
+        { "type": "wallpost", "from": "marcus", "to": "yvette", "delay": 30, "text": "Yvette. Re: the debate. I was not asked to moderate. I was asked to 'stand over there.' I stood. Rule 8: a debate without an appointed moderator (me) is a conversation. Rule 8 was written at 2:51 PM. The debate went well. I would have run it tighter. Thread locked. Affectionately." },
+        { "type": "status", "from": "tj", "delay": 70, "text": "tj is tallying the debate. pizza 31. calendar 31. unsolvable 1 (garrett said 'both' and you can't say both). tie. i don't vote. i count. the milk crate is not eligible" },
+        { "type": "status", "from": "henderson", "delay": 120, "text": "Mr. Henderson moderated a debate today. Two candidates, one milk crate, twelve words per answer. Both pie charts were rounded. Both candidates were gracious. I have never been prouder to hold a whiteboard marker. A strong finish. On time. (I am told I can't say that. I said it anyway.)" }
+      ]
+    },
+
+    "end_cold": {
+      "them": [
+        "UPDATE, Friday, 2:58 PM. I counted 171 ballots twice. The count goes public at 3:30. The Ghost List has one name on it. The ear is on page 114. A sophomore asked me whose ear it is and I said 'a candidate's' and she said 'oh.'",
+        "I keep thinking about him typing 'I figured you might leave me out.' I didn't. Not exactly. But I did put him in a chart. I am very good at charts. I'm not sure that's the thing I most want to be good at."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "yvette is counting ballots. 171 of 171. the green folder is on the table. it has one name in it. she is not looking at it" },
+        { "type": "wallpost", "from": "marcus", "to": "yvette", "delay": 25, "text": "Yvette. Re: your bulletin 'The Final Pie Chart.' Rule 7: charts are campaigning. Rule 7 was written 41 seconds after you posted it. I have locked the bulletin. (It is not a thread. I locked something.) (The numbers are right. I checked. This is not an endorsement.)" },
+        { "type": "wallpost", "from": "brittany", "to": "yvette", "delay": 80, "text": "yvette. ok. the pie chart was SO true. tim checked the math. it was also kinda mean?? i voted for u anyway. spot 6. but spot 6 is a WARNING not a threat. also the ear on page 114, everybody's asking whose ear it is. xoxo" },
+        { "type": "wallpost", "from": "henderson", "to": "yvette", "delay": 150, "text": "Yvette, the chart sums to 100%. It always did. I would like to say that first, because the next thing I say is that a chart can be correct and still be a thing one throws. I have taught for seventeen years. I know the difference. Your opponent asked to see it. He said 'it's good math.' He wasn't angry. - Mr. H" },
+        { "type": "status", "from": "paige", "delay": 240, "text": "paige is in the yearbook room at 3:30. the editor is under the ladder holding a granola bar like a microphone. photo is tilted 4 degrees. on purpose. she did not ask for it to be level" }
+      ]
+    }
+  }
+}

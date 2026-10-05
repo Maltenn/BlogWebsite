@@ -1,0 +1,220 @@
+{
+ "id": "ben",
+ "name": "believe_it_ben",
+ "tag": "future hokage. 0 shadow clones (SO FAR). dubs r fine. BELIEVE IT!!",
+ "avatar": "assets/avatar_ben.gif",
+ "gender": "Male",
+ "age": 14,
+ "hometown": "Westerville, OH (the Hidden Leaf Village) (its hidden behind the kroger)",
+ "loc": "the park behind the kroger, on the monkey bars (3 pull-ups)",
+ "zodiac": "Libra. october 10. SAME BIRTHDAY AS NARUTO. i did not make that up, nana has the paperwork",
+ "status": "Single (training)",
+ "hereFor": "Friends, Rivals, Squad Members, Respect",
+ "mood": "FIRED UP!!",
+ "lastLogin": "Oct 4 2026 4:55 PM",
+ "theme": {
+  "bg": "#ff8a1f",
+  "fg": "#0f1a33",
+  "accent": "#1f3fb8"
+ },
+ "blogTitle": "bens ninja log (training arc) (its all a training arc)",
+ "about": "im ben!! im gonna be the greatest ninja this town has ever seen and then everybody will have to respect me, BELIEVE IT!! i wear my headband to school every day (my nana sewed it. the metal part is a peach can lid she filed down so its safe). i run w/ my arms back bc its faster (my mile got slower but thats a wind thing). i train at the park behind the kroger every day at 4. current stats: pull-ups 3 (it was 0 in june), tree walking 2 steps, shadow clones 0 (SO FAR). i watch naruto every saturday at 9 on toonami IN ENGLISH and i dont care what anime club says about it. i have eaten ramen 61 days in a row. nana puts an egg in it.",
+ "aboutMore": "more facts: squad 7 is me, tj and kevin (kevin doesnt know yet). my rival is devon. hes my sasuke. he says hes 'just my card guy' which is EXACTLY what sasuke would say. i wear my moms pink 2 pound ankle weights under my jeans so that one day i can take them off and everyone gasps. i am on probation in anime club for quoting the dub (14 times in 1 meeting, usagi counted). nana watches every episode w/ me and thinks sasuke 'needs to call home.' i dont have the heart to explain.",
+ "meet": "naruto (hes a cartoon. i KNOW, mom). a real ninja (tj says u cant meet one, thats the whole point of them). whoever is in charge of the gym fitness test, so i can ask them to add tree walking. and a full squad. (i have a squad.) (kevin pls respond.)",
+ "interests": {
+  "General": "ninja training (daily), my headband, running (arms back), the park behind the kroger, hand signs (all 12 in 9 seconds), instant ramen (chicken) (61 days), D-rank missions (chores but i get $5), pull-ups (3), never giving up",
+  "Music": "the naruto opening (i dont know the words but i know the SOUNDS), FLOW, the sad flute song from when somebody has a flashback, eye of the tiger (for laps), whatever kevin is stomping to at the arcade, linkin park (andy puts it on everything)",
+  "Movies": "the naruto movie isnt out here yet (i checked w/ brad at blockbuster 4 times). the karate kid 1 2 and 3. 3 ninjas. teenage mutant ninja turtles (tj says they dont count for the tally. they SHOULD). rocky (the training parts)",
+  "Television": "NARUTO (saturdays 9pm, toonami, english, w/ my nana). avatar the last airbender. dragon ball z. ninja warrior on G4 (its a REAL obstacle course. one day)",
+  "Books": "the naruto manga (the mall bookstore lets u read on the floor if ur quiet). shonen jump. the fitness test chart on the gym wall (i study it). my training log (spiral notebook w/ a leaf on it)",
+  "Heroes": "naruto. rock lee (he cant do ANY jutsu and he never quits. hes the best one). my nana. coach petrakis (he said 'i admire the commitment, son'). tj (squad). kevin (squad) (pending)"
+ },
+ "song": {
+  "name": "Go!!!",
+  "artist": "FLOW",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/51/ed/e4/51ede490-f86e-bf17-3c72-40f8c45a6f04/mzaf_16931722184959513797.plus.aac.p.m4a",
+  "pattern": [0, 3, 7, 10, 12, 10, 7, 3],
+  "bpm": 134
+ },
+ "decor": [
+  "assets/deco_flames_bar.gif",
+  "assets/deco_smiley.gif"
+ ],
+ "friends": ["tj", "devon", "usagi", "kevin", "andy", "hailey", "patrick", "chad"],
+ "wall": [
+  {
+   "from": "usagi",
+   "text": "ben-kun. you are STILL on probation. friday you may attend IF: (1) no quoting the dub (2) it is SAH-skay, we have been over this (3) those were ONIGIRI, not 'jelly donuts,' i made them myself and i cried. ...your spirit is very shonen though. ganbatte.",
+   "time": "Sep 24 2026 4:31 PM"
+  },
+  {
+   "from": "tj",
+   "text": "ben. for the 5th time. a ninjas whole job is to NOT be seen. u wear an orange jacket and yell ur own name. ur still my best witness tho. the tally thanks u. also shadow clone votes dont count, i checked the handwriting",
+   "time": "Sep 16 2026 7:12 PM"
+  },
+  {
+   "from": "devon",
+   "text": "ben. pal. that trade was fair. u got a card with naruto on it and i got a blue-eyes that was just sitting in ur binder not believing in anything. everybody won. p.s. no i dont know who put packs in ur locker. stop asking",
+   "time": "Sep 9 2026 5:48 PM"
+  },
+  {
+   "from": "kevin",
+   "text": "ben i did not agree to be in 'squad 7.' ...but if i WAS, the tilt arcade is the training ground and butterfly on heavy is the exam. saturday. bring a sweatband. a headband is not the same thing.",
+   "time": "Aug 29 2026 2:20 PM"
+  },
+  {
+   "from": "whiskers",
+   "text": "The orange boy attempted to 'capture' me for something he called a D-rank mission. I permitted this for four seconds. Then I taught him about claws. He thanked me. Strange kitten. He may try again.",
+   "time": "Sep 19 2026 3:05 PM"
+  },
+  {
+   "from": "andy",
+   "text": "ben the training video is rendering. 41%. ur run looks SO fast when i speed it up 2x. u can barely see the watermark over ur face in the tree part. (u can see it.) (sorry.) song is linkin park obviously",
+   "time": "Sep 27 2026 11:03 PM"
+  },
+  {
+   "from": "hailey",
+   "text": "BEN!! the ninja run is OFFICIALLY in the lunch routine!! u come in on count 5 with the arms back and then the whole table does it!! mr pruitt said 'no running in the cafeteria' so its a ninja WALK now. still counts!! 5 6 7 8!!",
+   "time": "Sep 22 2026 12:47 PM"
+  }
+ ],
+ "replies": [
+  "BELIEVE IT!!",
+  "thats what a ninja would say. are u a ninja. u dont have to answer (ninja rule)",
+  "ok!! adding that to my training log. page 44",
+  "i dont get it but i will NEVER GIVE UP on getting it",
+  "haha yes!! *does hand signs* (nothing happened) (yet)",
+  "cant talk long, i have a D-rank mission (dishes)",
+  "u would be good on a squad. squad 7 is full but squad 8 has 0 people in it",
+  "my nana says hi. she doesnt know u but she says hi to everybody i type to",
+  "thats ur ninja way and i respect it",
+  "1 sec im doing pull-ups in the doorway. ok done. 3"
+ ],
+ "thanksAdd": "YES!! new ally!! ur now an honorary leaf village ninja (the village is my street). u dont get a headband yet, nana has to sew it and shes in the middle of a quilt. training is at the park behind the kroger at 4. bring water. BELIEVE IT!!",
+ "ambient": [
+  "tried to walk up the big oak at the park w/ no hands again. 2 steps. same as last week. but they were BETTER steps",
+  "nana watched tonights episode w/ me and said the loud blond one reminds her of somebody. it was me. she meant me",
+  "day 61 of ramen. nana put peas in it. i said naruto doesnt eat peas. she said naruto doesnt live in her house",
+  "coach petrakis timed my mile w/ arms back: 11:42. arms normal: 9:50. he said 'so u see the problem.' i said 'yes coach. i need to train more w/ arms back'",
+  "shadow clone attempt #212. no clones. but my little cousin walked in right when i yelled it so for 1 whole second i thought",
+  "picture day. they asked me to take the headband off. i said its part of my forehead. we compromised: its in the picture but i had to smile normal"
+ ],
+ "saltyDm": "denied?? ok. OK. thats fine. naruto got turned down by a whole village and he didnt quit and neither will i. im gonna train every day and send u another request in exactly 1 week and it will be the best friend request u have ever seen. this isnt goodbye. this is a training arc. BELIEVE IT",
+ "keywords": {
+  "naruto": "U WATCH IT?? saturdays 9pm toonami?? ok who is ur favorite. if u say sasuke i will still be ur friend but i will be loud about it. mine is rock lee. he cant do any jutsu at all and he just DECIDED to be strong anyway",
+  "ninja": "im in training. 3 pull-ups, 2 steps up a tree, 0 shadow clones. tj says real ninjas dont tell ppl their stats. tj also has my stats on a clipboard",
+  "ramen": "61 days in a row. chicken flavor. nana adds an egg and sometimes peas (i protest). i can eat it w/ chopsticks now and it only takes 25 minutes",
+  "dub": "i watch it in ENGLISH and i understand every word and thats called being efficient. usagi says i am 'missing the soul.' i checked. the soul is there. its just in english",
+  "headband": "my nana made it!! blue cloth from her quilt box and the metal part is a peach can lid she filed smooth. the leaf is sharpie. ppl say it looks like a snail. its a LEAF. a FAST leaf",
+  "pull-up": "3!! it was 0 in june. i just hung there and a kid named travis said 'hes stuck.' i need 5 for the patch on the fitness test. ask me again in a month. BELIEVE IT"
+ },
+ "banter": {
+  "tj": [
+   "tj put me down for ninjas again!! i know i already voted. this vote is from my shadow clone. (ok there is no clone YET but when there is he will also say ninjas so this is just early)",
+   "orange IS stealthy. nobody expects a ninja in orange. theyre all looking for a guy in black and meanwhile i already walked by. loudly. thats called misdirection, squad leader"
+  ],
+  "devon": [
+   "DEVON. u are my rival. my sasuke. one day i will beat u at cards and then we will stand on a big statue and finally understand each other. i dont know how to play yet. teach me so i can defeat u",
+   "somebody put 2 booster packs in my locker w/ no note. a mysterious ally!! i asked everyone. u said 'wasnt me' before i even finished the question. anyway i pulled a shiny one, wanna see"
+  ],
+  "andy": [
+   "andy can the training video have the part where i take off the ankle weights in slow motion and they hit the ground and make a crater. they dont make a crater. they are 2 pounds. can u ADD a crater",
+   "nana watched the video u made of me and asked what 'unregistered hypercam' means. i said its ur ninja name. she said tell that boy he does nice work"
+  ],
+  "usagi": [
+   "president usagi!! i practiced!! SAH-skay. SAH-skay. see?? can i come back friday. i will bring REAL rice balls this time, nana is making them. she asked what was wrong w/ the jelly donuts and i said its complicated",
+   "ok but NO SPOILERS. every time i walk in u look at me like u know something sad. dont tell me. i watch 1 episode a week like a normal person and i will get there in like 4 years"
+  ],
+  "kevin": [
+   "kevin squad 7 needs a taijutsu guy and u have the fastest feet in the whole mall. u dont have to DO anything. u just have to be on the list. ur on the list",
+   "i tried butterfly on heavy like u said. i got an E. the machine said 'boo.' out loud. im coming back saturday. i have never quit anything in my life except trombone"
+  ],
+  "chad": [
+   "chad u asked if the arms back run works for stealing bases. YES. less wind. also the catcher gets confused. try it and then tell coach petrakis it works, he wont listen to me",
+   "u called my headband a 'sweet sweatband' and i was gonna correct u but then u said 'looks tough, little man' so now its also a sweatband"
+  ],
+  "brad": [
+   "brad is the naruto movie in yet. i know i asked tuesday. and thursday. its ok if its not. ill check saturday. and then tuesday",
+   "u gave me a movie called seven samurai instead and it was 3 hours long and black and white and I LOVED IT. theres 7 of them, brad. thats 2 squads and a guy"
+  ]
+ },
+ "statuses": [
+  "ben is training. always training. even right now (wrist curls w/ the mouse)",
+  "ben is at the park behind the kroger. 3 pull-ups. a new record is coming. BELIEVE IT",
+  "ben is on day 61 of ramen. nana says day 62 has to have a vegetable in it",
+  "ben is running to school w/ his arms back. he will be 4 minutes late. worth it",
+  "ben just did all 12 hand signs in 9 seconds and nothing happened but it happened FAST",
+  "ben is watching naruto w/ nana. she thinks kakashi seems like a nice young man",
+  "ben is on probation at anime club and is being SO quiet about the dub",
+  "ben is on a D-rank mission (finding mrs kesslers cat) (the cat found him first)"
+ ],
+ "bulletins": [
+  {
+   "subject": "SQUAD 7 RECRUITING!! (squad 8 also open) (squad 8 is empty)",
+   "body": "attention future ninjas!! training is every day at 4 at the park behind the kroger. what we do: 1) laps w/ arms back 2) pull-ups on the monkey bars 3) hand signs 4) tree walking (attempts) 5) snack (nana sends orange slices). u do NOT need a headband to start. u earn it. (nana needs 1 week notice and ur forehead size.) current members: me, tj (he mostly takes notes), kevin (pending). the chunin exam is sept 30 (its the gym fitness test but i renamed it). if u think this is dumb thats ok!! ppl thought naruto was dumb too and look at him now. BELIEVE IT!! -ben"
+  },
+  {
+   "subject": "D-RANK MISSIONS: i will do ur chores (ninja rates)",
+   "body": "need a ninja?? i am available for missions after school. PRICES: mow the lawn $10. rake leaves $5. find ur cat $3 (2 successes, 1 scratch). carry groceries FREE if ur somebodys nana. i show up on time, i wear the headband, i do a small bow. i can NOT do: anything on a roof (mom rule), anything after 8 (mom rule), fire style (doesnt work yet + mom rule). all money goes to the real ramen fund. theres a real ramen place 40 minutes away and nana said if i save $20 she will drive. i have $14."
+  }
+ ],
+ "pcComments": [
+  "cool pic!! u look like u just got back from a mission",
+  "this is a strong pose. good stance. feet could be a little wider",
+  "whoa is that a forehead protector. oh its a hat. still cool",
+  "if this was an episode this is the part where the wind blows and everybody figures out ur serious",
+  "nana walked by and said 'what a nice face.' shes right. believe it"
+ ],
+ "dmSeed": [
+  {
+   "text": "hi malten!! im ben. im gonna be the greatest ninja in this whole town and im telling everybody early so they remember. question: can u do a pull-up. how many. i can do 3. it was 0 in june. just so u know who ur dealing with. BELIEVE IT!!"
+  }
+ ],
+ "dms": [
+  "emergency. the chunin exam (gym fitness test) has a part called 'sit and reach' and i can only reach my shins. is flexibility a jutsu. can it be learned in 2 weeks. pls respond",
+  "nana just asked me why sasuke is always so grumpy and i said 'its a long story nana' and she said 'well somebody should make that boy a sandwich.' honestly it might have fixed everything",
+  "do u know how to use chopsticks. i can do it but the noodle has to agree. tonight it took 25 minutes and the ramen was cold and i ate it anyway bc thats discipline",
+  "the principal called me in about the headband. i thought i was in trouble. she just wanted to know where to get one for her nephew. i said my nana. nana has 2 orders now. shes charging $4",
+  "be honest. if u saw a guy walk up a tree w/ no hands would u think that was cool or would u just call the fire dept. asking bc i got 3 steps today and a lady yelled",
+  "i fell asleep before naruto came on saturday and nana TAPED it for me. on a tape that said 'wheel of fortune.' she crossed it out and wrote 'Naruko' in pen. im keeping that tape forever",
+  "ok i traded devon my blue-eyes for a naruto card and everybody says i got robbed. but i look at the naruto card every day and i never looked at the dragon. so who got robbed. (dont tell me the prices)",
+  "tj says a real ninja never tells anyone his plan. so im not gonna tell u that im sneaking downstairs at 11 for the last pudding cup. u heard nothing. if my mom asks, u heard nothing LOUDER"
+ ],
+ "blog": [
+  {
+   "title": "THE CHUNIN EXAM (gym fitness test) REPORT",
+   "date": "Sep 30 2026 5:12 PM",
+   "mood": "1 pull-up away",
+   "body": "ok so the chunin exam (coach petrakis keeps calling it 'the fitness test') was today. RESULTS. mile run: i did arms back for lap 1 and coach said 'ben. please.' so i did arms normal for laps 2 thru 4 and got 9:31 which is my best ever. sit and reach: shins. (training continues.) curl-ups: 38. PULL-UPS. ok. in june i got 0 and just hung there and a kid named travis said 'hes stuck.' today i got 4. FOUR. i dropped down and nobody said anything and then coach wrote it on the clipboard and said 'thats what showing up every day looks like, son.' i didnt pass the whole thing. u need 5 pull-ups for the patch. i need 1 more. rock lee would say thats not failing, thats just next time. nana made ramen w/ an egg AND a cut up hot dog in it bc its a special occasion. BELIEVE IT"
+  },
+  {
+   "title": "how i got my headband (the origin story)",
+   "date": "Aug 22 2026 7:40 PM",
+   "mood": "proud",
+   "body": "ppl ask where i bought my headband. u cant buy it. heres the true story. last winter i asked for a real one for my birthday and mom said $25 was too much for 'a ribbon w/ a plate on it.' i was sad for like a whole day. then nana called me into the sewing room. she had blue cloth from the quilt box and a peach can lid and she said 'show me the cartoon.' so i paused the tape on narutos forehead and she looked at it thru her reading glasses for a long time. she filed the lid so its not sharp. she let me draw the leaf w/ a sharpie. my hand slipped so it kinda looks like a snail. she said 'thats a fine snail.' i said its a leaf. she said 'thats a fine leaf.' ive worn it every day since. kids say stuff sometimes. i dont care. a real one is $25. mine has nana in it."
+  },
+  {
+   "title": "why i watch the dub (official statement)",
+   "date": "Sep 13 2026 10:05 AM",
+   "mood": "determined",
+   "body": "anime club (usagi) keeps saying i watch it 'wrong.' here is my official statement. 1) i watch it saturdays at 9 w/ my nana. nana cant read subtitles that fast. if its in japanese i have to read every line out loud to her and do the voices, and last time i tried she said 'benjamin u sound like a tea kettle.' 2) in english i can watch AND do the hand signs at the same time. 3) believe it is a GOOD catchphrase. it means believe it. 4) usagi says the original has more feeling. i have cried in english 3 times already so the feeling is getting thru fine. 5) im sorry about the jelly donuts. i thought thats what they were. a different show told me that. i brought them as a peace offering and it went really bad. anyway i respect subs. i just have a nana. thats my ninja way."
+  }
+ ],
+ "survey": {
+  "title": "~NINJA SURVEY~ (repost or ur a D-rank)",
+  "qa": [
+   ["name:", "ben. future hokage. (hokage is the boss ninja. its like class president but u can walk on water)"],
+   ["village:", "hidden leaf (westerville) (hidden behind the kroger)"],
+   ["rank:", "genin. chunin as soon as i get 1 more pull-up. BELIEVE IT"],
+   ["best jutsu:", "shadow clone (in progress) (0 clones) (the hand signs are perfect tho)"],
+   ["rival:", "devon. he doesnt know how serious it is. thats what makes it serious"],
+   ["what do u eat b4 a mission:", "ramen. chicken. egg in it. 61 days"],
+   ["who is ur sensei:", "coach petrakis but he doesnt know. also nana"],
+   ["weakness:", "sit and reach. peas. the dog on maple street"],
+   ["have u ever been stealthy:", "1 time i stood behind a tree and my mom walked past. she said 'hi ben.' but she was GUESSING"],
+   ["what is ur ninja way:", "never give up and always say hi to ur nana"],
+   ["dream:", "5 pull-ups. then hokage. then real ramen at the place 40 minutes away"],
+   ["tag ur squad:", "tj, kevin (pls), andy (camera ninja), hailey (her lunch table is basically a village)"]
+  ]
+ }
+}

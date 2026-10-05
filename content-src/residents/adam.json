@@ -1,0 +1,192 @@
+{
+  "id": "adam",
+  "name": "add_me_adam",
+  "tag": "10,412 friends!!! ALL ABOARD the Add Train!!! thanks 4 the add!!! (met: 0)",
+  "avatar": "assets/avatar_adam.gif",
+  "gender": "Male",
+  "age": 18,
+  "hometown": "Muncie, Indiana",
+  "loc": "Muncie, Indiana (the kitchen, next to the router, the good chair)",
+  "zodiac": "Libra (the scales. balance. also 'does everybody like me,' which i read is a Libra thing)",
+  "status": "Single (10,412 friends can't be wrong)",
+  "hereFor": "Friends, Friends, Friends, pc4pc, Networking, Trains",
+  "mood": "ALL ABOARD!!! =D (a little tired)",
+  "lastLogin": "Oct 4 2026 3:41 AM",
+  "theme": { "bg": "#e6f0ff", "fg": "#0a1f44", "accent": "#e8590c" },
+  "blogTitle": "ALL ABOARD: The Official Add Train Blog (Now Boarding)",
+  "about": "HI!!! I'm Adam and I have 10,412 friends!!! (that's as of 3:41 this morning!!! it changes!!!) I run the Add Train. You add the person above you, you add the person below you, you comment 'choo choo' on both, and everybody ends up with MORE friends!!! It's the greatest idea I ever had and I've had it 214 times. I say 'thanks 4 the add' to every single person who adds me and honestly sometimes to people who didn't (I get excited). I do pc4pc, c4c and t4t (top 8 trades, ask me). If you're my friend, you're my friend forever. Even the ones I haven't met yet!!! (all of you) (so far). ALL ABOARD!!!",
+  "aboutMore": "Fun stats!!! Friends: 10,412. Friends I've met in person: 0. (0 is a start!!!) Birthdays I know: 3,211. Messages sent today: 61. Replies: 4. I'm not worried about the ratio, a reply is a reply!!! I work the drive-thru window at the Dairy Dream so I'm on here between 2 and 4 AM when it's quiet and everybody's green dot is on. Mom says go to bed. Mom is right. Mom is always right.",
+  "meet": "Who I'd like to meet: you!!! (all of you!!!) but also todd, the guy who started this, so I can say thank you for the add (he was my friend #1 and I still think about it). my 10,000th friend, a guy named Kevin R. who wrote back 'k.' (I saved it). and whoever's reading this at 3 AM right now and thinking 'same.' (hi. same.)",
+  "interests": {
+    "General": "friends (10,412), the Add Train (daily at 6 PM and 9 PM, plus the Late Train at 2 AM, currently 'under review'), pc4pc, comment counts, counting things, birthdays (I keep a list), the little green dot that means somebody's online, thank-you notes (61 a day), the drive-thru window at the Dairy Dream (I have a very good drive-thru voice), waving",
+    "Music": "whatever you're listening to!!! send me your profile song!!! I have a playlist of 400 of them from my friends. my favorite is the one about the train that picks up the whole world and everybody holds hands (it's my profile song). also the Backstreet Boys, the Killers, and whatever CD is in the Dairy Dream player (same mix since March. I know every word of every song and none of them are mine)",
+    "Movies": "The Polar Express (12 viewings, it's about a train that picks up everybody), Toy Story (friends!!), The Breakfast Club (they all become friends in one day. realistic), Cast Away (I cry at Wilson every time, I'm fine), Elf",
+    "Television": "Friends (the reruns, a whole building of people who just drop by), Full House, Boy Meets World, Thomas the Tank Engine (don't laugh, the Add Train is based on it), Cheers (a bar where everybody knows the guy by name, I'd like that for one day)",
+    "Books": "The Little Engine That Could (I think I can I think I can), How to Win Friends and Influence People (zorp has it too, we compared notes, he has more tabs), Chicken Soup for the Teenage Soul (page 61 gets me every time), my address book (the paper one) which has 14 names and 6 of them are my mom's",
+    "Heroes": "Todd (friend #1), Walt (a real letter!!!), my mom, the guy at the Dairy Dream who said 'good job, Adam' one time in March (I still think about it), and anyone who has ever replied to me in under an hour"
+  },
+  "song": {
+    "name": "Love Train",
+    "artist": "The O'Jays",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e2/df/c3/e2dfc3de-9759-01f3-903e-b481b63a2e3a/mzaf_8389648797955098070.plus.aac.p.m4a",
+    "pattern": [0, 4, 7, 9, 7, 4, 2, 0],
+    "bpm": 118
+  },
+  "decor": ["assets/deco_welcome_banner.gif", "assets/deco_smiley.gif"],
+  "friends": ["todd", "kittyxcore", "brittany", "tony", "vince", "walt", "henderson", "debbie", "kyle"],
+  "wall": [
+    { "from": "henderson", "text": "Adam, I have checked with two colleagues and a style guide. The correct response to 'thanks for the add' is 'you're welcome,' and it applies even when you were the one who was added. I am telling you so that you do not have to wonder. Also, the newt is in none of my photographs. He is camera shy. - Mr. H", "time": "Oct 2 2026 4:05 PM" },
+    { "from": "debbie", "text": "Adam, I have not forgotten your eleven requests for a 'pc4pc.' I have a Dell. It has no pictures. It has spreadsheets. I would be glad to send you one. Also, thank you for the birthday message in August. Nobody at the office remembered and yours was the only one that came with a number. Love, Mom", "time": "Sep 30 2026 6:30 PM" },
+    { "from": "walt", "text": "Dear Adam, I am in receipt of your many messages and I have answered them in the order received. You are the only correspondent I have who writes more often than Patrick. I do not know what 'choo choo' is for, but it came every time and I took it as a signature. A question: how many of your ten thousand friends have you sat down to supper with? I ask because I have met three of mine and raised two. Regards, Walt", "time": "Sep 26 2026 5:49 AM" },
+    { "from": "kittyxcore", "text": "adam ur pc4pc game is ELITE. u commented all 47. i counted. u also commented the blurry one. thats real friendship. ur at #3 now. dont tell lexi. =^.^=", "time": "Sep 22 2026 8:45 PM" },
+    { "from": "brittany", "text": "adam ur honestly such a sweetie. ur not in my top 8 bc ur friend 10 thousand something n i have a 'rule' but ur in my top 8 SPIRITUALLY. xoxo. also pls stop sending me trains im getting 40 a day (i love them)", "time": "Sep 18 2026 7:10 PM" },
+    { "from": "tony", "text": "hey ;) adam. brother. teach me the train. u have ten thousand. im 0 for 53. we are not the same but i believe in u. ;)", "time": "Sep 12 2026 11:20 PM" },
+    { "from": "vince", "text": "ADAM!!! my guy!!! the TEEN NITE street team needs a CONDUCTOR!!! u have 10 THOUSAND friends!!! imagine the first 50 FREE!!! its gonna be HUGE!!! (its thursday. skate rental is $2.)", "time": "Aug 31 2026 4:44 PM" },
+    { "from": "todd", "text": "Hi Adam! Friendly admin note: you sent 61 messages today and the server asked me to ask you to slow down. It didn't say please. I added it. You were also one of the first people to say 'thanks for the add' to me, in four seconds. I still have the log. Keep up the great engagement!", "time": "Aug 12 2026 10:03 AM" }
+  ],
+  "replies": [
+    "thanks 4 the comment!!! choo choo!!!",
+    "omg a REPLY!!! ok i'm saving this one",
+    "ur the best!!! ur friend #???? (i'll check, it's in the sheet)",
+    "pc4pc?? i'll comment yours right now!!! i'm at 61 today!!!",
+    "thanks 4 the add!!! (wait did u add me?? i say it anyway)",
+    "ALL ABOARD!!! seats r free!!! window seats too!!!",
+    "i read that 3 times (it was short)",
+    "u know what ur really nice. this is the best part of my night. i'm not even exaggerating. it's 3:12 AM.",
+    "i put u on the train!!! u don't have to do anything!!! just be on it!!!",
+    "that made my whole night. i'm gonna tell my mom. she's asleep so i'll tell her tmrw."
+  ],
+  "thanksAdd": "THANKS 4 THE ADD!!!! u r friend #10,413!!! (that's good luck, i checked) choo choo!!! u r now on the Add Train, ur seat is by the window. all u have to do is comment 'choo choo' on the person above u and the person below u. no pressure!!! u can also just ride. i'm really glad ur here.",
+  "ambient": [
+    "ADD TRAIN LEAVING THE STATION IN 5 MINUTES!!! add the person above u, add the person below u, comment 'choo choo'!!! all aboard!!!",
+    "10,412 friends!!! 3 new ones today!!! it's slower since the Late Train. i'm not sad. i'm just 'recalculating.'",
+    "someone commented 'who r u' on my page and i felt SO seen. i replied for 20 minutes.",
+    "a lady at the Dairy Dream said 'add a cherry' and i said 'thanks 4 the add!!!' and she said 'what' and i said 'cherry. i meant cherry.' it's been a long week",
+    "it's 3:41 AM. all the green dots are on. most of them are 'away' messages. i say hi anyway. you never know."
+  ],
+  "saltyDm": "oh. ok! that's ok!!! not everybody wants to be added. that's totally fine. 100 percent normal. i'll just leave my request open in case u change ur mind. i have 214 pending ones already. it's a nice collection. choo choo (quietly).",
+  "keywords": {
+    "train": "the Add Train leaves daily at 6 PM and 9 PM, plus the Late Train at 2 AM (under review). conductor: me. passengers: 10,412. snacks: none. u can board anytime!!!",
+    "pc4pc": "pc4pc!!! yes!!! i comment back on every pic. i've commented 11,206 pics. i look at each one for at least 4 seconds. i counted.",
+    "birthday": "i know 3,211 birthdays!!! it's a spreadsheet!!! last week i wished 41 people happy birthday and 2 wrote back and 1 was my mom. but i count it!!!",
+    "mom": "my mom says i should go to bed. my mom is right. my mom also leaves a waffle in the toaster at 2 AM with a note that says 'eat.' i keep the notes. she is #1 on my top 8. she's also #2. i have her twice.",
+    "friend": "a friend is anybody who adds u back!!! or says hi!!! or says 'k.' (i have one 'k.' i saved it). mr h asked me once what a friend is and i said 'a number.' he said 'that's one definition.' i've been thinking about the others.",
+    "alone": "alone??? nope!!! i have 10,412 friends!!! (the kitchen is pretty quiet tho. but the router blinks. it's a nice blink.)",
+    "dairy dream": "the Dairy Dream drive-thru, 5 PM to 1 AM. i'm the voice u hear. i say 'welcome to the Dairy Dream' like it's the nicest place on earth. last week a lady said 'add a cherry' and i said 'thanks 4 the add' and she tipped me a dollar. it's in my collection."
+  },
+  "banter": {
+    "walt": [
+      "dear walt!!! thank u for the letter!!! it said 'many happy returns' for my birthday!!! nobody ever wrote 'Dear Adam' to me before!!! i printed it. it's taped next to the router. i wrote back but i didn't know how to end it. i put 'thanks 4 the add.' (i learned regards) regards, adam",
+      "dear walt, if i'd lived on route 14 would u have delivered my mail? i don't get a lot of the paper kind. mostly the other kind. i'm gonna start mailing myself postcards so u'd have something to carry. regards, adam"
+    ],
+    "henderson": [
+      "mr h!!! u said 'ur welcome' and i got SO excited!!! (the correct response to 'thanks 4 the add' is 'ur welcome') (u got it right) (thanks 4 the add) (wait, u added me) i'm so confused!!! this is the best part of my night",
+      "mr h what's the correct way to ask a teacher for a pc4pc. is there a form. i'd comment all ur pics. even the newt ones. ESPECIALLY the newt ones. is the newt my friend yet"
+    ],
+    "debbie": [
+      "debbie!!! i asked 11 times for a pc4pc and u said ur pc is a Dell and i just keep thinking about that!!! it's the funniest thing anyone has said to me this month!!! pls tell the Dell i said hi. thanks 4 the add!!!",
+      "debbie!!! happy birthday!!! (it was in august) i made u a card but the site doesn't do cards so i typed 'happy birthday' 11 times in a row. i hope that's ok. u deserve at least 11."
+    ],
+    "kyle": [
+      "kyle ur my #2 too!!! (mom is #1 and also #2) (i have her twice) u can be #1 if u want. no pressure. the cheat code for 10,000 friends is: say hi, then say hi again. that's it. that's the whole code.",
+      "kyle always ask ur brother or ur mom before u add somebody new. add the ones u know. and when ur mom says 'come eat' go eat. that's the best thing a person can say to u. i know bc mine leaves waffles."
+    ],
+    "linda": [
+      "aunt linda!!! i forwarded ur angel to all 10,412 friends in 5 batches (the site only lets me do 2,500 at a time). 6 people said 'who is this.' 1 said 'Beautiful!!' and i think i know who. u r my hero.",
+      "aunt linda!!! ur the only person who forwards MORE than me per person!!! i send to 10,412 but u send to 340 and mean it with ur whole heart. that's way better math. i'm learning from u. ~*~ thanks 4 the add ~*~"
+    ],
+    "kittyxcore": [
+      "kitty!!! i commented ALL 47. even the blurry one. even the one that was just the hello kitty toaster. 48 if u count the toaster twice. pc4pc??? =D i'll wait. i'm not going anywhere. (i mean i'll be here)",
+      "kitty u said i'm on trial basis for ur top 8 and then u put me at #3 and i printed it. i don't have a printer. i drew it. it's on my wall. thanks 4 the add!!!"
+    ],
+    "brittany": [
+      "brittany!!! u said i'm not in ur top 8 bc of a 'rule' and i think that's the nicest rule i ever heard!!! u have a RULE!!! so organized!!! i'm on the waitlist (spot 9). i'm very patient. i have 10,412 friends and zero deadlines.",
+      "brittany u r the first person who ever told me i'm 'honestly such a sweetie.' i typed it in my notes. i read it 4 times. now i can't stop reading it. thanks 4 the add!!! xoxo (i learned xoxo)"
+    ],
+    "tony": [
+      "tony!!! 0 for 53 is SO many tries!!! i never tried 53 of anything. i tried 214 add trains but that's different. ur braver than me. i'm 10,412 friends and 0 met. so ur ahead!!!",
+      "tony u r the first person who asked me to teach them the train!!! first rule: don't say 'hey ;)' just say 'choo choo.' it's easier to say and nobody can say no to a train."
+    ],
+    "whiskers": [
+      "mr whiskers!!! thanks 4 the add!!! (i counted, it's 4, i'm sorry) ur the first cat on my list!!! i put ur birthday in the spreadsheet as 'approx. april' bc that's what the vet said. 'approx.' is the nicest word.",
+      "mr whiskers the keyboard sounds warm. my laptop is warm too, it's on my lap. i saved a spot behind the monitor in my head. u r welcome there any time. choo choo (that's a cat noise right)"
+    ]
+  },
+  "statuses": [
+    "adam is at 10,412 friends!!! (a new record!!! (every day))",
+    "adam just said thanks 4 the add to a vending machine. it was an accident. it blinked.",
+    "adam is conducting the 9 PM Add Train. all aboard!!! (seats are free) (so is the window one)",
+    "adam is eating a waffle at 3 AM and not alone!! (my laptop is here)",
+    "adam is updating the birthday spreadsheet. 41 this week. 2 wrote back. 100 percent of those were great",
+    "adam is not tired. adam is just on the Late Train.",
+    "adam just got a reply in under a minute. adam is gonna go lie down.",
+    "adam is wondering what a 'friend' is. (just a normal question!!! the philosophy kind!!!)"
+  ],
+  "bulletins": [
+    {
+      "subject": "ADD TRAIN: NOW BOARDING!!! (repost for a longer train)",
+      "body": "ALL ABOARD!!! 1. Add the person above you. 2. Add the person below you. 3. Comment 'choo choo' on both of them. 4. Repost this so the train gets longer. If you do this you will get 6 new friends by Thursday (it works. i have 10,412 of the proof). p.s. if nobody adds you back right away it's not you, it's the train. trains are slow. i'll wait with you. - Adam, Conductor"
+    },
+    {
+      "subject": "NEW SURVEY!!! (be honest, it's a judgment-free train)",
+      "body": "1) How many friends do you have? 2) How many have you met in person? 3) Of the ones you've met, how many would pick up if you called at 3 AM? (Me: 10,412 / 0 / i haven't called yet. i'll let u know.) 4) How many birthdays do you know? (3,211.) 5) Who wrote you back last? (Me: my mom. and a cat. and a retired mailman, formally.) Repost and comment your answers. I'll read all of them. I read all of them."
+    }
+  ],
+  "pcComments": [
+    "AWESOME PIC!!! pc4pc?? i already commented yours like 3 times (that's how much i liked it)",
+    "who's the one in the background?? they look like they're having a good time. that's my favorite kind of pic",
+    "thanks 4 posting!!! ur the 9th pic i commented on tonight but the 1st one i looked at twice",
+    "i like the place where this was taken!!! it looks like somewhere with a table and people. i like those",
+    "cool pic!!! i'll comment first so u dont have to feel bad about it. (u don't have to comment back. but u can)"
+  ],
+  "dmSeed": [
+    { "text": "hi malten!!! thanks 4 the add!!! (wait, i should wait until u add me. i'm early. thanks in advance!!!) i'm adam. i have 10,412 friends and ur gonna be my 10,413th, i've got a seat for u. choo choo!!! (if u have a minute at some point i'd love a reply. any reply. even 'k.' i'll save it)" }
+  ],
+  "dms": [
+    "malten!!! ur birthday isn't in my spreadsheet. i don't have it. can u tell me? i'll put an alert on it. i'll be the first one to say happy birthday. i'm always first. (i'm usually the only one but i'm VERY first)",
+    "malten at the Dairy Dream last night a lady in a minivan said 'add a cherry to that' and i said 'thanks 4 the add!!!' and the whole line honked. like in a good way. i think. i'm gonna say it's a good way.",
+    "malten i got a LETTER!!! on here, but it started 'Dear Adam' and ended 'Regards, Walt.' it said 'many happy returns of the day' for my birthday. nobody ever wrote 'Dear Adam' before. they write 'Adam' or 'hey' or 'thanks 4 the add.' i printed it. it's taped next to the router. is that weird",
+    "malten a teacher added me FIRST. mr henderson. nobody adds me first!!! i said 'thanks 4 the add' and THEN saw it was him who added ME and i didn't know what to say next so i said it again. i'm sorry mr h. it was the first time anybody added me first.",
+    "malten the number went down by 1 yesterday. somebody un-added me. i checked their page. they had 3 friends. i hope they're ok. i sent them a comment that said 'hope ur ok!!!' and then i un-sent it because it might be weird. ok. i'm fine. choo choo.",
+    "malten what's the difference between a friend and a 'friend' with the quote marks? asking for a philosophy class i'm not taking.",
+    "malten i commented 11,206 pics and then i realized i haven't been in one since graduation. there's one of me in a cap and gown with my mom, and she's the one holding the camera. so i've never seen us in the same one. i'm gonna fix that. i'll let u know when.",
+    "malten kyle (kyles_lil_bro) wrote 'hi' 4 times in a row and i wrote back to all 4. he says i'm his #2. i've never been anyone's #2. i'm taking it really seriously. i'm gonna be a really good #2."
+  ],
+  "blog": [
+    {
+      "title": "10,000 FRIENDS!!!! (A Message To All 10,000 Of You)",
+      "date": "Sep 4 2026 1:40 AM",
+      "mood": "ecstatic",
+      "body": "IT HAPPENED!!! At 12:14 AM I got friend request #10,000 and I screamed (quietly, my mom was asleep). It was from a guy named Kevin R. who wrote 'k.' I saved it in a folder. I want to thank everybody who ever added me, commented, joined a train, or said 'choo choo' back. My mom made a cake. It said 10,000 in blue. We ate it in the kitchen, just us, and it was a really good cake. She cut two slices and said 'one for you and one for you,' which is a joke we have. Afterward I made a list of thank-yous. 10,000 names. It took four hours. When I got to the end I noticed I don't know a single thing about most of you except your default picture. I'd like to. So here's the deal: tell me one thing about you. Anything. I'll write it next to your name in the spreadsheet. Choo choo."
+    },
+    {
+      "title": "THE ADD TRAIN TURNS ONE: 214 TRAINS, 6 THINGS I LEARNED",
+      "date": "Sep 20 2026 2:15 AM",
+      "mood": "thoughtful (but still excited)",
+      "body": "One year, 214 trains!!! Here's what I learned. 1) 9 PM is the best time to leave the station. 2) 'choo choo' gets 1 reply in 20. 'hi' gets 1 in 60. Trains are friendlier. 3) Some people add you and never say a word. That's okay. It's like a nod from across a party. 4) The Late Train (2 AM) derailed this week. 3 people said 'stop adding me,' 1 said 'who is this,' 1 said 'lol.' I'm counting the 'lol' as a win. Laughing is a feeling. 5) My mom asked how many of my friends I've met and I said 'it's not about meeting, Mom, it's about the number,' and she said 'okay, sweetheart,' and didn't look at me. 6) The kitchen is quiet at 3 AM. The router blinks. I like the blink. All aboard. - Adam"
+    },
+    {
+      "title": "A LIST OF EVERYONE WHO WROTE BACK THIS MONTH (THANK YOU!!!)",
+      "date": "Oct 1 2026 3:05 AM",
+      "mood": "grateful",
+      "body": "Thank-yous!!! People who wrote back to me in September: Mr. Henderson (twice, one was a style guide), Kyle (4 times, all 'hi,' all perfect), Debbie (a Dell, I think about it daily), Mr. Whiskers (a cat) (he said 'acknowledged'), Walt (a LETTER, on paper, well, sort of, it said 'Dear Adam' at the top), and my mom (in person, with a cake, for my 18th birthday on the 6th). That's 41 replies out of 1,900 messages. I made a chart: 2.1 percent!!! That's a really good rate if you think about it. Some people's mail is 100 percent bills. My favorite reply was Walt's, because he asked how many of you I've sat down to supper with, and I counted, and I was gonna say a number, but then I just said 'my mom.' He said that's a good number to start with. Choo choo."
+    }
+  ],
+  "survey": {
+    "title": "COPY + PASTE SURVEY (this is my 38th one, i do all of them)",
+    "qa": [
+      ["name:", "Adam. just Adam. it's short so it fits on a name tag (i have one)."],
+      ["how many friends do u have:", "10,412!!! (it said 10,413 for 4 seconds but somebody un-added me. that's ok. it happens 2 or 3 times a day.)"],
+      ["how many have u met in person:", "0!!! (my mom doesn't count and neither does the guy at the Dairy Dream, he's a coworker, but he did say 'good job, Adam' one time. in March.)"],
+      ["who was ur first friend:", "Todd!!! he said 'welcome to ourspace' and i said 'thanks 4 the add' and he said 'you're welcome.' it's the first conversation i ever had on here. i can recite it."],
+      ["do u have a best friend:", "i have 10,412 friends so i can't pick!!! it would be unfair to the other 10,411. (i think that's how it works. i'd like it to be how it works.)"],
+      ["last thing u ate:", "a waffle. at 3 AM. my mom leaves them in the toaster with a note. the note says 'eat.' i keep the notes."],
+      ["what do u do at 3 AM:", "ride the Late Train!!! (it's under review). also say hi to the green dots. also listen to the router blink."],
+      ["who would u call at 3 AM:", "i don't know yet. i'm making a list. it's currently 'my mom' and then a lot of blank lines. i'm gonna fill them in."],
+      ["what's ur biggest fear:", "that the number goes down. (it went down by 1 yesterday. somebody un-added me. i checked their page. they had 3 friends. i hope they're ok.)"],
+      ["favorite thing about OurSpace:", "the part where u type a thing and somebody types back. even 'k.' ESPECIALLY 'k.'"],
+      ["do u ever feel like u have too many friends:", "NEVER!!! (u can only have too many of something u can't count.)"],
+      ["are u supposed to forward this to ten people:", "i forwarded it to 10,412. i'm sorry. i'm not sorry. choo choo."]
+    ]
+  }
+}

@@ -1,0 +1,230 @@
+{
+  "id": "gus_real_audition",
+  "with": "gus",
+  "opener": [
+    "Soundcheck. malten. It's 9:41 PM Monday and tomorrow at 4:00 in Greg's garage I either become the second guitarist of STATIC PROPHECY or I go back to being the guy who carries the amp. (I carry it well. Greg has said so. It was the nicest thing anyone's ever said to me and I'm choosing to be cool about it.)",
+    "Greg's exact words on my wall: 'tuesday, bring a cord.' That's an audition. I've never been so sure of anything, including the 98%. Setlist: Voltage Heart (his) and Free Bird (mine). Two songs. One shot. Dani already booked the minivan. Dani charges 2 Fruit Roll-Ups per booking.",
+    "Problem. Two guitars are on my bed right now. One is red, plastic, and plugs into an 83-pound TV. One is a REAL Gibson that Mr. Hollis next door loaned me for the week. It has six strings, no colors, and I know four chords. Voltage Heart has five. The fifth one is a wall. I need a tour decision. Pick a guitar, man. \\m/"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "the real one. greg asked for a guitarist, not a controller. bring the gibson.", "next": "a_real" },
+        { "say": "the plastic one. that's your 98%. don't audition as somebody you're not.", "next": "b_plastic" },
+        { "say": "both. start on plastic, swap mid-song. every legend has a guitar change.", "next": "c_both" }
+      ]
+    },
+
+    "a_real": {
+      "them": [
+        "The real one. ...okay. My hands just went cold. That's not on the rider. I want it noted that I've said 'I'm only filling in' for five straight weeks, and I have never once said 'I play real guitar' out loud to anybody.",
+        "Here's the actual wall. The fifth chord in Voltage Heart is a B minor. It's a barre, which means one finger has to hold down all six strings, which means the finger has to be a plank. Mr. Hollis says it's 'a rite of passage, like a tooth.' I hit it clean 1 time in 7. That's 14%. I haven't been at 14% on anything since Easy."
+      ],
+      "choices": [
+        { "say": "go see hollis tonight. he's 71 and awake. barre chords are a night job.", "next": "a_hollis" },
+        { "say": "text greg tonight. tell him you've been learning. say it before tuesday does.", "next": "a_text" }
+      ]
+    },
+
+    "a_hollis": {
+      "them": [
+        "10:12 PM. Mr. Hollis answered the door in a bathrobe with a pencil behind his ear. I said 'emergency lesson.' He said 'is anyone hurt.' I said 'my pride.' He said 'bring it in.' We're in his kitchen. He has a calendar from a bank. I'm holding the Gibson at a 40 degree angle like a baby that might go off.",
+        "He said stop looking at the neck. 'You keep checking for colors that aren't there.' He put my finger across the strings and said 'press like you mean it.' It buzzed. 'Again.' It buzzed. Seventh time it rang. All six. The whole kitchen rang. Dani (she followed me over) said 'that's the sound.' I'm 3 for 11. That's 27%."
+      ],
+      "effects": [
+        { "type": "status", "delay": 8, "text": "gus is in his neighbor's kitchen at 10:15 PM in a Free Bird T-shirt, holding a real guitar at a 40 degree angle. he's 27% on one chord. he is calling it a soundcheck. his sister is calling it 'a lot'" }
+      ],
+      "choices": [
+        { "say": "rest on tour. it's your own slogan. go to bed. a rested plank beats a tired one.", "next": "a_sleep" },
+        { "say": "keep going till it's 3 for 5. hollis is making tea. take the tea.", "next": "a_tea" }
+      ]
+    },
+
+    "a_sleep": {
+      "them": [
+        "Home at 11:05. Bed. Axl's on my feet like a 40 pound heating pad. I can't sleep. My left index finger is pressing the sheet in the shape of a B minor, on its own, over and over. Dani opens the door and says 'are you rehearsing in your sleep.' I say 'I'm not asleep.' She says 'your finger is.'",
+        "She sits on the end of the bed and says the nicest thing she's ever said to me: 'you don't have to hit it. Greg's not going to count.' I said 'everybody counts.' She said 'the dog doesn't.' That's a good point. Axl has never once asked for a percentage."
+      ],
+      "choices": [
+        { "say": "tell dani thanks. then ask what you should do if it buzzes in front of greg.", "next": "garage_real" },
+        { "say": "say you'll say 'one second' out loud if the finger fails. a pause is a rock move.", "next": "garage_real" }
+      ]
+    },
+
+    "a_tea": {
+      "them": [
+        "Tea. Mr. Hollis makes it with a lot of honey and no opinions. I'm at 4 for 11 (36%) and the plank's coming in. He tells me about the wedding band, thirty years of Saturdays. Their best guitarist, Ron, missed one note at every single wedding for thirty years. Brides cried anyway. 'Ron kept going. Nobody remembers the missed note. They remember the man still standing.'",
+        "I don't totally get it but it was 11:40 PM and he said it with a teaspoon in his hand, so I wrote it on my arm. Then he said 'tomorrow, if you miss one, you keep going. That's the only rule I ever had.' That's the whole book. I've been reading the wrong book."
+      ],
+      "choices": [
+        { "say": "write 'keep going' on your other arm. it's a setlist item now.", "next": "garage_real" },
+        { "say": "ask hollis to come tomorrow. a 71-year-old in a lawn chair is the best security there is.", "next": "garage_real" }
+      ]
+    },
+
+    "a_text": {
+      "them": [
+        "Texted him. 10:03 PM. 'Greg. I've been learning real guitar. 4 chords. I have a Gibson. I don't know if you want that.' Typing bubble. Gone. Typing bubble. Gone. It's the longest 40 seconds since the key change.",
+        "He wrote back: 'i know.' Then: 'skip told me in september. dani told me in october. chad yelled it at me at school. the beagle's been howling in the right key outside my garage for a week.' Then: 'bring the gibson. bring the cord. i want to see you miss a note. the controller never misses. i can't put a controller in a band.' malten. I'm sitting very straight."
+      ],
+      "choices": [
+        { "say": "tell him deal. you'll miss one and keep going. that's the whole job.", "next": "garage_real" },
+        { "say": "ask him how many chords the audition really needs. get the number, man.", "next": "garage_real" }
+      ]
+    },
+
+    "b_plastic": {
+      "them": [
+        "The plastic one. ...you're right. That's the 98%. I've been on the road with this axe since day one and I don't audition as a guy I've never been. Dani agrees. Dani says 'it's the only one that's actually yours.' She said it with a Fruit Roll-Up in her mouth, which is a signed contract.",
+        "But Greg's dad says anything with a cord needs approval, and my 'amp' is an 83-pound TV that lives in the den. To bring it to the garage I need four hands and a plan. Also Skip texted. I'll get to Skip."
+      ],
+      "choices": [
+        { "say": "start with the tv. four hands, a plan, a minivan. you're moving a stage.", "next": "b_tv" },
+        { "say": "read skip's text first. it sounds like somebody with a better idea.", "next": "b_skip" }
+      ]
+    },
+
+    "b_tv": {
+      "them": [
+        "The plan, per Dani's whiteboard: 1) TV off the stand (83 lbs; we weighed it again, 83.5, it gained). 2) Seat belt the TV in the back of the minivan (it's been done before). 3) Garage: plug into the orange cord. 4) Greg's dad approves the cord by 3:30. He won't if he sees a TV. He will if he sees a boy who weighed the TV before moving it. That's me.",
+        "One problem. I can carry 40 pounds. Dani can carry 25. The TV is 83.5. The math says one more person with arms, and the only person I know with arms is Chad, and Chad wants to 'formally attend.' With Chad it's an event. Do I call him, or use the dolly Dani's been hiding."
+      ],
+      "choices": [
+        { "say": "call chad. he has the arms and he's been asking for a private show for a month.", "next": "b_chad" },
+        { "say": "use the dolly. quiet, professional. you're a road crew, not a parade.", "next": "garage_plastic" }
+      ]
+    },
+
+    "b_chad": {
+      "them": [
+        "Called Chad at 9:51. First ring. 'GUS.' I said 'I need arms.' He said 'I HAVE ARMS.' I explained the TV. He said 'IS IT AN EVENT.' I said 'it's an audition.' He said 'I WILL BE THERE IN FORMAL ATTIRE.' I said 'it's a garage.' He said 'MY FORMAL ATTIRE IS A POLO.' He's bringing a cooler of juice boxes because, quote, 'MUSIC NEEDS HYDRATION.'",
+        "I've never had an entourage. It's loud and it wears a polo. Chad wants to know where he's allowed to stand during the show. I said 'wherever the amp isn't.' He said 'I WILL STAND LIKE A BODYGUARD AND CHEER LIKE A DAD.' That's a rider."
+      ],
+      "effects": [
+        { "type": "status", "from": "chad", "delay": 10, "text": "CHAD IS CARRYING A TELEVISION TO A GARAGE FOR A FRIEND. 83.5 LBS. HE HAS BEEN TOLD IT IS AN AUDITION. HE HAS BEEN TOLD IT IS NOT AN EVENT. HE IS WEARING A POLO ANYWAY. THE JUICE BOXES ARE FOR THE MUSIC" }
+      ],
+      "choices": [
+        { "say": "put chad on the amp. he's a roadie with a mission.", "next": "garage_plastic" },
+        { "say": "keep chad on the lawn. cheering is a job. so is staying out of the way.", "next": "garage_plastic" }
+      ]
+    },
+
+    "b_skip": {
+      "them": [
+        "Skip texted at 9:12. 'gus!! luis's mouth is all the way healed. he's back on guitar sunday. BUT the tenth chair stays. i made it. it's a folding chair with a checkerboard cover. it has your name on it in marker. three horns, luis, bass, big tom, keys, the singer, fitz and a tenth chair. we are TEN now. we are making it work =D'",
+        "A real band. A band with a chair. It's the first time anyone has made me furniture. Be honest, malten: if tomorrow goes sideways I have a place that has a chair, and Luis, and Big Tom in charge of when. That's a tour with a soft landing. What do I tell Skip."
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "skip", "to": "gus", "delay": 15, "text": "gus!! the tenth chair is yours. i put a checkerboard cover on it. i'm not saying ska is alive. i'm saying there is a chair with your name on it and a band with the wrong number of members (ten). no pressure. (there's a little pressure.) =D" }
+      ],
+      "choices": [
+        { "say": "tell skip yes to the chair. a soft landing isn't a downgrade. tomorrow doesn't change it.", "next": "garage_plastic" },
+        { "say": "tell skip 'ask me wednesday.' you can't audition with one foot in a folding chair.", "next": "garage_plastic" }
+      ]
+    },
+
+    "c_both": {
+      "them": [
+        "Both. ...a guitar change. It's an old trick. You start on one axe, hand it to your roadie, catch the second one on the downbeat, and the whole room goes 'ohhh.' I've watched it in four Behind the Music episodes and I took notes.",
+        "Logistics, though. A mid-song swap needs a roadie with a cue (Dani), a place for the TV (83 pounds, it's not going anywhere), and a bridge to do it on. The bridge is the only place that makes sense. The bridge is also where I'd have to play the B minor. That's the whole problem in a hat."
+      ],
+      "choices": [
+        { "say": "swap right before the bridge. start at 100 and land at 14. it's a stunt.", "next": "c_plan" },
+        { "say": "swap after the bridge. let the plastic one carry the hard part.", "next": "c_plan" }
+      ]
+    },
+
+    "c_plan": {
+      "them": [
+        "Rehearsal, 10:30 PM, the den. Dani's tossing the Gibson from the couch. First try: it hit the beagle's bed. Second: it hit the beagle. (Axl is fine. Offended, but fine.) Third: I caught the neck. Dani said 'you're not supposed to catch the neck.' I said 'it's tradition.' She said 'it's six strings. you're going to wreck your hands.'",
+        "New plan: no toss. She hands it to me, like a relay baton. 'A hand-off, not a throw. We call it a Dani.' Dani gets a credit. The cue is Axl: on the key change he howls, and on the howl, we swap. Hunter just offered to manage the show, 10% (15% with a montage). I said yes to the montage. I regret nothing."
+      ],
+      "effects": [
+        { "type": "status", "from": "hunter", "delay": 10, "text": "hunter is managing gus. 10%. 15% with montage (its 11 min). the show is tomorrow at 4. the montage is already 3 min long. theres nothing in it yet. it has a title screen. it says GUS: ALL AXES" }
+      ],
+      "choices": [
+        { "say": "full commit. plastic first half, hand-off at the howl, real on the bridge.", "next": "garage_swap" },
+        { "say": "keep the gibson ready but don't promise the swap. feel it live.", "next": "garage_swap" }
+      ]
+    },
+
+    "garage_real": {
+      "them": [
+        "Tuesday, 3:58 PM. The garage. It has a basketball hoop, a rake and an amp the size of a dishwasher. Bryan's behind the kit (he nodded; it's his way of saying hello). Greg's got his arms folded like a judge on a talent show, but a nice one. I've got the Gibson on the strap. My cord is orange and 25 feet long. It's the best cord in Mansfield and nobody's looked at it.",
+        "Voltage Heart: verse, clean. Chorus, clean. Dani, from the lawn chair: 'you're doing it.' We're coming up on the bridge. The B minor is at bar 33 and I can feel it coming like a bus. Four bars. Three. I have two options in my head and neither one is 'play it.'"
+      ],
+      "choices": [
+        { "say": "stop. say 'i don't have the fifth chord. teach me.' stand there like a person.", "next": "end_real" },
+        { "say": "fake it. four chords and a loud small noise. nobody hears a plank in a garage.", "next": "end_chair" }
+      ]
+    },
+
+    "garage_plastic": {
+      "them": [
+        "Tuesday, 3:58 PM. The garage. The TV is on an upside-down milk crate next to Greg's amp like a kid at the grown-up table. Bryan looked at it and nodded (his way of saying hello). Greg looked at it for eleven seconds, said 'it's 83 pounds,' and I said '83.5.' He said 'okay.' The cord is approved. It's orange. It's the cord that made it.",
+        "I'm holding the red axe. The Gibson is in its case by the rake, in case. Voltage Heart: verse, clean. Chorus, clean. The bridge comes up, and on the plastic one there's no fifth chord, there's just the colors, green, red, yellow, like always. Dani says 'you could just play it.' Greg says nothing. It's the loudest silence I've ever been in."
+      ],
+      "choices": [
+        { "say": "play the plastic one all the way. 98%, hold the pose. that's who walked in.", "next": "end_chair" },
+        { "say": "pause. open the case. bring in the gibson for the bridge. one swap, one night.", "next": "end_swap" }
+      ]
+    },
+
+    "garage_swap": {
+      "them": [
+        "Tuesday, 3:58 PM. The garage. The TV's on a milk crate (Chad carried it; Chad also carried the dolly, the juice boxes and himself; Chad's in a lawn chair and has requested a 'formal intro'). The cord's approved. Bryan nodded. Greg's got his arms folded. The Gibson's in Dani's lap with a bow on it. She insisted.",
+        "Voltage Heart, verse on plastic. Chorus on plastic. It's perfect. It's 98%. And then the key change, and the beagle howls. On the beat. It's the cue. Dani's up out of the chair holding the Gibson with both hands like the Olympic torch. Greg's eyebrow went up half an inch. Everybody's looking at me. Hand-off, or ride it out on the plastic."
+      ],
+      "choices": [
+        { "say": "take the gibson. do the hand-off. hit the b minor and miss it like you mean it.", "next": "end_swap" },
+        { "say": "ride out the plastic. the howl was a sign, not a cue. finish on the axe that got you here.", "next": "end_chair" }
+      ]
+    },
+
+    "end_real": {
+      "them": [
+        "UPDATE, Tuesday, 4:41 PM. I stopped. In the bridge, in front of Greg and Bryan and a rake. I said 'I don't have the fifth chord. Teach me.' And I stood there. Like a person. No pose. It's the worst I have ever felt on a stage and nobody in the garage moved.",
+        "Greg said 'finally.' He came over and put my finger across the strings himself and said 'press like you mean it.' (It's what Hollis says. They must have talked.) It buzzed. 'Again.' It buzzed. Eleventh try it rang. All six. Bryan hit the snare once. That's his applause.",
+        "Then: 'second guitar. tuesdays and fridays, 4 PM. bring the Gibson and the orange cord. the TV stays in the den.' Then: 'you can bring the plastic one for one song.' Which one. 'the encore.' Axl howled from the lawn. I think I'm in a band. \\m/"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "gus just stopped in the middle of a song in Greg's garage and said 'teach me.' he is now the second guitarist of STATIC PROPHECY. 4 chords, a Gibson, an orange cord and a very patient bandleader. Free Bird is the encore. Voltage Heart has a fifth chord. he's on it" },
+        { "type": "wallpost", "from": "greg", "to": "gus", "delay": 20, "text": "gus. tuesdays and fridays, 4 PM. bring the gibson and the cord. leave the tv. bring the dog (not for the band, for me). you were the first person to say 'teach me' in my garage. everybody says 'i know.' you're in. dont make it weird. - greg" },
+        { "type": "status", "from": "skip", "delay": 55, "text": "skip says the Fellowship is delighted to announce that gus has been drafted by a garage band. the tenth chair is still the tenth chair. he'll visit sundays. the chair has his name on it in marker. we are nine and a chair. we are making it work =D" },
+        { "type": "wallpost", "from": "bryan", "to": "gus", "delay": 95, "text": "gus. sick. (that IS a yes.) the fifth chord took you 11 tries. took me 3 months to hit a fill in time. i counted. count that. you're in the band. also the snare was one hit because i was out of other ones" },
+        { "type": "wallpost", "from": "chad", "to": "gus", "delay": 135, "text": "GUS!!! I HEARD FROM GREG'S DAD WHO HEARD FROM THE RAKE THAT YOU ARE IN THE BAND!!! I WOULD LIKE TO FORMALLY BE YOUR FIRST FAN. I WAS THERE. I WAS IN A POLO. I CARRIED NOTHING. I CHEERED THE ENTIRE TIME. THE JUICE BOXES ARE STILL IN MY CAR. THEY ARE YOURS." }
+      ]
+    },
+
+    "end_chair": {
+      "them": [
+        "UPDATE, Tuesday, 4:44 PM. I played it. 98%. The whole Free Bird, plastic, TV on the milk crate, Axl howling at the key change from the lawn. I held the pose. Dani filmed it. Greg didn't say anything for a while. Then: 'that was the best Free Bird i've ever heard on a TV.' I said thank you. He said 'it's not a compliment.'",
+        "He said 'i can't put a TV in a band. i love it. i can't. a controller never misses and a band needs somebody who can. come back with the fifth chord. i'll hold the slot.' I said 'you'll hold it?' He said 'it's staying open next to the rake. i said it out loud so you'd hear it.'",
+        "I'm going home with 83.5 pounds in a minivan and a Gibson I brought and didn't play. Skip's chair is open. I'm not sad. I'm a little sad. It's a different kind of 98%. It's the kind where the last 2% is a person."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "gus played Free Bird at 98% in Greg's garage on a plastic guitar plugged into an 83.5 lb TV. the band said 'not yet.' he said 'okay.' he is not sad. he is thinking about a chord" },
+        { "type": "wallpost", "from": "greg", "to": "gus", "delay": 25, "text": "gus. not yet. thats not no. the slot stays open (saying it in public so i cant take it back). get the fifth chord. i'll teach it friday if you ask. ask. the tv stays home. you're still the best amp carrier in mansfield. - greg" },
+        { "type": "wallpost", "from": "skip", "to": "gus", "delay": 70, "text": "gus!! the tenth chair is still there. it has your name on it AND a cushion now. we open at the roller rink saturday (promoter vince says its gonna be HUGE, we are making it work). you're on guitar. the real kind. strings and everything. ska is not dead. neither is a slot. =D" },
+        { "type": "status", "from": "kevin", "delay": 120, "text": "kevin says 'not yet' is just a combo that hasn't hit the multiplier. gus is at 98%. the last 2% is the whole game. kevin's AAA at the Tilt has no witnesses either. they should do a double bill. (doug says he'll 'think about it.' kevin believes in thinking.)" }
+      ]
+    },
+
+    "end_swap": {
+      "them": [
+        "UPDATE, Tuesday, 4:36 PM. I did the hand-off. Dani gave me the Gibson like a baton, I set the red one on the milk crate (it's fine, the TV's fine) and walked into the bridge with the real one. The B minor came up. I hit it. (Not clean. It buzzed on strings five and six. But it was the loudest buzz I've ever made and it was on a REAL one.) I missed. I kept going.",
+        "Axl howled again on the way out. Chad stood up in the lawn chair and screamed 'THE SWAP.' Bryan hit the snare three times (his highest honor). Greg's dad walked in with a rake, looked at a TV, a boy, a dog and an orange cord, and said to nobody, 'is that approved.' Greg said 'it's approved.' His dad said 'it's orange.' He left.",
+        "Greg: 'that was not what i asked for.' Then: 'i'm putting it in the set.' The swap, the howl, the TV on a milk crate. It's a 28 minute set now. 'second guitar. you're in. the swap is mandatory.' I said 'every show?' He said 'every show.' I'm a guitarist with a stage bit. Every great one has a stage bit. I'm going to need a bigger minivan."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "gus just did a mid-song guitar swap in Greg's garage (plastic to real, hand-off by his roadie, cue: a beagle). he missed a note. he kept going. he is in STATIC PROPHECY. the TV is in the set. the TV is in the SET" },
+        { "type": "status", "from": "chad", "delay": 20, "text": "CHAD HAS WITNESSED THE SWAP. HE STOOD UP IN A LAWN CHAIR. THE CHAIR IS FINE. HE IS NOT. HE WOULD LIKE TO BE THANKED IN THE LINER NOTES. HE ALSO CARRIED A TELEVISION. HE WOULD LIKE THAT IN THE LINER NOTES TOO" },
+        { "type": "status", "from": "hunter", "delay": 60, "text": "hunter finished the montage. 14 min. its called GUS: ALL AXES. the swap is at 6:12. the beagle howl is at 6:14. he is billing gus 15%. gus said 'i'll pay in Fruit Roll-Ups.' hunter said 'thats dani's currency.' they negotiated. hunter now reports to dani" },
+        { "type": "wallpost", "from": "nikki", "to": "gus", "delay": 105, "text": "GUS i nightcored the howl. UNTZ UNTZ. the swap is at 1.5x now. its 2 minutes shorter and axl's pitch is a little high. i put it in the set. u have to do the swap FAST. ur crowd (the dog) loves it. UNTZ UNTZ. i believe in u. i believed in the TV too" }
+      ]
+    }
+  }
+}

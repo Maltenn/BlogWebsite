@@ -1,0 +1,218 @@
+{
+ "id": "fred",
+ "name": "friendster_fred",
+ "tag": "Friendster, early. Here, late. Leaving soon. (Rule 11 does not apply to taglines.)",
+ "avatar": "assets/avatar_fred.gif",
+ "gender": "Male",
+ "age": 25,
+ "hometown": "Sacramento, California (close enough to where it all started to be sad about it)",
+ "loc": "a one-bedroom above a dry cleaner (the floor is warm. the cat is thrilled)",
+ "zodiac": "Pisces (I read that Pisces are nostalgic. I read it on a website that no longer exists)",
+ "status": "Single (my old profile said 'Looking for: friends, dating, activity partners.' I'd settle for one of the three)",
+ "hereFor": "Friends, Activity Partners, Testimonials (please write one)",
+ "mood": "wistful (leaving soon)",
+ "lastLogin": "Oct 4 2026 11:42 PM",
+ "theme": {
+  "bg": "#2c3e50",
+  "fg": "#e8dcc4",
+  "accent": "#e9c46a"
+ },
+ "blogTitle": "Testimonials (A Blog) (Please Leave One)",
+ "about": "Hello. I'm Fred. I was on Friendster for three years, back when it was small and slow and you found your friends by clicking through other people's friends until you reached the edge of the map. I had 212 friends there and 31 testimonials, and I kept a text file of every one. I came here when most of them stopped logging in. I'm not complaining. I'm explaining. OurSpace is a perfectly good website and I'll be leaving it soon for a better one (Yahoo 360. I have an invite.). I'm told this is my seventh announcement. I've been counting too. I'm 25. I process claims at an insurance office. My cat is named Biscuit. Everything used to be better, and I'm aware that's what people say.",
+ "aboutMore": "For the archives. On the old site, pages took forty seconds to load and we were grateful. A testimonial was a paragraph a friend wrote about you, in public, which you could accept or decline. I never declined one. I wrote 97. Biscuit had his own profile there (41 friends, mostly strangers' cats) until the Fakesters were purged. The real Biscuit has no friends and is fine. He walks across the keyboard whenever I start a farewell. I've stopped calling it a coincidence.",
+ "meet": "Who I'd like to meet: Marisol, from the old site, who wrote my favorite testimonial and then her page just said 'no longer available' (I'd like to say thank you). Hal, who ran the copy shop on my block and printed one of my testimonials to tape by his register. Todd, to ask what it's like to be everybody's first friend. And one person who also remembers the slow pages, because there's a look you get.",
+ "interests": {
+  "General": "testimonials (writing them, saving them, rereading them), degrees of separation (I once found my own cousin six clicks out), leaving, my cat Biscuit, the grilled-cheese place by the office, long drives with the radio low, libraries, any website that says 'Welcome back' and means it",
+  "Music": "Counting Crows, Semisonic (the bartender joke is on me), Jeff Buckley, the Eagles (one song. I'll get to it), a mix CD a friend made me three years ago (unlabeled; track 6 is a mystery; I have never skipped it)",
+  "Movies": "Lost in Translation, High Fidelity (vinyl_witch calls it a documentary; I'd call it a letter), Sideways, Say Anything, Almost Famous, any movie where somebody goes back to their hometown for one weekend",
+  "Television": "Arrested Development (canceled, which I understand), Scrubs reruns, Jeopardy (I call my mother on Tuesdays and we answer together), the episode of anything where the old gang reunites",
+  "Books": "High Fidelity (the book), The Giving Tree (a gift from my cousin, meant ironically, received sincerely), The Catcher in the Rye (once, at nineteen; I'd like to try again), the Friendster FAQ (all 14 pages)",
+  "Heroes": "Marisol (whereabouts unknown), my mother (Fresno, Tuesdays), Todd (keeps the lights on with a laptop), Doug (the most patient person I've met), Marcus (the only person who counts), the man in Friendster support who replied to me personally and signed it 'Rob'"
+ },
+ "song": {
+  "name": "Hotel California",
+  "artist": "Eagles",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/17/30/06/1730066d-13fb-6803-0e52-46d4762b94e0/mzaf_8068080726527063383.plus.aac.p.m4a",
+  "pattern": [0, 7, 3, 7, 5, 3, 2, 0],
+  "bpm": 74
+ },
+ "decor": [
+  "assets/badge_geocities.gif",
+  "assets/badge_icq.gif"
+ ],
+ "friends": ["todd", "angela", "doug", "marcus", "trevor", "vinyl_witch", "raven", "walt"],
+ "wall": [
+  {
+   "from": "marcus",
+   "text": "Fred. Per Rule 11, a departure thread requires 30 days' notice. I have been stacking your notices. Seven bulletins at 30 days each is 210 days. You may leave in May. Not before. It is in the bylaws. I wrote the bylaws. I wrote them in the last ten minutes. They are binding. Yet. -- Marcus, Moderator (unofficial)",
+   "time": "Oct 3 2026 8:19 PM"
+  },
+  {
+   "from": "angela",
+   "text": "~*~ Fred! ~*~ I have placed a bench by the lake on my site. It is 40 by 40 pixels. It faces the water. It is empty on purpose and there is a small sign that says 'Reserved: Fred.' It is not under construction. Everything else is. Sit whenever you like. You do not have to sign anything. ~ Angela, Webmistress",
+   "time": "Oct 3 2026 6:15 PM"
+  },
+  {
+   "from": "todd",
+   "text": "Hi Fred! Thank you for your seventh farewell bulletin. I read all of it. Under 'Why I'm leaving' you wrote 'it doesn't feel like it used to.' I want you to know I don't think any website has ever felt like it used to. Not even the one I built. I've put your account on 'resting' instead of 'leaving.' It's a new status. I made it up just now. - Todd :)",
+   "time": "Oct 4 2026 8:05 AM"
+  },
+  {
+   "from": "trevor",
+   "text": "fred i read bulletin #7. u said 'leaving for yahoo 360.' i looked it up. its invite only. u have an invite. u have 3. youve had them for 4 months and havent used any. i think thats a decision. haha. (also im not 'ironically' here. fine. fine.)",
+   "time": "Oct 3 2026 11:02 PM"
+  },
+  {
+   "from": "raven",
+   "text": "Fred. You asked in the bulletin whether anyone else over 20 would be leaving too. No. We are the furniture. Furniture does not announce. It stands there, being older, holding up the lamp. Keep sitting.",
+   "time": "Oct 3 2026 1:48 AM"
+  },
+  {
+   "from": "doug",
+   "text": "fred i read the thing u wrote about the 40 second pages. i been thinking about it. i think i would have liked it there. i think u would like it at my house where the pages are still 40 seconds. we have a cot. my mom would tell aunt carol the nice computer man is here. ok its 7:28 and my mom is looking at the ph",
+   "time": "Sep 28 2026 7:21 PM"
+  },
+  {
+   "from": "vinyl_witch",
+   "text": "fred, the record you bought is still in its sleeve. i know bc you told me. you don't own a turntable. darling. come to the store sunday, i'll put it on, side A, you can stand in the back and not say anything. records are the only thing that stay the way they were. that's the whole spell. i'm not even joking, a little.",
+   "time": "Sep 24 2026 10:36 PM"
+  }
+ ],
+ "replies": [
+  "That's kind of you to say. I'll write it down. I write everything down.",
+  "Back on Friendster that would have been a testimonial. Here it's a comment. I'll accept it either way.",
+  "I'd like to reply properly, but I'm leaving soon, so I'll just say thank you now.",
+  "Hm. That's a fair point. I'll raise it with myself at my next farewell bulletin.",
+  "I'm still here. Please don't tell Marcus.",
+  "Biscuit says hello. He walked across the keyboard. I'm told that's a yes.",
+  "That made my evening. My evenings are quiet. It counts for a lot.",
+  "I'll think about it. I'm very good at thinking about things. It's most of what I do.",
+  "You're welcome. I'd say it was nothing, but I wrote it down, so it was something.",
+  "That's the nicest thing anyone has said to me since the early days."
+ ],
+ "thanksAdd": "Thank you for the add. I'd like to write you a testimonial, if that's all right. It's a thing we used to do. I need about a week to get to know you first, so that I get it right. Please don't read anything into the fact that I'm leaving soon. I'm leaving soon. But I'll write it first.",
+ "ambient": [
+  "Seventh farewell bulletin posted. Marcus replied within four minutes. I didn't ask him to. I'm choosing to be moved.",
+  "Found my old Friendster login on a sticky note in a drawer. I sat there for a while with the pen cap in my mouth. Then I put it back. Some drawers are for that.",
+  "Biscuit walked across the keyboard during my farewell draft and deleted the second paragraph. It was the best paragraph. He may be an editor.",
+  "Made an Orkut account to see what's there. It's mostly Portuguese. I couldn't read a word. I stayed twenty minutes. It felt like the old site: warm, a little slow, and I didn't know anyone.",
+  "The grilled-cheese place by the office changed the bread. Everything is changing. I'm told it's a Tuesday.",
+  "Went to the library on my lunch hour. Sat in the periodicals section for twenty minutes. Nobody needed anything from me. It felt a lot like logging in."
+ ],
+ "saltyDm": "That's all right. Not every request is accepted. I've had 212 friends and 31 testimonials and I know what a 'denied' looks like. It's a quiet one. I'll leave the door open. I'm leaving anyway, so it's mostly symbolic.",
+ "keywords": {
+  "friendster": "It was slow, and it was small, and when you found somebody six degrees out it felt like finding a door in a wall. I had 212 friends there. I could tell you where each one is now, except about sixty. That's the part I don't say out loud.",
+  "testimonial": "A testimonial is a paragraph one friend writes about another, publicly. You get to approve it. The best one I ever received said 'Fred: remembers your birthday, forgets his own.' That was Marisol. I have it in a text file. I've read it more often than I'd say.",
+  "leaving": "I'm leaving. This is the seventh time I've said so. I've been told by a moderator that there are rules about it. I'm leaving when I find the right place. I've been looking for three years. I'm not being dramatic. I'm being thorough.",
+  "cat": "Biscuit. Grey, eleven pounds, no opinions except about the keyboard. He had a Fakester profile on Friendster with 41 friends. It was deleted in the purge. The real one outlived it.",
+  "360": "Yahoo 360. It's invite-only, which is how you know it's good. I have three invites. I'm saving them for people who deserve them. I've been saving them for four months. Nobody has been quite right. (Doug.) (I should ask Doug.)",
+  "job": "I process claims at an insurance office. Somebody's basement floods, they send a letter, I read it. I've read about four thousand letters. Eleven of them were thank-you notes. I keep those in a folder."
+ },
+ "banter": {
+  "angela": [
+   "Angela, I sat by the lake. It loops every forty seconds. I stayed for four loops, which is the longest I've watched anything this year. The bench is very good. I would like to leave a testimonial for the lake. It reads: 'It is exactly the size I remember.'",
+   "Entry 211. 'I was looking for something else.' I meant it as a joke. It turned out to be the truest thing I wrote that month. I have been looking for something else for three years and I keep ending up in guestbooks. Please keep it. I'd like to think it's a good place to be filed."
+  ],
+  "marcus": [
+   "Marcus, thank you for counting. I know you meant it as enforcement. Nobody else has ever noticed how often I announce things. I have left a place six times in my life and nobody kept the number. You did. I'm treating that as a form of friendship. You may reply once to say you understand.",
+   "Marcus, I'd like to appeal one thing about Rule 11. Not the rule. The number. It says 'see: Fred, six.' It's seven now. Please correct the record. I'd hate for it to be wrong. You'd hate it more."
+  ],
+  "doug": [
+   "Doug, I think of you every time a page takes more than three seconds, which is most of them. I used to complain. Then I met you. Please accept this testimonial: 'Doug. Patient. Reads the whole thing. The best member of any network.' It's eleven words. It should load before the phone rings.",
+   "Doug, your bulletin about file sizes was the best thing I read this month. I've started doing it too. 'Farewell #7 (1 KB) (mostly adjectives).' Marcus read it in four seconds, which means it works."
+  ],
+  "trevor": [
+   "Trevor, you're eighteen and standing in a doorway: everyone around you is the same age and about to be somebody. I was there. I'll say this once. Write home. A real letter, on paper, if you can. Your mother will keep it. She's already keeping the trailer.",
+   "I checked, Trevor. thefacebook needs a .edu address. Mine expired two years ago. I still remember it. I typed it into the page once, to see what it would say. It said no. A very polite no. I've been thinking about that no all week. I'm happy for you. I'm not bitter. I read the whole registration page, for ten minutes."
+  ],
+  "todd": [
+   "Todd, when the server goes down at seven for twenty minutes, I stop what I'm doing and wait. Friendster went down every evening and we all went to dinner. It's the only part of the old place that came with me. Thank you for keeping it.",
+   "Todd, you made up a status ('resting') on my account. I looked in the settings for where to change it. There's nothing. You must have typed it into the laptop by hand. I'm not leaving tonight. I'm resting."
+  ],
+  "raven": [
+   "Raven, you're one of the three people on here who remember the old pages. I wrote you a testimonial. It reads: 'Raven. Gets the joke before you finish telling it, and pretends she didn't.' You said to remove it. I take that to mean you read it.",
+   "Raven, you wrote 'We are the furniture.' I've been thinking about it all week. It's the kindest thing anyone has called me. I put it on a sticky note. It's on the monitor, next to the number for the grilled-cheese place."
+  ],
+  "vinyl_witch": [
+   "vinyl_witch, I own one record, Hotel California, which my father gave me. I do not own a turntable. It sits in its sleeve and I look at it. You said every record wants to be played. I'd like to bring it by on Sunday. I'll stand in the back. If it's a bad pressing, tell me gently.",
+   "I went to your good record store on Saturday. It smelled like the library I grew up in. I didn't buy anything. I stood by the Fleetwood Mac crate for twenty minutes. The clerk said 'she's not in today.' I said 'I'm not looking for her.' I was looking for her. I'm sorry. It's a lovely store."
+  ]
+ },
+ "statuses": [
+  "fred is leaving OurSpace. (Seventh announcement. See bulletins. See Marcus.)",
+  "fred is writing a testimonial for the man who sells him coffee. Draft three. It's too much. He's keeping the too much.",
+  "fred is at the insurance office. A man wrote to say his roof has fixed itself. fred is worried about the roof.",
+  "fred just found the old Friendster login page in his browser history. He's not clicking it. He's just looking at it, like a house he used to live in.",
+  "fred is waiting for Todd's server to come back. It does that at seven. He has a sandwich.",
+  "fred is at Doug's, in spirit, waiting for a page to load. It's a lovely feeling. It's the feeling of everybody arriving at once.",
+  "fred is not leaving tonight. Biscuit has been consulted. Biscuit sat on the keyboard."
+ ],
+ "bulletins": [
+  {
+   "subject": "FAREWELL (the seventh) (this is a survey, so Rule 11 does not apply) (Marcus, see page 2)",
+   "body": "To everyone I've met here: I'm leaving OurSpace. I know. It's a survey, so it's allowed. 1) Where did you hear about OurSpace? 2) Where were you before? 3) If you had to leave, where would you go? 4) Who would you tell first? 5) Who would you tell last? 6) Would anyone notice? My answers: 1) A coworker said it's where everyone was going. 2) Friendster. 3) Yahoo 360 (I have an invite. I have three.) 4) Todd. 5) Marcus. 6) Marcus did, in four minutes. I'm thinking about that. I'll be leaving soon. Possibly this weekend. Possibly after Doug's page finishes loading. -- Fred (Friendster, early adopter, 212 friends)"
+  },
+  {
+   "subject": "TESTIMONIALS: a thing we used to do (please do it again)",
+   "body": "On the old site you could write a paragraph about a friend and it would sit on their page for everyone to see. They had to approve it. That was the whole idea. Marcus has said a testimonial is a wall post with a different name. He's partly right. A testimonial is a wall post you're not allowed to take back. I'll write one for anyone who asks. I need about a week to get to know you first. I've written 97. Two made people cry. One was Hal, who ran a copy shop. He printed it and taped it up next to his register, where it stayed until he retired. Reply with a name and I'll start. -- Fred"
+  },
+  {
+   "subject": "OVER-20 ROLL CALL (Marcus says the site needs us)",
+   "body": "Marcus has said the site needs members over 20. I'm taking attendance. Reply with your age and one thing you used to do online that no longer exists. I'll begin. 25. I used to sign other people's guestbooks at midnight and leave exactly one sentence. So far I have one reply: Todd answered with a smiley face. I'm counting it as present. If you're 21 or older and reading this, you're welcome here. We don't have a table, but I'm told Angela has a bench. -- Fred"
+  }
+ ],
+ "pcComments": [
+  "Lovely photograph. I'd like to write you a testimonial about it. It would be one line. Give me a week.",
+  "I've been looking at this for a while. That's a compliment. I don't look at most things for a while any more.",
+  "This reminds me of a picture somebody posted on the old site. I'm not saying it's the same person. I'm saying the light is the same.",
+  "Good picture. Is that a lamp behind you? Leave it there. That's the best lamp I've seen in a month.",
+  "A very well composed photograph. I'm saving it in a folder called Things That Were Good This Year. It's a short folder. You're in it."
+ ],
+ "dmSeed": [
+  {
+   "text": "Hello malten. Fred. I noticed you're new, so I'll say something I wish somebody had said to me: don't trust the pages that say 'Under Construction.' Trust the people who write on them. Anyway. Welcome. I'm leaving soon, but not tonight."
+  },
+  {
+   "text": "Also: would you mind if I wrote you a testimonial? It's a thing we used to do. No pressure. It would take about a week."
+  }
+ ],
+ "dms": [
+  "malten, a question that may seem unrelated. Where do you think everyone goes when a website ends? I've been wondering. I've decided they go to a very large dining hall where nobody is in a hurry and everyone has the same default picture. Please tell me if that's wrong.",
+  "I found my old Friendster testimonials file today. 31 of them. I read all 31 at lunch and the man from billing asked if I was okay. I said yes. I'd been reading about myself for forty minutes and I was a lot better than I'd remembered. You're welcome to write one for yourself. I recommend it.",
+  "Biscuit sat on the keyboard and sent the word 'jjjjjjjjjjjjjjjj' to Marcus. Marcus replied 'Thread locked.' It's the most we've communicated all month.",
+  "Here is a strange thing. The mix CD a friend made me three years ago has a sixth track I don't recognize, and I've never looked it up. I think I'm afraid it will have a name. For now it's just track 6, and it's the best song I know.",
+  "A woman at the insurance office asked how long I'd been here. I said four years. She said 'you must love it.' I said I love the people. She said 'who.' I couldn't think of anyone's last name. I said 'a man with a laptop.' It's Todd. It's all Todd.",
+  "I made a list of everyone who has told me not to leave. Marcus. Todd, twice. Angela, by building me a bench. Doug, by offering a cot. Raven, by calling me furniture. It's a good list. It's longer than my list of reasons to go. The font is smaller, but it's longer.",
+  "My mother and I did Jeopardy on the phone tonight, Tuesday as always. She got every answer. I got one. The category was 'Famous Departures' and the answer was a train. I said it very quietly. She asked if I was all right. I said it was just a train. She said 'Fred, with you it's never just a train.' I laughed for a full minute. I needed that."
+ ],
+ "blog": [
+  {
+   "title": "Why I Keep Leaving (A Roll Call)",
+   "date": "Oct 4 2026 11:20 PM",
+   "mood": "honest",
+   "body": "Marcus has counted. Seven. I'd like to say something about that. The first time I posted a farewell, nobody replied, and I stayed four more weeks because it felt rude to go without an answer. The second time Todd said 'we'll miss you!' with a smiley. The third time Angela sent me a link to a page about a lake. By the fifth I understood what I was doing. A farewell bulletin isn't a goodbye. It's a roll call. I stand at the door with my coat on and see who says 'wait.' Marcus said it in four minutes. Todd put my account on 'resting,' which is not a real status; he made it up, I assume at his kitchen table. Angela built a bench. Doug offered a cot. Raven called me furniture, which I'm choosing to hear the way she meant it. I'm not leaving. I'm checking that the door is where I left it, and that someone is standing on the other side with a hand on it."
+  },
+  {
+   "title": "Friendster, For Those Who Weren't There",
+   "date": "Sep 18 2026 8:16 PM",
+   "mood": "nostalgic (as per usual)",
+   "body": "It was slow. I want to start there, because everyone who's been told about it says 'it must have been great,' and it was, but it was slow. A page took forty seconds. You'd click a profile and go make a sandwich. When you came back you'd read the whole thing, because that's what you did. You found friends by clicking through other people's friends. Four degrees out, a stranger's face. Five, a man with a goat. Six, my cousin Dale. (A different Dale.) That was the game: seeing how far the map went. And testimonials, the paragraph a friend wrote about you where everyone could see. It was like being written about in a yearbook you got to approve. Then the Fakesters were deleted, Biscuit's profile with them, and the pages got faster and the people got fewer. I'm not saying it was better. I'm saying it was small enough to remember everyone."
+  }
+ ],
+ "survey": {
+  "title": "The 'Where Are You Now' Survey (forwarded to me by someone who has stopped logging in)",
+  "qa": [
+   ["name:", "Fred. 'Friendster Fred' on here. Fred at the insurance office."],
+   ["age:", "25. I'm told it's the age at which a website becomes a feeling."],
+   ["where were you three years ago:", "Friendster. 212 friends. A cat with 41."],
+   ["number of times you've said you're leaving:", "Seven. Marcus has the receipts."],
+   ["where are you going:", "Yahoo 360. I have an invite. I have three."],
+   ["reasons to stay:", "Marcus, Todd, Doug, Angela, Raven (furniture), a bench, a cot."],
+   ["favorite testimonial:", "'Fred: remembers your birthday, forgets his own.' Marisol, wherever you are."],
+   ["pets:", "Biscuit. Grey. Eleven pounds. Currently on the keyboard."],
+   ["last thing you wrote:", "A reply to a man whose roof blew off in a storm. He sent a thank-you note. I keep those."],
+   ["most-played song:", "One song, which I'm told is about a hotel. I think it's about a website."],
+   ["describe yourself in one sentence:", "I'm the person who is always about to leave and who has never once been told to go."]
+  ]
+ }
+}

@@ -1,0 +1,187 @@
+{
+  "id": "gina",
+  "name": "ghosthunter_gina",
+  "tag": "Ghost hunter. 14 hours of audio. 11 are the fridge. 3 are Under Review.",
+  "avatar": "assets/avatar_gina.gif",
+  "gender": "Female",
+  "age": 16,
+  "hometown": "Ohio (the part with the haunted school. every part has a haunted school)",
+  "loc": "the school auditorium, balcony row B (with a hall pass) (and a thermos)",
+  "zodiac": "Scorpio (starxgazer says that explains the cold spots. i say it explains nothing. i've noted it)",
+  "status": "Single (investigating)",
+  "hereFor": "Friends, Witnesses, Equipment swaps",
+  "mood": "spooked (professionally)",
+  "lastLogin": "Oct 3 2026 11:48 PM",
+  "theme": { "bg": "#17102e", "fg": "#e6e1ff", "accent": "#5ef2c7" },
+  "bgTile": "assets/tiles/tile_stars_neon.png",
+  "blogTitle": "The Gina Files: Paranormal Case Notes (Sources Cited)",
+  "about": "ok so. i'm gina, i'm 16, and i'm the founder, sole investigator and treasurer of the Ohio Valley Paranormal Society, Junior Division (membership: 1. my brother Danny doesn't count, he says he's 'observing'). i own a digital voice recorder, a flashlight with a red filter, a kitchen thermometer (for cold spots), a spiral notebook (numbered, dated), and a stud finder that is also a 'presence detector' (mr h says it's a stud finder). my current case is the school auditorium. i have 14 hours of audio. 11 hours are the fridge. i know it's the fridge. that's called a control. the other 3 hours are Under Review. i'm not here to scare anybody. i'm here to listen.",
+  "aboutMore": "rules for my page: 1) all sightings welcome, including 'it was probably the wind.' i want the wind in the file. 2) i don't believe everything. i believe in writing everything down. 3) orbs are mostly dust and moisture (mr h explained backscatter, i made a chart). i have 400 orb photos anyway. they're pretty and i'm keeping them. 4) if you hear your name in an empty room, say 'thank you' and keep walking. it's polite and nothing has ever gone wrong.",
+  "meet": "Who i'd like to meet: whoever says 'again from the top' in the balcony at 4:44 PM (hi. i'm not mad. i have cocoa). Ms. Marchetti's cat, who attended 5 of my 7 sessions and never once looked at the corner. the pipe guys from the ghost show on TV, to ask what the 'shadow' was (it's a coat). and anyone who has ever heard the house make a noise and said 'hello?' out loud. you're my people.",
+  "interests": {
+    "General": "EVP (electronic voice phenomena), cold-spot mapping, orb photography (400 and counting), the school auditorium after 3:15 (with a hall pass), the ghost light (it's definitely for the ghosts), spiral notebooks, checking whether a sound is the fridge, cocoa in a thermos (investigating is cold), Mr. Henderson's extra credit",
+    "Music": "the hum of the walk-in cooler at the grocery store (very consistent), my brother's band practice (loud, not haunted), Evanescence (Fallen, front to back), My Chemical Romance, whatever my mom plays at 6 PM while she's getting ready for her shift. my profile song is the Rockwell one. i know. it's so obvious. my mom has it on cassette so now it's also 'family history'",
+    "Movies": "Ghostbusters (a documentary), The Haunting (the black and white one, the breathing door, seen it 9 times), Poltergeist (through my fingers), The Others, Scooby-Doo (the original cartoons. don't talk to me about the live action)",
+    "Television": "Ghost Hunters (i have the episode where they find a 'shadow.' it's a coat), Unsolved Mysteries, Buffy (the Halloween episode), the Twilight Zone marathon on New Year's Day, MythBusters (sources cited, i respect that)",
+    "Books": "Hans Holzer (library copy, overdue, renewed 4 times), The Haunting of Hill House (best book about methodology that is also fiction), Scary Stories to Tell in the Dark (sleeping with the light on, no regrets), my own notebooks #1 through #22",
+    "Heroes": "Houdini (spent years debunking mediums, looked at every trick and said 'show me,' and also wanted so badly for one to be real that he made a promise to his wife about it. both of those can be true at once). Mr. Henderson (3 points). Bill from the Bigfoot page, who heard my audio and said 'good control.' my mom, who is also awake at 3 AM"
+  },
+  "song": {
+    "name": "Somebody's Watching Me",
+    "artist": "Rockwell",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c9/6d/bb/c96dbb3e-39dd-a855-94f5-a29d94fec1c8/mzaf_168606166018957873.plus.aac.p.m4a",
+    "pattern": [0, 0, 3, 0, 5, 3, 0, 7],
+    "bpm": 117
+  },
+  "decor": ["assets/badge_aim.gif", "assets/deco_moon.gif"],
+  "friends": ["raven", "starxgazer", "bill", "thad", "darkangel", "henderson", "tim", "whiskers"],
+  "wall": [
+    { "from": "raven", "text": "Gina. I read your notes on the old cemetery gate. You photographed in daylight, with a ruler for scale, and you asked the groundskeeper's permission first. That is the most respectful cemetery work I have seen from anyone under twenty. Also, the orb in photograph four is a moth. I am sorry. He was lovely. - Raven", "time": "Oct 1 2026 12:40 AM" },
+    { "from": "starxgazer", "text": "gina i did your chart without asking (sorry!!) your mercury is in the 8th house which is death, secrets and other people's money, so ur either a ghost hunter or an accountant. ur a ghost hunter. also mercury is retrograde again so ur recorder might pick up extra, dont panic, ill tell u when its over <3", "time": "Sep 28 2026 8:15 PM" },
+    { "from": "darkangel", "text": "~*~ gina. i read ur case file on the Glitter Ghost. u investigated my CHAIN LETTER. u traced it to a girl named no one. a loop. a poem written by the wind. ur the first person to treat my darkness like evidence. i'm honored. i'm also a little scared. 11:11 ~*~ (do not tell raven)", "time": "Sep 20 2026 11:11 PM" },
+    { "from": "tim", "text": "gina i wrote a ghost detector for the ti-83. it beeps at random. $2. it is about as accurate as the stud finder but it fits in a pocket. also the vending machine in the east hall runs for 4 seconds at 2:14 PM every day. that is your 'cough.' no charge for this information. (free, but filed.)", "time": "Sep 16 2026 4:50 PM" },
+    { "from": "walt", "text": "Dear Gina, In 34 years of walking Route 14 before sunup I never once saw a ghost. I did pass a house on Pecan Street where a light burned at four in the morning and a woman waved from the window. For years I assumed she was no longer living, on account of the hour. She was a baker. Regards, Walt", "time": "Sep 8 2026 5:41 AM" },
+    { "from": "adam", "text": "thanks 4 the add gina!!! ur friend #9,512!!! ur my first ghost hunter!!! (on here) do u need any friends 4 ur haunted school. i have 10 thousand. some of them might be ghosts. idk. i havent met them", "time": "Aug 25 2026 3:12 AM" }
+  ],
+  "replies": [
+    "ok noted. filing it under witness statement. (witnesses are valuable even when it was the wind)",
+    "that's SO interesting. can i get a time, a location, and what the weather was doing?",
+    "wait, say that again slower. i'm writing it down.",
+    "ha ok. technically that's dust. but i respect that you looked.",
+    "thank you for your testimony. you are now Witness 31.",
+    "if it's cold in the room you're in right now, tell me. i want the exact number.",
+    "hm. inconclusive (spooky).",
+    "ok but did you record it. recording is 90 percent of the job. the other 10 percent is cocoa.",
+    "i'm going to keep an open mind and a closed door. both are science.",
+    "that's the nicest thing anyone has said to my notebook. i'll read it out loud to it."
+  ],
+  "thanksAdd": "welcome to the Ohio Valley Paranormal Society, Junior Division!! membership is now 2!! (3 if you count my brother. he says he doesn't) you can submit sightings, EVPs, weird noises and 'my house does a thing at 3 AM.' i log everything, i never laugh, and i say thank you to every sound. (please don't text me during an investigation, the recorder will be on and you will be on it forever)",
+  "ambient": [
+    "EVP session #61 complete. fridge. i said thank you to the fridge. it hummed back. (that's what it does.)",
+    "new orb photo!! it's dust!! technically!! but it's a REALLY nicely shaped dust.",
+    "the ghost light in the auditorium was on again at 5:10 PM. a ghost light is a real theater tradition!! they leave one bulb on all night so the ghosts have light to perform by!! (thad says it's so nobody falls in the pit. we agreed to disagree. in the dark.)",
+    "cold spot in the library: 61 degrees, 6 feet from the vent. i know. the vent is where the cold comes from. i'm logging it anyway because somebody should.",
+    "fun fact: an average house makes about 40 sounds at night that sound like footsteps. i've catalogued 14. the pipes are the worst. they have a rhythm."
+  ],
+  "saltyDm": "request denied. ok. i'm not offended, i'm logging it as 'witness declined to participate' with the date, time and temperature (63 degrees, my room). you can change your mind. my door's always open. (figure of speech. my brother's in my room. he's observing.)",
+  "keywords": {
+    "ghost": "i don't say 'ghost.' i say 'unexplained auditory event.' it's more accurate and my notebook has more room. ...ok i say ghost when i'm tired.",
+    "orb": "an orb in a flash photo is almost always dust, pollen or moisture caught in the flash (backscatter). i know. i have 400. i keep them anyway. technically they're a record of how much dust is in my room, which is also kind of beautiful.",
+    "fridge": "it's the fridge. it's always the fridge. a refrigerator cycles on every 20 to 40 minutes and makes a note like a sleeping cello. i call it the control. everything else gets compared to it. i say thank you to it at the end of every session.",
+    "auditorium": "case #14. a voice in the balcony says 'again from the top.' 9 seconds, 4:44 PM. thad says it's Ms. Marchetti. Ms. Marchetti was at home. i have the timestamp. either it's a ghost or the building has heard that line so many times it learned it. which is called a residual haunting. so it's a ghost either way.",
+    "evp": "electronic voice phenomena: you record in an empty room, ask a question, leave a pause, then play it back. 90 percent of the time it's nothing. 9 percent it's a fridge. 1 percent is Under Review. that last 1 percent is why i own a thermos.",
+    "haunted": "all houses are a little haunted. they make noise, they hold temperature, they remember how people walked through them. i'm just the one who writes it down.",
+    "bigfoot": "bill's department. we have a cooperative agreement. he sends me 'control stump' updates. i send him fridge results."
+  },
+  "banter": {
+    "raven": [
+      "raven i followed your rule about the cemetery: daylight, permission, a ruler for scale, and i said hello at the gate. the groundskeeper asked if i was 'with the school.' i said 'with the society.' he said 'what society.' i said 'mine.' he let me in.",
+      "raven, respectfully: when you photograph a headstone, do you ever feel like someone's reading over your shoulder? i don't mean ghosts. i mean the feeling of being carefully, politely noticed. i get it in the auditorium. i wondered if it's the same."
+    ],
+    "starxgazer": [
+      "starx i logged 3 sessions during mercury retrograde and 3 outside it. the fridge was the same in all 6. but the sandwich i left in the cold spot in session 4 was weirdly cold. i'm adding it to your column. you have a column now.",
+      "starx my chart says my mercury is in the 8th house. you said that's death, secrets and other people's money. i said i'm 16. you said 'for now.' i haven't stopped thinking about it. is that a prediction or a threat. (i'm writing down both.)"
+    ],
+    "darkangel": [
+      "darkangel, i finished the case file on the Glitter Ghost. the chain letter has 340 forwards, a loop through someone named Carol at bunco, and no author. the poem inside was 'written by the wind.' i believe you didn't write it. i also believe it's too good to be the wind. so i've classified the author as 'unknown (talented).'",
+      "darkangel, your crimson tears poems all have the same timestamp (11:11 PM) and i admire that. most witnesses are all over the place. you'd be a star witness. if you ever see anything at 11:11 that isn't a clock, message me. (don't message me. the recorder will be on. ok message me.)"
+    ],
+    "thad": [
+      "thad i did the science from the tenth row like you said. results: from the tenth row the voice is fainter and from the balcony it's clearer. so either the voice is in the balcony or the balcony is where the building keeps its best echo. i owe you a thermos. the one on the second row wasn't yours. i apologize to whoever owns it.",
+      "thad i have no data on anything that happened in the auditorium at 6:45 AM. the recorder was off. i checked twice. some things aren't evidence. they're just somebody turning on a light for somebody else."
+    ],
+    "henderson": [
+      "mr h, i accept the 3 points and i'd like to formally request a 4th for 'ruling out the stud finder as a primary instrument.' it found 2 studs. i labeled them in the data table. they're studs.",
+      "mr h, my density lab report has a data table, a graph with labeled axes, and a conclusion longer than 'it floated.' the conclusion is 'it floated, which means the unexplained auditory event is consistent with the control.' i'm not sure that follows. please advise."
+    ],
+    "bill": [
+      "bill i've started keeping a control stump too (thanks for the idea!!). mine is the third step in the east stairwell. it's been completely uneventful for 11 days. it's the best-behaved stump i know.",
+      "bill, my brother Danny listened to the auditorium audio and said 'that's just a lady being tired.' you've been doing this 11 years. is he allowed to say that? it's a good hypothesis. i hate it."
+    ],
+    "whiskers": [
+      "mr whiskers, in your survey you said you stare at the corner by the hall closet. i've logged it as 'animal reacts to a presence' under Reports (Feline). i know it's a spider. i logged it as both.",
+      "mr whiskers, you wrote that people prefer the other explanation and you let them have it. that is the most scientific sentence i've read all year. you're welcome in the society any time. membership is free. dues are 1 tuna (i'll cover the first one)."
+    ],
+    "kyle": [
+      "kyle there's no cheat code for ghosts but there IS a rule: never investigate a scary place alone, always go in daylight, always tell a grown-up. i'll make you an official Junior Observer (laminated card, says OBSERVER, you may not be in charge of the recorder).",
+      "kyle, if you hear a noise at night, write down the time and what it sounded like and then go find out if it's the fridge. it's the fridge 8 times out of 10. the other 2 times it's the dog. you're welcome."
+    ]
+  },
+  "statuses": [
+    "gina is in the auditorium with a recorder. do not enter. (you can enter. just whisper.)",
+    "gina just caught a 4 second EVP. it says 'hhhhhmmmmmm.' (fridge)",
+    "gina is eating a cold sandwich in a cold spot. for science.",
+    "gina has 14 hours of audio and 11 are the fridge. progress.",
+    "gina is not afraid. gina is professionally alert.",
+    "gina just photographed 31 orbs and would like to apologize to the dust",
+    "gina is writing a lab report on density. (do not ask what it's really about)",
+    "gina is waiting for the ghost light. patience is 80 percent of the job"
+  ],
+  "bulletins": [
+    {
+      "subject": "CASE FILE #9: THE GLITTER GHOST (SOLVED?? SORT OF)",
+      "body": "Many of you got the chain letter about the Glitter Ghost. i investigated. first appearance: a DarkAngel bulletin. forwarded 340+ times by one person alone (hi Aunt Linda!!). the chain loops through someone named Carol at bunco and has no author in it. verdict: the ghost is the forwarding. she travels from inbox to inbox and 'haunts' anyone who deletes her. i have not deleted her. nothing has happened to me. that proves nothing. it's one data point. please do not send me bad luck, i have a lab report due Friday. - Gina, OVPS Jr."
+    },
+    {
+      "subject": "SURVEY: HAVE YOU EXPERIENCED ANY OF THESE? (check all that apply)",
+      "body": "1. a door opened by itself (draft?) 2. a cold spot (vent?) 3. footsteps at night (pipes? a house makes about 40 of these) 4. the feeling of being watched (it's usually a cat) 5. a light flickered (bulb?) 6. you heard your name in an empty room (message me) 7. a smell you can't place (somebody's cooking? find out who. it might be a great recipe) 8. a pet staring at a corner (spider, 9 times out of 10). if you checked 1 through 5, it's your house, which is normal. if you checked 6, message me. i'll bring the recorder and a thermos."
+    }
+  ],
+  "pcComments": [
+    "ok i zoomed in on the upper left and there's a perfectly round orb. it's dust. but it's perfectly round. 10/10 composition.",
+    "is it just me or is the window in the background kind of... watching. it's probably the reflection. i love it.",
+    "great picture!! can you send the original file? i'd like to check the metadata. (for the weather.)",
+    "i see 2 orbs and a lens flare. you're clean. no ghosts. congratulations on your normal photograph.",
+    "the lighting is so good. if i were a ghost i'd want to be in this one."
+  ],
+  "dmSeed": [
+    { "text": "hi malten! gina here, ghosthunter_gina. quick question: has your house ever made a sound at 3 AM that you couldn't explain? i'm collecting witness statements. totally normal. i have a form. (it's laminated.)" }
+  ],
+  "dms": [
+    "malten i need a second opinion. my brother says the thing on my recording that sounds like 'help me' is 'help me find the remote.' i say it's too early to tell. i can't attach audio so please just hold your ear up to your speaker and imagine it. what do you hear. (do not say remote.)",
+    "the school said no to a sleepover investigation in the auditorium. mr h said maybe with a chaperone, a permission slip and 'no candles, Gina, i'm serious.' i wasn't going to bring candles. i was going to bring 6 flashlights. he said no. i said ok. it's fine. there's always the library.",
+    "my mom found notebook #14 and read it. there's a page where i'd written 'am i the only one up' and under it she wrote 'no.' that's all. she works nights at the hospital, so she's up. she's up. i've been thinking about it for 3 days. it's the best EVP i ever got and it was a pen.",
+    "my house makes a 'thunk' at 2:14 AM every night. i named it Gerald. Gerald is the water heater. i've known since the third night. i still say good night to Gerald.",
+    "how do you politely ask a custodian (Mr. Ray, very calm) to unlock a room? i tried 'please,' 'it's for science,' and 'it's for a grade.' he said 'what's the real reason' and i said 'there's a cold spot' and he said 'it's the vent' and unlocked it anyway. i think he's my favorite person at school.",
+    "bill (bigfoot_bill) wrote a whole page on how to run a control. he labeled the fridge 'Control A.' i have never been so respected by a grown-up who owns that many thermoses.",
+    "i photographed my room at 3 AM with the flash and got 31 orbs. then i dusted. i photographed again. 4 orbs. so that's the experiment. 27 orbs were dust. 4 are Under Review. i'd like it noted that i dusted for science and my mom saw and said 'who are you.'",
+    "mr henderson gave me 3 extra credit points and wrote 'keep the notebook' on the report. it's the first time a teacher has said that and meant something other than 'stop talking.'"
+  ],
+  "blog": [
+    {
+      "title": "CASE FILE #14: The Voice In The Balcony (Sessions 4-7)",
+      "date": "Oct 3 2026 11:30 PM",
+      "mood": "inconclusive (spooky)",
+      "body": "CASE FILE #14. Location: school auditorium, balcony row B. Equipment: recorder, red flashlight, thermometer, one (1) stud finder (see Mr. H). Session 6, Friday, 4:44 PM: a voice, 9 seconds, clear, says 'again from the top.' Session 7, Friday, 4:31 PM: same voice, same line, 6 seconds. Ruled out: ventilation (Mr. H), the vending machine (Tim, ledger), my brother (karate). Ms. Marchetti was at home for both (timestamped photo of her empty parking space). Thad says the room has 'absorbed' her, since she says that line 40 times a day. I told him that's called a residual haunting and he said, 'Gina, I'm a theater kid, we invented being haunted by rooms.' Hypothesis: a building can hold a phrase the way a bell holds a note. Verdict: inconclusive (spooky). Next steps: session 8, cocoa, tenth row, and the ghost light, which I will not touch. Thank you to the auditorium for its time."
+    },
+    {
+      "title": "CASE FILE #12: Why It's Always The Fridge (A Note On Controls)",
+      "date": "Sep 13 2026 12:10 AM",
+      "mood": "calm",
+      "body": "CASE FILE #12. Methodology. People ask why I keep recording my kitchen when I already know it's the fridge. Here's why. A control is the thing you compare everything else to. Without it you can't say what a ghost isn't. I recorded the kitchen for eight nights. Results: eight nights of fridge, one night of dishwasher, and one night of my mom humming at 3:10 AM when she got home from her shift, which I did not expect and have kept. Mr. H says a good scientist is happiest when the control behaves, because then the weird stuff is actually weird. I think about that a lot. Also, the hum is the sound of the house being okay. I fall asleep to it. At the end of every session I say thank you to the fridge. I don't know why. In case. Verdict: fridge. Always fridge. Beautifully, reliably fridge."
+    },
+    {
+      "title": "CASE FILE #6: Orbs Are Dust (A Retraction I Am Not Retracting)",
+      "date": "Aug 22 2026 8:44 PM",
+      "mood": "bittersweet",
+      "body": "CASE FILE #6. For two years I believed orbs were spirits. In May I took 400 flash photos at the old cemetery gate and every one had at least 2 orbs. Mr. Henderson looked at the best one and said, kindly, 'that's dust, Gina.' He explained backscatter: the flash lights up a speck close to the lens and it looks like a glowing disc. I was upset for a day. Then I made a chart of orbs per photo against humidity. It came out at 0.7, which he said is a real correlation and 'the best chart in the class.' So I am retracting my claim that orbs are ghosts. I am not retracting how they look. 400 little lights hanging in the dark, each one a speck of the actual air. That's pretty even if it's physics. Maybe especially. Verdict: dust. Gorgeous dust. Case closed. (File kept open for moths.)"
+    }
+  ],
+  "survey": {
+    "title": "THE PARANORMAL SURVEY (copy, paste, send to 10 people or be haunted by a very small amount of paperwork)",
+    "qa": [
+      ["Name?", "Gina. Founder, investigator, treasurer. (Treasury: $6.40.)"],
+      ["Have you ever seen a ghost?", "Not yet. i've seen 400 orbs, 1 shadow (a coat), and a cat stare at a wall for 41 minutes. i keep looking."],
+      ["Describe your best experience:", "Unexplained auditory event, 9 seconds, 4:44 PM, balcony, says 'again from the top.' (Under Review.)"],
+      ["Scariest movie?", "The Haunting, the black and white one. The door breathes. no gore, just a door. 10/10."],
+      ["Do you believe in aliens?", "bill and zorp are on it. i'm staying in my lane. (my lane is a hallway at 4 PM.)"],
+      ["Do you believe in Bigfoot?", "bill says he hasn't been proven wrong. i respect that standard."],
+      ["What do you do when you hear a noise at night?", "write down the time, the temperature and what it sounded like, then check the fridge. it's the fridge 8 times out of 10. the other 2 it's the dog. the rest is why i have a notebook."],
+      ["If you were a ghost, where would you haunt?", "the library, 4th row of the stacks, quietly. i'd just put the books back in order. i'd be a helpful ghost."],
+      ["Last thing you cried at?", "the end of Ghost (the pottery one). i recorded my own crying for the control. it's 30 seconds of me and the fridge."],
+      ["Favorite sound?", "a fridge cycling on. it's like the house exhaling."],
+      ["Who is your hero?", "Houdini. he debunked everybody and then kept the door open just in case."],
+      ["Are you supposed to forward this to ten people?", "i forwarded it to 3 and filed the other 7 under 'will not be haunted.'"]
+    ]
+  }
+}

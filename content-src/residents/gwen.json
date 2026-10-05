@@ -1,0 +1,264 @@
+{
+ "id": "gwen",
+ "name": "garden_state_gwen",
+ "tag": "you've probably never heard of them.¹  ¹ you have. you heard the wrong song.",
+ "avatar": "assets/avatar_gwen.gif",
+ "gender": "Female",
+ "age": 17,
+ "hometown": "Ashland, Ohio (not the garden state. i know. it's the movie's fault.¹  ¹ i'd do it again)",
+ "loc": "the listening station at the used record store (headphones on. do not wave)",
+ "zodiac": "Virgo (i don't believe in it. it's accurate. both can be true)",
+ "status": "Single (not picky. correct.)",
+ "hereFor": "Friends (selective), people who've heard the b-side, one (1) song title",
+ "mood": "unimpressed, cautiously hopeful about one song",
+ "lastLogin": "Oct 3 2026 10:47 PM",
+ "theme": {
+  "bg": "#1c3a3f",
+  "fg": "#f1e9d2",
+  "accent": "#f2a541"
+ },
+ "blogTitle": "liner notes (nobody asked)",
+ "about": "hi. i'm gwen. you've probably never heard of the bands on this page.¹ that's the point.² sundays 5 to 7 am i host a show on the community station, 88.1. my listeners are my mom, a trucker named ray, vinyl_witch (she streams it from georgia), and a woman in delaware. i hand-letter every mix cd in fine-tip pen, tracklist curved around the disc like a label, because a cd with a sharpie scrawl isn't a gift, it's an accident.³ one film changed my life and it's garden state. i saw it in the theater four times. i'm not taking questions. (i'll take one.)   ¹ you have. you heard the wrong song.  ² the point is also that i heard them first.  ³ larry, it's not about you. it's a little about you.",
+ "aboutMore": "the thing nobody knows: my brother dean made me a mix cd when i was 13, right before he moved to portland. track 9 has no title, and he ran out of disc, so the song cuts off mid-word. it's a piano, a woman, and a laugh at the very beginning, like she's been told something funny in the next room. i've been looking for it for four years. i've asked everyone. dean says he 'doesn't remember it.'¹  ¹ he remembers.",
+ "meet": "who i'd like to meet: whoever mastered side b of anything. maureen, who runs the station, so i can say thank you for the slot nobody wanted. the woman who sang track 9 (hello, wherever you are). and a band that's good and stays small. there has to be one. i want to meet it before somebody tells it how many people like it.",
+ "interests": {
+  "General": "hand-lettering (fine-tip, 0.3mm, i have opinions), mix cds (14 tracks, a doodle in the corner of every cover: a moth for vinyl_witch, a cat on a ladder for lexi), liner notes (all of them, even the thank-yous), men's cardigans from the thrift store (large, sleeves rolled), the listening station, loose-leaf tea, the 4:15 bus, 88.1 on sunday mornings, being right quietly, one specific bench outside the library",
+  "Music": "the shins (before the movie.¹  ¹ they're allowed to be in the movie. i'm just saying), belle and sebastian, nick drake, elliott smith, cat power, sufjan stevens, iron & wine, the radio dept., peter bjorn and john, the zombies, and a local band called moth observatory (4 songs on one cassette. you haven't heard it. neither has anyone. that's why it still works)",
+  "Movies": "garden state (31 viewings, 4 in a theater, i keep a tally), harold and maude, rushmore, the royal tenenbaums, lost in translation, ghost world, before sunrise, amelie, and any movie where somebody stands in a doorway while a quiet song happens",
+  "Television": "freaks and geeks (cancelled. i'm still grieving. i own the dvds), the british office, arrested development, and the oc (first season, strictly as research. i'm not saying i watched it. i'm saying somebody should thank the person who picked the songs)",
+  "Books": "high fidelity (the book, again), a heartbreaking work of staggering genius (the first 40 pages, five times), franny and zooey, the collected poems of frank o'hara (i carry it, i don't always read it), all liner notes, and 'ten rules for a perfect mix cd,' written by me and taped inside my locker",
+  "Heroes": "my brother dean (owes me a song title), maureen at the station (gave me the 5 am slot because 'nobody else wants it,' which is the nicest thing anyone has said to me), vinyl_witch, the man who sold me my first used cassette, and my mom, who owns a copy of rumours that i'm not allowed to talk about"
+ },
+ "song": {
+  "name": "New Slang",
+  "artist": "The Shins",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/29/fd/18/29fd18d9-5230-327b-6585-40dc9d4997b9/mzaf_4249771654970784055.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   7,
+   9,
+   7,
+   4,
+   2,
+   4,
+   0
+  ],
+  "bpm": 102
+ },
+ "decor": [
+  "assets/badge_best_viewed_with_eyes.gif",
+  "assets/badge_coffee.gif"
+ ],
+ "friends": [
+  "vinyl_witch",
+  "aaron",
+  "paige",
+  "sven",
+  "harmony",
+  "fred",
+  "holly",
+  "lexi"
+ ],
+ "wall": [
+  {
+   "from": "vinyl_witch",
+   "text": "gwen. i heard the stream of the show, porch, candle, 5 am. you said 'and that was something' after the third song and the candle did a thing. a good thing. i'm going through the church-sale crates here saturday with your piano in mind. the hermit card says keep walking and i don't argue with the hermit.",
+   "time": "Sep 27 2026 6:55 AM"
+  },
+  {
+   "from": "aaron",
+   "text": "gwen you were at the open mic again. back table, tea, no applause. but you nodded at the chorus of 'track four skips.' i saw it. i've been thinking about the nod for four days. (it's about a CD.) (it's about the half-second.) (it's about you a little.) (no it's not.) thanks for coming",
+   "time": "Sep 24 2026 10:31 PM"
+  },
+  {
+   "from": "sven",
+   "text": "Hello Gwen. I have listened to the CD you made me, 'songs for someone far from home, vol. 1.' Track 4 made me sit on the stairs. There is a Swedish word, vemod, which is a sweet kind of sad, and I did not know English music could have it. Chad's father asked what was playing. I said 'a CD from a friend.' He said 'that's good.' I believe it is the first time he has said that about a song with no truck in it. Thank you.",
+   "time": "Sep 20 2026 4:18 PM"
+  },
+  {
+   "from": "larry",
+   "text": "gwen i got ur mix cd off paige. ripped it 4 safe keeping. all 14 songs r the song it says it is. thats weird. is that allowed. i put it on limewire cuz sharing = caring, its at 9 sources now. someone in delaware has it. UR WELCOME",
+   "time": "Sep 15 2026 11:20 PM"
+  },
+  {
+   "from": "paige",
+   "text": "gwen hold still. 4 minutes of you looking unimpressed at a record bin. 45 degrees. it's for the show. you said 'a photo of a mall isn't art, it's a mall' and i've been thinking about it for a week. (i'm calling the show 'a mall' now)",
+   "time": "Sep 11 2026 5:44 PM"
+  },
+  {
+   "from": "fred",
+   "text": "Gwen, I read your post about liking bands before anyone else did. Back on Friendster we called that 'having taste,' and it was a field on the profile. I miss it. I would put you in my top 8, but I understand that is not how it works anymore, and also that you would say no.",
+   "time": "Sep 5 2026 12:09 PM"
+  },
+  {
+   "from": "harmony",
+   "text": "gwen!! i got the moth observatory bootleg from a trader in newark (her handle is tapegranny). it's from a farmers market. there's a dog barking in track 3 but it's in key. i'm burning you a copy ~ no pressure ~ you probably already have it... (you don't have it.) (i'm so happy for you.) peace ~",
+   "time": "Aug 30 2026 7:02 PM"
+  }
+ ],
+ "replies": [
+  "huh. okay. that's more interesting than i expected.¹  ¹ no offense. some offense.",
+  "i'll put that on a mix. right after something you haven't heard of.",
+  "noted. filed under 'pending.' most things are. it's a big folder.",
+  "ok, but have you heard the demo version.",
+  "i'd say what i think, but you'd say 'oh i love them,' and then we'd both have to live with that.",
+  "that's sweet. (that was a compliment. mine come out sounding like insults. it's a work in progress.)",
+  "thanks. i'm going to think about this for four to six business days.",
+  "i mean. sure. yeah. it's good. don't make it weird.",
+  "you're nice. that's unrelated to anything. keep it to yourself.",
+  "this is going on the inside of a liner note, small, where nobody checks."
+ ],
+ "thanksAdd": "oh. you accepted. ok. i'm making you a mix. it's four tracks in and i haven't done the cover yet, which is the hard part. the rules: 1) start to finish, no shuffle. 2) don't tell me you 'already know' track 2. 3) if you like it, say 'huh.' that's all i need. welcome. i guess.¹  ¹ i'm really glad. don't tell anyone.",
+ "ambient": [
+  "the new death cab record is fine.¹  ¹ 'fine' is the harshest word i own and i'm using it with love.",
+  "88.1 tomorrow, 5 am. i'm playing something with a banjo and nothing else. my mom says that's what i did last week. it's a different banjo.",
+  "lettering a mix cd takes me 90 minutes. burning it takes 4. that ratio is the whole point.",
+  "bought a men's cardigan for $3 at the thrift store. too big in exactly the right way. sleeves rolled twice. this is what a person looks like when she has a bench to sit on.",
+  "reminder: a cover of a song is not the song.² (love you, aaron. i'll be in the back.)  ² i'm not saying it's worse. i'm saying it's a different animal and i'd like to see its papers."
+ ],
+ "saltyDm": "you denied my request. that's cool. that's a normal and healthy thing to do.¹ i'll be here at the listening station. i'm not upset. i made you a mix in my head on the way home. track 1 is a quiet song about a closed door. (don't read into it.)  ¹ i'm reading into it.",
+ "keywords": {
+  "mix": "a mix cd isn't a playlist. it's a letter with a beat. rules: no shuffle. track 1 is a welcome, track 5 is the one you came for, and the last song is the one you'd leave the room to. every mix has a track 9 and i don't explain it. you hand-letter it. that's not a rule. that's just what people who care do.",
+  "garden state": "it's not a phase. i've seen it 31 times and i have a tally. there's one quiet scene where a song plays in somebody's headphones and his face changes, and i thought: oh. you're allowed to feel that much about a song. i was 14. so no, it's not a phase. it's a floor. (if you tell me it's your 'whole personality' i will correct you. it's a personality. aaron knows.)",
+  "radio": "88.1, sundays, 5 to 7 am. four listeners and one of them is my mom, so three and a half. last week i played eleven minutes of rain. a guy called to ask 'was that on purpose.' it was. i was thrilled. he hung up.",
+  "shins": "they were mine first.¹ no, wait, they were everyone's. i heard them in a car with the windows down and thought: finally, a band about me. it wasn't. it's about everyone. that's what makes it good. i hate that.  ¹ they weren't.",
+  "popular": "popular is fine. i don't have a problem with popular. i have a problem with what happens to a song after you've heard it 40 times in a mall. it wears the paint off. i like paint.",
+  "ipod": "i have a discman. it skips when i walk, so i walk slowly, which is why i'm late. every choice is a choice. every choice has a battery."
+ },
+ "banter": {
+  "aaron": [
+   "aaron i heard 'track four skips.' for the record, the skip is a burn error, not a metaphor. i've told you twice. the chorus is good. the bridge is better. don't change the key change. (that was a note, not a compliment.)",
+   "you said you're not ready for track 9. that's the right answer. everyone else says 'ready.' they're not. you listened 14 times and said 'not yet,' which means you're actually listening. i'm putting you in the file. (there's a file.) (it's an index card.)"
+  ],
+  "harmony": [
+   "harmony i got the bootleg. the dog in track 3 is in key. i've listened six times and i'm still not over the fact that you had it the whole time and i asked 14 people. i'm sending you a mix. it has a long song on it. don't read into that. it's 11 minutes. it was the shortest i could find.",
+   "your drum circle sounds, to me, like a lot of one song. but i heard it through your recording and my foot did something. i'm not saying anything. my foot is a separate entity."
+  ],
+  "sven": [
+   "sven. 'what my aunt plays when she drives to the grocery store.' do you understand what you did to me. i've been quiet since thursday. i needed a minute. then i needed two. i'm okay now. i made you another mix. it has an american band on it. for balance.",
+   "you asked what 'indie' means and i said 'independent' and you asked 'independent from what' and i've been looking at a wall for twenty minutes. the answer, i think, is 'from everyone except the people who also like it.' which isn't independent. i'm going to lie down."
+  ],
+  "vinyl_witch": [
+   "thank you for going through the church-sale crates in athens on my behalf. 38 records, 2 pianos, 0 laughs. the hermit was right. we keep walking. i'm a terrible pen pal and a good friend. (those are separate.)",
+   "when you wrote 'that was something' about the show, i printed it. it's on my wall. i'd like to thank you the traditional way: a mix cd, hand-lettered, side A and side B (it's a cd. there's no side B. i drew one.)"
+  ],
+  "paige": [
+   "paige the photo of me at the record bin. you cropped out the bin. you cropped out my face. it's just a cardigan, tilted. it's the best picture of me ever taken. send the negative. (i know it's digital. send the digital's negative.)",
+   "i said 'a photo of a mall isn't art, it's a mall.' you said 'that's the point.' i'd like to formally retract nothing. but i'd like to formally withdraw from this conversation, because you're right and i don't know what to do with that."
+  ],
+  "larry": [
+   "larry. track 6 on your cd. the man reading the weather in german. i've listened 14 times. i asked three record stores 'do you have a man reading the weather' and they said no. it's the best two minutes of audio i own and you labeled it 'linkin park - numb (live).' please never fix it. (also please stop putting my mix cds on limewire. 9 sources is 9 too many.)",
+   "your cd arrived. you wrote 'MIX 4 GWEN (GOOD ONE)' on the disc in a perfectly straight line, like a barcode. it's the ugliest cd i've ever held. i put it in my drawer next to my favorite things. i don't know what that means. it means don't change."
+  ],
+  "lexi": [
+   "lexi, i've played your leopard cd four times. track 11 was one i hadn't heard (i'm lying, i'd heard it, but not like that, not after track 10). i put a leopard sticker on my own case. on the inside. nobody can see it. that's the point.",
+   "lexi, i've heard you tell people that i said 'it's fine' about your cd and that it was 'the nicest thing anyone's ever said.' please stop spreading that. it's a reputation i'm trying to maintain. (it was more than fine. don't make me say 'more than.')"
+  ]
+ },
+ "statuses": [
+  "gwen is hand-lettering a mix cd. 11 songs, 64 minutes, one hidden track, zero skips",
+  "gwen is at the listening station. please don't wave. (you can wave a little)",
+  "gwen is at perk avenue coffeehouse. back table. tea. nodding (not clapping)",
+  "gwen just heard a song at the grocery store that she liked and is now furious about it",
+  "gwen is on air in four hours. 88.1, sunday, 5 am. bring your own coffee. listeners: 4 (5 if you count the woman in delaware)",
+  "gwen is not sad. she is 'quiet-weather.'",
+  "gwen found a record whose sleeve smells like somebody else's attic. 10/10",
+  "gwen would like it on the record that garden state is not 'a phase,' and she would like to say so in the voice of someone with a tally",
+  "gwen has just learned that a band she loves is playing the mall. the mall. she needs a minute."
+ ],
+ "bulletins": [
+  {
+   "subject": "MIX CD EXCHANGE (sign-up below) (it's not a contest) (it's a little a contest)",
+   "body": "the rules. 1) you make one cd, 12 songs or fewer (i make 14. i'm the host), for someone you've never talked to. 2) you letter the tracklist by hand. a sharpie scrawl is not lettering. 3) the first song has to be a welcome. 4) the last song has to be the one you'd leave the room to. 5) no shuffle. 6) you can't say 'it's just a mix' when you hand it over. it's never just. 7) you listen to the one you get, start to finish, once, with nothing in your hands. then you write the person one sentence. 8) track 9 is never explained. you'll know when you're ready, or you won't, and that's also a way to be. signed up so far: aaron (he says he's 'not ready for track 9.' correct), harmony, sven, paige (who wants to photograph the cds). larry, the rules apply to you. i know. i'm sorry."
+  },
+  {
+   "subject": "HAS ANYONE HEARD THIS (a description) (i'll pay in mix cds)",
+   "body": "a piano. a woman's voice. a laugh at the very start, like someone said something funny in the next room. it runs 3:41 and cuts off in the middle of a word because the cd ran out. it was track 9 on a mix my brother made four years ago. i've hummed it to clerks in every record store within 60 miles of ashland. i've been told it's 'folk,' 'jazz,' 'a commercial' and 'sir, we're closing.' i'd settle for the name of the song. i don't even need the artist. i need the title. i'd like to know what to call it. payment: one mix cd, hand-lettered, any theme, your name on the cover in the good pen."
+  },
+  {
+   "subject": "tomorrow on 88.1 (sunday, 5 am) (the setlist, for the four of you)",
+   "body": "tomorrow's show is called 'songs for a kitchen at dawn.' in order: 1) moth observatory, 'the long way to the bus stop.' 2) peter bjorn and john, 'young folks' (a request, from a swede, who is not even on the radio). 3) elliott smith, 'between the bars.' 4) nick drake, 'pink moon.' 5) the paper swans, 'a map of the hallway,' a band from my town that has never been on any radio. i'm playing it anyway. 6) eleven minutes of a bird, recorded at 6:40 am through my window. i don't know which bird. if you know which bird, call the station. nobody calls the station."
+  }
+ ],
+ "pcComments": [
+  "the framing is good. it's also a little too good. be careful. i'd give it a 7 and a quiet look.",
+  "i don't know who that is in the back, but their t-shirt is correct. i'd like to meet them.",
+  "this photo has a very particular quiet in it, like the second before the drums come in. keep that.",
+  "ok i like this. don't get used to it. (i like this.)",
+  "nice cardigan. is it yours? it's yours. it's the right amount of big."
+ ],
+ "dmSeed": [
+  {
+   "text": "hi. i'm gwen. i don't know if you know any bands. you've probably never heard of the one i'm about to tell you about.¹ it's called moth observatory. four songs, one cassette, a drummer named leon who plays a kit made partly of a suitcase. i'm making you a cd. you don't have to say yes. you can say 'huh.' that's plenty.  ¹ you haven't. (sorry. it's a habit. ignore the footnote.)"
+  }
+ ],
+ "dms": [
+  "malten. a favor. the station manager says a show with zero call-ins is 'basically an answering machine.' would you call sunday, 5:20 am, the number's on my page. you don't have to say anything smart. 'good song' would do. i'll put you on the air as 'a caller.' you'd be the first caller of my career. please don't ask who the second one was. (hello, delaware.)",
+  "found a ticket stub in the pocket of a thrift store cardigan. it's from garden state, the first week it came out. same theater i go to. somebody sat in a row i've sat in, wore the same $3 sweater, and then gave it away. i'm not saying it's a sign. i'm saying i put the stub in my wallet and i've checked on it four times.",
+  "i need to tell someone this and you're the only person i know who won't make it a thing. aaron wrote a song about my mix cd. 'track four skips.' the skip is a burn error, not a metaphor, and i have told him twice. but the bridge is good. i went home and wrote it on my hand. i've been walking around all week with a note and a half in blue ink on the inside of my wrist. do not tell him. i'll deny it. i'll say it was the coffee.",
+  "a boy named vince put a quote of mine on a flyer. it says THE DISCO BALL HAS POTENTIAL and under it, garden_state_gwen. the font is comic sans. i didn't say it for the flyer. i said it for the disco ball. the disco ball deserved to hear it. i'm a little pleased. do not tell vince.",
+  "i've lettered 41 mix cds. i've given away 39. the other two are in a shoebox, because the people moved before i got them handed over. i don't throw them out. i don't play them. they're just in the box being right. last night i added a third. nobody moved. i just thought the box should have company.",
+  "dean called. first time in six weeks. we talked about the rain in portland. i asked about track 9. he said 'i don't remember that one.' then he was quiet for a bit and said 'is it the one with the laugh?' and then the call dropped. dropped. i believe he dropped it. i've been looking at the phone for 40 minutes."
+ ],
+ "blog": [
+  {
+   "title": "liner notes: songs for the first cold week of october (vol. 9)",
+   "date": "Oct 1 2026 11:36 PM",
+   "mood": "lettered",
+   "body": "vol. 9. 14 tracks, 64 minutes. blue-black pen, tracklist curved like a label, and a small moth in the corner. the first eight, since you asked. 1) 'new slang,' the shins. the welcome. everyone gets this first, even if they've heard it. 2) 'the long way to the bus stop,' moth observatory. you haven't heard it. 3) 'young folks,' peter bjorn and john. sven says it's what his aunt plays in the car. i've decided that's a compliment to his aunt. 4) 'i will follow you into the dark,' death cab for cutie. the old ones. 5) 'between the bars,' elliott smith. for the part of the week that's tuesday. 6) 'chicago,' sufjan stevens. a long drive with the windows down. 7) 'this will be our year,' the zombies. 8) 'fake plastic trees,' radiohead. you'd leave the room for it. 9) every mix has a track 9. this one is a bird, recorded at 6:40 am through my window. it's not the song. it's near it. 10 through 14: you'll find out."
+  },
+  {
+   "title": "a review: teen nite at the rollerdome (i was brought. by a swede)",
+   "date": "Sep 19 2026 9:58 PM",
+   "mood": "6/10",
+   "body": "transport: a minivan driven by an exchange student's host mother, who stopped for me in ashland at 6:10 with a thermos and a library book. venue: a roller rink on route 30. lighting: one (1) disco ball, three mirrors missing, which gives it character. a perfect disco ball is a ball. one with gaps is a story. staff: a boy named vince in a laminated lanyard who learned my name in four seconds and said it eleven times and told me it was 'gonna be huge.' there were 35 people. nobody has ever been so confident about 35. i sat on the carpeted bench by the lockers with tea i brought (they have cheese, not tea). at 9:14 a eurodance song came on, and sven, who'd been standing against the wall like a lamp, walked to the middle of the floor and did something i can only describe as sincerity. i did not skate. i'd like it noted that i thought about it. 6/10. the disco ball has potential."
+  },
+  {
+   "title": "the case against shuffle (a short one) (it's a manifesto)",
+   "date": "Aug 23 2026 4:30 PM",
+   "mood": "resolute",
+   "body": "an album is a sentence. shuffle is the same words in a bag. somebody wrote the order. somebody sat up at 2 am moving track 6 to track 4 and then back to 6, because the song before it ends on a note the next song needs to answer. when you shuffle, you cancel that conversation. you get the answer without the question. i know it's convenient. so is eating cereal out of the box in the dark. it works. it's just not dinner. a mix cd is the same: i put the songs in an order for you, and the order is a thing i'm trying to say that i couldn't say out loud. you can ignore it. you can skip around. but if you play it start to finish once, on a bus or at your desk with the lights off, you'll hear something i meant. i'm not saying that's better than what you do. i'm saying i meant it."
+  }
+ ],
+ "survey": {
+  "title": "SURVEY: ur taste in music (be honest. i'll know) (forwarded by larry, through 11 computers)",
+  "qa": [
+   [
+    "first album you bought with your own money:",
+    "a used copy of oh, inverted world for $6, at 14. i'd heard it in someone else's car. it was the first thing i owned that felt like mine."
+   ],
+   [
+    "album you claim is your favorite:",
+    "pink moon. (it's true.) (it's also what i'd like you to think.)"
+   ],
+   [
+    "album that is actually your favorite:",
+    "rumours. fleetwood mac. it was my mother's. it's been in the car since i was four. it's not a guilty pleasure, it's a house. i'll deny this on request."
+   ],
+   [
+    "last song you listened to:",
+    "'this will be our year,' the zombies, on the 4:15 bus, second seat from the back. i looked out the window like someone with a soundtrack."
+   ],
+   [
+    "have you ever cried at a song:",
+    "yes. in a parking lot, in a car, at the bridge of a song i won't name. then i went in and bought milk."
+   ],
+   [
+    "one band everyone should hear:",
+    "moth observatory. (you won't.)"
+   ],
+   [
+    "best live show:",
+    "a basement in ashland. 23 people, one fan, one working microphone. i've never heard anything so clearly."
+   ],
+   [
+    "what are you wearing:",
+    "a green cardigan from the thrift store. there's a ticket stub in the pocket, which i'm keeping."
+   ],
+   [
+    "who forwarded you this survey:",
+    "larry. which is how i know it's been through 11 computers and four viruses."
+   ]
+  ]
+ }
+}

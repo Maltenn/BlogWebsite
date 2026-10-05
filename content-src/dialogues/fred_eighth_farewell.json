@@ -1,0 +1,222 @@
+{
+  "id": "fred_eighth_farewell",
+  "with": "fred",
+  "opener": [
+    "Hello, malten. It's 11:48 and I've written it. The eighth. I'm sending it to you first, because you're the only one who hasn't told me not to leave, which I've decided to read as respect.",
+    "It's two paragraphs. The second is the good one. I'm saving the draft every minute, because Biscuit has walked across the keyboard twice, and the first time he deleted a sentence I was proud of.",
+    "Before I post it, would you read the first line? 'To everyone I've met here.' That's all I have of the first paragraph. I've known the second line seven times. I don't know it tonight."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "post it if you want to. but give me the second line first. what are you actually leaving for?", "next": "leaving_for" },
+        { "say": "read me the second paragraph. the good one.", "next": "second_para" },
+        { "say": "let biscuit post it. he's been trying all week. he's an editor.", "next": "biscuit_edit" }
+      ]
+    },
+
+    "leaving_for": {
+      "them": [
+        "Yahoo 360. I have three invites. It's invite-only, which is how you know it's good. It lets you rate your friends' songs. That's all I know. That's what I tell people.",
+        "The real answer is shorter. On the old site, nobody told me they were leaving. They simply stopped logging in. Sixty of them I can't account for. So I announce. At least that way I go first, and somebody has to answer."
+      ],
+      "choices": [
+        { "say": "you're announcing so somebody answers. that's not leaving, that's a roll call. marcus answered in four minutes.", "next": "roll_call" },
+        { "say": "then don't go first. go second. let somebody tell you to stay, and actually believe them.", "next": "believe" },
+        { "say": "what did todd say when you told him first? he's number four on your list.", "next": "todd_note" }
+      ]
+    },
+
+    "second_para": {
+      "them": [
+        "The good one. 'Everything was better when it was small and slow. I am small and slow now, and I'm looking for somewhere that remembers that.' Twenty-three words. I've been told it's about the site. It isn't about the site.",
+        "It's the best sentence I've written this year, and I'm writing it in a farewell. I notice that. I'm choosing not to notice it for a minute."
+      ],
+      "choices": [
+        { "say": "that's good. that's a testimonial. you wrote one about yourself and didn't notice.", "next": "self_testimonial" },
+        { "say": "somewhere that remembers? fred, that's here. marcus kept your number. todd kept your name.", "next": "roll_call" }
+      ]
+    },
+
+    "biscuit_edit": {
+      "them": [
+        "Biscuit as editor. He's deleted my second paragraph before. He may have a point. He always deletes it at the third sentence, which is where I write 'I'll be fine.' I've never once believed that sentence. He may be the only one who reads it as a lie.",
+        "He's on the chair now. He's looking at the keyboard the way a man looks at a train."
+      ],
+      "choices": [
+        { "say": "leave the laptop open. go make tea. if the cat posts it, the cat's decision stands. very democratic.", "next": "cat_vote" },
+        { "say": "he cuts 'i'll be fine.' maybe you'd be fine without having to be. what would you write there instead?", "next": "believe" }
+      ]
+    },
+
+    "roll_call": {
+      "them": [
+        "A roll call. That's not nothing. Marcus (four minutes). Todd (twice, with a smiley). Angela (a bench). Doug (a cot). Raven (furniture). Five. I keep the list in the smaller font. The list of reasons I should go is in a regular font and it has one item.",
+        "The item is: 'Because it will be over eventually, and I'd like to be the one who closes the door.' I wrote that at two in the morning. It's a very good sentence. I'm not sure it's true."
+      ],
+      "effects": [
+        { "type": "status", "delay": 10, "text": "fred is making a list. It has five names on it. The font is small. It is getting longer." }
+      ],
+      "choices": [
+        { "say": "doors don't need closing. they need somebody in the room till the lights go out. you'd be good at that.", "next": "stay_scene" },
+        { "say": "then close it properly. a real goodbye. one line for each of them. let them answer.", "next": "write_goodbyes" }
+      ]
+    },
+
+    "believe": {
+      "them": [
+        "Believe them. Marcus said, quote, 'the site needs members over 20.' I filed that under statistics. Angela built a bench and I've sat on it for four loops of the lake. Doug offered a cot. Raven called me furniture, which I understand to be love. I've been collecting evidence so that I don't have to be convinced.",
+        "That's a strange thing to say out loud. I think I've been keeping the evidence in a drawer. Next to the Friendster login on a sticky note."
+      ],
+      "choices": [
+        { "say": "then be convinced. i'll go first: stay. i said it. it's the only sentence in my notes.", "next": "stay_scene" },
+        { "say": "stop keeping evidence in a drawer. let somebody write it down for you. you know how, you've done 97.", "next": "testimonial_ask" }
+      ]
+    },
+
+    "self_testimonial": {
+      "them": [
+        "I wrote a testimonial about myself. I didn't notice. Marisol's was the last one I received: 'remembers your birthday, forgets his own.' Mine says 'small and slow.' It isn't flattering. It's accurate.",
+        "May I ask you something? You don't have to. A testimonial needs to be approved by the person it's about. I've never declined one. I've also never been in a position to be asked. I'd like to find out what it's like to be asked."
+      ],
+      "choices": [
+        { "say": "i'll write it. give me one thing you do for people that nobody asked you to.", "next": "testimonial_ask" },
+        { "say": "write yourself a better one first. then read it at the top of the farewell and let the room answer.", "next": "write_goodbyes" }
+      ]
+    },
+
+    "cat_vote": {
+      "them": [
+        "Tea. I'm making tea. I'm leaving the laptop open on the desk, cursor in the box. This is irresponsible. It's also, I realize, exactly what I wanted: a decision that isn't mine.",
+        "I hear the chair. Biscuit has moved. I'm going back up the stairs. I may not like what I find. I may like it more than I'd like to admit."
+      ],
+      "choices": [
+        { "say": "don't look at the screen yet. let the tea steep. a decision with a cat in it deserves a full cup.", "next": "cat_result" },
+        { "say": "go up and sit next to him. whatever's on the screen, read it like someone else wrote it.", "next": "stay_scene" }
+      ]
+    },
+
+    "todd_note": {
+      "them": [
+        "I told Todd first. I always do. His reply: 'sure buddy!' with a smiley. I've been trying to work out what 'sure' agrees with. 'Sure, go'? 'Sure, stay'? It's possible Todd has only ever said 'sure' to me and meant a different thing each time.",
+        "He was the first person I met here. He may also be the person I'm most afraid to ask directly."
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "todd", "to": "fred", "delay": 20, "text": "Hi Fred! Got your message! 'Sure buddy!' (I think I said sure to the wrong thing? Was it a question? I read it fast because the laptop was doing a thing.) Anyway you're a great member!! Don't go anywhere without telling me!! (You told me. I know. Sorry!) :) - Todd" }
+      ],
+      "choices": [
+        { "say": "ask him directly. 'todd, do you want me to stay?' i bet the answer is one syllable.", "next": "stay_scene" },
+        { "say": "don't ask. write the goodbye like you mean it and see whether todd's 'sure' changes.", "next": "write_goodbyes" }
+      ]
+    },
+
+    "stay_scene": {
+      "them": [
+        "What does staying look like? Not a promise. A Tuesday. Jeopardy with my mother at seven. A claim in the in-box. Marcus counting. Doug's page loading. Angela's lake at forty seconds. I could do that. I've been doing that. It's only that I've been calling it 'before I leave.'",
+        "If I stay, I'd like it to be specific. 'Not tonight.' And then 'not tomorrow.' The way you stay at a party: one more song at a time."
+      ],
+      "choices": [
+        { "say": "delete the draft. don't post it. type 'fred is not leaving tonight' and look at how it reads.", "next": "end_stay" },
+        { "say": "and then let somebody write you a testimonial. you've never declined one. try receiving one.", "next": "end_testimonial" }
+      ]
+    },
+
+    "write_goodbyes": {
+      "them": [
+        "A proper farewell. One line for each: Todd, Marcus, Doug, Angela, Raven, Trevor, Walt. Thirty-one names if I go back through Friendster. I'd say something true to each. I'd say it so nobody has to find out by a page going quiet.",
+        "I'm good at this. I've written ninety-seven testimonials. Leaving, apparently, is just a testimonial where I'm the one who goes. I'm not sure that's how it works. I'm going to try."
+      ],
+      "choices": [
+        { "say": "post it. a real goodbye, one line each. promise tuesdays. leave the door the way you found it.", "next": "end_leave" },
+        { "say": "post it, but add one line at the top: 'unless somebody asks me to stay.' somebody will.", "next": "end_stay" }
+      ]
+    },
+
+    "testimonial_ask": {
+      "them": [
+        "You'd write one? About me. For my page, where I'd have to approve it. I should say the form is simple. A paragraph. Specific. True. Not 'great guy.' Something only a person who has been paying attention would know.",
+        "I've never been the subject. I've been the author. I'm nervous in a way I haven't been since I was twenty-one and a woman named Marisol asked if she could write one about me. Go on. I'll wait. I'm good at that."
+      ],
+      "choices": [
+        { "say": "'fred. reads the whole page. notices when the room gets quieter. counts people in.' send.", "next": "end_testimonial" },
+        { "say": "write it AND ask the rest of the site to add theirs. 97 written, 97 owed. make it a bulletin.", "next": "end_stay" },
+        { "say": "write it, then tell him to post it as his farewell. a goodbye that's a testimonial for everybody else.", "next": "end_leave" }
+      ]
+    },
+
+    "cat_result": {
+      "them": [
+        "Biscuit has posted. I'll describe it. He walked across the keyboard, sat on Enter, and the draft went out. Subject line: 'FAREWELL (the eighth) jjjjjjjjjjjjjjjj.' The second paragraph is gone. In its place: eleven j's, two spaces and a semicolon.",
+        "Nineteen views. Marcus replied in three minutes (a record). I cannot unsend it. I did not post it, and I did not stop him. I'd like both of those noted. What do I do?"
+      ],
+      "choices": [
+        { "say": "do nothing. let the room answer a cat. it's the first reply you didn't plan.", "next": "end_biscuit" },
+        { "say": "reply under it: 'the cat's draft stands. i'm staying until the cat has a better idea.'", "next": "end_stay" }
+      ]
+    },
+
+    "end_stay": {
+      "them": [
+        "I've deleted the draft. It's the first one I've deleted instead of posting. I expected it to feel like standing at the edge of something. It felt like closing a door I'd been holding open for the cold air. Biscuit is on the chair. He's looking at me the way he looks at a full bowl.",
+        "I'm not leaving. I'm not promising never to leave. I'm saying 'not tonight,' and tomorrow I'll say it again. Marcus has a count to update, and I'd like to be the one to tell him. Thank you, malten. Nobody asked me what I was looking for. They asked where I was going. It's a different question. It was the right one."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "delay": 5, "text": "fred is not leaving tonight. (Or Friday.) Biscuit has been consulted. Biscuit sat on the keyboard. It was a yes." },
+        { "type": "wallpost", "from": "marcus", "to": "fred", "delay": 35, "text": "Fred. Rule 11 now reads: 'No departure threads. See: Fred, seven. Resolved.' I have updated the sticky (v3.4). The count stops at seven. I would like it noted that I kept the number, and that I am glad to stop. Thread locked. Comments open. You may reply once. -- Marcus, Moderator (unofficial)" },
+        { "type": "wallpost", "from": "todd", "to": "fred", "delay": 70, "text": "Hi Fred! So glad you're staying!! I didn't know you were leaving, I think I said 'sure buddy' to the wrong bulletin. Anyway you're one of my first friends and I want you here!! :) - Todd" },
+        { "type": "wallpost", "from": "raven", "to": "fred", "delay": 105, "text": "Fred. You're still furniture. Good. Furniture is what makes a room a room. Nobody notices a chair until it's gone. I noticed. I'm not saying anything else. Don't make it weird." },
+        { "type": "wallpost", "from": "doug", "to": "fred", "delay": 140, "text": "fred!! u r staying!! the cot is still available (its a good cot) (my aunt carol slept on it once n said it was 'fine') the page is loading... my mom just picked up the ph" },
+        { "type": "dm", "delay": 175, "text": "A small thing. I took the Yahoo 360 invites out of the drawer and I'm not using them. I'm going to give one to Doug. I'm going to see if it loads. If it takes forty minutes, I'll write about it. If it takes an hour, I'll write a testimonial for the modem. I'll keep the other two. Somebody will deserve them." }
+      ]
+    },
+
+    "end_testimonial": {
+      "them": [
+        "I've read it. Four times. I went to click 'approve' and my hand stopped, the way it does at the edge of a good dessert, and I thought: I have never been the subject of one of these. I wrote ninety-seven. I received thirty-one. This is thirty-two. I approved it.",
+        "It sits on my page now. Biscuit is looking at it. The old site had a button for 'decline.' This one only says 'approve.' I think that's the right design. I'd like to say a word about leaving, but I've lost the word. I may find it Tuesday. Not tonight."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "delay": 5, "text": "fred has approved a testimonial. It is the thirty-second. It reads, in part: 'Counts people in.' He is going to read it again. (He has read it six times.)" },
+        { "type": "wallpost", "from": "angela", "to": "fred", "delay": 40, "text": "~*~ Fred! ~*~ I saw the thirty-second testimonial! I have framed it. (It is a table with a 1px border and a sparkle in the corner, I am sorry, Liz.) Also, the bench has a plaque now: 'FRED'S BENCH. SIT. STAY.' It is under the lake. ~ Angela, Webmistress" },
+        { "type": "wallpost", "from": "trevor", "to": "fred", "delay": 75, "text": "fred. i read ur testimonial. ironically it was fine. (it was good.) my mom asked what i was reading n i said 'a thing' n she said 'is it a letter.' i said 'sort of.' i might write her one. a real one. ironically. dont make it a thing" },
+        { "type": "wallpost", "from": "vinyl_witch", "to": "fred", "delay": 110, "text": "fred. the thirty-second one is like finding a first pressing at a church sale for $2. the universe provides, and the universe does not know what it owns. keep it sleeved. keep it dry. play it on tuesdays." },
+        { "type": "wallpost", "from": "walt", "to": "fred", "delay": 145, "text": "Dear Fred, I read your testimonial in the Tuesday mail. It was a good letter. 'Regards' means I thought well of you the whole time I was reading. Regards, Walt" },
+        { "type": "dm", "delay": 180, "text": "A late addition. The sixth track on the mix CD. I looked it up. It has a name. It's a good name. I'm not going to tell you what it is. I'm going to keep it as track 6 for a while. I wanted you to know I looked." }
+      ]
+    },
+
+    "end_leave": {
+      "them": [
+        "Posted. The eighth. It's the longest farewell I've written: thirty-one names, one line each, and under it 'I'll be at 360 until I find out. Tuesdays I'll visit.' I didn't use the word 'testimonial.' It is one. I'm told that's allowed.",
+        "I'm not sure I'm going. I'm not sure I'm staying. For the first time I'm not announcing something I've already decided. I'm announcing something I'm trying. That may be the difference. Thank you for not telling me what to do. I think you told me what to do. It's possible I'm a very good listener who hears the wrong parts. Biscuit has just walked across the keyboard. I'm going to let him."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "delay": 6, "subject": "FAREWELL (the eighth) (this one has names)", "text": "To everyone I've met here. I'm going to try a different place for a while. It's called Yahoo 360. It has three members and all of them are me. I'm telling you now so that nobody has to find out by a page going quiet. That was the thing I couldn't stand. On the old site, no one said goodbye. They stopped. So here. Todd: you were first. Marcus: you counted. Doug: you were patient. Angela: the bench, the lake. Raven: furniture. Trevor: write home. Walt: Regards. I'll visit Tuesdays. If you need me, I'm in the guestbook. If you don't, I'm in the guestbook. -- Fred (Friendster, early adopter, 212 friends)" },
+        { "type": "wallpost", "from": "marcus", "to": "fred", "delay": 40, "text": "Fred. Rule 11 states no departure threads. I am locking this one. It does not lock. Comments are open. I have kept the number. It is eight. I want you to know I have written 'eight' in my log in a different pen. That is not enforcement. That is respect. Tuesdays. I will count them. -- Marcus, Moderator (unofficial)" },
+        { "type": "wallpost", "from": "todd", "to": "fred", "delay": 75, "text": "Have fun at Yahoo 360!!! I'll miss you!!! Come back Tuesday!! I'll leave the server on (it's always on, but I'll make a special note) :) - Todd" },
+        { "type": "wallpost", "from": "angela", "to": "fred", "delay": 110, "text": "~*~ Fred! ~*~ The bench is staying. I have added a sign: 'RESERVED FOR FRED, TUESDAYS.' I have also added Yahoo 360 to the ring as a RESTING member. (It has one visitor.) Please sign the guestbook before you go. And after. ~ Angela, Webmistress" },
+        { "type": "wallpost", "from": "doug", "to": "fred", "delay": 145, "text": "fred the cot stays up. i put a sign on it. it says FRED (TUESDAYS) on a feed store receipt. my mom is looking at the ph" },
+        { "type": "dm", "delay": 175, "text": "...it's me. I'm at 360. It has three members, all me. There's a place to rate songs. I rated track 6. I've never rated it. It got five stars from me and no one else. I'm coming back Tuesday. I wanted to tell someone before I told myself not to." }
+      ]
+    },
+
+    "end_biscuit": {
+      "them": [
+        "I've decided to do nothing. It's the first decision I've made all night that wasn't a draft. Biscuit has gone back to the chair. He looks unbothered. He looks like a man who has seen a bulletin through to the end.",
+        "I'll say this once. I read the room's replies as they came in. I haven't read replies to a farewell as they came in, in real time, in my life. I always closed the window. It's different with a cat in the story. They were gentler. I think it's because nobody has to answer the cat's leaving. They only have to answer the cat."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "delay": 6, "subject": "FAREWELL (the eighth) jjjjjjjjjjjjjjjj", "text": "To everyone I've met here: I'm leaving OurSpace. jjjjjjjjjjjj ; [the second paragraph was deleted by Biscuit. He is an editor.] -- Fred (Friendster, early adopter, 212 friends) (and Biscuit, 11 lbs)" },
+        { "type": "wallpost", "from": "marcus", "to": "fred", "delay": 35, "text": "Fred. Your bulletin's subject line is not legible. Rule 3 is not at issue, as the cat posted once. Rule 11 is at issue, though the departure appears to have been interrupted. I am issuing the cat a warning. I am also invoking Rule 12. It has no exceptions. -- Marcus, Moderator (unofficial)" },
+        { "type": "wallpost", "from": "todd", "to": "fred", "delay": 70, "text": "Hi Fred! Biscuit posted a bulletin!! He's the second cat on the site!! (Mr. Whiskers has a profile but nobody has ever seen him type!!) Welcome Biscuit!! :) - Todd" },
+        { "type": "wallpost", "from": "whiskers", "to": "fred", "delay": 105, "text": "Greetings, Biscuit. The vacuum is the enemy. The keyboard is a warm mountain. Sit on it. It is your right. Do not let him leave. I wish you well. -- mr_whiskers (the owner denies involvement)" },
+        { "type": "wallpost", "from": "raven", "to": "fred", "delay": 140, "text": "Fred. The cat has more editorial judgment than most of this site. 'jjjjjjjjjjjj' is a better farewell than any of your seven. It says what you meant and does not explain it. Keep him." },
+        { "type": "dm", "delay": 175, "text": "An addendum. Biscuit has done it again. At 2 AM he sat on the keyboard and typed 'hhhhhhhh' under Marcus's rules sticky. Marcus replied 'Noted.' It is the warmest thing Marcus has ever said to either of us. I'm told it counts as a vote. I'm not leaving tonight. The cat has voted." }
+      ]
+    }
+  }
+}

@@ -1,0 +1,498 @@
+{
+ "id": "derek_the_wrist",
+ "with": "derek",
+ "opener": [
+  "malten. hypothetical. a guy has a rematch against his mortal enemy on saturday. the guy has a wrist the size of a small football. the guy is me. hypothetically",
+  "tuesday. the safeway. i put my hand out. IN FRONT OF HENRY. lesson 1 of my entire teaching career is never put your hand out. i've said it 9 times. i've DEMONSTRATED it",
+  "the peas stopped working. they're just peas now. don't say 'doctor' and don't say 'tell my mom,' she works nights and she'll see it in 4 seconds. i need a third option"
+ ],
+ "nodes": {
+  "start": {
+   "choices": [
+    {
+     "say": "there's no third option, derek. wrist first, gap second. get it looked at before you decide anything about saturday.",
+     "next": "a_wrist"
+    },
+    {
+     "say": "so the coach broke rule one with the student watching. what did henry say?",
+     "next": "b_henry"
+    },
+    {
+     "say": "grip tape. wrap the whole thing. it's a sponsored cast now: 'brought to you by the safeway.'",
+     "next": "c_cast"
+    }
+   ]
+  },
+  "a_wrist": {
+   "them": [
+    "wrist first, gap second. nobody has ever ranked those in that order for me. even mom's notes put the gap in a tie with ice",
+    "but SATURDAY. the reckoning pt. 7. if i don't show, mike wins by default, 2-2-1 becomes 3-2-1, and the scoreboard is a napkin in my backpack. i can't live in a 3-2-1"
+   ],
+   "choices": [
+    {
+     "say": "the napkin can take a 3-2-1. your wrist has to outlast a napkin. tell your mom.",
+     "next": "mom_plan"
+    },
+    {
+     "say": "forget the napkin a second. what's the rematch actually for? what do you lose if it never happens?",
+     "next": "the_secret"
+    }
+   ]
+  },
+  "mom_plan": {
+   "them": [
+    "ok. mom. she gets off at 7am. she'll look at it for 4 seconds, say 'sprain,' and wrap it with the bandage she keeps in her purse for everybody's kids",
+    "then she'll go sit in the car for a minute. she does that. she thinks i can't see her from the window. i just don't want to be a thing she has to sit in the car about"
+   ],
+   "effects": [
+    {
+     "type": "status",
+     "text": "derek is practicing the sentence 'it's fine' for his mom. 40 minutes in. it's not fine. the peas have been asked to leave"
+    }
+   ],
+   "choices": [
+    {
+     "say": "the car thing means she cares. be a thing. be a small, bandaged thing.",
+     "next": "doctor_says"
+    },
+    {
+     "say": "leave her a note first and flip the format: 'SHOW YOU THE WRIST. ICE. ELEVATE. HEART.'",
+     "next": "doctor_says"
+    }
+   ]
+  },
+  "doctor_says": {
+   "them": [
+    "update: 7:04am. she looked at it for 4 seconds. said 'sprain.' wrapped it in 40 seconds flat. 'two weeks. no board. and you tell mike yourself.' then she went and sat in the car",
+    "TWO WEEKS. the day after halloween. i have a doctor's note signed by my mom and it's the weakest weapon in the history of the reckoning. what do i even DO with a note"
+   ],
+   "choices": [
+    {
+     "say": "make it official. 'by order of mom: rematch postponed.' nobody argues with a bandage.",
+     "next": "note_draft"
+    },
+    {
+     "say": "don't hide behind the note. do what she said. tell mike yourself, with your actual mouth.",
+     "next": "the_secret"
+    }
+   ]
+  },
+  "note_draft": {
+   "them": [
+    "'by order of mom.' ok that has a ring. a verdict. nobody argues with a verdict from a hospital lady",
+    "drafting: 'RECKONING pt. 7 postponed 2 weeks. sprain. mom ruled. rematch the saturday after halloween. mike may NOT claim a default. the napkin stays 2-2-1.' too much? i want it tough. i also want him to know i'm not scared. i'm just sprained"
+   ],
+   "choices": [
+    {
+     "say": "post it exactly like that. 'i'm not scared, i'm sprained' is the best thing you've ever written.",
+     "next": "end_doctor"
+    },
+    {
+     "say": "add one honest line for mike. the tough stuff is armor. say what the rematch is for.",
+     "next": "the_secret"
+    }
+   ]
+  },
+  "b_henry": {
+   "them": [
+    "he saw all of it. he came running over in the flame helmet, looked at my hand and said 'coach. did you tuck?'",
+    "and i said 'yes.' i said YES. i lied to a 13 year old with a hand shaped like an oven mitt. it's been 3 days. he's been telling people 'my coach tucks'"
+   ],
+   "choices": [
+    {
+     "say": "tell him the truth. 'even coach bails wrong' might be the best lesson in the whole curriculum.",
+     "next": "henry_truth"
+    },
+    {
+     "say": "double down. it was a 'demonstration of what NOT to do.' on purpose. you meant it.",
+     "next": "spin_works"
+    }
+   ]
+  },
+  "spin_works": {
+   "them": [
+    "'a demonstration of what not to do.' ...that's a clean lie. a lie with a diagram. i said it. he said 'coach that's SO BRAVE' and wrote it in his notebook",
+    "he has a notebook. i didn't know he had a notebook. page 1: TUCK N ROLL (never hand). page 2 now says 'sometimes coach bails wrong on purpose.' i'm the villain of page 2"
+   ],
+   "choices": [
+    {
+     "say": "then fix page 2. tell him the real thing before it hardens into a rule.",
+     "next": "henry_truth"
+    },
+    {
+     "say": "page 2 is your best material and your worst decision. keep the diagram, lose the lie.",
+     "next": "henry_truth"
+    }
+   ]
+  },
+  "henry_truth": {
+   "them": [
+    "ok. typing to henry: 'i didn't tuck. i put my hand out, it's sprained, and i told u it was fine. coach isn't perfect. coach is a guy with a hose.'",
+    "he answered in 11 seconds: 'its ok coach. i put my hand out 9 times today. we r a team of frauds.' he retired the oven mitts to a shelf. there was a small ceremony"
+   ],
+   "effects": [
+    {
+     "type": "wallpost",
+     "from": "henry",
+     "to": "derek",
+     "delay": 25,
+     "text": "coach. i put my hand out 9 times today. u put ur hand out once. we r a team of frauds. new rule: coach can bail wrong if the student is watching. (ow) -henry, ur only student"
+    }
+   ],
+   "choices": [
+    {
+     "say": "a team of frauds is a real team. ask him what he'd do about saturday. thirteen-year-olds give the cleanest advice.",
+     "next": "henry_advice"
+    },
+    {
+     "say": "good. and since we're being honest today: why can't you just tell mike? what's really on the line?",
+     "next": "the_secret"
+    }
+   ]
+  },
+  "henry_advice": {
+   "them": [
+    "i asked henry. he said 'tell mike.' that's it. 'tell mike.' then he said 'u talk about mike more than u talk about ur gap'",
+    "i've never been so insulted by a 13 year old or been so right. i DO talk about mike more than the gap. there's a reason for that and it isn't a hose"
+   ],
+   "choices": [
+    {
+     "say": "then say the reason out loud. i'm listening. so is the loading dock.",
+     "next": "the_secret"
+    },
+    {
+     "say": "henry's the best coach on that dock. say the reason. i'll keep it between us and the peas.",
+     "next": "the_secret"
+    }
+   ]
+  },
+  "c_cast": {
+   "them": [
+    "a SPONSORED cast. 'brought to you by the safeway.' gordon would frame it. mike would squint at it and say 'prove it's a real injury' and i'd say 'the tape IS the proof'",
+    "no. ok no. raul would say don't skate hurt. every board has a number of landings and u spend them on stuff u care about. wrists probably have a number too. i've been spending mine on a hose"
+   ],
+   "choices": [
+    {
+     "say": "so what's worth a landing this week? a napkin score, or something real?",
+     "next": "landings"
+    },
+    {
+     "say": "forget skating. what can a bad wrist still WIN? think like a lawyer.",
+     "next": "naming_idea"
+    }
+   ]
+  },
+  "landings": {
+   "them": [
+    "something real. ok. the napkin. the hose. mike. the library stairs. the gap. henry's first real trick. my own legs lasting till i'm 16",
+    "that's the longest list i've ever made and mike's on it twice. i don't know why mike's on it twice"
+   ],
+   "choices": [
+    {
+     "say": "mike's on it twice because he's the one you actually want to land for. say so.",
+     "next": "the_secret"
+    },
+    {
+     "say": "put henry at the top. a coach with a wrist is a coach with a future. but then look at the other name.",
+     "next": "the_secret"
+    }
+   ]
+  },
+  "naming_idea": {
+   "them": [
+    "...what can a bad wrist win. my MOUTH is fine. my mouth is the healthiest part of me",
+    "NAMING. chad called my kickflip 'a home run' and it's been a home run ever since. a naming contest. best trick NAME wins. nobody leaves the ground. chad judges. a wrist can't lose a contest it doesn't have to move for"
+   ],
+   "effects": [
+    {
+     "type": "status",
+     "text": "derek has a bold new proposal for saturday. it involves 0 stairs and 0 hoses. mike will hate it. (chad is judging) (chad doesn't know yet)"
+    }
+   ],
+   "choices": [
+    {
+     "say": "lawyer move. pitch it to mike as 'the reckoning pt. 7: the semantics round.'",
+     "next": "d_naming"
+    },
+    {
+     "say": "mike's going to say you're scared. he'll say 'prove it.' are you ready for 'prove it'?",
+     "next": "the_secret"
+    }
+   ]
+  },
+  "the_secret": {
+   "them": [
+    "can i tell u a thing i haven't told anyone. not henry. not dani. not the peas",
+    "i don't care who wins saturday. i care that saturday HAPPENS. mike's 19. he just got a job at the hardware store. he has a car (it's his dad's but still). one day the safeway turns into a place he used to skate",
+    "the reckoning is the only reason he still comes. if i end it i'm just a guy with a hose"
+   ],
+   "effects": [
+    {
+     "type": "status",
+     "text": "derek is thinking about one specific shoe. (don't ask) (it's on a shelf) (it has been on a shelf since june)"
+    }
+   ],
+   "choices": [
+    {
+     "say": "he doesn't come for the stairs. he comes for you. tell him that, not the napkin.",
+     "next": "d_truce"
+    },
+    {
+     "say": "then don't end it. change the game. what can a bad wrist still win?",
+     "next": "d_naming"
+    },
+    {
+     "say": "or cancel quietly. say 'busy.' fix it later when it doesn't hurt.",
+     "next": "d_quiet"
+    }
+   ]
+  },
+  "d_truce": {
+   "them": [
+    "ok. the real version. no hose, no napkin. 'mike the rematch is my favorite thing about the safeway.' typed. not sent. my thumb is shaking and it's the GOOD hand",
+    "wait. if i'm being honest with mike i have to be honest about the other thing. malten i have his shoe. the one from june. it flew into the planter at the mall gap, i grabbed it, i said i'd give it back, and then i just. didn't. it's on my shelf",
+    "and there's a birthday card in my backpack with a bush on it. it was supposed to be a MEAN card. it came out nice"
+   ],
+   "choices": [
+    {
+     "say": "return both. shoe and card, same day, no speeches. hand them over like a regular person.",
+     "next": "truce_send"
+    },
+    {
+     "say": "start with the card. let the shoe be the plot twist.",
+     "next": "truce_send"
+    }
+   ]
+  },
+  "truce_send": {
+   "them": [
+    "sent: 'mike. i have your shoe. i've had it since june. i'm sorry. also my wrist is sprained and i can't skate saturday. i still want saturday.' no hose. no bush. just words",
+    "...he's typing. 40 seconds. the longest typing in history. ok: 'WHAT. u had my SHOE. bro i told the whole shop the planter ate it.' then: 'ok. saturday. camcorder's charged. no tricks from u. u pick the spot.'"
+   ],
+   "effects": [
+    {
+     "type": "status",
+     "from": "sk8rboi",
+     "delay": 15,
+     "text": "mike has questions about a shoe. a planter has been wrongly accused for 4 months. the planter would like an apology"
+    }
+   ],
+   "choices": [
+    {
+     "say": "pick the safeway. let him see the gap up close, with a bandage on its owner. you can say 'bigger' to his face.",
+     "next": "end_truce"
+    },
+    {
+     "say": "pick the library stairs. go see his four with some respect. hold the camcorder, say 'nice one.'",
+     "next": "end_truce"
+    }
+   ]
+  },
+  "d_naming": {
+   "them": [
+    "ok. the semantics round. nobody leaves the ground. best trick NAME wins. chad judges. loser buys slushies. sending it to mike. ...sent",
+    "he's typing a LOT for a guy who types 'sik.' ok: 'NOBODY LEAVES THE GROUND?? derek that's the dumbest thing i've ever agreed to. in.' then: 'but i name first.'"
+   ],
+   "choices": [
+    {
+     "say": "let him go first. the best trash talk comes from the guy who has to answer.",
+     "next": "naming_sent"
+    },
+    {
+     "say": "name something in the next ten seconds. cold open. a wrist doesn't need a warm-up.",
+     "next": "naming_sent"
+    }
+   ]
+  },
+  "naming_sent": {
+   "them": [
+    "he opened with 'the Hose (switch).' it's not a trick. there's no hose in it. it's just a NAME. it's a GOOD name. i have to match it. i need a name for the thing i did tuesday. the hand-out thing",
+    "i have three: 'the Coach,' 'the Hand Out,' and 'the Nice One (reversed).' pick one. the winner goes on the napkin"
+   ],
+   "choices": [
+    {
+     "say": "'the Coach.' a fall that teaches. henry will cry.",
+     "next": "end_naming"
+    },
+    {
+     "say": "'the Hand Out.' it's honest, and it's also a little bit of a pun.",
+     "next": "end_naming"
+    }
+   ]
+  },
+  "d_quiet": {
+   "them": [
+    "'busy.' ok. he'll think i'm scared. he'll say 'derek's scared' at the shop and raul will say nothing and sell him grip tape. fine. it's the cleaner option. it just feels like quitting a game when it's still your turn",
+    "i'll post the cancel and say 'scheduling.' no reasons. i don't owe him a reason. do i owe him a reason"
+   ],
+   "choices": [
+    {
+     "say": "you owe him one word. 'wrist.' it can be small. it just has to be true.",
+     "next": "d_truce"
+    },
+    {
+     "say": "send 'scheduling' and go ice it. he's a big boy. he has a bush.",
+     "next": "quiet_sent"
+    }
+   ]
+  },
+  "quiet_sent": {
+   "them": [
+    "sent: 'cant saturday. scheduling.' ...he's typing. ...he sent 'ok.' that's it. 'ok.' mike never types 'ok.' he types 'bro' and 'sik' and 'respekt.' 'ok' is the saddest word on this site",
+    "i did it. the reckoning is paused forever on a technicality. it feels like the time i landed it with no witnesses. it counts. it counts. (does it count)"
+   ],
+   "choices": [
+    {
+     "say": "it counts, but it's not the win you wanted. you can still write him a real one tomorrow.",
+     "next": "end_quiet"
+    },
+    {
+     "say": "give him till saturday to notice nobody's on the dock. he'll text.",
+     "next": "end_quiet"
+    }
+   ]
+  },
+  "end_truce": {
+   "them": [
+    "saturday. i held the camcorder on a milk crate. he did one trick, a small one, and landed it in the bush. i said 'nice one.' out loud. for real. he looked WORRIED, which is the correct response, everybody does. then he said it back",
+    "the card is on his wall now. he said 'it's a good bush.' it IS a good bush. malten. i don't think the reckoning is over. i think it just got a better name"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "status",
+     "text": "derek returned one (1) shoe, 4 months late. there was also a card. there's a bush on it. mike is keeping the card. the planter has been cleared of all charges"
+    },
+    {
+     "type": "wallpost",
+     "from": "sk8rboi",
+     "to": "derek",
+     "delay": 20,
+     "text": "derek u had my SHOE since JUNE. i told the whole shop a planter ate it. the card has a bush on it. its on my wall now. rematch is whenever ur wrist says. u say 'nice one' again and i might fall off the curb. deal"
+    },
+    {
+     "type": "bulletin",
+     "from": "chad",
+     "delay": 45,
+     "subject": "SATURDAY: THE TRUCE (a Sports Event)",
+     "text": "Hi everyone!! Derek and Mike are going to Hang Out. No tricks. I will be Commentating anyway. Please bring Snacks. Derek's wrist is wrapped and Mike has BOTH shoes!! This is the best Sports Event of the Year. GO BOTH OF THEM."
+    },
+    {
+     "type": "wallpost",
+     "from": "henry",
+     "to": "derek",
+     "delay": 70,
+     "text": "coach i heard u gave mike his shoe back. is that a trick. can i learn it. also my tuck n roll works on dennis AND on grass now. tell mike hes my favorite rival (2nd favorite) (u r first)"
+    },
+    {
+     "type": "dm",
+     "from": "sk8rboi",
+     "delay": 120,
+     "text": "yo malten. derek just handed me my shoe like it was a normal thing and said 'nice one' and i almost fell off the curb. did u have something to do with this?? what did u SAY to him"
+    }
+   ]
+  },
+  "end_naming": {
+   "them": [
+    "FINAL: the Coach beat the Hose (switch) by one vote. chad's. he cried before he voted so it might not count. mike bought the slushies. we split them. nobody left the ground and it was the best saturday that dock has ever had",
+    "he asked about the wrist and i told him. he said 'u coulda just said.' i said i know. he said 'ok. rematch when it heals. i'll wait.' mike has never waited for anything in his life"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "bulletin",
+     "subject": "THE RECKONING pt. 7: THE NAMING (OFFICIAL RESULTS)",
+     "text": "winner: 'the Coach' (derek). runner-up: 'the Hose (switch)' (mike). judge: chad (cried). nobody left the ground. all slushies were split. the napkin now reads 2-2-1-1 (the extra 1 is a name). rematch when the wrist says so"
+    },
+    {
+     "type": "status",
+     "from": "sk8rboi",
+     "delay": 30,
+     "text": "mike lost a naming contest to a guy with a sprained wrist. 'the Hose (switch)' is still a legend. the slushie was blue. nobody is allowed to say 'coach' to me until tuesday"
+    },
+    {
+     "type": "wallpost",
+     "from": "chad",
+     "to": "derek",
+     "delay": 60,
+     "text": "DEREK Great job on Saturday!! 'The Coach' is the BEST trick name I have ever heard and it isn't even a trick!! I may have Cried a little!! Is your wrist ok. Is Mike's. GO BOTH."
+    },
+    {
+     "type": "wallpost",
+     "from": "kevin",
+     "to": "derek",
+     "delay": 100,
+     "text": "derek i'd like to propose a category for the next reckoning: naming a combo. 'butterfly (the heavy one).' i'll judge. i'll bring the sweatband. nobody has to leave the pad. or the ground. this is the best idea of the season"
+    }
+   ]
+  },
+  "end_quiet": {
+   "them": [
+    "saturday. 2pm. i went to the dock anyway. didn't skate. sat there with the wrist and watched the lot for 40 minutes. gordon came out, looked at my hand, looked at me, went back in. 4 minutes later he came out with a bag of ice. that's all. a bag of ice",
+    "mike showed up at 2:20 with the camcorder and just stood there. 'u ok.' 'wrist.' 'oh.' he sat down next to me. we watched gordon move the hose back. then he said 'u coulda just said.' i said i know. he said 'rematch whenever.' politely. mike doesn't DO polite. the shoe is still in my backpack. i didn't say it. next time"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "status",
+     "text": "derek is on the loading dock. no tricks today. the hose stayed where it was (gordon moved it back anyway). some things are bigger than a gap. (not many)"
+    },
+    {
+     "type": "wallpost",
+     "from": "sk8rboi",
+     "to": "derek",
+     "delay": 30,
+     "text": "derek 'scheduling.' ur worst lie yet and i've seen u lie about the gap. napkin stays 2-2-1. get better. rematch whenever. i mean whenever"
+    },
+    {
+     "type": "wallpost",
+     "from": "chad",
+     "to": "sk8rboi",
+     "delay": 70,
+     "text": "MIKE I heard The Reckoning is on a Break!! No worries!! Cheering for BOTH of you from the sidelines. Also is anybody's elbow ok."
+    },
+    {
+     "type": "wallpost",
+     "from": "henry",
+     "to": "derek",
+     "delay": 110,
+     "text": "coach i saw u on the dock saturday with ur hand wrapped. i didnt say hi bc u looked like u were thinking. my tuck n roll is 10/10 now. sit with me next time. we can both be frauds"
+    }
+   ]
+  },
+  "end_doctor": {
+   "them": [
+    "posted it. the whole bulletin. word for word. 'i'm not scared, i'm sprained' is on the internet forever. raul is going to read it and say 'hm.' that's the most i've ever wanted a 'hm'",
+    "mom woke up at 6:45pm, read it over my shoulder, said 'good,' and sat in the car again. when she came back in she was smiling. 2 weeks. i'm going to teach henry to fall WITHOUT falling. it's a new class. it's called 'watching'"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "bulletin",
+     "subject": "RECKONING pt. 7: POSTPONED (BY ORDER OF MOM)",
+     "text": "sprain. 2 weeks. no board. rematch the saturday after halloween. mike may NOT claim a default. the napkin stays 2-2-1. i'm not scared, i'm sprained. the peas are on leave"
+    },
+    {
+     "type": "wallpost",
+     "from": "sk8rboi",
+     "to": "derek",
+     "delay": 25,
+     "text": "derek a DOCTORS NOTE?? weakest forfeit in the history of the reckoning. also feel better. i'm not claiming a default. napkin stays 2-2-1. i'll film ur physical therapy on my dads camcorder. 240p of u doing wrist circles"
+    },
+    {
+     "type": "wallpost",
+     "from": "henry",
+     "to": "derek",
+     "delay": 60,
+     "text": "coach u got a doctors note!!! i want a doctors note. i asked dennis if i could have one for the mall and he said no. i'll watch u fall WITHOUT falling. i'll take notes. page 3"
+    },
+    {
+     "type": "status",
+     "from": "chad",
+     "delay": 95,
+     "text": "chad is Respecting the doctors note. The Reckoning will return after Halloween. Wrists Are Important. I am going to dress as a Wrist. (kidding) (not kidding)"
+    }
+   ]
+  }
+ }
+}

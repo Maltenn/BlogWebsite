@@ -1,0 +1,163 @@
+{
+ "id": "liz",
+ "aboutMore": "things i dont say out loud: i leave a little nice comment in the css of every layout i make. like /* if ur reading this hi. credit me. also ur doing great */. 9 out of 10 ppl never view source. dave did once. he said 'nice try dave' wasnt nice. it was. i also draw all my own pixel icons (16x16, ms paint zoomed 800%, 140 so far, my favorite is a 12 pixel heart). and i live in mesa where it was 112 on tuesday and the laptop is a space heater so i code w/ a wet washcloth on my neck. its fine. its a look.",
+ "blog": [
+  {
+   "title": "MONSOON SEASON: how i lost 4 hours of code and why i press ctrl+s 9 times a minute",
+   "date": "Aug 14 2026 1:40 AM",
+   "mood": "twitchy",
+   "body": "ok so in mesa we have monsoon season. its a month of the sky going purple at 4 pm and then the power doing a little flicker. i was 4 hours into a layout (kittyxcore's custom one, the checker one, 340 lines) and hadnt saved since the start bc i was 'in the zone.' the sky went purple. i said out loud 'dont.' it flickered. the screen went black. my fan stopped. the whole house went silent. for a second it was the quietest thing ive ever heard. then the power came back. notepad was gone. 4 hours. i sat on the floor. my dad walked in and said 'did it save.' i said no. he said 'ah.' and sat down on the floor next to me for a minute. then i rewrote the whole thing in 2 hrs 40 min bc i know it by heart now and that's the weird part: it was better. so i press ctrl+s 9 times a minute. i do it when im not coding. i just did it. ctrl+s."
+  },
+  {
+   "title": "CLIENT TYPES: a field guide (no names) (all of the names)",
+   "date": "Sep 7 2026 12:55 AM",
+   "mood": "professional",
+   "body": "i've done layouts for 5 years so i can sort every client into 1 of 5 species. 1) THE PINK ONE: wants pink. then pinker. when u show her the pink she says 'its good but can it be more pink' and u say 'its pink on pink' and she says 'exactly.' (brittany) 2) THE DEADLINE ONE: sends 11 revisions, each with a due date. 'make the logo bigger' x4. 'smaller' x1. 'actually bigger.' (yvette, who is running for class president, so she is allowed) 3) THE MATRIX ONE: wants green rain on the loading screen. i said what loading screen. he said 'exactly.' (dave) 4) THE TILTED ONE: wants everything rotated 45 degrees. i did it. she said 'perfect.' my monitor now has a neck cramp. (paige) 5) THE ONE WHO SAYS 'SIMPLE': 6 hours. simple takes the longest. (josh) i love them all. i just want it noted that 'make it pop' is not a measurement."
+  },
+  {
+   "title": "16 x 16: a love letter to tiny things",
+   "date": "Jul 30 2026 11:05 PM",
+   "mood": "small (in a good way)",
+   "body": "every icon i make is 16 pixels by 16 pixels. thats 256 squares. i do them in ms paint zoomed 800% and i click every square myself. i have 140. i dont use a program. the program makes them 'smooth' and i dont want smooth. i want the corners. a 16x16 heart has a whole personality (mine is 12 pixels, its my favorite, i dont know why 12 is better than 14 but it is). the secret is u get to decide what a face is made of. a smiley is 2 dots and a curve. thats 13 pixels. thats all u need to tell a person 'its ok.' i made a little envelope for my guestbook and 2 ppl told me it made them feel like mail. best review i've ever gotten. 256 squares. u can fit a whole mood in them. u can fit a pizza. i have a pizza."
+  },
+  {
+   "title": "THE LITE LAYOUT PROJECT (what doug taught me)",
+   "date": "Oct 1 2026 2:10 AM",
+   "mood": "lighter",
+   "body": "doug is on dial-up. so i made him a lite layout. first draft was 40k. he said that was '4 minutes.' i got it to 12k. he said '90 seconds.' i got it to 4k, then 2, then 1.4. it loads in 6 seconds. i have never worked so hard to make something look worse. no images. gray background. 4 lines of css. and it's the best thing i've made all year, which i did not expect. nothing to hide behind. i had to pick 1 color (#0000cc, doug's blue), 1 font (the one he already has) and a border that does all the heavy lifting. i said it was the ugliest thing i'd ever coded. i retract that. it wasn't ugly. it was honest. now i build every layout 'lite first': the doug version, then the fun on top, like a meal. doug once called my heavy layout dessert, so the lite one is dinner. i never thought of code as food. it works."
+  }
+ ],
+ "survey": {
+  "title": "the WEBMASTER survey (everyone in my class did it in 6th grade) (im doing it again)",
+  "qa": [
+   [
+    "name:",
+    "liz. layouts_by_liz. 'the layout girl' to anybody who has ever needed a favor"
+   ],
+   [
+    "first thing u ever coded:",
+    "a page that said HI in 40pt comic sans (i know). it blinked. i've apologized to the world"
+   ],
+   [
+    "text editor:",
+    "notepad. not wordpad. never wordpad. wordpad adds things. u didnt ask it to"
+   ],
+   [
+    "how many layouts have u made:",
+    "212. 9 are broken (not mine, i fixed them, someone broke them again). 14 are stolen. 3 are in a folder called 'liz would not have done this'"
+   ],
+   [
+    "favorite hex code:",
+    "#ff00d3. its mine. changing 2 digits doesnt make it urs"
+   ],
+   [
+    "what's in ur tabs:",
+    "photobucket (down), notepad (4 files), the css cookbook (library, overdue), paramore (paused)"
+   ],
+   [
+    "worst client request:",
+    "'make it pop.' i asked what pop is. they said 'like it pops.' i said how many pixels. they said 'u know.' i did not know. i added a 1px border. they said perfect"
+   ],
+   [
+    "do u use tables:",
+    "twice. one was for an actual table. a bake sale schedule. it was a real table. it was ok"
+   ],
+   [
+    "search history:",
+    "'css center vertically' (14 times). its the question of my generation"
+   ],
+   [
+    "heat in mesa:",
+    "112 on tuesday. the laptop is a space heater. i code w/ a wet washcloth on my neck. its a look"
+   ],
+   [
+    "what do u want 2 be:",
+    "the person who makes the thing u use every day and never notice. like the little arrow on a scrollbar. somebody drew that. 16 pixels. thats my dream"
+   ],
+   [
+    "describe urself in one sentence:",
+    "i fix other ppls css 4 free and then ask 4 one line of credit. its not about the credit. its about the line"
+   ]
+  ]
+ },
+ "dms": [
+  "hey malten. i left a note in the css of ur old default layout. i know u didnt ask. its in the comments. it says hi malten. view source. it takes 4 seconds",
+  "i pressed ctrl+s 9 times while writing this. its a reflex. (10.) (11.) sorry. also did u know there are 256 squares in a 16x16 icon. i counted again. just now. still 256",
+  "it was 112 in mesa today. my laptop shut itself off. i said ok. i put it on a bag of frozen peas. i coded 40 minutes on a bag of peas. (derek would be proud) (he would not) (he would be a little proud)",
+  "malten whats the best color. dont say pink. i make pink every day and im tired. say a color and i'll make u a button in it. 16x16. free. credit line stays in",
+  "somebody (not naming) sent me a 'layout' they made and its a table in a table in a table 14 deep. most beautiful disaster ive ever seen. i think theyre gonna be an architect. i told them to learn divs. i also told them they have talent. it was a lot",
+  "tim says my 'who owes me credit' list is a spreadsheet. i said its a list. he said it has columns. ive had columns for 3 months. i didnt know. im 17 and i just found out i do accounting",
+  "angela's cool site award is a spinning star, 120 pixels, 9 colors. i opened it in my editor. i did not touch it. it was the hardest thing ive ever not done. its perfect. dont tell her i said that. (tell her)",
+  "photobucket is back up. i checked all 200 layouts. 41 images are missing. im going to cry in a productive way. ill fix them one at a time. its 2 am. my favorite time. nobody's online but u",
+  "malten a question: why does every UNDER CONSTRUCTION sign have a guy w/ a shovel in a hardhat. ive been looking at him for 8 years. he never moves. hes still digging. i think hes the hardest worker on the internet",
+  "last week i figured out how to center something vertically w/ css and i wanted 2 tell somebody and the only one awake was my dad's cat. so i told the cat. hes a good listener. im telling u 2 now. it took me 3 years"
+ ],
+ "repliesExtra": [
+  "ok but did u credit me. im joking (im not) (im half joking)",
+  "hold on im fixing something. not yours. just something. ok. back",
+  "thats actually really nice. im going to put it in a comment in my css where nobody can see it but me",
+  "ok so thats a fair point. i hate that thats a fair point",
+  "mm. ok. i'll allow it",
+  "wait thats kind of good. did u write that yourself. ...did u",
+  "id reply longer but its 112 degrees and the laptop is making a noise. i've named the noise Morris. hes a 1 pixel guy",
+  "ur page is loading. i can feel it. its been 4 seconds. im not mad. im just counting",
+  "thank u. ill put that in the comments. the comments are where i keep the nice stuff",
+  "fine. ur on the list. the list is nice. the list has 3 names. 1 is dave. dont tell dave"
+ ],
+ "statusesExtra": [
+  "112 degrees in mesa. coding w/ a wet washcloth on my neck. its a look",
+  "found a 1 pixel gap in somebodys layout at 2 am and fixed it before they woke up. they will never know. thats the whole dream",
+  "just made a 12 pixel heart. my favorite thing this month. nobody can have it. everybody can have it. its free. credit line stays",
+  "built a 12k layout today and then rebuilt it at 2k just to see if i could. i could. im a different person now",
+  "someone asked me to 'make it pop.' i added a 1px border. they said perfect. ive never felt more like a magician",
+  "left a note in the css. it says 'hi. credit me. ur doing great.' 9 out of 10 ppl never see it. the 10th one is dave"
+ ],
+ "wallExtra": [
+  {
+   "from": "angela",
+   "text": "~*~ Liz! ~*~ I have viewed your source (legally!) and found a comment that says 'if ur reading this, ur doing great.' I am READING IT. I am DOING GREAT. I have written it on the wall of my guestbook! Please sign my guestbook, you may leave it as a comment! ~ Angela, Webmistress"
+  },
+  {
+   "from": "doug",
+   "text": "liz i printed the lite layout at the library and put it on the fridge. my mom said whats that. i said a website. she said its so clean. she stood there and looked at it for a while. thank u. blue is a good color"
+  },
+  {
+   "from": "nat",
+   "text": "LIZ the 6pt credit is staying. i checked the neopets rules. they dont ban credits. i put it in 3 more places: the footer, the sidebar and a hidden comment. ur credited 4 times in 6pt. thats 24pt total. i did the math. ur welcome (im the one who is welcome)"
+  },
+  {
+   "from": "tim",
+   "text": "liz. i audited ur credit list. 14 ppl owe u a line. at 25 cents each thats $3.50. u said its not about the money. i said its about $3.50. i put it in a ledger. u r owed. -tim"
+  },
+  {
+   "from": "yvette",
+   "text": "Liz. The campaign page has 11 revisions pending. Revision 4: 'make the logo bigger.' Revision 5: 'make it smaller.' Revision 6: 'actually bigger.' All due FRIDAY. The slogan stays: A Strong Finish. On Time. Vote Yvette. -Y."
+  }
+ ],
+ "banterExtra": {
+  "angela": [
+   "angela i read the award post. 'liz's layouts are fancier.' im not mad im 'fancier' and not 'home.' i AM home. i leave notes in my comments. (its not the same.) (ok its a little the same.)",
+   "angela the star. i opened it in my editor. 120px, 9 colors, drawn at 11. i did not touch it. it was the hardest thing ive ever not done. its perfect. dont tell anybody i said perfect",
+   "angela i'll make u a guestbook button for free. 16x16. it'll say SIGN. it'll load in 1 sec so doug can see it. no frames. no tables. just a button. so small u could put it on the lake"
+  ],
+  "doug": [
+   "doug i got the lite layout down 2 4.3 secs by deleting the favicon. ive never been so proud of removing something. u r teaching me. i said it was ugly. i retract that. it wasnt ugly, it was honest",
+   "doug the pixel envelope i made for the guestbook is 340 bytes. its smaller than ur name. it'll load before u finish reading this. i think its the smallest love letter i've ever written"
+  ],
+  "nat": [
+   "nat i found 'layout by liz' in 6pt font. its the smallest credit ive ever gotten and ive never been prouder. ill take 6pt. i'll teach u divs this weekend. u'll use them everywhere that isnt neopets. and 1 comment per file. im not negotiating",
+   "nat u told ppl im 'still upset' about neopets stripping divs. im not upset. im 'processing.' (its been 6 months.) ur table-only guild page loads in 3 seconds. my best div layout loads in 9. i hate that ur right about anything. dont tell angela. (tell angela. shell be so smug.)"
+  ],
+  "tim": [
+   "tim u audited my credit list and said 'it has columns.' ive had columns for 3 months. i didnt know i was a business. u r owed 25 cents for the observation. i'll put it in ur ledger",
+   "tim ur CAVE DIVER now has a boss and its 212 lines. i read the source. its the cleanest code ive seen on a device w/ 24k of memory. u comment ur loops. we r the same. (we r not the same. u sell games 4 $2. i sell credit. its worth more.)"
+  ]
+ },
+ "keywordsExtra": {
+  "monsoon": "monsoon season: the sky goes purple at 4 pm and the power flickers. i lost 4 hours of code once. now i press ctrl+s 9 times a minute. i did it while typing this. ctrl+s",
+  "pixel": "16x16. 256 squares. i click every one myself in ms paint at 800%. i have 140 icons. my favorite is a 12 pixel heart. u can fit a whole mood in 256 squares. i have a pizza",
+  "client": "5 species: the pink one, the deadline one, the matrix one, the tilted one, and the one who says 'simple.' 'make it pop' is not a measurement. i love them all",
+  "doug": "doug is on dial-up so i built him a lite layout. 40k down to 1.4k. 6 seconds. nothing to hide behind. i said it was ugly. it wasnt. it was honest. now i build everything lite first",
+  "comment": "i leave a nice note in the css of every layout. like 'hi. credit me. ur doing great.' 9 out of 10 ppl never see it. view source. i'm not going to tell u which line"
+ }
+}

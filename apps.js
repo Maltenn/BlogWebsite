@@ -1,6 +1,6 @@
 /* ============================================================
-   apps.js — the programs: Minesweeper, Paint, Winamp-style
-   player (Spotify + built-in chiptune fallback), Guestbook,
+   apps.js — the programs: Minesweeper, Paint, the Spotify
+   top-songs list + Guestbook (both live inside OurSpace),
    and the My Pictures gallery.
    ============================================================ */
 
@@ -16,16 +16,36 @@ const Mines = {
     if (!body || body.dataset.built) return;
     body.dataset.built = '1';
     body.innerHTML = `
-      <div class="mines-top">
-        <span class="lcd" id="mines-count">010</span>
-        <button class="btn98" id="mines-face">🙂</button>
-        <span class="lcd" id="mines-time">000</span>
+      <div class="mines-board">
+        <div class="mines-top">
+          <span class="lcd" id="mines-count">010</span>
+          <button class="btn98" id="mines-face">🙂</button>
+          <span class="lcd" id="mines-time">000</span>
+        </div>
+        <div id="mines-grid"></div>
       </div>
-      <div id="mines-grid"></div>
       <p style="font-size:10px;color:#666;margin:6px 0 0;">left click: dig &nbsp;•&nbsp; right click: flag 🚩</p>`;
     document.getElementById('mines-face').addEventListener('click', () => this.newGame());
     document.getElementById('mines-grid').addEventListener('contextmenu', e => e.preventDefault());
     this.newGame();
+    ['app-open', 'app-resize'].forEach(ev =>
+      document.addEventListener(ev, e => { if (e.detail === 'mines') this.fit(); }));
+    this.fit();
+  },
+
+  // maximized: scale the cells (--cell, see styles.css) so the board fills the window;
+  // otherwise fall back to the stylesheet's 24px
+  fit() {
+    const win = document.querySelector('.window[data-app="mines"]');
+    const body = win && win.querySelector('.window-body');
+    if (!body || !body.dataset.built) return;
+    let cell = '';
+    if (win.classList.contains('maximized') && window.innerWidth > 820 && body.clientHeight) {
+      // the LCD bar scales with the cells and is about one row tall; 64px covers padding + the hint line
+      const room = Math.min((body.clientWidth - 32) / this.W, (body.clientHeight - 64) / (this.H + 1));
+      cell = Math.max(24, Math.min(64, Math.floor(room))) + 'px';
+    }
+    body.style.setProperty('--cell', cell);
   },
 
   newGame() {
@@ -146,7 +166,7 @@ const Paint = {
         <button class="btn98" id="paint-clear">🗑 clear</button>
         <button class="btn98" id="paint-save">💾 save</button>
       </div>
-      <canvas id="paint-canvas" width="336" height="220"></canvas>
+      <div class="paint-stage"><canvas id="paint-canvas" width="240" height="220"></canvas></div>
       <div class="paint-palette"></div>`;
 
     const canvas = document.getElementById('paint-canvas');
@@ -154,6 +174,8 @@ const Paint = {
     ctx.fillStyle = '#fff';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+    ['app-open', 'app-resize'].forEach(ev =>
+      document.addEventListener(ev, e => { if (e.detail === 'paint') this.fit(); }));
 
     const colors = ['#000000','#7f7f7f','#c0c0c0','#ffffff','#880015','#ed1c24','#ff7f27','#fff200',
                     '#22b14c','#00a2e8','#3f48cc','#4b2d83','#9370DB','#ffaec9','#b97a57','#C3B1E1'];
@@ -177,6 +199,8 @@ const Paint = {
     }));
     document.getElementById('paint-size').addEventListener('input', e => { this.size = +e.target.value; });
     document.getElementById('paint-clear').addEventListener('click', () => {
+      canvas.width = canvas.height = 1;      // a fresh sheet is the size of the window again
+      this.fit();
       ctx.fillStyle = '#fff'; ctx.fillRect(0, 0, canvas.width, canvas.height);
     });
     document.getElementById('paint-save').addEventListener('click', () => {
@@ -204,6 +228,30 @@ const Paint = {
       prev = p;
     });
     canvas.addEventListener('pointerup', () => { this.drawing = false; });
+    this.fit();
+  },
+
+  // Grow the sheet to fill the stage (e.g. when the window is maximized). The bitmap only
+  // ever grows and the old pixels are copied across 1:1, so the drawing is never stretched
+  // or cropped; when the window shrinks again the stage scrolls, like real Paint.
+  fit() {
+    const canvas = document.getElementById('paint-canvas');
+    const stage = canvas && canvas.parentElement;
+    if (!stage || !stage.clientWidth) return;            // window not on screen yet
+    const w = Math.max(canvas.width, stage.clientWidth);
+    const h = Math.max(canvas.height, stage.clientHeight);
+    if (w === canvas.width && h === canvas.height) return;
+    const keep = document.createElement('canvas');
+    keep.width = canvas.width;
+    keep.height = canvas.height;
+    keep.getContext('2d').drawImage(canvas, 0, 0);
+    canvas.width = w;
+    canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    ctx.fillStyle = '#fff';
+    ctx.fillRect(0, 0, w, h);
+    ctx.drawImage(keep, 0, 0);
+    ctx.lineCap = 'round'; ctx.lineJoin = 'round';        // resizing a canvas resets its context
   },
 
   stroke(ctx, a, b) {
@@ -224,204 +272,242 @@ const Paint = {
   },
 };
 
-/* ======================= WINAMP-STYLE PLAYER ======================= */
-const Amp = {
-  // element lookups scoped to the player root so they work even while it's detached from the page
-  $(id) { return (this.rootEl && this.rootEl.querySelector('#' + id)) || document.getElementById(id); },
-  setText(id, text) { const el = this.$(id); if (el) el.textContent = text; },
-  tracks: [], current: 0, playing: false, demo: false,
-  audio: null, vol: 0.35,
-  chipTimer: null, chipStep: 0,
-  visRaf: null,
+/* ================= SPOTIFY TOP SONGS (OurSpace → My Page) ================= */
+// A public page poking at a visitor's own localhost only earns them a "wants to access your local
+// network" browser prompt, so the optional local backends are only tried when the site itself is
+// running locally (or once the API constant points at a real host).
+function localBackendOk(api) {
+  const isLocal = h => h === '' || h === 'localhost' || h === '127.0.0.1' || h === '[::1]';
+  try { return !isLocal(new URL(api).hostname) || isLocal(location.hostname); }
+  catch { return false; }
+}
 
-  // one persistent player element that can be re-parented (My Page re-renders often;
-  // moving the node keeps playback going)
-  mount(container) {
-    if (!this.rootEl) {
-      this.rootEl = document.createElement('div');
-      this.rootEl.className = 'wa-root';
-      container.appendChild(this.rootEl);   // must be in the document before init wires its buttons by id
-      this.init(this.rootEl);
-      return;
-    }
-    container.appendChild(this.rootEl);
+// malten's real top tracks, from the optional spotifyserver/ (GET /top-tracks). Visitors almost
+// never have that server, so the list degrades: live → last good result (localStorage) →
+// baked-in snapshot → "the server is napping". It never sits on "loading…".
+const Spotify = {
+  API: 'http://localhost:8080',                 // <-- the Spotify server's base URL lives here and only here
+  PROFILE: 'https://open.spotify.com/user/moltennebula',
+  CACHE_KEY: 'malten_spotify_top',
+  LIMIT: 10,                                    // tracks to ask the server for
+  SHOW: 5,                                      // rows shown before "show all"
+  // Last-resort fallback: the real top 5, captured from the server on the date below.
+  // To refresh it, paste the first 5 objects of http://localhost:8080/top-tracks in here.
+  SNAPSHOT: {
+    at: '2026-10-05T12:00:00',
+    tracks: [
+      { name: 'WannaCry', artist: 'Ninajirachi, Porter Robinson', album: 'WannaCry',
+        preview_url: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/4f/95/ad/4f95ad42-3159-70f5-0e1d-74e41bf2aeaf/mzaf_10985369354936899334.plus.aac.p.m4a',
+        image_url: 'https://i.scdn.co/image/ab67616d0000b273a4cd3b67b8747f787068b366',
+        image_small: 'https://i.scdn.co/image/ab67616d00004851a4cd3b67b8747f787068b366',
+        url: 'https://open.spotify.com/track/7JW8FRWVCOQDs40IjEXdPi' },
+      { name: 'bag TF up', artist: 'bbno$', album: 'bbno$',
+        preview_url: null,
+        image_url: 'https://i.scdn.co/image/ab67616d0000b2739cd48ea54f12cdd1a244ce51',
+        image_small: 'https://i.scdn.co/image/ab67616d000048519cd48ea54f12cdd1a244ce51',
+        url: 'https://open.spotify.com/track/5moS96HyivwASueSMzhSBh' },
+      { name: 'Delete', artist: 'Ninajirachi', album: 'I Love My Computer',
+        preview_url: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/4d/b0/99/4db0997d-feb6-2ccd-d573-2d31cd3de7cb/mzaf_6097604859715329249.plus.aac.p.m4a',
+        image_url: 'https://i.scdn.co/image/ab67616d0000b2733b9b742c5c525af6e6767d87',
+        image_small: 'https://i.scdn.co/image/ab67616d000048513b9b742c5c525af6e6767d87',
+        url: 'https://open.spotify.com/track/0CVbCtcdXAIw00YBXXbneu' },
+      { name: 'iPod Touch', artist: 'Ninajirachi', album: 'I Love My Computer',
+        preview_url: 'https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/40/01/02/400102b7-3b53-3e4b-3d4d-cf6f0ca50fb8/mzaf_12409370184411059069.plus.aac.p.m4a',
+        image_url: 'https://i.scdn.co/image/ab67616d0000b2733b9b742c5c525af6e6767d87',
+        image_small: 'https://i.scdn.co/image/ab67616d000048513b9b742c5c525af6e6767d87',
+        url: 'https://open.spotify.com/track/1xqT27jSG1Y15vOXfsV0gv' },
+      { name: 'Fuck My Computer', artist: 'Ninajirachi', album: 'I Love My Computer',
+        preview_url: null,
+        image_url: 'https://i.scdn.co/image/ab67616d0000b2733b9b742c5c525af6e6767d87',
+        image_small: 'https://i.scdn.co/image/ab67616d000048513b9b742c5c525af6e6767d87',
+        url: 'https://open.spotify.com/track/5ZbztTcvj6QWWbeYsL4GTa' },
+    ],
   },
 
-  async init(container) {
-    const body = container || document.querySelector('.window[data-app="winamp"] .window-body');
-    if (!body || body.dataset.built) return;
-    body.dataset.built = '1';
-    body.classList.add('winamp-body');
-    body.innerHTML = `
-      <div class="wa-lcd"><span class="wa-title" id="wa-title">*** MALTEN AMP v5.0 ***</span><span id="wa-time">--:--</span></div>
-      <canvas class="wa-vis" id="wa-vis" width="300" height="40"></canvas>
-      <div class="wa-controls">
-        <button class="btn98" id="wa-prev">⏮</button>
-        <button class="btn98" id="wa-play">▶</button>
-        <button class="btn98" id="wa-stop">⏹</button>
-        <button class="btn98" id="wa-next">⏭</button>
-        <input type="range" id="wa-vol" min="0" max="100" value="35" title="volume">
-      </div>
-      <div class="wa-playlist" id="wa-playlist">loading playlist…</div>`;
+  tracks: [], source: 'none', at: null,         // source: live | cache | snapshot | none
+  checking: false, checkedAt: 0, expanded: false,
+  audio: null, playing: -1, box: null,
 
-    this.$('wa-prev').addEventListener('click', () => this.skip(-1));
-    this.$('wa-next').addEventListener('click', () => this.skip(1));
-    this.$('wa-play').addEventListener('click', () => this.playing ? this.pause() : this.play());
-    this.$('wa-stop').addEventListener('click', () => this.stop());
-    this.$('wa-vol').addEventListener('input', e => {
-      this.vol = e.target.value / 100;
-      if (this.audio) this.audio.volume = this.vol * 0.5;
-    });
-
-    await this.loadTracks();
-    this.renderPlaylist();
-    this.setTitle();
-    this.visLoop();
-  },
-
-  async loadTracks() {
+  cached() {
     try {
-      const ctrl = new AbortController();
-      setTimeout(() => ctrl.abort(), 2500);
-      const res = await fetch('http://localhost:8080/top-tracks', { signal: ctrl.signal });
+      const c = JSON.parse(localStorage.getItem(this.CACHE_KEY) || 'null');
+      if (c && Array.isArray(c.tracks) && c.tracks.length) return c;
+    } catch { /* corrupted cache — ignore it */ }
+    return null;
+  },
+
+  // the best list we have without touching the network
+  fallback() {
+    const c = this.cached();
+    if (c) return { tracks: c.tracks, source: 'cache', at: c.at };
+    if (this.SNAPSHOT.tracks.length) return { tracks: this.SNAPSHOT.tracks, source: 'snapshot', at: this.SNAPSHOT.at };
+    return { tracks: [], source: 'none', at: null };
+  },
+
+  // Draw the list into `box` (My Page re-renders a lot, so this is cheap and repeatable), then
+  // quietly ask the live server — at most once every 10 minutes.
+  mount(box) {
+    this.box = box;
+    if (!this.tracks.length) Object.assign(this, this.fallback());
+    this.paint();
+    if (Date.now() - this.checkedAt > 10 * 60000) this.refresh();
+  },
+
+  async refresh() {
+    if (this.checking || !localBackendOk(this.API)) return;
+    this.checking = true;
+    this.paint();
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 2500);
+    try {
+      const res = await fetch(`${this.API}/top-tracks?limit=${this.LIMIT}`, { signal: ctrl.signal });
       if (!res.ok) throw new Error('server said no');
       const data = await res.json();
-      this.tracks = data.map(t => ({ name: t.name, artist: t.artist, url: t.preview_url }));
-      this.demo = false;
+      const tracks = (Array.isArray(data) ? data : []).filter(t => t && t.name);
+      if (!tracks.length) throw new Error('no tracks');
+      const now = this.tracks[this.playing];
+      if (now && (tracks[this.playing] || {}).name !== now.name) this.stop(true);   // the list moved under the playing row
+      Object.assign(this, { tracks, source: 'live', at: new Date().toISOString() });
+      try { localStorage.setItem(this.CACHE_KEY, JSON.stringify({ at: this.at, tracks })); } catch { /* storage full — fine */ }
     } catch {
-      // spotify server offline — fall back to the built-in chiptune "demos"
-      this.demo = true;
-      this.tracks = [
-        { name: 'untitled banger.mid', artist: 'malten', chip: [0, 3, 7, 3, 10, 7, 12, 7] },
-        { name: 'groove machine.mid', artist: 'malten', chip: [0, 0, 7, 5, 3, 5, 7, 10] },
-        { name: '4am insomnia loop.mid', artist: 'malten', chip: [12, 10, 7, 10, 5, 7, 3, 0] },
-      ];
+      // server offline — the normal case for visitors. keep showing what we have.
+      if (this.source === 'live') this.source = 'cache';
     }
+    clearTimeout(timer);
+    this.checking = false;
+    this.checkedAt = Date.now();
+    this.paint();
   },
 
-  renderPlaylist() {
-    const pl = this.$('wa-playlist');
-    if (!pl) return;
-    pl.innerHTML = '';
-    if (this.demo) {
-      const note = document.createElement('div');
-      note.className = 'wa-row';
-      note.style.color = '#557';
-      note.textContent = '[spotify server offline — playing built-in MIDI demos]';
-      pl.appendChild(note);
-    }
-    this.tracks.forEach((t, i) => {
-      const row = document.createElement('div');
-      row.className = 'wa-row' + (i === this.current ? ' current' : '');
-      row.innerHTML = `${i + 1}. ${t.name} - ${t.artist}<span class="dur">${t.url || t.chip ? '▸' : 'no preview'}</span>`;
-      row.addEventListener('click', () => { this.current = i; this.play(); });
-      pl.appendChild(row);
-    });
+  when(iso, withTime) {
+    const d = new Date(iso);
+    if (isNaN(d)) return 'a while ago';
+    const day = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    return withTime ? `${day}, ${d.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' })}` : day;
   },
 
-  setTitle() {
-    const t = this.tracks[this.current];
-    const el = this.$('wa-title');
-    if (t && el) el.textContent = `${this.current + 1}. ${t.name} - ${t.artist} `;
-  },
-
-  play() {
-    const t = this.tracks[this.current];
-    if (!t) return;
-    this.stop(true);
-    this.playing = true;
-    this.setText('wa-play', '⏸');
-    this.setTitle();
-    this.renderPlaylist();
-    if (t.chip) this.chipPlay(t.chip);
-    else if (t.url) {
-      this.audio = new Audio(t.url);
-      this.audio.volume = this.vol * 0.5;
-      this.audio.play().catch(() => this.stop());
-      this.audio.addEventListener('ended', () => this.skip(1));
-      this.audio.addEventListener('timeupdate', () => {
-        if (!this.audio) return;
-        const s = Math.floor(this.audio.currentTime);
-        this.setText('wa-time', `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`);
-      });
-    } else {
-      this.setText('wa-title', `${t.name} — no preview available for this one, alas`);
-      this.playing = false;
-      this.setText('wa-play', '▶');
-    }
-  },
-
-  pause() {
-    this.playing = false;
-    this.setText('wa-play', '▶');
-    if (this.audio) this.audio.pause();
-    clearInterval(this.chipTimer);
-  },
-
-  stop(silent) {
-    this.playing = false;
-    this.setText('wa-play', '▶');
-    if (this.audio) { this.audio.pause(); this.audio = null; }
-    clearInterval(this.chipTimer);
-    if (!silent) this.setText('wa-time', '--:--');
-  },
-
-  skip(dir) {
-    this.current = (this.current + dir + this.tracks.length) % this.tracks.length;
-    if (this.playing || this.demo) this.play(); else { this.setTitle(); this.renderPlaylist(); }
-  },
-
-  // 8-step chiptune loop rendered with plain oscillators — the "MIDI" of demo mode
-  chipPlay(pattern) {
-    const base = 220;
-    this.chipStep = 0;
-    let sec = 0;
-    const stepFn = () => {
-      const semis = pattern[this.chipStep % pattern.length];
-      const freq = base * Math.pow(2, semis / 12);
-      Sfx.beep(freq, 0.16, 'square', 0.05 * this.vol * 2);
-      Sfx.beep(freq / 2, 0.2, 'triangle', 0.04 * this.vol * 2);
-      if (this.chipStep % 2 === 0) Sfx.beep(60, 0.05, 'sawtooth', 0.05 * this.vol * 2);
-      this.chipStep++;
-      sec += 0.22;
-      const s = Math.floor(sec);
-      this.setText('wa-time', `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`);
+  paint() {
+    const box = this.box;
+    if (!box) return;
+    const mk = (tag, cls, text) => {
+      const e = document.createElement(tag);
+      if (cls) e.className = cls;
+      if (text !== undefined) e.textContent = text;
+      return e;
     };
-    stepFn();
-    this.chipTimer = setInterval(stepFn, 220);
-  },
+    box.innerHTML = '';
 
-  visLoop() {
-    const cv = this.$('wa-vis');
-    if (!cv) return;
-    const ctx = cv.getContext('2d');
-    const bars = 24;
-    const heights = Array(bars).fill(2);
-    const draw = () => {
-      ctx.fillStyle = '#0a0a12';
-      ctx.fillRect(0, 0, cv.width, cv.height);
-      for (let i = 0; i < bars; i++) {
-        const target = this.playing ? 4 + Math.random() * 34 : 2;
-        heights[i] += (target - heights[i]) * 0.3;
-        const h = heights[i];
-        const grad = ctx.createLinearGradient(0, cv.height - h, 0, cv.height);
-        grad.addColorStop(0, '#ff71ce');
-        grad.addColorStop(0.5, '#9370DB');
-        grad.addColorStop(1, '#00ff66');
-        ctx.fillStyle = grad;
-        ctx.fillRect(i * (cv.width / bars) + 2, cv.height - h, cv.width / bars - 4, h);
+    if (!this.tracks.length) {
+      const nap = mk('div', 'sp-nap');
+      if (this.checking) nap.textContent = 'dialing up spotify… (this takes 2 seconds, tops)';
+      else {
+        nap.appendChild(mk('b', null, '💤 the spotify server is napping.'));
+        nap.appendChild(mk('div', null, 'it lives on my computer, and my computer sleeps more than i do. check back later — or go snoop through '));
+        const a = mk('a', null, 'my actual spotify');
+        a.href = this.PROFILE; a.target = '_blank'; a.rel = 'noopener';
+        nap.lastChild.append(a, document.createTextNode(' yourself.'));
       }
-      this.visRaf = requestAnimationFrame(draw);
-    };
-    draw();
+      box.appendChild(nap);
+      return;
+    }
+
+    const list = mk('ol', 'sp-list');
+    const n = this.expanded ? this.tracks.length : Math.min(this.SHOW, this.tracks.length);
+    this.tracks.slice(0, n).forEach((t, i) => {
+      const row = mk('li', 'sp-row' + (this.playing === i ? ' sp-on' : ''));
+      row.appendChild(mk('span', 'sp-rank', String(i + 1)));
+
+      const thumb = t.image_small || t.image_url;
+      const noArt = () => mk('span', 'sp-art sp-noart', '♪');
+      if (thumb) {
+        const art = mk('img', 'sp-art');
+        art.src = thumb; art.alt = t.album || ''; art.loading = 'lazy';
+        art.title = t.album ? `from “${t.album}”` : '';
+        art.addEventListener('error', () => art.replaceWith(noArt()));
+        if (window.ImageViewer) {
+          art.classList.add('sp-zoom');
+          art.addEventListener('click', () => ImageViewer.open(t.image_url || thumb, `${t.name} — ${t.artist}`));
+        }
+        row.appendChild(art);
+      } else row.appendChild(noArt());
+
+      const meta = mk('div', 'sp-meta');
+      const name = mk('a', 'sp-name', t.name);
+      name.href = t.url || 'https://open.spotify.com/search/' + encodeURIComponent(`${t.name} ${t.artist || ''}`.trim());
+      name.target = '_blank'; name.rel = 'noopener';
+      name.title = 'open in spotify ↗';
+      meta.appendChild(name);
+      meta.appendChild(mk('div', 'sp-artist', t.artist || ''));
+      row.appendChild(meta);
+
+      if (t.preview_url) {
+        const on = this.playing === i;
+        const btn = mk('button', 'btn98 sp-play', on ? '⏹' : '▶');
+        btn.title = on ? 'stop' : 'play the 30 second preview';
+        btn.setAttribute('aria-label', `${on ? 'stop' : 'play'} the preview of ${t.name}`);
+        btn.addEventListener('click', () => this.toggle(i));
+        row.appendChild(btn);
+      }
+      list.appendChild(row);
+    });
+    box.appendChild(list);
+
+    if (this.tracks.length > this.SHOW) {
+      const more = mk('a', 'sp-more', this.expanded ? `▲ just the top ${this.SHOW}` : `▼ show all ${this.tracks.length}`);
+      more.href = '#';
+      more.addEventListener('click', e => { e.preventDefault(); this.expanded = !this.expanded; this.paint(); });
+      box.appendChild(more);
+    }
+
+    const status = mk('div', 'sp-status' + (this.source === 'live' ? ' live' : ''));
+    status.textContent = this.checking ? '… checking in with spotify'
+      : this.source === 'live' ? '● live from my spotify — this month\'s most played'
+      : this.source === 'cache' ? `○ spotify server is napping — last updated ${this.when(this.at, true)}`
+      : `○ spotify server is napping — snapshot from ${this.when(this.at)}`;
+    box.appendChild(status);
+
+    const prof = mk('a', 'sp-profile', 'my spotify profile ↗');
+    prof.href = this.PROFILE; prof.target = '_blank'; prof.rel = 'noopener';
+    box.appendChild(prof);
+  },
+
+  // play / stop a track's 30s preview (only rows whose preview_url isn't null get a button)
+  toggle(i) {
+    if (this.playing === i) { this.stop(); return; }
+    this.stop(true);
+    const t = this.tracks[i];
+    if (!t || !t.preview_url) return;
+    if (window.MS && MS.stopSong) MS.stopSong();      // one song at a time around here
+    const a = new Audio(t.preview_url);
+    a.volume = 0.2;
+    this.audio = a;
+    this.playing = i;
+    const done = () => { if (this.audio === a) this.stop(); };
+    a.addEventListener('ended', done);
+    a.addEventListener('error', () => { if (this.audio === a) { t.preview_url = null; this.stop(); } });   // dead link: drop the button
+    a.play().catch(done);
+    this.paint();
+  },
+
+  stop(quiet) {
+    if (this.audio) { this.audio.pause(); this.audio = null; }
+    const was = this.playing;
+    this.playing = -1;
+    if (!quiet && was !== -1) this.paint();
   },
 };
 
 /* ============================ GUESTBOOK ============================ */
+// Lives inside OurSpace now (the Guestbook tab + a teaser box on My Page): it renders into
+// whatever container it's handed instead of owning a desktop window.
 const Guestbook = {
   API: 'http://localhost:3001',
   online: false,
+  onlineCheck: null,     // promise of the one-time "is the API up?" probe
+  probed: false,         // …and whether it has finished
   pollTimer: null,
+  rootEl: null,          // the persistent guestbook UI (built once, re-parented by mount)
+  msgs: null,            // last loaded entries, oldest → newest
 
   filter(message) {
     message = message.replace(/https?:\/\/\S+/gi, '[link removed]');
@@ -433,11 +519,29 @@ const Guestbook = {
     return message;
   },
 
-  async init() {
-    const body = document.querySelector('.window[data-app="guestbook"] .window-body');
-    if (!body || body.dataset.built) return;
-    body.dataset.built = '1';
-    body.innerHTML = `
+  $(sel) { return this.rootEl ? this.rootEl.querySelector(sel) : null; },
+
+  // has this visitor signed before? (send() has always remembered their screen name)
+  hasSigned() { return !!localStorage.getItem('malten_sn'); },
+
+  // Put the full guestbook inside `container`. The same root element is re-parented on every
+  // call, so a half-typed entry survives OurSpace re-rendering the tab.
+  mount(container) {
+    if (!this.rootEl) this.build();
+    container.appendChild(this.rootEl);
+    this.paint(this.msgs || this.seeded(this.localMsgs()));
+    const box = this.$('#messages');
+    box.scrollTop = box.scrollHeight;
+    this.load();
+    if (!this.pollTimer) {
+      this.pollTimer = setInterval(() => { if (this.online && this.rootEl.isConnected) this.load(); }, 5000);
+    }
+  },
+
+  build() {
+    const root = this.rootEl = document.createElement('div');
+    root.className = 'gb-root';
+    root.innerHTML = `
       <img src="assets/deco_guestbook_sign.gif" alt="sign the guestbook" class="deco-center" height="70">
       <div class="gb-status" id="gb-status">connecting…</div>
       <div id="messages" class="messages"></div>
@@ -445,41 +549,51 @@ const Guestbook = {
       <div class="message-input">
         <input type="text" id="screenName" placeholder="Screen Name" maxlength="20">
         <input type="text" id="message" placeholder="say something nice" maxlength="200">
-        <button class="btn98" id="sendButton">Send</button>
+        <button class="btn98" id="sendButton">Sign!</button>
       </div>`;
 
     ['🙂','😎','😭','🔥','💜','⭐','💀','🤘'].forEach(e => {
       const b = document.createElement('button');
       b.textContent = e;
       b.addEventListener('click', () => {
-        const inp = document.getElementById('message');
+        const inp = this.$('#message');
         inp.value += e;
         inp.focus();
       });
-      document.getElementById('gb-emotes').appendChild(b);
+      this.$('#gb-emotes').appendChild(b);
     });
 
     const saved = localStorage.getItem('malten_sn');
-    if (saved) document.getElementById('screenName').value = saved;
+    if (saved) this.$('#screenName').value = saved;
 
-    document.getElementById('sendButton').addEventListener('click', () => this.send());
-    document.getElementById('message').addEventListener('keypress', e => {
+    this.$('#sendButton').addEventListener('click', () => this.send());
+    this.$('#message').addEventListener('keypress', e => {
       if (e.key === 'Enter') this.send();
     });
-
-    await this.checkOnline();
-    this.load();
-    this.pollTimer = setInterval(() => { if (this.online) this.load(); }, 5000);
+    this.paintStatus();
   },
 
-  async checkOnline() {
-    try {
-      const ctrl = new AbortController();
-      setTimeout(() => ctrl.abort(), 1500);
-      const res = await fetch(`${this.API}/messages`, { signal: ctrl.signal });
-      this.online = res.ok;
-    } catch { this.online = false; }
-    const st = document.getElementById('gb-status');
+  checkOnline() {
+    if (!this.onlineCheck) {
+      this.onlineCheck = (async () => {
+        if (localBackendOk(this.API)) {
+          try {
+            const ctrl = new AbortController();
+            setTimeout(() => ctrl.abort(), 1500);
+            const res = await fetch(`${this.API}/messages`, { signal: ctrl.signal });
+            this.online = res.ok;
+          } catch { this.online = false; }
+        }
+        this.probed = true;
+        this.paintStatus();
+      })();
+    }
+    return this.onlineCheck;
+  },
+
+  paintStatus() {
+    const st = this.$('#gb-status');
+    if (!st || !this.probed) return;
     st.textContent = this.online
       ? '● connected — messages are live'
       : '○ offline mode — messages saved in your browser (start msgserver for live mode)';
@@ -491,20 +605,40 @@ const Guestbook = {
     catch { return []; }
   },
 
-  async load() {
+  // an empty guestbook is a sad guestbook
+  seeded(msgs) {
+    return msgs.length ? msgs
+      : [{ screenName: 'malten', message: 'first!! welcome to my guestbook 💜', timestamp: new Date().toISOString() }];
+  },
+
+  // every entry, oldest → newest: from the API when it's up, else this browser's localStorage
+  async fetchAll() {
+    await this.checkOnline();
     let msgs = [];
     if (this.online) {
       try {
         const res = await fetch(`${this.API}/messages`);
         msgs = (await res.json()).slice().reverse();
-      } catch { this.online = false; msgs = this.localMsgs(); }
+      } catch { this.online = false; this.paintStatus(); msgs = this.localMsgs(); }
     } else {
       msgs = this.localMsgs();
     }
-    if (!msgs.length) {
-      msgs = [{ screenName: 'malten', message: 'first!! welcome to my guestbook 💜', timestamp: new Date().toISOString() }];
-    }
-    const box = document.getElementById('messages');
+    this.msgs = this.seeded(msgs);
+    return this.msgs;
+  },
+
+  // newest-first slice of what we already know — for teasers (My Page). Never waits on the network.
+  latest(n) {
+    return (this.msgs || this.seeded(this.localMsgs())).slice(-n).reverse();
+  },
+
+  async load() {
+    this.paint(await this.fetchAll());
+  },
+
+  paint(msgs) {
+    const box = this.$('#messages');
+    if (!box) return;
     const stick = box.scrollTop + box.clientHeight >= box.scrollHeight - 10;
     box.innerHTML = '';
     msgs.forEach(m => {
@@ -520,8 +654,9 @@ const Guestbook = {
     if (stick) box.scrollTop = box.scrollHeight;
   },
 
-  // post without the form UI (used by Glitter Studio and friends)
-  async postExternal(screenName, message) {
+  // store one entry: the API when it's up, else localStorage
+  async store(screenName, message) {
+    await this.checkOnline();
     if (this.online) {
       try {
         await fetch(`${this.API}/messages`, {
@@ -529,46 +664,127 @@ const Guestbook = {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ screenName, message }),
         });
-      } catch { this.online = false; }
+      } catch { this.online = false; this.paintStatus(); }
     }
     if (!this.online) {
       const msgs = this.localMsgs();
       msgs.push({ screenName, message, timestamp: new Date().toISOString() });
       localStorage.setItem('malten_guestbook', JSON.stringify(msgs.slice(-50)));
     }
-    if (document.getElementById('messages')) this.load();
+  },
+
+  // post without the form UI (used by Glitter Studio and friends)
+  async postExternal(screenName, message) {
+    await this.store(screenName, message);
+    await this.load();
   },
 
   async send() {
-    const snInp = document.getElementById('screenName');
-    const msgInp = document.getElementById('message');
+    const snInp = this.$('#screenName');
+    const msgInp = this.$('#message');
     const screenName = snInp.value.trim();
     let message = msgInp.value.trim();
     if (!screenName || !message) { Sfx.error(); return; }
     message = this.filter(message);
     localStorage.setItem('malten_sn', screenName);
 
-    if (this.online) {
-      try {
-        await fetch(`${this.API}/messages`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ screenName, message }),
-        });
-      } catch { this.online = false; }
-    }
-    if (!this.online) {
-      const msgs = this.localMsgs();
-      msgs.push({ screenName, message, timestamp: new Date().toISOString() });
-      localStorage.setItem('malten_guestbook', JSON.stringify(msgs.slice(-50)));
-    }
     msgInp.value = '';
-    Sfx.click();
-    this.load();
+    await this.store(screenName, message);
+    Sfx.tada();
+    await this.load();
+    const box = this.$('#messages');
+    box.scrollTop = box.scrollHeight;
+    const st = this.$('#gb-status');
+    st.textContent = `✔ signed!! thanks ${screenName} — malten reads every entry at least twice`;
+    st.classList.add('online');
+    setTimeout(() => this.paintStatus(), 6000);
   },
 };
 
 /* ========================== MY PICTURES ============================ */
+// Win98-style picture viewer overlay. Shared: the OurSpace feed (ourspace.js) opens photos/gifs in it too,
+// via window.ImageViewer — always guard with `window.ImageViewer &&`.
+const ImageViewer = {
+  el: null,
+  back: null,
+
+  open(src, title) {
+    this.close();
+    const name = title || decodeURIComponent(String(src).split(/[?#]/)[0].split(/[\\/]/).pop()) || 'picture';
+    this.back = document.activeElement;
+    const ov = this.el = document.createElement('div');
+    ov.className = 'imgview';
+    ov.innerHTML = '<div class="imgview-win" role="dialog" aria-modal="true">' +
+      '<div class="title-bar"><div class="title-bar-text">🖼️ <span></span></div>' +
+      '<button class="imgview-x" type="button" aria-label="Close" title="Close"><img src="Close.png" alt=""></button></div>' +
+      '<div class="imgview-stage"><img alt=""></div><div class="imgview-status">loading…</div></div>';
+    const img = ov.querySelector('.imgview-stage img');
+    const status = ov.querySelector('.imgview-status');
+    const x = ov.querySelector('.imgview-x');
+    ov.querySelector('.title-bar-text span').textContent = ov.querySelector('.title-bar-text').title = name + ' - Picture Viewer';
+    ov.querySelector('.imgview-win').setAttribute('aria-label', name);
+    img.alt = name;
+
+    // photos: as big as fits in ~90% of the viewport (max 3x). gifs / tiny pixel art: whole-number zoom up to 4x.
+    this.fit = () => {
+      const nw = img.naturalWidth, nh = img.naturalHeight;
+      if (!nw || !nh) return;
+      const pixel = /\.gif$/i.test(String(src).split(/[?#]/)[0]) || (nw <= 160 && nh <= 160);
+      let z = Math.min((window.innerWidth * 0.9 - 16) / nw, (window.innerHeight * 0.9 - 60) / nh);
+      if (pixel && z >= 1) z = Math.min(4, Math.floor(z));
+      else if (!pixel) z = Math.min(3, z);
+      img.classList.toggle('pixel', pixel);
+      img.style.width = Math.max(1, Math.round(nw * z)) + 'px';
+      img.style.height = Math.max(1, Math.round(nh * z)) + 'px';
+      status.textContent = `${nw} × ${nh} pixels · ${Math.round(z * 100)}%`;
+    };
+    img.addEventListener('load', this.fit);
+    img.addEventListener('error', () => { img.remove(); status.textContent = 'This picture cannot be displayed.'; });
+    img.src = src;
+
+    ov.addEventListener('click', e => { if (e.target === ov) this.close(); });      // click outside the viewer window
+    x.addEventListener('click', () => this.close());
+    this.onKey = e => {
+      if (e.key === 'Escape') { e.preventDefault(); e.stopPropagation(); this.close(); }
+      else if (e.key === 'Tab') { e.preventDefault(); x.focus(); }                   // one control: focus stays in the dialog
+    };
+    document.addEventListener('keydown', this.onKey, true);
+    window.addEventListener('resize', this.fit);
+    document.documentElement.classList.add('imgview-open');                        // no page scroll behind the overlay
+    document.body.appendChild(ov);
+    x.focus();
+    Sfx.click();
+  },
+
+  close() {
+    if (!this.el) return;
+    document.removeEventListener('keydown', this.onKey, true);
+    window.removeEventListener('resize', this.fit);
+    document.documentElement.classList.remove('imgview-open');
+    this.el.remove();
+    this.el = null;
+    if (this.back && this.back.isConnected) this.back.focus({ preventScroll: true });
+    this.back = null;
+  },
+
+  // Make a thumbnail zoomable — but only once it has really loaded, so the zoom-in cursor (.zoomable) never
+  // shows up on a broken image: click or Enter/Space opens the viewer, focus comes back to the thumbnail.
+  attach(img, title) {
+    const arm = () => {
+      if (!img.naturalWidth || img.classList.contains('zoomable')) return;
+      const show = () => this.open(img.currentSrc || img.src, title);
+      img.classList.add('zoomable');
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.title = 'click to view larger';
+      img.addEventListener('click', show);
+      img.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); show(); } });
+    };
+    if (img.complete) arm(); else img.addEventListener('load', arm, { once: true });
+  },
+};
+window.ImageViewer = ImageViewer;
+
 function initGallery() {
   const body = document.querySelector('.window[data-app="pics"] .window-body');
   if (!body || body.dataset.built) return;
@@ -585,31 +801,24 @@ function initGallery() {
     img.src = src;
     img.alt = src;
     img.loading = 'lazy';
-    img.addEventListener('click', () => img.classList.toggle('big'));
+    ImageViewer.attach(img, src.split('/').pop());
     grid.appendChild(img);
   });
   body.appendChild(grid);
 }
 
 // top-level const doesn't attach to window — export for ourspace.js / extras.js guards
-Object.assign(window, { Mines, Paint, Amp, Guestbook });
+Object.assign(window, { Mines, Paint, Spotify, Guestbook });
 
 /* ---------- boot: build apps lazily when their window first opens ---------- */
 document.addEventListener('DOMContentLoaded', () => {
   const builders = {
     'mines': () => Mines.init(),
     'paint': () => Paint.init(),
-    'winamp': () => Amp.init(),
-    'guestbook': () => Guestbook.init(),
     'pics': () => initGallery(),
   };
   document.addEventListener('app-open', e => {
     const b = builders[e.detail];
     if (b) b();
-  });
-  // windows that are open on load fire before this listener attaches — build them now
-  ['winamp', 'guestbook'].forEach(id => {
-    const el = document.querySelector(`.window[data-app="${id}"]`);
-    if (el && !el.classList.contains('closed')) builders[id]();
   });
 });

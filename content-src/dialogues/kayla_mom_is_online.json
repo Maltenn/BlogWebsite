@@ -1,0 +1,217 @@
+{
+ "id": "kayla_mom_is_online",
+ "with": "kayla",
+ "opener": [
+  "malten. EMERGENCY. my mom took the scanner from the attendance office. it is on our kitchen table right now. it is PLUGGED IN",
+  "she is scanning my entire childhood and putting it on ourspace. there is a bulletin. it is called KAYLA THROUGH THE YEARS. there r 3 albums and the first one has a bath in it",
+  "it goes up at midnight bc 'the rates are lower.' there are no rates. i dont know what rates she means. help"
+ ],
+ "nodes": {
+  "start": {
+   "choices": [
+    { "say": "ok first. what is in the bath pic. how bad are we talking.", "next": "bath_pic" },
+    { "say": "just talk to her. calmly. daughter to mom. use ur words.", "next": "talk_calmly" },
+    { "say": "easy. find the worst pic of HER and threaten to post it.", "next": "mad_plan" }
+   ]
+  },
+  "bath_pic": {
+   "them": [
+    "im 3. im in a tub w/ bubbles up to my chin. i have a duck shower cap on and im holding a spatula like a sword. my face says 'i am the CEO of bath.' she says its 'the best one.' she says everyone will 'love it'",
+    "malten brittany will find it. lexi will find it. HER WHOLE HOMEROOM will find it, she friended all of them. and bryan. bryan will see me w/ a DUCK on my HEAD and then hes gonna be at practice thinking about it while he drums"
+   ],
+   "effects": [
+    { "type": "bulletin", "from": "debbie", "delay": 15, "subject": "COMING TONIGHT AT MIDNIGHT: KAYLA THROUGH THE YEARS", "text": "Hello everyone!! Tonight at midnight (the rates are lower) I will be uploading Albums 1 through 3 of KAYLA THROUGH THE YEARS. Album 1: Baby. Album 2: Toddler (with the duck). Album 3: The Teeth Years (kindergarten to now). Kayla has asked me to 'not.' I have heard her. I am doing it with love. Bring tissues. Love, Mom" }
+   ],
+   "choices": [
+    { "say": "tell bryan first. show him the duck urself. nothing is funny if u told it first.", "next": "bryan_reacts" },
+    { "say": "negotiate. u pick the pics, she scans only those. terms in writing.", "next": "negotiate" },
+    { "say": "or plot twist: u post a pic of HER first. everyone gets embarrassed equally.", "next": "mad_plan" }
+   ]
+  },
+  "bryan_reacts": {
+   "them": [
+    "ok. telling him. typed: 'hi. my mom is scanning baby pics tonite. there is a duck hat. dont be weird.' sent. he replied in 40 seconds. thats a WORLD RECORD for him",
+    "'k. send me the duck.' then 'i mean not send. i wanna see. all of them.' then 'i show up. thats the thing i do.' MALTEN HE SAID THE SHOW-UP THING. from his survey. he DOESNT KNOW i read his survey"
+   ],
+   "effects": [
+    { "type": "wallpost", "from": "bryan", "to": "kayla", "delay": 20, "text": "kayla. i saw the bulletin. im gonna look at the duck. im not gonna be weird. ok i might be a little weird. practice at 6." }
+   ],
+   "choices": [
+    { "say": "so the pic isnt the problem. its that she didnt ask first. tell her that.", "next": "talk_calmly" },
+    { "say": "then let it upload. bryans in. nothing left to fear but a spatula.", "next": "midnight" }
+   ]
+  },
+  "negotiate": {
+   "them": [
+    "ok. i went down w/ a post-it that said TERMS. i stuck it on the scanner. she read it and corrected my commas",
+    "her counter: 'i will remove the bath. i will keep the duck hat. they are separate photographs.' malten she split the bath from the HAT. they r 2 pics. she works the attendance window. she negotiates w/ 400 teenagers a day"
+   ],
+   "choices": [
+    { "say": "take it. a duck hat by itself is almost cute. cut ur losses.", "next": "midnight" },
+    { "say": "ask her why it matters this much. like really why. then listen.", "next": "boxes" },
+    { "say": "hold the line. both pics or neither. no duck, no deal.", "next": "mom_hurt" }
+   ]
+  },
+  "talk_calmly": {
+   "them": [
+    "ok. deep breath. going down the hall. ... ok i said 'mom can we talk.' she said 'did you eat.' i said yes. she said 'what did you eat.' i said 'MOM.' she said 'ok. talk.'",
+    "so i said please dont post the bath. and she got quiet in a way i didnt expect. she said 'i have four boxes of you, kayla. i didnt have anybody to show them to.'"
+   ],
+   "choices": [
+    { "say": "ask her to show u the boxes. just u. no scanner.", "next": "boxes" },
+    { "say": "u still get a limit. start w/ no bath and work up from there.", "next": "negotiate" }
+   ]
+  },
+  "mad_plan": {
+   "them": [
+    "ok. ok. ammo. aunt linda has her senior pic in the good binder. THE PERM. its the size of a lamp. grandpa walt has the negatives in a shoebox. and theres one of her at 9 holding the easter bunny by one ear. aunt linda says 'w/ evidence'",
+    "if i post one of those at 11:59 its a draw. mutual destruction. we both have to hide from the homeroom. is that a plan or is that a crime"
+   ],
+   "choices": [
+    { "say": "its a plan. call linda. get the perm. sleep like a champion.", "next": "war_plan" },
+    { "say": "or u two r the same person and u know it. try talking first.", "next": "talk_calmly" }
+   ]
+  },
+  "war_plan": {
+   "them": [
+    "aunt linda replied in 4 min w/ 11 attachments. all say 'Beautiful!!' the perm is attachment 3. the easter bunny one is attachment 7 and its WORSE than she said. the bunny looks scared",
+    "and then grandpa walt got looped in. he wrote 'Dear Kayla, I have located the negatives and wish to enter them into the record. Regards, Grandpa.' what record. WHAT RECORD"
+   ],
+   "effects": [
+    { "type": "status", "from": "linda", "delay": 20, "text": "linda is scanning for Kayla. (it is a surprise) (it is Debbie's senior picture) (THE PERM) Beautiful!!" }
+   ],
+   "choices": [
+    { "say": "fire when ready. 11:59. both of u go down together.", "next": "standoff" },
+    { "say": "ask grandpa walt what the record is. he doesnt say things for no reason.", "next": "walt_letter" }
+   ]
+  },
+  "walt_letter": {
+   "them": [
+    "i asked. he wrote back in 9 min. printed. 'Dear Kayla, The record is this. Your grandmother kept every picture of your mother in a drawer in the hall. She would visit the drawer when the house was quiet. Dorothy would have liked a scanner. Your mother is not trying to embarrass you. She is trying to get in the room. Regards, Grandpa.'",
+    "malten i read it standing up in my kitchen and i had to sit on the floor. he doesnt SAY things. he mails them"
+   ],
+   "choices": [
+    { "say": "go downstairs. dorothy would have wanted a scanner. so would u, probably.", "next": "end_top8" },
+    { "say": "u can still post the perm. walt just wants it entered into the record.", "next": "standoff" }
+   ]
+  },
+  "standoff": {
+   "them": [
+    "11:57. the scanner stopped downstairs. i can hear her mouse clicking. we r both about to hit send. my finger is on the button. hers is on the button. like a movie where nobody wins",
+    "if i post the perm and she posts the duck is that a war or a draw. also i can hear her humming. its the rascal flatts. she thinks im upstairs hating her. i AM upstairs hating her. w/ a bag of pretzels"
+   ],
+   "choices": [
+    { "say": "hit it. mutual destruction. the site deserves this.", "next": "end_photo_war" },
+    { "say": "or yell down the stairs: 'mom? truce?' someone has to blink and its u.", "next": "end_top8" }
+   ]
+  },
+  "boxes": {
+   "them": [
+    "she showed me. box 1: hospital bracelet and a lock of hair in a snack bag. box 2: every drawing i ever made of 'my family' (courtney is always bigger than me in every single one, w/ no hands). box 3: just pictures of my face asleep. box 4: the bath",
+    "she says courtney doesnt call. she says the house gets quiet at 4. she says she joined ourspace so she could 'be where i already am.' malten shes not trying to embarrass me. shes trying to get in the room"
+   ],
+   "effects": [
+    { "type": "status", "from": "debbie", "delay": 20, "text": "debbie is at the kitchen table with a box and her daughter. the scanner is off." }
+   ],
+   "choices": [
+    { "say": "sit next to her. let her scan all 4 boxes and tell her what u remember about each one.", "next": "story_night" },
+    { "say": "make a deal. 6 pics she picks, 6 u pick, one album, both names on it.", "next": "compromise" }
+   ]
+  },
+  "compromise": {
+   "them": [
+    "ok so we did the thing. 6 she picked, 6 i picked. she picked the bath. i picked us at the pumpkin patch where shes holding a pumpkin like a baby. we looked at each other. we r the same person",
+    "then it fell out of my mouth. i said 'do u want to be on my top 8.' she said 'what is that.' i said its a ranking. she said 'where would i be.' malten i dont know where to put my own MOM"
+   ],
+   "choices": [
+    { "say": "#8. its the 'people ur not mad at' slot. say it out loud.", "next": "end_top8" },
+    { "say": "skip the ranking. just say 'post the whole album mom. i trust u.'", "next": "end_embrace" }
+   ]
+  },
+  "story_night": {
+   "them": [
+    "so we did all four boxes. it took till 12:50. she narrated, i interrupted. she said 'and THIS is the one where you ate a crayon' and i said 'it was red, i wanted to be a firetruck.' she laughed so hard she cried",
+    "i havent heard her laugh like that since courtney called. its 12:50 and she wants to know if i want to post the album or keep it in the boxes. she said its my call. MY call. nobody has ever said that about the boxes"
+   ],
+   "choices": [
+    { "say": "post it. status first: 'kayla is a duck. kayla is proud.' beat her to the joke.", "next": "end_embrace" },
+    { "say": "tell her she's getting a spot on the list. #8. say it while she's still laughing.", "next": "end_top8" }
+   ]
+  },
+  "mom_hurt": {
+   "them": [
+    "she said 'ok.' just 'ok.' she took the post-it off the scanner and folded it into her pocket and said 'i wont scan anything.' she didnt even argue. she went to wash a pan that was already clean",
+    "i WON. why does it feel like i dropped something and its under the fridge. i can hear the water running. shes been washing that pan for 6 min"
+   ],
+   "choices": [
+    { "say": "go back. u won the argument. u dont have to win the evening.", "next": "boxes" },
+    { "say": "leave it. shell be fine by morning. moms bounce.", "next": "end_unplugged" }
+   ]
+  },
+  "midnight": {
+   "them": [
+    "ok its 11:41. i can hear the scanner thru the floor. zzzt. zzzt. every zzzt is a baby picture. she is humming rascal flatts like she isnt about to ruin my life",
+    "3 ideas. unplug it (the cord is behind the vacuum). go down there. or beat her to it. i have 19 min and a bag of pretzels"
+   ],
+   "effects": [
+    { "type": "wallpost", "from": "brittany", "to": "kayla", "delay": 20, "text": "kayla ur mom is typing a bulletin and i saw the preview. there is a DUCK. i love her. i love u. whatever happens im at the mall sat. xoxo" }
+   ],
+   "choices": [
+    { "say": "pull the plug. the cord is behind the vacuum. she'll never know.", "next": "end_unplugged" },
+    { "say": "go down. sit w/ her and the boxes. forget the pics for 10 min.", "next": "end_top8" },
+    { "say": "post ur own status first. own the duck before she does.", "next": "end_embrace" }
+   ]
+  },
+  "end_top8": {
+   "them": [
+    "ok. i went down. she was at the table in her bathrobe w/ the first box open. no scanner, no phones. she held up the hospital bracelet and i said 'i was so small' and she said 'you were 6 pounds 11 ounces and furious.' i said 'same.' she laughed",
+    "then i did the thing. i put her on my top 8. slot 8. its where u keep the people ur not mad at. she asked if she had to do anything. i said no. she said 'then i am the best one on the list.' shes not wrong. she's posting 6 pics, i approved them. the duck stays. (i like the duck)"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "text": "kayla is ~*~ moving someone onto her top 8 ~*~ (slot 8) (the 'not mad at u' slot) (she owns a scanner) <3" },
+    { "type": "bulletin", "from": "debbie", "delay": 30, "subject": "I HAVE BEEN ADDED TO A TOP 8", "text": "Everyone, I have been added to a Top 8. I am in slot 8. I have been told this is the place you keep people you are not mad at, and I accept it with grace. Tonight I will upload SIX photographs, approved by the subject, one of which has a duck. I am not crying. There are onions. Love, Mom" },
+    { "type": "wallpost", "from": "brittany", "to": "kayla", "delay": 70, "text": "KAYLA. ur MOM is in ur top 8?!! #8 is the best slot, its where u keep the ppl ur not mad at, im CRYING. also she wrote 'Love, Mom' on my pic and im STILL framing it. xoxo" },
+    { "type": "wallpost", "from": "walt", "to": "kayla", "delay": 120, "text": "Dear Kayla, Your mother telephoned to say she was placed eighth. I told her that in my experience the eighth house on a route is the one with the porch light on. Regards, Grandpa" }
+   ]
+  },
+  "end_embrace": {
+   "them": [
+    "i did it. i put up my own status first, then i told her go. she hit upload and the whole bathroom ceiling in my brain fell down. 47 pics. all 3 albums. the bath. the duck. the retainer one that isnt even a baby",
+    "and malten. nobody is being mean. 11 comments in 5 min. lexi wants her to be her mom now. bryan commented on the duck. i cant even look. ok i looked. he put 'best hat ive seen' and i had to lie down on the floor"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "text": "kayla is a duck. kayla is proud. kayla is not reading the comments. kayla is reading the comments." },
+    { "type": "bulletin", "from": "debbie", "delay": 25, "subject": "KAYLA THROUGH THE YEARS IS UP!!", "text": "It is up!! Three albums, 47 photographs, captions on every one. Kayla has given me permission, in writing, on a napkin, and I have laminated the napkin. The duck is in Album 2. The retainer is in Album 3 under 'Recent.' Please be kind in the comments. Please also be honest. Love, Mom. P.S. How do I make it stop playing the Rascal Flatts." },
+    { "type": "wallpost", "from": "lexi", "to": "debbie", "delay": 60, "text": "mrs debbie can u adopt me. im 17 and i have a car. kayla at 3 in the duck hat is the best thing that has happened to me this week. also THE SPATULA. leopard love <3" },
+    { "type": "wallpost", "from": "bryan", "to": "kayla", "delay": 110, "text": "kayla. the duck hat is the best hat ive ever seen. ive been looking at it for 11 min. im not sorry. practice at 6." }
+   ]
+  },
+  "end_photo_war": {
+   "them": [
+    "11:59. i hit it. she hit it. same second. the site went 'bing' twice. my perm is up. her duck is up. aunt linda saw both in 40 seconds and commented 'Beautiful!!' on BOTH",
+    "and grandpa walt posted the easter bunny one. WITHOUT being asked. 'for the record.' mom is typing in capital letters. i can hear the keys from my room. this is the best night of my life and i will be grounded forever"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "bulletin", "from": "debbie", "delay": 25, "subject": "I HAVE BEEN INFORMED THERE IS A PICTURE OF ME ON HERE WITH A PERM (A RESPONSE)", "text": "Kayla honey. I see the perm. I want everyone to know that I had a PERM, a Camaro, and a boy named Ricky who carried my books, and I was VERY happy. I will not be taking questions. The duck stays up. The perm stays up. We are even. Come to dinner at 6:30, I made casserole, I am not mad, I AM NOT MAD. sorry, caps. Love, Mom" },
+    { "type": "bulletin", "from": "linda", "delay": 50, "subject": "FW: FW: DEBBIE AT NINE (BEAUTIFUL!!)", "text": "This is a picture of my sister Debbie at age 9 holding the Easter Bunny by one ear. She told our whole street he was a man in a costume. With EVIDENCE. He WAS a man in a costume. Beautiful!! Pass this on to 10 people by midnight. (((hugs))) ~Aunt Linda" },
+    { "type": "status", "from": "bryan", "delay": 90, "text": "bryan is looking at 2 perms and a duck. bryan is not laughing. bryan is laughing. bryan is going to practice." },
+    { "type": "wallpost", "from": "walt", "to": "debbie", "delay": 130, "text": "Dear Debbie, I have entered the Easter Bunny into the record. You were nine. You were correct. Regards, Walt (your father)" }
+   ]
+  },
+  "end_unplugged": {
+   "them": [
+    "ok. its quiet. no zzzt. no humming. she put the scanner back in its box and stacked all the photo boxes by size and said 'goodnight honey. did you eat.' i said yes. i didnt",
+    "i dont feel like i won anything. i keep hearing the water in the kitchen. i can still smell the casserole she made for tomorrow"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "from": "debbie", "delay": 30, "text": "debbie put the scanner back in its box. it goes back to the attendance office in the morning. she is fine." },
+    { "type": "wallpost", "from": "walt", "to": "kayla", "delay": 90, "text": "Dear Kayla, Your mother telephoned to say she is fine. She said it three times. In 34 years on Route 14 I learned that a person who says it three times is not. I enclose nothing. I only thought you should know. Regards, Grandpa" },
+    { "type": "dm", "from": "brittany", "delay": 150, "text": "malten. whatever happened at kaylas tonight, her moms status says 'fine' and kaylas page says NOTHING. ive never seen both be quiet at the same time. im going over there w/ limeades and a chart. dont tell her i told u. xoxo" }
+   ]
+  }
+ }
+}

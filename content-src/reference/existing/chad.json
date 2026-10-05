@@ -1,0 +1,159 @@
+{
+ "id": "chad",
+ "name": "chad_baseball",
+ "tag": "how do i change this part?? anyway GO EAGLES",
+ "avatar": "assets/avatar_chad.gif",
+ "age": 17,
+ "loc": "left field",
+ "mood": "PUMPED",
+ "lastLogin": "Jul 4 2026 6:15 PM",
+ "theme": {
+  "bg": "#ffffff",
+  "fg": "#000000",
+  "accent": "#0033cc"
+ },
+ "about": "hey!! my sister set this page up for me and i typed this part MYSELF which is why some of it is in CAPS, the button sticks and honestly?? i've grown to like it. i play left field for the eagles. i clicked something last week and everything went bold for 3 days, todd fixed it, todd is a GENIUS. things i support: baseball, my friends, my friends' weird hobbies i don't understand, and this WEBSITE. if u ever need someone to cheer for u i am AVAILABLE and i am LOUD.",
+ "interests": {
+  "General": "baseball, batting cages (tokens in my glove), high fives (holding back), cheering for my friends' stuff (all of it) (don't get it) (SUPPORT it), coach's truck, sunflower seeds, being head of security for a garage band (moved a chair once)",
+  "Music": "eye of the tiger, whatever's in coach's truck (country) (some of it's good), static prophecy (i was the WHOLE crowd), the song they play at the stadium when someone hits a homer (i don't know the name) (i know all the words) (there are no words)",
+  "Movies": "rookie of the year, the sandlot (CLASSIC), field of dreams (my dad cried) (i cried) (we don't talk about it), remember the titans (i cheered at the tv), those are the movies",
+  "Television": "baseball tonight, sportscenter (the top 10) (i cheer at those too), american gladiators (the old ones) (dad's tapes), whatever kevin's arcade tv is playing (seen it 40 times) (still good)",
+  "Books": "the eagles playbook (it's 4 pages), the back of baseball cards (i read them ALL), the book my sister gave me about 'how to use a computer' (page 3) (it's a lot of buttons)",
+  "Heroes": "ken griffey jr. coach (pain is weakness leaving the body) (it's just pain) (still). my sister (set up the page). todd (fixed the bold thing). patrick (best high five). EVERYONE ON THIS WEBSITE honestly"
+ },
+ "song": {
+  "name": "Eye of the Tiger",
+  "artist": "Survivor",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/fe/fa/9e/fefa9edd-c023-4d1c-1012-08bfb0ec69e6/mzaf_4651653238471209843.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   4,
+   7,
+   4,
+   0,
+   4,
+   7,
+   12
+  ],
+  "bpm": 120
+ },
+ "decor": [
+  "assets/deco_smiley.gif",
+  "assets/deco_new.gif"
+ ],
+ "friends": [
+  "todd",
+  "patrick",
+  "sk8rboi",
+  "derek",
+  "kevin",
+  "tony"
+ ],
+ "wall": [
+  {
+   "from": "todd",
+   "text": "chad, glad we got the font size sorted out! you had it set to 72 — every single word was a banner. welcome to OurSpace, buddy!",
+   "time": "Jun 21 2026 7:22 PM"
+  },
+  {
+   "from": "kevin",
+   "text": "chad thanks for coming to the arcade. u cheered so loud during Butterfly that the manager came over. do not stop. never stop.",
+   "time": "Jun 28 2026 8:36 PM"
+  },
+  {
+   "from": "patrick",
+   "text": "chad high fived me so hard at school my hand is still warm. best day. me and my rock say hi",
+   "time": "Jul 1 2026 4:09 PM"
+  },
+  {
+   "from": "derek",
+   "text": "yo chad ur the only guy who cheers for BOTH me and mike. that's real. anyway i cleared a 5 stair today (4 stairs)(it was 3)",
+   "time": "Jul 3 2026 5:52 PM"
+  }
+ ],
+ "replies": [
+  "DUDE. this is AWESOME. i read it twice to make sure. AWESOME both times.",
+  "not sure what this means but i SUPPORT IT 100 percent",
+  "that's a home run comment right there. UPPER DECK.",
+  "u da man. or woman. either way U DA PERSON."
+ ],
+ "thanksAdd": "YOOO malten accepted me!! ok quick question how do i put a song on my... wait. it's already playing. EYE OF THE TIGER BABY. thanks for the add!!",
+ "ambient": [
+  "typed this whole update with one finger. took 20 minutes. WORTH IT",
+  "does anyone know why my page plays the song twice at the same time?? kinda goes harder honestly. leaving it",
+  "practice at 6am. coach says pain is weakness leaving the body. pretty sure it's just pain leaving my hamstring. GOOD TALK COACH"
+ ],
+ "saltyDm": "aw dang, denied!! no worries dude, i'll just cheer for u from the outfield. that's not a metaphor, i am literally in the outfield a lot",
+ "keywords": {
+  "baseball": "BASEBALL?? ok NOW we're talking. meet me at the batting cages, first round of tokens is on me. i'm serious. i keep tokens in my glove.",
+  "computer": "ok i'm gonna be honest with u. i clicked something and now everything on my screen is bold. is that bad?? it FEELS bad. sending this before it spreads"
+ },
+ "banter": {
+  "herp": [
+   "HERP. don't know what we're talking about but i am WITH U. 100 PERCENT.",
+   "herp said 'herp' at me in the hallway today and honestly?? motivational. ran an extra lap at practice"
+  ],
+  "wes": [
+   "wes explained wavedashing to me for 45 minutes at lunch. understood NONE of it. incredible passion though. that's SPORTS, baby",
+   "u have SEVEN tvs?? my house has two and one is only for weather. u are living the DREAM my dude"
+  ],
+  "derek": [
+   "derek i watched u attempt that gap 11 times today. that is an ATHLETE'S mindset. also heads up there's still a wheel in the bushes",
+   "u and mike should team up!! two determined skaters are better than one. i will personally make the banner. it will be in caps. no choice, button sticks"
+  ],
+  "sk8rboi": [
+   "mike i watched the camcorder footy from saturday. the fall at the end?? u bounced RIGHT back up. that's HEART, dude",
+   "ice those shins and get back out there. also ur dad's camera work is improving, tell him i said GOOD HUSTLE"
+  ],
+  "bryan": [
+   "BRYAN. u drum like a guy hitting a homer over and over and i mean that as the BEST thing. i was the whole crowd friday and i cheered EVERY hit. ur arms are athlete arms. that's SPORTS",
+   "dude i saw ur page and it said 'idk anymore' and i'm not gonna ask what BUT i'm gonna say this: text her back. even if it's just 'hey.' even if it's 'HEY' in caps cuz the button sticks. it works for me (it doesn't) (it might for u)"
+  ],
+  "liz": [
+   "LIZ. u made my page not bold anymore. u made the words BLUE and then made them NOT blue when i asked. u are a GENIUS like todd. my sister says thank u too",
+   "someone stole ur layout?? that's like stealing someone's SIGNS. not cool. i don't know who did it but i am on ur team. i am LOUD on ur team. u want me to say something? i'll say it in caps. i can't not"
+  ],
+  "lexi": [
+   "lexi i cheer for BOTH u and nate the same way i cheer for derek AND mike. i don't pick sides. i'm just LOUD for everybody. if u guys are 'on' i'm cheering. if u guys are 'off' i'm cheering separately. GO LEXI. (also GO NATE.) (separately.)",
+   "ur hoodie in ur new pic is like a leopard and a HIGHLIGHTER had a kid and i mean that as a COMPLIMENT. i'm bad at compliments. my sister said this one was fine. GOOD PIC"
+  ]
+ },
+ "statuses": [
+  "is PUMPED for absolutely no specific reason",
+  "is at the batting cages if anybody needs a hype man",
+  "is trying to make his words blue. UPDATE: everything is blue now. staying calm.",
+  "typed this whole update with ONE finger. sister says use two. i tried. it went bold again. ONE FINGER. GO EAGLES",
+  "is at the batting cages. tokens in the glove. bring ur friends. bring ur friends' weird hobbies. i will cheer for ALL of it",
+  "hey I'm just gonna say it. SOME people on here have been sad on their page and haven't said why and I'm not gonna ask because that's their business BUT I'm here and I'm LOUD and I'll cheer for u at any time. u know who u are. (it's like 4 people) (I'm pointing at all of u)",
+  "practice at 6am. coach said 'chad why are u smiling.' coach it's because I'M ALIVE and it's BASEBALL. he made me run. worth it"
+ ],
+ "bulletins": [
+  {
+   "subject": "COME TO THE GAME SATURDAY (i will wave at u from left field)",
+   "body": "eagles vs the team from across town!! 1pm at the field by the good gas station. if u come i WILL see u and i WILL wave and coach WILL yell at me for waving. bring sunscreen. GO EAGLES",
+   "time": "Jul 2 2026 7:05 PM"
+  }
+ ],
+ "dmSeed": [
+  {
+   "who": "them",
+   "text": "hey!! new here?? me too kinda, my sister set up my page. if u ever figure out how the top 8 thing works PLEASE tell me, i accidentally put todd in it 8 times. he was really nice about it. WELCOME DUDE",
+   "time": "Jun 30 2026 6:58 PM"
+  }
+ ],
+ "bgTile": "assets/tiles/tile_zebra.png",
+ "gender": "Male",
+ "hometown": "Cuyahoga Falls, OH (GO EAGLES) (the field by the good gas station)",
+ "zodiac": "Gemini (starxgazer told me TWICE and i wrote it on my hand) (it says 'GEMINI' and also 'buy tokens')",
+ "status": "is PUMPED. about what?? EVERYTHING. specifically nothing. GO EAGLES",
+ "hereFor": "Friends!! Networking (i don't know what this means but I SUPPORT IT). Dating (my sister says leave this blank) (leaving it blank) (this is blank)",
+ "blogTitle": "GO EAGLES: chad's page (my sister set this up) (i typed THIS part)",
+ "meet": "ken griffey jr. so i can shake his hand and then not wash mine for a WEEK. tom (the ourspace guy) (wait that's todd) (todd's here) (hi todd). anyone who needs someone to cheer for them. i am AVAILABLE. i am LOUD",
+ "pcComments": [
+  "DUDE. great pic. i read it twice. AWESOME both times",
+  "HOME RUN. UPPER DECK. that's the pic. that's my whole comment",
+  "not sure what's happening in this pic but i SUPPORT IT 100 percent",
+  "u look PUMPED in this. i'm pumped looking at it. we're both pumped. GOOD PIC",
+  "this pic is a highlight reel. sportscenter top 10. i'm cheering at my screen. sister says stop. CAN'T"
+ ]
+}

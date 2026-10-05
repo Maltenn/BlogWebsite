@@ -1,0 +1,219 @@
+{
+  "id": "nikki_normal_speed",
+  "with": "nikki",
+  "opener": [
+    "MALTEN. MALTEN. are you there. don't blink, i'm typing at 1.5x.",
+    "vince just offered me a SLOT. at TEEN NITE. a real DJ slot, friday, 8:40 to 9:00, right after xFadingEmberx's band finishes screaming. twenty minutes. two real speakers (one has a crackle).",
+    "and my grandma june is visiting and my mom said she can come sit in the snack bar. so the audience will include one (1) grandma. please don't make it weird. it's already weird."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "TAKE IT. twenty minutes on a real rink floor. what's the opening track?", "next": "a_setlist" },
+        { "say": "what did vince actually promise? get it in writing. a napkin counts.", "next": "a_vince" },
+        { "say": "reverb the fish goes on the guest list. he's your lucky charm.", "next": "c_fish" }
+      ]
+    },
+
+    "a_setlist": {
+      "them": [
+        "ok. SIX songs. at 1.5x a three-minute song is two minutes, so i can fit EIGHT if i cut the intros. i've been rendering since four. the render bar is a lifestyle.",
+        "but there's a hole at the end. four minutes. every time i drop caramelldansen in it my chest goes 'hm.' i don't know why my chest has opinions."
+      ],
+      "choices": [
+        { "say": "tell me about the 'hm.' your chest doesn't lie.", "next": "the_gap" },
+        { "say": "caramelldansen fills any hole. that's what it's for. plug it in.", "next": "caramell" }
+      ]
+    },
+
+    "caramell": {
+      "them": [
+        "...ok. i plugged it in. UNTZ. it's 2:11 long and it fits the hole the way sand fits a hole in sand. and the hm is still there. it's UNDER the sand.",
+        "i think the hm has a name. the name is a folder on my desktop. it's called 'june.'"
+      ],
+      "effects": [
+        { "type": "status", "text": "nikki is 94% done with a twenty-minute set. the last 6% is a folder she keeps opening and closing. UNTZ (quietly)." }
+      ],
+      "choices": [
+        { "say": "open the folder. i'm not going anywhere.", "next": "the_gap" },
+        { "say": "close it. caramelldansen twice, call it a set. nobody was ever sad at caramelldansen.", "next": "the_gap" }
+      ]
+    },
+
+    "a_vince": {
+      "them": [
+        "he called the house. my mom handed me the phone like a hot casserole. he said, quote, 'KID. YOU'RE THE FAST ONE. THE FLYER ALREADY SAYS FASTEST DJ IN THE MIDWEST. IT'S GONNA BE HUGE.'",
+        "i'm fifteen. the midwest is a LOT of states. he also read me The Rules. there is one rule. it's laminated. NO SLOW SONGS. 'the crowd leaves at slow songs, nikki. the cheese pump goes cold.'"
+      ],
+      "choices": [
+        { "say": "ask for a thursday dry run. make the man listen before he prints more flyers.", "next": "dry_run" },
+        { "say": "'fastest in the midwest' is a big flyer. are you ready or just fast?", "next": "the_gap" }
+      ]
+    },
+
+    "dry_run": {
+      "them": [
+        "thursday, 4 PM, empty rink. vince in the booth with his arms crossed like a bouncer for the sound itself. i played all six. he said 'HUGE' four times. one of the HUGEs was to the carpet.",
+        "then he pointed at my laptop. the folder was open. 'june.' i closed it too slow. he said 'what's june.' i said 'nothing.' he said 'that doesn't look like nothing. that looks like a song with a lot of feelings in it.' he's weirdly good at this."
+      ],
+      "effects": [
+        { "type": "status", "from": "vince", "delay": 20, "text": "vince just heard THE FASTEST SET IN THE MIDWEST in an EMPTY ROOM and the carpet is still shaking. TEEN NITE FRIDAY. FIRST 50 FREE. IT'S GONNA BE HUGE. (the kid is fifteen. bring your parents.)" }
+      ],
+      "choices": [
+        { "say": "tell him what june is. he's a promoter, not a monster.", "next": "the_gap" },
+        { "say": "tell him it's a surprise track. promoters love a surprise.", "next": "the_gap" }
+      ]
+    },
+
+    "c_fish": {
+      "them": [
+        "reverb is on the guest list. he's a betta. he's the size of a thumb and the color of a traffic cone and he has looked me in the eye through the glass every night while i render. he's been to ALL of my sets.",
+        "...he's looking at the folder icon right now. i can't prove it. but he's looking."
+      ],
+      "choices": [
+        { "say": "what's in the folder, nikki. the fish already knows.", "next": "the_gap" },
+        { "say": "bring his bowl to the rink. next to the booth. he deserves the sound system.", "next": "the_gap" }
+      ]
+    },
+
+    "the_gap": {
+      "them": [
+        "ok. ok. it's a song. it's the one i've never sped up. my grandma june has a record player in her sewing room and she plays this one song every sunday while she does the crossword. it's from before my mom was born. it was her and grandpa harold's song. he's gone now.",
+        "i've never sped it up. not once. not even to check. it's four minutes and it's slower than anything i own and when i hear it at normal speed my whole body goes 'oh. there you are.' that's the hm. i want to play it at the rink, for her, and i'm scared of every single part of that."
+      ],
+      "choices": [
+        { "say": "play it. normal speed. june deserves the real thing and so does the rink.", "next": "plan_brave" },
+        { "say": "play it for her alone. empty room, one song, one grandma. some songs have one listener.", "next": "plan_private" },
+        { "say": "nightcore it. you've sped up everything you love. why is she the exception?", "next": "fast_try" }
+      ]
+    },
+
+    "plan_brave": {
+      "them": [
+        "normal speed. the slider at 1.0. just LEAVING it there. do you know how hard it is to not touch the slider? it's like asking me not to blink for four minutes.",
+        "and vince's laminated rule is still the rule. what do i tell him."
+      ],
+      "choices": [
+        { "say": "tell vince it's the closer. nothing comes after it. nobody can leave early for a slow song if there's no next song.", "next": "vince_ask" },
+        { "say": "don't tell him. play it. let the room decide.", "next": "june_arrives" }
+      ]
+    },
+
+    "vince_ask": {
+      "them": [
+        "i called him. i said 'it's a slow song.' there was a silence like when a CD skips. then: 'HOW SLOW.' 'normal slow.' 'THE CHEESE PUMP IS GOING TO GO COLD, NIKKI.'",
+        "then i said it was for my grandma, who'd be in the snack bar, and he got real quiet and said 'what's her name.' i said june. he said 'OKAY. IT'S NOT A SLOW SONG. IT'S A MOMENT. THERE'S A DIFFERENCE. I'M PUTTING IT ON THE FLYER.'"
+      ],
+      "effects": [
+        { "type": "status", "from": "vince", "delay": 15, "text": "vince has updated the flyer. TEEN NITE FRIDAY: LIVE BANDS, LIMBO, THE FASTEST DJ IN THE MIDWEST, AND A MOMENT. (it's a slow song. it's a MOMENT. the rule has a clause now.) FIRST 50 FREE. IT'S GONNA BE HUGE." }
+      ],
+      "choices": [
+        { "say": "say thank you. then ask him to dim the disco ball for the four minutes.", "next": "june_arrives" },
+        { "say": "tell him the cheese pump can wait. june can't.", "next": "june_arrives" }
+      ]
+    },
+
+    "june_arrives": {
+      "them": [
+        "it's friday. 8:31 PM. grandma june is at the snack bar in her good cardigan holding a coin purse. banana_phone gave her a nacho, a napkin, and a 'MA'AM' so loud the whole rink turned around. she said thank you like she'd been waiting her entire life for someone to shout 'ma'am' at her.",
+        "it's 8:38. i'm in the booth. the last four minutes are loaded and the slider is at 1.0 and my hands are doing the thing. what do i do. do i say anything?"
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "banana", "to": "nikki", "delay": 10, "text": "NIKKI I SERVED YOUR GRANDMOTHER A NACHO!!! SHE TIPPED ME A NICKEL AND SAID I HAVE 'GOOD PROJECTION.' I HAVE BEEN WAITING MY WHOLE LIFE FOR A NICKEL LIKE THAT!!! GO GET 'EM KID!!! UNTZ UNTZ (I READ IT RIGHT)" }
+      ],
+      "choices": [
+        { "say": "say one sentence into the mic: 'this one's for my grandma june.' then press play.", "next": "end_normal" },
+        { "say": "say nothing. press play. the song can do the talking.", "next": "end_quiet" }
+      ]
+    },
+
+    "fast_try": {
+      "them": [
+        "...ok. i did it. i've never done it. 1.5x, reverb, a little pitch. it sounds like a waltz that is late for a bus. i played it for grandma over the phone and she went quiet and then she laughed so hard she coughed.",
+        "she said 'where is it going in such a hurry!' and then 'again.' and then she asked me to play her the slow one so she could compare. i don't HAVE a slow one on my computer. i've never put it there. what do i do with a grandma who wants both?"
+      ],
+      "choices": [
+        { "say": "play the hurrying waltz at the rink. nobody's ever had one. you'd own it.", "next": "end_fast" },
+        { "say": "ask her which one is hers. she's the only judge that counts.", "next": "plan_private" }
+      ]
+    },
+
+    "plan_private": {
+      "them": [
+        "ok. so the slow one is between me and her. nobody else. i like that more than i expected to.",
+        "now i need the right room. the rink at soundcheck, disco ball off, one speaker with a crackle? or sunday, her house, the old upright in the basement. i'd have to play it MYSELF. i haven't played it on piano since mrs albrecht's living room."
+      ],
+      "choices": [
+        { "say": "the rink. friday at five, before doors. a big room with one person in it.", "next": "end_private" },
+        { "say": "the basement upright. you spent 8 years learning to feel a beat in your teeth. use it.", "next": "end_piano" }
+      ]
+    },
+
+    "end_normal": {
+      "them": [
+        "i said it. 'this one's for my grandma june.' my voice did a thing. then the slider at 1.0 and the first notes came out of the crackly speaker and NOBODY MOVED. penny held up her glowstick and swayed it slow and then forty glowsticks did.",
+        "grandma june came to the booth after and said 'is that the one from my sewing room?' i said yes. she said 'it sounds better in a big room.' she held my face like a sandwich (gently). 'you didn't speed it.' 'no.' 'good.' ...UNTZ. (quietly.) UNTZ."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "nikki played one song at normal speed tonight and the whole TEEN NITE stopped. forty glowsticks. one grandma. she is not rendering anything for an hour, she is sitting with a nacho. UNTZ (gently)." },
+        { "type": "bulletin", "from": "vince", "delay": 30, "subject": "TEEN NITE RECAP: 47 PEOPLE (!!!) AND A MOMENT", "text": "WHAT'S UP!!! VINCE. LAST NIGHT: 47 THROUGH THE DOOR. THE FASTEST SET IN THE MIDWEST. AND AT 8:56 THE ROOM WENT QUIET FOR FOUR MINUTES AND NOBODY LEFT. NOT ONE PERSON. THE CHEESE PUMP DID NOT GO COLD. I'M NOT SAYING IT WAS HUGE. IT WAS HUGE. NIKKI IS BOOKED NEXT MONTH. (THE RULE HAS A CLAUSE. THE CLAUSE IS JUNE.)" },
+        { "type": "wallpost", "from": "penny", "to": "nikki", "delay": 70, "text": "NIKKI!!! i held up my glowstick and then EVERYONE held theirs up and it looked like a whole sky of tiny lighthouses!!! my slushie melted and i didn't even notice!!! your grandma is the best person in the Rollerdome!!! PLUR (the real kind) <3" },
+        { "type": "wallpost", "from": "vinyl_witch", "to": "nikki", "delay": 140, "text": "nikki. i heard about the one at normal speed. i won't say i told you so. (i'll say it quietly, behind the register.) a good song survives being left alone. so does the person who plays it. come by sunday. i'll find your grandma a proper sleeve for that record." }
+      ]
+    },
+
+    "end_quiet": {
+      "them": [
+        "i said nothing. i pressed play. the slider was at 1.0. and about nine people went to the snack bar. i watched them go. it's fine. it's FINE. the cheese was hot. but grandma june didn't move. she hummed the whole thing. even the part she skips when she does the dishes.",
+        "after, she came up to the booth and said 'who was that one for?' and i said 'you.' and she said 'well, I know that. but you could have SAID so.' and then 'next time say so.' she's right. UNTZ (a tiny one)."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "nikki played a slow song at TEEN NITE. nine people went to the snack bar. one person hummed along. one person was enough of a crowd. (next time she'll say so.)" },
+        { "type": "status", "from": "vince", "delay": 40, "text": "vince counted: NINE LEFT FOR THE NACHOS. NINE. I AM NOT UPSET. THE ROOM WAS QUIET FOR THE FIRST TIME IN THE HISTORY OF THE ROLLERDOME AND I DIDN'T KNOW IT COULD DO THAT. THE KID IS BOOKED NEXT MONTH. THE RULE STANDS. (IT HAS A SMALL EXCEPTION NOW.)" },
+        { "type": "wallpost", "from": "kevin", "to": "nikki", "delay": 100, "text": "nikki i was at the rink. i didn't move during the slow one and i have never not moved. i just stood there on beat with my feet doing nothing. my dad closed his paperback for the whole four minutes. he NEVER closes the book. whatever that song was, it counted." }
+      ]
+    },
+
+    "end_fast": {
+      "them": [
+        "so it's friday and the hurrying waltz is the last track. i said 'this one's called Late For The Bus' into the mic and hit play. the rink LOST it. the couples-skate people kept skating. somebody started the limbo. vince did the limbo.",
+        "grandma june stayed in her seat the whole time with her coin purse on her knee going 'oh!' and 'oh my!' every eight seconds. at the end she said 'that's the one where I'm sixteen and late.' i think that's a review. UNTZ (for real this time)."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "nikki nightcored her grandma's favorite song and her grandma gave it a standing ovation (sitting). it's called 'Late For The Bus.' it is now the closer at TEEN NITE. UNTZ UNTZ UNTZ." },
+        { "type": "bulletin", "from": "vince", "delay": 30, "subject": "NEXT FRIDAY: THE HURRYING WALTZ (BY REQUEST OF A GRANDMA)", "text": "WHAT'S UP!!! VINCE. LAST NIGHT THE FASTEST DJ IN THE MIDWEST PLAYED A WALTZ AT DOUBLE TIME AND I DID THE LIMBO IN FRONT OF 51 PEOPLE (51!!! A NEW RECORD!!!). 'LATE FOR THE BUS' IS NOW A TRADITION. BRING YOUR GRANDMOTHER. FIRST 50 STILL FREE. IT'S GONNA BE HUGE. (IT WAS.)" },
+        { "type": "wallpost", "from": "kevin", "to": "nikki", "delay": 90, "text": "NIKKI. i DDR'd to the hurrying waltz in the parking lot at 168 bpm. my legs did the waltz. my sweatband did not survive. my nana joyce says i looked like i was 'drying a floor with my feet to music from my own youth.' i have never been prouder." },
+        { "type": "wallpost", "from": "sven", "to": "nikki", "delay": 170, "text": "Nikki. The rink played a waltz at the speed of eurodance, and an elderly woman said 'oh my' exactly in time with the beat. In Sweden we would call this a miracle. (It is not a Swedish word, but we would find one.) Please send me the file." }
+      ]
+    },
+
+    "end_private": {
+      "them": [
+        "she's in the rink. 5 PM friday, doors at 7. no disco ball. one speaker with the crackle (vince left it on 'for atmosphere'). she sat on the skate-rental bench with her coin purse and i pressed play and didn't say anything. her lips moved the whole time.",
+        "then the real set at 8:40, 1.5x, all six, the room was LOUD. i didn't play it for them. i didn't have to. it was already played. UNTZ. it was the best set i've ever done and nobody knows why but me and her."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "nikki played her whole TEEN NITE set at 1.5x and it was LOUD. there is one song she played earlier, in an empty room, to one person, at normal speed. nobody else is getting it. UNTZ." },
+        { "type": "wallpost", "from": "penny", "to": "nikki", "delay": 60, "text": "nikki!!! i got to the rink at 5 for slushie setup and heard a song from the booth and i didn't go in. it didn't feel like mine to go in. PLUR. i held up a glowstick in the doorway. just so you know. nobody saw. that was the point." },
+        { "type": "dm", "from": "vince", "delay": 200, "text": "malten. VINCE. THE KID KEPT THE SLOW SONG FOR HER GRANDMA AND DIDN'T PUT IT ON THE FLYER. I RESPECT THAT. THE FLYER FOR NEXT MONTH SAYS 'THE FASTEST DJ IN THE MIDWEST (AND ONE SECRET).' IT'S GONNA BE HUGE. (DON'T TELL HER I CRIED. THE DISCO BALL WAS OFF. NOBODY SAW.)" }
+      ]
+    },
+
+    "end_piano": {
+      "them": [
+        "sunday, the basement, the upright with the sticky F. i played it MYSELF. from memory. not at the record's speed, at the speed grandma hums it, which is a little slower than the record. i didn't know that! she says she's hummed it slower since grandpa harold.",
+        "she sat next to me on the bench and turned the pages even though there weren't any. when it ended she said 'mrs. albrecht would be proud.' and my mom was standing on the stairs with the laundry basket and she didn't come down for the whole four minutes. no render bar. no slider. just hands. UNTZ (gently)."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "nikki played the piano today. no computer. no render bar. an old upright with a sticky F, and her grandma on the bench. nobody else gets to hear it. everybody gets to hear that it happened." },
+        { "type": "wallpost", "from": "walt", "to": "nikki", "delay": 80, "text": "Dear Nikki, I understand you played a song for your grandmother on the piano. A grandmother is a kind of library. You have added a book to the shelf. I believe it is a good one. Regards, Walt" },
+        { "type": "wallpost", "from": "vinyl_witch", "to": "nikki", "delay": 160, "text": "nikki. no mic, no crowd, no render, a sticky F. that is the most 'first pressing' thing anyone has done on this site. bring june's record by the shop sometime. i'll put it on the good turntable and we'll all be quiet together." }
+      ]
+    }
+  }
+}

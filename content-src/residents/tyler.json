@@ -1,0 +1,290 @@
+{
+ "id": "tyler",
+ "name": "lax_bro_tyler",
+ "tag": "lacrosse. two collars. one very old dog named moose. no stress, bro",
+ "avatar": "assets/avatar_tyler.gif",
+ "gender": "Male",
+ "age": 17,
+ "hometown": "Cuyahoga Falls, OH (the part by the river. we have a wall. it's for wall ball)",
+ "loc": "the lax wall behind the gym (200 reps, 5:30 AM)",
+ "zodiac": "Aries (i think. it's a ram. i headbutted a door once. bro)",
+ "status": "Single (moose is my plus one. he's a great plus one. he's 15. very distinguished)",
+ "hereFor": "Friends, wall ball partners, anyone with a dog",
+ "mood": "chill (no stress)",
+ "lastLogin": "Oct 4 2026 7:55 AM",
+ "theme": {
+  "bg": "#e8f6ef",
+  "fg": "#0b2e3f",
+  "accent": "#ff5a4f"
+ },
+ "blogTitle": "tyler's blog (no stress) (bro)",
+ "about": "yo. tyler. lax. i play midfield for the eagles, we're ranked 3rd in the county. my hair is under a helmet 4 days a week and the other 3 days it's FLOW, bro. two collars. always. one is confidence. two is a lifestyle. three is a mistake (i've been there). stuff i like: wall ball (200 reps a day), wings night, ranch (it's a food group), my team, my coach, and my dog moose, who is 15 and the best dog in the county. no stress. everything's chill. if you need anything just ask. i'll say 'bro.' then i'll help.",
+ "aboutMore": "real quick. moose is slower now. so we walk at 6 every morning, 4 blocks, and it takes 40 minutes. it used to be 15. i don't mind. i bought a ramp for the truck with lawn money. he gets a pizza crust on fridays. if you see a guy on a bench in the park at 6:15 AM with a dog and not saying anything, that's me. say hi. don't say anything about the dog. just say hi. he knows.",
+ "meet": "who i'd like to meet: the guy who invented the lacrosse stick (i want to shake his hand and ask why it's so hard). whoever's in charge of ranch (to say thank you). a vet who knows what's up with moose's left hip (a real one, not trevor). and everybody who's ever sat in a truck for a whole practice with the window down. you know who you are. (it's moose.)",
+ "interests": {
+  "General": "lacrosse (midfield, #22), wall ball (200 a day), my dog moose (15, best dog in the county), two collars, wings night, ranch (food group), my dad's truck (it has a dog bed in the back), mowing lawns (the ramp fund), blue Gatorade, 6 AM walks, sleeping in (never happens)",
+  "Music": "dave matthews band (ants marching is the best song ever written. becca says it isn't about marching band. i know. it's about ants. still the best), jack johnson (for the walks), the killers, coldplay (in the truck), john mayer (it's fine, bro), whatever's on the team bus (30 songs, all of them by guys named dave or john)",
+  "Movies": "homeward bound (the old one), old yeller (never again), air bud (1 through 3), dodgeball, remember the titans, cars (new! saw it with my little cousin. twice. don't tell the team)",
+  "Television": "sportscenter, the lacrosse championships on cable, the dog whisperer (i take notes), friday night lights (it's not about lacrosse but it's about the sideline and i feel that), the office",
+  "Books": "the lax rulebook (112 pages, read it twice), where the red fern grows (didn't finish. couldn't), sports illustrated, the vet's pamphlet on senior dogs (read it 4 times, highlighted it)",
+  "Heroes": "moose. my dad (taught me to throw). coach reilly (says 'get low'). trevor (graduated last year, left me his number 22 and a bag of old gloves. i'd never say that to his face. i'd say 'bro'). josh (best listener in the school). my mom (washes two polos every night so there's always two collars)"
+ },
+ "song": {
+  "name": "Ants Marching",
+  "artist": "Dave Matthews Band",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bb/59/4c/bb594c95-44c6-646b-a903-7f8d92c8d319/mzaf_12114043001537985943.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   2,
+   4,
+   7,
+   9,
+   7,
+   4,
+   2
+  ],
+  "bpm": 118
+ },
+ "decor": [
+  "assets/badge_aim.gif",
+  "assets/deco_smiley.gif"
+ ],
+ "friends": [
+  "chad",
+  "trevor",
+  "josh",
+  "sven",
+  "tony",
+  "ashley",
+  "becca",
+  "thad",
+  "kevin"
+ ],
+ "wall": [
+  {
+   "from": "chad",
+   "text": "TYLER!! u came to my game and cheered for ME and u dont even play baseball. thats SPORTS. also moose barked at me from the truck window like 'good job' and i almost cried. THANK HIM FOR ME. hes an EAGLE (u r also an eagle) (moose is MORE)",
+   "time": "Oct 2 2026 5:30 PM"
+  },
+  {
+   "from": "trevor",
+   "text": "Tyler. Update from college: the dining hall has unlimited ranch. I thought of you. I'm not saying I miss you. I'm saying I thought of you at a ranch dispenser. This site is for kids but I only check it to make sure Moose is getting his crust. Tell him I said hi. Don't say it like that.",
+   "time": "Sep 29 2026 9:48 PM"
+  },
+  {
+   "from": "josh",
+   "text": "tyler man ur the only guy who came to youth group in TWO polos and stayed for the whole pizza. wednesday at 7. bring moose, he can sit in the lobby. pastor dan says all dogs are welcome in the lobby (he said it as a joke) (we're keeping it)",
+   "time": "Sep 25 2026 8:05 PM"
+  },
+  {
+   "from": "sven",
+   "text": "Tyler, thank you for explaining lacrosse. I now understand that the stick is for the ball and not for the opponent. I was concerned. I will tell you my opinion on the ranch in three to five weeks. It is a large decision. Also, I have met your dog. His name is Moose. In Sweden this is a national friend and a traffic hazard. Yours is only a friend. He looked at the truck as if it owed him something. I felt at home.",
+   "time": "Sep 21 2026 4:40 PM"
+  },
+  {
+   "from": "tony",
+   "text": "tyler ur 2 collars r a LOT. i love it. its like me but x2 ;) we should do a collar summit. ur the smoothest guy in the school and u dont even try ;)",
+   "time": "Sep 16 2026 6:12 PM"
+  },
+  {
+   "from": "henry",
+   "text": "tyler ur dog moose is cool. i saw him in the truck. i said hi. he didnt say hi back. DENNIS said hi back. he said 'no skating in the lot.' i wasnt skating. i was rolling. its different",
+   "time": "Sep 8 2026 3:44 PM"
+  },
+  {
+   "from": "tim",
+   "text": "tyler. ur $2 for BLOCKFALL is overdue. its in the ledger under 'bro.' i cant even invoice u without writing bro. i tried. u have ruined my ledger. pay up or i'll add interest",
+   "time": "Aug 31 2026 12:30 PM"
+  },
+  {
+   "from": "walt",
+   "text": "Dear Tyler, I am informed you have a dog of fifteen years. I have a cat of six and have lost sleep on his behalf. Please give your dog my regards and an extra biscuit. I find they appreciate the gesture more than the biscuit. Regards, Walt",
+   "time": "Aug 22 2026 5:55 AM"
+  }
+ ],
+ "replies": [
+  "bro. thats legit.",
+  "nice. no stress.",
+  "sick. i'm gonna tell the team. they'll be stoked",
+  "i read that twice. legit. thank u",
+  "chill. ok. we good.",
+  "ha. true. bro.",
+  "love that. 2 collars up",
+  "i didnt know that. now i do. thx, bro",
+  "no worries. i got u",
+  "yeah. real talk. appreciate that"
+ ],
+ "thanksAdd": "yo thanks for the add. bro. welcome. fair warning i'll probably talk about lax or my dog or ranch. all 3 are good topics. no stress. if u need anything ask. i got u. also what's ur take on 2 collars. not looking for an answer. just thinking about it.",
+ "ambient": [
+  "wall ball. 200 reps. 5:30 AM. a custodian watched and said 'nice form.' nicest thing a custodian ever said to me. putting it on my college app",
+  "moose and i did the whole 4 block loop and he didn't stop once. 38 minutes. a record. i gave him half my breakfast sandwich. he accepted it with dignity",
+  "ran into trevor's old coach at the gas station. he said 'tell that kid to call his mother.' i said 'bro i'm not his mom.' he said 'no, but u know him.' i'll tell him",
+  "my mom ironed 2 polos for picture day. i put them on. she said 'tyler, it's a shirt.' i said 'mom, it's a lifestyle.' she said 'it's two shirts.' she's right. it's two shirts",
+  "wings night. 3 ranch cups. a guy next to me asked if i was 'training for something.' i said yeah. ranch. he gave me his. strangers are legit",
+  "porch. moose. sun. nothing else is happening. it's perfect"
+ ],
+ "saltyDm": "bro. denied. ok. no stress. i'm not even mad. moose is sitting here and he's chill about it and he's a 105 year old guy so he's seen worse. request's open if u change ur mind. u can bring a snack. he likes crusts. i do too",
+ "keywords": {
+  "lax": "midfield, #22, ranked 3rd in the county. it's like hockey but outside and with a net on a stick. wall ball is the thing. 200 reps a day. if u ever wanna throw, the wall's behind the gym. it's free. bro.",
+  "moose": "15. golden lab mix. mostly golden, a little lab, 100% moose. slower now so we walk 40 minutes for 4 blocks. he gets a crust on fridays. he's the best dog in the county. i'm not taking questions. (ok i'll take 1)",
+  "collar": "one is confidence. two is a lifestyle. three is a mistake (been there). pop from the back. iron first, my mom helps. if someone asks why, say 'bro.' it's the only answer",
+  "ranch": "it's not a sauce. it's not a dip. it's a food group. sven's still deciding. i gave him 3 to 5 weeks. he's on week 2. i'm patient. i have a dog who's 15",
+  "bro": "it's punctuation. like a period but warmer. my mom says it came from my dad. my dad says it came from my mom. nobody knows. bro.",
+  "dog": "ok so moose. he's 15. he's slow. he's the best. i'd tell u more but i'm like... this is the one thing i don't joke about. just ask me about him sometime. i'll talk for an hour. bro."
+ },
+ "banter": {
+  "chad": [
+   "chad. u cheered for a guy who dropped the ball 3 times and made him feel like he scored. i saw it. that's a skill. come hang. bring the nachos. just don't drop them at ashley's thing again.",
+   "chad quick q, bro. how do u do the caps. my mom says i type like a ghost. u type like a stadium. i want to be a stadium."
+  ],
+  "josh": [
+   "josh bro. went to youth group. pizza was legit. stayed for the whole thing. nobody asked me to talk. best part. i'm coming back wednesday. i might wear one collar. out of respect.",
+   "josh. i don't say this out loud but ur the guy i'd call at 2 AM. don't tell the team. they'd make it a thing. i'll say it once. thanks for the pizza. thanks for the rest."
+  ],
+  "tony": [
+   "tony. collar summit. my place. saturday. i pop 2. u pop 1 plus the axe. we compare. coach reilly will judge. he's fair.",
+   "tony. ashley says ur 0 for 53. i say a guy who keeps going is a guy with heart. also stop winking at the squad bus. it's not the bus's fault."
+  ],
+  "trevor": [
+   "trevor. the guys made me ask: is it true ur dining hall has unlimited ranch. i said yes bc u told me. they said 'prove it.' i said ur not the type to lie about ranch. they went quiet. thanks for the credibility, bro.",
+   "trevor bro. moose still does the 4 PM walk to ur house. we go. i sit on the curb. he sits on ur porch. ur mom gives him half a biscuit. i never told u i go too. he has ur old glove. he sleeps on it. come home at thanksgiving. he'd like it."
+  ],
+  "sven": [
+   "sven. ranch update. it's not a dip, it's not a sauce, it's a lifestyle. try it on the wings. then the fries. then the pizza (josh approved). take ur time. i'll wait. i've got nothing but time.",
+   "sven. ur save in goal on thursday was insane. the ball hit u in the chest and u said 'sorry.' to the BALL. never change. best goalie we've had. coach reilly told me to tell u that. he'd never say it himself.",
+   "sven. 'looks at the truck like it owes him something.' bro that's exactly moose. i've been trying to describe that for 15 years. u did it in one sentence. thank u."
+  ],
+  "ashley": [
+   "ash bro. i'll keep moose in the truck with the windows cracked. he says 'copy.' (he didn't. he wagged. it's the same.) the chant stays. nobody falls.",
+   "ash. u said i can't be a spotter. fine. i'll be the guy who says 'bro' near the mats. it's an important job. i take it seriously. i'll wear 2 collars for the occasion."
+  ],
+  "yvette": [
+   "yvette. i'm not voting against u. i'm voting for garrett bc he promised a ranch station in the cafeteria. i'd vote for u if u promised ranch. u could still do it. think about it.",
+   "yvette. lax team photo is thursday. i told the guys. everybody's wearing 2 collars. u asked for 'professional.' it is. it's 2x professional."
+  ],
+  "thad": [
+   "thad. the town square was heavy but the part where u did the hat thing in the wings. i get it now. it's like when u score and everybody goes quiet for a second. that was ur thing. do it again.",
+   "thad. blocking is just playing D, bro. i said it. u wrote it down. i'm in the program as 'special thanks.' my mom framed it. thanks."
+  ]
+ },
+ "statuses": [
+  "tyler is at the wall. 200 reps. 134... 135...",
+  "tyler is walking moose. 6:14 AM. 4 blocks. 40 minutes. it's a good morning",
+  "tyler just put a ramp on the truck. moose got in first try. bro. i'm not crying. it's pollen",
+  "tyler is at wings night. ranch count: 3. sven count: 0. bro",
+  "tyler is popping 2 collars for picture day. mom ironed them. perfect",
+  "tyler is looking at colleges. mostly how far they are from here. mostly because of the dog. nobody tell anyone",
+  "tyler is at practice. coach said 'get low.' tyler got low. tyler is the lowest he's ever been. it's a drill",
+  "tyler is doing calc at the kitchen table. 3 hours. the calc is winning",
+  "tyler is out of blue gatorade. this is a crisis"
+ ],
+ "bulletins": [
+  {
+   "subject": "HOW TO WATCH A LAX GAME (bro, it's easy)",
+   "body": "1) it's like hockey but outside. 2) the goalie wears the most pads and gets the least credit. say something nice to sven. 3) when somebody shoots, yell. it doesn't matter what. 4) when somebody scores, yell louder. 5) when somebody gets hit, say 'ohhh.' 6) don't stay for the post game handshake line, it's a long one. wait. no. stay. it's the best part. 7) if there's a dog in a truck at the edge of the lot, wave. 8) say 'bro' to a stranger. they'll say it back. that's lax. see u saturday."
+  },
+  {
+   "subject": "THE TWO COLLAR GUIDE (a public service)",
+   "body": "one collar: casual. two collars: this is the one. three collars: a mistake (i've been there, don't ask). pop from the back, not the front. iron first (my mom does mine) (i'm learning). if someone asks why, say 'bro.' it's the only answer. if tony asks about the summit, say 'saturday.' if coach asks, say 'what collar.' that's the whole system. it's never failed."
+  },
+  {
+   "subject": "MOOSE TURNS 15 (open invite, bring a dog, bring a friend's dog, bring a dog u saw once)",
+   "body": "saturday the 17th, my backyard, 2 PM. moose gets a cheeseburger (no onions) and a cake made of peanut butter and carrots (my mom tested it). there's a ramp. the whole card is going to say 'happy birthday moose' and u can sign it. chad already asked if he can make a banner (it'll be in caps). sven's bringing 'a swedish dog treat' and i'm choosing to trust him. dogs are free. people are free. cake is for the dogs. there's also cake for people. bro. it's a good day."
+  }
+ ],
+ "pcComments": [
+  "sick pic. legit",
+  "that's a good one. the framing's clean. like a clean cradle",
+  "love this. my dog would love this. he's a good judge",
+  "bro. nice. u look chill",
+  "that's the best one yet. 2 collars up"
+ ],
+ "dmSeed": [
+  {
+   "text": "yo malten. tyler. lax. 2 collars. sup bro. just adding people today. hit me up if u need anything. i'm at the wall most mornings and i walk my dog at 6. it's quiet. say hi."
+  }
+ ],
+ "dms": [
+  "quick one. is it weird that my dog likes the dog whisperer more than me. he watches the whole thing. i'm right there. i brought him a bone. he looked at cesar.",
+  "question. how many collars is too many. i say 2. my coach says 0. my mom says 'tyler, it's a shirt.' bro it's not a shirt. it's a lifestyle.",
+  "bro. sven asked me what 'bro' means. i said it means everything. he said 'that is not a definition.' i said 'that's why.' he wrote it down. he's gonna use it wrong. can't wait.",
+  "found out the vet is open saturdays. i'm taking moose. i wrote 4 questions on an index card. 3 are about the hip. 1 is 'is he happy.' the vet said 'he's very happy.' i said ok. i went to the truck and sat for a minute.",
+  "wall ball. 200 reps at 5:30 AM. a custodian watched. he said nice form. best compliment i've had all year. he also said 'don't stand there so long, it gets cold.' it was good advice. 2 for 1.",
+  "my mom washes 2 polos every night so i always have 2 collars. she never said anything. i found out at 1 AM when i went for water and she was at the dryer. bro. moms are legit.",
+  "josh asked what i'd do if i could do anything. i said sleep in. he said ok but really. i said honestly walk moose for 4 more hours a day. he nodded. didn't say anything. that's why he's josh.",
+  "ranch update: 3 cups at wings night. a guy asked if i was training for something. i said yeah, ranch. he gave me his. strangers are legit."
+ ],
+ "blog": [
+  {
+   "title": "6:14 AM (a post about moose)",
+   "date": "Sep 29 2026 10:12 PM",
+   "mood": "chill (mostly)",
+   "body": "moose is 15. golden lab mix. mostly golden, a little lab, 100% moose. my dad brought him home from a farm in a box when i was 2 and my mom says i tried to feed him a crayon. he used to run the whole field behind the house. now we walk 4 blocks and it takes 40 minutes. i don't mind. i got a ramp for the truck last month with lawn money. he gets a pizza crust on fridays (the vet said ok). the thing about moose is he doesn't know i play lacrosse. he thinks i go to a field every day and come back. and he's always at the door when i get home. every day. 15 years. nobody else is that consistent. not even the sun. bro."
+  },
+  {
+   "title": "sven's first lax practice (a story) (bro)",
+   "date": "Sep 15 2026 8:45 PM",
+   "mood": "proud (of a goalie)",
+   "body": "so chad's family hosts sven, the exchange guy from sweden, and chad said 'bro come to lax, he's never seen it.' i handed him a stick. he looked at it for a while. he asked if the stick is for the ball or for the opponent. i said the ball. he said 'good, i was concerned.' we put him in goal bc nobody else wanted the pads. first shot hit him in the chest. he said 'sorry.' to the BALL. second shot, he said 'sorry' again and caught it. by the end of practice he'd saved 14 shots and apologized to all 14 of them. coach reilly pulled me aside and said 'where did you find him.' i said 'chad's spare room.' he said 'keep him.' he's our goalie now. he doesn't know what a ranch dressing is. i'm working on it. bro."
+  },
+  {
+   "title": "how to pop a collar (and why two)",
+   "date": "Aug 27 2026 11:20 PM",
+   "mood": "educational",
+   "body": "step 1: iron it. step 2: flip it up from the back, not the front. step 3: do the other one. step 4: walk like it's all normal. why two? in 8th grade my older cousin gave me a polo that was too big and the tag was itchy so i popped the collar to hide it. then it looked weird with only one. so i did the other. and it became a thing. and then it became a lifestyle. and then my mom started ironing two. and now there's a whole team that does it and nobody remembers why. that's how a tradition starts, bro. somebody's neck itches. one collar is confidence. two is a lifestyle. three is a mistake. i've been there. it was picture day. nobody talks about it."
+  }
+ ],
+ "survey": {
+  "title": "the lax bro survey (bro)",
+  "qa": [
+   [
+    "name:",
+    "tyler. 'ty' to the team. 'bro' to everybody. 'tyler james' to my mom when i'm in trouble"
+   ],
+   [
+    "position and number:",
+    "midfield. #22. it was trevor's. he gave it to me. i wear it with respect and 2 collars"
+   ],
+   [
+    "how many collars:",
+    "2. one for school. one also for school. 3 once. never again"
+   ],
+   [
+    "favorite food:",
+    "wings with ranch. the ranch is the food. the wings are the delivery system"
+   ],
+   [
+    "pets:",
+    "moose. 15. golden lab mix. best dog in the county. not taking questions"
+   ],
+   [
+    "what's in your truck:",
+    "a dog bed, a ramp, 2 lax sticks, a bag of old gloves, 14 empty blue gatorades, a pizza crust in a napkin for friday"
+   ],
+   [
+    "best thing about lacrosse:",
+    "the wall. it's quiet. and the team. and the bus ride home when everybody's tired and nobody's talking"
+   ],
+   [
+    "worst thing:",
+    "helmet hair. also the loss to the school across town in 8th grade. we're not discussing it"
+   ],
+   [
+    "who do you look up to:",
+    "my dad, coach reilly, trevor, and my dog. in that order. then the dog again"
+   ],
+   [
+    "last thing that made you laugh:",
+    "sven said 'sorry' to the ball. best thing i've ever seen. bro"
+   ],
+   [
+    "secret:",
+    "i'm picking colleges by how close they are to home. nobody knows why. (it's moose.)"
+   ],
+   [
+    "describe yourself in one sentence:",
+    "i'm chill, i'm loyal, i have two collars and one dog and i'll be there for both. bro."
+   ]
+  ]
+ }
+}

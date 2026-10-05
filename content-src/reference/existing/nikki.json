@@ -1,0 +1,160 @@
+{
+ "id": "nikki",
+ "name": "nightcore_nikki",
+ "tag": "everything is better at 1.5x speed ★ UNTZ UNTZ",
+ "avatar": "assets/avatar_nikki.gif",
+ "age": 15,
+ "loc": "bedroom studio (do not tell my mom about the subwoofer)",
+ "mood": "hyper (148 bpm resting)",
+ "lastLogin": "Jul 4 2026 12:03 AM",
+ "theme": {
+  "bg": "#1a0033",
+  "fg": "#00ffff",
+  "accent": "#ff44cc"
+ },
+ "about": "hiiiii i'm nikki and i make songs FASTER and HIGHER and therefore BETTER. it's called nightcore and it's the future of all sound. send me ANY song and i will have a remix back to you in 20 minutes. yes any song. yes even that one. ESPECIALLY that one. my setup is audacity, headphones held together with a scrunchie, and belief. current project: nightcoring my entire profile including this about me (read it fast for the full experience). UNTZ UNTZ.",
+ "interests": {
+  "General": "audacity, reverb, bpm counting, glowsticks, the pitch slider, holding my headphones together with a scrunchie, the phone line (mine) (when mom's not on it)",
+  "Music": "nightcore, caramelldansen, DJ Sammy - Heaven (the slow version is a crime, the fast version is the law), basshunter, cascada, anything that can be made faster which is everything",
+  "Movies": "the fast and the furious (the title) (i haven't seen it) (it's already 1.5x in my heart)",
+  "Television": "toonami at 1.5x, the weather channel (that music!! that little jazz!! at 1.5x!! transcendent)",
+  "Books": "the audacity help menu. the caramelldansen lyrics printed out. that's it those are the books",
+  "Heroes": "the speed slider inventor (name unknown) (thinking of them daily), kevin's legs, whoever uploads the real nightcore i find on limewire (not the ones that just pitch it up) (ok fine those too)"
+ },
+ "song": {
+  "name": "Caramelldansen",
+  "artist": "Caramella Girls",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/6f/ce/21/6fce2128-16e5-ca68-4740-5aa19531967b/mzaf_4206433795640452081.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   4,
+   7,
+   4,
+   0,
+   4,
+   7,
+   12
+  ],
+  "bpm": 120
+ },
+ "decor": [
+  "assets/deco_record_dj.gif",
+  "assets/deco_rainbow_bar.gif",
+  "assets/badge_winamp.gif"
+ ],
+ "bgTile": "assets/tiles/tile_stars_neon.png",
+ "friends": [
+  "riley",
+  "kevin",
+  "banana",
+  "usagi",
+  "vinyl_witch",
+  "lucas"
+ ],
+ "wall": [
+  {
+   "from": "vinyl_witch",
+   "text": "nikki i say this with love: what you did to that fleetwood mac record last night was a crime against at least three first pressings. anyway. the bassline held up. interesting. do not read into this.",
+   "time": "Jun 24 2026 8:19 PM"
+  },
+  {
+   "from": "kevin",
+   "text": "NIKKI. the butterfly remix. i hit a new high score to it and doug asked what i was listening to. WE'RE FAMOUS (locally) (to one guy) (it's doug)",
+   "time": "Jun 28 2026 5:47 PM"
+  },
+  {
+   "from": "banana",
+   "text": "UNTZ UNTZ IS THE SOUND MY HEART MAKES NORMALLY!!! WE ARE THE SAME BPM!!! HOUR 37 AND THE REMIX STILL SLAPS!!!",
+   "time": "Jul 1 2026 3:12 AM"
+  },
+  {
+   "from": "riley",
+   "text": "omg the remix u did of shake it is stuck in my head at DOUBLE speed which means it's stuck TWICE. math!! rawr xD",
+   "time": "Jul 3 2026 6:28 PM"
+  }
+ ],
+ "replies": [
+  "ok but have you heard this comment at 1.5x speed? incredible. thank you.",
+  "UNTZ UNTZ (that means thank you in nightcore)",
+  "i'm remixing this comment as we speak. check your dms in 20 min.",
+  "this wall post? sped up? with reverb? beautiful. no notes."
+ ],
+ "thanksAdd": "WELCOME TO THE SPEEDZONE malten!!! as a thank-you i will nightcore any one (1) song of your choosing. choose wisely. or don't and i'll pick for you. (it's caramelldansen. it was always going to be caramelldansen.)",
+ "ambient": [
+  "just nightcored the dial-up sound. it's 11 seconds now. you're welcome, internet.",
+  "mom said turn it down so i turned it UP (the pitch. i turned up the pitch. volume unchanged. loopholes.)",
+  "day 6 of attempting to nightcore silence. philosophy is harder than audacity."
+ ],
+ "saltyDm": "denied?? at NORMAL speed?? ok ok, respect. but someday you'll hear caramelldansen at a school dance and your heart rate will sync to it and in that moment you will know where to find me. UNTZ UNTZ <3",
+ "keywords": {
+  "music": "did someone say MUSIC. name any song. i'm serious. i have audacity open RIGHT NOW. the render bar is waiting.",
+  "slow": "slow?? SLOW??? not on my wall. hand it over, whatever it is, it leaves here at 1.5x minimum."
+ },
+ "banter": {
+  "vinyl_witch": [
+   "i nightcored one (1) of your first pressings AS A GIFT and you lit a candle 'for its soul.' it sounds BETTER now. faster = better. this is simply science.",
+   "playing your 33s at 45rpm is just analog nightcore, which means YOU invented the genre. accept the crown. i've been telling everyone you're my founder."
+  ],
+  "kevin": [
+   "kevin your 180bpm practice mix is DONE. if your legs fall off, that is a matter between you and the arcade. GO. BE LEGENDARY.",
+   "the sweatband is a look but consider: TWO sweatbands. dual wield. aerodynamics. i've done zero research and i've never been more sure."
+  ],
+  "lucas": [
+   "lucas i nightcored your favorite song and i need you to know that pain at 1.5x speed sounds kind of... happy?? this might be therapy. no charge. tell your feelings i said hi.",
+   "nobody understands you at NORMAL speed. at 174 bpm? crystal clear. think about it. that's all i'm saying. UNTZ."
+  ],
+  "banana": [
+   "i tried to nightcore your caps lock and the file is just AAAAAA but faster. it's perfect. it's track one on the mixtape. it's also tracks two through nine.",
+   "you are the only person on this site whose natural speaking voice is already nightcore. i have nothing left to teach you. you graduate. tassel to the left."
+  ],
+  "smoove": [
+   "smoove ur new track feat. 'everyone' has me on it for 4 seconds and i need u to know those 4 seconds are the FASTEST part. i'm remixing the whole thing. 20 min. it'll be 1:40 long. UNTZ",
+   "u called me 'the fastest producer on the site' in a bulletin and i printed it and taped it to the subwoofer. mom found it. mom now knows about the subwoofer. worth it"
+  ],
+  "misery": [
+   "misery i nightcored ur FIRST VIDEO EVER!! it's 20 seconds now and ur 'rawr' is at chipmunk pitch and honestly?? ur best rawr yet. sending it. do not be mad. be FASTER",
+   "u and riley can fight about who invented rawr but i invented rawr at 1.5x and NOBODY is fighting me about it. suspicious. UNTZ"
+  ],
+  "bryan": [
+   "bryan i sped up ur drum track from friday and it turns out at 1.5x u are the greatest drummer alive. at 1x u are 'pretty good.' the math is the math",
+   "u never text back but u DID say 'sick' about the remix in the garage so i'm counting that as a 5 paragraph reply. UNTZ UNTZ"
+  ]
+ },
+ "statuses": [
+  "is rendering. do not perceive me. (4% done)",
+  "is at 148 bpm resting heart rate. the doctor said 'impressive?' with the question mark and everything",
+  "is taking remix requests EXCEPT slow songs. wait. no. ESPECIALLY slow songs.",
+  "just nightcored the school bell. the principal did not 'get it.' the future rarely is gotten.",
+  "is out of glowsticks. taking donations. taking remix requests. taking the trash out (mom).",
+  "some people request a remix, get the remix in 20 min like PROMISED, and then don't even say untz. i'm not naming names. it rhymes with 'schmerek'.",
+  "is at 152 bpm resting. new record. the doctor wrote something down."
+ ],
+ "bulletins": [
+  {
+   "subject": "TAKING REQUESTS: i will nightcore ur profile song!!",
+   "body": "rules: 1) any song 2) no i will not do a 'normal speed version,' that's just the song 3) turnaround time 20 min unless my mom needs the phone line 4) payment accepted in glowsticks. first 8 requests get bonus reverb. UNTZ UNTZ. GO.",
+   "time": "Jun 26 2026 7:02 PM"
+  }
+ ],
+ "dmSeed": [
+  {
+   "who": "them",
+   "text": "hiiii i saw your profile song and i can have it 1.5x faster with reverb by TONIGHT. no pressure. but also: imagine it. close your eyes. UNTZ UNTZ. ok bye!!",
+   "time": "Jul 1 2026 10:22 PM"
+  }
+ ],
+ "gender": "Female",
+ "hometown": "Kettering, OH (like Dayton but 1.5x faster)",
+ "zodiac": "Gemini (two of me!! one at normal speed and one at 1.5x!! both are me!!)",
+ "status": "is rendering. 61%. do NOT pick up the phone.",
+ "hereFor": "Friends!! Networking (remix requests)!! Dating (only if u can handle 148 bpm)",
+ "blogTitle": "UNTZ UNTZ: a blog (read it fast)",
+ "meet": "whoever invented the speed slider in audacity so i can HUG them. also the caramella girls. also anyone with a song they think is 'perfect as is' bc i have news for them. UNTZ.",
+ "pcComments": [
+  "this pic is SO fast. u look like ur already at the next frame. UNTZ",
+  "i hummed a 1.5x version of this photo. it's in my head now. u're in my head now. good pic!!",
+  "the colors in this are basically a remix. reverb on the bangs. commenting back as promised!!",
+  "ok but imagine this photo with a bpm. 174. it has 174. i can hear it.",
+  "cute!!! this comment has been sped up so u can read it FASTER. u're welcome. UNTZ UNTZ"
+ ]
+}

@@ -1,0 +1,216 @@
+{
+ "id": "hailey",
+ "name": "wildcat_hailey",
+ "tag": "WILDCATS!! table 9 rehearses at lunch. everybody gets a part. what team are YOU??",
+ "avatar": "assets/avatar_hailey.gif",
+ "gender": "Female",
+ "age": 14,
+ "hometown": "Cuyahoga Falls, OH (east high is in albuquerque. its filmed in salt lake city. i checked BOTH)",
+ "loc": "table 9, by the vending machine (the stage)",
+ "zodiac": "Leo!! obviously. the lion is a cat (a BIG cat) (wildcat)",
+ "status": "Single (in love with a whole cast) (mostly zeke)",
+ "hereFor": "Friends, Teammates (any team), a Cast, Table 9 Members",
+ "mood": "SO nervous and SO excited (both) (in my knees)",
+ "lastLogin": "Oct 4 2026 3:18 PM",
+ "theme": {
+  "bg": "#b80f2a",
+  "fg": "#ffffff",
+  "accent": "#ffdf5e"
+ },
+ "bgTile": "assets/tiles/tile_stars_neon.png",
+ "blogTitle": "THE PLAYBILL (table 9 news, rehearsal notes, and feelings)",
+ "about": "hi!! im hailey and im a Wildcat. (what team? WILDCATS!! see, u get it already.) also an Eagle (GO EAGLES, thats my actual school, i own the blue shirt) (u can be on 2 teams, i checked) (i didnt check). i have seen high school musical 14 times on the actual channel and 9 on the DVD (the sing-along one w the bouncing ball) and i own the soundtrack, the real CD, from target, and i have worn out the 2nd song. every day at 11:52 i run table 9 (by the vending machine, 13 members, 7 chairs + 1 stool + 1 recycling bin) and we do a routine. it has THE count: 5 6 7 8. (the best four numbers.) nobody has to audition. everybody gets a part. there are no extras at table 9, only ensemble, and the ensemble IS the show!!",
+ "aboutMore": "things im NOT good at: basketball (i throw like im shooing a bee), singing on key if a piano is nearby (the piano knows), and being calm. things i AM good at: noticing who hasnt been asked to sit anywhere yet, talking mr pruitt (band director, also lunch duty) into one more run-thru, and 5 6 7 8. (ashley says theres a 1 2 3 4 before it. i believe her. i just havent met them.) i take jazz tues + thurs at dance dynamics, 3rd row far left, honestly the best spot, u see the whole room. my brother cole is 16, calls the routine 'the thing,' and was seen doing the basketball footwork in the driveway at 7 AM. i said nothing. hes going in as unnamed boy #4.",
+ "meet": "Who I'd like to meet: troy and gabriella (i know theyre characters, i know the actors are different people, i know, i KNOW). whoever is writing the sequel (SEQUEL!!) so i can say i have a lunch table. a real choreographer, to ask how u fit 13 people into 4 counts. whoever picks the lunch menu, to ask for fewer sloppy joe days (the cymbals get sticky). and everybody who has ever eaten lunch alone, so i can say table 9. we have a stool.",
+ "interests": {
+  "General": "choreographing (the lunch table, the driveway, the bathroom mirror), counting (5 6 7 8), jazz tues + thurs, red and white (i wear one red thing a day, blue on fridays for the eagles), the DVD sing-along feature, making playbills for table 9 on the library printer, asking people 'what team?', sleepovers where we do the whole movie in order (i play 6 parts), making sure everybody has a part",
+  "Music": "the high school musical soundtrack (the real CD, from target, $12.99, i saved), the cheetah girls, hilary duff, kelly clarkson, the grease soundtrack (my moms CD, she says its HER CD), the karaoke tracks (im not proud of how many times), anything with a key change",
+  "Movies": "high school musical (14 on tv, 9 on DVD, plus 1 at a sleepover), the cheetah girls 2 (new this summer!!), grease (moms tape), the sound of music (grandma), newsies (the BOYS dance, its the best), annie (my audition song!! shh), mary poppins, bring it on (for the cheer parts), the lizzie mcguire movie (the ending)",
+  "Television": "disney channel (the whole channel), hannah montana (new!!), lizzie mcguire reruns, so you think you can dance (we vote on the house phone), dancing with the stars (mom lets me stay up), american idol (i yell 'be nice' at the tv)",
+  "Books": "the high school musical junior novel (its a book!!), dance spirit magazine (the library has it, im on the waitlist), the playbills from the 3 shows ive seen (in a binder w a ribbon), a book about stage fright my aunt gave me (read chapter 1 four times, thats the whole review)",
+  "Heroes": "troy and gabriella. zeke (he bakes things for people, nobody picks zeke, i pick zeke). kelsi (she writes the whole show and stands in the corner). my mom (drives me to jazz, owns a hot glue gun). ms delgado (jazz). mr pruitt (looks the other way, which is a kind of clapping). ashley (small AND brave, she said it, its laminated)"
+ },
+ "song": {
+  "name": "We're All in This Together",
+  "artist": "The Cast of High School Musical",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/92/33/3d/92333d11-2bba-73f6-dd44-00b212383f49/mzaf_10569254239801247025.plus.aac.p.m4a",
+  "pattern": [0, 4, 7, 12, 7, 4, 7, 9],
+  "bpm": 128
+ },
+ "decor": ["assets/deco_dancing_baby.gif", "assets/deco_hearts_bar.gif"],
+ "friends": ["ben", "thad", "brittany", "ashley", "becca", "maddie", "faye", "tina", "chad"],
+ "wall": [
+  {
+   "from": "ashley",
+   "text": "[GREEN] Hailey. You came to open gym 4 minutes early. [RED] Standing order #2: if you're early you're on time. [BLUE] The count sheet is taped inside your locker (laminated). It starts at 1. Yes. 1. [PINK] You learned 1 2 3 4 in one afternoon and cried a little at the 4. That's allowed. It's in the legend.",
+   "time": "Sep 30 2026 6:12 PM"
+  },
+  {
+   "from": "thad",
+   "text": "Hailey. (He stands at the cafeteria doors, a tray held like a prop.) I watched thirteen people move as one body on a Tuesday. It has no count. It has no structure. It has, however, ensemble, which is the thing I have been trying to explain to a sophomore since the cast list. I am fine. I want that on the record. I am fine. -Thad",
+   "time": "Sep 23 2026 1:19 PM"
+  },
+  {
+   "from": "becca",
+   "text": "Hailey!! I took your halftime request to Mr. Pruitt. He said 'the band plays what the band plays,' then looked at the clarinets for 8 counts and said 'we'll see.' I am counting. 1 2 3 4 5 6 7 8. Also, professional note: '5 6 7 8' is the second half of the count. There is a first half. I will teach it to you for a granola bar. -Becca, section leader",
+   "time": "Sep 18 2026 6:05 PM"
+  },
+  {
+   "from": "brittany",
+   "text": "omg hailey ur lunch table!! i walked by with my tray and did the 5 6 7 8 with my FORK on accident!! ashley saw. it was a whole thing. ur in my top 8 (spot 8) (spot 8 is the 'makes me happy by accident' spot and its the hardest one to get) xoxo",
+   "time": "Aug 28 2026 12:44 PM"
+  },
+  {
+   "from": "ben",
+   "text": "HAILEY the new part where i come in on 5 and stop on 7 to look both ways like a ninja checking for lunch ladies is SO GOOD. a real lunch lady clapped. nana says what a lovely routine and she has not even seen it. BELIEVE IT",
+   "time": "Sep 26 2026 4:30 PM"
+  },
+  {
+   "from": "chad",
+   "text": "HAILEY!! i saw ur lunch table from the gym window. it looked like a stadium wave but with MILK. i didnt know it was a sport. is it a sport (becca says everything is a sport). i did the arms at practice. coach said is that a bunt. it was the 5 6 7 8. GO TABLE 9 (what team) (EAGLES) (also table 9)",
+   "time": "Oct 1 2026 2:20 PM"
+  },
+  {
+   "from": "debbie",
+   "text": "Hailey, honey, Debbie here (Kayla's mom). I saw the cafeteria dance through the window on parent night and I cried into my casserole. Are you getting enough protein? Dancing takes protein. I am sending a King Ranch casserole to table 9 on Thursday. Do not tell the lunch ladies. Love, Mom",
+   "time": "Sep 5 2026 9:36 PM"
+  },
+  {
+   "from": "walt",
+   "text": "Dear Hailey, Kayla tells me you are the young lady who arranges the dancing at the luncheon table. In the service we marched to chow in step and I always felt it was the best part of the day. I have no notes on the dancing. I have one note on the milk cartons: they should be rinsed. Regards, Walt",
+   "time": "Aug 19 2026 10:14 AM"
+  }
+ ],
+ "replies": [
+  "ok that was SO good. 5 6 7 8!!",
+  "wait u get it?? ur on the team now. what team? (u say wildcats) (u say it)",
+  "hold on im mid-transition (the milk carton pass is HARD)",
+  "thank u!! im gonna say that to myself in the mirror tonight (not in a weird way) (its a warm-up)",
+  "u should come sit at table 9. there is a stool. its the best seat. u see everything",
+  "ok but what team are u though. im asking nicely",
+  "mr pruitt said 'hailey' like a whole sentence just now. im taking it as a yes",
+  "AHH hold on i have to tell my mom. MOM. (shes in the kitchen) (she said 'cool') (i heard the love in it)",
+  "i dont know what that means but i love it and im adding it to the routine"
+ ],
+ "thanksAdd": "YOU ADDED ME!! ok ok ok. welcome to the team. (what team? ...this one. it has 13 people now, a stool, and a very talented recycling bin.) rehearsal is every day at 11:52, table 9, no experience needed, everybody gets a part. im giving u the cymbals (milk carton). u dont have to say yes. (say yes.) 5 6 7 8!!",
+ "ambient": [
+  "mr pruitt tapped his foot during count 6 today. he says it was a 'nervous habit.' im choosing to believe it was an artistic choice",
+  "the new kid at table 9 sat down monday and didnt say a word for 2 days. today he did the milk carton part on 6 and looked up like hed just found a secret room. his name is oscar. oscar is the cymbals now",
+  "my 16 bars are 16 bars. ive sung them 212 times. in the shower, the car, the closet (BEST acoustics) and once to bailey the dog. he stared. thats the nicest review ive ever gotten",
+  "somebody asked me 'what team' BACK today and i said WILDCATS and they said no i meant which team do YOU think will win the game on friday and i have never been so confused or so happy"
+ ],
+ "saltyDm": "oh. ok. u denied my request. thats totally fine!! (its fine.) its just like the part in a show where it looks like everything is over and the audience goes quiet and then THERES A SECOND ACT. im giving u a second act. the request is going back in on tuesday at 11:52. 5 6 7--no. ok. just 'bye for now.' (for NOW.)",
+ "keywords": {
+  "team": "what team?? WILDCATS. thats the answer. but i also accept eagles, edward, ninjas, pirates, squad 7, band, and the browns (my grandma said it and i respect her). every team counts. the only wrong answer is 'what.' (and even that is a team. its a small team. i have been on it)",
+  "musical": "high school musical!! the movie, the soundtrack, the DVD sing-along, the junior novel, i own all 4. its about a basketball boy and a smart girl who audition for a school show and a whole cafeteria learns to move together. 14 times on tv, 9 on DVD. the 9 doesnt count if u fast-forward. (i dont fast-forward.)",
+  "lunch": "table 9. by the vending machine. 11:52 every day. 7 chairs, 1 stool, 1 recycling bin, 13 of us. no auditions. the routine is 4 minutes and ends when the bell rings or mr pruitt looks at his watch, whichever, were flexible",
+  "count": "5 6 7 8. thats the count. everybody asks about 1 2 3 4 and i say they are implied. ashley says they are NOT implied, they are a separate thing, and shes been teaching me them on tuesdays. i have 1 and 2 now. 3 is a work in progress",
+  "audition": "oh. oh. um. so i have one. next friday. (its fine.) ms marchetti posted a second open call for river city townspeople bc the cast lost 5 people to fall sports. 16 bars of 'tomorrow' from annie, bc she banned high school musical songs after last year had 11 (one boy brought a basketball). im not nervous. my knees are making a noise but its not nervous, its weather",
+  "zeke": "zeke bakes things for people and has like 3 lines and hes the heart of the whole movie. nobody picks zeke. i pick zeke. if u say sharpay ill still be nice but ill talk for 20 minutes"
+ },
+ "banter": {
+  "maddie": [
+   "maddie i wrote the hufflepuff fight song!! its 8 lines, it has a key change, and verse 2 is about a badger (i looked it up). the only word that rhymes with loyal is royal and i feel GOOD about that. also table 9 is all sorted now, we voted. mostly hufflepuff. oscar picked ravenclaw, he said 'i like to read.' we respect him",
+   "ok i read part 9 and the potion part made me cry in the library and the librarian gave me a look. is it ok to be proud of a fictional man for brewing something right every month. i think it is. i drafted a cheer for it. 6 counts (5 6 7 8 plus 2 more i made up). can u check it for accuracy and badgers"
+  ],
+  "faye": [
+   "faye THE LIBRARY SONGFIC. i read it out loud at table 9 and everybody oohed at the right part (the door sticking). one tiny note: they dont have a library in the movie, they have a ROOFTOP GARDEN. can they be locked in the garden instead. i will supply the rain",
+   "yes the author's note was longer than the chapter. i read it TWICE. it was the best part. u said u have never played basketball. SAME. we should start a club. its called people who cant and we meet at table 9. there is a stool"
+  ],
+  "ben": [
+   "ben the part where u stop on 7 and look both ways is SO GOOD. a lunch lady clapped. a different lunch lady wrote something down. i dont know what. im taking it as a good sign",
+   "ben u can have the cymbals back if u want them. oscar has them now but we could do a duet. also ur the only person who ever asked me 'what team' BACK and i said wildcats and u said squad 7 and we just stared at each other for the whole 5 6 7 8. that was a moment"
+  ],
+  "thad": [
+   "thad i have taken it under advisement. the mayor is NOT troy. the mayor is the MAYOR. (in my heart he is also a little bit troy.) i will say no more. the glitter is the good kind from the craft store. i sent 2 bags to the stage crew. 1 bag is for the hat",
+   "thad u said 'it has no count' about table 9 and ive been thinking about it for days. ur fine though. i checked. ur the best mayor in river city and the only one i know. ill clap at every show. ill be in the front row. ill bring oscar"
+  ],
+  "brittany": [
+   "brittany u said 'cute routine' in the hall and my knees stopped working. also a question and u can say no: are u a sharpay. u dont have to answer. i think ur a sharpay who learns something in the second act. its a compliment. its the best part",
+   "ur top 8 has 8 spots and table 9 has 7 chairs, 1 stool, and a very athletic recycling bin. were basically the same except mine is louder. u can have the stool any time. the stool is not in a ranking. the stool is just for whoever shows up"
+  ],
+  "ashley": [
+   "ashley i went to open gym!! i learned 1 2 3 4!! they were RIGHT THERE the whole time. its like finding out theres a first floor. i cried at the 4 (u said its allowed) (u said its in the legend). also u called me small AND brave in the same sentence and i had it laminated at the library. i hope thats ok",
+   "i said 'ready' (not 'what team') 4 times at open gym and all 3 flyers clapped. i didnt know what to do with my hands. then i said 'what team' on the 5th time by accident and u gave me the [YELLOW] look. (optional) (its not optional) i KNOW"
+  ],
+  "becca": [
+   "becca update: i changed my mind about halftime. NOT get'cha head in the game. the FINALE. it has a clarinet part, i listened for it, its 6 notes. mr pruitt tapped his foot at lunch so thats basically a yes. also thank u for the first half of the count. i keep 1 2 3 4 in my pocket now",
+   "i know the schedule says football on friday. i KNOW. im not asking for the whole halftime. just the last 90 seconds. ive timed the finale (3:41) and i would cut the SECOND VERSE becca. also 11 clarinets saying 5 6 7 8 at once is the best sound ive ever heard (it was also awful) (the best awful)"
+  ],
+  "chad": [
+   "chad. what team. (u say eagles.) (i say wildcats.) we are BOTH right and thats how teams work. if u ever need a cheer for a baseball thing i have 3. one has a key change",
+   "chad u wrote GO EAGLES on my wall 4 times this week and ive decided thats a cheer. its 4 counts if u say it twice and clap. its in the routine now. ur in it. u get 'eagles' on 7"
+  ]
+ },
+ "statuses": [
+  "hailey is teaching table 9 a new transition (the milk carton pass). mr pruitt is watching. mr pruitt is TAPPING",
+  "hailey asked 41 people 'what team?' this week. 38 said a team. 3 said 'what.' (thats ok!! thats a team too!!)",
+  "hailey is in the car practicing her 16 bars. mom is staring at the road very hard. mom is being SO supportive",
+  "hailey is SO nervous and SO excited, in that order, and at the same time, and in her knees",
+  "hailey went to open gym and learned 1 2 3 4. she had no idea. she has been saying them to strangers all day",
+  "hailey just got a clap from a lunch lady. there are 3 lunch ladies. 2 to go",
+  "hailey is writing a hufflepuff fight song with a key change. maddie has not approved it. maddie has not DISapproved it"
+ ],
+ "bulletins": [
+  {
+   "subject": "TABLE 9 OPEN CALL (no auditions) (everybody gets a part) (bring a milk carton)",
+   "body": "every day, 11:52, table 9, the cafeteria, by the vending machine (not the one that eats quarters, the OTHER one). the routine is 4 minutes. u can be: cymbals (milk carton), step-touch (a chair, or a person), the wave (3 people), the lift (we do not do the lift, not since the thing with the stool), or the bin (it is an actual bin). u do NOT need to dance. u do NOT need to sing. u have to say what team u are. any team. mr pruitt (lunch duty) says no running, no standing on chairs, and no going past 4 minutes. we are 13 and theres room for 14. -hailey (captain)"
+  },
+  {
+   "subject": "WHAT TEAM ARE U?? (survey!!) (repost ur answer!!)",
+   "body": "copy paste and answer: 1) what team 2) why 3) whats the teams fight song (u can make one up) 4) whos on ur team 5) is there room (there is ALWAYS room). mine: 1) wildcats (and eagles) 2) bc a team is who u show up for 3) im working on it 4) table 9, ben (squad 7), cole (JV), 3 lunch ladies, and u 5) YES. repost!! p.s. tj i know u have a spreadsheet. please dont send me the spreadsheet"
+  }
+ ],
+ "pcComments": [
+  "5 6 7 8 u look like the CAPTAIN of this pic!! (u ARE the captain of this pic)",
+  "this pic has a key change in it. i can feel it. its the part where the camera pulls back and everybody is smiling",
+  "ok but what team is this pic on?? (its on ur team. u look so happy)",
+  "if this were the movie this is the part right before the song. im waiting. ...ok its a good pic anyway"
+ ],
+ "dmSeed": [
+  {
+   "text": "HI malten!! im hailey!! quick question and theres no wrong answer (theres one wrong answer, its 'what'): what team?? ...ok i know thats a weird first message. i just think its the best way to meet somebody. ill go first: WILDCATS. ok ur turn. 5 6 7 8!!"
+  },
+  {
+   "text": "oh!! also i signed ur guestbook. i did a little cheer in it. its 3 lines. u can skip the 3rd one, its mostly me saying hi again"
+  }
+ ],
+ "dms": [
+  "can i tell u something i havent told the table. next friday is a real audition. the fall musical needs more townspeople and ms marchetti is holding a second open call with a table and a clipboard. i have been practicing my 16 bars in the shower, the car, and a closet, and the closet has the best sound. i am not scared. my knees are making a noise though. its probably weather",
+  "theres a new kid at table 9. oscar. he sat down monday and he was SO quiet and then today during the cymbal part he looked up like he found a secret room. im not gonna say anything. im just gonna say ive never been prouder of a milk carton",
+  "my mom is making matching red scarves for table 9 with the hot glue gun. there are 14 scarves. there are 13 of us. i said who is the 14th and she said 'someone will come.' shes like that. she has never once been wrong about a scarf",
+  "my brother cole (16, JV basketball, refuses to sing in public) has been doing the footwork from the basketball scene in the driveway at 7 AM. i said nothing. i did not watch from the window. hes going in as unnamed boy #4 and he is getting a solo and he doesnt know",
+  "i asked my grandma 'what team' and she said 'the browns.' malten. THE BROWNS. i have never respected anybody more. that is the most committed team i have ever heard of. shes had her heart broken every sunday of my life and she sits right back down",
+  "a boy in homeroom said theyre making a SEQUEL. a SEQUEL. i asked mr dalton and he said 'id imagine so' and ive been dizzy since third period. what if theres a summer one. what if theres a graduation one. what if the TABLE gets cast. we have to be READY. im making a call sheet",
+  "i have to tell somebody. ashley (the cheer captain, the one with the colors) said i was 'small and brave.' in the same sentence. out loud. i went to the library and had it laminated. i dont know where to put it. its in my backpack next to the stage fright book. theyre getting along"
+ ],
+ "blog": [
+  {
+   "title": "WHY TABLE 9 EXISTS (the true story) (its a long one)",
+   "date": "Sep 20 2026 9:30 PM",
+   "mood": "sentimental (and hungry)",
+   "body": "everybody asks how it started. heres the true story. in 7th grade my best friend kennedy moved to arizona in june. we had a pact, we sat at the same table every day since 3rd grade. in september i walked into the cafeteria and there was no table. like, there was a table, but it wasnt OURS. so i ate by the vending machine, alone, for 2 months. it was fine. (it was not fine.) to get through it i started counting in my head. 5 6 7 8, over and over, like right before a dance. then my hands started doing it. then my feet. then one day a girl named talia sat down across from me and said 'what are you doing' and i said 'rehearsing' and she said 'for what' and i said 'i dont know yet.' she did the milk carton on count 6. thats the first routine. now were 13. nobody eats alone at table 9. theres a stool. its for whoever shows up next. its always been for whoever shows up next."
+  },
+  {
+   "title": "AUDITION REPORT part 1: the clipboard (i have to think about the clipboard)",
+   "date": "Oct 2 2026 8:14 PM",
+   "mood": "SO nervous (its weather)",
+   "body": "the audition is next friday. its in the auditorium w a table and a clipboard and ms marchetti, who says 'again, with feeling' like a spell. i have thought about the clipboard for 4 days. things i have learned: 1) she banned high school musical songs (11 last year, one boy brought a basketball) so im doing 16 bars of 'tomorrow' from annie. 2) thad says be big in the first 2 bars, they decide fast. 3) cole says dont throw up. 4) my dad says pretend the panel is the lunch ladies. i tried that. the lunch ladies clap, so thats unfair to the panel. 5) at lunch today the whole table did my 16 bars with me, quietly, just the counts, and it was SO loud in my head. i dont need to be a lead. i dont even need a line. i just want to be IN it. townspeople are the show. ill report back. if i dont post, i went to the bathroom to breathe. 5 6 7 8."
+  }
+ ],
+ "survey": {
+  "title": "THE HIGH SCHOOL MUSICAL SURVEY (repost if u bleed red and white)",
+  "qa": [
+   ["name:", "hailey (captain of table 9)"],
+   ["what team:", "WILDCATS!! (and EAGLES, thats my school, theyre not mad)"],
+   ["how many times have u seen it:", "14 on tv + 9 on DVD = 23. plus the sleepover (i played 6 parts). ok its 24"],
+   ["favorite song:", "thats like picking a favorite finger. the big one at the end. no wait, the one on the roof. ok both. theres a tie rule"],
+   ["favorite character:", "zeke. he bakes things for people. nobody picks zeke. i pick zeke"],
+   ["can u sing:", "yes but not if a piano is nearby. the piano knows"],
+   ["biggest fear:", "being the first one to start and nobody else joins in"],
+   ["what do u want most:", "13 people at table 9, 1 stool, and nobody eating alone. ever"],
+   ["if u could go anywhere:", "salt lake city (the real east high) (to stand in the gym) (i would say hi to the gym)"],
+   ["tag 5 people:", "ben, thad, maddie, faye, and u (u know u)"]
+  ]
+ }
+}

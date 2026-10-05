@@ -1,0 +1,207 @@
+{
+  "id": "marcus_case_117",
+  "with": "marcus",
+  "opener": [
+    "Hello malten. This is a procedural request. I need a second moderator for a ruling. You are the only member who has never received a warning, which makes you neutral. (Do not read into that. It is a compliment.)",
+    "Case 117. BANANA_PHONE, 3:41 AM, the wall of a new member (kyles_lil_bro, age 11, on his brother's account, which is a separate matter under Rule 9b). Entire post: 'WELCOME!!! YOU ARE NOW MY FRIEND!!! DO YOU LIKE BANANAS!!!' Rule 2 prohibits all caps. Rule 12 requires kindness to new members. They collide. In three years I have never had two rules collide.",
+    "Todd has agreed to lunch Friday. His words: 'show me how you handle a hard call, buddy!' This is the hard call. I have the fourth draft in my bag and a sandwich. Please advise. You have eleven minutes. I have to change a filter."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "rule 12 has no exceptions. you wrote it that way on purpose. dismiss it.", "next": "rule12" },
+        { "say": "read me both rules out loud. i want to hear which one blinks first.", "next": "read_rules" },
+        { "say": "put banana on trial. a real one, with a jury. let todd watch.", "next": "trial" }
+      ]
+    },
+
+    "rule12": {
+      "them": [
+        "Rule 12 has no clauses. I wrote it that way deliberately. But dismissing 117 sets a precedent. Banana will cite it in the next 114 posts. Rule 2 becomes decoration.",
+        "There is also the matter of Todd. If I bend a rule on a case he assigned, is it bending, if the rule was written to be bent by exactly one other rule?"
+      ],
+      "choices": [
+        { "say": "the precedent is 'be kind.' best precedent you'll ever set. write it down as Rule 2d.", "next": "amend" },
+        { "say": "ask Kyle. he's the actual new member. he was on the receiving end.", "next": "ask_kyle" }
+      ]
+    },
+
+    "read_rules": {
+      "them": [
+        "Rule 2: No all caps. Four sub-clauses. Rule 12: Be kind to new members. Zero sub-clauses. By my own drafting, 12 outranks 2. But I did not write 'outranks.' I wrote 'no exceptions.' Are those the same? I have been on that question since 3:41.",
+        "Gary would say they are different. Gary would be right under [1.4a]. I have never wanted Gary to be wrong more."
+      ],
+      "choices": [
+        { "say": "they're the same. 'no exceptions' is 'outranks' with its shoes off.", "next": "amend" },
+        { "say": "then the rulebook has a gap. every case needs a complainant. go find out what Kyle thinks.", "next": "ask_kyle" },
+        { "say": "ask gary. he's the only person who's read your rules more carefully than you.", "next": "gary_note" }
+      ]
+    },
+
+    "trial": {
+      "them": [
+        "A TRIAL. Malten. I have a script. I have had one since June. I do not have a gavel. I have a ladle. A jury of twelve requires twelve. I have Gary, Patrick (and his rock, who Patrick says counts as 1.5), Dave (disqualified, see: June), and Sticky, who would have to be carried.",
+        "The risk is obvious. If it goes sideways Todd sees a circus. The upside is also obvious. Todd said 'wow, thanks, Marcus' to six pages. He may enjoy a circus."
+      ],
+      "effects": [
+        { "type": "status", "from": "patrick", "delay": 15, "text": "patrick is on a JURY. dwayne is on the jury too. marcus says dwayne counts as 1.5. dwayne is doing his best" }
+      ],
+      "choices": [
+        { "say": "circus is fine. todd likes circus. seat the jury, start the clock.", "next": "jury" },
+        { "say": "keep it small. one literalist, one sweetheart. gary and patrick. fair split guaranteed.", "next": "recess" }
+      ]
+    },
+
+    "amend": {
+      "them": [
+        "Rule 2d: 'All capital letters are permitted in the welcoming of new members.' Typed. Eleven words. It has never taken me less time to write a rule or longer to press Enter.",
+        "But who tells Banana. In writing. In caps? I cannot send caps. I would be violating Rule 2 in the act of amending it. Do I dismiss 117, or is dismissal the 118th warning?"
+      ],
+      "choices": [
+        { "say": "post it as a bulletin, v3.3. dismiss 117 in caps. once. 'WARNING 117 WITHDRAWN.' she'll frame it.", "next": "todd_lunch" },
+        { "say": "dismiss it quietly, in lowercase. rules don't lose authority by whispering. then go write Kyle a welcome.", "next": "welcome_kyle" }
+      ]
+    },
+
+    "ask_kyle": {
+      "them": [
+        "I messaged him. Quote: 'who is the banana guy. is he in trouble. i liked it. i had 2 friends and now i have 3. also can i have cheats for halo.' I informed him cheats are off-topic. I informed him there is a search function. There isn't one. I told him gently.",
+        "Malten. He said 'now i have 3.' Three. He counted. I have told eleven thousand people to use the search function and not one of them has ever said 'three.'"
+      ],
+      "effects": [
+        { "type": "status", "from": "kyle", "delay": 20, "text": "kyle is at 3 friends now. 3. one is a banana guy. he yells but its a welcome i think. theres a rules guy too. he told me about the search function. there isnt one. he was nice about it" }
+      ],
+      "choices": [
+        { "say": "that's your ruling. the complainant is satisfied. dismiss it and welcome him properly.", "next": "welcome_kyle" },
+        { "say": "kyle just told you the one thing the rulebook can't: it worked. do you want to be the guy who punishes that?", "next": "todd_lunch" }
+      ]
+    },
+
+    "gary_note": {
+      "them": [
+        "Gary replied in four minutes. Quote: 'Per [4.2b], Rule 12 is not a rule but a principle. Principles outrank rules by construction. Additionally, Rule 2's fourth sub-clause covers WALL POSTS. A welcome is a greeting. A greeting is not a wall post. I have been wrong in public four times this month and I enjoyed this one most.'",
+        "Gary has handed me a loophole. I find I do not want to use it. A loophole is the opposite of a principle."
+      ],
+      "choices": [
+        { "say": "then don't use the loophole. Rule 12 wins on its own, no help from gary.", "next": "welcome_kyle" },
+        { "say": "use both. loophole AND principle. cite everything when todd asks. belt and suspenders.", "next": "todd_lunch" }
+      ]
+    },
+
+    "jury": {
+      "them": [
+        "Jury seated. Foreman: Gary, objecting to the numbering. Patrick: present, with rock. Dave: 'objection' (no grounds, overruled). Banana, for the defense, has pleaded 'GUILTY OF LOVE' in capitals. Todd wrote 'haha is this a skit' and then 'sorry :)' and then 'is it a skit.'",
+        "Sticky is in the courtroom. I carried the 5-gallon. I did not spill. It is 41 minutes in. Kyle is in the gallery, asking if there is pizza."
+      ],
+      "choices": [
+        { "say": "verdict by Sticky. if he flares, guilty. if he ignores it, dismissed. no appeals.", "next": "verdict" },
+        { "say": "call a recess before somebody cites [4.2b]. then do the right thing without the ladle.", "next": "welcome_kyle" }
+      ]
+    },
+
+    "recess": {
+      "them": [
+        "Two jurors. Gary has read Rule 2 ('four sub-clauses, none of which mention welcoming') and Patrick has read it too ('it says no capitals but its a nice kind of loud'). It is one to one. I am the deciding vote and also the judge. This is a structural problem and I would like to flag it to Todd (page 4).",
+        "Dave has filed an objection. It says 'objection.' There are no grounds. He will not elaborate."
+      ],
+      "choices": [
+        { "say": "break the tie yourself. you're the judge. what does Rule 12 actually say?", "next": "welcome_kyle" },
+        { "say": "let Sticky break it. flare means guilty. it's the fairest vote in the room.", "next": "verdict" }
+      ]
+    },
+
+    "welcome_kyle": {
+      "them": [
+        "I have drafted a welcome. By hand. As I do at TankTalk. 'Welcome to OurSpace, Kyle. Your page looks good. You have three friends. One yells, but he means it. If you have a fish, I have questions. If you have a question, there is no search function. Ask me. -- Marcus.' That is 53 words. At TankTalk the limit is 50.",
+        "There is also Friday. Todd will ask what I did with the hard call. I could say 'I held a trial.' I could say 'I wrote a rule.' Or I could say 'I wrote a welcome.' I do not know which is the better answer. Which is the better answer."
+      ],
+      "choices": [
+        { "say": "'i wrote a welcome.' rule-writers are everywhere. welcome-writers are scarce.", "next": "end_twelve" },
+        { "say": "send the welcome, skip the application, and ask todd for the thing you actually want: to be the guy who types the welcomes.", "next": "end_committee" }
+      ]
+    },
+
+    "todd_lunch": {
+      "them": [
+        "Friday, 12:15. I will have the fourth draft (six pages plus an appendix, 31KB plain text) and a ham sandwich, which Dave says is the part that matters. Todd asked how I handle hard calls. I do not know what he wants. I do not know what I want.",
+        "I have wanted the title since August. I have not asked myself what I would do with it on a Tuesday. I think the hard call is not Banana. I think the hard call is what to hand him across the table."
+      ],
+      "choices": [
+        { "say": "hand him the application. page 7 is Rule 2d. let him watch you amend a rule for a person.", "next": "end_amended" },
+        { "say": "hand him the sandwich and one question: 'what does OurSpace need?' then listen. don't hand over page 1.", "next": "end_committee" }
+      ]
+    },
+
+    "verdict": {
+      "them": [
+        "Sticky has been brought forward. Banana's name was read aloud, in full, in a lowered voice. Sticky flared. At his reflection. At the lid. At the ladle. The record shows a flare. I am not certain at what.",
+        "Dave: 'guilty!' Gary: 'the record is inconclusive under [7.1].' Patrick: 'he flared because he's happy.' Todd: 'haha this is the best thing on the site.' Malten, I believe I have lost control of my own courtroom."
+      ],
+      "choices": [
+        { "say": "let the betta decide. 'guilty by flare.' warning 117 stands. thread locked. (it won't lock.)", "next": "end_trial" },
+        { "say": "overrule the fish. you're the moderator. Rule 12. dismissed. then go write Kyle a welcome.", "next": "end_twelve" }
+      ]
+    },
+
+    "end_twelve": {
+      "them": [
+        "Posted. Warning 117: dismissed. Reason given: 'Rule 12 has no exceptions. It is the only rule that does.' I have also sent Kyle the welcome (49 words after revisions). I cut 'search function' and replaced it with 'ask me.' It is a small change. It felt like a large one.",
+        "I am going to say something off-topic and I will move it myself: thank you. You were neutral and it helped. I will see you in the replies, at a reasonable volume. Thread closed. (Open.)"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "delay": 6, "text": "marcus just dismissed warning #117. Reason: Rule 12. He would like it noted that this was his own decision and that it was a good one. (The log is his.)" },
+        { "type": "wallpost", "from": "banana", "to": "marcus", "delay": 35, "text": "MARCUS!!! THE WARNING HAS BEEN DISMISSED!!! I PRINTED THE DISMISSAL!!! IT IS ONE PAGE!!! THE OTHER 114 FORM A BANANA AND THIS ONE IS THE STEM!!! THIS IS DESTINY!!! (I AM STILL SHOUTING AND IT IS LEGAL)" },
+        { "type": "wallpost", "from": "kyle", "to": "marcus", "delay": 70, "text": "marcus thx for the welcome. its the first time a guy with rules said hi to me. banana guy says welcome n i said ok. i have 3 friends. also is there a halo cheats rule. (jk) (im 14)" },
+        { "type": "wallpost", "from": "patrick", "to": "marcus", "delay": 105, "text": "marcus i heard u dismissed a warning. dwayne felt very proud of u. he is a rock but u can tell. i like u. ur rules r kind of a hug with numbers" },
+        { "type": "wallpost", "from": "todd", "to": "marcus", "delay": 140, "text": "Hi Marcus! Banana told me about the dismissal (there was a LOT of shouting on the wall, which I think is allowed now?). Lunch is still Friday! :) - Todd" },
+        { "type": "dm", "delay": 175, "text": "A follow-up. Banana's all-caps reply was 38 characters. I read it three times and I counted it as a welcome. Rule 2d is now in my notes. It is eleven words and it is the best thing I have ever drafted. I have not told Todd. I will tell him Friday. It is on page 7. (There is no page 7. I will add a page 7.)" }
+      ]
+    },
+
+    "end_amended": {
+      "them": [
+        "Decided. Friday I hand him the application. Page 7 is Rule 2d, with the Banana dismissal attached as Exhibit A. I have also posted v3.3 now, so the members see the amendment before Todd does. That is called transparency. It is also called nerves.",
+        "I am going to eat the sandwich on Thursday as a test. If it is still a good sandwich, it will survive Friday. If it is not, I am bringing two. Thank you, malten. This is, procedurally, the best hour I have had since the Mod of the Month nomination. Thread locked. (Left open for Todd.)"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "delay": 6, "subject": "RULES OF OURSPACE (unofficial) (v3.3) - ONE AMENDMENT, EFFECTIVE IMMEDIATELY", "text": "Rule 2d: all capital letters are permitted in the welcoming of new members. Rule 2 otherwise remains in force (see: Banana, until 3:40 AM, and then not). Case 117 is closed. Warning 117 is withdrawn. For the record, Rule 12 outranks every other rule on this website, including the one that comes first, which is Rule 1. Read the rules. -- Marcus, Moderator (unofficial)" },
+        { "type": "wallpost", "from": "gary", "to": "marcus", "delay": 40, "text": "Marcus, re: v3.3, Rule 2d. Rule 2d conflicts with Rule 2b if a new member is himself writing in capital letters. See [1.4a]. Otherwise solid. I have one further note. It is 'good.' -- Gary (FAQ v1.07)" },
+        { "type": "wallpost", "from": "dave", "to": "marcus", "delay": 80, "text": "m4rcus i read ur new rule. 2d. ur the first mod to make a rule that makes a banana LEGAL. i was m0d for 1 day n all i did was give away free profile views. u made caps legal. who is the real h4x0r. (u) (for 1 rule)" },
+        { "type": "status", "from": "todd", "delay": 120, "text": "Todd is reading Marcus's page 7. It's about bananas. :) (The laptop is warm. It's a good warm.)" }
+      ]
+    },
+
+    "end_trial": {
+      "them": [
+        "I have to report that the trial is concluded. Sticky flared. The record reads 'guilty by flare.' I issued warning 117 anyway. Banana accepted it by printing it. Kyle asked if he may be on the jury for the next trial. Todd said it was 'the best skit on the site.' It was not a skit.",
+        "The thread is locked. (It is not locked. I say it is locked.) Rule 12 is intact. I am not certain Rule 12 is intact. I have to go feed Sticky. He was very brave. He was also very loud (for a fish)."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "delay": 6, "text": "marcus is concluding the trial of Banana (Case 117). Verdict: guilty by flare. Sentence: time served. Court is adjourned. (Sticky has been given extra pellets.)" },
+        { "type": "wallpost", "from": "banana", "to": "marcus", "delay": 35, "text": "I HAVE BEEN CONVICTED BY A BETTA!!! WARNING 117!!! IT IS THE STEM OF THE BANANA!!! I REGRET NOTHING!!! THE FISH HAD A POINT!!! GUILTY OF LOVE!!!" },
+        { "type": "wallpost", "from": "gary", "to": "marcus", "delay": 70, "text": "Marcus, re: the trial. A verdict by betta is not covered under any numbered rule. I have submitted [1.4a] through [1.9]. The record is inconclusive under [7.1]. I was foreman. I would like it noted that I was also very entertained. -- Gary (FAQ v1.07)" },
+        { "type": "wallpost", "from": "dave", "to": "marcus", "delay": 105, "text": "m4rcus i was on the jury n my objection was 'objection.' u overruled it w/ a ladle. best 41 minutes of my life. i have never been so proud of a n00b mod. (u) (ur not a n00b) (ur a n00b w/ a ladle)" },
+        { "type": "wallpost", "from": "todd", "to": "marcus", "delay": 140, "text": "Hi Marcus! The trial was great! I read the whole thread in real time! I don't think you can have a trial on a wall but you kind of did! Friday is still on!! Bring the ladle! :) - Todd" },
+        { "type": "status", "from": "patrick", "delay": 170, "text": "patrick was on a jury. dwayne voted not guilty. he is a rock but u can tell. also a fish was the judge. a FISH. i love this site" }
+      ]
+    },
+
+    "end_committee": {
+      "them": [
+        "I have made a decision and I would like it on the record before I lose my nerve. I am withdrawing the application. Not the fourth draft. The application. On Friday I am not asking Todd for powers. I am asking him for a lunch and a list: every new member, as they join, so I can type each of them a welcome by hand.",
+        "I have wanted the title since August. I have realized the title is a word and the welcome is a job. I would like the job. Dave got the title because he asked nicely at lunch. I will ask nicely. For a different thing. I think that was always page 1 of the application. Thread open. I will stay here a moment. Rule 12."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "delay": 6, "text": "marcus has withdrawn his admin application (fourth draft) and applied for something else: Welcome Committee (unofficial). Members: 1. Members needed: 1. Hours: all of them." },
+        { "type": "wallpost", "from": "todd", "to": "marcus", "delay": 40, "text": "Hi Marcus! I read your note about the Welcome Committee! Sure buddy!! You're already on it!! I'm not totally sure what it is but I love it!! (I think it's where you say hi to people? That's most of the site) :) - Todd" },
+        { "type": "wallpost", "from": "dave", "to": "marcus", "delay": 80, "text": "m4rcus u dont need a title to be the welcome guy. u have been that guy this whole time. every new member i meet says 'some guy named marcus told me about the search function.' thats a legend. i was m0d for a day. u r m0d for life. (unofficial) (but life)" },
+        { "type": "wallpost", "from": "fred", "to": "marcus", "delay": 125, "text": "Marcus. I've watched you welcome people for months. You count everything: warnings, minutes, my farewells. Counting is a form of attention. The Welcome Committee has its first testimonial: 'Marcus. Counts everyone in. Never counts anyone out.' It is eight words. It should load. -- Fred" },
+        { "type": "dm", "delay": 170, "text": "Kyle asked if the Welcome Committee has a badge. It does not. I made one in Notepad. It is a rectangle that says WELCOME (unofficial). It is 88x31. I do not have an animated gif. Angela says I need one. I have attached a rectangle." }
+      ]
+    }
+  }
+}

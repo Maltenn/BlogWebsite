@@ -1,0 +1,218 @@
+{
+  "id": "chad_scorebook_lab",
+  "with": "chad",
+  "opener": [
+    "DUDE malten. EMERGENCY. u there?? its 10:40 PM and my lab report is due at 8 AM and i have a D in science and if i dont turn it in i CANT PLAY SATURDAY. its the PLAYOFF.",
+    "sven is on the trundle bed w/ a flashlight reading my lab sheet like its a BOOK. he said 'this is not difficult, chad.' he said it NICELY. he said it like a hug.",
+    "i have the data!! we bounced a baseball off 3 floors w/ a ruler. but i dont know how to TYPE it into a REPORT. mr h says it needs a 'purpose' and a 'conclusion.' i know what a purpose is. its to PLAY. typing w/ one finger. help."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "what did you actually find out? say it like a final score.", "next": "a_score" },
+        { "say": "ask sven. he's reading it like a book. let him tell you what a report is.", "next": "b_sven" },
+        { "say": "message mr. henderson right now and ask for more time. tell him the truth.", "next": "c_ask_h" }
+      ]
+    },
+
+    "a_score": {
+      "them": [
+        "OK. SCORE. gym floor: 41 inches. dirt: 22. grass: 14. and then sven put his cinnamon bun on the floor as a 'control' (he said 'a control is a thing that does nothing, on purpose') and it went THUD. 0 inches. best result we got.",
+        "so i think the conclusion is 'floors matter.' that sounds like a score!! i said it like a score!! is that a report?? it feels like a box score that forgot to put the date on it."
+      ],
+      "effects": [
+        { "type": "status", "text": "chad bounced a baseball off 3 floors tonight for SCIENCE. gym: 41 inches. dirt: 22. grass: 14. cinnamon bun: 0. he'd like to note this is the most athletic homework he's ever had. GO EAGLES" }
+      ],
+      "choices": [
+        { "say": "that's your results section. now, what would a scorebook put at the top of the page?", "next": "scorebook_idea" },
+        { "say": "tell sven the numbers. let him turn them into proper sentences.", "next": "b_sven" }
+      ]
+    },
+
+    "b_sven": {
+      "them": [
+        "sven just said, 'I can write it in 20 minutes, Chad. In good English. You can be asleep.' he said it like a GIFT. he's already got a pencil behind his ear. i've never seen anybody offer to do a thing for me like that except my mom and she does it w/ a plate.",
+        "he said, 'In Sweden we write the report together, then separately, then we eat.' and i said which of those is this. he said 'the first one, if you want it.' dude. i'm TEMPTED. it's 10:55."
+      ],
+      "choices": [
+        { "say": "let him write it. 8 AM waits for no one. he offered. it's a gift.", "next": "sven_writes" },
+        { "say": "no. let him teach you the format. he talks, you type. it stays yours.", "next": "sven_teach" }
+      ]
+    },
+
+    "c_ask_h": {
+      "them": [
+        "mr h. ok. there's a thing on his page that says 'Accept?' and i never clicked it bc the last time i clicked something everything went BOLD for 3 days. i think it's the friend thing. he sent me one in september. i think i have been ignoring my teacher.",
+        "i'm sweating. i'm typing w/ my one finger. i can't ask for time from a guy i haven't even accepted. is there a button for 'sorry'?"
+      ],
+      "choices": [
+        { "say": "find the accept button. clicking it is the first sentence of the apology.", "next": "accept_henderson" },
+        { "say": "forget the site. do the report yourself tonight and surprise him with it.", "next": "scorebook_idea" }
+      ]
+    },
+
+    "accept_henderson": {
+      "them": [
+        "CLICKED IT. nothing went bold!! and he answered in 40 SECONDS (it's 10:51!!): 'Chad. I am delighted. You are friend number six. I will accept the report at 8 AM or 3 PM, your choice. Show me YOUR work, not Sven's.'",
+        "how does he know about sven?? sven's in his 3rd period. sven said 'mr. henderson asked how the baseball unit is going at home and I said you are learning.' dude. sven is a good guy and a snitch and i don't know which is more of him."
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "henderson", "to": "chad", "text": "Chad, thank you for accepting my friend request. You are number six. I have been waiting since September. (That is not a complaint. It's a data point.) Do take a deep breath. A lab report is just a story with units. -- Mr. H" }
+      ],
+      "choices": [
+        { "say": "tell him the truth about the D. then do it right tonight, so you can hand it in at 8.", "next": "scorebook_idea" },
+        { "say": "ask sven to help while you wait. teaching is allowed. typing for you isn't.", "next": "sven_teach" }
+      ]
+    },
+
+    "scorebook_idea": {
+      "them": [
+        "WAIT. hang on. grandpa gene's scorebook. he always said a scorebook is a diary where u only write what HAPPENED. no feelings, only plays. feelings go in the margins in tiny letters.",
+        "a LAB REPORT is a SCOREBOOK. 'purpose' is the starting lineup. 'procedure' is the innings. 'results' is the final score. 'conclusion' is the margin notes. DUDE. i can do a SCOREBOOK. i've done one every game since i was 8. even my cousin's tee-ball (14 to 14)."
+      ],
+      "effects": [
+        { "type": "status", "text": "chad just realized a lab report is a scorebook. he's going to need a moment. (it's not a moment. it's 11 PM.) the purpose is the lineup. the procedure is the innings. GO EAGLES" }
+      ],
+      "choices": [
+        { "say": "write it exactly like that. each section is a half-inning. start with the lineup.", "next": "write_it" },
+        { "say": "show sven the idea. see if he can coach you through it without writing a word.", "next": "sven_teach" }
+      ]
+    },
+
+    "sven_teach": {
+      "them": [
+        "sven LOVED the scorebook thing. he said 'In Sweden we have a word, lagom. It means just the right amount. A report is lagom. No more words than the facts need.' then he took my pencil (politely) and drew 4 boxes on the back of my lab sheet. 'You type. I breathe.'",
+        "he's sitting on the end of my bed w/ his hands folded like a coach in a movie. it's the most helpful anyone has ever breathed at me."
+      ],
+      "choices": [
+        { "say": "type the purpose together. one sentence. then tell him to go lie down.", "next": "write_it" },
+        { "say": "ask him how his family's doing back home. he's up late for you. say tack.", "next": "sven_homesick" }
+      ]
+    },
+
+    "sven_homesick": {
+      "them": [
+        "i asked him. he got quiet. he said it's 5 AM in Mariestad and his little sister Elsa is waking up. he always helps her w/ her homework before school. he hasn't done that in 7 weeks. he said 'this is the first homework I have helped with since I came. So thank you for being late.'",
+        "dude. i said 'TACK.' i said it right!! he laughed so hard he got the hiccups. then he said 'it's the first time you didn't say it like a sneeze.' i'm going to remember this night even if i fail."
+      ],
+      "effects": [
+        { "type": "status", "from": "sven", "text": "sven is helping with homework. it is the first homework he has helped with since he came to Ohio. it is about a baseball and some floors. he wishes to say that it is very good homework. (He is not saying more. He is wiping his glasses.)" }
+      ],
+      "choices": [
+        { "say": "tell him to call elsa tomorrow and tell her about the floors. now, back to the lineup.", "next": "write_it" },
+        { "say": "tell him you're glad it was you he helped. now, write the purpose. one sentence.", "next": "write_it" }
+      ]
+    },
+
+    "sven_writes": {
+      "them": [
+        "he did it. 4 pages in 22 minutes. it uses the word 'furthermore' 3 times. there's a semicolon. a CORRECT semicolon. the conclusion says 'in the interest of lagom, no further bounce was necessary.' it's beautiful. it's not mine.",
+        "i feel like i'm wearing somebody else's jersey. it fits. it's got a nice number. but my name isn't in the collar. it's 11:40 and it's DONE. do i just... print it and go to bed??"
+      ],
+      "choices": [
+        { "say": "print it. it's got your name on it. he did it out of kindness.", "next": "print_it" },
+        { "say": "use it as a model, then write your own. the jersey fits better when you sew it yourself.", "next": "write_it" }
+      ]
+    },
+
+    "print_it": {
+      "them": [
+        "printing. the printer's out of black ink, so it's printing everything in a very light gray. it looks like a document that's whispering. dad said 'call the printer guy' and then we both realized there's no printer guy.",
+        "i have a stapler. i have a folder. i have a lab report that's light gray and not mine. malten. i keep looking at it and it keeps looking like a ghost wrote it."
+      ],
+      "choices": [
+        { "say": "staple it. turn it in. get the D out of the way. you did your best with what you had.", "next": "end_caught" },
+        { "say": "ghost reports are for ghost bounces. stop. start over with the scorebook.", "next": "write_it" }
+      ]
+    },
+
+    "write_it": {
+      "them": [
+        "ok. okay okay okay. typing. w/ ONE finger. it's 11:30 and i'm doing the lineup. 'PURPOSE: TO FIND OUT WHICH FLOOR MAKES A BASEBALL BOUNCE THE HIGHEST.' that's the starting lineup. it's 1 sentence. it's got a verb in it!!",
+        "the button's stuck and it's all caps and sven says it adds 'a certain confidence.' he drew a tiny baseball next to it in pencil. now i can't erase it. i don't want to."
+      ],
+      "choices": [
+        { "say": "next inning: procedure. describe what happened, in order, like a play-by-play.", "next": "conclusion" },
+        { "say": "add the cinnamon bun as a control, in the lineup. sven will want a mention.", "next": "conclusion" }
+      ]
+    },
+
+    "conclusion": {
+      "them": [
+        "procedure done. 6 sentences, 1 finger, 1 bun. results done: gym 41, dirt 22, grass 14, bun 0. i did the math twice. i even rounded at the end like tim said to. now the conclusion. margin notes. the tiny-letter part.",
+        "mr h wants 'what did you learn.' i learned floors matter. i also learned i'm better at stopping than i thought. i learned my host brother can breathe on command. what do i put?"
+      ],
+      "effects": [
+        { "type": "status", "text": "chad has finished the procedure and the results. he's working on 'the conclusion.' he describes it as 'the part where u write what u felt, in tiny letters.' he's at 12:20 AM. he's loud (quietly, because sven's asleep sitting up)." }
+      ],
+      "choices": [
+        { "say": "write the tiny-letter version. one honest sentence about what surprised you.", "next": "send_it" },
+        { "say": "ask sven for a lagom conclusion. just the right amount. no more words than the facts need.", "next": "send_it" }
+      ]
+    },
+
+    "send_it": {
+      "them": [
+        "it's 12:40 AM. it's DONE. it has a purpose, a procedure, a final score, and margin notes. i printed it and it's actually dark, bc dad found the other cartridge in the glove box (it's from a different printer, it doesn't fit, he's trying).",
+        "now what. mr h said 8 AM or 3 PM. i can print it, put it in my bag, and hand it in. OR i can send it to him on the site, w/ the button, so it's there when he wakes up. which one's safer? (don't answer too fast, my finger's cold)"
+      ],
+      "choices": [
+        { "say": "print it. hand it in at 8. paper doesn't have a 'send' button to stick.", "next": "end_scorebook" },
+        { "say": "send it through the site. mr h is a modern man now, he's got friend number six.", "next": "site_oops" }
+      ]
+    },
+
+    "site_oops": {
+      "them": [
+        "ok. i pressed the thing. i was going for 'message.' i think i hit 'bulletin.' i think it just went to EVERYONE. the whole thing. in caps. it said 'PLEASE READ' at the top, w/ the sticker, i don't know how that got there.",
+        "there's 14 comments. there's 14 MORE. someone named gary says there's an error in section '4.2b.' malten. there's no section 4.2b. i don't KNOW what's happening. i've never been this popular. i think it's the lab report."
+      ],
+      "choices": [
+        { "say": "don't delete it. let them read it. let the whole school be your lab partner.", "next": "end_bulletin" },
+        { "say": "leave it up and ask mr. henderson to read it first thing. let him grade the whole site.", "next": "end_bulletin" }
+      ]
+    },
+
+    "end_scorebook": {
+      "them": [
+        "it's in my bag. it's in a folder. there's a pencil drawing of a baseball next to the 'PURPOSE.' sven said 'lagom' in his sleep. i'm not going to say anything, but i think the word was 'tack.'",
+        "thanks, malten. i thought i was gonna have to choose between failing and cheating. turns out there was a 3rd option and it was my grandpa. GO EAGLES (quietly)."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "chad turned in a lab report. IT WAS MINE. (sven held the ruler.) it has a purpose, a procedure, a final score and margin notes. it's the first thing he's ever written that he'd show grandpa gene. GO EAGLES" },
+        { "type": "wallpost", "from": "henderson", "to": "chad", "delay": 60, "text": "Chad, I read your report at 7:52 this morning in the hallway, before the bell. 'Purpose: the lineup. Procedure: the innings.' It is the best explanation of the scientific method I have received in eleven years. *LAB (sorry, reflex.) May I use 'the scorebook method' with the whole class? Your report has a great deal of potential. (Energy. That was a pun.) -- Mr. H (six friends and rising)" },
+        { "type": "status", "from": "sven", "delay": 120, "text": "sven proofread a document about the bounce height of a baseball. he found two typos and one feeling. the feeling was lagom. it was in the conclusion. he is not saying where. he is only saying 'tack.'" },
+        { "type": "wallpost", "from": "tim", "to": "chad", "delay": 200, "text": "chad. i checked your math (3x). you rounded at the end, like a professional. i put a gold star next to your name in the ledger. there's a column for that now: 'wins (chad).' it has one entry. it's this one. no refunds." }
+      ]
+    },
+
+    "end_bulletin": {
+      "them": [
+        "THE WHOLE SITE IS READING MY LAB REPORT. i have 40 comments. gary found a mistake that wasn't a mistake. tim checked my math (it's right!!). somebody said the cinnamon bun was 'a bold control.' i'm gonna cry. i'm a LOUD cryer.",
+        "and mr h answered. 3 words: 'Received. Excellent. Printing.' i can't tell if that's a grade or a threat. thanks, malten. it's the first time my homework had an audience, and honestly?? it was a GOOD crowd."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "LAB REPORT: BOUNCE HEIGHT OF A BASEBALL ON 3 FLOORS (PLEASE READ)", "text": "BY CHAD (AND SVEN (HELD THE RULER)). PURPOSE: TO FIND OUT WHICH FLOOR MAKES A BASEBALL BOUNCE THE HIGHEST. PROCEDURE: WE DROPPED A BASEBALL FROM 60 INCHES ONTO 3 FLOORS AND MEASURED THE BOUNCE WITH A RULER. 6 TIMES EACH. RESULTS: GYM 41 INCHES. DIRT 22. GRASS 14. CINNAMON BUN (CONTROL) 0. CONCLUSION: FLOORS MATTER. (tiny letters) the best part was the bun. -- CHAD (PLEASE DONT STEAL IT) (PLEASE STEAL IT)" },
+        { "type": "wallpost", "from": "henderson", "to": "chad", "delay": 45, "text": "Chad, I have received the lab report. As a bulletin. To everyone. It is the first piece of homework ever submitted that way, and I am considering a rubric. *Bounce HEIGHT (not 'hight'). Otherwise: excellent. Full marks for courage and a deduction for the sticker. Please see me about the 'send' button. -- Mr. H" },
+        { "type": "wallpost", "from": "gary", "to": "chad", "delay": 100, "text": "[CHAD v1.0] your report cites section '4.2b.' there is no section 4.2b. i have noted three additions. 1) a chart. 2) a table of contents. 3) a version number. i'm not asking for a reason, i'm asking for the record. the bun is a strong control. [9.4] FEEDBACK (Positive)." },
+        { "type": "wallpost", "from": "tim", "to": "chad", "delay": 170, "text": "chad. your report is public domain now, which means i can't sell it. i can sell you a program that does the bounce math on a TI-83 for $2. no refunds. i checked your math (3x). it's right. the bun was a good control. put me in the credits as 'the ledger.'" }
+      ]
+    },
+
+    "end_caught": {
+      "them": [
+        "turned it in at 7:55, light gray, stapled crooked. mr h read it at his desk during homeroom w/ his green pen. he stopped at the 2nd page. he put the pen down. he looked up and said, very quietly, 'Chad. Come see me at lunch.' sven turned into a very pale Swede.",
+        "he said 'lagom.' he said 'furthermore.' he said 'I have taught neither.' he's not mad, malten. he said 'we'll fix this together.' that's worse. i'd rather be mad at. i need to go sit w/ my glove in my lap for a while."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "chad has a meeting in room 114 at lunch. he's FINE. he's NOT fine. (he's fine.) (his glove is on his lap.) GO EAGLES (quietly)" },
+        { "type": "wallpost", "from": "henderson", "to": "chad", "delay": 60, "text": "Chad, your report contains the word 'lagom' and a correctly used semicolon. I have taught neither. Room 114, lunch, bring Sven and a pencil. We will rewrite it together, in your own words. This is not a punishment. It is a lab. (A lab is a place where we find out what happens. That was not a pun. That was a definition.) -- Mr. H" },
+        { "type": "status", "from": "sven", "delay": 130, "text": "sven has done something he believed was kind. it was not kind. he has learned that a shortcut is a long way home. (this is not a Swedish proverb. he made it up. it is true. he has put it on page 44.)" },
+        { "type": "dm", "delay": 480, "text": "malten. ok. mr h let me redo it at lunch w/ a pencil. i used the scorebook thing. he LOVED the scorebook thing. sven sat next to me and didn't write a single word. he held the ruler. i got a C-. it's the best C- of my life. i'm still eligible. i think i'm gonna be OK. (i'm a LITTLE bit bold, i hit something.)" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,209 @@
+{
+  "id": "sven_eight_seconds",
+  "with": "sven",
+  "opener": [
+    "Hello, malten. This is Sven. I have a question and it is large. Please do not answer quickly. I am writing from the kitchen because Chad's room has baseball on the walls and a person cannot think near baseball at midnight.",
+    "On Saturday my sister Ebba becomes ten. In Sweden this is a big day, with a cake shaped like a princess or a moose, and the whole family on the telephone at once. I will be on the telephone. This is not enough. She has asked me for exactly one thing from America. In her last letter, in crayon, she wrote: 'Show me the bird shout.'",
+    "She means the pep rally. I wrote to her about it in September and she has never recovered. The pep rally is Friday at 2 PM. If the school would say one sentence into a camera, she would have a birthday that no one in her class can match. The problem: I do not know how to ask a school for a sentence. In Sweden a person who asks a whole school for something is a person who has lost an election."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "ask ashley. she runs the pep rally. give your request a color.", "next": "a_ashley" },
+        { "say": "ask chad. he'll shout at any room with a pulse. let the loud person do the loud part.", "next": "b_chad" },
+        { "say": "skip the permission. next time they hand you the mic, say it live. surprise them.", "next": "c_mic" }
+      ]
+    },
+
+    "a_ashley": {
+      "them": [
+        "Ashley. Yes. She stands at the front and tells the gym when to shout, and the gym shouts. She has given me a color on her legend: ORANGE (snacks). I do not have a color for 'birthday greeting.' She will need to make one. I have drafted a request. Three sentences. 'Dear Ashley. I would like to ask for ten seconds of the pep rally. It is for my sister Ebba, who will be ten on Saturday and has asked to see the bird shout. I will bring the snacks.'",
+        "Is it correct. In Sweden a request this long would be an essay. Here I think it is a postcard. I would like your opinion on one thing: the snacks. Is it a bribe. Or is it a custom. I cannot tell the difference and I do not wish to be arrested."
+      ],
+      "choices": [
+        { "say": "send it as is. the snacks are a custom. in america a snack is how you say 'i mean it.'", "next": "a_pencil" },
+        { "say": "cut the snacks. ask like a person. she'll say yes to ebba, not to a bribe.", "next": "a_pencil" }
+      ]
+    },
+
+    "a_pencil": {
+      "them": [
+        "Ashley answered in four minutes. I have printed it. 'Sven!! Obviously yes. I'm putting you in pencil for 1:41 PM, between the fight song and the Eagle's entrance. You get eight seconds. Your color is PINK (Special Request). Confirm by 7 AM. -Ashley, Capt.' (In her style the colors were in brackets. I have kept them.)",
+        "Now I have a question about 'in pencil.' In Sweden a pencil is a pencil. I do not know if this is a yes in graphite or a yes that can be erased. I also do not know if eight seconds is enough for a sentence in a language the school does not speak. Please translate 'pencil' for me. I will write the answer in the notebook, page 35."
+      ],
+      "effects": [
+        { "type": "status", "from": "ashley", "delay": 10, "text": "ashley has added a new color to the pep rally legend: PINK (special request). it's for a 10 year old in sweden. it's 8 seconds. it's at 1:41 PM. she has also added a line item: 'do not cry on the clipboard.' (she has already cried on the clipboard)" }
+      ],
+      "choices": [
+        { "say": "'in pencil' means yes, with room to change. say thank you and go eat lunch like a person with a plan.", "next": "d_ranch" },
+        { "say": "'in pencil' means yes unless something bigger shows up. confirm at 7 AM and tell her it's for a kid.", "next": "gym_slot" }
+      ]
+    },
+
+    "d_ranch": {
+      "them": [
+        "Thursday, lunch. Tyler sat across from me with a tray. He said 'bro, it is week six. report.' It is the ranch report. I promised him a result in three to five weeks. It is overdue. A cup of the white sauce sat between us like a witness. I looked at it for a long time.",
+        "I said: 'It is a soup for pizza. It is not a soup. I have eaten it on six foods and it improves two: the pizza and the carrot. I give it seven out of ten and I am ashamed.' Tyler said 'bro.' He did not say anything else. He held out a fist. It is a gesture. I think it is respect. I returned it. Then I realized: in six weeks I have made a decision about ranch. If I can decide about ranch, I can ask a school for ten seconds."
+      ],
+      "effects": [
+        { "type": "status", "from": "tyler", "delay": 8, "text": "tyler is filing sven's ranch report. 7/10. 'a soup for pizza.' improves 2 foods. bro it took 6 weeks and he said sorry to the cup. the report is in the archive. also he did a fist bump. a real one. bro" }
+      ],
+      "choices": [
+        { "say": "so decide. which plan do you trust? the one on the schedule. ten seconds is plenty.", "next": "gym_slot" },
+        { "say": "bring chad too. a schedule and a crowd. eight seconds is short. bring a hug.", "next": "gym_crowd" }
+      ]
+    },
+
+    "b_chad": {
+      "them": [
+        "Chad. Yes. I told him at dinner. He stood up so fast that the milk moved. 'SVEN. A BIRTHDAY. FOR EBBA. I WILL SHOUT IT. IN THE CAFETERIA. NOW.' It was 11:40 PM. He was in socks. His mother said 'Chad, sit.' He sat. He stood up again. This is a family that stands up for love. I am learning it.",
+        "He has a plan: the whole bleachers, shouting at the same time, 'EBBA,' with a clap after. He says a school only needs a reason. I believe he is right. I am also aware that he is a loud person. The last time he did this the vice principal said 'Chad' for eleven seconds. What should I tell him."
+      ],
+      "choices": [
+        { "say": "yes, but ask for a schedule slot first. a crowd with a plan beats a crowd with a megaphone.", "next": "a_ashley" },
+        { "say": "yes. loud is a language and you learned it from him. give him the whole bleachers.", "next": "b_crowd" }
+      ]
+    },
+
+    "b_crowd": {
+      "them": [
+        "By 7 AM Chad has recruited Tyler ('BRO'), the lacrosse team ('bro'), two cheerleaders ('who asked'), a boy named Dev with a trumpet (he asked if it is allowed to be a trumpet; it is) and a sophomore who lost a bet. He wrote the plan on his bedroom wall with a marker. His mother allowed it because 'it's baseball wallpaper, honey, it's seen worse.'",
+        "The plan: when the Eagle runs in, everyone shouts 'EBBA' on the count of three, then 'Hej!' as I taught them. Chad has practiced. He says 'HAY.' It is not the right sound but it is the right size. I have one problem. In Sweden we are ready at the moment of need. Here a school becomes ready in advance, together. How do I make a gym ready."
+      ],
+      "choices": [
+        { "say": "bring in becca. the clarinets know how to count eight and keep a gym together.", "next": "b_becca" },
+        { "say": "make it a lunch thing. the whole cafeteria practices once. that's 'ready in advance, together.'", "next": "d_ranch" }
+      ]
+    },
+
+    "b_becca": {
+      "them": [
+        "Becca came to the cafeteria with her clarinet in its case and sat across from me and said 'I heard.' She said: 'Sven. A gym is not ready because it wants to be. It is ready because it was counted in.' She has written a count on a card: 'ett, två, tre, fyra,' one bar. The clarinets will play a fanfare for four counts. Then the school says 'Hej, Ebba.' She says the fanfare is nine seconds and a key change. I asked what a key change is. She said 'the part where everyone feels something.'",
+        "I have never been so well organized by a stranger. She said 'I'm not in your section. This is a one-time loan. Eleven clarinets is balanced and I will not adjust it.' I think she has adjusted it already. She asked me to bring cinnamon buns. This is also a custom."
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "becca", "to": "sven", "delay": 12, "text": "Sven. Fanfare drafted. Four counts of ett, två, tre, fyra, then clarinets, then a key change, then 'Hej, Ebba' from the whole gym. Nine seconds. I have timed it. I have timed it again. I am not in your section. (I am in your section.) Please bring the cinnamon buns. Horns UP. - Becca" }
+      ],
+      "choices": [
+        { "say": "tell her yes. tell her the key change is the best part of every song. she already knows.", "next": "gym_crowd" },
+        { "say": "ask her to teach you the count too. you want to be inside it, not in front of it.", "next": "gym_crowd" }
+      ]
+    },
+
+    "c_mic": {
+      "them": [
+        "The microphone. ...In September it was handed to me by accident, and I said 'Hej!' and a gym said it back. That was a gift. To take it on purpose is, in Swedish, to take what was not offered. We have a word for it. The word is not nice. But Ebba is ten on Saturday, and the school did say it once, when it did not know what it was saying.",
+        "I am not sure I am a person who takes a microphone. I am a person who says sorry to a ball. What would the person who takes a microphone do first."
+      ],
+      "choices": [
+        { "say": "rehearse in front of the baseball wallpaper. chad will coach. practice taking up room.", "next": "c_plan" },
+        { "say": "or ask for the mic like a person. ask the captain to hand it to you. same moment, with permission.", "next": "a_ashley" }
+      ]
+    },
+
+    "c_plan": {
+      "them": [
+        "Chad's room, 10:20 PM. Rehearsal. Chad stood in the middle holding a hairbrush. He said 'SVEN. YOU ARE THE EAGLE. YOU OWN THE ROOM.' I said 'I do not own the room, I am a guest.' He said 'THEN BE A LOUD GUEST.' I said 'Hej, Ebba' at the volume of a person asking where the toilet is. He said 'AGAIN.' Nine times. By the ninth the neighbor's dog replied.",
+        "I think I have it. The secret is not volume. It is permission, and I give it to myself by saying it faster than I can feel afraid. One more part of the plan: the person in the eagle costume holds the microphone first. I need to ask a bird."
+      ],
+      "choices": [
+        { "say": "ask the bird. a guy in a costume can't say no without breaking character.", "next": "c_bird" },
+        { "say": "sleep on it. have lunch with tyler tomorrow. courage is a food group.", "next": "d_ranch" }
+      ]
+    },
+
+    "c_bird": {
+      "them": [
+        "Thursday, 3:15 PM, behind the gym. I found the Eagle. He was sitting on a folding chair with his head off, eating a granola bar. His name is Dale. He is a sophomore. I said 'Hej.' He said 'sup.' I said 'I need the microphone.' He said 'for what.' I explained Ebba. I explained the cake shaped like a moose. He put the head back on. He nodded with the whole head. He pointed at his chest. He flapped once. I do not know the language but I understood: yes.",
+        "The agreement: when the Eagle runs in at 1:41, he hands me the microphone and runs a lap. That is more than eight seconds and it is not on the schedule. It is not on the schedule because it is not in pencil. Dale says 'pencil is for people who want a second chance.' This is a very American sentence. I wrote it down."
+      ],
+      "effects": [
+        { "type": "status", "from": "chad", "delay": 10, "text": "CHAD HAS BEEN TOLD ABOUT A PLAN INVOLVING A BIRD AND A MICROPHONE. HE HAS BEEN TOLD NOT TO TELL ANYONE. HE HAS TOLD ONLY THE LACROSSE TEAM. THE LACROSSE TEAM HAS TOLD NOBODY. THE LACROSSE TEAM IS ALSO A BIT SCARED" }
+      ],
+      "choices": [
+        { "say": "go. friday, 1:41 PM. the bird, the mic and ebba.", "next": "gym_mic" },
+        { "say": "tell ashley the plan. one honest sentence. the bird is already on your side.", "next": "gym_slot" }
+      ]
+    },
+
+    "gym_slot": {
+      "them": [
+        "Friday, 1:38 PM. The gym. The whole school is in the bleachers, a very large audience for a very small thing. Ashley is at the front with her clipboard, wearing pink, which is not her color; she says it is 'for the special request.' She has taped a card to the floor: PINK. 1:41 PM. 8 SEC. REPEAT AFTER SVEN. Chad is in the third row. Misery is at the end of the bleachers with her mother's camcorder (Chad asked her; Chad asks everyone).",
+        "She hands me the microphone. It is warm. I have the sentence on a card: 'Hej, Ebba! Grattis på födelsedagen!' (Happy birthday.) Eight seconds if I breathe once. The room is very big. I have never been so far from home and so near a person. Ashley whispers 'you have eight.' It is 1:41."
+      ],
+      "choices": [
+        { "say": "use the eight, exactly as written. one breath, one sentence. a plan is a hug with a schedule.", "next": "end_gym" },
+        { "say": "use the eight, then ask them to say it twice. a song must be heard twice to be understood.", "next": "end_mic" }
+      ]
+    },
+
+    "gym_crowd": {
+      "them": [
+        "Friday, 1:38 PM. The gym. Chad is in the third row with the lacrosse team, Dev and his trumpet, some people I do not know and the sophomore who lost the bet. Misery is on the end of the bleachers with her mother's camcorder (Chad asked her; Chad asks everyone). The Eagle ran in at 1:40. The principal is looking at his watch, which I understand is not a good sign.",
+        "Ashley whispers 'you have eight.' I have the card. I have a crowd. In my pocket I also have the CD I made for Ebba: 17 songs, 'Boom, Boom, Boom!!' twice. Maybe that is enough. Maybe a CD is lagom. One voice in my stomach says ask the room. The other says do not ask a room for things."
+      ],
+      "choices": [
+        { "say": "give chad the cue. you say 'hej,' they say her name. a gym needs one person to start.", "next": "end_gym" },
+        { "say": "keep the cd. it's lagom. you don't have to ask a whole school for a hug.", "next": "end_cd" }
+      ]
+    },
+
+    "gym_mic": {
+      "them": [
+        "Friday, 1:39 PM. The gym. Dale waits in the tunnel, flapping at nobody. Ashley is at the front with her clipboard calling the fight song. She does not know. I am in the second row holding a card that says 'Hej, Ebba' in my own handwriting, for no reason, because I know it by heart. My heart is fast. Chad is beside me whispering 'IS IT TIME' every nine seconds.",
+        "1:41. The Eagle sprints in, does one lap and stops in front of me. He holds out the microphone with both wings. The gym goes quiet because a bird has stopped. Ashley's head turns like a lighthouse. I take it. It is warm. I have never held so many eyes."
+      ],
+      "choices": [
+        { "say": "take it. say 'hej!' and wait. let the school answer. then say her name.", "next": "end_mic" },
+        { "say": "hand it back. you can't. send the cd. there's still saturday.", "next": "end_cd" }
+      ]
+    },
+
+    "end_gym": {
+      "them": [
+        "UPDATE, Friday, 2:09 PM. It happened. Eight seconds. I said 'Hej, Ebba!' and the school said it back, all at once, one large mouth. Ebba's name went through the gym like a ball down a staircase. I did not know I had been this homesick until a thousand people were homesick with me for eight seconds.",
+        "Chad cried. He says it is allergies. Ashley wrote DONE on the clipboard in every color she owns. Misery filmed all of it: forty-one seconds. I will send the tape to Sweden tonight. On Saturday Ebba will see a school shout her name.",
+        "For the notebook, page 36: if you ask a large room for something kind, it says yes with the whole body. Also: ranch is a 7. Also: I think I am a person who can ask."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "sven asked a school for eight seconds and a thousand people said his sister's name. a tape is going to Sweden tonight. he is not crying. it is steam from the cinnamon buns" },
+        { "type": "status", "from": "ashley", "delay": 20, "text": "ashley ran the PINK slot at 1:41 PM. 8 seconds. 0 mistakes. 1 sob (hers). the legend has a new color and it is permanent. [PINK] = the one that makes a gym into a hug. please make it a tradition. -Ashley, Capt." },
+        { "type": "wallpost", "from": "becca", "to": "sven", "delay": 55, "text": "Sven. I was in the band section. Eleven clarinets, not one of us adjusted. I counted your eight seconds. It was 8.4. The extra .4 was the breath. I have never heard a breath be correct before. Tell Ebba horns UP. She doesn't know what that means. Tell her anyway. - Becca" },
+        { "type": "status", "from": "chad", "delay": 95, "text": "CHAD IS NOT CRYING. IT IS ALLERGIES. HE WOULD LIKE TO REPORT THAT HE SAID 'EBBA' AT A VOLUME NOT SEEN IN THIS GYMNASIUM SINCE THE STATE SEMIFINALS. HE WOULD ALSO LIKE TO ANNOUNCE THAT SVEN IS A MEMBER OF THE FAMILY (OFFICIAL). HIS MOTHER HAS CRIED AT A PANCAKE AGAIN" },
+        { "type": "wallpost", "from": "misery", "to": "sven", "delay": 150, "text": "sven rawr xD i filmed the WHOLE thing w/ my mom's camcorder (41 sec!!) n i didnt even do the cat part!! ur sister is gonna cry. i cried. riley cried (she wasnt there she HEARD) ok tell me where 2 mail it i'll burn it 2 a dvd w/ a cover. rawr means i love u in dinosaur. i said it FIRST" }
+      ]
+    },
+
+    "end_cd": {
+      "them": [
+        "UPDATE, Saturday, 10:12 AM. I did not say it. I sent the CD. I called at 9:00 (3 PM in Sweden, a cake on the table, ten candles in a moose). I told Ebba about the pep rally. I said it was very loud. She said 'Show me.' I said 'I cannot. It is not on the tape.' There was a long quiet. Then she said 'It's okay. I made you a drawing of the moose.' Then: 'Is it lonely there?' I said 'No.' I said it twice.",
+        "I put down the phone. Chad's mother was at the door in her robe with a plate of pancakes. She said nothing. She sat on the other side of the table and put one in front of me. I understand something about the word lagom now. It means the right amount. It does not always mean enough.",
+        "Track 2 of the CD is 'Boom, Boom, Boom!!' again. She will find it. A song must be heard twice to be understood. Perhaps a person must be missed twice."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "sven called home. it was 3 PM in Sweden. there was a moose cake and ten candles. sven was on the telephone. it is not the same as the bleachers. he said so, quietly. nobody was there to hear it" },
+        { "type": "wallpost", "from": "chad", "to": "sven", "delay": 40, "text": "SVEN. MY MAN. I WAS IN THE BLEACHERS. I SAW THE CARD IN YOUR HAND AND I SAW YOU PUT IT IN YOUR POCKET. I'M NOT MAD. I JUST WANT YOU TO KNOW THE WHOLE SCHOOL WOULD HAVE SAID IT. EVEN TYLER. EVEN THE SOPHOMORE WHO LOST THE BET. NEXT YEAR IT'S A TRADITION. I'M DOING IT NOW. 1 2 3. EBBA!!! (THAT WAS MY SHOUT. IT'S FOR HER. IT'S ON THE WALL SO IT'S ON THE INTERNET.)" },
+        { "type": "wallpost", "from": "penny", "to": "sven", "delay": 90, "text": "SVEN!!! ur bracelet for EBBA is DONE!!! it says EBBA in blue beads (blue raspberry blue) & 1 bead is a tiny moose!!! 41 beads!!! mail it w/ the cd!!! PLUR PLUR PLUR (that means peace love unity respect. it ALSO means we are mailing a bracelet to sweden)" },
+        { "type": "status", "from": "nikki", "delay": 140, "text": "nikki is making a 1.5x 'happy birthday ebba' for a girl in sweden she's never met. UNTZ. it's 3 min. she cried a little. UNTZ. (she says it's the bass)" }
+      ]
+    },
+
+    "end_mic": {
+      "them": [
+        "UPDATE, Friday, 2:20 PM. I said 'Hej!' into the microphone and the gym said it back. I said 'Ebba!' and the gym said it back. Then I said 'again,' because a song must be heard twice to be understood, and nine hundred people said her name again, louder. Then the Eagle began a lap. Then the band began a song. Then the lacrosse team stood. It was not on the schedule. It was not in pencil. It was in ink.",
+        "The principal said 'Sven' for eleven seconds. Ashley's clipboard fell. Then she got up, picked it up, looked at the gym and wrote a color I have never seen. It was brown, I think, and next to it she wrote MOMENTUM. She took the microphone from my hand and said 'ONE MORE TIME FOR EBBA' and the gym did it a third time. The pep rally ended eleven minutes early. For the first time in the history of the program there was nothing else on it.",
+        "Vince has called. He says it was 'HUGE.' It was. I did not mean it to be. I am very tired. I am also, I think, a person who takes a microphone. Dale hugged me with both wings. It was warm."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "sven took the microphone at a pep rally. he said 'Ebba.' the gym said it three times. the principal said 'Sven' for eleven seconds. he is sorry. he is also not sorry. it was in ink" },
+        { "type": "status", "from": "ashley", "delay": 20, "text": "ashley has added a new color to the pep rally legend: BROWN (MOMENTUM). it was not on the schedule. it was not in pencil. it ran the program 11 minutes short. she has never been so happy or so terrified. [BLUE] please do not do it again. [YELLOW] please do it again next year. -Ashley, Capt." },
+        { "type": "status", "from": "vince", "delay": 60, "text": "VINCE IS ANNOUNCING EBBA NITE AT THE ROLLERDOME. FRIDAY. 9 PM (NOT HALF NINE). A GIRL IN SWEDEN IS TURNING TEN. WE ARE GONNA SHOUT HER NAME 41 TIMES. IT'S GONNA BE HUGE. FIRST 50 FREE. SVEN PICKS THE SONGS" },
+        { "type": "wallpost", "from": "nikki", "to": "sven", "delay": 100, "text": "SVEN i heard the shout from the parking lot!!! i have it on my flip phone's voice recorder (the fire door was open). i'm nightcoring EBBA!! UNTZ UNTZ UNTZ. 1.5x. its a whole song now. ebba is the new queen of the speedzone. she's 10. she's ready" },
+        { "type": "wallpost", "from": "chad", "to": "sven", "delay": 140, "text": "SVEN!!! WE ARE LEGENDS. I HAVE SAID EBBA SO MUCH TODAY THAT MY MOM SAID IT AT DINNER. THE DOG SAID IT. (IT BARKED. IT COUNTS.) THE VICE PRINCIPAL SAID 'CHAD' FOR 11 SECONDS AND I SAID 'EBBA' AND HE LET IT GO. THIS IS THE BEST DAY OF MY LIFE (UNTIL SATURDAY)" }
+      ]
+    }
+  }
+}

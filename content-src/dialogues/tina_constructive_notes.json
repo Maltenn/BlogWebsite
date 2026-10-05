@@ -1,0 +1,206 @@
+{
+  "id": "tina_constructive_notes",
+  "with": "tina",
+  "opener": [
+    "hi malten. ok. so. i did a thing and then a thing happened to the thing.",
+    "i posted chapter 1 of my novel (EDMUND, ch. 1: 'the rain knows') on the fanfic board. 11 pages. i laminated a copy (obviously). and fanfic_faye, who has written 94 chapters, offered me 'constructive notes,' and i said yes because i didn't know what that meant.",
+    "it's three pages. numbered. fourteen notes. the first one is a compliment and the last one is a compliment. the twelve in the middle are... how do i say this... a sandwich where the filling is a LOT."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "read me the notes. all 14. i'll rate the sandwich.", "next": "a_notes" },
+        { "say": "what do you need: notes that help, or someone to say it's good?", "next": "a_want" },
+        { "say": "send faye 14 notes on THE FIFTH HOUSE. fair is fair. use a sandwich.", "next": "c_revenge" }
+      ]
+    },
+
+    "a_notes": {
+      "them": [
+        "ok. highlights. #1: 'What a strong start! (♥)' #4: 'Edmund broods eleven times in nine pages. Consider variety.' #6: 'The rain appears in every scene. Is it a character?' #9: 'The love interest has no inner life beyond sitting near the window.' #14: 'Looking forward to the next chapter! (♥)'",
+        "there's also #7, which says 'this reads as heavily inspired by canon,' and i said 'it's DIFFERENT, his name is Edmund,' and she said 'noted (♥).' she said NOTED with a HEART."
+      ],
+      "choices": [
+        { "say": "which one hurts the most? say it out loud.", "next": "hurts" },
+        { "say": "which one is actually right? there's one. there's always one.", "next": "one_right" }
+      ]
+    },
+
+    "a_want": {
+      "them": [
+        "i want... both?? i want her to say it's good. and i want to know how to make it good. but when it's in the same envelope it's like getting a gift AND a bill. also this is the first time i've shown anyone. it was 11 pages written under a blanket with a flashlight. my brother max found one page. he asked if Edmund had a dentist. i said no. he said 'then how does he have teeth.' that was a note too. it was a better note.",
+        "if i can't take 14 notes from a girl with 94 chapters, how do i ever finish page 12?"
+      ],
+      "choices": [
+        { "say": "then read the notes together. we'll find the one that actually hurts.", "next": "hurts" },
+        { "say": "read me the one that's actually right. there's always one.", "next": "one_right" }
+      ]
+    },
+
+    "c_revenge": {
+      "them": [
+        "...NOTES. on THE FIFTH HOUSE. 94 chapters. i've read chapter 1. and 2. and 40, because the author's note was longer than the chapter and i had to know what happened. i have thoughts. i have LAMINATED thoughts.",
+        "but if i send them it's war. the kind of war where everybody says 'i'm not mad' in 800 words. do i do it?"
+      ],
+      "choices": [
+        { "say": "do it. three notes. kind first, true second, kind last. the same sandwich she gave you.", "next": "mirror_notes" },
+        { "say": "no. you're better than a mirror. what hurt, exactly?", "next": "hurts" }
+      ]
+    },
+
+    "mirror_notes": {
+      "them": [
+        "ok. i wrote three. #1: 'What a committed, detailed world! (♥)' #2: 'Chapter 94's author's note is three times longer than the chapter. Consider a chapter.' #3: 'Seraphina's eyes change color with her mood. What color are they when she reads notes? (♥)' i hit send. my finger was shaking. it's on her wall.",
+        "it's been four minutes. she's typing. she has been typing for FOUR MINUTES. an author's note is coming. i can feel the heart."
+      ],
+      "effects": [
+        { "type": "wallpost", "to": "faye", "text": "faye!! you asked for R&R so here are my notes on THE FIFTH HOUSE. #1: what a committed, detailed world! (<3) #2: chapter 94's author's note is 3x longer than chapter 94. consider a chapter. #3: seraphina's eyes change color with her mood. what color are they when she reads notes? (<3) ~*~ no flames. just a sandwich. xoxo tina" }
+      ],
+      "choices": [
+        { "say": "good. now wait. she's going to answer like an author. let her.", "next": "faye_reply" },
+        { "say": "tell her the tone was a little sharp. notes are a gift even when they're pointy.", "next": "faye_reply" }
+      ]
+    },
+
+    "hurts": {
+      "them": [
+        "#9. 'the love interest has no inner life beyond sitting near the window.' that's the one. because i read it and my stomach went 'oh. that's me.' i sit near the window. at lunch. in homeroom. i've been sitting near windows my whole life and nobody has ever said i have an inner life. not even in a novel. not even in 11 pages.",
+        "it's not a note about the story, is it. it's a note about the girl who wrote the story. i'm going to laminate that thought and put it in a drawer."
+      ],
+      "choices": [
+        { "say": "it IS about the story. and the window girl gets a voice. one line. see what she says.", "next": "what_now" },
+        { "say": "send chapter 1 to maddie too. she's the canon consultant. get a second reader.", "next": "maddie_weighs" }
+      ]
+    },
+
+    "one_right": {
+      "them": [
+        "#6. the rain. it IS in every scene. even the one in the kitchen. even the one inside the library, where it can't rain. i didn't notice until she said it. it's like a character who never talks and never leaves. i wrote a rain-shaped person for 11 pages and called it weather.",
+        "ok i hate that she's right. and i love it. at the same time. i don't know where to put that."
+      ],
+      "choices": [
+        { "say": "send it to maddie too. get a second reader. a second reader breaks the tie.", "next": "maddie_weighs" },
+        { "say": "give the rain a name and a line. see where it goes.", "next": "what_now" }
+      ]
+    },
+
+    "maddie_weighs": {
+      "them": [
+        "maddie replied in 9 minutes. she wrote a REVIEW. it's numbered. four points. quote: '1. The rain is a character. It is the most consistent character. 2. The love interest needs a want. 3. Edmund's brooding escalates. This may be intentional. 4. I read it twice. When is chapter 2.'",
+        "she didn't say 'good.' she said 'twice.' and 'chapter 2.' faye gave me 14 notes. maddie gave me 4 and a TWICE. i don't know which to believe. i'm going to be sick. the good kind."
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "maddie", "to": "tina", "text": "Review of EDMUND, Ch. 1, from your reader: (1) The rain is a character. It is the most consistent one. (2) The love interest needs a want. (3) Edmund's brooding escalates across the pages. If this is intentional, it is excellent. If not, it is still excellent. (4) I read it twice. (5) When is chapter 2. -- Maddie" }
+      ],
+      "choices": [
+        { "say": "'twice' is the highest score maddie gives. that's a win. now what do you want to do?", "next": "what_now" },
+        { "say": "two readers, two opinions, one pair of hands. you choose what to keep.", "next": "what_now" }
+      ]
+    },
+
+    "what_now": {
+      "them": [
+        "ok. three piles. pile one: do what faye said. all 14. or maybe 9. pile two: keep Edmund EXACTLY as is, because he's mine. pile three: something in the middle i can't picture yet.",
+        "it's chapter 1. it's 11 pages. it's the only thing i've ever finished. i know whose it is. but i don't know what 'finished' means."
+      ],
+      "choices": [
+        { "say": "rewrite it. keep the notes that sting in the right way.", "next": "rewrite_pick" },
+        { "say": "keep Edmund exactly as he is. a first draft is allowed to brood.", "next": "defend" },
+        { "say": "trade. offer faye notes on HER chapter 1. cards on the table, both ways.", "next": "swap_offer" }
+      ]
+    },
+
+    "rewrite_pick": {
+      "them": [
+        "ok. i'm using 9 of the 14. i circled them in green pen. the other 5 got a tiny funeral. (no. they got laminated.) the window girl is getting a want. the rain is getting to say one thing. Edmund is going to brood a LOT less.",
+        "but how much less? do i cut the broods from 11 to 3 or keep all 11 and change what he's looking at each time?"
+      ],
+      "effects": [
+        { "type": "status", "text": "twilight_tina is rewriting chapter 1. nine of the fourteen notes are in green pen. the window girl is getting a WANT. the rain is getting a LINE. edmund is nervous. (so is tina.) (it's the good kind of nervous.)" }
+      ],
+      "choices": [
+        { "say": "cut to three. three good broods beat eleven of the same one.", "next": "end_rewrite" },
+        { "say": "keep all eleven. change what he's looking at each time. let the rain do some of the talking.", "next": "end_rewrite" }
+      ]
+    },
+
+    "defend": {
+      "them": [
+        "ok. 'thank you, no.' how do i say it so it's not rude. rude is a crime. i've drafted 'thank you for your time and care' and 'no' and they don't sit next to each other. they keep trying to switch seats.",
+        "i've never said no to a girl with 94 chapters. what if she stops posting? what if there's no chapter 95 because of me? i'd be the reason a fandom ends."
+      ],
+      "effects": [
+        { "type": "status", "text": "twilight_tina has received 14 notes, is laminating all of them, and is considering saying 'thank you, no' to a girl with 94 chapters. this is the bravest thing she's attempted since the repost incident." }
+      ],
+      "choices": [
+        { "say": "'thank you, no. here's why.' three lines. kind and done.", "next": "end_keep" },
+        { "say": "wait. keep the brooding, but change ONE thing. a test.", "next": "rewrite_pick" }
+      ]
+    },
+
+    "swap_offer": {
+      "them": [
+        "swap? like... her chapter 1 and my chapter 1, both ways? 'notes for notes.' she'd have to read mine again and i'd have to read hers in ORDER. there are 94. i've read 40. the other 54 have author's notes you could build a house with.",
+        "but the idea of giving a note and getting one back? it feels fair. it feels like laminating something so it stays."
+      ],
+      "choices": [
+        { "say": "send it. 'notes for notes, three each, kind first, true second.'", "next": "faye_reply" },
+        { "say": "send it with one rule: author's notes can't be longer than the chapter. it's only fair.", "next": "faye_reply" }
+      ]
+    },
+
+    "faye_reply": {
+      "them": [
+        "she replied. i'm reading it out loud. 'A/N: Tina, I got your message. I read it standing up. The part about the author's notes is correct and I'm irritated about it. I have a folder of author's notes I've never posted. It's 41 pages. I give notes because it's how I say I care, and I forget they come with a face. I'm sorry about #9. That one was about me too. R&R pls ♥ (not a flame, a hug in a hat)'",
+        "...a hug in a HAT?? i have never been so confused and so moved. what do i say. do i trade notes or do i just say thanks and keep my Edmund?"
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "faye", "to": "tina", "delay": 15, "text": "A/N: Tina!! (a) thank you for the notes, (b) I'm not mad, (c) I'm writing a note that says I'm not mad and it's 800 words and I'm cutting it down to 20, (d) your Edmund is the first character in a long time who made me want to read page 12. R&R pls ♥ (this is a hug in a hat)" }
+      ],
+      "choices": [
+        { "say": "trade. honest-kind notes both ways. and her author's notes go on a diet.", "next": "end_swap" },
+        { "say": "thank her. keep Edmund as he is. a gift doesn't have to be opened all the way.", "next": "end_keep" }
+      ]
+    },
+
+    "end_swap": {
+      "them": [
+        "we're doing it. 'notes for notes.' she sent chapter 1 of THE FIFTH HOUSE with my three notes in the margin and i've never been so scared to hold a pencil. her chapter 95 has a 2-line author's note. TWO. i cried a little. it says 'A/N: thanks Tina. (♥) (that's it)'.",
+        "and the rain has a name now. her name is Dorothy. she says one line in chapter 2. i'm not telling you the line. but the window girl ANSWERS it. ~*~ malten, i think i just wrote a real thing."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "twilight_tina and fanfic_faye are swapping notes. kind first, true second. the rain in EDMUND is now named Dorothy and she has a line. faye's author's notes are two lines. tina has never felt so read. ~*~" },
+        { "type": "bulletin", "from": "faye", "delay": 40, "subject": "A/N: CHAPTER 95 IS UP (the note is short)", "text": "A/N: Chapter 95 is posted!! It's dedicated to Tina, who told me my author's notes were longer than my chapters. She's right. This one is 2 lines. That's it. That's the note. (It was hard.) R&R pls, no flames. Tina and I are swapping notes, kind first, true second. It's called 'Critique Club.' There are two members. We have a binder. ♥" },
+        { "type": "wallpost", "from": "maddie", "to": "tina", "delay": 100, "text": "Review of the Critique Club exchange, Phase 1: (1) Faye's author's note is now two lines. This is statistically significant. (2) Dorothy the rain is a better-developed character than several in canon. (3) I read the exchange three times. (4) When is chapter 3. -- Maddie" },
+        { "type": "wallpost", "from": "raven", "to": "tina", "delay": 170, "text": "tina. i read the rain scene. it's fine. (that is the highest word i have. do not put it on a sticky note. you will.) it's good. dorothy is better than the person she's named after. -- raven" }
+      ]
+    },
+
+    "end_keep": {
+      "them": [
+        "i wrote three lines. 'Dear Faye, thank you for your time and care. I'm keeping Edmund as he is for now. I'm laminating your notes because they're beautiful.' i hit send. my hands were cold. she wrote back 'A/N: ok (♥) (really) (R&R pls).' that's it. no 800 words. just 'ok.' i don't know if that's a good sign or a very quiet war.",
+        "i laminated the 14 notes and put them in a drawer with the library card and the fortune cookie fortune. Edmund stays Edmund. the rain stays the rain. page 12 is next. he's going to brood. he's allowed to."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "twilight_tina received 14 notes, laminated 14 notes, and is keeping 0 notes. Edmund stays Edmund. thank you for your service, faye (♥). page 12 is next. he's going to brood. it's perfect. ~*~" },
+        { "type": "wallpost", "from": "faye", "to": "tina", "delay": 50, "text": "A/N: Tina, I wasn't mad. I'm writing a note that says I'm not mad. It's longer than the note you laminated. I'm sending it anyway. 'Constructive' just means 'from further away.' I'll read page 12 whenever. R&R pls ♥" },
+        { "type": "wallpost", "from": "darkangel", "to": "tina", "delay": 130, "text": "tina... Edmund broods eleven times. i counted. eleven is the number of tears in my poem 'crimson 11:11.' it is perfect. do not change a single rain. the rain is the only one who understands ~*~" }
+      ]
+    },
+
+    "end_rewrite": {
+      "them": [
+        "i did it. chapter 1, new version: 7 pages. 9 of the 14 notes. Edmund broods three times, each in a different room. the window girl has a name (Marlene) and a WANT (a bus ticket). the rain says one thing to her and she answers.",
+        "it's shorter and it's better. i hate that it's better. i love that it's better. i put the old 11 pages in the drawer with the fortune cookie fortune. they're laminated. i'll never throw them away. that was Edmund's first draft. every vampire has a first draft."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "twilight_tina posted a new chapter 1. 7 pages. nine notes used, five notes laminated. the window girl has a name (Marlene) and a want (a bus ticket). the old 11 pages are in a drawer. every vampire has a first draft. ~*~" },
+        { "type": "wallpost", "from": "sara", "to": "tina", "delay": 60, "text": "tina i read the new chapter 1. you cut the best rain and kept the best line. i killed three sims for the exact same note in my own saga and i'd do it again. we are the same. also marlene needs a pool (no ladder, for the plot)." },
+        { "type": "wallpost", "from": "patrick", "to": "tina", "delay": 140, "text": "tina i read chapter 1 twice. the old one and the new one. i liked both. the rock liked the new one more but he also liked the old one. he said so by being quiet. he's a good critic. nobody tells him anything." }
+      ]
+    }
+  }
+}

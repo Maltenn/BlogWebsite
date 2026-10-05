@@ -1,0 +1,293 @@
+{
+  "id": "aaron",
+  "name": "acoustic_aaron",
+  "tag": "songs about a girl (you know who you are). open mic thursdays, Perk Avenue. be kind.",
+  "avatar": "assets/avatar_aaron.gif",
+  "gender": "Male",
+  "age": 17,
+  "hometown": "Ashland, OH (the quiet part)",
+  "loc": "a stool by the window at Perk Avenue Coffeehouse",
+  "zodiac": "Pisces (obviously)",
+  "status": "It's complicated (it's not, it's one-sided) (that's fine)",
+  "hereFor": "Friends, Someone who listens, An open mic crowd (any size)",
+  "mood": "wistful (in G major)",
+  "lastLogin": "Oct 3 2026 11:51 PM",
+  "theme": {
+    "bg": "#2b1d14",
+    "fg": "#f3e6d0",
+    "accent": "#d98c4a"
+  },
+  "blogTitle": "Liner Notes (what the songs are actually about)",
+  "about": "Hi. I'm Aaron. I play acoustic guitar. It's a Yamaha from a pawn shop, her name is Gladys, and she has a crack in her top that I fixed with a guitar pick and a prayer. Every Thursday at 7 I play three songs at the open mic at Perk Avenue Coffeehouse in Ashland. People ask who the songs are about. They're about a girl. (You know who you are.) I write what I feel, and what I feel is a lot, and it's mostly in G, C, D and E minor because those are the chords I'm fully comfortable with. If you liked a song, tell me. If you didn't, that's fine. It's fine. I'm not going to think about it all night.",
+  "aboutMore": "On Sundays at 2 I play at Maple Grove Manor, which is the one gig where nobody asks whose the girl is. They ask for 'You Are My Sunshine' and the toaster song. Mrs. Ostrowski cries at the toaster song, but she says it's the good kind of crying, and honestly that's the best review I've ever gotten. I don't mention the toaster song at the open mic. It isn't about a girl. I don't know what to do with it.",
+  "meet": "Who I'd like to meet: Chris Carrabba (I'd just stand there). A girl who will listen to a whole song and not check the time (you know who you are, or you don't, and that's okay). A sound guy who knows what a capo is. Whoever invented the second chorus, so I can say thank you. And anybody who's ever stayed to hear the quiet part.",
+  "interests": {
+    "General": "Gladys (my guitar), capo placement, the open mic sign-up sheet (I'm always third), hot chocolate (Dee makes it with extra whipped cream when the crowd's small), rain on the window at Perk Avenue, writing a song in my head on the bus and losing it by my stop, my notebook (Songs, Vol. 4), saying 'you know who you are'",
+    "Music": "Dashboard Confessional (Chris Carrabba is my mentor and doesn't know it), Damien Rice, Jack Johnson, Ben Folds, Elliott Smith (Gwen made me a mix, it was educational), Death Cab for Cutie, The Postal Service, Simon & Garfunkel (my mom's records), Jimmy Eat World (the quiet ones), Static Prophecy (Greg won't let me play the acoustic Voltage Heart at their show, it's fine)",
+    "Movies": "Garden State (Gwen says I'm not allowed to call it my favorite. It's my favorite), Good Will Hunting, Almost Famous, Say Anything (the boombox scene gives me hope AND a feeling of inadequacy), Dead Poets Society",
+    "Television": "One Tree Hill (my mom watches it, I observe), The O.C. (for the music), Scrubs (for the sad parts), A Charlie Brown Christmas (I cry at the piano part and I'm not ashamed)",
+    "Books": "The Perks of Being a Wallflower (everyone's read it, Nate and Lexi share a copy), The Catcher in the Rye (I underlined all of it), the Easy Guitar Chord Songbook (pages 14 to 22 are well loved), Songs, Vol. 4 (my notebook, 61 pages, all of them G)",
+    "Heroes": "Chris Carrabba, Dee the barista, Mrs. Ostrowski, Ms. Valdez (my English teacher, who said 'your imagery is good, your rhymes are brave'), Gladys"
+  },
+  "song": {
+    "name": "Hands Down",
+    "artist": "Dashboard Confessional",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/b8/6b/e9/b86be9ce-8210-18f9-7c59-0f2362d72722/mzaf_14994991837227532381.plus.aac.p.m4a",
+    "pattern": [
+      0,
+      4,
+      7,
+      9,
+      7,
+      4,
+      2,
+      0
+    ],
+    "bpm": 112
+  },
+  "decor": [
+    "assets/badge_coffee.gif",
+    "assets/deco_email_roses.gif"
+  ],
+  "friends": [
+    "gwen",
+    "brittany",
+    "lexi",
+    "nate",
+    "greg",
+    "penny",
+    "skip",
+    "ember",
+    "tony"
+  ],
+  "wall": [
+    {
+      "from": "gwen",
+      "text": "aaron. i listened to 'track four skips.' it's about my mix cd. the one that skips on track four. which is a burn error, not a metaphor. but ok. the chorus is good. you probably haven't heard the song track four is by, which is why i put it on the mix. don't make it about me. (it's about me.)",
+      "time": "Oct 1 2026 4:25 PM"
+    },
+    {
+      "from": "linda",
+      "text": "Beautiful song Aaron!! Debbie heard it from Kayla who heard it from Bryan who heard it from a boy named Evan. I cried at the toaster part. Here is an angel for you. Pass it on within 10 minutes or your guitar will go out of tune!! (((hugs))) ~Aunt Linda",
+      "time": "Sep 29 2026 6:15 AM"
+    },
+    {
+      "from": "brittany",
+      "text": "aaron!! <3 'Spot Number Seven' is the sweetest song anyone has ever written about my top 8 and im so sorry i moved u to 8 on the 4th day!! it was a STRATEGY!! pls dont put my rankings in a song again!! (i cried a little) xoxo",
+      "time": "Sep 28 2026 8:10 PM"
+    },
+    {
+      "from": "lexi",
+      "text": "aaron i heard 'Initials Only' and i just want to say it is NOT about me. is it about me. i have a feeling it's about me. n nate says it's about nate. so now we r both in ur song n we r not talking about it. thx",
+      "time": "Sep 26 2026 6:55 PM"
+    },
+    {
+      "from": "greg",
+      "text": "aaron the toaster song was the best thing that happened in my garage all year. my dad was crying. he said it was the 'dust.' it's not dust. ur on the next bill. (ur not opening for us, we're opening for u) (no we're not, i'm the headliner) (but it was great)",
+      "time": "Sep 26 2026 9:40 AM"
+    },
+    {
+      "from": "nate",
+      "text": "aaron ur whole 'you know who you are' thing is just 'some people' w/ extra words. i said it first. in july. ask anyone. im not mad. some ppl just need 2 look at the calendar",
+      "time": "Sep 25 2026 11:12 PM"
+    },
+    {
+      "from": "skip",
+      "text": "Aaron!! Your set was really something. The song about the CD is a hit. No trombone parts were offered, none were refused, but if you ever want one low note after the last chorus, I'm very available. Also Stan's been humming the toaster song. It's making a comeback at Maple Grove!!",
+      "time": "Sep 24 2026 7:30 PM"
+    },
+    {
+      "from": "tony",
+      "text": "hey aaron ;) quick q, can u write me a song. just like 3 chords. i need it by friday. its for a girl. a specific girl. u know who ;) i'll pay in capri suns. hey ;)",
+      "time": "Sep 22 2026 5:49 PM"
+    },
+    {
+      "from": "ember",
+      "text": "aaron thanks for letting us follow you at the open mic. we're sorry we got a standing ovation from the two baristas. it was because the chair broke. we think. we're not sure. your song about the hands was better. xFadingEmberx",
+      "time": "Sep 18 2026 10:44 PM"
+    }
+  ],
+  "replies": [
+    "Thank you. Really. That means more than I'm going to say here.",
+    "I appreciate that. (I'm going to think about it for a while.)",
+    "No, that's totally fine. I get it. (I don't get it.)",
+    "I wrote that down. In the notebook. Page 62.",
+    "Oh. Okay. That's fine. I'm fine.",
+    "You're nicer than the open mic crowd. (They're nice too. There were four of them.)",
+    "That's the kind of thing that ends up in a bridge.",
+    "I'm going to replay that on the bus and make it better than it was.",
+    "Honestly? That's the nicest thing anyone's said to me since Mrs. Ostrowski. And she said 'nice sweater.'",
+    "I think about things a lot. Right now I'm thinking about your comment."
+  ],
+  "thanksAdd": "Thank you for accepting my request. Honestly I wasn't sure you would. I almost didn't send it. I wrote it three times in my notebook first. Anyway. Open mic is Thursdays at 7 at Perk Avenue. There's no pressure to come. If you do, I'll be third. If you don't, that's fine. It's fine. (I'll save you the seat by the window.)",
+  "ambient": [
+    "Broke a string during the second verse tonight. Kept playing. Finished the song on five. A man at the back clapped. It was Dee, the barista. She gets paid to be there. It still counted.",
+    "Wrote a song on the bus. Lost it at my stop. Walked home trying to remember the second line. It was a good line. I know it was a good line. I'll never know.",
+    "People ask why every song is in G. I say it's the key of honesty. Ms. Valdez asked if I'd tried D. I said I'd considered it. That was 6 weeks ago.",
+    "A little kid at Perk Avenue told me I was 'sad but good.' I'm going to put that on a flyer.",
+    "It's raining. I'm at the window with Gladys. It's the best time to write a song and the worst time to need a pencil."
+  ],
+  "saltyDm": "I saw that the request was declined. That's fine. I understand. I'm just going to sit here for a while and write a song about it. It's called 'Denied (You Know Who You Are).' It's in G. If you hear it at an open mic someday, you'll know. No pressure. No hard feelings. (A little hard feelings.)",
+  "keywords": {
+    "guitar": "Her name is Gladys. She's a Yamaha from the pawn shop on Main Street, $60, with a crack in the top that I fixed with a pick and optimism. She holds a tune about 80 percent of the time. Same as me.",
+    "mic": "Thursdays at 7, Perk Avenue Coffeehouse in Ashland. The sign-up sheet is on a clipboard by the cookies. I'm always third. Three songs, ten minutes. Dee says 'only two about the girl, please.' I said I'd try.",
+    "girl": "I don't say who. That's the whole point. If I said who, it would be a song about a person. This way it's a song about a feeling. (It's also a song about a person.) (You know who you are.)",
+    "song": "I've written 61 pages of songs. 58 are about a girl, 2 are about rain, and 1 is about a toaster. I try not to talk about the toaster one. It's complicated. It's good. I don't know what to do about that.",
+    "toaster": "Okay. You asked. It's called 'Eugene's Toaster.' Mrs. Ostrowski told me her husband fixed their toaster 11 times and I wrote it in one sitting. It's not about a girl. It's the only one I play that makes the whole room go quiet. I don't know why. It feels off-brand."
+  },
+  "banter": {
+    "brittany": [
+      "Brittany, I'd like to say 'Spot Number Seven' isn't an insult. It's a love song for a number. I was seventh for four days and they were the best four days of the week. I understand about the strategy. I'd just like it noted: I'd have taken eighth.",
+      "Brittany, thank you for what you wrote on my wall. I printed it. I put it in the notebook next to the toaster song. I think they'd get along."
+    ],
+    "lexi": [
+      "Lexi, 'Initials Only' is about a girl and a boy and an on-again-off-again situation with a status and a Sidekick. It's not about you. (It's a little about you.) It's mostly about a Sidekick with a dead battery.",
+      "Lexi, if you ever need someone to write a song about Tuesday, I'm available. I've written 4 about Tuesdays and none of them are yours. They're mine. They're about my Tuesdays. They're very quiet."
+    ],
+    "nate": [
+      "Nate, I'd like to address the 'some people' thing. I said 'you know who you are' on August 3rd. You said 'some people' in July. I looked it up. You're right. I'm sorry. I'd like to propose a merger: 'Some people know who they are.'",
+      "Nate, you stood by the amp the whole time at the garage show. I saw you. I appreciate it. It's the first time anyone's stood by my amp, and I'm not sure it was my amp."
+    ],
+    "greg": [
+      "Greg, thank you for letting me open. I understand the acoustic slot is 'a soundcheck with feelings.' I accept that title. I'm putting it on my flyer.",
+      "Greg, about an acoustic Voltage Heart: I rearranged it in D minor. It's slower. The chorus is a whisper. I'll stand in the corner with Gladys and not say anything. You can say no. (Say yes.)"
+    ],
+    "gwen": [
+      "Gwen, thank you for the mix. I played it 14 times. I understand I'm 'not ready' for track 9. I'm going to listen until I am. I know you probably don't want me to say this, but 'Track Four Skips' isn't about the CD. It's about what the skip does to the silence.",
+      "Gwen, I'd like to apologize for calling the Garden State soundtrack 'my whole personality.' You were right to correct me. It's one of my personalities. The other is Gladys."
+    ],
+    "tony": [
+      "Tony, I'd be honored to write you a song. I'll need a name. A first name. Not 'hey.' Maybe try telling her something true and then stopping. That's it. That's the whole song.",
+      "Tony, I wrote it. It's called 'Hey (Wink).' It's four chords. It's the saddest song I've ever written and I have no idea why. It's yours. Don't play it for the girl. Play it for yourself, in your room, at 11. You'll see."
+    ],
+    "skip": [
+      "Skip, I'd like to formally say 'Track Four Skips' isn't about you. It's about a CD. But the low note you suggested after the last chorus was good. I'd never have thought of it. Please don't tell Gladys.",
+      "Skip, your grandpa Stan asked for 'Pennsylvania Polka' again. I played it in E minor by accident. He said, very politely, 'son, put it back.' I put it back. It was the most useful note I've ever received."
+    ],
+    "ember": [
+      "Ember, you got a standing ovation at the open mic and I got a polite nod and a refill. I understand. It's fine. It was because the chair broke, wasn't it. (It wasn't.) Congratulations. Truly.",
+      "Ember, I listened to your demo. It's loud. There's a quiet part about 1:50 into track 2. I played that part on Gladys. It's the same chord as 'Hands in My Pockets.' We're closer than we think."
+    ]
+  },
+  "statuses": [
+    "aaron is in G. (aaron is always in G.)",
+    "aaron is not thinking about it. (aaron is thinking about it.)",
+    "aaron broke a string and finished the song on five. nobody noticed. that's fine.",
+    "aaron is writing a song about a toaster. it's not about a girl. it's about a toaster. he's as surprised as you.",
+    "aaron is at Perk Avenue. third on the list. as always.",
+    "aaron played the toaster song at Greg's garage by accident. he was nervous and his hands chose. nobody was ready.",
+    "aaron is at Maple Grove Manor. today's crowd: 23. today's requests: 'You Are My Sunshine,' the toaster one, and 'something with a trombone.' (Stan.)"
+  ],
+  "bulletins": [
+    {
+      "subject": "OPEN MIC THURSDAY: Perk Avenue Coffeehouse, 7 PM (please come, or don't, it's fine)",
+      "body": "Thursday. Perk Avenue Coffeehouse on Main Street in Ashland. 7 PM. The sign-up sheet is by the cookies. Three songs per person, ten minutes. I'm going third, as usual. The set list: 'Hands in My Pockets (You Know Who You Are),' 'Track Four Skips,' and if time allows, a new one. There will be hot chocolate. Dee says the whipped cream is free if there are fewer than 10 people in the crowd. So please come. (Please don't come in numbers over 9.)"
+    },
+    {
+      "subject": "A Note About The Phrase 'You Know Who You Are'",
+      "body": "Several people have asked, so I'd like to clarify. It isn't a code and it isn't about any one person. It's about the feeling when someone's name is on the tip of your tongue and you don't say it because saying it would make it real. If you think a song is about you, it might be. If you think it's about someone else, it might be that, too. 'Initials Only' is about 2 people. 'Spot Number Seven' is about a number. 'Seven Beads, One of Them Blue' is about a friend who made me a bracelet; that counts, and it's the second song I've written with no 'you know who you are' in it. 'Eugene's Toaster' is about a toaster. Thank you for reading. (You know who you are.)"
+    },
+    {
+      "subject": "POLL: title for song #62 (vote in the comments)",
+      "body": "Options: 1) 'Fourth Fret (You Know Who You Are)' 2) 'Gladys (Nothing About A Girl)' 3) 'Tuesday, Again' 4) 'The Quiet Part.' If it's a tie I'll play all four back to back at the open mic. That's a threat. It's a very quiet threat. It's in G."
+    }
+  ],
+  "pcComments": [
+    "This is a really nice picture. It looks like the kind of day you'd write a song about. I'm not going to. (I might.)",
+    "I looked at this for a long time. I hope that's okay. The light on the left is perfect.",
+    "Great photo. I'd say more but I'm trying to say less. It's a new thing I'm working on.",
+    "This made me think of a chord. I won't say which one. G.",
+    "I'm not a photographer but I know what a good moment looks like. This is one."
+  ],
+  "dmSeed": [
+    {
+      "text": "Hi. It's Aaron. (acoustic_aaron.) Thank you for accepting my request. I almost didn't send it. I wrote it three times in my notebook first. I play guitar at an open mic on Thursdays, and you don't have to come. But if you want, I'll save you a seat. It's the one by the window."
+    },
+    {
+      "text": "Also, if it's weird that I messaged right away, that's fine. I can wait. I'm good at waiting. I've written 61 pages about it."
+    }
+  ],
+  "dms": [
+    "Malten, sorry to bother you. I have a question about the open mic sign-up sheet. I was third. A man named Gordon asked to switch to third because he 'has a poem.' I said sure. Now I'm fourth. Is that okay? Or did I just give away my third?",
+    "I broke a string during the second verse tonight. I want you to know I finished the song on five. I want you to know the crowd (4 people) didn't notice. I want you to know I noticed. I'll be noticing for a while.",
+    "Question: is a song in 6/8 still sincere? Ms. Valdez said 6/8 is 'a waltz with ambition.' I said that's what I was going for. She said 'that's not what I meant.' I'm confused. I'm still going to do it.",
+    "A man at Maple Grove (he's 91) said my song about the toaster reminded him of his wife. I said 'thank you.' He said 'no, thank YOU.' I haven't said anything about it since. I think I'm going to be okay.",
+    "Someone at school called Gladys 'cute.' Is that bad? I think it might be good. I think it might be bad. I think she's cute. I'm not sure what to do with my feelings about this.",
+    "Is it weird if I write a song about your wall? Not you. The wall. The wall where people write things. It's a quiet wall. It doesn't talk back. It's just there. It's not about a girl. I think I need to take a walk.",
+    "I wrote something for Dee. She makes the hot chocolate. I said 'I wrote you a song.' She said 'is it about the girl?' I said 'no, it's about hot chocolate.' She said 'that's the first time anyone's written me a song.' I think I made her day. I think I made mine.",
+    "I tried to write a song that wasn't about a girl. It turned out to be about a dog. Then the dog turned out to be a metaphor. Then the metaphor was a girl. I think I'm just a very consistent person."
+  ],
+  "blog": [
+    {
+      "title": "Liner Notes, Vol. 1: What 'Track Four Skips' Is Really About",
+      "date": "Sep 21 2026 11:30 PM",
+      "mood": "reflective",
+      "body": "People keep asking who 'Track Four Skips (You Know Who You Are)' is about. I'll tell you what it's about. In August someone made me a mix CD. She hand-lettered the cover. It had 14 songs and I'd heard of 3. I played it in my mom's car every day for 40 days. On the 41st day I noticed it skips on track 4. It's a burn error, a little scratch. It doesn't matter. But when it skips there's a half-second of silence before the next part, and in that silence I realized I'd been playing the same 14 songs for 40 days to feel close to the person who made them. That's the song. It's about the half-second. It's in G. The chorus has a line about it skipping right where it counts, which I'm told is a little on the nose. I'm not going to say who made the CD. (You know who you are.) (Gwen, it's you.)"
+    },
+    {
+      "title": "Maple Grove Manor, Sundays at 2",
+      "date": "Sep 13 2026 9:05 PM",
+      "mood": "warm",
+      "body": "Every Sunday at 2 I play for 23 people at Maple Grove Manor. It's the best gig I have. There's no sign-up sheet and no microphone. They request things. Mr. Voss asks for 'You Are My Sunshine' every week, I play it every week, and he says 'that's a new arrangement.' It isn't. In August Mrs. Ostrowski asked if I'd write something about her husband Eugene, who fixed the toaster 11 times, and I said I wasn't sure I was the person. She said, 'you're the one with the guitar.' So I wrote it. 'Eugene's Toaster.' It took 20 minutes and it has no chorus. When I played it the first time the room went quiet and Mrs. Ostrowski put her hand on her chest. Afterward she said, 'that's exactly how he'd have been about it.' I don't know what I did. But it's the best thing I've written and I didn't need a girl for it. I'm still thinking about that."
+    },
+    {
+      "title": "Things I Would Say To The Girl (a draft)",
+      "date": "Aug 30 2026 1:12 AM",
+      "mood": "nervous",
+      "body": "1) Hi. 2) I wanted to ask about the mix. (Not about the mix. About whether you made it for me, or for a person, or for the air.) 3) I've written 61 pages. I'll be honest: 58 are about a girl, 2 are about rain, and I think the last one's about a toaster. 4) If you've ever heard one, it was the one on the bus. 5) I don't have a number 5. I'm leaving it blank. It's a room for something I haven't figured out yet. 6) I'm sorry if this is a lot. 7) I'm sorry I said sorry. I deleted this. Then I put it back. Then I turned it into a blog post so it would definitely not be a conversation. (You know who you are.) (I'm not going to say it. This is the system. It's working.)"
+    }
+  ],
+  "survey": {
+    "title": "The Sensitive Songwriter Survey (answer honestly, it's fine, I'll be fine)",
+    "qa": [
+      [
+        "name:",
+        "Aaron. acoustic_aaron online. 'Hey, guitar guy' in person."
+      ],
+      [
+        "instrument:",
+        "Gladys (a Yamaha, $60, a crack, a heart)"
+      ],
+      [
+        "favorite chord:",
+        "G. (It's also my second, third, and fourth.)"
+      ],
+      [
+        "last song you wrote:",
+        "'She Said Cool (Just Cool).' It's 2 minutes long. 90 seconds is the guitar."
+      ],
+      [
+        "who is it about:",
+        "You know who you are."
+      ],
+      [
+        "worst review you've received:",
+        "A man at the open mic said 'it's a lot.' I've been thinking about it for 5 weeks."
+      ],
+      [
+        "best review:",
+        "Mrs. Ostrowski put her hand on her chest. That's it. That's the review."
+      ],
+      [
+        "what's in your guitar case:",
+        "a capo, 3 picks (one is a penny), 2 sets of strings, a harmonica I can't play, and a napkin that says 'something about rain, maybe a bridge'"
+      ],
+      [
+        "do you cry at movies:",
+        "I cry at the trailers. I'm not ashamed. I'm a little ashamed."
+      ],
+      [
+        "do you have a stage name:",
+        "Aaron. I considered 'A. Acoustic.' Dee said 'that's just your name with a dot.'"
+      ],
+      [
+        "pet peeve:",
+        "People who talk during the quiet part. There's always a quiet part. That's the point."
+      ],
+      [
+        "describe yourself in one sentence:",
+        "I'm a person who writes everything down so I don't have to say it out loud."
+      ]
+    ]
+  }
+}

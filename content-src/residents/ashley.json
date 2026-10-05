@@ -1,0 +1,294 @@
+{
+ "id": "ashley",
+ "name": "cheer_capt_ashley",
+ "tag": "Cheer captain. Everything is color coded. [RED] be on time. [PINK] you look great.",
+ "avatar": "assets/avatar_ashley.gif",
+ "gender": "Female",
+ "age": 17,
+ "hometown": "Cuyahoga Falls, OH (the house with the pool, the whiteboard in the garage, and the flamingo float in the shed under a sheet)",
+ "loc": "Command Post (my garage, whiteboard wall, 5:45 AM)",
+ "zodiac": "Virgo (obviously. starxgazer did my chart without asking and it was 94% accurate. I have the printout. it's in the PURPLE folder)",
+ "status": "Single (on hold until after Regionals. [YELLOW] this is not optional)",
+ "hereFor": "Friends, squad updates, Operation Regionals",
+ "mood": "[GREEN] ready",
+ "lastLogin": "Oct 4 2026 9:45 PM",
+ "theme": {
+  "bg": "#fef9f0",
+  "fg": "#1b1b1b",
+  "accent": "#d90429"
+ },
+ "blogTitle": "The Captain's Log (color coded, tabs on the right)",
+ "about": "[RED] Welcome to the command post. I'm Ashley, captain of the Eagles varsity cheer squad (12 girls, 1 coach, 1 mascot who is a bird). Cheer is a sport. We have a season, a schedule, a legend and a binder. Competition season runs November through February and I treat it like a military campaign because it is one, with more glitter. Everything on this page is color coded. The legend is below. [YELLOW] means optional. [YELLOW] is never optional. I've never dropped anyone. I've been the base on the 3-high for two seasons, catching people since the 9th grade. Someone has to be the floor. [PINK] I like your shoes.",
+ "aboutMore": "THE LEGEND: [RED] mandatory. [ORANGE] snacks (yes, oranges, it started as a joke and now it's policy). [YELLOW] optional (it isn't). [GREEN] good news, go. [BLUE] bows, ribbons, hair. [PURPLE] emergency (injury, tears, group chat). [PINK] personal, nice, off the record. Standing order #1: be early. #2: if you're early you're on time. #3: nobody falls. #14: Brittany, we are not discussing spot 5.",
+ "meet": "Who I'd like to meet: whoever invented the pom-pom (I'd like to shake their hand and give them 12 notes on durability). The Regionals judge who gave us a 7.2 for showmanship last year (I have the sheet, it's in the RED folder). Coach Dunleavy, about the pep rally, which he has now moved three times. Chad, in a meeting, about the mascot suit. And whoever controls the weather on competition day. [PURPLE] We need to talk.",
+ "interests": {
+  "General": "cheer (varsity, 4th year, base), the squad (12), color-coded binders (one per routine), whiteboards, label makers (I own three), oranges (literal), 5:45 AM, stunting, competition spreadsheets (with tabs), bobby pins (I carry 40), the pool (offseason), being early, helping people carry things, saying 'copy' instead of 'ok'",
+  "Music": "Hey Mickey by Toni Basil (the OG cheer anthem), Kelly Clarkson (Since U Been Gone is our warmup), Gwen Stefani, Destiny's Child, the 8-count mixes Coach Dana burns for us (each CD has a color on the label), whatever plays at Friday pregame, Fall Out Boy (secretly, in the car, windows up)",
+  "Movies": "Bring It On (a documentary), Legally Blonde (a binder and a plan, that's all it takes), Remember the Titans (the captain parts are real), Miracle (the speech), Mean Girls (the pyramid in it is wrong), Bring It On Again (fine)",
+  "Television": "Friday Night Lights (new, I watch it for the sideline shots), Dancing with the Stars (I score along), America's Next Top Model (Tyra's rules are standing orders), the national cheer championships on tape (watched it 40 times), Laguna Beach (LC has a plan too)",
+  "Books": "my competition binder (4 inches), the high school spirit rules handbook (read it twice, there's a section on pom-pom size), Seventeen (I score the quizzes), How to Win Friends and Influence People (Coach Dana gave it to me, I take notes), Sisterhood of the Traveling Pants (the first one)",
+  "Heroes": "Coach Dana, my mom (a nurse, 12 hour night shifts, knows everyone on every floor), my cousin Tasha (taught me to base, went to college, I never thanked her properly), the flyers (they trust me with their lives daily), Jenna (see blog), anybody who's ever stood at the top of a pyramid and said 'ready?'"
+ },
+ "song": {
+  "name": "Hey Mickey",
+  "artist": "Toni Basil",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/9b/e6/77/9be677b8-8c3f-39b8-a1ff-88d1384ab960/mzaf_13261947603015749907.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   0,
+   7,
+   7,
+   9,
+   9,
+   7,
+   4
+  ],
+  "bpm": 120
+ },
+ "decor": [
+  "assets/deco_rainbow_bar.gif",
+  "assets/deco_new_blue.gif"
+ ],
+ "friends": [
+  "brittany",
+  "chad",
+  "meg",
+  "hailey",
+  "becca",
+  "yvette",
+  "thad",
+  "tyler",
+  "sven"
+ ],
+ "wall": [
+  {
+   "from": "brittany",
+   "text": "ASHLEY. spot 5 is NOT a negotiation. i read ur 3 page appeal. it had TABS. ok i'm moving u to 5.5. don't tell anyone. don't tell spot 6. xoxo",
+   "time": "Oct 3 2026 6:20 PM"
+  },
+  {
+   "from": "chad",
+   "text": "ASHLEY!! the pyramid friday was SICK. i cheered for ur cheering. the girl at the top waved at me and i dropped my nachos. NO REGRETS. also i still dont know how to be the mascot im sorry. the suit smells like the last guy",
+   "time": "Oct 1 2026 8:44 PM"
+  },
+  {
+   "from": "meg",
+   "text": "ASHLEY i drew u as a dressage horse!! (the dancing ones!!) w/ a braided mane in 7 colors bc of ur system!! the pom poms r on the hooves!! pls approve!! i can do the clipboard in the mouth if u want!!",
+   "time": "Sep 28 2026 5:15 PM"
+  },
+  {
+   "from": "hailey",
+   "text": "ashley!!! the lunch table routine is almost done!! i counted 5 6 7 8 the whole time!! do u think i could be a flyer?? i'm kind of small!! what team?? EAGLES!!",
+   "time": "Sep 24 2026 12:51 PM"
+  },
+  {
+   "from": "yvette",
+   "text": "Ashley: squad photo is THURSDAY 3:30. Bleachers. Blue uniforms, the Eagle blue, not the other blues. I looked up the hex code. You will like it. Also I know ur voting for me. I've seen the spreadsheet. VOTE YVETTE.",
+   "time": "Sep 20 2026 4:02 PM"
+  },
+  {
+   "from": "becca",
+   "text": "Ashley, pregame schedule acknowledged. Tubas behind the fence at 6:38. I'll keep the pyramid inside 14 minutes in my head. Sorry about the yard line. (I used your colors in my notes. Green. It's calming.)",
+   "time": "Sep 19 2026 5:25 PM"
+  },
+  {
+   "from": "tyler",
+   "text": "ash bro. lax is gonna come to ur regionals n be LOUD. we have a chant. its 2 words. its 'nobody falls.' bro i stole it from ur page. bro.",
+   "time": "Sep 14 2026 7:36 PM"
+  },
+  {
+   "from": "debbie",
+   "text": "Ashley, I saw cheer practice from the attendance window today. You were doing the thing where you throw a girl in the air. I did not like it. Love, Mom. P.S. I loved it. P.P.S. is she okay?? Love, Mom",
+   "time": "Sep 5 2026 3:55 PM"
+  }
+ ],
+ "replies": [
+  "[GREEN] copy that. thank you!",
+  "Noted. Logged. Color coded. [PINK] you're sweet.",
+  "[YELLOW] optional reply: that's cute. (it's not optional. I'm replying.)",
+  "That is a negative. [PINK] but a nice try.",
+  "Roger that. Copy. Understood. At ease.",
+  "[BLUE] noted. I'll bring a spare.",
+  "[PURPLE] oh no. ok. I'm coming. where are you. I have tissues. I have 12 packs",
+  "Standing order #3. Nobody falls. That includes you.",
+  "I'd like to table this until after Regionals. [PINK] That's a yes though",
+  "Thank you. I put it in the folder. The good folder."
+ ],
+ "thanksAdd": "[GREEN] Request ACCEPTED. Welcome aboard, malten. You've been assigned a color (pending, please advise your favorite). Standing orders: (1) be early, (2) if you're early you're on time, (3) nobody falls. [PINK] I'm glad you're here. [ORANGE] Snacks are oranges. That is not a joke. It's a tradition.",
+ "ambient": [
+  "[PURPLE] The 3-high wobbled at 4:12 today. Nobody fell. Nobody touched the ground. I caught Jenna and Priya at the same time and I'd like it noted that I have two arms. [GREEN] Great teamwork.",
+  "[YELLOW] Reminder: standing order #4 is label your things. If you can't find your water bottle it's because it isn't labeled. If it's labeled and you can't find it, you're not looking in the right color.",
+  "[PINK] Someone left a note in my locker today that said 'thanks for being the floor.' I don't know who. I'm keeping it. It's in the PINK folder. It's the only thing in there.",
+  "[RED] The pep rally order of events has been re-sent for the third time. I've also re-sent it as a haiku. As a color. Squad: it's RED.",
+  "[ORANGE] A week with no oranges at practice and I'm not okay. I'm okay. I have granola bars. They're not the same. They never were.",
+  "At 5:45 this morning the garage whiteboard said REGIONALS: 112 DAYS. At 5:50 I changed it to 111. Somebody has to keep count. I'm told I'm not the only one on this site who does (hi, Becca)."
+ ],
+ "saltyDm": "[RED] Request denied. Noted. Logged. Filed. [PINK] I'm not upset. I'm not even yellow. I'm a little bit orange. I'll bring you an orange anyway. It's in the folder labeled 'friends I haven't made yet.' The folder is green. It has room.",
+ "keywords": {
+  "cheer": "Varsity, 12 girls, 4th season, 3-high pyramid, and we practice 3:45 to 6:00 every day, plus Saturdays, plus the bus. It's a sport. I'll send you the schedule. It's color coded. You'll understand it in 8 seconds.",
+  "pyramid": "The 3-high is 12 girls, 3 levels, and 11 seconds of trust. I'm the base. That means I stand on the ground and I catch. If you want a position, that's the one nobody wants and everybody needs.",
+  "pool": "What happened at my pool is classified. [PURPLE] I'll say this. The flamingo float is in the shed under a sheet. Spot 4 knows why. The pool is closed for the season. It's very quiet. I sit by it sometimes. [PINK]",
+  "oranges": "[ORANGE] It started in 9th grade. A freshman brought sliced oranges to practice and the squad went silent for 8 seconds because it was the best snack we'd ever had. It's policy now. Pretzels are not oranges. I'm not discussing pretzels.",
+  "regionals": "Late January. The bus leaves at 5:30 AM. [RED] Call time 5:15. We've been training since June. I have the countdown on the garage whiteboard. It's the only thing in the garage I let the dog near.",
+  "color": "[PURPLE] is my color. It's the emergency color. I'm the one people call. I'd like to be yellow sometimes. (Optional.) (It's not optional.) What's yours? I'm making a chart."
+ },
+ "banter": {
+  "brittany": [
+   "[RED] Brittany. Spot 5. Appendix A: 14 months of loyalty. Appendix B: every time I laughed at the pretzel place. Appendix C: the time I held your purse during the Razr situation. Submitted in triplicate. [PINK] I love you. I'd like spot 4. I'll take 5.5.",
+   "[PURPLE] What happened at my pool is classified, Brittany, and I'm not discussing it, but the flamingo float is in the shed under a sheet and spot 4 knows why. [GREEN] Pool party is still on for next summer. [YELLOW] (Optional.) (It's not optional.)"
+  ],
+  "chad": [
+   "Chad, your cheering for the pyramid was the loudest thing I've heard all season and you're not on my squad. I have a spot for you. It's the mascot. The suit has wings. [BLUE] It's 3 sizes too small. [ORANGE] I'll pay in oranges.",
+   "Chad. Standing order #7: when a flyer waves at you, you wave back. You do not drop nachos. You wave. Practice at home. [GREEN] Also you're the best fan we've ever had and I mean it."
+  ],
+  "meg": [
+   "Meg. The dressage horse is approved. [GREEN] The braided mane in 7 colors is exactly right. I'd like the school colors on the saddle blanket (hex codes attached). Please add a small clipboard. She's a captain.",
+   "Meg, you asked what [PINK] is for. It's personal, nice, off the record. You've been [PINK] since the day you drew me a pony with a whistle."
+  ],
+  "tony": [
+   "Tony. [RED] No. [PINK] But I respect the persistence. [YELLOW] Please stop winking at the squad bus. The driver asked me to file a report. It's a very small report. It has one tab.",
+   "Tony, I counted: 53 winks and 1 compliment about my hair ribbon. The compliment was nice. The winks are a no. [GREEN] Partial credit for the compliment. I'd give full credit but I'm not a teacher. I'm a captain."
+  ],
+  "becca": [
+   "Becca. [GREEN] Acknowledged. Tubas behind the fence at 6:38. Pyramid inside 14 minutes. Thank you for the bobby pins. I carry 40. I was out. [PINK] You're the only person who runs a more organized bag than I do.",
+   "Becca, the band and the cheer squad are not at war. We're two organized groups who need the same 40 yards. [BLUE] I'm proposing a treaty. A schedule. In color. You get yellow. It's the best color. It's not optional."
+  ],
+  "yvette": [
+   "Yvette. Squad photo Thursday 3:30. Blue uniforms (the Eagle blue, not the other blues). I emailed you the hex code. [PINK] I'm also voting for you. I've seen your spreadsheet. I made my own. They match. This is how we know it's right.",
+   "Yvette, the proof lists our showmanship score as 7.2. That was LAST year. This year it's a 9.1. [RED] Please correct. [PINK] Thank you for cutting the candid where Priya is mid-yawn. She'll thank you in person."
+  ],
+  "hailey": [
+   "Hailey. [GREEN] Progress report: you have 1 2 3 4 AND 5 6 7 8. That is a complete count. [RED] Next: 9 through 16. Open gym Tuesday 3:45, small gym. [PINK] I said 'small and brave.' I meant both. I'm told you had it laminated at the library. That is initiative.",
+   "Hailey, when I ask 'who's ready,' the correct answer is 'ready.' Not 'what team.' [YELLOW] (Optional.) (It's not optional.) [PINK] I do love the enthusiasm. I'm not saying that in the legend. I'm saying it out loud."
+  ],
+  "tyler": [
+   "Tyler. [BLUE] Thank you for the chant. 'Nobody falls' is two words and you got both right. I didn't invent it. Coach Dana stole it from her coach. Lacrosse is welcome at Regionals. Please keep Moose in the truck with the windows cracked. [PINK] Tell him he's a good boy.",
+   "Tyler, you offered to be a spotter on the 3-high. [RED] That's a no. Spotters train for 6 weeks. You can be the person who stands near the mats and says 'bro.' That's the whole job. [GREEN] You're perfect for it."
+  ],
+  "sven": [
+   "Sven. [GREEN] Base training update: you are very still and very kind. [RED] Please do not apologize to the flyer DURING the lift. Apologizing afterward is fine. I have allowed it. It's in the legend, under [PINK].",
+   "Sven, you asked what 'copy' means. It means 'I understand and I will do it.' I asked what it is in Swedish and you said 'ja.' I've put 'ja' in the legend. [BLUE] I'll learn the rest at Regionals."
+  ]
+ },
+ "statuses": [
+  "ashley is [GREEN]. bus at 5:30 AM. this is not a drill. it's a bus",
+  "ashley is color-coding the carpool chart. GREEN: car full of girls. YELLOW: somebody forgot their shoes. RED: it's a bus",
+  "ashley is at the command post. whiteboard is full. coffee is not. [PURPLE]",
+  "ashley is drilling the 3-high. nobody has fallen. that is the policy",
+  "ashley just got a fourth label maker. squad, brace yourselves",
+  "ashley is sitting by the pool. it's closed for the season. it's very quiet. [PINK]",
+  "ashley is writing a thank-you card for each of the 12 girls on the squad, color coded to their favorite color. it's Sunday night. it's a good Sunday",
+  "ashley is reading spirit rules, section 4: pom-pom size. you'd be surprised",
+  "ashley is [YELLOW]. optional. (it's not optional)",
+  "ashley is teaching sven to be a base. he's very still. he apologizes to the flyer afterward. it's working [GREEN]"
+ ],
+ "bulletins": [
+  {
+   "subject": "[RED] OPERATION REGIONALS: THE BRIEFING (all squad, read it)",
+   "body": "SQUAD: Regionals is in late January. The bus leaves at 5:30 AM. [RED] Call time 5:15. [ORANGE] Snacks: assigned by rotation. [BLUE] Bows: the blue ones, not the other blues. [GREEN] Hair: high pony, 3 pins, 1 spare pin in your sock. [PURPLE] If you cry, cry on the bus. I'll sit next to you. [PINK] You've trained since June. You've got this. I've got you. Nobody falls. That's the briefing. Dismissed. (Say 'copy.')"
+  },
+  {
+   "subject": "STANDING ORDERS (for everyone, not only the squad)",
+   "body": "1) Be early. 2) If you're early you're on time. 3) If you're on time you're late. 4) Label your things. 5) Bring a spare hair tie. 6) Say 'copy' when you hear an instruction. 7) If a flyer waves, wave back. 8) Never drop the nachos. 9) Nobody falls. That's it. That's the whole list. I've been told it's 'a lot.' It's 9. I have 14 in the binder. [PINK] Now go have a nice day. I mean that. It's in the legend."
+  },
+  {
+   "subject": "[ORANGE] THE ORANGES, EXPLAINED (for new residents)",
+   "body": "It started in the 9th grade. A freshman brought sliced oranges to practice on a paper plate with a plastic knife and the whole squad stood there in silence for 8 seconds because it was the best snack we'd ever had. We've done it ever since. Week 1: Priya (40 slices, a tray, a doily). Week 2: Courtney (oranges, but cut by her mother, which is a rule violation but I allow it). Week 3: someone brings pretzels. We have a conversation. [PINK] It's not about the oranges. It's about someone remembering to bring something."
+  }
+ ],
+ "pcComments": [
+  "[GREEN] Excellent posture. 10 out of 10. Chin up half an inch and you'd be a flyer.",
+  "[PINK] you look great and I'm saying that off the record",
+  "[BLUE] love the bow. which blue is it. I need to know",
+  "[RED] you're blinking in this one. delete it. I mean that kindly",
+  "[YELLOW] optional comment: cute. (it's not optional. you must say thank you)"
+ ],
+ "dmSeed": [
+  {
+   "text": "[RED] Malten. Ashley here, captain of the Eagles varsity cheer squad. You're now a friend, and a friend has a place in my organization. [GREEN] Welcome. First assignment: tell me your favorite color. I keep a chart. [PINK] It's not a test. It's a hug with a spreadsheet."
+  }
+ ],
+ "dms": [
+  "[PURPLE] Malten. Emergency. Someone put pretzels in the ORANGE column of the snack schedule. I'm not angry. I'm in the garage with the whiteboard. I'll be fine in 11 minutes.",
+  "Question. Can someone be a good captain if she can't do a back handspring? I'm a base. I stand on the ground. I catch. I've never flipped in front of anybody. [PINK] Don't answer that. I just wanted to ask someone who isn't on the squad.",
+  "[BLUE] Malten, what's your favorite color? I'm making cards. I make one for everyone on the squad, and I've decided you're on the squad. Not in a cheer way. In a 'gets a card' way.",
+  "I have three label makers: garage, binder, bedroom. Last week I labeled the dog. His label says CAPTAIN OF NOTHING. He doesn't mind. He's a very good sport.",
+  "[ORANGE] Oranges update: it was Priya's turn. She brought 40 slices on a tray with a doily. A DOILY. She's a freshman. I teared up. [PINK] Nobody saw.",
+  "[RED] I need a favor. If you see Chad at the pep rally, tell him the Eagle suit isn't a costume. It's a role. [YELLOW] That's all.",
+  "[YELLOW] Optional question: how do you feel about spreadsheets. (You must answer. It's a joke. It's also not.)",
+  "[PURPLE] Brittany moved me to spot 5.5 and says it's 'a compromise.' I brought it to the squad. They voted 12 to 0 in my favor. Brittany says 'it's not a democracy.' I said 'it's a top 8.' She said 'exactly.' I don't know what won."
+ ],
+ "blog": [
+  {
+   "title": "5:45 AM: a day, color coded",
+   "date": "Sep 27 2026 10:15 PM",
+   "mood": "[GREEN] organized",
+   "body": "[PURPLE] 5:45 AM: whiteboard in the garage. REGIONALS: 118 DAYS. Mom comes home from the hospital. We swap places in the kitchen like a relay. [GREEN] 6:30: bus. [RED] 7:15 to 2:50: school (this is the part with the least color, honestly). [ORANGE] 3:45: practice. Snack rotation: Courtney. [BLUE] 5:30: hair for tomorrow. [PINK] 6:45: dinner, and I make a chart for my little brother Noah, who's 9: GREEN, homework done. YELLOW, bath (optional) (it's not). [PURPLE] 7:00: Mom leaves for her night shift. We wave from the porch. She says 'you're doing great.' I say 'copy.' She says 'don't say copy to your mother.' I say 'copy.' [GREEN] 10:00: sleep. I set three alarms. All three are color coded. I like to know what time it is."
+  },
+  {
+   "title": "The Day I Dropped Jenna (a post I've been meaning to write)",
+   "date": "Sep 22 2026 11:04 PM",
+   "mood": "[PINK] honest",
+   "body": "9th grade. A Tuesday. 4:12 PM. I'd been a base for six weeks and I was very proud of my arms. Jenna was our flyer, 90 pounds and no fear. We were running the basket toss and I looked up one half second too late. She hit the mat. She was fine. She'd landed on her side and she laughed and said 'whoops,' but I couldn't breathe and I sat on the floor of the gym for eleven minutes. That night I got a note in my locker. It was folded very small. It said: 'it's ok. catch me again.' I've kept it. I've caught her about 400 times since. Zero drops. I'm told I'm 'intense about safety.' This is why. I don't do the flips. I'm the floor. And someone has to be the floor, and she trusted me to be it. I'll never be done earning that."
+  },
+  {
+   "title": "Movies about cheerleading, graded (by a cheerleader)",
+   "date": "Aug 24 2026 9:30 PM",
+   "mood": "[YELLOW] opinionated (optional)",
+   "body": "BRING IT ON: A-. The spirit fingers are correct. The Regionals scene is accurate to the point of trauma. I flinched at the audition. LEGALLY BLONDE: A. She has a binder. She has a plan. She is a cheerleader and she wins by being prepared. This is the most accurate movie about my life. MEAN GIRLS: B. The pyramid in the gym is not a pyramid. It's a wobble. Nobody would let that pass inspection. BRING IT ON AGAIN: C. Not enough captain. Not enough tabs. Too much 'we're just here to have fun.' We're here to have fun and also to win. Both can be true. They can both be color coded. [PINK] But it's still a good movie. I watched it on a Saturday. I cried at the end. Nobody saw. It's in the folder."
+  }
+ ],
+ "survey": {
+  "title": "THE CHEERLEADER SURVEY (I scored it myself)",
+  "qa": [
+   [
+    "name:",
+    "Ashley. 'Captain' on the bus. 'Ash' to a short list of people I've decided can call me that [PINK]"
+   ],
+   [
+    "position:",
+    "base. 4 seasons. I stand on the ground and I catch. It's a real job"
+   ],
+   [
+    "how many pom-poms do you own:",
+    "14. 8 for the squad, 3 for practice, 2 for emergencies, 1 for the dog"
+   ],
+   [
+    "favorite cheer:",
+    "any cheer where the whole crowd joins in. The stunts are for the judges. The cheers are for the crowd"
+   ],
+   [
+    "what's in your gym bag:",
+    "40 bobby pins, 12 hair ties, a label maker, a first aid kit, 12 packs of tissues, my blue ribbon, a spare ribbon (in case of Priya), and one orange"
+   ],
+   [
+    "who is your enemy:",
+    "[RED] nobody. rival schools are 'respected competitors.' It's in the handbook. I wrote the handbook"
+   ],
+   [
+    "worst day of your cheer career:",
+    "the day I dropped Jenna. 9th grade. A Tuesday. 4:12. She was fine. I wasn't. See blog"
+   ],
+   [
+    "best day:",
+    "the day Jenna asked me to catch her again [PINK]"
+   ],
+   [
+    "what's your color:",
+    "purple. The emergency color. I'm an emergency kind of person. I'm the one people call. I'd like to be yellow sometimes (optional)"
+   ],
+   [
+    "any pets:",
+    "a dog named Biscuit (his label says CAPTAIN OF NOTHING, he doesn't mind). a goldfish named Standing Order"
+   ],
+   [
+    "most embarrassing moment:",
+    "I yelled 'COPY' at my mom in a restaurant. She was asking if I wanted dessert. I said 'copy.' I got dessert"
+   ],
+   [
+    "describe yourself in one sentence:",
+    "I'm the floor. Someone has to be, I'm good at it, and I will not let you fall"
+   ]
+  ]
+ }
+}

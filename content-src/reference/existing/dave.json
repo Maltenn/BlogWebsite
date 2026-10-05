@@ -1,0 +1,159 @@
+{
+ "id": "dave",
+ "name": "hax0r_dave",
+ "tag": "1 c0uld h4ck th1s s1te but todd is my friend",
+ "avatar": "assets/avatar_dave.gif",
+ "age": 16,
+ "loc": "b4sement, undisclosed location (ohio)",
+ "mood": "1nv1s1bl3",
+ "lastLogin": "Jul 4 2026 2:07 AM",
+ "theme": {
+  "bg": "#000000",
+  "fg": "#00ff41",
+  "accent": "#00e5ff"
+ },
+ "about": "greetings. u have reached the pr0file of hax0r_dave. i am what experts call a 'white hat' which means i COULD get into stuff (mainframes) but i choose peace. i run a dual boot. i have port scanned my own house 11 times. security level: maximum. todd gave me moderator powers for one day in june and i used them to give everyone free profile views. currently recruiting for my LAN party (my mom says 6 people max and no energy drinks after 9).",
+ "interests": {
+  "General": "linux (installing it soon) (the CD is burned), LAN parties, computer cases with windows, typing fast in front of people, cable management, blowing on RAM, defragging for fun, port scanning (my own house only), being the IT guy for a website with one server (todd's laptop)",
+  "Music": "sandstorm (darude), sandstorm (again), the dial-up tone (it's got a beat), the mortal kombat theme, the matrix soundtrack (the one with sandstorm) (it's not on it) (it should be)",
+  "Movies": "the matrix (41 times, 60% understood), hackers (they say 'hack the planet' and i said it at dinner), swordfish (dad turned it off), war games (the ORIGINAL hacker) (he's my age) (was)",
+  "Television": "the screen savers (techtv) (RIP) (G4 isn't the same), x-files (the truth is out there and so is zorp), attack of the show (i said it's not the same but i watch it)",
+  "Books": "the linux manual i printed at the library (300 pages) (unread) (heavy), 2600 magazine (my dad found it and said 'what's this' and i said 'a magazine'), neuromancer (page 12)",
+  "Heroes": "neo. todd (unironically). the ctrl+z guy. zorp (as a fellow normal human). my mom, who unplugs the router at 10 (security by physical layer) (i respect it)"
+ },
+ "song": {
+  "name": "Sandstorm",
+  "artist": "Darude",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/b2/c3/b6/b2c3b692-4c6e-96b4-0b80-a9f2fceee842/mzaf_15150202186372680773.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   4,
+   7,
+   4,
+   0,
+   4,
+   7,
+   12
+  ],
+  "bpm": 120
+ },
+ "decor": [
+  "assets/badge_8bit.gif",
+  "assets/badge_netscape.gif",
+  "assets/deco_skull.gif"
+ ],
+ "friends": [
+  "todd",
+  "wes",
+  "zorp",
+  "kevin",
+  "randy"
+ ],
+ "wall": [
+  {
+   "from": "todd",
+   "text": "Hey Dave! Thanks again for the security report! Quick question: is 'ur firewall is ur heart' a technical finding? Anyway I fixed the F12 thing. Wait, everyone can press F12? Keep up the great work! - Todd :)",
+   "time": "Jul 3 2026 8:12 PM"
+  },
+  {
+   "from": "wes",
+   "text": "confirmed for the LAN. bringing 2 CRTs, one is for melee and one is emotional support. does ur mom still make the pizza rolls",
+   "time": "Jul 2 2026 11:48 PM"
+  },
+  {
+   "from": "zorp",
+   "text": "hello dave. a normal human question: when you 'scan the ports,' do the ports feel it. asking for no reason. — zorp, human",
+   "time": "Jul 1 2026 3:33 AM"
+  },
+  {
+   "from": "randy",
+   "text": "dave hack into the pentagon and change my grade in spanish. JK. unless??? PIE.",
+   "time": "Jun 28 2026 5:40 PM"
+  }
+ ],
+ "replies": [
+  "ur comment has been scanned. 0 viruses detected. 1 friendship detected.",
+  "acc3ss granted. welcome 2 the mainframe (my wall)",
+  "i read ur comment on all 3 of my monitors. it looked good on each one",
+  "n1c3. i would tell u my password out of trust but it is also my xbox live name so i cannot"
+ ],
+ "thanksAdd": "add confirmed. u are now inside the network. do not worry — on this network we only share files and respect. — hax0r_dave",
+ "ambient": [
+  "just defragged. i feel like a new man",
+  "reminder: i COULD read ur away messages (i can't) (but i could) (i can't)",
+  "my mom unplugged the router at 10pm. this is what they don't teach u about cyber warfare"
+ ],
+ "saltyDm": "request denied?? interesting. jokes on u: i respect ur security posture. trust no one. u passed my test. the offer remains open, firewall-to-firewall. — d4ve",
+ "keywords": {
+  "hack": "ok first of all i CAN. second of all i won't, because of ethics, and because todd is my friend, and also because i don't know how",
+  "password": "never share ur password. mine is 14 characters and 9 of them are the word sandstorm"
+ },
+ "banter": {
+  "todd": [
+   "todd i found a security hole: ur admin password is 'password1'. i know this bc u told me. at lunch. loudly. i have patched it (told u to stop doing that)",
+   "todd i drew up plans for OurSpace 2.0. it is the exact same site but the login page has green rain falling on it. my quote: free. bc we're friends"
+  ],
+  "wes": [
+   "wes i benchmarked ur 7 CRTs. combined they weigh more than my dad's car. ur input lag is 0 and ur floor is bending. respect",
+   "wes at the next LAN can u NOT wavedash in real life while waiting for ur turn. u knocked over my tower. the case has a window now (unplanned)"
+  ],
+  "zorp": [
+   "zorp i ran a traceroute on u. it went up. straight up. 40,000 hops. as a fellow normal human i think that's normal and cool",
+   "zorp ur password hint is 'the humming of the mothership (normal).' buddy. as ur IT guy i need u to be slightly less honest"
+  ],
+  "greg": [
+   "greg i can get static prophecy on the front page of ourspace. step 1: i ask todd. step 2: he says yes. we're already in",
+   "greg ur demo CD-R had 3 tracks and a folder called taxes2004. ur dad's taxes are safe with me. sick riffs btw"
+  ],
+  "liz": [
+   "liz ur div overlay is the cleanest code on this site. i viewed source (legally) and there were COMMENTS. labeled. like a professional. i almost cried in the mainframe (basement)",
+   "i can prove who ripped ur layout. ur name is still in the css comment on line 40 of their page. i'm not saying who. i'm saying view source. i'm saying hello kitty. i've said too much"
+  ],
+  "josh": [
+   "josh u beat wes at halo at YOUTH GROUP?? on a PROJECTOR?? what's the setup. is it system link. how many xboxes. does the church have a LAN. i have questions. i have a spreadsheet of questions",
+   "youth group has 4 xboxes system linked and no energy drink rule?? that's a LAN party with better snacks. mom's 6-person rule can't compete with the LORD. ok i'm coming. i'm bringing cables"
+  ],
+  "lexi": [
+   "lexi ur relationship status has changed 4 times this week. as ur unofficial IT guy i have to ask: is it a caching issue. is it nate. is nate a caching issue",
+   "i wrote a script to email me when ur status changes (i didn't) (i can't) (but i COULD) and it would have gone off 4 times since monday. that's more than my router. hang in there"
+  ]
+ },
+ "statuses": [
+  "hax0r_dave is upgrading his RAM (blowing on it)",
+  "hax0r_dave is in the mainframe (dial-up, so half in)",
+  "hax0r_dave changed his password to something even cooler",
+  "hax0r_dave is defragging. again. for fun. (it's fun)",
+  "hax0r_dave found a security hole on ourspace: everyone can see everyone's top 8. this is intentional?? todd says 'that's the feature.' scary",
+  "hax0r_dave notes that SOME people 'borrowed' a layout code and left the original designer's name IN THE CSS COMMENTS. i'm not saying who. i'm saying i can read. (it's in the source.) (anyone can read it.) (view source.)",
+  "hax0r_dave installed linux. update: dual boot works. update: dual boot does not work. update: it's a triple boot now and i don't know how"
+ ],
+ "bulletins": [
+  {
+   "subject": "LAN PARTY SATURDAY — SLOTS LIMITED (6) (my mom's rule)",
+   "body": "my house. saturday. 4pm-9pm SHARP (mom's rule). bring: ur own tower, monitor, and ethernet cable (i have 3, they are all 4 feet long, plan accordingly). we got: pizza rolls, folding chairs, sandstorm on loop. no energy drinks after 9. RSVP on my wall with ur specs",
+   "time": "Jul 1 2026 7:22 PM"
+  }
+ ],
+ "dmSeed": [
+  {
+   "who": "them",
+   "text": "greetings. i pre-scanned ur profile for viruses. u are clean. welcome to ourspace. if u ever need tech support i am online basically always (this is not sad, it is tactical)",
+   "time": "Jun 30 2026 11:58 PM"
+  }
+ ],
+ "bgTile": "assets/tiles/tile_checker.png",
+ "gender": "Male",
+ "hometown": "[REDACTED], OH (it's hilliard) (delete this)",
+ "zodiac": "v1rg0. the analytical one. starxgazer said virgos 'scan everything.' correct. i have scanned my own house 11 times",
+ "status": "hax0r_dave is running a scan (on his own computer) (it's clean) (again)",
+ "hereFor": "Networking (literally, i have cables). Friends (LAN party, 6 max, mom's rule). Dating (encrypted) (n/a)",
+ "blogTitle": "/var/log/dave: security bulletins for OurSpace (unofficial) (todd knows)",
+ "meet": "neo. kevin mitnick (to ask him things) (respectfully) (with a lawyer). the guy who made the screen savers on techtv. todd (again) (he's my friend) (but at the LAN)",
+ "pcComments": [
+  "scanned this pic for viruses. 0 found. 1 nice pic found",
+  "n1c3 pic. resolution: 640x480. respectable. i can tell it's a digital camera and not a webcam. professional",
+  "commenting from 3 monitors at once. the pic looks good on all 3. (the middle one is a CRT) (wes lent it)",
+  "this pic loaded in 4 seconds on dial-up. that's a compliment to ur file size AND ur face",
+  "acc3ss granted: this pic is now in my 'cool pics' folder (it's on the desktop) (it's called 'taxes') (security)"
+ ]
+}

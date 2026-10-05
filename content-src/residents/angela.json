@@ -1,0 +1,222 @@
+{
+ "id": "angela",
+ "name": "angelfire_angela",
+ "tag": "~*~ Welcome to my page! It is UNDER CONSTRUCTION! Please sign my guestbook! ~*~",
+ "avatar": "assets/avatar_angela.gif",
+ "gender": "Female",
+ "age": 17,
+ "hometown": "Tulsa, Oklahoma",
+ "loc": "Angela's Enchanted Realm (an Angelfire site, est. when I was 10)",
+ "zodiac": "Pisces (see my Zodiac page!) (Under Construction!)",
+ "status": "Single (this section is Under Construction!)",
+ "hereFor": "Friends, Networking, Guestbook Signatures, Webring Applicants",
+ "mood": "updating!",
+ "lastLogin": "Oct 3 2026 10:02 PM",
+ "theme": {
+  "bg": "#1b0033",
+  "fg": "#ffe6ff",
+  "accent": "#00e5ff"
+ },
+ "bgTile": "assets/tiles/tile_stars_neon.png",
+ "blogTitle": "~*~ What's New! ~*~ (Site Updates, Newest First)",
+ "about": "~*~ Welcome, traveler! ~*~ You are visitor number 004,218 to this profile! (I am keeping count by hand, since OurSpace has no hit counter. I have written to Todd.) My name is Angela and I am the Webmistress of Angela's Enchanted Realm, an Angelfire site I have been building since I was 10. It has two shrines (Vulpix and Legolas), a third shrine that is a SECRET, a webring, an awards page, a rippling lake, and a guestbook with 214 entries. It is UNDER CONSTRUCTION and always has been, because a good site is never finished! This profile is only my satellite page. My REAL home on the web is the Realm. Best viewed at 800x600. Please sign my guestbook before you leave!",
+ "aboutMore": "~ About the Webmistress ~ My dad taught me my first tag out of a library book on a Saturday when I was 10. It was the CENTER tag and I have centered everything since. I have updated the Realm every single day for seven years, even if it is only one word, which is why the 'Last Updated' date is always today. I never delete a page. A Webmistress does not delete, she ARCHIVES. The Vulpix shrine still has my spelling from fifth grade ('Vulpix is the most beatiful pokemon') and it is staying.",
+ "meet": "Who I'd Like to Meet: Everyone who has ever signed my guestbook, to thank them in person (I already thank each one by e-mail). Whoever owns the two broken sites in my webring, to ask if they are okay. Legolas. A Vulpix. And the little man on the 'Under Construction' sign. He has been digging on my site for seven years and I would like to tell him he can take a break.",
+ "interests": {
+  "General": "HTML (hand-typed in Notepad!), frames, tables, hit counters, guestbooks (signing them AND having one), webrings, site awards (giving and receiving), animated gifs, MIDI files, sparkle cursors, adoptable pixel dragons, updating my site every day, centering things",
+  "Music": "MIDI versions of everything! (They load fast and they loop forever!) Enya, Loreena McKennitt, the Lord of the Rings soundtracks, Sarah McLachlan, Vanessa Carlton, the Pokemon theme (a classic of my youth)",
+  "Movies": "The Lord of the Rings (extended editions; I have 340 Legolas screen captures, sorted by braid), The Princess Bride, Ever After, Pokemon: The First Movie (I cried; there is a page about it), Ella Enchanted, Spirited Away",
+  "Television": "Pokemon (the early seasons), Sailor Moon, Charmed, Gilmore Girls, Sabrina the Teenage Witch reruns, any show whose official site has a guestbook",
+  "Books": "HTML for the World Wide Web (the library book; my dad finally bought a copy because we had renewed it 11 times), The Fellowship of the Ring, Ella Enchanted, The Two Princesses of Bamarre, Dealing with Dragons, the Angelfire help pages",
+  "Heroes": "My dad (taught me the CENTER tag), Legolas, the Under Construction man, everyone who signs a guestbook honestly, Nat (youngest winner of my Cool Site Award), Todd (a fellow webmaster; his Server Status Page is charming)"
+ },
+ "song": {
+  "name": "May It Be",
+  "artist": "Enya",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d4/97/79/d497794a-5a95-f8ac-7a34-ccaa1ba69456/mzaf_3087327638920902746.plus.aac.p.m4a",
+  "pattern": [0, 7, 5, 3, 5, 7, 12, 7],
+  "bpm": 84
+ },
+ "decor": [
+  "assets/deco_welcome_banner.gif",
+  "assets/deco_guestbook_sign.gif",
+  "assets/badge_GuestWorldbutton.gif"
+ ],
+ "friends": ["liz", "todd", "doug", "marcus", "nat", "nick", "lars", "fred", "meg"],
+ "wall": [
+  {
+   "from": "liz",
+   "text": "angela. ur site uses FRAMES. frames. plural. on purpose. ...ok but i viewed source n its all hand typed in notepad w/ comments n i respect it so much it makes me mad. tables r still 4 ppl who have given up. u have not given up tho. its confusing",
+   "time": "Oct 2 2026 12:44 AM"
+  },
+  {
+   "from": "todd",
+   "text": "Hi Angela! Thank you SO much for the Cool Site Award for my Server Status Page! I printed the certificate and taped it to the laptop. It covers the fan a little but it's worth it. About your 14 e-mails asking for a hit counter on every profile: I tried counting the hits myself and the laptop asked me to stop. - Todd :)",
+   "time": "Sep 30 2026 8:30 AM"
+  },
+  {
+   "from": "doug",
+   "text": "angela try number 8. got past the lake. saw something new, a dragon you can adopt. it was blinking. i got really excited. i think the guestbook was right under it. i scrolled and then i heard the click and it was my mo",
+   "time": "Sep 26 2026 7:30 PM"
+  },
+  {
+   "from": "marcus",
+   "text": "Angela. Guestbook entry 148 (discount watches) is still up. Entry 149 (you, thanking it) is still up. Entry 213 is new and it is the watches again. You thanked that one too. I am not angry. I am available. -- Marcus, Moderator (unofficial)",
+   "time": "Sep 22 2026 9:05 AM"
+  },
+  {
+   "from": "nat",
+   "text": "ANGELA the cool site award is on my guild page now right at the top!! 3 ppl asked how 2 get one and i said u cant buy it, not even for 2 million np, i checked. also ur table code fixed my pet page. ur like the html fairy godmother. the guild says hi",
+   "time": "Sep 16 2026 4:07 AM"
+  },
+  {
+   "from": "fred",
+   "text": "Angela, I signed your guestbook. First guestbook I've signed in three years. It asked 'How did you find my site?' and I sat there for a while. That used to be a real question. People used to FIND things. Anyway, entry 211 is me.",
+   "time": "Sep 11 2026 12:51 PM"
+  },
+  {
+   "from": "nick",
+   "text": "angela ok v3 of the flash intro: legolas is in it now. hes a stick. u can tell its him bc of the bow. he does one (1) graceful kick. then WELCOME. thats my final offer. pls approve",
+   "time": "Sep 4 2026 4:20 PM"
+  },
+  {
+   "from": "meg",
+   "text": "ANGELA!! i adopted a pixel dragon from ur site!! his name is sparkle and i put him on my page next to the horses and they r getting along!! also i signed ur guestbook 3 times is that ok!! one was from a horse!!",
+   "time": "Aug 25 2026 3:15 PM"
+  }
+ ],
+ "replies": [
+  "~*~ Thank you for your comment! You are visitor number 004,219! ~*~",
+  "How lovely! Did you sign my guestbook, too? A comment is nice, but a guestbook is FOREVER!",
+  "This reply is Under Construction! Please check back soon!",
+  "Thank you! I have added you to my Links page under 'Friends of the Realm' (alphabetical)!",
+  "Oh! That deserves an award. Not the Cool Site Award. A smaller one. I will make a gif.",
+  "Noted and archived! (I never delete anything.)",
+  "[ Back | Home | Next ] ...sorry, habit! Thank you for writing!",
+  "Have you considered joining a webring? I know a Ringmistress. (It is me.)",
+  "I am updating my site right now, but I stopped to read this, and I am glad I did!",
+  "That is very kind! I will e-mail you a proper thank-you note. I e-mail everyone."
+ ],
+ "thanksAdd": "~*~ Thank you for the add! ~*~ You are now on my Links page under 'Friends of the Realm'! I visited your page, signed your guestbook, AND clicked all the way around your webring (I waved at every site). You have a lovely home on the web. Please visit mine and sign my guestbook! It is right under the lake!",
+ "ambient": [
+  "~ Site Update! ~ Today I changed the word 'Welcome' to 'Welcome!' on my front page. Seven years of daily updates and counting!",
+  "A new guestbook entry has arrived! It is from my dad. He signs once a month and always answers 'How did you find my site?' with 'I live here.'",
+  "The hit counter on the Realm rolled past 004,000 this year. About 3,900 of those are me checking the hit counter. But still!",
+  "Reminder: Shrine #3 is coming soon! It has been coming soon since March. I can tell you that it is NOT a Pokemon and it is NOT an elf. That is all I can say!",
+  "Two of the four sites in my webring are broken links now. I keep them in the ring. You do not put someone out of a ring just because they have gone quiet.",
+  "Someone asked why my site is still 'under construction' after seven years. Is a garden ever finished? Is a guestbook ever full? The little man is still digging and so am I."
+ ],
+ "saltyDm": "~*~ Oh! ~*~ My friend request was declined. That is all right! I have added you to my Links page anyway, under 'Sites I Admire From Afar.' You are the only entry. The section is Under Construction. Please sign my guestbook if you ever change your mind!",
+ "keywords": {
+  "guestbook": "SIGN IT! Please! It is at the bottom of my site, under the lake. 214 entries so far and I answer every single one by e-mail. I signed yours already. I wrote that your page 'feels like somebody lives here.' I meant it!",
+  "webring": "I am Ringmistress of the Ring of Enchanted Sites! Four members: me, Nat's guild page, and two broken links I refuse to remove. I clicked all the way around YOUR ring, too. Seven sites! I waved at each one.",
+  "award": "Angela's Cool Site Award is a 120x120 spinning star and I have given it out exactly four times in seven years. It cannot be bought. It cannot be rushed. Your page is currently Under Consideration, which is a real status and not a no!",
+  "construction": "Yes, still! A site that is finished is a site that is abandoned. The digging man and I have an understanding.",
+  "shrine": "I maintain two: the Vulpix Grove (est. age 10, original spelling preserved) and the Legolas Gallery (est. age 13, 340 screen captures sorted by braid). A third is in progress. No, I will not say what it is!",
+  "html": "Hand-typed in Notepad since I was 10! No editors, no templates. My dad taught me the CENTER tag and it remains my favorite. Liz and I disagree about nearly everything, but not about Notepad."
+ },
+ "banter": {
+  "liz": [
+   "Liz! I admire your work very much! But a 'div overlay' is only a table that is embarrassed about being a table. My frames have stood for seven years. Please sign my guestbook!",
+   "Liz, I viewed your source and you comment your code! In Notepad! We are the same, you and I. (We are not the same about tables. But about Notepad we are sisters.)"
+  ],
+  "todd": [
+   "Todd! As one webmaster to another: OurSpace needs a hit counter, a guestbook, and an 'Under Construction' sign on the Bulletins page, which I assume is unfinished? I have gifs for all three. Free of charge!",
+   "Todd, I am pleased to tell you that your Server Status Page has KEPT its Cool Site Award after my yearly review! The uptime graph with the naps in it remains the most honest thing on the web."
+  ],
+  "doug": [
+   "Doug! EIGHT visits and no signature! I have checked, and my site is only 31 images, one MIDI, one lake and a cursor trail. That is very light! I built it on a 56k modem myself, when I was 10!",
+   "Doug, I have made you a special door: a page with ONLY the guestbook on it. No lake. No dragon. No digging man. It felt wrong to build. Please use it before I put the sparkles back."
+  ],
+  "marcus": [
+   "Marcus! The watches people are GUESTS. They signed the book. Twice! I am not deleting a guest. A Webmistress archives. But thank you for your nine messages!",
+   "Marcus, the webring bylaws are finished! There is one: 'Be enchanting.' Your rules page has been re-reviewed under it. I am sorry. Perhaps a border? A small border would go a long way!"
+  ],
+  "nick": [
+   "Nick! Version 3 of the Flash intro is approved! Stick Legolas is very dignified. One request: could the 'Skip Intro' button be smaller? Nobody should skip it. You worked so hard!",
+   "Nick, I voted 5 on Stick Fury 7 and left a review! I wrote 'Lovely linework! Please visit my site and sign my guestbook!' Someone replied 'who is this.' Was that you?"
+  ],
+  "lars": [
+   "Lars! A website with no pictures is a letter. I did not write you a letter. I built you a REALM. Please view it in a browser that has eyes!",
+   "Lars, thank you for the report of 212 errors. I have read it. I have decided they are not errors. They are the site's handwriting."
+  ],
+  "nat": [
+   "Nat! Your guild page still has the award at the top and I check every morning. I am so proud! Your marquee is the correct speed. Not everyone understands marquee speed.",
+   "Nat, you asked if I would sell the Cool Site Award gif for Neopoints. No! But I will trade you one hand-coded table for a tour of your shop. I hear the good restock is at 4 AM?"
+  ],
+  "fred": [
+   "Fred! You miss a website from three years ago. I am still running one from seven years ago. Come and sit by the lake. We have testimonials here too. We call it a guestbook.",
+   "Fred, entry 211 is my favorite this month. Under 'How did you find my site?' you wrote 'I was looking for something else.' That is how all the best visitors arrive!"
+  ]
+ },
+ "statuses": [
+  "angela is updating her site! (Changed a comma. It counts!)",
+  "angela is UNDER CONSTRUCTION. Please excuse the dust!",
+  "angela just received a new guestbook entry and is writing a thank-you e-mail.",
+  "angela is reviewing a Cool Site Award nomination. This may take a season.",
+  "angela is clicking 'Next' around malten's webring again. Hello, Horse Facts Daily!",
+  "angela is checking her hit counter. (That makes 004,221.)",
+  "angela just centered something. It looks better. Everything does."
+ ],
+ "bulletins": [
+  {
+   "subject": "~*~ The Ring of Enchanted Sites is accepting NEW MEMBERS! ~*~",
+   "body": "Hello, fellow webmasters and webmistresses! The Ring of Enchanted Sites (est. seven years ago; four members, two of them resting) is open for applications! To join you must have: 1) a site you made YOURSELF, 2) at least one animated gif, 3) a guestbook OR a sincere plan for one, 4) whimsy. Whimsy is judged by me. Place the ring code at the bottom of your page (it is a table, Liz, I am sorry) and I will add you within one to six weeks. Current applicants: Marcus (denied; appeal pending; needs a border), Nick (approved if the intro stays skippable), Todd (did not apply; I applied for him). I also recommend malten's webring, which I have gone around eleven times. ~ Angela, Ringmistress [ Prev | Random | Next ]"
+  },
+  {
+   "subject": "SIGN MY GUESTBOOK (a friendly survey!)",
+   "body": "Please copy, answer and repost, just like a guestbook form! Name: / Homepage: / How did you find my site?: / What is your favorite page?: / Comments: . Here are mine! Name: Angela. Homepage: the Realm (Angelfire). How did I find my site? I built it, with my dad, on a Saturday. Favorite page: the guestbook, of course! Comments: I have 214 entries. Six are from my dad, three are from Meg (one signed as a horse), three are about discount watches, and one says only 'nice lake.' I have thanked every one of them. A guestbook is a room full of people who stopped by. Please stop by!"
+  }
+ ],
+ "pcComments": [
+  "~*~ What a lovely picture! ~*~ It would look even nicer with a border. I have 40 borders. Please ask!",
+  "This photo wins my 'Picture of the Week' award! It is a smaller award. There is a gif. I will e-mail it to you!",
+  "Beautiful! Is there a larger version? No, wait, please keep it small. Doug is trying to load it.",
+  "I would put this on your front page, centered, right under a 'Welcome' banner. That is my professional opinion as a Webmistress.",
+  "So nice! You should make a 'Photos' page with thumbnails that open in a new window. I can teach you. It takes one Saturday."
+ ],
+ "dmSeed": [
+  {
+   "text": "~*~ Hello malten! ~*~ I am Angela, Webmistress of Angela's Enchanted Realm. I have signed your guestbook (I am the long entry) and I have gone all the way around your webring twice. You have a real homepage! With windows! I am placing you Under Consideration for my Cool Site Award. Only four sites have ever won. Please do not change anything while I review."
+  }
+ ],
+ "dms": [
+  "malten! A question from one webmaster to another. How do you decide when a page is finished? I have never finished one. I am asking for research purposes, and also because my dad asked me last night and I did not have an answer.",
+  "I have clicked 'Random' on your webring 40 times and I keep landing on the page that only says 'herp.' I have decided it is my favorite. It loads instantly and it knows exactly what it is. Not every site can say that!",
+  "Good news! My dad signed the guestbook again. Under 'Comments' he wrote 'Proud of you, kiddo. Dinner is at 6.' I have archived it under Awards I've Won.",
+  "malten, do you still have your very first web page? I do. It says 'Vulpix is the most beatiful pokemon' in purple on a green background and I will never fix it. I was ten and I meant every word.",
+  "A small confession. One of the broken sites in my webring belonged to a girl named Dana who had a unicorn page. It went dark four years ago. I still e-mail her on the ring's anniversary. If she ever comes back, her spot is right where she left it.",
+  "Your Cool Site Award review is going well! So far: a welcome message (yes), a guestbook (yes), a webring (yes!), things that blink (many). The only missing item is an 'Under Construction' sign. Is your site FINISHED? That would be very unusual.",
+  "I tried to teach my mom to sign a guestbook tonight. She typed her whole message into the 'Homepage' box and pressed Submit. It is now the best entry I have. Her homepage is 'Hi honey it's mom I love your lake.'",
+  "Larry says he has 200 pictures of a lighthouse in his shared folder, labeled as something else. malten, I think it may be the lost lighthouse site from my webring! I have asked him for a CD. I am trying not to get my hopes up. (They are up.)"
+ ],
+ "blog": [
+  {
+   "title": "~ What's New: The Saturday I Learned CENTER ~",
+   "date": "Sep 13 2026 7:20 PM",
+   "mood": "nostalgic!",
+   "body": "A visitor asked how the Realm began, so here is the story for my archives! When I was 10 I wanted a web page about Vulpix more than I wanted anything. My dad did not know how to make one either. So we went to the library and checked out a book called HTML for the World Wide Web, and on a Saturday we sat at the family computer with the book open between us. The first thing we typed was my name. It showed up small, in the top left corner, like it was hiding. Then Dad found the CENTER tag. We typed it, pressed refresh, and my name jumped to the middle of the screen. I screamed. He high-fived me so hard the mouse fell off the desk. We added a green background, purple words, and a Vulpix that took four minutes to load. That page is still up. I have changed something on the site every day since, and every month he signs the guestbook. Under 'How did you find my site?' he writes, 'I was there.'"
+  },
+  {
+   "title": "~ Cool Site Award: Why There Are Only Four ~",
+   "date": "Sep 29 2026 4:44 PM",
+   "mood": "judicious!",
+   "body": "People ask why Angela's Cool Site Award is so hard to win. It is a spinning star, 120 pixels wide, and I made it when I was 11. In seven years I have given it four times! 1) My dad's bowling league page. He posts the scores every Thursday night and has never missed one. 2) A site about lighthouses, by a retired gentleman in Maine. The site is gone now. The award outlived it. I keep the link. 3) Nat's guild page: tidy tables, a marquee at the correct speed, and she is only 14. 4) Todd's Server Status Page, for honesty. What do they have in common? Not beauty. Nick's cartoons are flashier and Liz's layouts are fancier. The winners all have someone HOME. You can feel a person in there, checking on things, moving a comma. That is the whole test. Current nominees: malten (promising!) and Marcus (no). Doug's page is plain gray with nothing on it, and somehow he is the closest to a fifth."
+  }
+ ],
+ "survey": {
+  "title": "~*~ The Webmistress Survey! ~*~ (Please sign the guestbook after reading!)",
+  "qa": [
+   ["Name and title:", "Angela, Webmistress and Ringmistress (two separate jobs!)"],
+   ["Name of your site:", "Angela's Enchanted Realm. It was 'Angela's Vulpix Page' until I was 13."],
+   ["How long has it been under construction?", "Seven years! The little digging man has not rested once."],
+   ["Number of guestbook entries:", "214! I can name every signer. Three of them are watches."],
+   ["Best viewed in:", "800x600, with the sound ON, on a connection faster than Doug's (sorry, Doug!)"],
+   ["Awards you have won:", "31! Including 'Kewl Site of the Week' from a site that no longer exists, and 'Best Lake' (I made that one myself, but it was true)."],
+   ["Favorite HTML tag:", "CENTER. Then MARQUEE. Then BLINK, in moderation."],
+   ["Something on your site nobody has found yet:", "There is a secret page. You have to click the third star from the left. In seven years one person has found it. It was my dad. I had told him."],
+   ["Biggest webmistress fear:", "A visitor leaving without signing the guestbook. Also Angelfire going away someday. I do not think about that one."],
+   ["Message to your visitors:", "Thank you for stopping by! Please come again! The site will be different tomorrow, by at least one comma."]
+  ]
+ }
+}

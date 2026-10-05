@@ -1,0 +1,202 @@
+{
+  "id": "epic_good_night_gabe",
+  "with": "epic",
+  "opener": [
+    "malten i need advice and i need u 2 NOT say lol ur mom (ill know)",
+    "i made a ytmnd yesterday. 'good night gabe.' its my little brother asleep in the cow box. 12 seconds. slow piano. i was gonna put picard at the end and i FORGOT. i went 2 bed",
+    "its at 4,112 votes. its on the front page. the top comment says 'i cried' and there r 61 more that say the same thing. malten nobody laughed. NOBODY LAUGHED"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "epic. that sounds like the best thing you ever made. how do u feel?", "next": "a_feel" },
+        { "say": "4,112 votes?? randy has 12. screenshot it before the front page changes.", "next": "b_shot" },
+        { "say": "lol ur mom.", "next": "c_mom" }
+      ]
+    },
+
+    "a_feel": {
+      "them": [
+        "i feel like i swallowed the gateway box. like its in my chest and gabe is in it asleep. is that normal. it doesnt have a name. i checked the feelings poster in the nurses office and its not on there",
+        "one comment says 'my little brother is a lot like this' and i read it 9 times. i dont even know that person. i think they love gabe 2. (gabe doesnt know he has fans) (hes 12) (he has 4,112 of them)"
+      ],
+      "choices": [
+        { "say": "tell me the scary part.", "next": "fear_list" },
+        { "say": "go tell gabe. before the comments do.", "next": "tell_gabe" }
+      ]
+    },
+
+    "b_shot": {
+      "them": [
+        "i did. i looked at the screenshot and my brain said 'thats not mine.' its 2 nice. somebody nice made it. i think it was me. i looked at my own name 3 times",
+        "also randy found out. he messaged 'is that the one with the box.' i said yes. he said 'cool.' no PIE. no caps. just 'cool.' malten randy has never said anything that quiet. im worried about him"
+      ],
+      "effects": [
+        { "type": "status", "text": "epic is on the front page of ytmnd with 4,112 votes. he would like everyone 2 know it was SUPPOSED to have picard in it. (it was an accident.) (dont ask about the picard.) (lol ur mom)" }
+      ],
+      "choices": [
+        { "say": "ok, what's actually scaring you?", "next": "fear_list" },
+        { "say": "randy said 'cool'? go check on randy.", "next": "randy_pie" }
+      ]
+    },
+
+    "c_mom": {
+      "them": [
+        "...thank u. i needed that. i was getting scared. it was like the room was 2 quiet. i read it 3 times. u got the lol AND the ur AND the mom. all 3. in order",
+        "ok. ok. i feel normal-ish. normal is a good word. so the ytmnd has 4,112 votes and the comments r all 'i cried.' what do i DO. i dont have a bit 4 this"
+      ],
+      "choices": [
+        { "say": "what's the scariest part?", "next": "fear_list" },
+        { "say": "randy's gonna do something. he always does. find out what.", "next": "randy_pie" }
+      ]
+    },
+
+    "fear_list": {
+      "them": [
+        "ok three scary things. i wrote them on my hand. 1: gabe doesnt know. hes 12, he lives in the box, he hates being looked at. he calls it 'being a shelf.'",
+        "2: everybody wants the next sincere one. i have 40 ytmnds and 38 r picard. i dont HAVE a second one. 3: nana betty called from the library. she voted 5 twice (she thinks it counts double). she said 'its very nice honey but is it broken. theres no picard.'"
+      ],
+      "choices": [
+        { "say": "tell gabe first. before the internet does.", "next": "tell_gabe" },
+        { "say": "check on randy. 'cool' with no pie is a scary sentence.", "next": "randy_pie" },
+        { "say": "call nana back. she voted twice. she gets a say.", "next": "nana" }
+      ]
+    },
+
+    "randy_pie": {
+      "them": [
+        "randy made a version. 'good night gabe (pie edition).' its the same 12 seconds and at the end a pie slides in. 2,900 votes. malten it made people LAUGH. and i hate that its funny. the pie is so well timed. he must have used a stopwatch",
+        "he left a comment under mine: 'i didnt want to PIE the real one so i PIEd a copy. no offense. the real one is the real one.' RANDY said 'the real one is the real one.' ive never been so proud and so mad at the same time"
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "randy", "to": "epic", "delay": 20, "text": "epic i made a pie version. its not a ripoff its an HOMAGE (i looked it up) (it means stealing but nicely). the real one is the real one tho. dont be mad. i cried at the real one. into a waffle. PIE." }
+      ],
+      "choices": [
+        { "say": "don't fight it. tell randy 'nice pie.' it's the nicest thing you've ever said to him.", "next": "the_pressure" },
+        { "say": "go tell gabe. he should hear it from you before the pie reaches him.", "next": "tell_gabe" }
+      ]
+    },
+
+    "nana": {
+      "them": [
+        "i called her back. she said 'epic, is your brother ok? he looks so little.' i said hes fine hes asleep. she said 'in a box?' i said its a cow box. she said 'ok.'",
+        "then she said 'i think its the nicest thing youve made. i voted three times. dont tell the library.' then she said 'do the picard one again tho.' malten she wants me 2 be BOTH. nobody told me i could be both"
+      ],
+      "choices": [
+        { "say": "you can be both. 40 ytmnds and one real one is just a good catalog.", "next": "the_pressure" },
+        { "say": "nana said 'little.' go tell gabe. he'll hear it better from you.", "next": "tell_gabe" }
+      ]
+    },
+
+    "the_pressure": {
+      "them": [
+        "ok now people r asking 4 more. theres a poll. 'make good morning gabe.' 'make good night nana.' 'make good night mom (but say ur mom at the end).' 800 comments. i feel like a vending machine 4 feelings",
+        "and i have an idea. the idea is a sequel. 'good night gabe 2: lol ur mom edition.' picard AND the box. i can do both voices. i can do picard AND the pirate. is that funny. is that disrespectful 2 the box. help"
+      ],
+      "effects": [
+        { "type": "status", "text": "epic is being asked to make 800 sincere ytmnds. he has made 1 sincere ytmnd, by accident, while asleep. he has 40 picards. this is a crisis. lol ur mom. (the crisis is in the box.)" }
+      ],
+      "choices": [
+        { "say": "make the sequel. picard AND the box. that's the most epic thing you could do.", "next": "sequel_draft" },
+        { "say": "slow down. nothing's due. go sit by the box and tell gabe first.", "next": "tell_gabe" }
+      ]
+    },
+
+    "sequel_draft": {
+      "them": [
+        "ok i started. i put the 12 seconds in. i put picard at the end. i put 'lol ur mom' in a font. i put the epic face spinning over the box. its 9 minutes now. gabe is in the middle of the screen asleep and the epic face is going around him like a planet",
+        "and malten its the funniest thing ive ever made. and it feels like i put a mustache on a church. my cursor is on 'publish.' my cursor is shaking. my mom says ur mom is not a good reason 2 shake a cursor"
+      ],
+      "choices": [
+        { "say": "post it. gabe sleeps through everything. so does the internet.", "next": "end_trollback" },
+        { "say": "save it as a draft. show gabe first. if he laughs, post it.", "next": "tell_gabe" }
+      ]
+    },
+
+    "tell_gabe": {
+      "them": [
+        "ok i did it. gabe's in the box (the door's open, hes playing runescape on my dads laptop, he calls the box 'the base'). i showed him the 12 seconds",
+        "he watched all of it. then he said 'thats the box.' i said yeah. he said 'am i famous.' i said a little. he said 'does runescape know.' i said no. he said 'ok.' and went back 2 the game. malten what does 'ok' mean. i need the 12 year old translation"
+      ],
+      "choices": [
+        { "say": "that's 'i'm thinking.' ask him if he wants it up.", "next": "gabe_answer" },
+        { "say": "that's 'i'm 12.' sit by the box and he'll tell you in a minute.", "next": "gabe_answer" }
+      ]
+    },
+
+    "gabe_answer": {
+      "them": [
+        "i sat down by the box like the nurse does. he said 'it can stay if u dont say ur mom for 1 day.'",
+        "A WHOLE DAY. i said thats insane. he said 'then delete it.' i said ok fine. FINE. then he said 'also the box gets a door now.' first time he's ever negotiated. he's a better negotiator than me. hes TWELVE. i think im proud. im also hungry"
+      ],
+      "choices": [
+        { "say": "do the day. one day. you can do one day, epic.", "next": "silent_day" },
+        { "say": "take it down. it's gabe's box. you can't put a door on the internet.", "next": "take_down" }
+      ]
+    },
+
+    "silent_day": {
+      "them": [
+        "its been 4 hours. ive typed 'lol ur' 11 times. i delete the 'ur' every time. im on a streak. my hands know the words by themselves like those people who play piano in their sleep",
+        "my mom just said 'ur mom' to me in the kitchen. she says it back whenever, its our thing. i said NOTHING. she looked at me like i was sick. she put her hand on my head. 'u feel warm.' malten im not sick. im being sincere. is there a difference at 2 PM"
+      ],
+      "choices": [
+        { "say": "20 more hours. drink water. watch picard (don't make one).", "next": "end_sincere" },
+        { "say": "tell your mom why. one sentence. 'it's for gabe.' she'll get it.", "next": "end_sincere" }
+      ]
+    },
+
+    "take_down": {
+      "them": [
+        "ok im taking it down. it has 4,531 votes now. the most anything of mine has ever had. my cursor is on 'delete this ytmnd' and malten 'delete' is a very normal word and im sweating",
+        "im gonna save 1 copy. 4 nana betty. she can watch it at the library tuesdays. itll be a thing she has. does that count. is it still deleting if only nana betty knows"
+      ],
+      "choices": [
+        { "say": "it counts. delete it for the internet and keep it for her. that's called a gift.", "next": "end_quiet" },
+        { "say": "post one last note first. 'it's gone because gabe asked.' that's the whole thing.", "next": "end_quiet" }
+      ]
+    },
+
+    "end_sincere": {
+      "them": [
+        "ok. its staying up. 4,131 votes (the number changes, the feeling doesnt) and gabe doesnt know the internet is crying at him. im gonna tell him its like when the lost beagle on the news got found. (not a real example) (he'll nod)",
+        "in 19 hours i can say ur mom again. i think ill save it 4 gabe. tomorrow at 6 PM im gonna walk into the box and say it at him and hes gonna laugh or say 'ok.' either way i win. thank u malten. u were right about the box"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "epic made something nice by accident and left it up. 4,131 votes. he is on day 1 of a 1 day break from ur mom (gabe's rules). the picard has been informed. the picard is not mad. (lol ur...) (...)" },
+        { "type": "wallpost", "from": "patrick", "to": "epic", "delay": 40, "text": "epic i watched the box 3 times. i showed dwayne. dwayne doesnt have eyes but he was moved. is gabe ok. is the box ok. thank you for making me something to watch. (3 times is the number i do)" },
+        { "type": "wallpost", "from": "paige", "to": "epic", "delay": 90, "text": "epic. i have no pics of this and i'm not allowed to take one. i don't need one. i just tilted my monitor so i could see it better. that's the first time i've tilted something to be NICE. -p" },
+        { "type": "wallpost", "from": "randy", "to": "epic", "delay": 150, "text": "epic. i tried to PIE the real one. i put the pie back. the box is the best thing you ever made and i said 'cool' because i didnt have a bigger word. PIE. (quiet pie.)" }
+      ]
+    },
+
+    "end_trollback": {
+      "them": [
+        "posted. 'good night gabe 2: lol ur mom edition (9 min).' its the same box. the same gabe. the same picard. the epic face is going around him like a moon. in 11 minutes it had 600 votes and 20 comments that say 'im confused and im crying and im laughing and its the best of all 3.'",
+        "nana betty called. she said 'THERE you are.' malten im both. im BOTH. gabe has no idea. hes asleep in a box in the middle of the screen with the whole internet going round him and hes unbothered. hes the calmest guy on the site"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "LOL UR MOM (a sincere announcement)", "text": "ok everybody. one bulletin. i made a nice thing and then i made a dumb thing and now they r the same ytmnd. its the box. its picard. its the epic face. its a 9 minute loop of my little brother sleeping while the universe spins around him. if u cried, ur welcome. if u laughed, ur welcome. if u did both i love u. lol ur mom. lol ur mom. lol ur mom. (thats the sincere part.) -epic" },
+        { "type": "status", "from": "randy", "delay": 25, "text": "randy cried at the good one and laughed at the sequel and does not know which one he is allowed to PIE. PIE. (both.) (neither.)" },
+        { "type": "status", "from": "banana", "delay": 70, "text": "BANANA_PHONE WATCHED THE 9 MINUTE ONE ON LOOP FOR 4 HOURS. THE BOX IS ASLEEP. THE BANANA IS ASLEEP. THE EPIC FACE IS A PLANET. THIS IS THE BEST DAY OF THE BANANA'S LIFE (SO FAR) (THERE IS A LOT OF IT LEFT)" },
+        { "type": "wallpost", "from": "herp", "to": "epic", "delay": 120, "text": "herp. herp. (that was the best one.) herp." }
+      ]
+    },
+
+    "end_quiet": {
+      "them": [
+        "done. its deleted 4 the internet. nanas copy is on a floppy disk (she says it 'goes in the A drive') and shes gonna watch it tuesdays. gabe got the door. i put a door on the box w/ duct tape and a sign that says GABE'S BASE (NO MOMS) (that includes ur mom) (it includes my mom)",
+        "the last thing i posted: 'its gone because gabe asked. the box says thank u. lol ur mom (tomorrow).' 61 people commented 'good call.' someone said 'the best internet moment of the year was a guy deleting his own best thing.' ive never been called a guy before"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "epic took down his ytmnd (4,531 votes) because his little brother asked. the box has a door now. it is duct tape and a sign. the picard is back on the front page. 'lol ur mom' returns tomorrow at 6. (its a promise to a 12 year old.)" },
+        { "type": "wallpost", "from": "patrick", "to": "epic", "delay": 40, "text": "epic i saved the box in my head. my head is a good place. only dwayne has the key. im sorry its gone. im also happy about the door. i have never been this many things in one afternoon" },
+        { "type": "wallpost", "from": "randy", "to": "epic", "delay": 80, "text": "epic. i took my pie one down too. it didnt feel right to have a pie without a box. 'good night gabe (pie edition)' is gone. PIE. (that's the second time its ever been quiet.)" },
+        { "type": "wallpost", "from": "josh", "to": "epic", "delay": 140, "text": "epic that was a really cool thing to do for gabe. everybody's proud of u. also halo thursday?? u can bring gabe, he can use the box as a fort. i'll bring pizza =]" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,288 @@
+{
+ "id": "vince",
+ "name": "promoter_vince",
+ "tag": "TEEN NITE: FRIDAYS @ THE ROLLERDOME. FIRST 50 FREE. IT'S GONNA BE HUGE.",
+ "avatar": "assets/avatar_vince.gif",
+ "gender": "Male",
+ "age": 19,
+ "hometown": "Mansfield, OH (the Rollerdome, Route 30, next to the carpet outlet. you can't miss it. you can, but then you see the carpet)",
+ "loc": "the DJ booth (shared with gator), left of the nacho cheese pump",
+ "zodiac": "Leo (the headliner of the signs. i didn't pick it. the cosmos booked me)",
+ "status": "Taken (Dana, skate rental, size 7 and a half, the brains of the operation)",
+ "hereFor": "Networking, Promoting, Friends (first 50 free)",
+ "mood": "HYPED (13 in a row)",
+ "lastLogin": "Oct 4 2026 11:41 PM",
+ "theme": {
+  "bg": "#0d0620",
+  "fg": "#fff36b",
+  "accent": "#ff2f92"
+ },
+ "bgTile": "assets/tiles/tile_stars_neon.png",
+ "blogTitle": "THE LEDGER: every number, every Friday",
+ "about": "WHAT'S UP!!! VINCE HERE. PROMOTER. (it's a real job. it's on my business card. i printed 200. i have 188.) EVERY FRIDAY NIGHT: TEEN NITE @ THE ROLLERDOME. WHEN: 7 TO 11. WHO: AGES 13 TO 19 (staff exception: me). COST: FIRST 50 THROUGH THE DOOR FREE. WHAT: LIVE BANDS, COUPLES SKATE, LIMBO, TWO DJs (GATOR HAS SENIORITY), A SNACK BAR RUN BY BANANA_PHONE (NEVER MISSED A NICKEL), A NACHO CHEESE PUMP THAT HAS NEVER ONCE FAILED, AND A DISCO BALL (3 MIRRORS MISSING, IT HAS CHARACTER). WE'VE DONE 13 IN A ROW. LAST FRIDAY: 42. THAT'S NOT A NUMBER, THAT'S A TREND. THIS IS GONNA BE HUGE.",
+ "aboutMore": "the fine print: i don't make money. nobody makes money. mr. pavlik, who owns the place, lets me have Fridays as long as the snack bar breaks even and nobody does 'the thing with the speed' on the floor (rhonda, the floor guard, 40 years with the whistle, decides what that is). i pay bands in pizza and free skate passes. i keep a ledger. 390 people have come through the door since july. 13 of them are penny. the best night ever was 63. a school bus broke down in the parking lot. thank you, bus.",
+ "meet": "WHO I'D LIKE TO MEET: a real promoter, the kind with a headset, so i can ask how many people came to his first one. a guy with a bigger rink. whoever keeps taking my flyers off the mall corkboard (probably Dennis). and ANYONE WHO CAME ONCE. i remember you. i have your shoe size.",
+ "interests": {
+  "General": "TEEN NITE (obviously), laminating (i own a laminator, it's my pride), flyers (word art, the fancy font), my STAFF lanyard (homemade), backwards skate, the Couples Skate (i DJ it with sincerity), the ledger, Dana, the nacho cheese pump (hero), the disco ball (love), counting the line from the booth",
+  "Music": "whatever gets a kid off the wall and onto the floor. funkytown (the national anthem), celebration, don't stop believin', the hokey pokey (nobody is too cool for it. i've watched), the top 40 mix (i burn it every thursday), smoove's track 9 (the herp part gets a reaction), static prophecy (when greg's dad allows), fading ember (lineup TBD), and ONE song a night that penny brings on a CD-R",
+  "Movies": "roll bounce (it's basically a documentary of my life), field of dreams (if you build it they will come. they came. 9 of them), rocky (the underdog AND the promoter), the mighty ducks (all three), rudy, almost famous (the part where the band gets a crowd)",
+  "Television": "behind the music (everybody believes in the band except the world), american idol auditions (research), the weather channel (rain = attendance minus 40 percent, i have a chart), infomercials at 2 am (the pitch is everything), making the band",
+  "Books": "how to win friends and influence people (my dad's copy, i've read chapter one eight times), the rollerdome employee handbook (laminated), the skate guard rules (13 rules, i wrote number 14), the tipping point (i read the first chapter at the mall bookstore. it's about me)",
+  "Heroes": "mr. pavlik (gave me a key to the building), rhonda (40 years, one whistle, never wrong), gator (the real DJ. the limbo is his), dana (the brains), my cousin tony (0 for 53 and still smiling, i learned persistence from him), penny (13 for 13), every kid who came back a second time"
+ },
+ "song": {
+  "name": "Don't Stop Believin'",
+  "artist": "Journey",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0f/e9/54/0fe95410-dc38-8696-0259-f61d869e9fca/mzaf_13616088119456591905.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   7,
+   12,
+   11,
+   7,
+   4,
+   7,
+   0
+  ],
+  "bpm": 119
+ },
+ "decor": [
+  "assets/deco_new.gif",
+  "assets/badge_blink.gif",
+  "assets/deco_flames_bar.gif"
+ ],
+ "friends": [
+  "smoove",
+  "tony",
+  "ember",
+  "penny",
+  "banana",
+  "skip",
+  "adam",
+  "harmony",
+  "sven"
+ ],
+ "wall": [
+  {
+   "from": "penny",
+   "text": "VINCE!!! #13!!! the glow part during couples skate was PERFECT!!! 42 people!!! that's only 8 short of HUGE!!! (i'm counting by 8s now)!!! the slushie machine was a 9/10 tonight (it fixed itself) PLUR!!!",
+   "time": "Oct 3 2026 12:05 AM"
+  },
+  {
+   "from": "tony",
+   "text": "cousin vince ;) head of the door reporting. i said hey to every person who came in and counted them (42). then i handed out 40 flyers at the mall and 11 took one. THAT'S 11 FOR 40. best i've ever done at anything. i think i'm a gentleman AND a promoter. hey ;)",
+   "time": "Sep 30 2026 6:14 PM"
+  },
+  {
+   "from": "smoove",
+   "text": "VINCE!!! track 9 is MAILED. CD-R. bubble envelope. the hook is 'herp' x 40. play it at couples skate 4 the ones who missed my set. its gonna be HUGE (ur sentence) (i stole it) (its on track 11 now) air horn",
+   "time": "Sep 28 2026 11:11 PM"
+  },
+  {
+   "from": "evan",
+   "text": "Vince, thank you for the invitation to open TEEN NITE #14. WITH ALL DUE RESPECT accepts. Our set is 7 minutes. I came to #12 as a guest and I rinsed my own tray. A note is in the mail. I'd like to ask, respectfully, whether two-stepping on skates is permitted. I'll wait for the answer. xEvanx",
+   "time": "Sep 27 2026 6:02 PM"
+  },
+  {
+   "from": "gwen",
+   "text": "vince. i've been informed that i'm quoted on a flyer. the font is comic sans. the quote is 'the disco ball has potential.' i said it. it stands. but the disco ball deserves a better typeface. i'm hand-lettering you a new one. don't thank me. (don't print it in color.)",
+   "time": "Sep 24 2026 9:03 PM"
+  },
+  {
+   "from": "skip",
+   "text": "vince!! the pork pie patrol would love a repeat at teen nite. fitz says the disco ball 'whoa'd' at us. ska is not dead. sorry about the mirror (the trombone has apologized in its own way)",
+   "time": "Sep 12 2026 7:45 PM"
+  },
+  {
+   "from": "adam",
+   "text": "vince!!! thanks 4 the add!!! i invited all 10,000 of my friends to teen nite on the event page!!! 3,412 clicked 'going'!!! (i've met 0 of them) (do u think they'll come) (can u fit 3,412) (ur rink looks big in the picture)",
+   "time": "Aug 26 2026 11:02 PM"
+  }
+ ],
+ "replies": [
+  "THAT'S EXACTLY WHAT I'M TALKING ABOUT. putting it on the next flyer. credit: 'a guy.'",
+  "gonna be HUGE. (i mean your comment. it's already bigger than last friday's.)",
+  "I LOVE IT. doors 7. first 50 free. bring a friend. bring 2. bring that comment.",
+  "message received. RSVP in the comments or at the snack bar.",
+  "BIG IF TRUE. (it's true. i'm making it true.)",
+  "SOLD. (it's free. SOLD ANYWAY.)",
+  "can i quote u on a flyer? 'a guy named you says: great.' that's marketing.",
+  "tell ur friends. tell ur friends' friends. tell the guy who says he hates the rink. he comes every week.",
+  "we're gonna get there. i don't know where. but we're getting there. (it's on route 30, so probably east or west.)",
+  "thank u. i'm writing that on my hand so i can read it when it's slow. it's slow a lot. i read it a lot."
+ ],
+ "thanksAdd": "WHAT'S UP MALTEN!!! welcome to the TEEN NITE street team (it's u. it's my cousin tony. it's a kid named kenny from the bus). as a thank-you ur name is on the list at the door (the list is a napkin). first 50 free, u're #51 but i'll fix it. FRIDAYS. 7 TO 11. bring a friend. it's gonna be HUGE.",
+ "ambient": [
+  "attendance last friday: 42. that's up from 38. a double-digit increase (10.5). every promoter in history would kill for that number (percent).",
+  "rhonda has blown a whistle at the rink for 40 years and tonight she said 'vince, good night.' i'm still processing it.",
+  "found a missing disco ball mirror under the DJ booth. THE BALL IS NOT WHOLE AGAIN. i put the mirror back where it was. it lives under the booth now. it's still part of the show.",
+  "laminated the flyer. laminated the ledger. laminated my lunch. (it's a sandwich. it's safe now.)",
+  "to whoever put 'lose the hokey pokey' in the suggestion box: NEVER. the suggestion box is a shoebox. it's me. i read them all.",
+  "ran out of nacho cheese at 9:40. the line went around the rink. nobody left. i'd call that a sellout. sold out of cheese.",
+  "a girl in one sandal ran a drum circle in my parking lot. 11 kids. rhonda said fine as long as nobody drums on a car. i drummed on my car. i'm the exception. i'm staff."
+ ],
+ "saltyDm": "request denied?? that's OK!!! u're still on the list at the door. it's a napkin. u're #51 now. first 50 free but i'll put a chair out for u. it's gonna be a good night with or without u (with is better).",
+ "keywords": {
+  "teen nite": "TEEN NITE!!! FRIDAYS. 7 TO 11. THE ROLLERDOME, ROUTE 30, NEXT TO THE CARPET OUTLET. AGES 13 TO 19. FIRST 50 FREE, THEN $3 (IT HAS NEVER COME UP). LIVE BANDS, DJ, COUPLES SKATE, LIMBO, CHEESE. we're on #13. last friday: 42.",
+  "free": "FIRST 50 THROUGH THE DOOR ARE FREE. that's not a gimmick, that's a promise. the most we've ever had is 63 (bus). i have never charged the 51st person. i just don't count carefully after 50. it's a policy.",
+  "band": "WANT TO PLAY TEEN NITE? rules: 1) all ages, 2) no cussing, 3) nothing too heavy to carry up the stairs (40 lbs max, Rhonda's back), 4) load in by 6. pay is pizza and free skate passes for the whole band. bring your own cords. leave a note in the shoebox at the snack bar.",
+  "huge": "gonna be HUGE. i say it every week. last friday was 42. that's not huge. but july was 12. somebody's gotta say it first, so the number has something to climb toward.",
+  "dj": "two DJs. gator has been in that booth since before i could skate. he owns the limbo and the hokey pokey. i do the TEEN NITE mix (burned every thursday), couples skate, and ONE song a night that penny brings on a CD-R. we disagree about volume. he says 'kid, it's the limbo' to everybody.",
+  "skate": "backwards skate is at 8:15. couples skate is at 9:00. limbo is at 9:30. the hokey pokey is whenever rhonda says. rental is $2 (size 7 and a half is not for rent. that's dana's.)"
+ },
+ "banter": {
+  "smoove": [
+   "SMOOVE!!! 31 people, 14 air horns, 1 girl won the limbo with a lean so low i checked for a floor. gator cut your last track for the limbo. gator does that to everybody. he did it to a trumpet player once. u r booked for next month 2. (and yes the 31 is 31. the 50 was 'in spirit.')",
+   "smoove: the herp part of track 9 got a reaction at couples skate. a lady said 'it's very modern.' i said 'thank u.' she said 'i didn't say good.' i said 'it's modern.' that's a review. putting it on the flyer."
+  ],
+  "tony": [
+   "TONY!!! head of the door!!! u said hey to 42 people and counted every one. the napkin is laminated now. also: nonna did 3 laps and rhonda put the whistle away. rhonda has never put the whistle away. nonna is hired as a consultant. she said 'organ.' i'm looking into an organ.",
+   "cousin. i lent u that book once and u gave it back and said it wasn't gentlemanly. that's the nicest review i've ever gotten. u're a better man than the book and a worse winker than me. keep going. 0 for 53 is just 53 chances."
+  ],
+  "ember": [
+   "ember!!! the flyer for friday says 'FADING EMBER (CURRENT LINEUP).' i keep a whiteboard at the DJ booth with who's in it this week. as of tonight it's 3 people and a machine named Dr. Beat. i erase it every thursday. it's my favorite thing at the rink.",
+   "ember re: the 9:30 slot. i'm sorry about cotton eyed joe. gator says it was the wrong sleeve. i say it was fate. but look: the boy who skated backwards the whole time came back the next week and asked if the 'sad band' was coming. that's a 100 percent nod rate. also: when u scream, the disco ball shakes. 11 mirrors rattled. none fell. u have a gift."
+  ],
+  "penny": [
+   "PENNY!!! 13 for 13!!! u r the only person with a perfect attendance record and u've never said 'it's gonna be HUGE' once. u just SHOW UP. that's the whole thing. i'm putting u on a plaque. the plaque is laminated paper. it's the best i can do.",
+   "penny re: the slow song for the kids by the wall. DONE. 9:45. ONE song. i'll turn the lights down to just the disco ball. u handle the glowsticks. nobody's allowed to be by the wall when it's over. that's a rule. (i'm making it now.)"
+  ],
+  "skip": [
+   "SKIP!!! the pork pie patrol is the only band that ever made the whole rink skate in two directions at once (the horns were facing different ways). sorry about the mirror. no i'm not. it was an honor. it's mirror number 3. i'm going to frame it.",
+   "skip: i've decided 'ska is not dead' is a good tagline and i'd like to borrow it. 'TEEN NITE: NOT DEAD.' what do u think. fitz said 'whoa.' that's two reviews of the idea. i'm printing it."
+  ],
+  "gwen": [
+   "GWEN!!! 6/10 is the best review i've ever gotten. it's on the flyer. 'THE DISCO BALL HAS POTENTIAL,' and under it, garden_state_gwen. if u want a different font, tell me. i have 14. the one with the fancy S is good.",
+   "gwen, i noticed u didn't skate but u tapped ur foot at 'funkytown.' i have the footage. no i don't. i have the memory. it's on the ledger. attendance 35. (including 1 foot.)"
+  ],
+  "adam": [
+   "ADAM!!! 3,412 people said 'going.' none came. i've decided to count them 'in spirit.' TEEN NITE #8: 29 + 3,412 = 3,441. i'm putting it in the ledger in pencil. THAT'S HUGE. (it's pencil.)",
+   "adam u've never been to the rollerdome and u've sent me 41 messages about it. i'm going to say something and it's not a promo: u can come any friday. i'll save u a booth. u don't have to bring anyone. u can just be the 1."
+  ],
+  "banana": [
+   "BANANA!!! 14 people, 36 nachos ready, and u ate 11 of them as 'customer service.' that's the most honest quality control i've ever seen. i'm putting 'LAST CALL FOR NACHOS' on the flyer in your voice. (the font is yelling.)",
+   "banana: your mom skated backwards at 51. rhonda said 'who's that.' i said 'banana's mom.' she said 'she's hired.' rhonda has never hired anyone. rhonda has never said yes. u come from a long line of firsts."
+  ],
+  "greg": [
+   "GREG!!! 20 minutes between the limbo and couples skate. one amp ('maybe one' is a yes at the rink). our no-strobe rule matches your dad's rule so we're basically cousins. i'll tell gator not to cut u for the limbo. (he'll cut u for the limbo.)",
+   "greg u said u've never had 50 people. i've never had 50 either, except the bus. we're the same kind of person: we count the room and say the number out loud. i'd put RAKE INCIDENT on the flyer in the big font. bring the rake."
+  ]
+ },
+ "statuses": [
+  "vince is putting up flyers at the mall (the corkboard (again) (Dennis))",
+  "vince is at the rink. doors in 3 hours. the cheese is hot. the disco ball is dusted",
+  "vince just sold out of nacho cheese. THE SHOW SOLD OUT OF CHEESE",
+  "vince is laminating. no further comment",
+  "vince counted 42. a personal best for a night without a bus",
+  "vince is making the list for friday. the list is a napkin. the napkin is full",
+  "vince wants it known that Dana is the brains. he is the face. the face is on the flyer",
+  "vince is booking a ska band (9), a screamo band (lineup TBD) and a hardcore band that says thank you. it's a festival. at a rink.",
+  "vince and gator are negotiating volume. gator has seniority. gator has 'the limbo.' vince has 'the rest.'",
+  "vince just heard banana yell 'LAST CALL FOR NACHOS' at 10:55. the whole room cheered. nobody knows why. that's the best part."
+ ],
+ "bulletins": [
+  {
+   "subject": "TEEN NITE #14: THIS FRIDAY!!! (FLYER VERSION) (FIRST 50 FREE)",
+   "body": "WHAT: TEEN NITE!!! WHEN: THIS FRIDAY, 7 TO 11. WHERE: THE ROLLERDOME, ROUTE 30, NEXT TO THE CARPET OUTLET. WHO: AGES 13 TO 19. COST: FIRST 50 THROUGH THE DOOR FREE, THEN $3. HEADLINING: FADING EMBER (CURRENT LINEUP). OPENING: WITH ALL DUE RESPECT (7 MINUTES, EXACTLY). ALSO: DJ VINCE, BACKWARDS SKATE AT 8:15, COUPLES SKATE AT 9, LIMBO AT 9:30, THE HOKEY POKEY (REQUIRED). EUROPE HOUR AT 9 SHARP (not half nine. sven.). SNACK BAR: BANANA_PHONE (LAST CALL FOR NACHOS AT 10:55). SNACKS: NACHO CHEESE, SLUSHIES (BLUE RASPBERRY: A 7/10 PER PENNY), PIZZA. NO CUSSING. NO THE-THING-WITH-THE-SPEED. BRING A FRIEND. BRING 2. THIS IS GONNA BE HUGE."
+  },
+  {
+   "subject": "SUGGESTION BOX RESULTS (read aloud at the snack bar by popular demand)",
+   "body": "the shoebox has spoken. 1) 'lose the hokey pokey' (14 votes). DENIED. 2) 'more eurodance' (3 votes, all in a Swedish accent). APPROVED. 3) 'a bench by the wall.' DONE. a real one. rhonda's husband built it. there's a plaque. it's laminated. 4) 'turn the heat up.' it's a rink. the nacho cheese is hot. that's the heat. 5) 'can the disco ball spin faster.' it has 3 mirrors missing. let it spin at its own pace. 6) 'thank you.' (1 vote, anonymous, in glow-in-the-dark ink. i know who it is. i'm laminating it.) keep them coming. i read all of them."
+  },
+  {
+   "subject": "BANDS WANTED: ALL GENRES (rules inside)",
+   "body": "TEEN NITE is looking for live acts. all ages, all genres, no cussing, nothing over 40 lbs (rhonda's back), load-in at 6, three songs minimum, ten songs maximum. pay: pizza for everybody and free skate passes for the whole band and their moms. we've had a screamo band (lineup changes weekly, we keep a whiteboard), a nine-piece ska band (the trombone has made history), and next up is a very polite hardcore band. we've never had a polka band or a boy with a banjo. i don't know why i just said that. i just have a feeling about the next one. send a demo or leave a note in the shoebox at the snack bar. i listen to all of them. even the long ones. especially the long ones."
+  }
+ ],
+ "pcComments": [
+  "THIS PHOTO IS A FLYER. i mean i want it on a flyer. can i use it. credit: 'photo by a friend.'",
+  "great lighting!!! the disco ball would've loved this picture. i don't speak for the disco ball. (i do.)",
+  "everyone in this picture is invited to TEEN NITE. first 50 free. you're all the first 4.",
+  "nice!!! u look like u're about to tell somebody about something great. that's a good look. that's the whole job.",
+  "pc4pc?? sure but instead of a pic i'll put u on the list at the door. (the napkin.) it's the better deal."
+ ],
+ "dmSeed": [
+  {
+   "text": "WHAT'S UP MALTEN!!! vince here. promoter. TEEN NITE every friday at the Rollerdome, route 30, 7 to 11. ur on the list (it's a napkin). no pressure. but if u came next friday u'd be person #43 and that number matters to me emotionally."
+  }
+ ],
+ "dms": [
+  "ok. the attendance report (promoter voice off). 42. two kids came to see the band and stayed for couples skate. one of them asked a girl to skate. she said yes. i watched from the booth. i played a slow one (not the one i'd planned, a different one) and they went around twice and didn't talk. it was the best four minutes of the year. (42.)",
+  "MALTEN. urgent. my cousin tony says 'TEEN NITE' should be 'TEEN NIGHT' with the proper spelling because 'girls respect spelling.' i said nobody has ever come to a roller rink for spelling. we shook on it. we're both still not sure. i've asked 11 kids. 10 said 'what.' 1 said 'night.' it was a girl. i've been thinking about it for a week.",
+  "the nacho cheese pump has never once failed. i'd like that on the record. it dispenses exactly one ounce. rhonda says it's older than me. i have a theory that the pump is why people come back. nobody has ever come back for me. but it's the same thing. i'm the pump's promoter.",
+  "i want to tell you about rhonda. 40 years. one whistle. she knows a kid's about to fall before the kid does. last week a new kid sat on the bench for two hours. rhonda skated over, held out both hands and said 'we go slow.' that's all. an hour later he was skating backwards. i want to be rhonda when i grow up. (as a promoter.)",
+  "i'm saving for a PA. i have $212. a PA is $900. at my current pace i'll have it by the time i'm 30. i told evan we should split one. he said 'respectfully, thank you, i'm $340 short.' we're going to shake on it. we haven't shaken. we're going to.",
+  "dana made me a sign out of poster board. it says PROMOTER OF THE YEAR and under it, small, in pencil, 'for now.' it's the nicest thing anyone has ever said to me. i'm going to laminate the 'for now.'",
+  "slogan poll. A) TEEN NITE: GONNA BE HUGE. B) TEEN NITE: NOT DEAD (skip's). C) TEEN NITE: THERE'S CHEESE. i polled 11 kids. A got 2, B got 3, C got 6. i'm going with C. it's honest. it's the cheese.",
+  "i've never told anyone this but when the lights go down and it's only the disco ball, every kid in the room looks up at the same time. 40 people. all looking at the ceiling. for like four seconds. nobody's talking. nobody's on a phone. that's why i do it. the four seconds."
+ ],
+ "blog": [
+  {
+   "title": "THE LEDGER: all 13 TEEN NITEs (a list)",
+   "date": "Oct 3 2026 11:20 PM",
+   "mood": "counting",
+   "body": "#1 Jul 10: 11 (the AC broke. we skated by disco ball only. nobody told me that's the best lighting.) #2 Jul 17: 19 (first couples skate. 3 couples. one was rhonda's parents.) #3 Jul 24: 14 (rain. banana ate 11 nachos as 'customer service.') #4 Jul 31: 22. #5 Aug 7: 27 (first limbo contest. the bar was a mop. a 12-year-old won.) #6 Aug 14: 18 (rain.) #7 Aug 21: 31 (smoove, 20 minutes, 14 air horns. 9 were parents.) #8 Aug 28: 29 (pork pie patrol. mirror number 3.) #9 Sep 4: 63 (THE BUS.) #10 Sep 11: 41 (fading ember. 7 watched, 4 skated, 3 nodded. a boy skated backwards the whole song.) #11 Sep 18: 35 (europe hour. the whole rink in one direction.) #12 Sep 25: 38 (cotton eyed joe, on purpose this time. also a drum circle in the parking lot, 11 kids, rhonda approved, no cars.) #13 Oct 2: 42 (tony counted them at the door.) TOTAL: 390. AVERAGE: 30. PENNY: 13. it's not HUGE. it's a line going up. it's mine."
+  },
+  {
+   "title": "HOW TO PROMOTE AN EVENT: 12 STEPS (by a guy who has promoted 13)",
+   "date": "Sep 13 2026 8:15 PM",
+   "mood": "educational",
+   "body": "1) make a flyer. 2) make a better flyer. 3) laminate it. 4) put it on the mall corkboard. 5) put it back on the mall corkboard (Dennis). 6) tell everyone. 7) tell the guy who says he won't come. 8) open the doors at 7 even if nobody's there. 9) do not count the room until 8:30. 10) play ONE song for the kid by the wall. 11) stay after. sweep. say goodnight to the disco ball. 12) accept that 38 isn't a failure. it's 38 people with shoes on in the same room. write the number down. tell somebody. do it again Friday. that's it. there's no 13. i had one and it wasn't true."
+  },
+  {
+   "title": "AN OPEN LETTER TO WHOEVER KEEPS TAKING MY FLYER OFF THE MALL CORKBOARD",
+   "date": "Aug 19 2026 4:40 PM",
+   "mood": "determined",
+   "body": "Dear Corkboard Person, i put the flyer up Monday. Tuesday it was gone. Wednesday there was a flyer in its spot (not mine). it said NO SOLICITING. underneath, in pen, somebody had written 'but it's a good flyer.' i don't know who that was. i'd like to meet them. they're the only critic i've ever had. i'd like to say to you, the person who takes it down: i'm not mad. i have 200 more. i laminated them. you can tear the corner but the middle holds. also: if you ever want to come, first 50 are free, and if you're 20 or older you can stand outside in the parking lot and listen, and nobody will say anything. that's the policy. i just made it. Sincerely, Vince, Promoter."
+  }
+ ],
+ "survey": {
+  "title": "TEEN NITE PROMO SURVEY (fill out at the door or here)",
+  "qa": [
+   [
+    "name:",
+    "vince (promoter) (it's on the card)"
+   ],
+   [
+    "age (13-19 only):",
+    "19. staff exception. i'm the oldest person allowed in and the one who has to turn the lights up at 11."
+   ],
+   [
+    "how'd u hear about us:",
+    "i made the flyer. i put it on a corkboard. i'm surprised too."
+   ],
+   [
+    "favorite skate song:",
+    "funkytown. no wait. don't stop believin'. no wait. whatever's playing when a kid who's never skated gets to the end of the wall without falling. that one."
+   ],
+   [
+    "rate the nacho cheese 1-10:",
+    "11. the scale doesn't go to 11 and i've asked it to."
+   ],
+   [
+    "most people at one event:",
+    "63. the bus. it was a school bus. it broke down. it was fate. it was a bus."
+   ],
+   [
+    "will u bring a friend (circle one):",
+    "YES / YES (this is not a real question)"
+   ],
+   [
+    "what do u want to see at TEEN NITE:",
+    "a ska band, a screamo band, a hardcore band, a boy with an acoustic guitar, a glowstick lady, and a swede doing eurodance, all in the room at once. i want everybody. i want one night where they're all there."
+   ],
+   [
+    "what would make u leave early:",
+    "nothing. i've asked. nobody's ever left early. they leave at 11 when i tell them to. i feel bad every time."
+   ],
+   [
+    "biggest dream:",
+    "a real venue. a PA. a lighted sign that says VINCE PRESENTS. (or just PRESENTS. i'm not picky.)"
+   ],
+   [
+    "forward this to 10 friends:",
+    "forwarded to 10. 3 said 'what's TEEN NITE.' i sent them flyers. 2 are coming."
+   ]
+  ]
+ }
+}

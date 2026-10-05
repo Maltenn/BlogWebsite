@@ -1,0 +1,273 @@
+{
+ "id": "yvette",
+ "name": "yearbook_yvette",
+ "tag": "Yearbook Editor. Class President (pending). VOTE YVETTE. Your photo is due FRIDAY.",
+ "avatar": "assets/avatar_yvette.gif",
+ "gender": "Female",
+ "age": 17,
+ "hometown": "Cuyahoga Falls, OH (born 9 days past my due date. my mother still brings it up. I have been making up for it ever since)",
+ "loc": "Room 112, the yearbook room (the door has a sign. the sign has a deadline)",
+ "zodiac": "Capricorn (a goat that files things)",
+ "status": "Single (my schedule is full through June. I will consider a 15 minute window. Please submit a proposal)",
+ "hereFor": "Friends, ad sales, ballots, photos (level)",
+ "mood": "on schedule (rare. write it down)",
+ "lastLogin": "Oct 4 2026 11:49 PM",
+ "theme": {
+  "bg": "#dfe9d8",
+  "fg": "#14281d",
+  "accent": "#a4161a"
+ },
+ "blogTitle": "From the Editor's Desk (final proofs, no excuses)",
+ "about": "FOR IMMEDIATE RELEASE: I'm Yvette. I am Editor in Chief of the school yearbook (192 pages, 14 staffers, 1 adviser, 1 stapler) AND a candidate for senior class president, because I looked at the calendar and nobody else was going to make it work. My platform: a Master Calendar, a working water fountain on the second floor, financial transparency, and the Rule of Two (every student appears in the yearbook at least twice). My slogan is 'A Strong Finish. On Time.' If you owe me a photo, a caption, a ballot or a form, you know who you are and I know where you sit. I was born 9 days past my due date. I've been making up for it ever since. VOTE YVETTE.",
+ "aboutMore": "Facts. (1) I have fallen asleep in Room 112 more than I'd like to admit; there is a page flat from page 61 with my cheek on it. (2) I serve on the superlatives committee, but I have recused myself from 'Most Organized.' It was the hardest thing I have done this year. (3) The Ghost List is real. It is a list of students who appear in fewer than two photos. I work on it every Friday with a camera and a granola bar. (4) If you were ever caught yawning in the background of a pep rally photo, I have the proof. You're on page 114. You're welcome.",
+ "meet": "Who I'd like to meet: whoever decided deadlines were 'suggestions.' The person who designed the very first yearbook, to ask what they knew that we don't. Garrett Pell, to discuss the cost of pizza, with a pie chart. The clipboard in the boiler room that controls the sprinklers (I have met it. We understand each other). And everyone who has only one photo in this year's book. I'm coming to find you. I will wave first.",
+ "interests": {
+  "General": "yearbook (editor, 192 pages), the ladder (the plan for every page, on the wall, in pencil), deadlines (mine and yours), steel rulers, the copier (love, hate, repair log), color-coded sticky flags, student council, Master Calendar v3, cardstock, writing captions (12 words, no more), being early (3 days), Room 112 after 3:15",
+  "Music": "Natasha Bedingfield (Unwritten is my song. it is not the yearbook's theme. it is my theme. please keep that off the record), Kelly Clarkson (Breakaway, for the walk to Room 112), Vanessa Carlton (A Thousand Miles, for proof nights), the Shins (Paige sent me a mix. I did not hate it. I will say no more), the sound of the stapler (Gerald) closing on the last page",
+  "Movies": "His Girl Friday (a newsroom with a deadline: my favorite genre), The Devil Wears Prada (Emily is the hero. nobody asked), Legally Blonde (Ashley's recommendation), Mean Girls (the student council scenes are accurate), Almost Famous (the editor with the red pen), All the President's Men (grandpa's copy, a lot of underlining)",
+  "Television": "C-SPAN (election coverage, I take notes), The West Wing (all of it, in order, twice), Gilmore Girls (Paris Geller is my hero. she would say I'm not intense enough. she's right), Jeopardy! (my category is Before & After), the weather on the Today show (it runs on a schedule)",
+  "Books": "the Chicago Manual of Style (I own the whole thing), The Elements of Style (small, mighty, tabbed), Robert's Rules of Order (pocket edition), the student handbook (94 pages; Section 12, Elections, is a cliffhanger), last year's yearbook (I've read it 40 times and I still find typos)",
+  "Heroes": "my mom (born me 9 days late, never let me forget it, has come to every proof night with a casserole), Mr. Dombrowski (yearbook adviser, 31 years, says 'good enough,' I say 'no,' he says 'that's why you're the editor'), Paris Geller, my grandpa's All the President's Men, anyone who turns something in early and doesn't tell anyone"
+ },
+ "song": {
+  "name": "Unwritten",
+  "artist": "Natasha Bedingfield",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/c1/9f/d1/c19fd1a0-81c2-e342-0b05-709a07b1c320/mzaf_6968857392182098040.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   2,
+   4,
+   7,
+   4,
+   2,
+   4,
+   0
+  ],
+  "bpm": 100
+ },
+ "decor": [
+  "assets/deco_guestbook_sign.gif",
+  "assets/deco_new.gif"
+ ],
+ "friends": [
+  "paige",
+  "brittany",
+  "ashley",
+  "tim",
+  "henderson",
+  "becca",
+  "thad",
+  "todd",
+  "liz"
+ ],
+ "wall": [
+  {
+   "from": "henderson",
+   "text": "Yvette, the egg drop needs a photographer. Thursday, 3:00 PM, the gym roof, with permission from no one. Please bring a helmet. The yearbook may photograph the eggs. It may not photograph me at the edge of the roof (that is a new rule). The superlative has been accepted. I will explain why at length. - Mr. H",
+   "time": "Oct 2 2026 3:40 PM"
+  },
+  {
+   "from": "paige",
+   "text": "yvette i emailed u 40 pics from the pep rally. 31 are tilted. u said 'level horizons only.' i said dutch angle. u said 'dutch angle is not a policy.' it is now. its MY policy. i will fight u for the cover. also ur the only person who ever asked for MORE of my pics so. thx",
+   "time": "Sep 30 2026 10:22 PM"
+  },
+  {
+   "from": "brittany",
+   "text": "YVETTE. i'm in 'Most Likely To Have A Waitlist' and i didn't even pick it. who nominated me. don't tell me. ok tell me. i'm voting for u anyway!! ur on my top 8!! (spot 6!!) xoxo",
+   "time": "Sep 27 2026 6:48 PM"
+  },
+  {
+   "from": "tim",
+   "text": "yvette. ledger update. ad revenue: $412.00. expenses: $388.00. net: $24.00. i want it noted that i did that with a spreadsheet and a lollipop. also i found a 7th flyer in my calculator case today. i have kept it. it is in the ledger under 'paper (free).' i would vote for u if i could (im a sophomore) (im 15) (spiritually yes)",
+   "time": "Sep 24 2026 8:15 PM"
+  },
+  {
+   "from": "chad",
+   "text": "YVETTE!! u took my yearbook pic and i blinked and u said RETAKE and i got a retake and i was NOT blinking!! u r a GENIUS. also i voted for u. i think. i clicked something. it said confirm. i hope it was u",
+   "time": "Sep 20 2026 5:05 PM"
+  },
+  {
+   "from": "debbie",
+   "text": "Yvette, the office has your poster. It is laminated. It is six feet tall. It is on the attendance window. I can see your face every time I take attendance. You look very determined. Love, Mom. P.S. Do you eat? Love, Mom",
+   "time": "Sep 15 2026 8:02 AM"
+  },
+  {
+   "from": "marcus",
+   "text": "Yvette. Re: your campaign bulletin. Rule 6: no campaigning on walls. Rule 6 was written yesterday. I am sure you understand. Thread locked. (I am not eligible to vote in your election. I have drafted a ballot anyway. It says Yvette. This is not an endorsement. It is a draft.)",
+   "time": "Sep 9 2026 11:14 PM"
+  },
+  {
+   "from": "todd",
+   "text": "Hi Yvette! Friendly admin note: you've sent 14 deadline reminders to the whole site this week. A couple of people asked if they're 'in trouble.' I told them no, it's just you :) Also I have never been on time for anything in my life so thank you for the structure. Your poster looks great on the front page. I did not put it there. I think Dave did. - Todd",
+   "time": "Aug 31 2026 9:30 AM"
+  }
+ ],
+ "replies": [
+  "Received. Filed. Thank you. VOTE YVETTE.",
+  "Noted. I'll add it to the ladder.",
+  "That's a great point. Do you have it in writing. By FRIDAY.",
+  "Thank you! (ACTION ITEM: you owe me a photo.)",
+  "Per my last bulletin: yes.",
+  "Love it. Can it be 50 words shorter. Captions are 12 words. That is a rule.",
+  "I'm on it. I've been on it since 6:45 AM.",
+  "Your feedback has been added to the Suggestion Box (a real box in Room 112) (it's full) (it's all about the vending machine).",
+  "I can fit you in Tuesday at 3:15. Bring a photo.",
+  "Thank you for your support. You've earned a sticker. It says I VOTED FOR YVETTE. It is not legally binding."
+ ],
+ "thanksAdd": "Request ACCEPTED. Welcome to the Yvette For Class President mailing list (opt-out is not available, but opt-in was never required). You will receive: (1) deadline reminders, (2) a yearbook questionnaire, DUE FRIDAY, (3) a campaign sticker. Please advise your preferred photo dimensions. Thank you. VOTE YVETTE.",
+ "ambient": [
+  "REMINDER: Senior portraits are DUE Friday, 3:00 PM. Not 'after lunch.' Not 'I'll send it later.' 3:00. The ladder locks at 3:01. VOTE YVETTE (for a school where the ladder locks on time).",
+  "Superlatives update: 164 of 171 ballots are in. 'Most Likely To Be Late' is a tie between the two people whose ballots are not in. I'm not naming names. I'm naming a grace period, which has expired.",
+  "Today I found a freshman with only ONE photo in the entire yearbook. One. I fixed it. He's now on page 114, smiling, by the water fountain. The Rule of Two: no student appears fewer than twice. It is the only rule I'm not allowed to break.",
+  "I slept 4 hours. In Room 112. On the layout table. On the flat for page 61. I woke up with the word CAPTIONS on my cheek, backwards. I'm fine. VOTE YVETTE.",
+  "A student asked if the yearbook 'could just be online.' I said a yearbook is the one thing in this building you can hold in your hands in 40 years and say 'I was there.' He said ok. I think I won something."
+ ],
+ "saltyDm": "Request denied. Noted and filed under 'Pending (Follow Up Friday).' I want to be clear that I take no offense. I take it as feedback. I've added a column to the spreadsheet. The column is 'Reasons.' I'll be reaching out for your input by 3:00 PM, not Friday-ish, 3:00. VOTE YVETTE. (You're still in the yearbook. Twice. It's the rule.)",
+ "keywords": {
+  "yearbook": "192 pages, 14 staffers, 1 adviser, 1 stapler named Gerald. Theme this year is In Focus. Every student gets two photos. Every photo gets a 12 word caption. Every caption gets the names spelled right. DUE FRIDAY.",
+  "vote": "Class president ballots close Friday at 3:00 PM. A strong finish. On time. I've got a platform, a pie chart, a Master Calendar and 11 clarinets doing my bake sale. Garrett Pell has a pizza plan. Judge for yourself. I think the pie chart speaks for itself.",
+  "deadline": "A deadline is a promise you make to the person who builds the next step. If you miss yours, somebody else works at midnight. I know, because it's me. I don't mind. I mind a little. I fix it by being early.",
+  "superlatives": "The ballot is in the shoebox in Room 112. One vote per category. Voting twice is a Class C violation. Yes, it was misspelled on the first printing. The printer is not to blame. I am. It's fixed. It will not be discussed again.",
+  "photo": "Level horizon. Subject in focus. Name spelled correctly in a 12 word caption. If it's tilted it had better be on purpose and it had better be Paige. Photo credit goes in 14 point bold. I've taken it very seriously since 8th grade.",
+  "pizza": "Free Pizza Fridays: $14,300 a year. I like pizza. I'm not against pizza. I'm for math. I'll put pizza in the budget as soon as the budget has pizza in it."
+ },
+ "banter": {
+  "becca": [
+   "BECCA. Resolved: the sprinklers are controlled by a clipboard in the boiler room. The clipboard says 3:45 because a custodian wrote 3:45 years ago and nobody ever changed it. I have photocopied the clipboard. I gave the custodian a granola bar and a request. It's now 4:30. You're welcome. Please do not mention the granola bar. It was yours.",
+   "BECCA. The apostrophe is fixed. 'Marching Eagles.' The clarinets are in the front row of the band picture as requested. The tubas asked to be in the back. They said 'low brass.' I said 'in the back.' They said 'yeah.' I think we understand each other. Master Calendar v3 attached. It has a band column. It is blue."
+  ],
+  "thad": [
+   "THAD. The results are certified. 'Most Dramatic': 61%. 'Most Likely To Be On Broadway': 58%. 'Most Likely To Say I'm Fine': 74%. I do not make the results. I certify them. The certificate is attached. It is on cardstock.",
+   "THAD. The cast photo is DUE Friday at 3:00 PM. I will attend dress rehearsal with the camera. I will say 'places.' I will say it once. I have been practicing. I borrowed it from you. Thank you. The sash is correct."
+  ],
+  "ashley": [
+   "ASHLEY. The squad photo is placed. Eagle blue. The hex code worked. I printed a proof and held it up to the bleachers. It matched. I nearly cried. You are the only person in this building who understands why. Also: showmanship corrected to 9.1. The Priya candid is cut. She does not know what she's missing.",
+   "ASHLEY. Recusal notice: I have recused myself from 'Most Organized.' It was the hardest thing I've done this year. You are leading by 14. I'd have placed third, behind you and the dean's secretary. It's fine. I'm fine. (Thad says that. It's catching.)"
+  ],
+  "tyler": [
+   "TYLER. The lacrosse team photo is placed. Two collars: approved. Three collars: rejected by me personally. The guy in the back row knows who he is. Please tell him I said no. Re: the ranch station: it costs $2,100 and the class treasury has $1,212. I am not offering ranch. I am offering a Master Calendar. It's like ranch, but for time.",
+   "TYLER. Your dog is on page 88. I'm not explaining it. The team photo had a truck in the background. A dog was in the truck. He was looking directly at the camera. I cropped everyone else. He's the best photograph in the lacrosse spread. I did not ask permission. I asked him. He wagged."
+  ],
+  "paige": [
+   "PAIGE. Policy update: horizons must be level. Policy amendment: unless the tilt is 'intentional and tasteful.' You get 3 per spread. I'm drawing the line at 3. You said 'my tilt is always intentional.' That's why it's 3.",
+   "PAIGE. I need 4 more candids of the sophomore class by THURSDAY or there are 11 kids with only one photo. You are the only person who is always in the right place at the right time. Photo credit in 14 point bold. You've earned it. Tilt 2. Do not tell Mr. Dombrowski."
+  ],
+  "brittany": [
+   "BRITTANY. Your top 8 is not a ballot. Mine is a ballot. It's in a shoebox, sealed with tape, supervised by Mr. Dombrowski. Your top 8 changes weekly. Mine is certified once. That's the difference. You're spot 6 on my list, though. Xoxo. (I learned that from you.)",
+   "BRITTANY. 'Best Dressed': you are first. Holly is second. She requested a recount. I said no. She said 'name 3 reasons.' I said 'ballots.' She almost smiled. It's the first time I've seen it. I'm putting it in the book. Page 112."
+  ],
+  "chad": [
+   "CHAD. Your retake is in. You're not blinking in 3 frames. I'm giving you all three. You may pick. You may NOT pick the one where you're mid-cheer. That's page 12. It's already on page 12.",
+   "CHAD. Thank you for carrying the yearbook boxes. 41 boxes, 3 trips. Nothing broke. You are on page 3 in the thanks section. You're also on page 86. You are in the book 6 times. The Rule of Two applies. You over-complied. That's the right amount."
+  ],
+  "tim": [
+   "TIM. Re: the $3.20 discrepancy. Poster: $38.00. Laminating fee: $3.20. Receipt attached. I left the receipt on the floor on purpose. Financial transparency is a platform and a platform has to be visible. Thank you for checking my math. It matched.",
+   "TIM. Thank you for the itemized receipt for the ad design. It had a column for tax and a column for feelings. The feelings column was blank. I left mine blank too. It was the nicest document I've received this year."
+  ]
+ },
+ "statuses": [
+  "yvette is on schedule. this is rare. write it down. (hold on. 3:01. no. we're fine)",
+  "yvette is in room 112. the door is locked. the light is on. the ladder is due",
+  "yvette is counting ballots. 164 of 171. 7 outstanding. i know who you are",
+  "yvette is drafting Master Calendar v3. six colors. ashley approved. football and band are in the same column. peace",
+  "yvette just found a student with only one photo in the book. fixing it. nobody gets left out",
+  "yvette is eating a granola bar (from becca) at her desk. becca has a lot",
+  "yvette is writing 40 captions. each is 12 words. each is perfect. this is who she is",
+  "yvette is asleep on page 61. (the ladder is locked. it's 3:02. it's fine)"
+ ],
+ "bulletins": [
+  {
+   "subject": "FOR IMMEDIATE RELEASE: YVETTE FOR CLASS PRESIDENT. THE PLATFORM (DRAFT 9 OF 9)",
+   "body": "1) A Master Calendar. One calendar. Football, band, cheer, drama and the sprinklers, all on it, all color coded (Ashley consulted). 2) The Rule of Two. Every student appears in the yearbook at least twice. 3) A working water fountain on the second floor (14 work orders submitted). 4) Financial transparency: every receipt posted, even the one on the floor. 5) No unfunded promises. My opponent proposes Free Pizza Fridays ($14,300 a year) and a ranch station ($2,100). The class treasury holds $1,212. See attached pie chart. Mr. Henderson has noted that my pie chart sums to 100% and my opponent's sums to 112%. A Strong Finish. On Time. Paid for by Yvette For Class President (and my mom's printer). VOTE YVETTE."
+  },
+  {
+   "subject": "SENIOR SUPERLATIVES BALLOT (the correct spelling is on this one)",
+   "body": "ONE vote per category. Voting twice is a Class C violation. Categories: Most School Spirit. Most Dramatic. Best Dressed. Most Likely To Judge Your Shirt (unopposed). Most Persistent (write-in category by unanimous demand). Most Likely To Have A Waitlist. Most Likely To Be On Broadway. Most Likely To Explain It Again (faculty). Most Organized (I have recused myself). Ballots go in the shoebox in Room 112. It is a shoebox. Please do not stuff it. I counted the shoes. DEADLINE: FRIDAY, 3:00 PM."
+  }
+ ],
+ "pcComments": [
+  "This photo is level. I'm so proud. Please send the rest of the roll.",
+  "Cropped to 4x6 this is a page 40. I'm just saying. Think about it.",
+  "Excellent composition. Please send me the caption. 12 words. Names spelled correctly. DUE FRIDAY.",
+  "I'm putting this in the yearbook. Don't worry about the permission slip. I have it. You signed it in September. Check your folder.",
+  "You look great. I'd put you in the front row. I'd put you on the cover. I'd put you on the cover twice. (It's the rule.)"
+ ],
+ "dmSeed": [
+  {
+   "text": "Hello malten. This is Yvette, Editor of the yearbook and your next class president (pending 7 outstanding ballots). You've been added to the list. You will receive: (1) deadline reminders, (2) a questionnaire, DUE FRIDAY, 3:00 PM, and (3) a campaign sticker. The questionnaire is 4 questions. Please do not leave it blank. A blank form is just a very polite no. VOTE YVETTE."
+  }
+ ],
+ "dms": [
+  "malten. Quick poll. What is the correct number of days in advance to be early for a deadline. I say 3. My mother says 1. Mr. Dombrowski says 'there's a deadline?' I have never been more concerned for this school.",
+  "There is a stapler in the yearbook room named Gerald. I did not name him. I have decided to keep him. He has never missed. I would like to thank Gerald. Nobody has ever thanked a stapler. That is the problem with this place.",
+  "My mom asked what I want for my birthday. I said 'an extension.' She said 'on what.' I said 'life.' She laughed. I wasn't joking. I wrote it in my planner on page 3. It says EXTENSION (ask).",
+  "I found a freshman in the library bathroom today because he's in 0 pictures. Zero. He's 14. I handed him a tissue and a camera. He's now the photo editor of the freshman page. He's the happiest person I've seen all week. Don't tell anyone I did that. (Tell everyone.)",
+  "I recused myself from 'Most Organized' and my own committee voted for me anyway in the write-ins. 7 times. I'm reviewing the ballots. I'm not mad. I'm deeply flattered. I'm also reviewing.",
+  "Do you ever look at a calendar and think it's a map of everything you haven't done yet. No? Just me? Ok. It's due Friday. (Kidding.) (Not kidding.)"
+ ],
+ "blog": [
+  {
+   "title": "THE GHOST LIST (a post about the Rule of Two)",
+   "date": "Oct 1 2026 10:40 PM",
+   "mood": "earnest (and caffeinated)",
+   "body": "I keep a list. It's in a green folder in Room 112 and it's called the Ghost List. It has the name of every student who appears in fewer than two photos in this year's yearbook. At the start of September there were 61. Today there are 31. Every Friday I take my camera and a granola bar and I find one. Last week it was a sophomore bass clarinet named Owen who eats lunch in the band room and is always standing behind someone taller. I waited 20 minutes. When the band went out to the field, he stayed behind to put away his case, and I took the photo: just him, a bass clarinet the size of a toddler, and the late sun on the lockers. He is on page 72 now, front and center. I left the proof on his locker. He told Becca. Becca told me. I pretended I didn't know. The yearbook isn't a record of the popular people. It is the one object in the building that says, forty years from now, 'you were here.' Everyone should be in it twice."
+  },
+  {
+   "title": "ELECTION MATH: a pie chart, described in words",
+   "date": "Sep 20 2026 11:15 PM",
+   "mood": "numerical",
+   "body": "My opponent, Garrett Pell, has proposed Free Pizza Fridays. I want to be fair. Pizza is good. I'm not against pizza. I'm for math. Pizza Fridays for a school year costs about $14,300. Garrett has also proposed a ranch station, another $2,100. The class treasury, which I have personally audited, contains $1,212 and a button. So Garrett's plan is funded to about 7%. I made a pie chart: 7% pizza, 93% 'where does this come from.' I'm not saying Garrett is a bad person. He's a person with a pizza plan, and I'm a person with a spreadsheet, and the spreadsheet has a line for where the money comes from. It comes from a bake sale. I have 14 volunteers. 11 are Becca's clarinets. They've promised brownies and to stand in formation behind the table. Mr. Henderson says my pie chart sums to 100%. His whiteboard says Garrett's sums to 112%. He asked to keep it."
+  },
+  {
+   "title": "HOW TO WRITE A CAPTION (12 words, no exceptions)",
+   "date": "Sep 6 2026 9:05 PM",
+   "mood": "instructional",
+   "body": "A caption is the smallest piece of history in the building. It has twelve words. That's a rule. Twelve is long enough to say who, and short enough that nobody skips it. Here are the standards. One: names are spelled correctly. If you're not sure, ask. Two: left to right, and you say 'from left.' Three: no 'pictured.' Pictured is what you write when you don't know the names. Four: no jokes in a caption unless the picture is also a joke. Five: no 'these guys.' Last year, page 41 said 'Pictured: Left to right: Left to right.' I have read that line 40 times. Somebody approved it. That person is a friend of mine. I won't say who. I'll say they're on the staff now, they're my best captioner, and every Friday they hand me a list of 12-word sentences and look at the floor. That is how a standard is built."
+  }
+ ],
+ "survey": {
+  "title": "THE EDITOR'S QUESTIONNAIRE (DUE FRIDAY 3:00 PM. I filled mine out first)",
+  "qa": [
+   [
+    "name (spelled correctly):",
+    "Yvette. Y-V-E-T-T-E. Two T's. Check it in the credits. (I checked.)"
+   ],
+   [
+    "grade and position:",
+    "Senior. Editor in Chief of the yearbook. Class president (pending)"
+   ],
+   [
+    "favorite part of the yearbook:",
+    "the ladder. It's the plan for every page. 192 pages, all numbered. It's like a map of the whole year before it has happened"
+   ],
+   [
+    "biggest fear:",
+    "a blank page after the deadline. also a blank page before the deadline. mostly blank pages"
+   ],
+   [
+    "what did you want to be at age 8:",
+    "an editor. I made a newspaper for the fridge. it had classifieds. my mom's pie recipe was the feature"
+   ],
+   [
+    "favorite photo in the book:",
+    "the band room couch in last year's edition. 14 clarinets asleep on it. nobody's face is visible. everybody is in it"
+   ],
+   [
+    "who do you owe an apology:",
+    "Paige, for the 'horizon' comment. (partial. I stand by 90%)"
+   ],
+   [
+    "first thing you'll do when the yearbook ships:",
+    "sleep. then check the credits. then check page 1. then cry (briefly)"
+   ],
+   [
+    "'Most Likely To...' for yourself:",
+    "'Most Likely To Be On Time To Her Own Surprise Party.' (There won't be a surprise. I'll have scheduled it.)"
+   ],
+   [
+    "describe yourself in one sentence:",
+    "I'm a person who will find you, take your photo, spell your name right, make sure you're in the book twice, and do it on time"
+   ]
+  ]
+ }
+}

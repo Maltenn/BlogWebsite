@@ -1,0 +1,405 @@
+{
+ "id": "randy_the_real_set",
+ "with": "randy",
+ "opener": [
+  "lol malten. lol. ok. emergency. (not a lol emergency) (a LITTLE lol emergency)",
+  "ms brandt gave me a 4 minute slot at the improv showcase thursday. SOLO. me, a stool, and the whole auditorium. grandma dot is coming. she's bringing the thermos",
+  "i have two sets. set A is PIE. bulletproof. jeremy gave the pie bit a 6 (highest in the notebook's history). set B is called 'hole 7.' it's about the windmill. it's not really jokes. it's just kind of... true? lol. which guy am i. not a lol question. (a little lol)"
+ ],
+ "nodes": {
+  "start": {
+   "choices": [
+    {
+     "say": "read me one line of 'hole 7.' i'll tell you if it's a pie line or a person line.",
+     "next": "read_line"
+    },
+    {
+     "say": "you lol'd after 'which guy am i.' that's the tell. what did jeremy say about set B?",
+     "next": "jeremy"
+    },
+    {
+     "say": "set C: you walk out, stand dead still for 14 seconds like the windmill, then say 'that's the show.'",
+     "next": "windmill_bit"
+    }
+   ]
+  },
+  "read_line": {
+   "them": [
+    "ok. line one. 'the blades go around every 14 seconds. my whole job is standing next to something that doesn't care if you're ready, and being glad when you make it.'",
+    "lol. there's no pie in it. there's no ANYTHING in it. ms brandt read it and went quiet for 5 whole seconds. then she said 'that's a person talking.' what does that MEAN. what was i before. a pigeon. lol"
+   ],
+   "choices": [
+    {
+     "say": "it means she heard the windmill guy. the pie guy is the costume. keep going.",
+     "next": "fear"
+    },
+    {
+     "say": "wait, you're glad when strangers make it? tell me about that part.",
+     "next": "cheer_tangent"
+    }
+   ]
+  },
+  "cheer_tangent": {
+   "them": [
+    "EVERY kid. a kid mistimes the blades, it comes back and hits him in the shin, i go ARRR, he laughs. then the NEXT kid makes it and i go BANANA LEVELS OF LOUD. like it's the finals. 14 seconds. all day. i never get tired of it",
+    "a lady got a hole in one on 7 and cried, and her husband said 'it's just mini golf,' and i said 'sir. it's the WINDMILL.' and she hugged me. that's a bit. that's the best bit i own and there's no pie in it. oh no. lol. oh NO"
+   ],
+   "choices": [
+    {
+     "say": "'sir, it's the windmill.' that's your closer. you're not random, you cheer for strangers. that's rarer.",
+     "next": "fear"
+    },
+    {
+     "say": "ok, but who's gonna be cheering for YOU thursday? who's in that room?",
+     "next": "epic_threat"
+    }
+   ]
+  },
+  "jeremy": {
+   "them": [
+    "so i test-ran it at dinner. grandma dot got set B. jeremy had the notebook open the whole time. he wrote for a LONG time. like a paragraph",
+    "then he gave it a 'hm.' not a number. a 'hm.' he's NEVER not given a number. 412 bits, 412 numbers. i'd take a 1. a 1 is a review. a 'hm' is a thing i've been thinking about for 3 days"
+   ],
+   "choices": [
+    {
+     "say": "a 'hm' means he couldn't find where to put it on the scale. maybe it's off the scale.",
+     "next": "fear"
+    },
+    {
+     "say": "interrogate the child. 'hm,' in numbers. he's 9. he'll crack.",
+     "next": "interrogate"
+    }
+   ]
+  },
+  "interrogate": {
+   "them": [
+    "i did. i cornered him at the cereal. i said 'jeremy. hm. in numbers.' he looked at me for a really long time. then he said 'hm is like a 7. but i don't want you to get a big head.'",
+    "A SEVEN. he's never gone above a 6. malten i have a secret 7 in a 9 year old's notebook and i'm not allowed to know. he made me pinky promise not to tell. i just told you. you're a vault right"
+   ],
+   "choices": [
+    {
+     "say": "vault. and a secret 7 beats a public 6. you already know which set is better.",
+     "next": "dot_stakes"
+    },
+    {
+     "say": "vault. but a 9 year old's 7 is one vote. who else is gonna be in that room?",
+     "next": "epic_threat"
+    }
+   ]
+  },
+  "windmill_bit": {
+   "them": [
+    "14 seconds of NOTHING. on a STAGE. in front of the whole SCHOOL. malten i once said pie into the principal's mic and that was NOTHING compared to this. that's the scariest thing anyone has ever typed at me",
+    "but... ms brandt says the quiet after a joke is called 'the beat.' it's where the audience leans in. 14 seconds is a LOT of beat. 14 seconds is basically a whole windmill. what if it works. what if it's the best thing i ever do. what if nobody laughs. lol. what if EVERYBODY"
+   ],
+   "effects": [
+    {
+     "type": "wallpost",
+     "from": "tj",
+     "to": "randy",
+     "text": "randy. showcase lineup is out. u are listed as 'randy (title: TBD).' i opened a poll: what will randy do. options: pie / something real / ninja / pirate. i dont vote. i count. closes thursday. -tj",
+     "delay": 20
+    }
+   ],
+   "choices": [
+    {
+     "say": "lean in. nobody's ever stood still up there on purpose. they'll lean in.",
+     "next": "commit_beat"
+    },
+    {
+     "say": "that's the bit. but what's under it? what's 'hole 7' actually about?",
+     "next": "fear"
+    }
+   ]
+  },
+  "commit_beat": {
+   "them": [
+    "ok. OK. i'm gonna practice it in the bathroom mirror right now. fan on. 14 seconds. i can feel my whole face wanting to say something. it wants to say lol SO badly. i'm biting it",
+    "...that was 9 seconds. i lasted 9. ms brandt says it's not the number, it's the leaning in. but malten my knees are ALSO doing the numa numa arms. it's a lot of a lot"
+   ],
+   "choices": [
+    {
+     "say": "9 is a great start. the windmill doesn't start at 14 either. it just keeps going.",
+     "next": "dot_stakes"
+    },
+    {
+     "say": "who's in that room, though? that's what makes or breaks a beat.",
+     "next": "epic_threat"
+    }
+   ]
+  },
+  "fear": {
+   "them": [
+    "ok. real answer. u know what ms brandt told me. 'you're not random, you listen very fast.' i think i figured out why i'm random now",
+    "random doesn't have to be GOOD. if i say pie and nobody laughs, the BIT failed. if i say hole 7 and nobody laughs, then it was ME. a guy and a stool. i've never let it be me. lol",
+    "i want to be taken seriously about ONE thing. one. and it's this. i want one person to hear set B and not say 'lol randy.'"
+   ],
+   "effects": [
+    {
+     "type": "status",
+     "text": "randy has two stacks of index cards on his desk. one says PIE. one says HOLE 7. one of them is going in his right pocket. (the stool is real) (it's thursday)"
+    }
+   ],
+   "choices": [
+    {
+     "say": "i'm taking you seriously right now. no lol. who's the one person you'd want to hear it?",
+     "next": "dot_stakes"
+    },
+    {
+     "say": "you lol after nearly every sentence. it's a seatbelt. what happens if you unbuckle for 4 minutes?",
+     "next": "seatbelt"
+    }
+   ]
+  },
+  "seatbelt": {
+   "them": [
+    "a SEATBELT. ok that's a bit. i'm writing that down. no wait. it's not a bit it's a diagnosis. i lol when i'm scared. and when i'm happy. and at the dentist. i lol'd at my hamster's funeral (his name was Waffles) (it was a good funeral) (i said some words) (lol)",
+    "so if i take it off. for 4 minutes. who catches me. there's no seatbelt. the air bag is pie"
+   ],
+   "choices": [
+    {
+     "say": "grandma dot catches you. row 1, thermos. that's the safest seat in the building.",
+     "next": "dot_stakes"
+    },
+    {
+     "say": "try it right now. one true sentence, no lol. i'll wait.",
+     "next": "nolol"
+    }
+   ]
+  },
+  "nolol": {
+   "them": [
+    "ok. no lol. here goes. (typing) (deleting) (typing) (deleting)",
+    "i'm scared that if i do the real one and it works, then THAT'S who i have to be. and if it doesn't work, that's who i was. either way pie guy goes away. and i like him. he's been with me since 6th grade. he got me sent to the office. we have paperwork",
+    "that took 11 minutes. i typed lol 6 times and deleted it 6 times. look at me. i'm a person. it's awful. 10 out of 10"
+   ],
+   "choices": [
+    {
+     "say": "pie guy's not going anywhere. he gets a seat in the front row next to dot.",
+     "next": "dot_stakes"
+    },
+    {
+     "say": "ok. so who's actually gonna be out there watching? list them.",
+     "next": "epic_threat"
+    }
+   ]
+  },
+  "dot_stakes": {
+   "them": [
+    "ok also. grandma dot's birthday is thursday. SAME DAY. i asked what she wants. she said 'something made by hand.' i made 40 waffles. jeremy said 'eh' 11 times. 40 waffles malten. the kitchen is a waffle crime scene",
+    "she's coming to the show. front row. thermos. she's never seen the real show, only the dinner version, 6 minutes between the gravy and the pie. what if set B is the thing made by hand. what if that's the present. a 4 minute present. about a mini golf windmill. lol"
+   ],
+   "choices": [
+    {
+     "say": "that's the present. waffle 41 can be breakfast. set B is the thing made by hand.",
+     "next": "wings"
+    },
+    {
+     "say": "dot's seen the pie show 400 times and she loves it. are you sure she wants a new one?",
+     "next": "pie_safe"
+    }
+   ]
+  },
+  "epic_threat": {
+   "them": [
+    "ALSO. epic. he saw the lineup. he's coming thursday with a SIGN. he says it says PIE. he says it's 'a gift.' malten that's either a gift or a bomb. he's been mad since 6th grade that i got the caps and he got a ytmnd",
+    "if i do set B and epic's in row 4 holding a PIE sign. i'll look at it. i KNOW i'll look at it. and then i'll lol. and then it's over"
+   ],
+   "effects": [
+    {
+     "type": "wallpost",
+     "from": "epic",
+     "to": "randy",
+     "text": "randy i heard ur doing a 'real' set thursday. im coming. im bringing a sign. it says PIE. its a gift. or its a threat. u'll know by minute 3. lol ur mom (affectionate)",
+     "delay": 25
+    }
+   ],
+   "choices": [
+    {
+     "say": "he's your rival. he knows what a real laugh sounds like. maybe the sign's a dare. take it.",
+     "next": "wings"
+    },
+    {
+     "say": "don't give him the moment. do pie, win the room, save set B for a smaller night.",
+     "next": "pie_safe"
+    }
+   ]
+  },
+  "pie_safe": {
+   "them": [
+    "pie. yeah. ok. pie. pie's SAFE. nobody gets hurt by a 6. i'll do the pie set and it'll land and dot will clap and epic will put the sign up and it'll be a PARTY",
+    "i'm just gonna keep set B in my right pocket. not for anything. for the weight. lol"
+   ],
+   "choices": [
+    {
+     "say": "keep it in the pocket. you've got 4 minutes. nobody says you have to decide on the stool.",
+     "next": "wings"
+    },
+    {
+     "say": "pie it is. safe is a real strategy. go get your 6.",
+     "next": "end_pie"
+    }
+   ]
+  },
+  "wings": {
+   "them": [
+    "ok i'm in the wings. 112 people (jeremy counted from the booth). ms brandt just squeezed my shoulder and said 'listen fast.' grandma dot is in row 1 with the thermos. epic is in row 4. the sign is face down on his knee. i can see the corner of it. it says P",
+    "two cards. left pocket: PIE. right pocket: HOLE 7. my hands are doing the numa numa arms on their own. i walk out in 40 seconds. what's my first word"
+   ],
+   "choices": [
+    {
+     "say": "your first line is line one. 'the blades go around every 14 seconds.' you made it by hand. go.",
+     "next": "end_real"
+    },
+    {
+     "say": "say PIE first. take the laugh. then put the card down and say line one. you get both.",
+     "next": "end_both"
+    },
+    {
+     "say": "walk out. stand still. count to 14 in your head. let 112 people lean in. then say 'that's the show.'",
+     "next": "end_windmill"
+    }
+   ]
+  },
+  "end_real": {
+   "them": [
+    "malten. i said line one and 112 people stopped breathing. i counted. 6 seconds. my longest beat ever. then i said the 'sir, it's the WINDMILL' part and a man in row 7 made a noise like a tire",
+    "and then grandma dot said 'oh, honey.' out loud. in the dark. into the room. nobody said lol randy. i said it myself once in the wings after, to check it still worked. it does. ok. i'm gonna sit in the parking lot with the thermos. jeremy gave it a score. he won't tell me. he said it's 'not on the scale'"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "status",
+     "text": "randy did the real one. there was a beat. a LONG one. nobody said lol. (grandma dot said 'oh honey' out loud in the dark. that's the review.)"
+    },
+    {
+     "type": "wallpost",
+     "from": "epic",
+     "to": "randy",
+     "text": "randy. the sign stayed face down on my knee the whole time. i'm not saying i cried. i'm saying i'm still saying i said pie first. that was good. i hate it. -epic",
+     "delay": 45
+    },
+    {
+     "type": "status",
+     "from": "banana",
+     "text": "BANANA_PHONE WAS IN ROW 2 AT THE IMPROV SHOWCASE AND CRIED INTO A BANANA. A MINI GOLF WINDMILL IS A FEELING NOW. HOUR 44. WE ARE LOUD BUT WE ARE SOFT",
+     "delay": 90
+    },
+    {
+     "type": "wallpost",
+     "from": "walt",
+     "to": "randy",
+     "text": "Dear Randy, I am told you stood on a stage and spoke about a windmill, and that the room went quiet. In thirty-four years on Route 14 I learned that a man who can make a room quiet on purpose has been handed something. Handle it kindly. Regards, Walt",
+     "delay": 150
+    },
+    {
+     "type": "dm",
+     "text": "malten jeremy just slid the notebook under my door. new page. he wrote one word: 'oh.' that's the whole review. i'm framing the page. not the notebook, it has the pigeon in it",
+     "delay": 300
+    }
+   ]
+  },
+  "end_both": {
+   "them": [
+    "i said PIE. the room went OFF. epic held the sign up and everybody saw it and 112 people laughed at a piece of poster board. a 6. maybe a 7. THEN i put the PIE card in my left pocket and said line one",
+    "you could hear the room change. like when the windmill goes from whoosh to click. it was a different laugh at the end, softer, the kind that's also a nod. dot was clapping before i finished. priya from improv club said 'awww' out loud. i got BOTH. jeremy's gonna need two columns"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "status",
+     "text": "randy said PIE and then said something true, in that order. the room went 'ha' and then 'oh.' jeremy needs a second column."
+    },
+    {
+     "type": "bulletin",
+     "from": "tj",
+     "subject": "POLL RESULTS: THE IMPROV SHOWCASE",
+     "text": "question: what did randy do. results: pie 44%. something real 31%. ninja 3%. pirate 2%. 'both' 20% (write-ins). the 'both' column was not on the ballot. i am keeping it. a pollster who adds a column is just a guy with a good ear. -tj",
+     "delay": 60
+    },
+    {
+     "type": "status",
+     "from": "riley",
+     "text": "riley saw randy say PIE and then say something REAL and she's not ok xD. it was the most random thing he's ever done. he was a PERSON. tacos. (invisible cookie for randy) (chocolate chip) rawr",
+     "delay": 100
+    },
+    {
+     "type": "dm",
+     "text": "malten jeremy found me in the lobby after and said 'the first half was a 6 and the second half was a 7 and i don't know how to average them.' i said you don't. you just put them next to each other. he wrote that down. first advice i've ever given the notebook",
+     "delay": 240
+    }
+   ]
+  },
+  "end_windmill": {
+   "them": [
+    "i walked out. i stood there. 1... 2... somebody coughed. 5... 6... a guy in row 4 started counting under his breath. 9... 10... then the WHOLE ROOM was counting. 112 people counting windmill seconds out loud. at 14 i said 'that's the show.' and walked off",
+    "silence. then a sound like a blender full of applause. ms brandt had her eyes closed again but it was a different closed. the vice principal asked if i could do it at assembly. malten i think i invented a thing. i think it's called 'the 14'"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "bulletin",
+     "subject": "THE 14 (a movement)",
+     "text": "rules of the 14: 1) stand still. 2) count to 14 out loud with everybody. 3) say 'that's the show.' 4) you are now a windmill. PIE is allowed after. first public 14: cafeteria, tuesday, lunch. be there. (it's not invisible this time) (it's the realest thing i've ever organized)"
+    },
+    {
+     "type": "wallpost",
+     "from": "tj",
+     "to": "randy",
+     "text": "randy. new column on the tally: 'the 14.' 112 votes. 0 invalid. i've never seen a unanimous column. i dont know what to do with my hands. -tj",
+     "delay": 40
+    },
+    {
+     "type": "status",
+     "from": "herp",
+     "text": "herp is standing completely still. (14 seconds.) herp.",
+     "delay": 70
+    },
+    {
+     "type": "wallpost",
+     "from": "banana",
+     "to": "randy",
+     "text": "RANDY!!! I DID THE 14 IN MY KITCHEN!!! IT WAS THE LONGEST I HAVE EVER BEEN QUIET!!! IT WAS 14 SECONDS!!! I HAD NEVER DONE THAT!!! HOUR 45!!!",
+     "delay": 120
+    },
+    {
+     "type": "dm",
+     "text": "malten the vice principal wants the 14 at assembly. i told him it's 14 seconds. he said 'and then?' i said that's the whole windmill. he asked if i have a second act. i have no second act. send help or a hat",
+     "delay": 300
+    }
+   ]
+  },
+  "end_pie": {
+   "them": [
+    "i did pie. the whole room lost it. epic held the sign up and 112 people cheered for a piece of poster board. jeremy says 'a solid 6.' that's tied for the highest in history. biggest laugh of my life",
+    "grandma dot hugged me after and said 'that was fun, honey.' then she looked at my right pocket and said 'what's in there.' i said nothing. she said 'mm.' like she knows what a pocket sounds like. i'm in the car. the card's still in there. next time. (lol) (not lol)"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "status",
+     "text": "randy did PIE. the room lost it. biggest laugh of his life. (there's still an index card in his right pocket.)"
+    },
+    {
+     "type": "wallpost",
+     "from": "patrick",
+     "to": "randy",
+     "text": "dear randy. i was in row 6 and i laughed and my rock laughed (dwayne). but after, you looked like you wanted to say something else. i know that look. dwayne has it. you can say it later. we'll wait. regards, patrick",
+     "delay": 60
+    },
+    {
+     "type": "wallpost",
+     "from": "riley",
+     "to": "randy",
+     "text": "randy!!! the PIE!!! the whole auditorium went rawr!!! but why did u look sad after??? i gave u an invisible cookie. it's chocolate chip. u didn't eat it. u ALWAYS eat it. rawr xD (u ok?)",
+     "delay": 110
+    },
+    {
+     "type": "dm",
+     "text": "malten it's 11:40 PM. i'm on the bathroom floor with the right card. i read it out loud to the fan. the fan was a good audience. i think i'm doing the next showcase in november. don't tell the cafeteria",
+     "delay": 400
+    }
+   ]
+  }
+ }
+}

@@ -8,11 +8,15 @@
 
 MS.posts = [
   // ---------------- videos (OurTube) ----------------
-  { from: 'zorp', kind: 'video', src: 'assets/video/ufo_flir.webm', credit: 'US Navy / public domain',
+  // `poster` = first-frame jpg shown before play. `was` = srcs this post used to have, so saved feeds
+  // (localStorage) follow a re-encode instead of being pruned as orphans (see MS.pruneOrphanPosts).
+  { from: 'zorp', kind: 'video', src: 'assets/video/ufo_flir.webm', poster: 'assets/video/ufo_flir.jpg', credit: 'US Navy / public domain',
     caption: 'found this "footage" online. it is FAKE. obviously. i would know. because i am a normal human who was NOT there. why is everyone looking at me',
     kudos: 88, views: 3331,
     comments: [{ from: 'todd', text: 'Zorp this uploaded from an IP address in a field.' }, { from: 'patrick', text: 'zorp is that you waving at the end' }, { from: 'dave', text: 'ENHANCE. ...ok it cant enhance. but if it COULD' }] },
-  { from: 'meg', kind: 'video', src: 'assets/video/zoetrope_horse.ogv', credit: 'Amon Carter Museum / public domain',
+  // (was Ogg Theora, which Chromium-based browsers no longer decode — it rendered as a black box with sound)
+  { from: 'meg', kind: 'video', src: 'assets/video/zoetrope_horse.webm', poster: 'assets/video/zoetrope_horse.jpg',
+    was: ['assets/video/zoetrope_horse.ogv'], credit: 'Amon Carter Museum / public domain',
     caption: 'found the OLDEST horse video. it\'s from a machine from like the 1800s. the horse is still running. she never stopped. 🐴💖', kudos: 57, views: 1204,
     comments: [{ from: 'vinyl_witch', text: 'analog horse. respect.' }, { from: 'zorp', text: 'the horse is trapped in the wheel. someone free the horse.' }, { from: 'meg', text: 'she LIKES the wheel zorp' }] },
 

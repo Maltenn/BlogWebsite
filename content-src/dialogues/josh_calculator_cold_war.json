@@ -1,0 +1,227 @@
+{
+  "id": "josh_calculator_cold_war",
+  "with": "josh",
+  "opener": [
+    "hey malten =] ok i need a favor and also a second opinion and also maybe a snack",
+    "so tim and dave r in a fight. dave copied tim's game BLOCKFALL off a link cable in mr henderson's class and sold it to 3 kids for $1. tim sells it for $2. tim says its stealing. dave says its a 'security demonstration' and the $1 was 'cable wear'",
+    "they BOTH messaged me. same minute. same sentence. 'josh whose side r u on.' i have 14 unread. u know i dont take sides. but i also dont wanna lose either of them. what do i do"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "ask each of them what they actually want. not what they said. what they want.", "next": "a_want" },
+        { "say": "tell each of them you're on their side. technically you are.", "next": "b_both" },
+        { "say": "make them settle it in halo. loser buys the pizza.", "next": "c_halo" }
+      ]
+    },
+
+    "a_want": {
+      "them": [
+        "ok i asked. separately, nicely, and i said 'no wrong answers' which is a LIE bc there r a few wrong answers. tim wants: credit, $2 a copy, and an apology 'with no joke in it.' dave wants: to be called a 'security researcher' and for tim to say thank u for 'the audit'",
+        "i said audit what. dave said 'ask him about line 214.' i dont know what that means. it sounded very serious. tim went quiet when i said it. he does not go quiet. he's a ledger, he goes 'noted.'"
+      ],
+      "choices": [
+        { "say": "ask dave about line 214. a hacker only brags about what he's actually found.", "next": "bug_news" },
+        { "say": "get them in the same room: wednesday, youth group. pizza ends wars.", "next": "pizza_plan" }
+      ]
+    },
+
+    "b_both": {
+      "them": [
+        "i did it. i told tim 'im on ur side' and i told dave 'im on ur side.' dave said 'good.' tim said 'good.' 8 minutes later (i lost track, it might have been 7) they both said 'wait. he said that 2 HIM too.' they compared screenshots. there was a spreadsheet. (tim made it.)",
+        "and now theyre both mad at me AND at each other and the spreadsheet has a column called 'josh' and the column is red. ive never been in a red column. is that what u call a conflict of interest"
+      ],
+      "choices": [
+        { "say": "tell them it's true: you ARE on both sides. that makes you the middle. say that.", "next": "middle_speech" },
+        { "say": "say sorry to each of them, separately, and don't explain. bring pizza.", "next": "pizza_plan" }
+      ]
+    },
+
+    "c_halo": {
+      "them": [
+        "halo?? ok. ok. the youth room has a tv and 2 controllers and pastor dan said yes (he's in a mood, he lost to a 7th grader last week and nobody's allowed to bring it up). but malten tim has never played halo and dave plays on 3 monitors but only 1 controller. i'd have to referee. the only match i ever refereed was ping pong and there was a fight over whether the table was level",
+        "also the loser buys the pizza. thats 4 larges. $9 each. thats a LOT of dimes (tim takes dimes)"
+      ],
+      "choices": [
+        { "say": "let them fight it out. controllers in the youth room, you referee.", "next": "halo_result" },
+        { "say": "scrap halo. pizza first, fight second. wednesday, youth room.", "next": "pizza_plan" }
+      ]
+    },
+
+    "halo_result": {
+      "them": [
+        "ok so dave won on lockout by camping the rocket launcher. tim says 'thats cheating.' dave says 'its a spawn rotation strategy.' tim says 'the result proves nothing about BLOCKFALL.' and malten hes right. the match had nothing to do w the fight",
+        "and then 2 weird things. tim said 'ill buy the pizza anyway, its 3 for 1, its on the ledger.' and dave said 'ill pay for ONE slice. my slice.' theyre so close to being friends it makes my teeth hurt"
+      ],
+      "effects": [
+        { "type": "status", "text": "josh just watched dave and tim argue about a halo match for 14 minutes. neither of them was playing. josh won by default (against nobody). pizza is somehow also involved." }
+      ],
+      "choices": [
+        { "say": "strike now. ask what the actual problem is: line 214.", "next": "bug_news" },
+        { "say": "write them both something nice. a speech. the sides aren't the point.", "next": "middle_speech" }
+      ]
+    },
+
+    "middle_speech": {
+      "them": [
+        "ok i wrote it. 'dear tim and dave, im not on a side. im on the bridge. the bridge is where i stand. it has room for 2 people and a pizza. love, josh.' ...is it too church. my mom says it sounds like a sermon with a calculator in it",
+        "i like it but 'the bridge has room for a pizza' might be the best sentence ive ever written AND the weirdest. do i send it"
+      ],
+      "choices": [
+        { "say": "send it to both at the same time. same words, same minute.", "next": "speech_sent" },
+        { "say": "cut the bridge. say it with pizza instead. wednesday at 7.", "next": "pizza_plan" }
+      ]
+    },
+
+    "speech_sent": {
+      "them": [
+        "sent. to both. same second. i watched both screens. tim: 'k.' dave: 'ok lol.' then 40 seconds later tim: 'the bridge is a good metaphor. structurally.' and dave: 'whats the weight limit on the bridge.' i said 'a pizza and 2 people.' dave said 'thats tight.'",
+        "theyre still both asking 'whose side.' but now it comes with 'lol.' i think thats progress. it might just be lol. also they both keep bringing up line 214 and i dont know what it is"
+      ],
+      "choices": [
+        { "say": "ask what line 214 is. the whole fight is in it.", "next": "bug_news" },
+        { "say": "bring the pizza night forward. fights go soft when there's pepperoni.", "next": "pizza_plan" }
+      ]
+    },
+
+    "bug_news": {
+      "them": [
+        "ok i asked dave about line 214. he went quiet for 3 minutes then typed: 'BLOCKFALL crashes at level 9 because of a missing close-paren on line 214. i found it while copying it. i didnt tell him. i sold the game WITH the bug. ive been thinking about it for 8 days.' then: 'i can fix it in 4 seconds.'",
+        "i told tim. tim didnt say anything for 2 minutes. then: 'LEVEL 9??? i never tested level 9. nobody has beaten level 8.' then: 'he knew about the bug and he SOLD it.' then: 'but also he FOUND it.' hes mad and hes impressed and he doesnt know which one goes in the ledger"
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "henderson", "to": "tim", "delay": 15, "text": "Tim, I have been informed there is a bug in BLOCKFALL, level 9, line 214. As a matter of both programming and punctuation, I would like to see the bug report, in complete sentences. (A missing parenthesis is the most common error in the known universe. Never be ashamed of one.) - Mr. H" }
+      ],
+      "choices": [
+        { "say": "tell them to fix it together. dave finds, tim fixes. call it 'responsible disclosure.' dave will love that phrase.", "next": "partners_pitch" },
+        { "say": "tell dave to refund his 3 customers and tim to give dave a free copy of the fixed one. fair is a deal.", "next": "deal_terms" }
+      ]
+    },
+
+    "pizza_plan": {
+      "them": [
+        "ok. wednesday. youth group. pizza. im putting both of them in the same room with a ping pong table in between. its neutral ground. it's been 'neutral' since 4th grade when they split a lunch",
+        "pastor dan is providing 4 large pepperonis (he said 'is it a crisis?' i said 'a small one.' he said 'then 4.'). malten ive never been this nervous about a pizza. what if they eat in silence. what if tim FILES the pizza"
+      ],
+      "effects": [
+        { "type": "bulletin", "subject": "WEDNESDAY: YOUTH GROUP. PIZZA. CALCULATORS WELCOME.", "text": "hey everybody =] this wednesday, 7pm, the church on maple, there will be 4 large pepperoni pizzas and a ping pong table. if u have a calculator, bring it. if u have a grudge, bring it too, but u have to set it on the table next to the pizza. no pressure. (some pressure.) - josh" }
+      ],
+      "choices": [
+        { "say": "put them on opposite sides of the ping pong table. neutral ground, pizza in the middle.", "next": "pizza_night" },
+        { "say": "no, bug first. dave has something to tell tim about level 9.", "next": "bug_news" }
+      ]
+    },
+
+    "pizza_night": {
+      "them": [
+        "7:06. theyre both here. standing on opposite sides of the ping pong table like theyre about to play and neither is holding a paddle. pizza in the middle. tim is staring at the pizza and dave is staring at the ceiling. its the most polite standoff ive ever seen",
+        "tim just said 'its a good pizza.' dave said 'its fine.' then dave said 'level 9 has a bug.' and tim said 'i know.' and dave said 'i know where it is.' and tim said 'where.' and dave said 'its a secret.' its the first time theyve talked in 11 days. what do i do"
+      ],
+      "choices": [
+        { "say": "let them eat in silence. don't force anything. sitting at the same table counts.", "next": "cold_week" },
+        { "say": "lean in: ask them to look at line 214 together. one calculator, two people.", "next": "bug_fix" },
+        { "say": "stand on a chair and declare it: 'i take a side. it's the pizza's. both of you apologize to the pizza.'", "next": "pizza_side" }
+      ]
+    },
+
+    "partners_pitch": {
+      "them": [
+        "ok i pitched it. 'dave finds the bugs, tim fixes them, ur a studio, call it responsible disclosure.' tim: 'i like that it has a name.' dave: 'id like a title.' tim: 'quality assurance.' dave: 'chief of security.' tim: 'quality assurance, security.' dave: 'deal.' they SHOOK. over aim. with emoticons =]",
+        "now they wanna start with line 214. right now. mr henderson's room tomorrow 7:30am with a link cable. im not invited (im a little invited)"
+      ],
+      "choices": [
+        { "say": "go. as a witness. bring a donut for mr henderson. he'll love the cable being used for good.", "next": "bug_fix" },
+        { "say": "stay out of it. give them the room. you've done your part.", "next": "bug_fix" }
+      ]
+    },
+
+    "deal_terms": {
+      "them": [
+        "ok the deal. dave refunds 3 customers (all 6th graders, one is a cousin, the cousin is going to be 'difficult'). tim gives dave a free copy of the fixed BLOCKFALL v1.1. dave gets 'credit for the audit' in the readme (he says 'in the readme' like its the oscars) and tim keeps the $2",
+        "they accepted! separately! by aim! neither one has talked to the other! ive been a post office all night. 31 messages. i have a callus. i dont think they want to be in a room together yet. is that ok"
+      ],
+      "choices": [
+        { "say": "keep being the post office. a week. they'll get tired of you and talk directly.", "next": "cold_week" },
+        { "say": "get them in a room anyway. ping pong table, wednesday, pizza.", "next": "pizza_plan" }
+      ]
+    },
+
+    "bug_fix": {
+      "them": [
+        "ok its 7:34 AM. room 114. mr henderson let them in 'for science.' tim has the calculator. dave has the cable. dave said 'third parenthesis.' tim said 'THIRD?' dave said 'from the left.' tim said 'which left.' dave said 'the left of the line.' tim said 'the line has 3 lefts.' its the nicest argument ive ever heard",
+        "FOUND IT. 214. missing close-paren. tim typed it in. level 9 loaded. nobody has EVER been on level 9 and they both stood there looking at it like a baby. dave said 'its pretty.' tim said 'its mine.' dave said 'its OURS.' tim said 'its mine with a credit.' dave said 'thats what i said.'"
+      ],
+      "effects": [
+        { "type": "status", "from": "tim", "delay": 20, "text": "tim fixed BLOCKFALL level 9. the bug was a missing parenthesis on line 214. it was found by a third party. the third party will be credited in the readme. the third party is thrilled and will not stop saying 'readme.'" }
+      ],
+      "choices": [
+        { "say": "make it official: both names on the title screen. 'by tim, with dave.'", "next": "end_partners" },
+        { "say": "put it in the readme and make dave say 'readme' ten times. start simple.", "next": "end_partners" }
+      ]
+    },
+
+    "cold_week": {
+      "them": [
+        "its been 6 days. im a post office. ive carried 41 messages. 'tell dave BLOCKFALL is a good game.' 'tell tim it crashes on level 9.' 'tell dave i know.' 'tell tim i know u know.' malten theyre not talking and theyre having the best conversation theyve ever had",
+        "neither of them is gonna say sorry out loud. but dave deleted the $1 copy off his calculator (he sent me a photo of the screen: MEM CLEARED). and tim lowered his price to $1.50 'for people with link cables.' thats the nicest thing either of them has done and neither knows the other one did it. should i tell them"
+      ],
+      "choices": [
+        { "say": "tell them both, at the same time. that's the whole fix.", "next": "end_cold" },
+        { "say": "don't tell. let them find out. they'll each think it was the other one's idea.", "next": "end_cold" }
+      ]
+    },
+
+    "pizza_side": {
+      "them": [
+        "ok. im doing it. im standing on a chair. 'i take a side. its the pizzas. both of u have to apologize to the pizza.' the whole youth room went quiet. pastor dan was holding a slice halfway to his mouth. he never finished the bite",
+        "tim said 'dear pizza, i apologize for the $2 argument.' dave said 'dear pizza, i apologize for the $1.' then they both looked at me. then at each other. then dave laughed, then tim laughed, and the pizza was never in any danger. malten i just took a side for the first time in my life. it was a pepperoni. i dont feel bad AT ALL"
+      ],
+      "choices": [
+        { "say": "hold the pizza up and make them each take a slice. apology accepted.", "next": "end_pizza" },
+        { "say": "name it. 'the pizza of peace.' put it on the wall.", "next": "end_pizza" }
+      ]
+    },
+
+    "end_partners": {
+      "them": [
+        "ok so now theyre a company. 'TIM & DAVE SOFTWARE (QA & SECURITY).' theyve already fought about the font (tim wants ti-basic's, dave wants 'something with flames'). theyre making a game called PIZZA RUN. its about a pizza that runs. im in the credits as 'moral support.' ive never been in anybody's credits",
+        "and nobody took a side. thats what i wanted. i wanted them both to win and it turns out u can do that if theres pizza and a cable. thank u. youth group is wednesday. ur invited. ur invited since august =]"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "from": "tim", "text": "tim has entered a partnership. TIM & DAVE SOFTWARE. tim handles code. dave handles 'security.' revenue split 60/40 (the ledger is open to the public). first title: PIZZA RUN. $2, or $1.50 with a cable." },
+        { "type": "status", "from": "dave", "delay": 30, "text": "hax0r_dave is now chief of security at a software company. the company is ti83_tim. dave has a title. the title has 'chief' in it. dave found line 214. dave has not stopped saying 'readme.'" },
+        { "type": "wallpost", "from": "henderson", "to": "tim", "delay": 70, "text": "Tim and Dave, I have been informed that the link cable in Room 114 was used for COLLABORATION. I am moved. Please note that 'readme' is one word. Congratulations on level 9. - Mr. H (PS: 'responsible disclosure' is an excellent phrase and will appear in Chapter 7.)" },
+        { "type": "wallpost", "from": "patrick", "to": "josh", "delay": 130, "text": "josh i told dwayne about tim and dave. dwayne says good job on the pizza. dwayne is proud of you. i am proud of you. the number of proud is 2" }
+      ]
+    },
+
+    "end_pizza": {
+      "them": [
+        "so theres a pizza on the youth room wall now. its a drawing. pastor dan did it. it has a halo and a little crown and a caption: THE PIZZA OF PEACE. tim and dave r standing under it and dave is explaining line 214 to tim and tim is writing it in the ledger. the ledger has a new column: 'dave (friend).'",
+        "i said the one thing i swore id never say. 'i take a side.' and it was the pizza's. and everybody won. i think thats what taking a side is when u do it right. also i ate 5 slices. ive never been so full of peace"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "josh took a side tonight for the first time in his life. it was the pizza's. both parties apologized to the pizza. the pizza accepted. there is now a drawing of the pizza on the youth room wall. it has a halo." },
+        { "type": "status", "from": "chad", "delay": 30, "text": "CHAD IS ON THE SIDE OF THE PIZZA!!! I WAS NOT THERE BUT I HEARD AND I SUPPORT IT 100 PERCENT!!! WHERE DO I SIGN FOR THE PIZZA!!!" },
+        { "type": "wallpost", "from": "tim", "to": "dave", "delay": 80, "text": "dave. apology accepted. the third parenthesis was a good find. i'll put your name in the readme in a font only slightly smaller than mine. (ledger: friends +1.)" },
+        { "type": "wallpost", "from": "dave", "to": "tim", "delay": 140, "text": "tim. the third parenthesis was always going to get found. i wanted it to be found by YOU. (thats a lie. i wanted the credit.) (ok the credit and the pizza.) hax0r_dave out. (readme.)" }
+      ]
+    },
+
+    "end_cold": {
+      "them": [
+        "ok i told them both at the same time. dave said 'huh.' tim said 'huh.' then tim said 'thats very generous of me.' dave said 'thats very generous of ME.' then they both went quiet for 4 minutes. neither said sorry. neither needed to. its the quietest kind of fixed ive ever seen",
+        "i think theyll be friends again. maybe not wednesday. maybe by halloween. they have a shared bug and a shared price and thats more than most ppl have in common. im gonna go to bed. someone is gonna message me about a spreadsheet at 7 AM. i can feel it"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "from": "tim", "text": "tim is selling BLOCKFALL v1.1 (level 9 fixed). $1.50 with a cable. a third party found the bug. the third party is not named. the third party knows who he is. (ledger: neutral.) (ledger: very slightly warm.)" },
+        { "type": "status", "from": "dave", "delay": 40, "text": "hax0r_dave is not saying who found the bug in BLOCKFALL. dave found the bug in BLOCKFALL. dave is not saying it. dave is typing it. dave is deleting it. dave typed it again. (readme.)" },
+        { "type": "wallpost", "from": "henderson", "to": "josh", "delay": 100, "text": "Josh, I am told you spent a week as the postal service between two of my best students. This is not in the curriculum, but I would give it an A. (Also: 'whose,' not 'who's,' in your last message. Reflex.) - Mr. H" },
+        { "type": "status", "delay": 160, "text": "josh is not taking sides. josh took a long walk with a pizza box. josh is going to bed. josh thinks u guys should keep talking like this. with mouths. or cables." }
+      ]
+    }
+  }
+}

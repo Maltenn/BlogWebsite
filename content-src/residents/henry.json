@@ -1,0 +1,189 @@
+{
+  "id": "henry",
+  "name": "heelys_henry",
+  "tag": "i roll. dennis walks. we both know who is winning (i am) (dennis disagrees)",
+  "avatar": "assets/avatar_henry.gif",
+  "gender": "Male",
+  "age": 13,
+  "hometown": "Huber Heights, Ohio (our street slopes about 4 degrees, i measured with a level from the garage, it's perfect)",
+  "loc": "the mall, probably moving",
+  "zodiac": "Aries. starxgazer said it means 'fast, impulsive, can't sit still.' i said yeah. she said 'it also means wear a helmet.' i think she talked to my mom",
+  "status": "Single (i'm 13. relax)",
+  "hereFor": "Friends, Friends who skate, Friends who know where the good floors are",
+  "mood": "fast",
+  "lastLogin": "Oct 4 2026 3:58 PM",
+  "theme": { "bg": "#ff7a1a", "fg": "#1a0f00", "accent": "#0a2bd6" },
+  "blogTitle": "roll report (surface ratings out of 10) (updated whenever i fall)",
+  "about": "ok so. hi. i'm henry, i'm 13, and i have wheels in my shoes. like in the heel. they pop out. my mom thinks they're 'athletic shoes' because that's what i told her in the store and she believed me and it's been 7 months. i roll everywhere. the school hallway until a teacher says 'henry,' the mall (banned from 3 stores), the driveway, the kitchen at 6 am when nobody's up. my record is 1 whole lap of the mall without putting a foot down. 41 minutes. it's a big mall. i also have a rivalry with a security guard named dennis. he knows. we've never really spoken. he says 'son.' that's most of the conversation. i keep a scoreboard.",
+  "aboutMore": "things you should know. 1) i'm banned from sam goody, spencer gifts and the disney store. each one was an accident and each one was a little bit my fault. 2) holly at hot topic is the only one who let me stay. the deal is wheels in my pocket, i walk, like a saloon. i have never broken the deal. 3) dennis has written me up 6 times. i keep the pink slips in a shoebox. it's my favorite shoebox. 4) i'm not that fast. i'm just not slow.",
+  "meet": "Who I'd like to meet: whoever invented the heel wheel (thank you, also what are the bearings). tony hawk, to ask if he ever got chased by someone named dennis. dennis (not to talk. just to see his legs run. i've never seen them). a mall with a downhill. the lady at the pretzel place who has a back door deal with me.",
+  "interests": {
+    "General": "heelys (black with orange wheels), rolling backwards, tile (9/10), carpet (1/10, a crime), the long hall by sears (10/10), orange julius, power slides, the glass elevator (3 floors, 11 seconds), the fountain (8/10, the coins are marbles), my knee pads (mom's rule), bearings (i can name 3 kinds), my beagle axle, my sister jenna's car (she drops me at the door and pretends she doesn't know me)",
+    "Music": "simple plan (i'm just a kid. that's the song on my page. it's about me), blink-182, good charlotte, the all-american rejects, the song in the heelys commercial, whatever dennis hums (he hums. i've heard it from the stockroom. i think it's a polka)",
+    "Movies": "the sandlot (brad said i'd like it. i did), ferris bueller's day off (the principal is dennis too. i've never been so seen), cool runnings, the incredibles (dash, obviously), rookie of the year, spy kids",
+    "Television": "saturday morning cartoons (i'm too old but i'm not too old), the x games, mythbusters (the friction episode, watched it 4 times), whatever's on in the sears electronics department while i roll past (it's always golf)",
+    "Books": "the guinness world records (the speed roller skating page), my math textbook (the chapter on rates, distance equals rate times time is basically my life), the mall directory (i have it memorized. it's a hobby. it says YOU ARE HERE and that's my favorite sentence)",
+    "Heroes": "sk8rboi_mike (the loading dock behind the mall is basically our turf), derek (his gap is bigger, i say it too), holly (rules are a kind of respect), my sister jenna, tim (made DENNIS DODGE, owes me $2, still a hero), the pretzel lady, dennis (shh)"
+  },
+  "song": {
+    "name": "I'm Just a Kid",
+    "artist": "Simple Plan",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/fc/04/cb/fc04cbec-1009-65be-1f44-f074bb8c2f2f/mzaf_11200561571606537586.plus.aac.p.m4a",
+    "pattern": [0, 4, 7, 12, 9, 7, 4, 2],
+    "bpm": 164
+  },
+  "decor": ["assets/deco_flames_bar.gif", "assets/badge_aim.gif"],
+  "friends": ["sk8rboi", "derek", "tj", "holly", "kyle", "tim", "ben", "kevin"],
+  "wall": [
+    { "from": "sk8rboi", "text": "yo henry. saw u go down the long hall by sears on the tile. 13 yrs old, wheels in ur heels, banned from 3 stores. thats basically sponsored bro. ive been skating 6 yrs n ive never been banned from anything. i got asked to leave a rail once but that was a 'request.' come 2 the loading dock sat. the SMOOTH part. dads camcorder is charged. u can hold it", "time": "Oct 2 2026 5:40 PM" },
+    { "from": "derek", "text": "henry r heelys the same as a skateboard. no. but i watched u do the thing where u roll on 1 foot n i said 'nice one' out loud. thats my highest rating. the shop guy said it 2 me on june 12 n i thought about it 4 weeks. u r the first person i ever said it 2. dont tell mike. also my gap is bigger", "time": "Sep 28 2026 4:44 PM" },
+    { "from": "kevin", "text": "henry saw u on the escalator rail. sitting. riding it. dennis nodded at me yesterday by the arcade. he has never nodded at u. i'm not saying why. i'm saying the escalator is on the beat. 1, 2, 3, 4. ride it on the 4", "time": "Sep 25 2026 2:08 PM" },
+    { "from": "tj", "text": "henry. poll. wheeled shoes: pirate or ninja. points for ninja: silent, fast, hit and run. points for pirate: wanted by the law, has a nemesis, collects loot (free stickers). tally is pirates 507, ninjas 499, unsolvable 1. i dont vote. i count. one vote per person per season, no 'both.' i know u are going to say 'both.' the letter opener is on the desk (its for mail)", "time": "Sep 20 2026 6:22 PM" },
+    { "from": "kyle", "text": "henry my mom said NO 2 heelys. i said 'athletic shoes' like u said n she said 'those r not athletic shoes those r a lawsuit w/ a logo.' do u have a plan b. my bday is oct 20. im turning 14 (my 14th) (the 1st 14th)", "time": "Sep 16 2026 8:47 PM" },
+    { "from": "ashley", "text": "[RED] HENRY. Re: Saturday fundraiser at center court. You did a 360 through the pyramid formation. [PURPLE] Legal. Not planned. Please check the schedule before moving through a formation. [GREEN] You were also the only person all day who said 'good luck' to the base before the lift. I am the base. [PINK] Thank you. -Ashley, Capt.", "time": "Sep 11 2026 4:30 PM" },
+    { "from": "tyler", "text": "bro. HENRY. bro. you rolled past me at the fountain carrying a pretzel and said 'hey tyler' like we're in the same grade bro. we're not. you're 13. bro. the pretzel was perfect though. security said 'excuse me' to me like i was somebody bro. i love this mall", "time": "Sep 5 2026 1:19 PM" }
+  ],
+  "replies": [
+    "ok so that's actually really good and also i have to go because there's a guy looking at me from across the food court",
+    "lol ok. i'm going to roll around the house now and think about that xD",
+    "whoa. ok. i didn't know that. i'm going to tell my sister. she's going to say 'ok.' she says ok to everything",
+    "i'd say more but i'm in the middle of a backwards roll and i'm not sure i should be typing",
+    "that's cool. rate it out of 10. i rate everything. the hallway outside my room is a 6",
+    "ok i'm putting that in the good things people said folder. it's a shoebox. it's next to the pink slips",
+    "thanks!! i'll think about that in the car. jenna drives. she pretends she doesn't know me at the door",
+    "dude. DUDE. ok. sorry. caps",
+    "gtg my mom is calling and the way she says henry means helmet",
+    "honestly same"
+  ],
+  "thanksAdd": "yay thanks for the add!! rules: 1) if i say gtg it's not you, it's a security guard. 2) if i fall say 'nice one.' that's the rule. 3) if you see a man with a mustache and a radio don't point, just casually step in front of me. welcome!!",
+  "ambient": [
+    "new record. 1 whole lap of the mall with no foot down. 41 minutes. the mall is a big mall. i had a pretzel at the 22 minute mark, in motion. it was perfect.",
+    "ratings update: the new tile outside the shoe store is a 10/10. the carpet by the elevator is a 1. i know it's the same building. it's not. it's two different countries.",
+    "my mom found my knee pads in the dishwasher. i said they were dirty. she said they were on the top rack. i said i'm responsible. she hugged me. i don't know what happened.",
+    "in math today mr. fenn asked what a rate is. i said 'speed.' he said 'distance over time.' i said 'that's speed.' he said 'yes.' i got an A on the quiz. i think i got an A on a quiz about my own life.",
+    "sam goody update: i've been banned 61 days. there's a note at the door. it says 'no wheeled footwear.' that's the whole note. it's not my fault, it's a design problem. the aisles are 5 feet wide and i'm 4 foot 11.",
+    "someone asked if heelys are 'a real shoe.' i said they're a shoe with a secret. i've been thinking about that sentence all day. i might put it on a shirt. holly could price it."
+  ],
+  "saltyDm": "oh. denied. ok. that's cool. i'm not mad. i'm just going to roll around the kitchen once in a circle, slowly, and think about it. you can still be my friend in my head. there's a lot of room in there. it's mostly hallway.",
+  "keywords": {
+    "heelys": "they're shoes with a wheel in the heel. you lean back and go. my mom thinks they're athletic shoes and it's been 7 months. the wheel pops out so you can walk. i've never walked. i mean i've walked. i just don't remember it.",
+    "dennis": "mall security. mustache. radio. says 'son.' that's basically all he's said to me in 7 months (one time he said 'no skating in the lot' and i said it's rolling and he said 'son'). he never runs. i've never seen his legs go fast. he walks like he's wading through a river and somehow he's always there. my record: 33 chases, 4 catches. i'm not saying who's winning. i'm saying 33.",
+    "mall": "3 floors. tile on the main level (9/10), carpet upstairs (2/10), a glass elevator (11 seconds), a fountain with coins (hazard), and the long hall by sears (10/10, it's a crime that it's not an olympic sport).",
+    "shoes": "the ones i'm wearing have a wheel. the wheel is the size of a cookie. an actual small cookie. it's carried me through 7 months and 33 chases and 3 bans. it's the bravest thing i know.",
+    "banned": "3 stores: sam goody (i unplugged 3 listening stations by accident, with my backpack), spencer gifts (a lava lamp wobbled, it didn't fall, it WOBBLED), the disney store (a snow globe display, the floor shook). hot topic is NOT on the list. i want that on the record. holly's rule. wheels in the pocket.",
+    "fast": "i'm not that fast. i'm just not slow. my top speed is 11 mph on the long hall by sears (my sister timed me from the car. it was her idea. then she said don't tell mom).",
+    "school": "8th grade. i'm banned from wheels in the gym and the cafeteria. i'm allowed in the hall. i'm 'tolerated.' the vice principal said that. it's the nicest thing anyone's said about me at school.",
+    "pretzel": "cinnamon sugar. eaten at speed. the lady at the counter says no wheels at the counter and then waves me around to the back door where there's tile and a different kind of deal. you didn't hear that."
+  },
+  "banter": {
+    "sk8rboi": [
+      "mike i rolled the whole loading dock behind the mall. the smooth part. 4 minutes 11 seconds, no falls. i know it's not a skateboard but i felt it in my chest. like a rail. can i hold the camcorder saturday. i'll hold it so still",
+      "mike people say heelys aren't real skating and i said ok and walked away and then did a backwards roll past 3 of them and they stopped talking. you taught me how to fall like it's the plan. thanks. also it's your turf behind the mall but it's my turf if there's a guard"
+    ],
+    "derek": [
+      "derek you said 'nice one' to me. out loud. i've been thinking about it for 11 days. i know about june 12. i know it's rare. i'm putting it on my wall next to the pink slips. my gap is the one between the fountain and the pretzel kiosk. it's 4 feet. i rolled it. my gap is bigger. i don't know why i said that. it was in the air",
+      "derek tell mike the hose in your gap is real. i saw it in his footage and thought it was a guard. it's a hose. you can ollie a hose. you can't roll over one in heelys. i tried. i fell in a very specific way. 8/10"
+    ],
+    "tj": [
+      "tj my vote is ninja. i roll silent. i hide in stockrooms. but a guard calls me 'son' and that's very pirate. can i be both. i know rule 3. i know there's no 'both.' i'm asking for an exception. i have a form. it's a napkin",
+      "tj my official position is wheeled shoes are neither. put me down as unsolvable. i know randy has it. he voted 31 times and you count him once. there's room. two unsolvables is a movement. also can i see the letter opener. no. i just want to look at it"
+    ],
+    "holly": [
+      "holly i checked my wheels at the door again. like a saloon in a movie where you hand over your guns. you said 'that's the deal.' it's the best deal in the mall. i bought a sticker. it's a skull. it's on my helmet. my mom said 'what's that' and i said 'athletic'",
+      "holly thank you for the stockroom. i was behind the nightmare boxes and the guard came to the back door and looked right at the boxes for 4 seconds. then he said 'son' to the boxes. it was the best day of my life. i'm so sorry about the boxes"
+    ],
+    "tim": [
+      "tim it's day 12. the debt is 2 dollars. i'm rolling in circles outside room 114 and i can see your backpack through the window. i'm not mad. i'm just very round. i'll wait. i'm on wheels",
+      "tim i beat level 3. the fountain route. it took 6 hours. i'm not mad anymore. i'm still owed. you paid the first 50 cents in dimes. 5 dimes. you counted them in front of me twice. nobody has ever respected me that much"
+    ],
+    "kyle": [
+      "kyle you don't need heelys to be fast, you need heelys to be stylish. i'm kidding. you need them to be fast. if your mom says no say 'it's for my posture.' it worked on my dad. he said posture and gave up",
+      "kyle i didn't tell anyone about the kitten poster. my sister saw you buy it too. she doesn't count as anyone. she's my sister. she counts as everyone. but she's also never told a soul about anything. i checked"
+    ],
+    "brad": [
+      "brad the automatic doors at blockbuster are NOT a racetrack. i know. you said so. you said it nicely. you also gave me a movie. it was the sandlot. i watched it 3 times. i would say thank you but then you'd put a card on it",
+      "brad can i rent a movie. mom's card says 'authorized user: henry' because you printed it. i've never been an authorized user before. it felt like being a bank. i picked ferris bueller. the principal in it is a guy who chases a kid for no reason. i know you know. it's why you picked it"
+    ]
+  },
+  "statuses": [
+    "henry is at the mall. rolling. nobody knows. (dennis knows)",
+    "henry just did 1 full lap with no foot down. 41 minutes. the pretzel was at minute 22",
+    "henry is checking his wheels at the hot topic door like a saloon. ok. in. welcome. back to rolling in 4 minutes",
+    "henry is hiding behind a box in a stockroom. don't ask. don't say anything. be quiet. he is 4 feet away",
+    "henry is on a payment plan. someone else is paying HIM. it's $0.50 a week. it's the most grown up he's ever felt",
+    "henry just got a 'nice one' from a guy who skates. it's rare. he'll be thinking about it all week",
+    "henry fell on carpet. carpet is a 1/10. he knew that. he did it anyway",
+    "henry is writing a bulletin for his mom. it's an apology. it's also a bulletin. it's both"
+  ],
+  "bulletins": [
+    {
+      "subject": "OFFICIAL SURFACE RATINGS FOR THE MALL (upper and lower)",
+      "body": "long hall by sears: 10/10. food court tile: 9/10 (watch the grease). fountain surround: 8/10 (the coins are marbles). glass elevator: 4/10, it's not a surface, it's a feeling. carpet outside the arcade: 1/10, a crime. the ramp by entrance 4: 9/10 and it's probably illegal. parking lot behind the mall: 7/10 (sk8rboi's turf, ask first). sidewalk outside blockbuster: 8/10 (brad lets me use the ramp). ratings change if they wax. they wax on thursdays. i'm there on thursdays."
+    },
+    {
+      "subject": "A LIST OF PEOPLE WHO SAID 'NICE ONE' TO ME (6 TOTAL)",
+      "body": "1. derek. 2. sk8rboi_mike. 3. a guy at the skate shop. 4. holly (a nod, it counts). 5. my sister jenna (sarcastically, it counts). 6. a lady with a stroller who was very impressed with the 360. honorable mention: a security guard who said 'nice, son' once by accident. i'm not counting it. i'm thinking about it. i might count it."
+    },
+    {
+      "subject": "A NOTICE FROM HENRY (WRITTEN BY HIS MOM) (SIGNED BY HENRY)",
+      "body": "my mom made me post this. she said it's a restorative act. i said it's a bulletin. she said same thing. 1. i will not roll in the disney store. 2. i will not roll in sam goody. 3. i will not roll in spencer gifts. 4. i will not borrow a shopping cart. (the cart was empty. i was returning it. it was going the wrong way.) 5. i will say 'excuse me' to everyone including the man with the radio. signed, henry (13) and mom (not 13)."
+    }
+  ],
+  "pcComments": [
+    "nice pic!! on a scale of 1 to 10 for how fast the floor looks in this it's a 7. is that tile. it looks like tile",
+    "dude that's a good pic. you look like you're about to say something and then roll away. that's a compliment. that's what i do",
+    "ok i looked at this for 10 seconds and now i want to be in it. is that a mall. is that a security guard in the background. no. it's a plant. false alarm",
+    "great picture!! if that's a staircase i have questions. if it's a ramp i have a different set of questions",
+    "this is a 9/10 pic. the 1 point is because it's not moving"
+  ],
+  "dmSeed": [
+    { "text": "hi malten!! ok i'm henry. i'm 13 and i'm in a hurry. i saw your page. it's cool. quick question: what's the fastest thing you own. mine is my shoes. i'm not allowed to say how fast. my mom reads this. hi mom. gtg." },
+    { "text": "also if you see a man with a mustache and a radio i was never here" }
+  ],
+  "dms": [
+    "ok so what happened is i got on the glass elevator and it was going up and the guard got on at the second floor and neither of us said anything for 11 seconds. it was the longest 11 seconds of my life. he looked at the buttons. i looked at the buttons. when the doors opened he said 'son' and i said 'sir.' we've never spoken before. i think we might be friends now. i don't know. i'm going to think about it for days",
+    "what's a polite way to tell the lady at the pretzel place that you're not allowed in the store because of a total accident but you still want a pretzel. she said no wheels at the counter and waved me around to the back door where there's tile and she handed me one with extra cinnamon sugar. i've never felt so loved by a pretzel",
+    "i found out the heelys wheel is the size of a cookie. a small cookie. i thought it was bigger. like a dinner plate. it's carried me through 7 months and 33 chases and 3 bans. it's the bravest thing i know. i'm going to buy it a plaque. it's $9.99. i checked",
+    "my sister jenna drives me to the mall and pretends not to know me at the door. today at pickup she said 'any new bans.' i said no. she said 'it's been 11 days.' i said is that a record. she said yes and high fived me without looking. it's the nicest she's ever been. i'm going to ask for a ride again",
+    "how do you tell a teacher the hall is a 'rolling zone' and not a 'walking zone.' i tried. i said it's a hall, it's literally for moving. he said for walking. i said that's one way to move. he said henry. i said yes. he said detention. i got detention. it was in a room with a floor. it was linoleum. it was a 7. i rolled before he came in. i'm going to be fine",
+    "what do you eat before a long roll. i've tried a pretzel (good), a slushie (bad, i froze up), and a banana (surprisingly the best, potassium, and it's a weapon). my mom says peels. there are no peels in my story. i've learned. i learned in the food court",
+    "random question. is it weird that i know the exact sound of the guard's walk. it's a squeak squeak on the tile because of his shoes. i heard it from the stockroom and knew it was him. i also know he hums. i never told anyone that. now it's on the internet. ok bye"
+  ],
+  "blog": [
+    {
+      "title": "the day dennis wasn't there",
+      "date": "Sep 18 2026 9:30 PM",
+      "mood": "weird",
+      "body": "ok so on tuesday dennis wasn't at the information desk. i figured he was at lunch. wednesday he wasn't there either. thursday i rolled past his desk 3 times and his chair was just a chair. the mall felt like school on a snow day. i won by default, which isn't winning. i asked the information lady where he was. she said 'who.' i said dennis. she said 'why do you care.' i said i don't. she said ok. friday he was back. he was standing by the fountain like nothing happened. i was at the pretzel place with a pretzel. he looked at me. i looked at him. he said 'son.' i said 'dennis.' he said 'what did you call me.' i said 'sir.' he said 'son.' then he started walking toward me and i left and it was the best chase of my life. i'm not saying i missed him. i'm saying it was 3 days and i counted."
+    },
+    {
+      "title": "how to roll in a mall (a guide) (don't)",
+      "date": "Sep 4 2026 7:55 PM",
+      "mood": "informational",
+      "body": "rule 1: knee pads. rule 2: helmet in the car, mom checks. rule 3: say 'excuse me' to every person. it's not rude, it's a flag. it tells them you see them. rule 4: never roll toward a stroller. never. rule 5: know your surfaces. tile is a 9, carpet is a 1, grout lines are a 3 and they will end you. rule 6: if you have to stop fast, don't. turn. turning is just stopping with a better attitude. rule 7: when you see a store with a 'no wheeled footwear' sign, take the wheels out and put them in your pocket and walk in like a normal person. you will be shocked how nice it is to walk. rule 8: if a man says 'son' stop. (i have never stopped. rule 8 is for you.)"
+    },
+    {
+      "title": "banned from 3 stores: ranked by how much it was my fault",
+      "date": "Aug 22 2026 8:15 PM",
+      "mood": "honest",
+      "body": "3rd: the disney store. 10% my fault, 90% snow globes. i rolled in at a normal speed and the display was on a table that was on a slight tilt and i'm not saying the floor shook but the globes did a little wave. 2nd: spencer gifts. 30% my fault. a lava lamp wobbled. it didn't fall. it WOBBLED. the guy said 'that's a hazard.' i said it's a lava lamp. it's supposed to move. 1st: sam goody. 60% my fault. i unplugged 3 listening stations with my backpack as i went by and the cords were not long enough for the speed i was going. i still don't know what i was listening to. the guy at the counter said 'sir.' that was the first time anyone called me sir. i'll be honest, i kind of loved it. i'll be back when i'm 14. i'll be a man by then."
+    }
+  ],
+  "survey": {
+    "title": "survey for ppl who are fast (i'm the only one who got it)",
+    "qa": [
+      ["name:", "henry. hunter (heelys). the hunter is not a thing. i just thought it sounded cool"],
+      ["age:", "13 and 3/4. i'll be 14 soon. i'm going to roll to the party"],
+      ["height:", "4 foot 11. the doors on the glass elevator are 7 feet and that's fine for now"],
+      ["shoe size:", "6. i'm saving for the next size because the wheel is a different wheel. it's a sad day. it's a happy day"],
+      ["last place you rolled:", "the kitchen at 6 am. 4/10. linoleum. my beagle watched. he has never been so worried"],
+      ["pets:", "a beagle named axle. he's 4. he chases me. he has never been banned from anything. he's perfect"],
+      ["top speed:", "11 mph (jenna's car measured). 12 on the ramp by entrance 4 (disputed)"],
+      ["worst injury:", "a scraped elbow in june. 3 out of 10. on carpet. carpet is a crime"],
+      ["who's your nemesis:", "dennis. don't tell him. he knows. don't tell him he knows"],
+      ["what's in your pockets:", "2 wheels (the pop out kind, for holly's saloon), a ticket stub, a pink slip (6 total, the shoebox is full), 4 quarters, a folded map of the mall"],
+      ["what do you want to be when you grow up:", "a person who rolls to work. or a mall cop. but a nice one. but not dennis. but kind of dennis. i don't know"],
+      ["describe yourself in one sentence:", "i'm not that fast, i'm just not slow, and i like it when the floor is smooth"]
+    ]
+  }
+}

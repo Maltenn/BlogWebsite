@@ -1,0 +1,269 @@
+{
+ "id": "sven",
+ "name": "sven_from_sweden",
+ "tag": "Exchange student. Eurodance is the true music. Please explain the white sauce.",
+ "avatar": "assets/avatar_sven.gif",
+ "gender": "Male",
+ "age": 17,
+ "hometown": "Mariestad, Sweden (by the big lake. You have not heard of it. Nobody has. It is lovely)",
+ "loc": "Cuyahoga Falls, Ohio (the trundle bed in Chad's room. the baseball wallpaper is a lot at night)",
+ "zodiac": "Pisces (in Swedish, Fiskarna. It is the same fish. I checked)",
+ "status": "Single (but loved by a host family and a little sister in Sweden. I am not lonely. I am busy)",
+ "hereFor": "Friends, Cultural Exchange, Dancing, an explanation of the white sauce",
+ "mood": "homesick (but well fed)",
+ "lastLogin": "Oct 4 2026 1:52 AM",
+ "theme": {
+  "bg": "#005293",
+  "fg": "#ffffff",
+  "accent": "#ffcd00"
+ },
+ "blogTitle": "Things I Have Learned In America (a notebook, shared)",
+ "about": "Hello. My name is Sven. I am from Sweden, which is a country in Europe, near the top. I am seventeen, and I am staying in Ohio for one school year as an exchange student with the family of Chad, who is a very loud person and also very kind. In six weeks I have learned many things. In America it is normal to sit in a large room and shout at a man in a bird costume (this is called a pep rally). One may put the white sauce on anything. When someone says 'What's up?' they do not wish for an answer. I am keeping a notebook. I also believe strongly in Eurodance. I will explain it to you. You did not ask. I will explain it.",
+ "aboutMore": "My notebook is called 'Things I Have Learned In America.' Page 31 is about cups. Things I do not yet understand: why the cup is the size of a bucket, why everybody says 'we should hang out' and then does not, why every lawn is the same green. Things I understand and like: the breakfast sandwich, the high-five (Chad does it with his whole body), and that a stranger in a grocery store will say hello. My mother says on the telephone that I am becoming loud. I told her it is practice.",
+ "meet": "Who I would like to meet: the person who invented ranch dressing, so that I may ask a calm question. A real American cow, to see whether it is the size shown in films. The Vengaboys, for one hour of conversation, with fika. Anybody from Finland (I am joking, we are friends, please do not show them this).",
+ "interests": {
+  "General": "fika (every day at three o'clock, I am teaching Chad's mother, she is a natural), Eurodance, salty licorice (I carry it, nobody will take any), Saturday candy (I keep the rule: only on Saturdays), goalkeeping in lacrosse (I say sorry to the ball; Tyler says never stop), walking to the end of a street and then back, learning the names of American things (notebook), the big lake at home, dancing, calling my sister on Sundays",
+  "Music": "Eurodance: Vengaboys, Aqua, Ace of Base, Scooter, E-Type, Alcazar, Haddaway, Snap!, ATB, Basshunter (from my country; my mother does not call him a poet), Rednex (Swedish! Many Americans do not know this. A man at the baseball game did not believe me). Darude (Finland, close enough, we do not say this to them). Also the normal music of my country: The Cardigans, Peter Bjorn and John, The Hives, Roxette, ABBA (obvious, but obvious for a reason)",
+  "Movies": "Pippi Longstocking (the old one), Together (Tillsammans), Home Alone (a very good film about the importance of stairs), Ice Age (the squirrel is correct), Field of Dreams (I will not discuss it), The Sandlot (Chad was upset that I had not seen it; we watched it; I was upset also, in the good way)",
+  "Television": "Allsång på Skansen (all of Sweden singing outdoors in summer), Kalle Anka on December 24th at 3 PM (all of Sweden watches Donald Duck at the same time; I will miss it; Chad's mother is trying to find it), Idol (my aunt cries), Pokémon (the same in both languages), SportsCenter (Chad's father speaks back to the television and I think it replies)",
+  "Books": "Pippi, Pettson and Findus (an old man and his cat), the Moomins (Finland-Swedish; I will defend them), the English-Swedish dictionary (500 pages, many corners folded), the baseball rule book Chad gave me (I have read it twice. I do not yet understand 'the infield fly')",
+  "Heroes": "My mother. My sister Ebba (she is nine and the funniest person I know). Chad, who taught me the high-five with the whole body. Chad's mother, who drove 40 minutes to find Swedish Fish (they are not Swedish. She does not know. I will never tell her). My grandmother, who bakes the crisp bread. Rednex, for bringing a Swedish song to a stadium of strangers"
+ },
+ "song": {
+  "name": "Cotton Eye Joe",
+  "artist": "Rednex",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/8d/c0/fd/8dc0fd9d-67a3-71f7-f46e-48fd0aa1a639/mzaf_9868878036209029706.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   7,
+   7,
+   9,
+   7,
+   5,
+   4,
+   0
+  ],
+  "bpm": 132
+ },
+ "decor": [
+  "assets/deco_record_dj.gif",
+  "assets/badge_icq.gif",
+  "assets/deco_welcome_banner.gif"
+ ],
+ "friends": [
+  "chad",
+  "penny",
+  "nikki",
+  "kevin",
+  "gwen",
+  "vince",
+  "tyler",
+  "becca",
+  "ashley"
+ ],
+ "wall": [
+  {
+   "from": "chad",
+   "text": "SVEN. my man. u said 'tack for the food' to the whole table and my mom CRIED. she cries at pancakes now. thanks. also u beat my dad at the 7th inning stretch dance and he's not talking about it. GO SWEDEN (is that a thing?) (it's a thing now)",
+   "time": "Oct 2 2026 5:10 PM"
+  },
+  {
+   "from": "becca",
+   "text": "Sven! You stood at the 50-yard line during the fight song and counted along in Swedish. I looked it up: ett, två, tre, fyra, fem, sex, sju, åtta. That's 1 2 3 4 5 6 7 8. The clarinets are confused. I'm not. (You're not in the section. It's a figure of speech. Please don't join the section. We have 11 and it's balanced.)",
+   "time": "Oct 1 2026 3:58 PM"
+  },
+  {
+   "from": "penny",
+   "text": "SVEN!!! ur SECOND bracelet is DONE!!! the beads spell FIKA and the F glows in the dark and 1 bead is a tiny moose (i looked up the moose)!!! 41 beads!!! i'll bring it to TEEN NITE friday!!! (the S-V-E-N one still on? it better be!!!) PLUR PLUR PLUR",
+   "time": "Sep 30 2026 7:48 PM"
+  },
+  {
+   "from": "nikki",
+   "text": "sven i nightcored 'what is love' and u said 'this is a crime' and then u asked 4 it AGAIN. UNTZ. we r the same person. i've decided ur a founding member of the speedzone. ur sister can have a membership 2",
+   "time": "Sep 26 2026 9:20 PM"
+  },
+  {
+   "from": "gwen",
+   "text": "sven. the song at 9:14. the one you stood up for. i need the title in writing. i don't ask people for song titles. i'm asking. (i don't like how it feels.) also tell your aunt thank you.",
+   "time": "Sep 22 2026 8:12 PM"
+  },
+  {
+   "from": "kevin",
+   "text": "SVEN ur DDR score was a D. a D!!! on ur FIRST TRY!!! that's actually insane. ur feet r doing the thing which is the whole game. doug at the machine says ur 'enthusiastic.' thats a title. come back saturday (bring chad. he cheers for the whole mall)",
+   "time": "Sep 21 2026 6:30 PM"
+  },
+  {
+   "from": "vince",
+   "text": "SVEN!!! YOU DID IT. 'RHYTHM IS A DANCER' AT FULL VOLUME. FIRST TIME IN ROLLERDOME HISTORY. THE WHOLE RINK FOLLOWED YOU IN A CIRCLE. 35 PEOPLE. GONNA BE HUGE. EUROPE NITE IS ON THE CALENDAR. YOU PICK THE FIRST 3 SONGS (and come at 9 not half nine we've talked about this)",
+   "time": "Sep 19 2026 11:48 PM"
+  }
+ ],
+ "replies": [
+  "Thank you. I will write this in my notebook, page 34, under 'Kind Things.'",
+  "I do not entirely understand, but I agree, and I am smiling at the screen.",
+  "In Sweden we would say 'Det är ingen ko på isen,' meaning there is no cow on the ice. It means no problem. I do not know what the cow is doing there.",
+  "Yes. I think so. I will confirm with Chad's mother, who knows everything about America.",
+  "Heja Örnarna! (That is 'Go Eagles.' Chad looked it up for twenty minutes. It is correct. We are both very proud.)",
+  "That is correct. Also, have you heard 'Rhythm Is a Dancer'? I ask everyone. It is my only question.",
+  "I have written your words down to study them. This is a compliment.",
+  "Hej! (It means hello. It also means goodbye. We are efficient.)",
+  "I am sorry I was late to answer. I was at fika. It is very serious. It also has buns."
+ ],
+ "thanksAdd": "Hello, and thank you for accepting my request. I have been in America for six weeks and you are my fourteenth friend (Chad is the first. He is also the loudest). I will be a good friend. I will send you Eurodance. You may not ask me to stop. This is the only rule. Hej hej!",
+ "ambient": [
+  "In America a restaurant cup has the name 'regular.' It is not regular. I could bathe in it. I finished it. I am now a different person.",
+  "Today at the pep rally the whole school stood and shouted the name of a bird. I shouted also. It was warm. Nobody has explained to me why. I have decided it is a kind of hug.",
+  "Chad's mother asked me to 'say something Swedish' at dinner. I said 'Tack för maten' (thank you for the food). She cried. I think it was the pancakes.",
+  "I have posted a moose. In Sweden the moose is a traffic hazard and also a national friend. It has the best posture in Europe.",
+  "I was told today that the pep rally is 'not mandatory.' I went anyway. It is the first American thing I have chosen on my own. It was loud. I would choose it again."
+ ],
+ "saltyDm": "I have received word that my request was denied. This is fine. In Sweden we have the word lagom, which means exactly the right amount. Perhaps I was too much, and you wished for lagom. I will be lagom now. I will send only one Eurodance song per week. (It will be a long one.)",
+ "keywords": {
+  "ranch": "Ranch is a white sauce that is placed on carrots, pizza, chicken, and French fries. Chad says it is a food group. I believe it is a soup for pizza. I am a little afraid of it. I ate three more slices anyway. I told Tyler I will give my opinion in 3 to 5 weeks. It is a very large decision.",
+  "pep": "A pep rally: the school sits in a large room and shouts at a man dressed as a bird. I shouted too. It was warm. Nobody can say why. I have decided it is a hug that is also a schedule.",
+  "fika": "Fika is a pause with coffee and something sweet, taken with other people, at about three. It is not a break. It is a promise. It is like a tea party but nobody has to wear a hat. It is the most serious thing we do.",
+  "eurodance": "Eurodance has three parts: a low man who speaks, a high woman who sings, and a keyboard that sounds like an ambulance that believes in you. Everything else is optional. Please listen to 'Rhythm Is a Dancer' twice. It must be twice.",
+  "moose": "The moose is a national friend and a traffic hazard. In Sweden we have road signs with a moose on them. People ask me 'are they real.' They are real. They are very tall. They look at cars as if the cars owe them something.",
+  "ikea": "Yes. I know the meatballs. In Sweden they are not an event. They are a Tuesday. Americans stand in line to buy a bookcase named after an island and I understand. I would also like the bookcase."
+ },
+ "banter": {
+  "chad": [
+   "Chad, I told you that you are the loudest person I have met, and that I feel safe. I should explain. In Sweden, loud means someone is upset. Here loud means someone is glad. I am slowly learning the translation. It is the best thing I have learned in America. Tack.",
+   "Chad, I have kept your scorebook for three games now, as your grandfather says. I scored your 2-for-4 night. The coach asked what 'LF' means in my abbreviations. I said 'Chad.' He wrote it down. I do not yet understand the infield fly. But I understand you, and that is the better rule."
+  ],
+  "kevin": [
+   "Kevin, I received a D on your machine. In Sweden we have the grade G, for 'good enough.' I would like to say the D is a G. You said 'it's a D.' I accepted it. I have a student's heart now. I am going back Saturday, and I will bring Chad, who will cheer for the whole mall.",
+   "Kevin, the machine plays Eurobeat. This is the music of my heart inside a video game, and you are the master of it. I did not know. My sister Ebba asked if I have 'a friend who dances,' and I said yes. She asked 'does he do it well.' I said 'he did one song perfectly and there were witnesses.'"
+  ],
+  "nikki": [
+   "Nikki, you say I was right about 11 of the 14 tracks and that this has happened 'twice.' I have written 11 on the wall of Chad's room. He allows it. Of the other three, I accept your edits. The song about the cow was always going to be faster. A cow is not a patient animal.",
+   "Nikki, my cousin in Gothenburg says that what you do is called 'happy hardcore' in Europe and that it is 'not illegal.' I asked why he mentioned this. He did not say. Please send more. I would like to play one at fika."
+  ],
+  "penny": [
+   "Penny, thank you for the bracelet with my name in beads. I have worn it in the shower, as I told you, and nothing has happened to it. It is stronger than I am. The second one has arrived: FIKA, with a moose. A boy at school asked what it means. I said 'it is a pause with a cinnamon bun in the middle.' He said 'that's the best word.' I agree.",
+   "Penny, the blue drink is not any fruit that exists. You say 'blue raspberry.' In Sweden there is no raspberry that is blue. I drank it. It is the color of the sea in a postcard. I would like to bring one to Ebba. She will understand immediately. She is nine."
+  ],
+  "vince": [
+   "Vince, thank you for the Eurodance hour. I have heard 'Rhythm Is a Dancer' in four countries and never at that volume. Everyone moved in the same direction around a floor. In Sweden we call this a queue. Here it is a joy. I wept a little. It was the steam from the cheese.",
+   "Vince, please remember: 'half nine' in my language means 8:30. You arrived at 9:30. We missed the song. It is the third time. I have written '8:30' on your flyer in pen. Please consult the flyer, not the Swede."
+  ],
+  "gwen": [
+   "Gwen, you asked me for the name of the song at 9:14. It is called 'Rhythm Is a Dancer.' I have also written it on paper and put it in an envelope. I will give it to you in person. You are the first person in America who asked the name of a song before she asked mine. Thank you.",
+   "Gwen, I have listened to your CD four times, on the stairs. Track 6 made me look at the wall. In Swedish we say 'det går inte att förklara,' it cannot be explained. You made something that cannot be explained and you wrote the track names in beautiful letters. I do not know how to say what I mean. I think 'thank you' is correct."
+  ],
+  "ashley": [
+   "Ashley, thank you for explaining the pep rally. I now understand there is a captain. She stands at the front and tells the gym when to shout, and the gym shouts. In Sweden we have no such person. I believe we would look at each other and wait for someone else. You are a very good leader. You have also given me a color on your legend. I am ORANGE (snacks). I have never been so well understood.",
+   "Ashley, you told me 'someone has to be the floor,' and asked if I would be the base of the pyramid. I said yes. I did not know what a base was. I have been told it is an honor and also that it hurts. Both are true. The girl on top weighs almost nothing. I now respect cheer the way I respect a large lake: with fear."
+  ],
+  "tyler": [
+   "Tyler, I have been informed that Moose is 15. In dog years it is a hundred and something. In Sweden we would say he has earned his chair. I sat with him on the porch. We did not speak. It was a good conversation. Thank you for sharing him.",
+   "Tyler, I said sorry to the ball again. It was a goal. The coach asked why. I said it came so fast that I felt it had a destination. He wrote something down. Also: ranch, week three. I have a preliminary report. Please do not rush me."
+  ]
+ },
+ "statuses": [
+  "sven is at fika. Please do not disturb. (Please disturb. Bring a cinnamon bun.)",
+  "sven has learned a new American word: 'dude.' He is not certain of the rules.",
+  "sven is at a pep rally. A man in a bird costume is leading the school in a ceremony. He has joined.",
+  "sven is teaching Chad's father to say 'skål.' (With water, in a coffee cup. It is a start.)",
+  "sven is calling his sister Ebba. It is late in Sweden. She is awake. She is not supposed to be.",
+  "sven just ate a Swedish Fish. Report: it is not Swedish. It is a fish. It is good.",
+  "sven has ordered 'a regular' at a restaurant. A bucket was brought. He is thinking.",
+  "sven is at the Rollerdome on a Friday. They have the right music. He may not be reachable.",
+  "sven is in goal. A ball came very fast. He said sorry to it. The ball did not reply.",
+  "sven is keeping score in the stands in Swedish abbreviations. The coach asked what 'LF' means. He said 'Chad.'"
+ ],
+ "bulletins": [
+  {
+   "subject": "EUROPE NITE: a proposal (with Vince) (Friday, 9 PM, the Rollerdome)",
+   "body": "I have spoken with Vince, the promoter. He says it will be 'gonna be HUGE.' I have learned that this is his sentence for 'hello.' Three rules. 1) At least one song is played twice, because a song must be heard twice to be understood. 2) Everyone dances in the same direction (the rink already helps). 3) Fika at the snack bar at 8:45. Chad's mother will provide four dozen cinnamon buns and a thermos. First songs: 'Rhythm Is a Dancer.' 'Boom, Boom, Boom!!' 'What Is Love.' And 'Cotton Eye Joe,' which is Swedish. I have told Vince. He said 'huge.' Please come. Please be in the same direction."
+  },
+  {
+   "subject": "Eurodance: a beginner's guide (three songs, in order)",
+   "body": "Eurodance has three parts. The first is a low voice that speaks, the second is a high voice that sings, and the third is a keyboard that sounds like an ambulance that believes in you. Begin with 'Rhythm Is a Dancer' by Snap!. Continue to 'All That She Wants' by Ace of Base (Swedish. You are welcome). Finish with 'Barbie Girl' by Aqua (from Denmark, our neighbor. Do not tell them I said it is also very good). If you do not like it, listen again. If you still do not like it, you may write to me, and I will listen with you, and I think we will both be happier."
+  }
+ ],
+ "pcComments": [
+  "This photograph has many people in it. I count seven. They all appear glad. This is a good photograph.",
+  "You are standing in front of a car and smiling. In Sweden we do this only for the first car. I assume this is a first car. Congratulations.",
+  "I do not know what 'game face' is but you have it. Well done.",
+  "The dog is the best person in this picture. I say this with respect to the people."
+ ],
+ "dmSeed": [
+  {
+   "text": "Hello malten. My name is Sven. I am from Sweden, the country with the moose. I am a guest at the house of Chad (you know Chad; everyone knows Chad; he knows everyone). Chad's sister, who is away at college and sends advice by telephone, says I should 'put myself out there.' I do not know where 'there' is. Please inform me if I have arrived."
+  }
+ ],
+ "dms": [
+  "Malten, a question about your culture. Everyone in America says 'we should hang out' and then it does not happen. I have kept a list. Eleven times. I prepared three times. I wore a nice shirt once. I do not mind. I only wish to know whether I am doing it wrong, or whether it is simply a way to say goodbye that is more optimistic.",
+  "Today at the pep rally I was handed the microphone. I did not know what to say, so I said 'Hej!' The whole gym said it back. Then the band played something fast and I did the dance from 'Rhythm Is a Dancer' without thinking, and the whole gym lost its mind. Tyler says I need 'a popped collar.' I do not know what that is. It was the best moment in America so far. I am telling you because I wished to tell someone who was not Chad. (Chad was there. He cried. He says it is allergies.)",
+  "It is 3 AM. I am awake because my body is still in Sweden. I am eating cereal in the kitchen. Chad's father came in and sat across from me and we did not speak. After four minutes he said 'Eagles look good this year.' I said 'Yes.' I do not know what I agreed to. It was the nicest conversation I have had here.",
+  "Chad's father showed me a film called Field of Dreams. At the end, a man asks his father to have a catch, and Chad's father went into the kitchen. Chad followed. I sat alone with the television and understood it very well. I called my father in Sweden. It was 4 AM there. He said 'Is something wrong?' I said 'No. Do you want to have a catch?' We do not have a baseball. He said 'Yes.'",
+  "I have made a CD for you. Track 1 is 'Boom, Boom, Boom!!' by the Vengaboys. Track 2 is 'Boom, Boom, Boom!!' again. This is intentional. A song must be heard twice to be understood. There are 17 songs and I think you will like 14. If you like 13, it is an excellent result.",
+  "Chad's mother says Halloween is on October 31st and children come to the door. I have bought 40 candy bars. Is it enough? I have also been asked what I will be. I have decided to go as 'Chad.' I have borrowed the hat. I have practiced the voice. 'AWESOME!!' It is not working. I sound like a tourist. I will continue."
+ ],
+ "blog": [
+  {
+   "title": "Things I Have Learned In America (from my notebook, pages 31 to 34)",
+   "date": "Oct 3 2026 11:52 PM",
+   "mood": "taking notes",
+   "body": "1. 'What's up?' is not a question. 2. A restaurant cup called a 'regular' holds the volume of a small bathtub. 3. Ranch dressing goes on pizza, carrots, chicken and French fries, in that order or any order. 4. Everybody says 'We should hang out.' It is a sentence like 'Hej då.' It is not a plan. 5. The high-five has rules: it is for the end of things, and it uses the whole body. 6. People in this country wave at cars they do not know. I have waved at forty cars. Nine waved back. 7. A pep rally is when a school sits in a large room and shouts at a man in a bird costume. It is warm. It is a kind of hug. 8. Chad's mother says 'honey' to everyone, including the man who repaired the dishwasher. 9. One can be a stranger here and also be given pancakes. Page 34: still working on the sauce."
+  },
+  {
+   "title": "A Letter To Ebba, About The Baseball Game",
+   "date": "Sep 13 2026 10:20 PM",
+   "mood": "homesick (a little) (but loud)",
+   "body": "Dear Ebba, today I went to a baseball game. It is a game where everyone sits for three hours and then stands for one song. Chad plays in the grass at the far end and waved at us the whole time, which I think is not allowed. Then in the seventh part of the game the loudspeaker played Rednex. 'Cotton Eye Joe.' Ebba, it was OUR song. Four thousand strangers stood and clapped at the same time and nobody told them to. I turned to the man beside me and said 'This is Swedish.' He said 'No, it's a country song.' I said 'It is Swedish.' He said 'Sure, buddy,' and gave me a pretzel. I danced. I thought of you in the kitchen, standing on the chair, doing the dance wrong. I wished you were there more than I have wished anything. Tell Mamma the pretzel was fine. Your brother, Sven."
+  },
+  {
+   "title": "The Pep Rally: a report for my Social Studies teacher in Sweden (extra credit)",
+   "date": "Aug 28 2026 9:05 PM",
+   "mood": "observant",
+   "body": "Observation: at 2 PM on a Friday the school gathers in the gymnasium. Students are divided by year. The oldest sit highest and are loudest. The principal enters. A man dressed as an eagle runs in. The room produces a sound I have not heard from people before: the sound of a thousand voices agreeing without knowing what they agree about. The captain of the cheer asks into a microphone 'Are you ready?!' and the school says yes. For what? I asked Chad. He said 'for the game.' I said 'tonight?' He said 'yes.' I said 'it is two o'clock.' He said 'so we practice being ready.' Conclusion: in Sweden we are ready at the moment of need. In America they get ready in advance, together, loudly. I find it a better system. I also find it exhausting. I will attend again on Friday. Grade, please."
+  }
+ ],
+ "survey": {
+  "title": "A Questionnaire Forwarded By Chad's Sister, Answered Carefully",
+  "qa": [
+   [
+    "Name:",
+    "Sven. In Sweden my name is ordinary. In America it is 'Sven from Sweden.' I think I am now a brand."
+   ],
+   [
+    "Where are you from:",
+    "Mariestad. It has the biggest lake in Sweden. Chad said 'that's a pond.' I showed him a map. He said 'whoa.' This is the highest respect."
+   ],
+   [
+    "Favorite food:",
+    "A cinnamon bun at three o'clock, with coffee, with company. It is not the bun. It is the company. (It is also the bun.)"
+   ],
+   [
+    "Favorite American food:",
+    "The breakfast sandwich. Egg, cheese, and a small round meat. It is a whole day inside a bread."
+   ],
+   [
+    "Do you have a pet:",
+    "No. My grandmother has a cat named Doris who has not forgiven me for leaving."
+   ],
+   [
+    "What is your biggest fear:",
+    "Being asked to 'say something in Swedish' at a party and saying 'Where is the toilet.' It has happened twice. People applaud."
+   ],
+   [
+    "What song is stuck in your head:",
+    "'Cotton Eye Joe.' Always. It is a Swedish song. Please do not disagree with me."
+   ],
+   [
+    "If you could have one superpower:",
+    "To know what the pep rally is shouting. Second: to make ranch disappear. Third: to travel home for fika and return before anyone notices."
+   ],
+   [
+    "Have you ever been in love:",
+    "I have been in love with a song for nine years. It is called 'Rhythm Is a Dancer.' We are very happy."
+   ],
+   [
+    "Forward this to 10 friends or you will have bad luck:",
+    "I forwarded it to ten friends. I do not believe in bad luck. I believe in lagom, which means the right amount. Ten is slightly too many. I have asked three of them to forward it back."
+   ]
+  ]
+ }
+}

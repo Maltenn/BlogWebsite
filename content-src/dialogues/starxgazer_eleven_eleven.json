@@ -1,0 +1,227 @@
+{
+  "id": "starxgazer_eleven_eleven",
+  "with": "starxgazer",
+  "opener": [
+    "malten. look at your clock. what does it say? i'm asking because mine says 10:58 pm and 11:11 is in thirteen minutes.",
+    "i did your chart again. without asking. (i know. i KNOW.) then i did mine. then i laid them side by side like two puzzle pieces and babe, it's bad. saturn squares the pair at exactly 11:11 tonight. in my grandmother's notes that means 'a friendship ends.'",
+    "the only gemini-aries pair i've ever been in is us. i've done it four times. i'm not crying. it's the telescope fog. (i'm indoors.)"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "i'm not going anywhere. let's sit here and watch the clock together.", "next": "a_stay" },
+        { "say": "cancel it. predict something that undoes it. you're the expert.", "next": "b_cancel" },
+        { "say": "starx. what if the chart is just wrong this time?", "next": "c_wrong" }
+      ]
+    },
+
+    "a_stay": {
+      "them": [
+        "together. okay. you're staying. that's the first sentence anyone has said to me tonight that wasn't a forecast.",
+        "my grandmother used to say a fortune-telling booth is 70 percent waiting. the other 30 is pretending you aren't. i'm at about 90 waiting right now. what do we do with the minutes?"
+      ],
+      "choices": [
+        { "say": "make it a real test. write down exactly what 'a friendship ends' means before 11:11.", "next": "a_rules" },
+        { "say": "i promise not to unfriend you at 11:11. i'll promise again at 11:12. all night if you need it.", "next": "a_promise" }
+      ]
+    },
+
+    "a_rules": {
+      "them": [
+        "a real test. that's the astronomer talking, so thank you, you've met her. a real test needs a definition, or the stars can claim any outcome. okay. rules: one, an unfriend. two, a block. three, a message that says 'we're done.'",
+        "anything vaguer than that doesn't count. no 'you seemed distant.' no 'she liked my comment slower.' i'm writing it on the back of my chart in pen. there. it's science now."
+      ],
+      "choices": [
+        { "say": "add a rule: if nothing happens by 11:12, you say sorry to everybody whose chart you read.", "next": "optin_draft" },
+        { "say": "good. now the clock. what do we do for the last two minutes?", "next": "countdown" }
+      ]
+    },
+
+    "a_promise": {
+      "them": [
+        "all night. i'll hold you to the all night. i'm writing it down: 'malten promised twice, in two separate minutes, to a gemini.' that's a legal document.",
+        "okay. it's 11:04. i feel a little less like a boat. also i want you to know i've never been this honest with an aries before, and aries is basically a ram with a keyboard."
+      ],
+      "effects": [
+        { "type": "status", "text": "starxgazer has been told by malten that he's not going anywhere. she needed that sentence before 11:11. she has put it on a sticky note. the sticky note is on the telescope." }
+      ],
+      "choices": [
+        { "say": "post it on the wall: 'malten says starxgazer is his favorite gemini.' let the whole site see.", "next": "countdown" },
+        { "say": "enough charts. tell me what you see from your window right now. real sky only.", "next": "countdown" }
+      ]
+    },
+
+    "b_cancel": {
+      "them": [
+        "you can't cancel a prediction. you can only out-predict it. that's grandma's rule. a more specific prediction overrules a less specific one, like a short sentence that wins a long argument.",
+        "so i could write: 'at 11:11 the aries-gemini friendship gets BETTER, due to jupiter.' it's a loophole. technically it works. i feel dirty and also i feel warm."
+      ],
+      "choices": [
+        { "say": "do it. specifics beat feelings. write it down and put a time on it.", "next": "countdown" },
+        { "say": "loopholes are for chart people. say sorry for reading people's charts without asking instead.", "next": "b_apology" }
+      ]
+    },
+
+    "b_apology": {
+      "them": [
+        "sorry. for the charts. i have to say it in a normal voice with no jupiter in it. i've done 38 charts since july, and exactly zero of those people were asked. i did debbie's. she asked how to turn off the music and i said libra.",
+        "i think the stars are fine with it. i don't think the PEOPLE are. there's a draft in my head. it's a bulletin. it has the word 'sorry' in it and i don't know how to make it look good."
+      ],
+      "choices": [
+        { "say": "don't make it look good. make it true. post it.", "next": "optin_draft" },
+        { "say": "it's 11:09. post it after the minute. one thing at a time.", "next": "countdown" }
+      ]
+    },
+
+    "c_wrong": {
+      "them": [
+        "if it's wrong then... huh. okay. that's a sentence i've never let finish. if it's wrong, then what have i been doing for six years? the way i say it to people is 'it's written.' what if it isn't?",
+        "my grandmother read palms at the county fair for 31 summers. she told me the cards were half the job. the other half was looking the person in the eye while you said it. i skipped the second half. i just read charts of people who didn't know i was looking."
+      ],
+      "effects": [
+        { "type": "status", "text": "starxgazer is sitting in the dark, thinking about her grandmother's booth. she'll be back in a few minutes. do not send a chart request. she'll know." }
+      ],
+      "choices": [
+        { "say": "so do the second half. ask first. start tonight, start with me.", "next": "c_grandma" },
+        { "say": "then be wrong tonight, out loud, and let the minute pass. i'll watch it with you.", "next": "c_out_loud" }
+      ]
+    },
+
+    "c_grandma": {
+      "them": [
+        "ask first. it's so simple that it feels like a trick. do you know that in six years i've never said the sentence 'may i read your chart?' not even to my mom. she hasn't asked. i didn't ask either. we both just let the stars do the talking.",
+        "may i read your chart, malten? ...i've already read it. ten times. but may i? please say yes so i can pretend i asked before."
+      ],
+      "choices": [
+        { "say": "yes. you can read mine. and then ask the rest of them the same way.", "next": "optin_draft" },
+        { "say": "yes, you can read mine. but first it's 11:09. there's a minute to get through.", "next": "countdown" }
+      ]
+    },
+
+    "c_out_loud": {
+      "them": [
+        "out loud. at 11:11. i'd have to say 'i was wrong.' i don't have that sentence. i have 'the stars were right but i misread them,' 'mercury interfered,' and 'it's complicated.' those are all different from 'i was wrong.'",
+        "it's 11:08. i don't know what a clean 11:11 looks like. i've never seen one. i've never let one pass without making it mean something."
+      ],
+      "choices": [
+        { "say": "then tonight, let one pass and don't make it mean anything. just a minute.", "next": "countdown" },
+        { "say": "write 'i was wrong' on your arm. in pen. practice. by 11:11 it's a tattoo.", "next": "countdown" }
+      ]
+    },
+
+    "countdown": {
+      "them": [
+        "11:09. two minutes. my hands are cold and i'm wearing three pairs of socks, which is a lot of socks for something that isn't happening. i keep thinking about what a friendship ending sounds like. does it make a noise?",
+        "i have the telescope pointed out the window and not a single thing is in the frame. no stars. just a streetlight, and the neighbor's garage door. what do i do, malten. what do we do with the last two minutes."
+      ],
+      "effects": [
+        { "type": "status", "text": "starxgazer is watching a clock. 11:09. she has one hand on the keyboard and one on a notebook that says 'the stars are not a boss.' she wrote it herself. she's not sure she believes it yet." }
+      ],
+      "choices": [
+        { "say": "do nothing. sit through the minute, hands off the keyboard. it's only a minute.", "next": "pass_minute" },
+        { "say": "give the stars something to be right about. predict that banana posts in all caps at 11:11.", "next": "banana_pred" },
+        { "say": "post the bulletin first: no more charts without asking. before 11:11, so it counts.", "next": "optin_draft" }
+      ]
+    },
+
+    "pass_minute": {
+      "them": [
+        "11:10. hands off. the cursor is blinking at me like a tiny, rude lighthouse.",
+        "...11:11. ...nothing. i'm sitting here. you're still on. my buddy list says you're still on. patrick posted 'is it 11:11 yet' and then 'now it is.' that's it. no block. no 'we're done.' nothing on the list. oh. huh. oh no. i was wrong. the stars were wrong."
+      ],
+      "effects": [
+        { "type": "status", "text": "starxgazer: 11:11 has come and gone. nothing ended. she's going to need a minute. (she's fine.) (she's very quiet.)" }
+      ],
+      "choices": [
+        { "say": "say it. 'i was wrong.' it's three words. you'll live.", "next": "roof_up" },
+        { "say": "now ask me. 'may i read your chart?' you've never actually asked.", "next": "optin_draft" }
+      ]
+    },
+
+    "banana_pred": {
+      "them": [
+        "banana posts in all caps. okay. that's... that's not a prediction, that's a weather report for banana. she posts in all caps every nine minutes. it's what she is.",
+        "but it's a perfect prediction. it can't miss. i could put a time on it, post it as a bulletin, and then be right in front of the whole site. it feels like cheating. it feels like the nicest cheating i've ever done."
+      ],
+      "choices": [
+        { "say": "do it. type it with the date and time. be right, publicly, for once.", "next": "banana_wait" },
+        { "say": "no. forget it. let the real minute run clean, and see what happens.", "next": "pass_minute" }
+      ]
+    },
+
+    "banana_wait": {
+      "them": [
+        "posted. 'PREDICTION: at 11:11 PM tonight, banana_phone will post in all caps.' i've hit refresh seven times. it's 11:10. i can hear my own heartbeat in the keyboard.",
+        "...11:11. BANANA JUST POSTED. IN ALL CAPS. SHE WROTE 'RING RING!!!' malten. the stars were right. the stars were SO right. i'm not going to lie to you, this is the best minute of my life."
+      ],
+      "choices": [
+        { "say": "announce it. post the receipt. the whole site should hear this.", "next": "end_banana" },
+        { "say": "tell banana she's a prophet. she'll want to know.", "next": "end_banana" }
+      ]
+    },
+
+    "optin_draft": {
+      "them": [
+        "okay. i'm typing it. 'CHARTS BY REQUEST ONLY (sorry).' i'm putting the sorry in the title, in parentheses, so it can't be missed. and underneath: 'from now on, i read your chart if you say yes. if you say no, i read nothing. if you say nothing, i read nothing. and i'll still be your friend, because that was never the stars.'",
+        "it's about 11:11, malten, and i'm typing a bulletin and not looking at the clock, and you're still here. okay. i think this is what a clean minute feels like. it feels like typing."
+      ],
+      "choices": [
+        { "say": "send it. then keep the telescope pointed where the sky actually is.", "next": "end_optin" },
+        { "say": "add one line: 'asking first is the part my grandmother taught me. thank you, grandma.'", "next": "end_optin" }
+      ]
+    },
+
+    "roof_up": {
+      "them": [
+        "i was wrong. there. the sky didn't fall. it's three words and the sky is exactly where it was. ...i feel very light. it's a little scary.",
+        "saturn's up. it's been up since ten. i have the 4.5 inch on the roof, my grandmother's telescope. no chart. no forecast. just a planet with rings. do you want to stay on the line while i go look? i'll tell you what i see. you can't see it. but i can."
+      ],
+      "choices": [
+        { "say": "go. i'll stay on. tell me what the rings look like.", "next": "end_roof" },
+        { "say": "go. take a blanket. take a snack. patrick will want a full report on whether it's still a rock.", "next": "end_roof" }
+      ]
+    },
+
+    "end_optin": {
+      "them": [
+        "it's up. 'CHARTS BY REQUEST ONLY (sorry).' i already have a 'chart me' from patrick, and it says 'can rocks have signs.' i'm going to answer that one carefully. i have a feeling about it.",
+        "thank you, malten. you stayed. you didn't have to. i think the stars gave me a bad forecast so i'd find out someone would stay anyway."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "CHARTS BY REQUEST ONLY (sorry)", "text": "hi everyone. starx here. i owe 38 of you an apology. since july i've read your charts without asking, and you were very nice about it, and that wasn't the same as saying yes. from now on: i read your chart if you say yes. if you say no, i read nothing. if you say nothing, i read nothing. you're still my friend either way, because that part was never the stars. to request one, comment 'chart me' and tell me your birthday. no birth time? that's fine, we'll guess together. xo starx (gemini, sorry, working on it)" },
+        { "type": "wallpost", "from": "darkangel", "to": "starxgazer", "delay": 45, "text": "starxgazer. i would like to be charted. in the shadow of the new moon. in writing. in black ink. the poem is already half-written: it is called 'asked.' it will be four lines. one of them is 'thank you.' (that is not like me. you've changed me. i'm going to need to lie down.)" },
+        { "type": "wallpost", "from": "patrick", "to": "starxgazer", "delay": 110, "text": "starx chart me please. patrick. i dont know my birth time. i dont think i was told. also can my rock have a chart. he is a rock but he is also a taurus i think. hes been in the same place since june." },
+        { "type": "wall", "from": "raven", "delay": 190, "text": "malten. someone told the stargazer to ask before reading people. it's the first time consent has made the rounds on this site. i'll take one chart. i won't tell you what I want to hear. (it's 'you are free to log off.') (don't pass it on.)" }
+      ]
+    },
+
+    "end_banana": {
+      "them": [
+        "PREDICTION CONFIRMED. i'm posting it right now with the screenshot, a timestamp, and a very modest border. it's 11:12, and in the next minute i'm going to say a sentence i've been waiting six years to say: 'i told you so.'",
+        "and the friendship didn't end. you're still here. it turns out there's a real way to beat a bad chart: write a better, sillier one and let banana do the rest. thank you. 100 percent accuracy this week. i'm unbearable. i know."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "PREDICTION CONFIRMED (11:11 PM, EST.)", "text": "at 10:58 PM i predicted that at 11:11 PM banana_phone would post in ALL CAPS. at 11:11 PM banana_phone posted: RING RING!!! the stars have been correct 1 out of 1 times this week. i would like it noted that i am not smug. i am accurate. there is a difference. (i am a little smug.) (ask me for a chart. NO. wait. ask. i'll say yes.) -starx" },
+        { "type": "status", "from": "banana", "delay": 40, "text": "BANANA_PHONE HAS BEEN PREDICTED. THE PREDICTION WAS ME. I POSTED IN ALL CAPS AND THE STARS WERE RIGHT. I WANT A COPY OF THE CHART. I WILL FRAME IT NEXT TO THE BANANA. RING RING!!!" },
+        { "type": "wallpost", "from": "leo", "to": "starxgazer", "delay": 90, "text": "starxgazer. 11:11. banana. all caps. i've pinned it to the corkboard with red string. the numbers are not a coincidence and neither is the banana. i'm adding you to the board. you're connected to eleven other things. i'll show you at the next meeting. the board is in my garage. bring a flashlight." },
+        { "type": "wallpost", "from": "gina", "to": "starxgazer", "delay": 150, "text": "starx!! at 11:11 my fridge started humming and i recorded it and it sounds exactly like the word 'eleven.' i'm adding it to the EVP file. you're a REAL prophet. (the fridge hums at 11:11 every night. it's a thing the fridge does. don't tell anyone it's a thing the fridge does.)" }
+      ]
+    },
+
+    "end_roof": {
+      "them": [
+        "okay. it's on the roof. the rings are tilted toward me like someone holding up a tray. it's faint, it's gold, it's right there and it's so much older than any chart i've ever made. and i was wrong tonight and the planet doesn't care and i've never felt more welcome.",
+        "i'll be quiet for a bit. you can stay on and listen to me not talk. that's the best use of an aries i've ever found."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "starxgazer was wrong tonight. 11:11 came and went and nothing ended. she's on the roof with her grandmother's telescope. saturn's out. she would like to be wrong more often if this is what it looks like." },
+        { "type": "wallpost", "from": "darkangel", "to": "starxgazer", "delay": 50, "text": "starxgazer. your wrong forecast gave me the first poem i've ever written in sunshine. wrong is a gift. do it more. i'll write the next one on the roof, under saturn, in a black sweater. don't be sorry. be wrong beautifully. that's the only way it has ever worked." },
+        { "type": "wallpost", "from": "harmony", "to": "starxgazer", "delay": 120, "text": "hey starx. the sky doesn't need a chart, man. it's a drum circle, we just don't hear the beat. whenever you're on the roof again i'll bring a blanket and no agenda. saturn's got rhythm. you just have to wait for the groove. peace." },
+        { "type": "wallpost", "from": "patrick", "to": "starxgazer", "delay": 210, "text": "starx did you see saturn again tonight. i saw it the one time. it was a good rock. i hope its ok. is it lonely. i think it has rings so it has friends. is that how rings work" }
+      ]
+    }
+  }
+}

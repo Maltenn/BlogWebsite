@@ -1,0 +1,191 @@
+{
+  "id": "henderson",
+  "name": "mr_henderson_sci",
+  "tag": "Homework reminders and science puns. I have my ion you. (That was a pun.)",
+  "avatar": "assets/avatar_henderson.gif",
+  "gender": "Male",
+  "age": 41,
+  "hometown": "Dayton, Ohio (birthplace of aviation, and of me)",
+  "loc": "Room 114 (the one that smells faintly of a burnt match)",
+  "zodiac": "Sagittarius, though I must note that astrology is not a science. Astronomy is. Sign up for the planetarium trip",
+  "status": "Married (to Mrs. Henderson, 14 years. She has asked not to be in the puns)",
+  "hereFor": "Homework reminders, Networking, Science",
+  "mood": "positive (like a proton)",
+  "lastLogin": "Oct 2 2026 4:26 PM",
+  "theme": { "bg": "#1e3b2c", "fg": "#f4f4e8", "accent": "#ffd84d" },
+  "blogTitle": "The Periodic Blog (it comes out periodically)",
+  "about": "Greetings, students! (And others. Mostly others, so far.) I am Mr. Henderson and I teach Physical Science in Room 114. The district encouraged us to 'meet students where they are,' and I am told that where you are is here. So: this page is for homework reminders, lab safety, and science puns, of which I have a nearly inexhaustible supply. I would tell you a chemistry joke, but all the good ones argon. (That was a pun.) I have sent 143 friend requests and 5 have been accepted, none of them by a current student, which is statistically remarkable. You do not have to add me. You DO have to turn in your lab report. It is due Friday. — Mr. H",
+  "aboutMore": "A few things you should know. I correct grammar by reflex; it is not personal, it is a condition. Our class pet is a fire-bellied newt named Sir Isaac Newt, and he is doing well, thank you for asking (nobody asked). I hold tutoring on Tuesdays and Thursdays at 3:15. Attendance last week: Tim, who was hiding from someone he owes two dollars, and a young man named Patrick, who is not enrolled here but asked very good questions about rocks. I brought enough granola bars for twelve. I always do.",
+  "meet": "Bill Nye, to compare bow ties. Whoever cast the deciding vote on Pluto this summer (I am still not ready to discuss it). A student, any student, who reads the lab instructions BEFORE lighting the burner. And whoever is in charge of friend requests, so that I may politely inquire about the delay.",
+  "interests": {
+    "General": "lab safety, the periodic table (I own it as a tie, a mug, and a shower curtain), Science Olympiad (we have 3 members and a coat rack), the annual egg drop, composting, my bicycle, correcting 'their,' the front office laminator when Debbie allows it",
+    "Music": "Thomas Dolby, They Might Be Giants, 'The Elements' by Tom Lehrer (I can sing it; I have been asked not to), Rush, Weird Al, the Schoolhouse Rock box set, whatever the marching band is practicing outside my window during 6th period",
+    "Movies": "October Sky (I show it every spring and I tear up every spring), Apollo 13, Flubber, Contact, Honey I Shrunk the Kids (scientifically unsound; emotionally true), Back to the Future",
+    "Television": "MythBusters, NOVA, Bill Nye the Science Guy (on VHS, in the cabinet, for substitute days), Jeopardy!, Good Eats, the Weather Channel during hurricane season",
+    "Books": "A Brief History of Time, Cosmos, The Way Things Work, Surely You're Joking Mr. Feynman, the lab supply catalog, my own lab manual (3rd edition, spiral bound, free, unopened by anyone)",
+    "Heroes": "Marie Curie, Carl Sagan, Mr. Wizard, my 8th grade science teacher Mrs. Okafor (she let me touch the Van de Graaff generator), Sir Isaac Newt, and any student who labels their axes"
+  },
+  "song": {
+    "name": "She Blinded Me With Science",
+    "artist": "Thomas Dolby",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/5c/f2/8b/5cf28bcd-ebb7-1639-9fa8-90089a344c97/mzaf_17407853977298774232.plus.aac.p.m4a",
+    "pattern": [0, 3, 7, 10, 7, 3, 0, 5],
+    "bpm": 112
+  },
+  "decor": ["assets/deco_new_blue.gif", "assets/badge_built_with_microsoft_notepad.gif", "assets/deco_smiley.gif"],
+  "friends": ["todd", "adam", "debbie", "linda", "walt"],
+  "wall": [
+    { "from": "tim", "text": "mr h. not accepting the request, nothing personal, its a brand thing. but u confiscated dereks calculator and my game was on it. thats $2 of inventory. its in the ledger now under 'losses (henderson)'", "time": "Sep 30 2026 3:40 PM" },
+    { "from": "chad", "text": "MR H!! i dont know how to accept a friend thing but i READ ur reminder and i DID the lab report!! its in CAPS because of the button but ALL the words are there. GO SCIENCE", "time": "Sep 26 2026 7:15 PM" },
+    { "from": "dave", "text": "mr h3nderson. i am in ur gr4debook. (i am looking at the printout u taped to the door.) i have a 91. i could ch4nge it to a 100 but i respect the system. also very secure tape. good tape", "time": "Sep 22 2026 10:02 PM" },
+    { "from": "debbie", "text": "Mr. Henderson the laminator is fixed!! Your permission slips came out but they are all laminated together into one large slip. I think the students could share it?? Love, Mom", "time": "Sep 19 2026 2:48 PM" },
+    { "from": "yvette", "text": "Mr. Henderson: yearbook needs ur faculty photo by FRIDAY. not 'friday-ish.' also u r nominated for the superlative 'Most Likely To Explain It Again.' u r running unopposed. VOTE YVETTE", "time": "Sep 15 2026 4:20 PM" },
+    { "from": "adam", "text": "thanks 4 the add mr h!!! ur my 1st teacher!! (on here) (i graduated already) ur friend #10,388!! pc4pc? do u have pics? is the newt in them??", "time": "Sep 11 2026 1:12 AM" },
+    { "from": "walt", "text": "Dear Mr. Henderson, I have received your notice that the Chapter 4 review is due Friday. I have completed it to the best of my ability and left it in your box at the school. I believe number 6 is 'friction.' Regards, Walt", "time": "Sep 5 2026 6:20 AM" }
+  ],
+  "replies": [
+    "Excellent question! The answer is on page 112, but I am glad you asked instead.",
+    "*you're. (Sorry. Reflex.) Otherwise, a very good point.",
+    "That is what we in the sciences call a hypothesis. Now test it. — Mr. H",
+    "I appreciate the comment. I would appreciate the lab report more. Friday.",
+    "Ha! That reminds me of a pun. Never trust an atom; they make up everything. (That was a pun.)",
+    "Noted. Please show your work.",
+    "I do not know what that means, but I wrote it on the board and third period seemed impressed.",
+    "Good observation. Observation is step one. Step two is goggles.",
+    "Thank you for writing! You are the first person to comment since Tuesday. Statistically, you are my favorite.",
+    "Interesting. Is that a fact or a finding? Either way, cite your source. — Mr. H"
+  ],
+  "thanksAdd": "You accepted! That brings me to six. I have updated the chart on my classroom door (it is a bar graph; the bar is short, but it is growing). As a thank-you, here is a pun: I am reading a book about anti-gravity. It is impossible to put down. Welcome. Lab reports are due Friday. — Mr. H",
+  "ambient": [
+    "REMINDER: The Chapter 4 review is due Friday. Not 'Friday-ish.' Not 'Monday, spiritually.' Friday. — Mr. H",
+    "Pun of the day: What did the thermometer say to the graduated cylinder? 'You may have graduated, but I have many degrees.' (That was a pun. There will be another tomorrow.)",
+    "Sir Isaac Newt update: he ate two bloodworms and then looked directly at me for eleven seconds. I am counting it as a breakthrough.",
+    "A friendly correction for the entire website: 'alot' is not a word. 'A lot' is two words. 'Allot' is a different word. I say this with affection. I say everything with affection.",
+    "The egg drop is in 13 days. Your container may not exceed 30 cm on any side and may NOT include a parachute made from my classroom curtains. That is a new rule. You know who you are.",
+    "Tutoring today at 3:15, Room 114. I have granola bars for twelve. Last week I had granola bars for twelve and a visitor count of two. I will be eating granola bars for some time."
+  ],
+  "saltyDm": "Request denied. I see. Well, that is your right, and in fairness you have placed yourself in the majority: 138 others have reached the same conclusion. As a scientist I must respect the data. As a person, I would like you to know there was a pun waiting for you on the other side. It was about sodium. Will I share it now? Na. (...I shared it. That was the pun.) — Mr. H",
+  "keywords": {
+    "homework": "Chapter 4 review, questions 1 through 20, odds AND evens. Yes, I know the odd answers are in the back of the book. That is why there are evens. Due Friday. — Mr. H",
+    "science": "My favorite subject! Did you know a teaspoon of neutron star would weigh about as much as a mountain? I think about that when the staff meeting runs long.",
+    "pun": "You asked for it. I tried to write a pun about the periodic table, but I was not in my element. (That was a pun.) I have 116 more. One per element.",
+    "newt": "Sir Isaac Newt! Fire-bellied, four years old, lives in the tank by the window. He is the only resident of Room 114 who has never once asked 'will this be on the test.'",
+    "grade": "I do not discuss grades on the internet. I discuss them Tuesdays and Thursdays at 3:15 in Room 114, where there are granola bars and, crucially, a door.",
+    "friend": "I have five. Todd, who I gather is everyone's; Adam, who I gather has everyone; two sisters; and a retired letter carrier who believes I am the school district. It is a start."
+  },
+  "banter": {
+    "tim": [
+      "Tim, I see the request is still 'pending.' No pressure. Separately: I played your calculator game during my planning period and it is excellent. I also need you to stop selling it during my class. — Mr. H",
+      "Tim, your ledger is the neatest piece of record-keeping I have seen from a sophomore. Imagine if your lab notebook looked like that. Just imagine it. For me."
+    ],
+    "dave": [
+      "Dave, the grades taped to my door are not 'the mainframe.' They are a piece of paper. Also, it is *you're in*, not 'ur in.' Good work on the quiz, though. A 91 is a 91.",
+      "Dave, the school's 'firewall' is Mrs. Albright in the library saying 'not on my computers.' Please stop trying to get past her. She has been here thirty years. She can not be hacked."
+    ],
+    "chad": [
+      "Chad, thank you for the lab report. It was entirely in capital letters, and the conclusion was 'SCIENCE WINS AGAIN,' which is not a conclusion but is, I admit, the correct attitude. B-plus.",
+      "Chad, to answer your question: no, a baseball does not 'want' to curve. But the Magnus effect is real, and if you come by Thursday at 3:15 I will show you why your slider works. Bring the ball."
+    ],
+    "yvette": [
+      "Yvette, my faculty photo is attached. It is the same one as last year. I have not changed and neither has the tie. Also, your form said 'superlitives.' I circled it. Reflex.",
+      "Yvette, I read your campaign bulletin. As a teacher I can not endorse a candidate. As a scientist I can say that your pie chart was correctly labeled, which is more than I can say for your opponent's."
+    ],
+    "linda": [
+      "Linda, thank you for the forward. To clarify: Mars will not appear as large as the Moon on Friday, or on any other day. It will look like a slightly orange dot. I have attached a diagram. Please do not forward the diagram to 340 people. (You will. I know.)",
+      "Linda, a duck's quack does echo. This has been tested. I appreciate your curiosity, and would only suggest that 'Carol from bunco' is not a peer-reviewed source. — Mr. H"
+    ],
+    "bill": [
+      "Bill, as a scientist I must say that extraordinary claims require extraordinary evidence. As a person I must say that your plaster casting technique is superb. Would you consider visiting my class for the unit on molds and impressions?",
+      "Bill, I examined the photograph. I see a tree, a second tree, and what I believe is your thumb. I am not saying there is nothing in those woods. I am saying please label your axes."
+    ],
+    "gina": [
+      "Gina, the sounds in the auditorium are consistent with the ventilation system and with a senior rehearsing a monologue. However, your data table was clear and your timestamps were consistent, and that is real science. Extra credit: three points.",
+      "Gina, an 'orb' in a flash photograph is dust. That said, I would rather you photograph dust carefully than nothing at all. Keep the notebook. Also, the lab report is still due Friday."
+    ],
+    "kyle": [
+      "Kyle, I do not have you on any of my rosters, and I teach every 14-year-old in this building. Curious. In any case: it is *definitely*, and there are no cheat codes for long division. I checked.",
+      "Kyle, to answer your questions: yes, I am a real teacher, and no, this is not homework. But since you asked what the fastest thing is: light. 186,000 miles per second. Tell your friends at recess. I mean, at high school."
+    ]
+  },
+  "statuses": [
+    "Mr. Henderson is grading. Slowly. With a green pen, because red felt aggressive",
+    "Mr. Henderson is reminding you that the Chapter 4 review is due Friday",
+    "Mr. Henderson is at 5 friends and holding steady",
+    "Mr. Henderson is feeding Sir Isaac Newt and telling him about the day",
+    "Mr. Henderson is in Room 114 until 4:30 with eleven granola bars. He ate one",
+    "Mr. Henderson is wearing the periodic table tie. Ask him where the helium is. (At the top. It rises.)",
+    "Mr. Henderson just corrected a 'your' on a stranger's page and is sorry, but not very",
+    "Mr. Henderson is testing egg drop containers off the gym roof with permission from no one"
+  ],
+  "bulletins": [
+    {
+      "subject": "REMINDER: Lab reports due Friday (plus a pun, as a treat)",
+      "body": "Good afternoon, students and other residents. Three items. 1) The density lab report is due FRIDAY at the start of class. It must include a data table, a graph with labeled axes, and a conclusion longer than 'it floated.' 2) Safety goggles go ON your eyes. Not on your forehead. Your forehead is not at risk. 3) Planetarium permission slips are due Wednesday; if yours is currently inside the front office laminator, see Debbie. And now, as promised, a pun: I asked the librarian for a book about Pavlov's dog and Schrodinger's cat. She said it rang a bell, but she could not say whether it was there or not. (That was a pun. Two, technically.) — Mr. H"
+    },
+    {
+      "subject": "Egg Drop rules (UPDATED after last year)",
+      "body": "The annual Room 114 Egg Drop is October 16, off the gym roof, weather permitting. Rules: Container no larger than 30 cm per side. One raw Grade A egg, supplied by me, numbered in pencil. NO parachutes made from school property. NO 'I taped it to a skateboard and rode it down the stairs,' Derek; that is not a drop. NO hard-boiling the egg. I can tell. I can always tell. Last year's winner used 40 drinking straws and a great deal of tape. Last year's loser hit my bicycle. Prizes: first place is a periodic table mug; all places receive the knowledge that gravity is 9.8 meters per second squared and does not care about your feelings. — Mr. H"
+    },
+    {
+      "subject": "Friendly Grammar Bulletin No. 7",
+      "body": "As always, offered with affection. THEIR: belongs to them. THERE: a place. THEY'RE: they are. Example: 'They're over there, ignoring their friend request from Mr. Henderson.' YOUR: belongs to you. YOU'RE: you are. Example: 'You're going to turn in your lab report.' LOSE: to misplace. LOOSE: not tight. Example: 'If the lid is loose, you will lose the newt.' (This example is drawn from life. He was found behind the radiator, unharmed and unrepentant.) Bulletin No. 8 will cover the apostrophe. Brace yourselves; it's a big one. Note the apostrophe. — Mr. H"
+    }
+  ],
+  "pcComments": [
+    "Nice photo! Fun fact: the red-eye effect is light bouncing off the back of the retina. So, technically, this is a picture of the inside of everyone's eyes.",
+    "I count four people on one trampoline. The physics of this concerns me. Great picture, though!",
+    "Excellent composition. Is that the science wing in the background? It is! Room 114 says hello.",
+    "The caption should read *we're*, not 'were.' Otherwise a very cheerful photograph. — Mr. H",
+    "Good lighting. That is the 'golden hour,' caused by sunlight passing through more atmosphere. You are welcome. See you third period."
+  ],
+  "dmSeed": [
+    { "text": "Hello, Malten! This is Mr. Henderson from Room 114. I do not believe you are on any of my rosters, so please consider this a purely voluntary science pun: why did the physics teacher break up with the biology teacher? There was no chemistry. (That was a pun.) If you ever have a question about homework, the natural world, or apostrophes, my inbox is open. It is also empty. — Mr. H" }
+  ],
+  "dms": [
+    "Good afternoon, Malten. A quick poll, for science: when a student says a pun 'made them groan,' is that a positive or a negative result? I have been recording groans as applause since my first year, and I am beginning to suspect a flaw in the methodology. — Mr. H",
+    "Malten, do you happen to know how one changes the font size on this website? Mine appears to be set to 'enormous,' and I am told my reminders read 'like being yelled at by a billboard.' I assure you I was using my indoor voice. — Mr. H",
+    "An announcement of no importance to anyone but me: Sir Isaac Newt shed his skin today, all in one piece, and then ate it. Third period screamed. I have never been prouder of an amphibian. I thought someone should know. — Mr. H",
+    "Malten, in your last post you wrote 'should of.' It is 'should have.' I apologize; I was not looking for it, I simply can not un-see it. To make amends, here is a fact: honey never spoils. Archaeologists have found pots of it thousands of years old and it was fine. — Mr. H",
+    "I am writing because it is 4:25, tutoring ended at 4:15, and nobody came today, so I am eating a granola bar at my desk and reading the internet. Did you know there is a cat on this site who files incident reports? His methodology is better than most of my sophomores'. — Mr. H",
+    "Malten, a question from a novice. A young man named Adam accepted my friend request within four seconds and wrote 'thanks 4 the add.' But I added HIM. Is the correct response 'you are welcome,' or do I thank him back? I do not want to get this wrong. He is twenty percent of my friends. — Mr. H",
+    "Science Olympiad sign-ups are Thursday. Before you say anything: yes, I know you are not a student here. I am asking everyone. We need a fourth for the bridge-building event, and at present our fourth is a coat rack that holds the clipboard. We call him Professor Hanger. He is undefeated but also unenrolled. — Mr. H",
+    "Pun delivery for Malten. Two chemists walk into a diner. The first says, 'I will have H2O.' The second says, 'I will have H2O, too.' The second chemist is perfectly fine, because I changed the ending. This is a family website. — Mr. H"
+  ],
+  "blog": [
+    {
+      "title": "On Having Five Friends: A Lab Report",
+      "date": "Sep 24 2026 4:32 PM",
+      "mood": "empirical",
+      "body": "PURPOSE: To determine why 143 friend requests have produced 5 friends. HYPOTHESIS: Students do not check their requests. (Alternative hypothesis, proposed by my wife: 'Honey, you are their teacher.') MATERIALS: one profile, 31 puns. DATA: Accepted by the site's founder, who accepts everyone. By a young man who collects friends the way I collect rock samples. By a front office colleague, who signed her acceptance 'Love, Mom.' By her sister, who commented 'Beautiful!' on my seating chart. And by a retired letter carrier who has been mailing me his answers to the Chapter 4 review. He is earning a B. CONCLUSION: My wife's hypothesis is supported. However, I must report an unexpected result. Tim has not accepted, but he reads every reminder; I can tell, because his homework is on time. Chad has not accepted, but he waves in the hall with both arms. Perhaps the request was never the experiment. Further study is needed. — Mr. H"
+    },
+    {
+      "title": "Pluto: A Statement",
+      "date": "Sep 3 2026 4:05 PM",
+      "mood": "in mourning (dwarf-sized)",
+      "body": "Many of you have asked how I am doing. (One of you has. It was Debbie.) As you may have heard, a committee of astronomers voted this summer that Pluto is no longer a planet. It is now a 'dwarf planet,' which is the scientific equivalent of being moved to the kids' table. I have taught nine planets for sixteen years. I have a mnemonic. I have a mobile hanging over lab station 4, hand-painted, with a tiny Pluto I made from a bead. A student asked today whether I was going to cut it down. I said no. I said science changes its mind when it gets better evidence, that this is the best thing about it, and that we should all be so brave. Then I went into the supply closet for a minute. Pluto stays on the mobile. He has a small asterisk now. I think it suits him. Homework: read section 2.3, and be kind to small things. — Mr. H"
+    },
+    {
+      "title": "Sir Isaac Newt Is Missing (UPDATE: Found)",
+      "date": "Aug 20 2026 5:15 PM",
+      "mood": "relieved",
+      "body": "At 2:40 PM today, during the density lab, a student (who shall remain nameless, Derek) left the lid of the tank ajar. At 2:55 I counted zero newts. A newt, for those unfamiliar, is four inches of pure decision-making. We formed a search grid. Tim took the supply shelves. Gina brought out a device she said detects 'presences,' which I am fairly sure is a stud finder; it found two studs. The custodian, Mr. Ray, was very calm, which leads me to believe this is not his first newt. At 4:10, alone in the room, I heard a small sound behind the radiator. There he was, sitting on a lost pencil like a king on a log. I said, 'You scared me.' He said nothing, being a newt. But I want it on the record that in sixteen years of teaching, the only thing that has ever made me skip the pun of the day was that empty tank. He is home. The lid has a brick on it now. — Mr. H"
+    }
+  ],
+  "survey": {
+    "title": "A Survey a Student Left on My Desk (I Believe as a Joke) (I Completed It)",
+    "qa": [
+      ["Name?", "Mr. Henderson. I do have a first name. It is on my mug and nowhere else."],
+      ["Favorite element?", "Tungsten. Highest melting point, a symbol that makes no sense (W), deeply underrated. I relate."],
+      ["What is in your pockets right now?", "A green pen, a magnet, two granola bars, and a note that says 'newt food.'"],
+      ["Have you ever blown anything up?", "On purpose, twice a year, behind the gym, with a permit. By accident, once. We do not talk about the ceiling tile."],
+      ["Favorite pun?", "That would be like choosing among my children. All 117 of them."],
+      ["What did you want to be when you grew up?", "An astronaut. Then I met ninth graders and realized I prefer my hostile environments with gravity."],
+      ["Biggest fear?", "An unlabeled beaker. Also that someday a student will ask 'when will I ever use this' and I will not have an answer ready. So far, I always have."],
+      ["What did you do last weekend?", "Graded 94 lab reports, turned the compost, and took Mrs. Henderson to the natural history museum. She chose the restaurant. That was the deal."],
+      ["How many friends do you have on here?", "Five. The trend line is flat, but it is not negative."],
+      ["Coke or Pepsi?", "Either, with a roll of mints, outdoors, standing well back."],
+      ["Describe yourself in three words.", "'Shows his work.'"],
+      ["Did you correct the grammar on this survey?", "Yes. In green. Question 4 originally said 'blowed.'"]
+    ]
+  }
+}

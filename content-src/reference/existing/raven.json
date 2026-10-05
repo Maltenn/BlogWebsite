@@ -1,0 +1,156 @@
+{
+ "id": "raven",
+ "name": "raven_nocturne",
+ "tag": "Goth is a subculture. Glitter is a craft supply. We are not the same.",
+ "avatar": "assets/posts/photo_kristengoth.jpg",
+ "gender": "Female",
+ "age": 24,
+ "hometown": "Providence, Rhode Island",
+ "loc": "Providence, Rhode Island",
+ "zodiac": "Scorpio",
+ "status": "Single (married to the night, but seriously, single)",
+ "hereFor": "Friends, Networking",
+ "mood": "nocturnal, as ever :|",
+ "lastLogin": "Sep 4 2026 2:47 AM",
+ "theme": {
+  "bg": "#0b0b0d",
+  "fg": "#cfc8dc",
+  "accent": "#9b1b3a"
+ },
+ "bgTile": "assets/tiles/tile_web.png",
+ "blogTitle": "Nocturne No. 14 (and a brief note regarding a certain 'poet' on this site)",
+ "about": "I have been wearing black since before some of you had accounts here, which I realize sounds like something a 24-year-old says when she is tired. I am. I found Poe at eleven, Siouxsie at fourteen, and I have never once typed 'rawr' in my life. I write actual poetry, with meter, and I refuse to give it glitter titles or 11:11 timestamps for effect. That said: if you are new here and someone is unkind to you, message me. I will be nice about it. Don't tell anyone.",
+ "meet": "Who I'd like to meet: Peter Murphy, Siouxsie Sioux, Edgar Allan Poe (in the appropriate condition), and anyone who can name a Bauhaus song that isn't 'Bela Lugosi's Dead.' Not you, DarkAngel. We've met.",
+ "interests": {
+  "General": "Victorian mourning jewelry, cemetery photography (respectfully), fountain pens, tarot as literature, correcting people about what 'goth' means, tea after midnight, taking the long way home in the rain, deleting glitter graphics from my page one at a time",
+  "Music": "Bauhaus, Siouxsie and the Banshees, The Cure (pre-1990, no exceptions), Sisters of Mercy, Dead Can Dance, Joy Division, Cocteau Twins, Type O Negative, Nick Cave, Rasputina, The Birthday Massacre (yes, fine, they're newer, they're allowed). If your band has a 'breakdown' it is not goth. I say this with love.",
+  "Movies": "The Hunger, Nosferatu (1922), The Crow, Interview with the Vampire (the book was better, the film is fine), Bram Stoker's Dracula, Edward Scissorhands, Donnie Darko, Pan's Labyrinth, The Nightmare Before Christmas (it counts, I've made my peace)",
+  "Television": "Buffy (seasons two through five), Six Feet Under, Carnivale, Twin Peaks, Dark Shadows on DVD, and I will admit to Project Runway with the volume down",
+  "Books": "Poe, Mary Shelley, Percy Shelley (less), Byron, Baudelaire, Anne Rice, Neil Gaiman, Poppy Z. Brite, The Bell Jar, House of Leaves, Wuthering Heights, anything Gorey. Not Twilight. I have been asked. Nine times.",
+  "Heroes": "Siouxsie. Peter Murphy. Morticia Addams. My grandmother, who wore black for forty years and told everyone it was 'practical.'"
+ },
+ "song": {
+  "name": "Blue",
+  "artist": "The Birthday Massacre",
+  "pattern": [
+   0,
+   4,
+   7,
+   4,
+   0,
+   4,
+   7,
+   12
+  ],
+  "bpm": 120
+ },
+ "decor": [
+  "assets/deco_moon.gif",
+  "assets/deco_skull.gif"
+ ],
+ "friends": [
+  "darkangel",
+  "vinyl_witch",
+  "lucas",
+  "josh",
+  "tina",
+  "mika",
+  "todd"
+ ],
+ "wall": [
+  {
+   "from": "darkangel",
+   "text": "~*~ raven i read ur blog. 'we are not the same'?? ur right. MY poems rhyme. 11:11 make a wish that u get a sense of humor <3 (jk ily) (sort of) (the rain one was good tho dont tell anyone) ~*~",
+   "time": "Sep 3 2026 11:11 PM"
+  },
+  {
+   "from": "vinyl_witch",
+   "text": "finally someone on this site with a Bauhaus record and not just the t-shirt. saw your shelf in your pic. approved. the Cure is filed wrong though. Pornography goes after Faith. fix it.",
+   "time": "Aug 30 2026 9:52 PM"
+  },
+  {
+   "from": "tina",
+   "text": "raven u would LOVE twilight. edward is basically a goth!! he broods!!! plz read it. i will send u my copy. also repost my chain letter or u get bad luck 4 7 yrs (it says that not me) (but also do it)",
+   "time": "Aug 26 2026 7:30 PM"
+  },
+  {
+   "from": "lucas",
+   "text": "'crawling in my skin, these wounds they will not heal.' thats philosophy raven. u cant tell me linkin park isnt goth. ok u can. u did. in 4 paragraphs. i read all of them. i think u might be right which is annoying",
+   "time": "Aug 22 2026 10:17 PM"
+  }
+ ],
+ "replies": [
+  "Noted.",
+  "That's... actually lovely. Don't tell anyone I said so.",
+  "I am too old for this website and yet here I am, at 2 AM, replying.",
+  "No.",
+  "Fine. I laughed. Once. Quietly."
+ ],
+ "thanksAdd": "Thank you for the add. I don't do pc4pc, I don't repost chain letters, and I will not be 'rawr'-ing at you. I will, however, read your poems if you ask nicely. That offer is rarer than you think.",
+ "ambient": [
+  "It's 2 AM. The scene children are asleep. The site is finally quiet. This is my hour.",
+  "Someone left seventeen glitter graphics on my page. It took eleven minutes to delete them. I felt each one.",
+  "New poem in the blog. It is about rain. It is always about rain. I am from Providence, what did you expect.",
+  "Just corrected a fifteen-year-old about Bauhaus and then felt bad and complimented his hair. Growth, apparently."
+ ],
+ "saltyDm": "I noticed you read my poem and left without a word. That's fine. Poe died alone too. (I'm joking. Mostly. Leave a comment next time. It costs nothing.)",
+ "keywords": {
+  "darkangel": "DarkAngel. Yes. She writes 'poetry' in glitter text with 11:11 timestamps and calls it dark. It is not dark. It is a Lisa Frank folder having a bad day. ...She is actually talented. Do not quote me. I will deny it.",
+  "goth": "Goth is a subculture with a thirty-year history rooted in post-punk. It is not a layout you download from a website with pop-ups, and it is not a Hot Topic receipt. I say this with love. Some love. A measured amount."
+ },
+ "banter": {
+  "darkangel": [
+   "DarkAngel, 'my soul is a broken mirror' is a fine line. It was also a fine line when Siouxsie did it in 1981. We are not the same. Keep writing, though. Genuinely.",
+   "I gave your blog one kudos. One. That is the most I have ever given anyone on this site and I need you to understand the weight of it."
+  ],
+  "vinyl_witch": [
+   "Vinyl Witch is the only resident who has never once asked me to 'comment her pics.' She asked me to comment her SHELVES. I respect that enormously.",
+   "You were right about the Cure filing. I moved Pornography next to Faith. I'm not proud of how long it took me to admit that."
+  ],
+  "lucas": [
+   "Lucas, I have read your Linkin Park lyric analysis and I want you to know that at your age I was doing the same thing with The Cure, so I have no grounds. Carry on.",
+   "Nu-metal is not goth. It is, however, sincere, which is more than I can say for half the eyeliner on this site. You're fine, kid."
+  ],
+  "tina": [
+   "Tina. I read the first chapter of Twilight because you asked nine times. The vampire sparkles. Vampires do not sparkle. I am returning the book with notes in the margins.",
+   "Your chain letter said I would have bad luck for seven years if I didn't repost. I did not repost. I am simply reporting that it has been three days and I found five dollars."
+  ],
+  "josh": [
+   "Josh, you invited me to youth group. I'm a 24-year-old goth. You said 'that's fine, we have snacks.' I thought about it for longer than I'd like to admit.",
+   "You're the only person on this site who mediates drama without making it worse. It's unsettling. Keep doing it."
+  ]
+ },
+ "statuses": [
+  "reading. actual books. with pages.",
+  "not the same as certain glitter poets, thank you",
+  "awake at 2 AM by choice, not because of a 37-hour banana situation",
+  "quietly pleased and will deny it under oath",
+  "listening to Bauhaus. the whole record. in order. as intended."
+ ],
+ "bulletins": [
+  {
+   "subject": "A Brief Note on What Goth Actually Is (No Glitter Involved)",
+   "body": "Since it has come up again, and since a certain 11:11 poet has described her page as 'goth,' I am posting this once. Goth is a subculture that grew out of post-punk in the early 1980s. Bauhaus. Siouxsie. The Cure. It is about beauty in darkness, literacy, and a certain refusal. It is not: sparkly skull graphics, 'rawr,' a Hot Topic receipt, or teasing your hair until it needs its own zip code. That said, I am not your enemy. I am simply older, tired, and correct. Read Poe. Come back. I'll be here. I'm always here.",
+   "time": "Aug 24 2026 1:15 AM"
+  },
+  {
+   "subject": "New poem. No kudos-begging. Just read it.",
+   "body": "It's called 'Nocturne No. 14.' It's about rain on a window in Providence and a person who does not call. It is not about anyone on this site. (It is a little bit about someone on this site.) It does not rhyme. It does not have to. I posted it at 2:33 AM because that is when it was finished, not for effect. Give it kudos if you like. Or don't. The rain doesn't care and neither do I. (I do. Slightly.)",
+   "time": "Sep 2 2026 2:33 AM"
+  }
+ ],
+ "pcComments": [
+  "Lovely composition. Lose the glitter frame.",
+  "Is that a real cemetery? If so, you have my respect and my envy.",
+  "This is the first photo on this site in which no one is doing 'rawr.' Thank you.",
+  "The lighting is good. The eyeliner is better. Carry on.",
+  "I do not do pc4pc. I commented because it deserved it. Don't get used to it."
+ ],
+ "dmSeed": [
+  {
+   "from": "raven",
+   "text": "Hello, malten. You seem to have wandered into the oldest corner of this site. Welcome. The scene children mean well. If any of them try to 'pc4pc' you, I can explain what that means, though I wish I couldn't.",
+   "time": "Aug 25 2026 1:58 AM"
+  }
+ ]
+}

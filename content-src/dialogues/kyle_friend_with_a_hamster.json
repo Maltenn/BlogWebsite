@@ -1,0 +1,209 @@
+{
+ "id": "kyle_friend_with_a_hamster",
+ "with": "kyle",
+ "opener": [
+  "malten. malten. emergency. a real 1. not a cheat code 1",
+  "there is a thing at the church on fridays called jr high nite. josh says theres pizza AND dodgeball AND a 2 liter of mountain dew thats just 4 the table. its at 6. its THIS friday",
+  "its 4 jr high ppl. im obviously in high school so thats a step DOWN but im willing. or. asking 4 a friend who is 11 (not me) (hes cool, he has a hamster). g2g the chickens warming up"
+ ],
+ "nodes": {
+  "start": {
+   "choices": [
+    { "say": "ok friend-who-has-a-hamster. u sound 11. is the friend u?", "next": "admit" },
+    { "say": "josh runs it. just ask josh if the friend can come.", "next": "ask_josh" },
+    { "say": "make a poll. bulletin. 'IS 11 BASICALLY 14.' let the people vote.", "next": "poll_idea" }
+   ]
+  },
+  "admit": {
+   "them": [
+    "....ok. fine. FINE. its me. im 11. im gonna be 12 on oct 20. my name is connor. kyle is my brother, hes 16, its his account. he said i could use it if i dont 'make it weird.' i made it weird. a little",
+    "i said 14 bc nobody wants 2 talk 2 an 11 yr old. everybody wants 2 talk 2 a 14 yr old. a 14 yr old can be in a top 8. an 11 yr old gets a high 5 n a juice box. also dont tell the skulls. they think im 14 2"
+   ],
+   "effects": [
+    { "type": "status", "delay": 10, "text": "kyle is 11. kyle just said it out loud. kyle is going to go lie down." }
+   ],
+   "choices": [
+    { "say": "connor. good name. so what's the scary part, the pizza or the asking?", "next": "mom_talk" },
+    { "say": "write josh the truth. all of it. he'll say 'come on in.' i bet.", "next": "josh_dm" }
+   ]
+  },
+  "ask_josh": {
+   "them": [
+    "i cant just ask josh. josh is like 17. he said 'tell ur mom its at the church, moms love that' which is TRUE which is the problem bc then i have 2 actually tell my mom",
+    "n she will ask 5 questions. what church. what time. who drives. whos in charge. is there a 2nd grown up. i have like 2 answers n 1 of them is 'pizza.' also what do i say when josh asks how old i am"
+   ],
+   "choices": [
+    { "say": "'pizza' is ur best answer. but she'll want 4 more. go find them.", "next": "mom_talk" },
+    { "say": "forget asking. what's ur dodgeball plan? i need strategy first.", "next": "dodgeball" }
+   ]
+  },
+  "poll_idea": {
+   "them": [
+    "OOOH. a poll. tj does polls. ok. title: IS 11 BASICALLY 14. options: A) yes B) yes. bc its a fair poll. ok posting. its up. i hit it. the bulletin just went out 2 EVERYBODY",
+    "wait did i say 11. i said 'a friend who is 11.' ok its fine. its a hypothetical friend. (hamster) g2g my mom is in the kitchen n she can see the monitor from the sink"
+   ],
+   "effects": [
+    { "type": "bulletin", "delay": 10, "subject": "POLL: IS 11 BASICALLY 14?? (PLZ VOTE) (ITS 4 A FRIEND)", "text": "ok this is a poll. the question is, is 11 basically 14. a friend wants 2 know. the friend has a hamster. options: A) yes B) yes. vote in the comments. results will b posted on this page n on the fridge (not the fridge). my friend is a real person n is NOT me. -kyle (14)" }
+   ],
+   "choices": [
+    { "say": "check the votes. tj is counting. he's probably at 12 already.", "next": "poll_votes" },
+    { "say": "pause the poll. why does this matter so much? tell me about friday.", "next": "dodgeball" }
+   ]
+  },
+  "mom_talk": {
+   "them": [
+    "ok real talk. my mom is not scary. shes just a person w/ a chicken. if i said 'mom. a church thing. friday. pizza. im 11 n i wanna go' she'd probably say 'which church' n then 'ok.' i think. but then she'd know about the other thing",
+    "she knows im on the computer. she does NOT know it says 14. she does not know i have a car (its at the shop). so if i tell her about friday i hafta tell her 3 things. 1 is pizza. the other 2 r a talking-to"
+   ],
+   "choices": [
+    { "say": "then tell her all 3. the talking-to first. the pizza goes down easier after.", "next": "script" },
+    { "say": "tell ur brother first. he's 16. he knows how to say 'mom, here's the thing.'", "next": "brother" }
+   ]
+  },
+  "josh_dm": {
+   "them": [
+    "ok i wrote 2 josh. i typed 'im kyle. im actually 11. i have a hamster. is there still pizza.' he wrote back in 40 sec",
+    "he said 'hey buddy =] first, thanks for telling me, that took guts. second, we have a 5:30 table for the younger kids, 3 sixth graders so far. third, you gotta ask a parent, thats the one rule. fourth, the pizza is always there.' malten he put the smiley after 'always there'"
+   ],
+   "effects": [
+    { "type": "wallpost", "from": "josh", "to": "kyle", "delay": 20, "text": "hey buddy =] thanks for being straight with me. the 5:30 table is a real thing, theres 3 sixth graders and a kid who brings a hamster (not kidding, his name is Gerald). ask ur mom. we're flexible on age and strict on pizza." }
+   ],
+   "choices": [
+    { "say": "that's a smiley. that's a yes. now go get ur mom's yes. start w/ the truth.", "next": "script" },
+    { "say": "ask josh about the hamster policy. gerald sounds like a solid guy.", "next": "chicken" }
+   ]
+  },
+  "dodgeball": {
+   "them": [
+    "ok dodgeball strategy. 1) stand behind the tallest guy. 2) when he gets hit u r now the tallest guy. 3) catch. (u dont HAVE 2 catch. but if u do its the best day of ur life) (i caught 1 once. it was foam. my dad threw it)",
+    "but the real thing is not the dodgeball. dylans bday was at his house n his mom watched from the door the whole time. at the mall im 'kyles brother.' on here im 'lil bro' right at the top. i just want 1 table where im a guy at a table. thats dumb. forget it"
+   ],
+   "choices": [
+    { "say": "not dumb. u want 1 place where ur just u. tell ur mom that, in those words.", "next": "script" },
+    { "say": "not dumb. ur brother needs 2 hear that one. he typed 'lil bro' up there.", "next": "brother" }
+   ]
+  },
+  "poll_votes": {
+   "them": [
+    "malten 14 votes!!! 14 yeses. tj commented. he said 'poll invalid, A and B are the same answer.' i said thats the POINT tj. he said 'pirate or ninja.' i didnt answer. hes not wrong",
+    "hunter voted yes AND wrote 'kid. 1v1 me.' henry voted yes n said 'ur 11?? thats my cousins age. he rolls on the carpet.' josh wrote 'hey buddy =] lets talk.' josh KNOWS. everybody knows. my mom just walked in. shes reading the screen. shes not saying anything. thats worse than saying something"
+   ],
+   "effects": [
+    { "type": "wallpost", "from": "tj", "to": "kyle", "delay": 20, "text": "kyle. poll tally: yes 14, no 0, unsolvable 1 (me). note: A and B are identical, which makes this the first poll in my records where every option is correct, and I resent it. One vote per person. You may not vote 'both.' - tj" }
+   ],
+   "choices": [
+    { "say": "stay put. don't close anything. say 'hi mom. i have something 2 tell u.'", "next": "caught" },
+    { "say": "say bye 2 the room. log off properly. go talk 2 her. we'll be here.", "next": "chicken" }
+   ]
+  },
+  "script": {
+   "them": [
+    "ok i wrote it on an index card. 'MOM. 1) im 11 not 14, i said 14 on here, im sorry. 2) i wanna go 2 jr high nite at the church friday 5:30, theres pizza n 6 grown ups (josh said). 3) i can do the dishes 4 a week. 4) i will wear the pants u pick. 5) i love u (this is not a trick)'",
+    "the 5th 1 is not a trick its just true. i put it at the end so it counts more. do i add a 6th. like 'u can say no.' kyle says u gotta put in that u can say no or its not a real ask. thats the thing w/ asking"
+   ],
+   "choices": [
+    { "say": "add the 6th. 'u can say no.' then ask her 2 call the church herself and check.", "next": "end_pizza" },
+    { "say": "read it as is. then LISTEN. if she says 'not yet,' that's still an answer.", "next": "end_next_year" }
+   ]
+  },
+  "brother": {
+   "them": [
+    "ok i knocked on kyles door. i said 'kyle. i did a thing. 3 things.' he took his headphones off. he said 'is it the account.' MALTEN HE KNEW. he said 'dude i know u use it. u put the skulls on. u typed definately.'",
+    "he said 'i said dont make it weird. u made it a little weird. but u made 4 friends n 1 of them is a cat. thats not weird thats a start.' then 'ugh. ok. what do u need.' i said a ride 2 a pizza thing. he said 'ill go in w/ u 4 the first 10 min' n then 'but ur telling mom first. im not lying 2 mom 4 u. nobody does that.'"
+   ],
+   "effects": [
+    { "type": "status", "delay": 15, "text": "kyle (the 11 yr old) just had a talk w/ kyle (the 16 yr old). nobody is grounded. the skulls r staying." }
+   ],
+   "choices": [
+    { "say": "he's right. tell mom first. kyle's the ride, not the cover story.", "next": "end_pizza" },
+    { "say": "ask kyle 2 sit w/ u while u tell her. 2 brothers, 1 kitchen, no weird.", "next": "end_ride" }
+   ]
+  },
+  "chicken": {
+   "them": [
+    "the chicken dinged. 30 sec left. ok i decided. im gonna go ask her NOW. shes at the sink. if i wait til the weather its gonna get big n scary like a hamster in a couch",
+    "do i say all of it or just the church part. the age part is the part my stomach hurts about. i have 4 sec. MOM I KNOW WHAT TIME IT I"
+   ],
+   "choices": [
+    { "say": "all of it. age, account, church. the whole truth. u'll sleep better.", "next": "back_from_dishes" },
+    { "say": "go. but let mom pick the time 2 talk. she'll tell u when it's good.", "next": "end_next_year" }
+   ]
+  },
+  "caught": {
+   "them": [
+    "ok. i said it. i said 'hi mom. i have something 2 tell u.' she said 'hello connor.' she didnt say 'who.' she said CONNOR. she knew. malten she KNEW. how long has she known",
+    "shes holding the chicken. shes looking at the screen. 'is this a poll. about your age.' MOM I CAN EXPLAI"
+   ],
+   "choices": [
+    { "say": "...connor? u there? (waits) ...tell her the truth. i'm here.", "next": "end_poll" },
+    { "say": "wall post him: 'josh says the 5:30 table is open. ask her about THAT part.'", "next": "end_pizza" }
+   ]
+  },
+  "back_from_dishes": {
+   "them": [
+    "ok im back. 40 min. she said 'sink first' so i did the whole sink. then i said 'mom i need 2 tell u 3 things' n i did. the age. the account. the church. she put down the sponge n dried her hands on the towel w/ the chicken on it",
+    "she said 'which one are you most scared of.' i said the age. she said 'the age one is easy. you are 11. you have always been 11. i was there.' then she said 'the account is a talking-to. the church is a phone call.' she wants kyle 2 hear it 2 n she wants 2 call the church first. what do i do w/ the rest of the nite"
+   ],
+   "effects": [
+    { "type": "status", "delay": 15, "text": "kyle is at the kitchen table. kyle is 11. kyle just told his mom 3 things. kyle needs a minute." }
+   ],
+   "choices": [
+    { "say": "go get kyle. both of u at the table. she wants him there anyway.", "next": "end_ride" },
+    { "say": "let her call the church. u sit there. that's ur whole job tonight.", "next": "end_pizza" }
+   ]
+  },
+  "end_pizza": {
+   "them": [
+    "ok so here's what happened at dinner. we talked. all 3 things. (some of it she already knew. a LOT of it she already knew.) i am grounded from the search bar still. i am NOT grounded from friday. she called the church n asked 'is there a 2nd grown up' n the lady said 'there r six' n mom said 'good.'",
+    "im going 2 jr high nite. the 5:30 table. mom is driving n staying 4 the first 10 min (she said 'ill sit in the car' she will not sit in the car). i did not need a cheat code. i needed 2 ask. malten that is the worst thing i ever learned. -connor (11) (12 on the 20th)"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "delay": 15, "text": "kyle is 11. kyle is going 2 jr high nite on friday at 5:30 (the table w/ the hamster guy). kyle is not scared of dodgeball. kyle is a little scared of dodgeball." },
+    { "type": "wallpost", "from": "josh", "to": "kyle", "delay": 50, "text": "hey buddy =] saved u a seat at the 5:30 table. Gerald says hi (he's a hamster, he's in a shoebox, he's thrilled). ur mom called the church and the lady said 'what a polite woman.' see u friday. pizza's on me." },
+    { "type": "wallpost", "from": "debbie", "to": "kyle", "delay": 90, "text": "Connor honey. I have known for some time. I am the mother of two girls and I know a boy who spells 'definitely' with an A when I see one. I am so proud of you for telling the truth. Eat a vegetable at the pizza. Love, Mom (not yours, but still)" },
+    { "type": "wallpost", "from": "henry", "to": "kyle", "delay": 125, "text": "connor. 9/10 name. my beagle is named axle. see u at the pizza table, they have good tile in that basement. nice one." },
+    { "type": "dm", "delay": 200, "text": "malten im back (from the dishes) (it was a lot of dishes). just wanted 2 say thx. i still need a cheat code 4 dodgeball tho. dylan says there r none. dylan also said his uncle works at nintendo. -connor" }
+   ]
+  },
+  "end_ride": {
+   "them": [
+    "kyle came in n sat at the table. he said 'mom, he's got something 2 tell u, n i have something 2 tell u 2. i knew about the account. i said he could.' she looked at both of us 4 like 9 seconds. she said 'well. that is two talking-tos for the price of one.' n THEN she said yes",
+    "so friday kyle is driving me n goin in w/ me 4 the first 10 min. he said 'u r gonna say hi 2 josh n not be weird.' i said i wont be weird. he said 'u r 11. u r gonna be a little weird.' then he said 'its ok. thats the part i like.' malten. THATS THE PART HE LIKES. -connor (11)"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "delay": 15, "text": "kyle is in the front seat. kyle (the other one) is playing the dragonforce song. kyle (this one) is doing the guitar part. both kyles r happy. (this one is 11) (the 16 yr old says hi)" },
+    { "type": "wallpost", "from": "josh", "to": "kyle", "delay": 55, "text": "hey buddy =] ur brother walked in w/ u and said 'he's alright' to the whole room. im gonna cry into a pizza. the 5:30 table has your name on a napkin. Gerald is here." },
+    { "type": "wallpost", "from": "hunter", "to": "kyle", "delay": 100, "text": "kid. connor. 1v1 me at dylans. lockout. ur 12 in 2 weeks, thats basically legal. (i go easy. i dont. i cant. dont tell anyone.)" },
+    { "type": "wallpost", "from": "adam", "to": "kyle", "delay": 140, "text": "kyle!!! connor!!! u r still my #2!!! (mom is #1 and also #2) (u can be #1 if u want) i'm SO proud of u!!! the cheat code 4 jr high is: say hi, then say hi again. thanks 4 the add!!! choo choo!!!" }
+   ]
+  },
+  "end_next_year": {
+   "them": [
+    "so mom said no 4 this friday. she said 'not this week, bud. i want 2 talk 2 the church first n meet josh. ask me again after ur birthday.' she was a lil bit sad about the account but not mad. she said 'thank u 4 telling me all of it.' she said it twice. like walt does",
+    "its ok. its not ok. its ok. she said i can have a big pizza at HOME on friday n play smash w/ kyle n there will b no chicken. oct 20 is in 16 days. ive made a calendar. i'm gonna ask again on the 21st. -connor (11) (12 soon)"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "delay": 15, "text": "kyle is 11. kyle is not going 2 jr high nite this friday. kyle is going 2 the 1 after his birthday. (he made a calendar) (it has a pizza on the 27th)" },
+    { "type": "wallpost", "from": "josh", "to": "kyle", "delay": 55, "text": "hey buddy =] no worries at all. the pizza will be here on the 27th. ur mom asking questions first is how u know she's a real mom. ill save u the corner slice (theres no corner slice, its a circle, i'll make one). see u soon." },
+    { "type": "wallpost", "from": "patrick", "to": "kyle", "delay": 100, "text": "hi kyle. i'm sorry about the pizza. you can borrow dwayne the rock until the 27th. he doesn't help with pizza but it's nice to have someone there. i read your profile three times and i think you are 11. that is a good number. regards, patrick" },
+    { "type": "dm", "delay": 220, "text": "malten its me. im at the kitchen table. mom is doing the crossword in pen like grandpa walt. i did the calendar. also i told master chief he gets pizza crust on the 27th 2. i dont think he understood. but he looked proud. -connor" }
+   ]
+  },
+  "end_poll": {
+   "them": [
+    "[auto-response from kyles_lil_bro]: im not here. im at the library. the lady has a 30 min limit n no chicken. i'm in trouble but the not scary kind. i'll write back. i promise. dont tell kyle. (tell kyle) (i'll tell kyle)"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "bulletin", "delay": 30, "subject": "POLL RESULTS: IS 11 BASICALLY 14 (FINAL) (IT IS NOT)", "text": "yes: 31. no: 0. unsolvable: 1 (tj). my mom said 'we'll talk at dinner.' we talked at dinner. verdict: 11 is not basically 14. 11 is 11. it is a good number (patrick said). thx 4 voting. i'm connor. i'm gonna b 12 on oct 20. i have a hamster named master chief. this is kyles account, he's my brother, he's 16, he's alright. -connor (kyles lil bro) (that's the real name of the page)" },
+    { "type": "wallpost", "from": "tj", "to": "kyle", "delay": 70, "text": "FINAL TALLY: yes 31, no 0, unsolvable 1. This is the first poll in my records with no 'no.' It has been entered. The result is that you are 11 and that is valid. Pirate or ninja. - tj" },
+    { "type": "wallpost", "from": "hunter", "to": "kyle", "delay": 110, "text": "kid. connor. 1v1 me. saturday. dylans. i'll go easy on u. (i wont) (i cant, im not that good) (dont tell anyone)" },
+    { "type": "dm", "from": "josh", "delay": 150, "text": "hey malten =] heads up. kyle's mom called the church about a bulletin. told her the 5:30 table has six adults. she said 'good.' he's gonna be fine. just wanted u 2 know. -josh" },
+    { "type": "dm", "delay": 260, "text": "malten its me. im back from the library (28 min left). ok so what happened. she wasn't mad about the poll. she was mad about the 14. she said '14 is not a number u get 2 pick. 11 is a great number.' i'm grounded from the search bar til thursday n the account til saturday but she said i can go 2 jr high nite if i call josh MYSELF. i called. he said 'hey buddy =].' -connor (11)" }
+   ]
+  }
+ }
+}

@@ -46,14 +46,17 @@ const Sfx = {
 const WM = {
   z: 100,
   wins: new Map(),
+  zoomSteps: 9,       // the Win95 "zoom" animation draws this many outline frames…
+  zoomStepMs: 24,     // …this far apart (about 220ms in all)
 
   init() {
     const desktop = document.getElementById('desktop');
     if (!desktop) return;
 
+    const onLoad = [];
     document.querySelectorAll('.window[data-app]').forEach(el => {
       const id = el.dataset.app;
-      this.wins.set(id, { el, taskBtn: null });
+      this.wins.set(id, { el, taskBtn: null, opened: false, zoom: null });
       el.style.left = (el.dataset.x || 100) + 'px';
       el.style.top = (el.dataset.y || 60) + 'px';
       if (el.dataset.w) el.style.width = el.dataset.w + 'px';
@@ -62,12 +65,14 @@ const WM = {
       this.wireTitleBar(id, el);
       this.makeDraggable(id, el);
 
-      if (el.classList.contains('open-on-load')) this.open(id, true);
+      if (el.classList.contains('open-on-load')) onLoad.push(id);
       else el.classList.add('closed');
     });
+    document.body.classList.add('wm-ready');   // styles.css keeps windows hidden until they are placed
+    // only the front window (the last open-on-load one) zooms up from the Start button
+    onLoad.forEach((id, i) => this.open(id, true, i === onLoad.length - 1 ? null : false));
 
-    this.clampAll();
-    window.addEventListener('resize', () => this.clampAll());
+    window.addEventListener('resize', () => this.reflow());
   },
 
   wireTitleBar(id, el) {
@@ -109,42 +114,76 @@ const WM = {
     });
   },
 
-  clampAll() {
-    if (window.innerWidth <= 820) return;
+  shown(el) { return !el.classList.contains('closed') && !el.classList.contains('minimized'); },
+
+  // keep a floating window reachable. Hidden and maximized windows report no real
+  // offsets, so they are left alone (their saved position must survive).
+  clamp(el) {
+    if (window.innerWidth <= 820 || !this.shown(el) || el.classList.contains('maximized')) return;
     const desk = document.getElementById('desktop');
-    this.wins.forEach(({ el }) => {
-      el.style.left = Math.max(0, Math.min(el.offsetLeft, desk.clientWidth - el.offsetWidth - 4)) + 'px';
-      el.style.top = Math.max(0, Math.min(el.offsetTop, desk.clientHeight - 60)) + 'px';
+    el.style.left = Math.max(0, Math.min(el.offsetLeft, desk.clientWidth - el.offsetWidth - 4)) + 'px';
+    el.style.top = Math.max(0, Math.min(el.offsetTop, desk.clientHeight - 60)) + 'px';
+  },
+
+  clampAll() {
+    this.wins.forEach(({ el }) => this.clamp(el));
+  },
+
+  // tell an app its window changed size (maximize / restore, or the viewport moved under it)
+  resized(id) {
+    document.dispatchEvent(new CustomEvent('app-resize', { detail: id }));
+  },
+
+  // the viewport (or one of the marquee bars) changed size
+  reflow() {
+    this.clampAll();
+    this.wins.forEach(({ el }, id) => {
+      if (this.shown(el) && (el.classList.contains('maximized') || window.innerWidth <= 820)) this.resized(id);
     });
   },
 
-  open(id, silent) {
+  // from: the element (or rect) the window zooms out of — defaults to the Start button.
+  // Pass false to skip the animation.
+  open(id, silent, from) {
     const w = this.wins.get(id);
     if (!w) return;
+    const wasMin = w.el.classList.contains('minimized');
+    const wasHidden = !w.opened || !this.shown(w.el);
     w.el.classList.remove('closed', 'minimized');
+    if (!w.opened) {
+      // data-start-maximized: born maximized on the first open, no small frame first
+      w.opened = true;
+      if (w.el.hasAttribute('data-start-maximized') && window.innerWidth > 820) w.el.classList.add('maximized');
+    }
     if (!w.taskBtn) {
       const btn = document.createElement('button');
       btn.className = 'btn98';
       btn.textContent = w.el.dataset.title || id;
       btn.addEventListener('click', () => {
-        if (w.el.classList.contains('minimized') || !w.el.classList.contains('focused')) {
-          w.el.classList.remove('minimized');
-          this.focus(id);
-        } else this.minimize(id);
+        if (w.el.classList.contains('minimized')) this.restore(id);
+        else if (!w.el.classList.contains('focused')) this.focus(id);
+        else this.minimize(id);
       });
       document.getElementById('task-buttons').appendChild(btn);
       w.taskBtn = btn;
     }
+    this.clamp(w.el);
     this.focus(id);
     if (!silent) Sfx.open();
     document.dispatchEvent(new CustomEvent('app-open', { detail: id }));
+    if (wasHidden && from !== false) {
+      const start = document.getElementById('start-btn');
+      const origin = wasMin ? w.taskBtn : (from && this.rect(from).width ? from : start);
+      this.zoom(w, origin, w.el, true);
+    }
   },
 
   close(id) {
     const w = this.wins.get(id);
     if (!w) return;
+    this.endZoom(w);
     w.el.classList.add('closed');
-    w.el.classList.remove('focused', 'maximized');
+    w.el.classList.remove('focused', 'minimized');   // 'maximized' stays: it reopens the way it was closed
     if (w.taskBtn) { w.taskBtn.remove(); w.taskBtn = null; }
     Sfx.close();
     document.dispatchEvent(new CustomEvent('app-close', { detail: id }));
@@ -153,18 +192,71 @@ const WM = {
   minimize(id) {
     const w = this.wins.get(id);
     if (!w) return;
+    const from = w.el.getBoundingClientRect();
     w.el.classList.add('minimized');
     w.el.classList.remove('focused');
     if (w.taskBtn) w.taskBtn.classList.remove('pressed');
+    this.zoom(w, from, w.taskBtn, false);
     Sfx.click();
   },
 
-  maximize(id) {
+  // bring a minimized window back up out of its taskbar button
+  restore(id) {
     const w = this.wins.get(id);
     if (!w) return;
-    w.el.classList.toggle('maximized');
+    w.el.classList.remove('minimized');
+    this.clamp(w.el);
+    this.focus(id);
+    this.zoom(w, w.taskBtn, w.el, true);
+    if (w.el.classList.contains('maximized')) this.resized(id);
+  },
+
+  // toggles by default; pass on = true / false to force a state (a no-op if already there)
+  maximize(id, on) {
+    const w = this.wins.get(id);
+    if (!w) return;
+    const max = typeof on === 'boolean' ? on : !w.el.classList.contains('maximized');
+    if (max === w.el.classList.contains('maximized')) return;
+    w.el.classList.toggle('maximized', max);
+    this.clamp(w.el);
     this.focus(id);
     Sfx.click();
+    this.resized(id);
+  },
+
+  rect(r) { return r && r.getBoundingClientRect ? r.getBoundingClientRect() : (r || {}); },
+
+  // The classic Win95/98 window zoom: a title-bar-coloured outline steps from one rect to
+  // another (taskbar button / launcher <-> window). Zooming IN keeps the real window
+  // invisible until the outline lands on it, so nothing flashes at the final position.
+  zoom(w, from, to, zoomIn) {
+    this.endZoom(w);
+    const a = this.rect(from), b = this.rect(to);
+    if (!a.width || !b.width || document.hidden || window.innerWidth <= 820 ||
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const ghost = document.createElement('div');
+    ghost.className = 'wm-zoom';
+    ghost.appendChild(document.createElement('span')).textContent = w.el.dataset.title || '';
+    const place = t => ['left', 'top', 'width', 'height'].forEach(k => {
+      ghost.style[k] = Math.round(a[k] + (b[k] - a[k]) * t) + 'px';
+    });
+    place(0);
+    document.body.appendChild(ghost);
+    if (zoomIn) w.el.classList.add('wm-zooming');
+    let step = 0;
+    const timer = setInterval(() => {
+      if (++step >= this.zoomSteps || document.hidden) this.endZoom(w);
+      else place(step / this.zoomSteps);
+    }, this.zoomStepMs);
+    w.zoom = { ghost, timer };
+  },
+
+  endZoom(w) {
+    if (!w.zoom) return;
+    clearInterval(w.zoom.timer);
+    w.zoom.ghost.remove();
+    w.zoom = null;
+    w.el.classList.remove('wm-zooming');
   },
 
   focus(id) {
@@ -177,6 +269,28 @@ const WM = {
     if (w) w.el.style.zIndex = ++this.z;
   },
 };
+
+// ---------- launchers (desktop icons, Start menu items, in-window links) ----------
+// data-open="app" opens that window. data-mstab="tab" opens OurSpace on that tab
+// (data-msarg = the tab's argument, data-msjump = a section to scroll to via MS.jumpTo).
+// `from` is where the window zooms out of.
+function launch(el, from) {
+  if (el.dataset.mstab) {
+    WM.open('myspace', false, from);
+    // ourspace.js declares MS with a top-level const, which is NOT a window property —
+    // a window.MS guard is always false, so test the bare name instead
+    const ms = typeof MS !== 'undefined' ? MS : null;
+    if (ms && ms.state) ms.show(el.dataset.mstab, el.dataset.msarg || undefined);
+    if (ms && ms.jumpTo && el.dataset.msjump) ms.jumpTo(el.dataset.msjump);
+  } else if (el.dataset.open) {
+    WM.open(el.dataset.open, false, from);
+  }
+}
+
+function initLaunchers() {
+  document.querySelectorAll('.desk-icon[data-open], .desk-icon[data-mstab], a.launcher').forEach(el =>
+    el.addEventListener('click', e => { e.preventDefault(); launch(el, el); }));
+}
 
 // ---------- start menu ----------
 function initStartMenu() {
@@ -196,16 +310,10 @@ function initStartMenu() {
       btn.classList.remove('pressed');
     }
   });
-  menu.querySelectorAll('li[data-open]').forEach(li =>
-    li.addEventListener('click', () => { WM.open(li.dataset.open); menu.hidden = true; btn.classList.remove('pressed'); }));
+  menu.querySelectorAll('li[data-open], li[data-mstab]').forEach(li =>
+    li.addEventListener('click', () => { menu.hidden = true; btn.classList.remove('pressed'); launch(li, btn); }));
   menu.querySelectorAll('li[data-href]').forEach(li =>
     li.addEventListener('click', () => { window.location.href = li.dataset.href; }));
-  menu.querySelectorAll('li[data-mstab]').forEach(li =>
-    li.addEventListener('click', () => {
-      menu.hidden = true; btn.classList.remove('pressed');
-      WM.open('myspace');
-      if (window.MS && MS.state) MS.show(li.dataset.mstab, li.dataset.msarg || undefined);
-    }));
   menu.querySelectorAll('li[data-action]').forEach(li =>
     li.addEventListener('click', () => {
       menu.hidden = true;
@@ -222,6 +330,34 @@ function initStartMenu() {
 const Toggles = {
   sparklesOn: localStorage.getItem('malten_sparkles') !== '0',
   crtOn: localStorage.getItem('malten_crt') === '1',
+  tickerOn: localStorage.getItem('malten_ticker') !== '0',
+  badgesOn: localStorage.getItem('malten_badges') !== '0',
+  // the two marquee bars fold down to a slim strip; the desktop takes the freed space
+  ticker() {
+    this.tickerOn = !this.tickerOn;
+    localStorage.setItem('malten_ticker', this.tickerOn ? '1' : '0');
+    this.paintBars();
+    Sfx.click();
+  },
+  badges() {
+    this.badgesOn = !this.badgesOn;
+    localStorage.setItem('malten_badges', this.badgesOn ? '1' : '0');
+    this.paintBars();
+    Sfx.click();
+  },
+  paintBars() {
+    const paint = (id, cls, on, hide, show, what) => {
+      document.body.classList.toggle(cls, !on);
+      const b = document.getElementById(id);
+      if (!b) return;
+      b.textContent = on ? hide : show;
+      b.title = (on ? 'hide the ' : 'show the ') + what;
+      b.setAttribute('aria-expanded', on ? 'true' : 'false');
+    };
+    paint('ticker-toggle', 'ticker-off', this.tickerOn, '▲', '▼', 'news ticker');
+    paint('badgebar-toggle', 'badges-off', this.badgesOn, '▼', '▲', 'badge bar');
+    WM.reflow();
+  },
   crt() {
     this.crtOn = !this.crtOn;
     document.body.classList.toggle('crt', this.crtOn);
@@ -257,6 +393,11 @@ const Toggles = {
     if (c) c.addEventListener('click', () => this.crt());
     if (m) m.addEventListener('click', () => this.mute());
     this.paintTray();
+    const t = document.getElementById('ticker-toggle');
+    const b = document.getElementById('badgebar-toggle');
+    if (t) t.addEventListener('click', () => this.ticker());
+    if (b) b.addEventListener('click', () => this.badges());
+    if (t || b) this.paintBars();
   },
 };
 
@@ -361,7 +502,7 @@ function showBsod() {
   document.addEventListener('keydown', hide, { once: true });
 }
 
-// ---------- screensaver (idle starfield + bouncing pfp) ----------
+// ---------- screensaver (idle: 3D pipes by default; starfield + bouncing pfp, toasters, matrix) ----------
 const Screensaver = {
   idleMs: 90000,
   timer: null,
@@ -382,7 +523,7 @@ const Screensaver = {
     reset();
   },
 
-  mode() { return localStorage.getItem('malten_saver') || 'starfield'; },
+  mode() { return localStorage.getItem('malten_saver') || 'pipes'; },   // pipes unless the Control Panel says otherwise
   setMode(m) { localStorage.setItem('malten_saver', m); },
 
   start(forceMode) {
@@ -394,7 +535,7 @@ const Screensaver = {
     const ctx = cv.getContext('2d');
     const mode = forceMode || this.mode();
     const scenes = { starfield: this.sceneStarfield, pipes: this.scenePipes, toasters: this.sceneToasters, matrix: this.sceneMatrix };
-    const step = (scenes[mode] || this.sceneStarfield).call(this, cv, ctx);
+    const step = (scenes[mode] || this.scenePipes).call(this, cv, ctx);
     const draw = () => { step(); this.raf = requestAnimationFrame(draw); };
     draw();
   },
@@ -426,46 +567,151 @@ const Screensaver = {
     };
   },
 
+  // 3D Pipes on a flat canvas: pipes wander a 3D lattice drawn in oblique projection (the
+  // depth axis runs diagonally), never re-enter a used cell, and get a ball joint at every
+  // turn. One run draws for about five minutes (or until the lattice is half full), then
+  // fades to black and starts over on a fresh lattice.
   scenePipes(cv, ctx) {
-    const G = 24;
-    const colors = ['#9370DB', '#05ffa1', '#ff71ce', '#01cdfe', '#fffb96', '#ff9933'];
-    const newPipe = () => ({
-      x: Math.floor(Math.random() * (cv.width / G)) * G,
-      y: Math.floor(Math.random() * (cv.height / G)) * G,
-      dir: [[G, 0], [-G, 0], [0, G], [0, -G]][Math.floor(Math.random() * 4)],
-      color: colors[Math.floor(Math.random() * colors.length)],
-    });
-    let pipes = [newPipe(), newPipe(), newPipe()];
-    let segments = 0;
-    ctx.fillStyle = '#000';
-    ctx.fillRect(0, 0, cv.width, cv.height);
-    ctx.lineCap = 'round';
-    let frame = 0;
-    return () => {
-      if (++frame % 3) return;                     // pipe speed
-      pipes.forEach(p => {
-        ctx.strokeStyle = p.color;
-        ctx.lineWidth = 10;
+    const W = cv.width, H = cv.height;
+    const G = Math.max(22, Math.min(44, Math.round(Math.min(W, H) / 28)));   // lattice pitch, px
+    const ZX = 0.37 * G, ZY = -0.29 * G;            // one step "into" the screen, as drawn
+    const NZ = 12, X0 = -6, Y0 = -1;                // 12 layers deep; X0/Y0 pad the lattice so every layer covers the screen
+    const NX = Math.ceil(W / G) + 8, NY = Math.ceil(H / G) + 7;
+    const R = G * 0.16;                             // pipe radius
+    const SPEED = 9;                                // cells per second, per pipe
+    const COUNT = Math.max(3, Math.min(6, Math.round(W * H / 700000)));
+    const DIRS = [[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]];
+    const used = new Uint8Array(NX * NY * NZ);      // fixed-size occupancy map: nothing grows while it runs
+    const at = (i, j, k) => i + NX * (j + NY * k);
+    const sx = (i, k) => (i + X0) * G + k * ZX;
+    const sy = (j, k) => (j + Y0) * G + k * ZY;
+    const onScreen = (i, j, k) => i >= 0 && j >= 0 && k >= 0 && i < NX && j < NY && k < NZ &&
+      sx(i, k) > -G && sx(i, k) < W + G && sy(j, k) > -G && sy(j, k) < H + G;
+    const free = (i, j, k) => onScreen(i, j, k) && !used[at(i, j, k)];
+    const rand = n => Math.floor(Math.random() * n);
+
+    const tint = (hex, f) => {                      // f < 0 darkens toward black, f > 0 lightens toward white
+      const n = parseInt(hex.slice(1), 16), to = f < 0 ? 0 : 255, a = Math.abs(f);
+      const ch = shift => Math.round(((n >> shift) & 255) * (1 - a) + to * a);
+      return `rgb(${ch(16)},${ch(8)},${ch(0)})`;
+    };
+    const palette = ['#9370DB', '#05ffa1', '#ff71ce', '#01cdfe', '#fffb96', '#ff9933', '#ff5c5c', '#d8cfe8']
+      .map(c => ({ dark: tint(c, -0.55), base: c, light: tint(c, 0.6) }));
+
+    const ball = (x, y, c) => {
+      const r = R * 1.5;
+      const g = ctx.createRadialGradient(x - r * 0.35, y - r * 0.4, r * 0.08, x, y, r);
+      g.addColorStop(0, c.light);
+      g.addColorStop(0.45, c.base);
+      g.addColorStop(1, c.dark);
+      ctx.fillStyle = g;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    };
+    const tube = (x1, y1, x2, y2, c) => {
+      const len = Math.hypot(x2 - x1, y2 - y1);
+      if (len < 0.5) return;
+      let nx = (y1 - y2) / len, ny = (x2 - x1) / len;      // unit normal, flipped to face the light (upper left)
+      if (nx * 0.5 + ny * 0.85 > 0) { nx = -nx; ny = -ny; }
+      const line = (off, width, color) => {
+        ctx.strokeStyle = color;
+        ctx.lineWidth = width;
         ctx.beginPath();
-        ctx.moveTo(p.x, p.y);
-        if (Math.random() < 0.25) {                // turn: pick a perpendicular direction
-          p.dir = p.dir[0] === 0 ? [[G, 0], [-G, 0]][Math.floor(Math.random() * 2)] : [[0, G], [0, -G]][Math.floor(Math.random() * 2)];
-          ctx.fillStyle = p.color;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, 8, 0, 7);
-          ctx.fill();
-          ctx.beginPath();
-          ctx.moveTo(p.x, p.y);
-        }
-        p.x += p.dir[0]; p.y += p.dir[1];
-        if (p.x < 0 || p.x > cv.width || p.y < 0 || p.y > cv.height) Object.assign(p, newPipe());
-        else { ctx.lineTo(p.x, p.y); ctx.stroke(); }
-      });
-      if (++segments > 900) {                      // screen full — classic wipe and restart
+        ctx.moveTo(x1 + nx * off, y1 + ny * off);
+        ctx.lineTo(x2 + nx * off, y2 + ny * off);
+        ctx.stroke();
+      };
+      line(0, R * 2, c.dark);
+      line(R * 0.18, R * 1.4, c.base);
+      line(R * 0.5, R * 0.5, c.light);
+    };
+
+    // choose the next cell: mostly straight on, sometimes a turn (which gets a ball joint).
+    // false = boxed in, or the pipe has reached its length
+    const advance = p => {
+      const open = [];
+      for (let d = 0; d < 6; d++) if (free(p.i + DIRS[d][0], p.j + DIRS[d][1], p.k + DIRS[d][2])) open.push(d);
+      if (!open.length || p.len >= p.max) return false;
+      const d = open.includes(p.d) && Math.random() < 0.6 ? p.d : open[rand(open.length)];
+      if (p.d >= 0 && d !== p.d) ball(sx(p.i, p.k), sy(p.j, p.k), p.c);
+      p.d = d;
+      p.ni = p.i + DIRS[d][0]; p.nj = p.j + DIRS[d][1]; p.nk = p.k + DIRS[d][2];
+      used[at(p.ni, p.nj, p.nk)] = 1;
+      return true;
+    };
+    const start = p => {
+      for (let tries = 0; tries < 80; tries++) {
+        const i = rand(NX), j = rand(NY), k = rand(NZ);
+        if (!free(i, j, k)) continue;
+        Object.assign(p, { i, j, k, d: -1, t: 0, len: 0, max: 40 + rand(160), c: palette[rand(palette.length)] });
+        if (!advance(p)) continue;
+        used[at(i, j, k)] = 1;
+        ball(sx(i, k), sy(j, k), p.c);
+        return (p.alive = true);
+      }
+      return false;                                 // no room left anywhere
+    };
+
+    let cells = 0;
+    for (let k = 0; k < NZ; k++) for (let j = 0; j < NY; j++) for (let i = 0; i < NX; i++) if (onScreen(i, j, k)) cells++;
+    const budget = Math.min(cells * 0.5, COUNT * SPEED * 300);   // segments per run
+    const FADE = 2.5;                               // seconds to dissolve a finished run
+    let pipes, drawn, fade = 0, snap = null, last = performance.now();
+    const reset = () => {
+      used.fill(0);
+      ctx.fillStyle = '#000';
+      ctx.fillRect(0, 0, W, H);
+      drawn = 0;
+      pipes = Array.from({ length: COUNT }, (_, n) => ({ alive: false, wait: n * 0.7 }));
+    };
+    reset();
+
+    return () => {
+      const now = performance.now();
+      const dt = Math.min(0.05, (now - last) / 1000);
+      last = now;
+      if (fade > 0) {                               // run over: dissolve the finished picture, then begin again
+        fade -= dt;
         ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, cv.width, cv.height);
-        segments = 0;
-        pipes = [newPipe(), newPipe(), newPipe()];
+        ctx.fillRect(0, 0, W, H);
+        if (fade > 0) {
+          ctx.globalAlpha = fade / FADE;
+          ctx.drawImage(snap, 0, 0);
+          ctx.globalAlpha = 1;
+        } else {
+          snap = null;
+          reset();
+        }
+        return;
+      }
+      ctx.lineCap = 'butt';
+      let jammed = false;
+      pipes.forEach(p => {
+        if (!p.alive) {
+          p.wait -= dt;
+          if (p.wait <= 0 && !start(p)) jammed = true;
+          return;
+        }
+        p.t += dt * SPEED;
+        const x1 = sx(p.i, p.k), y1 = sy(p.j, p.k), x2 = sx(p.ni, p.nk), y2 = sy(p.nj, p.nk);
+        const t = Math.min(1, p.t);
+        tube(x1, y1, x1 + (x2 - x1) * t, y1 + (y2 - y1) * t, p.c);
+        if (p.t < 1) return;
+        p.i = p.ni; p.j = p.nj; p.k = p.nk;
+        p.t -= 1; p.len++; drawn++;
+        if (!advance(p)) {                          // dead end: cap it, a new pipe starts elsewhere shortly
+          ball(x2, y2, p.c);
+          p.alive = false;
+          p.wait = 0.5 + Math.random();
+        }
+      });
+      if (jammed || drawn >= budget) {
+        snap = document.createElement('canvas');    // one screen-sized copy, only for the fade
+        snap.width = W;
+        snap.height = H;
+        snap.getContext('2d').drawImage(cv, 0, 0);
+        fade = FADE;
       }
     };
   },
@@ -564,6 +810,7 @@ Object.assign(window, { Sfx, WM, Toggles, Screensaver });
 // ---------- boot ----------
 document.addEventListener('DOMContentLoaded', () => {
   WM.init();
+  initLaunchers();
   initStartMenu();
   Toggles.init();
   initClock();

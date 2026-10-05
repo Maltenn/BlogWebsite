@@ -15,9 +15,15 @@
     <script src="apps.js" defer></script>
     <script src="ourspace.js" defer></script>
     <script src="posts.js" defer></script>
+    <script src="content-pack.js" defer></script>
     <script src="extras.js" defer></script>
 </head>
 <body class="desktop">
+    <script>
+        // collapsed marquee bars are restored before first paint (the rest is Toggles in desktop.js)
+        if (localStorage.getItem('malten_ticker') === '0') document.body.classList.add('ticker-off');
+        if (localStorage.getItem('malten_badges') === '0') document.body.classList.add('badges-off');
+    </script>
 
     <!-- news ticker -->
     <div id="ticker">
@@ -29,62 +35,20 @@
             <span class="hot">TIP:</span> everything on this desktop drags, opens, and closes ★
             best viewed at 800x600 with the lights off ★
         </marquee>
+        <button class="bar-toggle" id="ticker-toggle" title="hide the news ticker" aria-controls="ticker" aria-expanded="true">▲</button>
     </div>
 
     <div id="desktop">
 
-        <!-- desktop icons -->
+        <!-- desktop icons (data-open = a window, data-mstab = an OurSpace tab; wired by initLaunchers in desktop.js) -->
         <div id="icons">
-            <div class="desk-icon" data-open="about"><span class="ico">💻</span>My Computer</div>
             <div class="desk-icon" data-open="blog"><span class="ico">📁</span>Blog Posts</div>
             <div class="desk-icon" data-open="myspace"><span class="ico">👥</span>OurSpace</div>
-            <div class="desk-icon" data-open="guestbook"><span class="ico">📖</span>Guestbook</div>
+            <div class="desk-icon" data-mstab="guestbook"><span class="ico">📖</span>Guestbook</div>
             <div class="desk-icon" data-open="mines"><span class="ico">💣</span>Minesweeper</div>
             <div class="desk-icon" data-open="paint"><span class="ico">🎨</span>Paint</div>
             <div class="desk-icon" data-open="pics"><span class="ico">🖼️</span>My Pictures</div>
             <div class="desk-icon" data-open="internet"><span class="ico">🌐</span>The Internet</div>
-        </div>
-
-        <!-- ===================== ABOUT ===================== -->
-        <div class="window open-on-load" data-app="about" data-title="About Me" data-x="580" data-y="26" data-w="330">
-            <div class="title-bar">
-                <div class="title-bar-text">💜 About Me</div>
-                <div class="title-bar-controls">
-                    <img src="Minimize.png" alt="Minimize">
-                    <img src="Fullscreen.png" alt="Maximize">
-                    <img src="Close.png" alt="Close">
-                </div>
-            </div>
-            <div class="window-body">
-                <img src="about.gif" alt="About Me" class="about-gif">
-                <div class="about-list">
-                    <div class="about-column">
-                        <div class="about-item"><span class="about-star-tiny">&#9733;</span> marc</div>
-                        <div class="about-item"><span class="about-star-tiny">&#9733;</span> 22</div>
-                        <div class="about-item"><span class="about-star-tiny">&#9733;</span> aries</div>
-                        <div class="about-item"><span class="about-star-tiny">&#9733;</span> enneagram type 3</div>
-                    </div>
-                    <div class="about-column">
-                        <div class="about-item"><span class="about-star-tiny">&#9733;</span> video games</div>
-                        <div class="about-item"><span class="about-star-tiny">&#9733;</span> the yard</div>
-                        <div class="about-item"><span class="about-star-tiny">&#9733;</span> melee</div>
-                        <div class="about-item"><span class="about-star-tiny">&#9733;</span> vinyls</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- ===================== GUESTBOOK ===================== -->
-        <div class="window open-on-load" data-app="guestbook" data-title="Guestbook" data-x="570" data-y="330" data-w="410">
-            <div class="title-bar">
-                <div class="title-bar-text">📖 Guestbook — come say hi</div>
-                <div class="title-bar-controls">
-                    <img src="Minimize.png" alt="Minimize">
-                    <img src="Fullscreen.png" alt="Maximize">
-                    <img src="Close.png" alt="Close">
-                </div>
-            </div>
-            <div class="window-body"></div>
         </div>
 
         <!-- ===================== BLOG ===================== -->
@@ -103,13 +67,6 @@
                     <div>
                         <a href="First-blog.html">Why do we create?</a>
                         <div class="desc">my first post. it gets deep. then it gets shallow again.</div>
-                    </div>
-                </div>
-                <div class="blog-preview" style="margin-bottom:10px;">
-                    <img src="patrick.gif" alt="">
-                    <div>
-                        <a href="top-10-favorites.html">Top 10 Favorite Things</a> <img src="assets/deco_new.gif" alt="NEW!" class="deco-inline">
-                        <div class="desc">the definitive ranking. scientifically proven.</div>
                     </div>
                 </div>
                 <img src="assets/construction_tape.gif" alt="" class="divider-gif">
@@ -180,7 +137,7 @@
                 <img src="assets/deco_rainbow_bar.gif" alt="" class="bar-gif">
                 <p style="text-align:center; font-size:11px;">
                     <img src="assets/deco_email_bear.gif" alt="email" class="deco-inline">
-                    wanna reach me? the guestbook is right there — say hi!
+                    wanna reach me? sign the <a href="#" class="launcher" data-mstab="guestbook">guestbook</a> — say hi!
                     <img src="assets/deco_email_roses.gif" alt="" class="deco-inline" height="50">
                 </p>
                 <div class="webring-widget"></div>
@@ -244,7 +201,8 @@
         </div>
 
         <!-- ===================== OURSPACE ===================== -->
-        <div class="window open-on-load" data-app="myspace" data-title="OurSpace" data-x="300" data-y="40" data-w="620">
+        <!-- data-start-maximized: WM opens it already maximized (first open, screens wider than 820px) -->
+        <div class="window open-on-load" data-app="myspace" data-title="OurSpace" data-x="300" data-y="40" data-w="620" data-start-maximized>
             <div class="title-bar">
                 <div class="title-bar-text">👥 OurSpace — a place for friends</div>
                 <div class="title-bar-controls">
@@ -296,6 +254,7 @@
             <img src="assets/badge_Sega-Elite.gif" alt="Sega Elite">
             <img src="assets/badge_discord.gif" alt="Discord">
         </marquee>
+        <button class="bar-toggle" id="badgebar-toggle" title="hide the badge bar" aria-controls="badgebar" aria-expanded="true">▼</button>
     </div>
 
     <!-- fun fact: the start menu contains no actual start. it only contains continuation. -->
@@ -315,20 +274,14 @@
     <div id="start-menu" hidden>
         <div class="side">MALTEN 98</div>
         <ul>
-            <li data-mstab="home"><span class="mi">👋</span> My Page</li>
-            <li data-open="about"><span class="mi">💜</span> About Me</li>
             <li data-open="blog"><span class="mi">📁</span> Blog Posts</li>
             <li data-open="myspace"><span class="mi">👥</span> OurSpace</li>
-            <li data-mstab="chat"><span class="mi">💬</span> #ourspace chat</li>
-            <li data-mstab="feed"><span class="mi">📰</span> The Feed</li>
-            <li data-mstab="inbox"><span class="mi">✉</span> Inbox</li>
+            <li data-mstab="guestbook"><span class="mi">📖</span> Guestbook</li>
+            <li data-mstab="home" data-msjump="spotify"><span class="mi">🎧</span> MaltenAmp — my Spotify top 5</li>
             <li class="sep"></li>
-            <li data-mstab="feed"><span class="mi">🎧</span> MaltenAmp (in OurSpace)</li>
             <li data-open="mines"><span class="mi">💣</span> Minesweeper</li>
             <li data-open="paint"><span class="mi">🎨</span> Paint</li>
-            <li data-open="pics"><span class="mi">🖼️</span> My Pictures</li>
             <li data-open="glitter"><span class="mi">✨</span> Glitter Studio</li>
-            <li data-open="guestbook"><span class="mi">📖</span> Guestbook</li>
             <li data-open="internet"><span class="mi">🌐</span> The Internet</li>
             <li class="sep"></li>
             <li data-open="settings"><span class="mi">🎛</span> Control Panel</li>
@@ -360,10 +313,6 @@
     <canvas id="screensaver" hidden></canvas>
 
     <script>
-        // desktop icons open windows
-        document.querySelectorAll('.desk-icon[data-open]').forEach(icon =>
-            icon.addEventListener('click', () => WM.open(icon.dataset.open)));
-
         // the dancing baby demands tribute
         document.getElementById('deco-baby').addEventListener('click', function () {
             Sfx.tada();

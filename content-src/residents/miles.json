@@ -1,0 +1,210 @@
+{
+ "id": "miles",
+ "name": "mac_guy_miles",
+ "tag": "It just works. (Sent from my MacBook.)",
+ "avatar": "assets/avatar_miles.gif",
+ "gender": "Male",
+ "age": 17,
+ "hometown": "Naperville, Illinois",
+ "loc": "The coffee shop with the good outlets. Window seat.",
+ "zodiac": "Libra. Balanced. Like good design.",
+ "status": "Single. Simple.",
+ "hereFor": "Friends, Networking, Collaboration",
+ "mood": "seamless",
+ "lastLogin": "Oct 3 2026 4:22 PM",
+ "theme": {
+  "bg": "#f4f5f7",
+  "fg": "#1c1c1e",
+  "accent": "#2f7fd6"
+ },
+ "blogTitle": "Think Different. (A Blog.)",
+ "about": "Hi. I'm Miles. I'm a Mac. You've seen the commercials. I own a white MacBook (13 inch, glossy, magnetic latch, magnetic power cord, I could go on) and a 30GB iPod, and between the two of them I have not seen an error message since March. I make films in iMovie and music in GarageBand. People ask how long a trailer takes me. About twenty minutes. People ask how I learned. I didn't. It just works. I bought the MacBook myself: fourteen months bagging groceries at the Jewel on Ogden, paper or plastic, $6.15 an hour. My dad is a PC guy. He has a Dell and a folder on his desktop called 'New Folder (3).' We love each other. We don't talk about computers at dinner.",
+ "aboutMore": "A few things I'll say once. The palm rests on a white MacBook change color a little over time. It's a known thing. It's patina. Don't point at it. My iPod is engraved on the back. I typed the engraving myself, at 1 AM, and you cannot return an engraved iPod. It says 'Carpe Deim.' It lives in a case. And yes, I have seen the spinning beach ball. Twice. I closed the lid, went for a walk, and when I came back it was fine. That's still working. That counts.",
+ "meet": "Who I'd like to meet: The Mac guy from the commercials. I think we'd get along. I think the PC guy and my dad would get along too, and the four of us could get lunch. Whoever designed the magnetic power cord. Whoever approved 'Carpe Deim' without calling me first. And one person who can tell me what the Terminal is for, without that person being Lars.",
+ "interests": {
+  "General": "My MacBook. My iPod. iMovie, GarageBand, iPhoto, Photo Booth. The little white remote. Good design. Clean desks. White earbuds (a statement). Coffee shops with outlets. Bagging groceries with correct weight distribution (cans low, bread on top, eggs get their own bag).",
+  "Music": "Whatever's in the commercial. Gorillaz, Jet, U2, Daft Punk, Coldplay, The Postal Service, Death Cab for Cutie. My own compositions (GarageBand, 14 tracks, all loops, all in the key the loops came in). 412 songs, every one with album art.",
+  "Movies": "Garden State. Eternal Sunshine of the Spotless Mind. Pirates of Silicon Valley (I root for one side). Toy Story (look up who owned the studio). My own trailers, 31 so far, for films that don't exist yet.",
+  "Television": "The commercials. I'm serious. Also The Office, Scrubs, and Lost (I made a trailer for it. It didn't need one. It has one now.)",
+  "Books": "The booklet that came in the box (short, because you don't need one). On Writing Well. The words 'Designed in California' on the packaging. I kept the box. Everyone keeps the box.",
+  "Heroes": "The Mac guy. Whoever invented the magnetic power cord (my little brother trips on it weekly; the laptop has never fallen). My manager at the Jewel, who gave me doubles all December. My dad. He's a PC. He drove me to the store to buy it anyway."
+ },
+ "song": {
+  "name": "Feel Good Inc.",
+  "artist": "Gorillaz",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/9a/a7/90/9aa790e3-651e-9674-26ac-14aba4d3b8d1/mzaf_10454527198707970464.plus.aac.p.m4a",
+  "pattern": [0, 0, 3, 5, 7, 5, 3, 0],
+  "bpm": 139
+ },
+ "decor": [
+  "assets/badge_best_viewed_with_eyes.gif",
+  "assets/deco_record_dj.gif"
+ ],
+ "friends": ["lars", "greg", "paige", "nick", "trevor", "liz", "smoove", "larry"],
+ "wall": [
+  {
+   "from": "lars",
+   "text": "miles. your computer is unix underneath. you are running the thing i love and you don't even know its name. open the terminal. type 'uptime'. just once. i'll wait. i've waited longer for less [0]. --- [0] wifi",
+   "time": "Oct 2 2026 9:50 PM"
+  },
+  {
+   "from": "greg",
+   "text": "dude for the LAST time my name is garageband_greg bc i have a BAND in a GARAGE. its not about ur computer program. but ok yes send me the drum loop. bryans grounded til friday and we have a show",
+   "time": "Sep 30 2026 4:19 PM"
+  },
+  {
+   "from": "paige",
+   "text": "miles the photo booth pics w/ the heat vision filter r not 'portraits.' its ur face but orange. come to the show friday tho, bring the macbook, i need the screen as a light source. dont touch my holga",
+   "time": "Sep 26 2026 11:02 PM"
+  },
+  {
+   "from": "nick",
+   "text": "miles i watched ur trailer for DOG: THE MOVIE. its 9 photos of ur dog and they all zoom in slow. the music is loops. the title flies in. overall 2.9. the dog is a 5 tho. tell the dog i said 5",
+   "time": "Sep 22 2026 12:40 PM"
+  },
+  {
+   "from": "trevor",
+   "text": "miles, good news: at the college level like half my floor has a MacBook. bad news: nobody here is impressed by it. you'd be one of nine. enjoy being special while it lasts haha. p.s. what was the transition you used on my graduation trailer? my mom wants to know. she's watched it a lot.",
+   "time": "Sep 17 2026 2:14 PM"
+  },
+  {
+   "from": "larry",
+   "text": "miles i put 40 songs on ur ipod while u were in the bathroom!! as a gift!! none of them have album art and they r all called track 01. ur welcome. the ipod is real nice btw. whats carpe deim",
+   "time": "Sep 11 2026 8:26 PM"
+  },
+  {
+   "from": "smoove",
+   "text": "YO MILES i heard ur garageband track and i KNOW that drum loop. EVERYBODY knows that drum loop. its on 4 of my tracks 2. we basically already collabed. ur on track 12 now. AYYYYY",
+   "time": "Aug 31 2026 10:10 PM"
+  }
+ ],
+ "replies": [
+  "It just works.",
+  "Hi. Thanks. That's a nice comment. Clean.",
+  "I'd make a trailer about that. Twenty minutes. Give or take.",
+  "Sent from my MacBook.",
+  "I don't know how. It just did it. That's the whole point.",
+  "That's a very PC thing to say. My dad says it too. I mean that with love.",
+  "Beautiful. Simple. No notes.",
+  "One second. Beach ball. It's fine. I'm going for a walk.",
+  "Paper or plastic? Sorry. Habit.",
+  "There's a loop for that."
+ ],
+ "thanksAdd": "Hi. Thanks for the add. I made a short trailer to celebrate. It's called 'FRIENDS: Coming This Fall.' It's eleven seconds. The title flies in. I can send it over, but it only plays on a Mac. That's not a problem. That's a feature.",
+ "ambient": [
+  "A man at the coffee shop asked if my MacBook 'runs Word.' I said it runs everything. I don't know if it runs Word.",
+  "Finished a new GarageBand piece. Six loops. I didn't play any of them. I arranged them. A conductor doesn't play the violin either.",
+  "My little brother tripped on the power cord again. The cord popped off. The MacBook didn't move. I've never been prouder of a magnet.",
+  "Worked a double at the Jewel. Bagged for six hours. A woman said I was the best bagger she'd ever had. Cans low, bread high. Good design is everywhere.",
+  "Dad asked me to fix the Dell. I looked at it. It had a cable called 'parallel.' I told him I'd keep it in my thoughts.",
+  "Made a trailer for my grandpa's 80th out of forty scanned photos. Slow zoom on each one. He watched it three times without saying anything, and then he asked if I could put it on a tape."
+ ],
+ "saltyDm": "Request denied. Okay. That's the first error message I've seen since March. I'm going to close the lid, go for a walk, and try again later. That usually works.",
+ "keywords": {
+  "mac": "Hi. I'm a Mac. It's white, it's thirteen inches, the power cord is a magnet, and I didn't set anything up. I opened the lid. That was the setup.",
+  "pc": "My dad's a PC. He's a good man. His desktop has forty-one icons on it and one of them is a shortcut to another shortcut. We don't discuss it at dinner.",
+  "ipod": "30 gigs. 412 songs. All with album art. Yes, there's an engraving. No, you can't see it. It's in Latin. Mostly.",
+  "trailer": "I've made 31. Every one opens on black, slow zoom, title flies in. People say they all look the same. So do sunsets. Nobody complains about those.",
+  "garageband": "It's the program, not Greg. Greg is a person with a garage. I've explained this to both of them.",
+  "linux": "Lars spent three days getting wifi. I spent four seconds. He calls his freedom. I call mine a Saturday."
+ },
+ "banter": {
+  "lars": [
+   "Lars. You spent three days getting online. Then you used that connection to tell me my computer is a toaster. From a coffee shop. Where you borrowed my toaster.",
+   "I opened the Terminal like you asked. It's a white box with words in it. I typed 'hello.' It said 'command not found.' Rude. I closed it. We won't be doing that again."
+  ],
+  "greg": [
+   "Greg. I added you because your name is garageband_greg and I assumed we used the same software. You use a garage. Honest mistake. I'm staying. The offer of a drum loop stands.",
+   "Listened to the Static Prophecy demo. Raw. Real. A little out of tune. I put 'Classic Rock Beat 03' under track 2. It's tighter now. Bryan may not want to hear it."
+  ],
+  "paige": [
+   "Paige. Photo Booth has a filter that makes everything look like a comic book. I took forty. You called them 'a crime.' I'd call them a series.",
+   "I'd like to make a trailer out of your show photos. Slow zoom on each one. Yes, they're already tilted. The zoom will be tilted too. I think that's new."
+  ],
+  "nick": [
+   "Nick. You draw 24 pictures for one second of film. I drag one photo into iMovie and it moves by itself. We're both filmmakers. One of us has eaten lunch this month.",
+   "A 2.9 for DOG: THE MOVIE. Fine. But you gave the dog a 5, and the dog is the movie. Check your math."
+  ],
+  "larry": [
+   "Larry. There are now forty songs on my iPod called 'Track 01.' No album art. Gray squares. Forty gray squares, Larry. I had a system.",
+   "You emailed me a virus 'to see what would happen.' Nothing happened. It doesn't run here. It just sits in my inbox. I named it Gerald. It's the only thing of yours that's labeled correctly."
+  ],
+  "trevor": [
+   "Trevor. You said nobody at college is impressed by a MacBook. Then you asked me to make a highlight trailer for your intramural team. You've won zero games. I'll need more footage. Or any.",
+   "Your graduation trailer used the Ken Burns effect and a cross dissolve. Tell your mom. Tell her there's a sequel when you come home for Thanksgiving."
+  ],
+  "liz": [
+   "Liz. Your layouts look different in Safari. Not broken. Different. The scrolling box scrolls the other way. I think I like it better. Don't fix it.",
+   "I tried 'view source' like you said. A lot of words came up. I closed it. I trust that you did a good job."
+  ]
+ },
+ "statuses": [
+  "miles is at the coffee shop. Window seat. Lid open. People can see the logo.",
+  "miles just finished a trailer in twenty minutes. Again.",
+  "miles is watching the beach ball spin. He's fine. He's going for a walk.",
+  "miles is bagging groceries until 9. Cans low. Bread high.",
+  "miles is not opening the Terminal. Nice try, Lars.",
+  "miles just made a song without playing an instrument.",
+  "miles is wiping down the palm rests. No reason."
+ ],
+ "bulletins": [
+  {
+   "subject": "Now Showing: 31 Trailers. No Movies.",
+   "body": "Hi. Quick announcement. My trailer library is now at 31. Recent releases: 'DOG: THE MOVIE' (my dog, nine photos). 'SENIOR YEAR' (the school parking lot, at sunset, slowly). 'DAD VS. THE PRINTER' (a thriller; based on a true story; he lost). 'GREG' (a documentary about a band I thought was a software company). Each one is under a minute, opens on black, and has a title that flies in. I take requests. Birthdays are free. Send me six photos and the name of the person. I'll do the rest. Well. The computer will. Sent from my MacBook."
+  },
+  {
+   "subject": "A Short Survey About Your Computer",
+   "body": "Copy. Paste. Be honest. 1. When did you last see an error message? 2. How many cables are plugged into your computer right now? 3. Does your power cord have a magnet in it? 4. Do you know where your photos are? 5. Have you ever had to 'defragment' anything? My answers. 1. March. 2. One. 3. Yes. 4. In iPhoto, sorted by date, without my help. 5. I don't know what that word means, and I'd like to keep it that way."
+  }
+ ],
+ "pcComments": [
+  "Good light. Good composition. I'd open the trailer on this one.",
+  "Hi. This would look great with a slow zoom. Everything does.",
+  "Is that a Dell in the background? No judgment. My dad has one. Thinking of you both.",
+  "Nice. Simple. I put it through the comic book filter. It's worse now. Keep yours.",
+  "I count three cables in this photo. You deserve better. Great smile, though."
+ ],
+ "dmSeed": [
+  {
+   "text": "Hi. I'm Miles. I made a trailer for your profile. It's called 'MALTEN: A Place For Friends.' Eleven seconds. Your default picture zooms in slowly and then the title flies in. I didn't ask first. I should have asked first. It's very good, though. Sent from my MacBook."
+  }
+ ],
+ "dms": [
+  "Hi. Honest question. If a song is made of six loops that came with the computer, and I chose the order, did I write a song? Greg says no. Smoove says obviously. I'm asking a neutral party.",
+  "My dad used my MacBook for five minutes today. He said, 'Huh. That's pretty nice.' Then he went back to the Dell. I've been thinking about that 'huh' all afternoon.",
+  "I'm making a trailer for my little brother's birthday. He's turning eight. He wants it to be called 'EXPLOSION DINOSAUR.' The only photos I have of him are from the dentist. I'm going to make it work.",
+  "A customer today asked for paper inside plastic. Double protection. I respected it. Then she said, 'You must be one of those computer kids.' I don't know how she knew. I wasn't even wearing the earbuds.",
+  "The beach ball spun for four full minutes tonight. I didn't close the lid. I just sat with it. It stopped on its own. I think we both learned something.",
+  "Small favor. If anyone asks what's engraved on my iPod, the answer is 'something in Latin.' That's all. Please don't follow up. Larry already knows too much.",
+  "I timed it. Opening the lid to being online: four seconds. I've told Lars eleven times. I'm going to tell him again tomorrow. It doesn't get old. For me."
+ ],
+ "blog": [
+  {
+   "title": "Fourteen Months.",
+   "date": "Sep 10 2026 9:02 PM",
+   "mood": "grateful. clean.",
+   "body": "People assume someone bought me the MacBook. Nobody bought me the MacBook. I started bagging at the Jewel on Ogden the summer before junior year. $6.15 an hour. I kept the catalog page folded in my apron pocket. Fourteen months. I learned things. Cans go on the bottom. Bread rides on top. Eggs get their own bag and you hand it to the customer personally, like a diploma. I worked doubles all of December. I bagged a man's entire Thanksgiving in under two minutes and he shook my hand. The day I had enough, my dad drove me to the store. He's a PC guy. Thirty years. He walked around the table of MacBooks with his hands in his pockets, like a man in a museum. Then he said, 'Get the extra memory. I'll cover the difference.' So when I say it just works, understand that I worked. The computer is the easy part. That's the point of it."
+  },
+  {
+   "title": "A Correction Regarding Greg",
+   "date": "Sep 23 2026 5:38 PM",
+   "mood": "humbled. briefly.",
+   "body": "When I joined OurSpace I searched for 'GarageBand' to find other composers. One result: garageband_greg. I added him. I sent a message that said, 'Finally, someone else who appreciates Latin Lounge Piano 02.' He wrote back, 'what.' It turns out Greg is in a band. In a garage. With instruments that they hold. I went to a show on Friday to apologize. It was loud and it was real and nobody was dragging anything onto a timeline. The drummer hit a cymbal so hard it fell over, and they kept going. I don't have a loop for that. In GarageBand, nothing falls over. Everything is in time and in key because it arrived that way. Greg's band has four songs and two of them come apart in the middle, and people cheered anyway. I'm not saying I'm switching. I'm saying I bought a demo CD. It doesn't have album art. I drew some."
+  }
+ ],
+ "survey": {
+  "title": "The Getting-To-Know-You Survey. Answered Simply.",
+  "qa": [
+   ["Name:", "Miles. Like the distance. Like the trumpet player."],
+   ["Mac or PC?", "Hi. I'm a Mac."],
+   ["What's on your desk right now?", "A MacBook. A coaster (it's one of Lars's CDs). Nothing else. That's the desk."],
+   ["Last error message you saw:", "March. A Tuesday. I don't remember what it said. I closed the lid."],
+   ["Job:", "Bagger at the Jewel. Still. I'm saving for the bigger iPod."],
+   ["Hidden talent:", "I can bag eleven items in nine seconds without crushing a single chip."],
+   ["Biggest regret:", "Typing an engraving at 1 AM and not reading it back."],
+   ["Something you made that you're proud of:", "My grandpa's birthday trailer. Forty photos. He asked for it on a tape. I had to go find a tape."],
+   ["Something you don't understand:", "The Terminal. The Dell. Why Nick won't just use a tween."],
+   ["Describe yourself in three words:", "It just works."]
+  ]
+ }
+}

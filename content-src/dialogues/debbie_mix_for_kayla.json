@@ -1,0 +1,204 @@
+{
+ "id": "debbie_mix_for_kayla",
+ "with": "debbie",
+ "opener": [
+  "Hello malten! This is Debbie, Kayla's mom. I am writing PRIVATELY. I pressed the envelope and I watched it say 'sent' so I believe this one stays between us. I need your help with something delicate.",
+  "Kayla left a burned CD in the Suburban in September. It says DO NOT TOUCH in purple marker. I touched it. I told everyone on my blog, which I am told was a mistake. Anyway, I have made her one back.",
+  "It is in the cup holder. I am sitting in the school parking lot with the engine off, eleven minutes before the first bell. How do you give a teenager something she does not know she wants? Love, Mom"
+ ],
+ "nodes": {
+  "start": {
+   "choices": [
+    { "say": "ok first. read me the track list. i'll tell u if it's a gift or a threat.", "next": "tracklist" },
+    { "say": "easy. hand it to her at dinner. 'i made u something.' then stop talking.", "next": "dinner_plan" },
+    { "say": "think bigger. burn 30 more. hand them out at the attendance window.", "next": "window_plan" }
+   ]
+  },
+  "tracklist": {
+   "them": [
+    "Okay. Deep breath. Track 1 is 'Emergency' by the Paramore, because it is hers and I wanted her to know I know. Track 2 is Journey, because I saw them at Reunion Arena and it is the only way I know to say I was young once. Tracks 3 through 5 are Rascal Flatts. I know. I could not stop myself.",
+    "Track 6 is the garage band from her CD, the drummer's, with somebody's dad saying 'that's enough' at the end. I kept the dad. Track 7 is Kelly Clarkson (Burleson!!). Track 11 is Shania Twain. And track 12 is something I am not sure about. Is that a gift or a threat? Love, Mom"
+   ],
+   "choices": [
+    { "say": "what's track 12?? u can't just say 'not sure.' tell me.", "next": "track12" },
+    { "say": "call ur dad. he wrote letters for a living. he'll know how to hand one over.", "next": "ask_walt" }
+   ]
+  },
+  "dinner_plan": {
+   "them": [
+    "At dinner. Yes. That is sensible. Except we do not do dinner, we do 'plates.' Kayla takes hers to her room. Her father eats in front of the weather. I set the table for four every night and it is a very organized table.",
+    "If I say 'I made you something' with the weather on, she will say 'what' in the voice. The voice is two syllables. I have been hearing it since March. And what if she opens it and it is the Journey? Love, Mom"
+   ],
+   "choices": [
+    { "say": "forget dinner. practice what u'll say. out loud. in the car, right now.", "next": "say_it" },
+    { "say": "call ur dad first. 34 years of handing people things they didn't ask for.", "next": "ask_walt" }
+   ]
+  },
+  "window_plan": {
+   "them": [
+    "Malten. Thirty. I have thirty blank discs in the supply closet from a project the district cancelled. And I have the laminator. I could laminate the labels. They would survive a flood.",
+    "I could hand them to the tardy line. 'Here you go honey, you are late and you are loved.' I would do it with joy. I am also aware that Kayla would die. I have not decided whether that is a cost or a feature. Love, Mom"
+   ],
+   "effects": [
+    { "type": "status", "delay": 15, "text": "debbie is burning 30 CDs at the attendance window. They are labeled. They are free. A sophomore is helping and he looks afraid. Love, Mom" }
+   ],
+   "choices": [
+    { "say": "i'm in. how many discs do u own? commit to the bit.", "next": "vp_scene" },
+    { "say": "or ONE disc. practice what u'll say to kayla first.", "next": "say_it" }
+   ]
+  },
+  "track12": {
+   "them": [
+    "Track 12 is me. It is fourteen seconds. I used the little microphone on the library computer and a sophomore held the door shut so nobody would walk in. I say, 'Kayla, it is Mom. I listened to the whole thing. I did not understand all of it and I am proud of you anyway. Dinner is at 6:30.'",
+    "Then you can hear me breathe for a second, and then I say 'sorry, caps,' even though I did not use caps. I do not know why I said it. Should I take it off? I could put another Rascal Flatts there instead. Love, Mom"
+   ],
+   "choices": [
+    { "say": "keep it. 'sorry, caps' is the best part. it's the only track that's really u.", "next": "label_note" },
+    { "say": "pull it. put it in an envelope. let her pick when to hear it.", "next": "kayla_door" }
+   ]
+  },
+  "ask_walt": {
+   "them": [
+    "I telephoned my father. It was 7:40, which for him is practically lunch. I said, 'Dad, I made Kayla a record.' He said, 'Did you put it in writing?' I said it is a CD, Dad. He said, 'A CD is writing with a tune.'",
+    "Then he said, 'Deb, a gift is the thing you were afraid to hand over. Hand it over. If she throws it, pick it up, it is still a record.' Then he said Mr. Whiskers had written him again and he hung up. I am telling you this because my hands are shaking. Love, Mom"
+   ],
+   "effects": [
+    { "type": "wallpost", "from": "walt", "to": "debbie", "delay": 30, "text": "Dear Debbie, Your mother kept every one of your report cards in the drawer in the hall and never once told you so. She said 'did you eat.' It meant the same thing. Say it the other way. Regards, Walt (your father)" }
+   ],
+   "choices": [
+    { "say": "he's right. go to her door tonight. no speech. just stand there w/ the cd.", "next": "kayla_door" },
+    { "say": "while ur at it, change ur page song to HER song. turn the volume UP for once.", "next": "music_swap" }
+   ]
+  },
+  "say_it": {
+   "them": [
+    "I practiced in the Suburban mirror. Version one: 'I made you a CD.' (Too casual.) Version two: 'I listened to the whole thing, and this is my answer.' (Too much like a courtroom.) Version three: 'Here.' (Best so far. But then what do I do with my hands?)",
+    "I am holding a casserole for balance. It is not even hers, it is for the front office. I have been rehearsing with a casserole, malten. Love, Mom"
+   ],
+   "choices": [
+    { "say": "go with 'here.' hold the casserole. u need something to do w/ ur hands.", "next": "kayla_door" },
+    { "say": "write it down instead. u r a front-office pro. a note beats a speech.", "next": "send_msg" }
+   ]
+  },
+  "vp_scene": {
+   "them": [
+    "Malten. It is 8:02 and there are thirty discs on the counter in a fan shape. I laminated the labels. They say FROM THE FRONT OFFICE, WITH LOVE, and underneath, smaller, 'track 9 is a student band, please be kind.'",
+    "The vice principal came out of his office, picked one up, and said 'is this the music from your page?' I said it is the music from MY HEART. He said 'ok' and put it in his pocket. Kayla's second period starts in four minutes. Love, Mom"
+   ],
+   "effects": [
+    { "type": "wallpost", "from": "henderson", "to": "debbie", "delay": 25, "text": "Debbie, a CD has appeared in my mailbox labeled 'FROM THE FRONT OFFICE, WITH LOVE.' Track 9 is slightly flat. I say so as a friend. I am playing it in the lab anyway. - Mr. H" }
+   ],
+   "choices": [
+    { "say": "let it ride. whole school gets a cd. mom tour, day one.", "next": "window_cds" },
+    { "say": "pull back. keep ONE disc. the one in the cup holder. kayla's.", "next": "label_note" }
+   ]
+  },
+  "label_note": {
+   "them": [
+    "Now the label. Hers says DO NOT TOUCH in purple marker. I have a marker. It is a laundry marker. I wrote drafts on the back of a tardy slip. 'FOR KAYLA, FROM MOM.' (Accurate. Dull.) 'DO NOT TOUCH (THIS IS A JOKE) (I AM TRYING TO BE FUNNY).' And 'PLEASE TOUCH.'",
+    "I like the second one but I worry it is a bit much. I also had a fourth idea, which is to type the label on the school computer and laminate it. I know. I know. Love, Mom"
+   ],
+   "choices": [
+    { "say": "'DO NOT TOUCH (this is a joke).' she'll hate it. she'll get it. she'll keep it.", "next": "end_hand" },
+    { "say": "just 'PLEASE TOUCH.' no laminate. let it be messy and real.", "next": "end_cupholder" }
+   ]
+  },
+  "kayla_door": {
+   "them": [
+    "It is 6:20 and I am home. I am standing outside her door with the CD in one hand and a plate of casserole in the other, because I do not know which one is the real knock. Her light is on. I can hear the Paramore very quietly, which means she is listening and not 'sleeping.'",
+    "I have not knocked. If I knock, there is a chance. If I leave the plate, there is also a chance. I keep thinking about my own mother's drawer in the hall. Which one is it? Love, Mom"
+   ],
+   "effects": [
+    { "type": "status", "from": "kayla", "delay": 20, "text": "kayla is in her room. kayla can smell casserole. kayla is aware that someone is standing in the hall breathing. kayla is thinking about it." }
+   ],
+   "choices": [
+    { "say": "knock. two knocks. say 'it's mom.' she already knows who u are.", "next": "end_hand" },
+    { "say": "leave both on the floor. knock once. walk away. let her open it alone.", "next": "end_cupholder" }
+   ]
+  },
+  "send_msg": {
+   "them": [
+    "Okay. I am writing her a PRIVATE MESSAGE first, so she knows the CD is coming. I have the envelope open. I have typed, 'Kayla, there is something in the Suburban for you. It is a CD. It is not a lecture. I love you. Dinner is at 6:30. Love, Mom.' I think it is good.",
+    "But under it I also typed a second paragraph, about the retainer, and how small you were in the hospital, and how Courtney called, and I do not know if I should delete that. The box looks exactly like the other box. I am going to press something. Which something? Love, Mom"
+   ],
+   "choices": [
+    { "say": "delete paragraph 2. press the envelope. short + private. that's the whole job.", "next": "end_hand" },
+    { "say": "leave it all in. honesty! a mom should be honest. press the big loud button.", "next": "end_public" }
+   ]
+  },
+  "window_cds": {
+   "them": [
+    "Malten, the line is out the door. A boy named Tyler took three. He says 'bro' to me now. A girl took one and said 'is this Journey' and I said YES and she said 'my mom loves Journey' and we stood there. It was the nicest tardy line of my career.",
+    "Then Kayla came to the window. She did not say anything. She looked at the fan of discs, then at me. She picked up the one labeled FOR KAYLA, TRACK 12 IS ONLY FOR YOU and walked out. The line said 'oooh.' What do I do now? Love, Mom"
+   ],
+   "choices": [
+    { "say": "let her walk. say nothing. go back to the line. a mom has other customers.", "next": "end_free_cds" },
+    { "say": "go after her. leave the window. the line can wait five minutes.", "next": "end_hand" }
+   ]
+  },
+  "music_swap": {
+   "them": [
+    "Malten, Dad is right about the volume, and I have an idea. I can not turn the music off. I have tried for three weeks. So I thought, if it must play, let it play something she likes. Todd told me there is a 'song' box. I found it. It is a very small box.",
+    "I typed in the Paramore. It asked if I was sure. I said I have never been so sure. The vice principal is going to come out of his office. I am going to let him. Do I also give her the CD, or is the page the present? Love, Mom"
+   ],
+   "effects": [
+    { "type": "status", "delay": 20, "text": "debbie changed her song. The vice principal came out of his office and asked what it was. debbie said 'it is my daughter's.' He said 'it's not bad.' Love, Mom" }
+   ],
+   "choices": [
+    { "say": "both. the page is the hello. the cd is the whole sentence.", "next": "end_hand" },
+    { "say": "just the page. no cd. she'll hear it at ur window and know. quiet is ok.", "next": "end_cupholder" }
+   ]
+  },
+  "end_hand": {
+   "them": [
+    "She came to the table at 6:30. Nobody said anything about the CD. She said 'is there more casserole,' which in this house means yes. After dinner she took the Suburban keys and went out and sat in the driveway with the engine off for twenty-two minutes. I watched from the kitchen window. I did not go out. I am learning.",
+    "When she came in she said, 'track 7 is a lot, Mom.' Then she said, 'but track 12.' And she did not finish the sentence. She did not have to. I am not crying. There are onions. Thank you, malten. I will tell nobody you were involved. I will tell everybody. Love, Mom"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "delay": 15, "text": "debbie is in the kitchen. Kayla is in the driveway. The engine is off. There are onions. Love, Mom" },
+    { "type": "wallpost", "from": "kayla", "to": "debbie", "delay": 45, "text": "mom. track 7 is a LOT. also u said 'sorry caps' on track 12 and u didnt even use caps. also thank u. (this is the wall. i know its the wall. im leaving it.) ily" },
+    { "type": "wallpost", "from": "bryan", "to": "debbie", "delay": 80, "text": "hi kaylas mom. i heard track 6. thats us. thats my dad at the end, it was 11pm and the garage door was open. thank u for keeping him in. practice at 6." },
+    { "type": "wallpost", "from": "brittany", "to": "debbie", "delay": 120, "text": "mrs kaylas mom!! kayla has track 12 on repeat in the car. i can hear it thru the window. im not telling u how many times. xoxo. also the Journey is top 8 material <3" }
+   ]
+  },
+  "end_cupholder": {
+   "them": [
+    "Malten. She said nothing. I stood there a long time with the plate and the disc. The Paramore got quieter, and then it stopped. I put everything on the floor, knocked once, and walked away. I did the dishes. They were already clean.",
+    "This morning at 7:50 I went out to the Suburban. There was a CD in the cup holder. Not mine. Hers. The one that says DO NOT TOUCH. Somebody had crossed that out with the purple marker and written underneath, very small, 'ok u can.' I am sitting in the parking lot with the engine off. I am not crying. There are onions. Love, Mom"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "delay": 20, "text": "debbie found something in the Suburban. debbie is fine. debbie is having a moment. debbie will be at the attendance window in four minutes. Love, Mom" },
+    { "type": "wallpost", "from": "walt", "to": "debbie", "delay": 70, "text": "Dear Debbie, Your mother sat in the car in our driveway most Sundays after church, until someone came to the door and said 'did you eat.' It was never that she did not want to come in. It was that she wanted to be asked. I will leave it to you which of you is the one in the car. Regards, Walt (your father)" },
+    { "type": "dm", "from": "kayla", "delay": 120, "text": "malten. did my mom tell u about the cd. dont tell her i said this. i listened to ALL of it. the garage band one is bryans and she PUT IT ON THERE. i cant even. im gonna sit in the car a while. xox" }
+   ]
+  },
+  "end_free_cds": {
+   "them": [
+    "Malten. THE SCHOOL HAS A COMPILATION. By lunch the thirty discs were gone and four students have come back to ask whether there is a volume 2. Mr. Henderson has written me a three-paragraph critique. A girl named Brittany said, quote, 'this is top 8 material,' and she meant it, she has a chart.",
+    "Kayla walked past the window at lunch, did not look at me, and put one hand flat against the glass for a second. I have decided that is a review. I am keeping the laminator warm. Love, Mom"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "bulletin", "delay": 15, "subject": "FREE CDS AT THE ATTENDANCE WINDOW (VOLUME 2 PENDING)", "text": "Thank you to everyone who stopped by the attendance window for a CD. There are no more. There is a waiting list. It is on a clipboard. Track 9 is a student band, please be kind. A CD is not a hall pass and a tardy is still a tardy. I do not make the rules. I laminate them. Love, Mom" },
+    { "type": "wallpost", "from": "henderson", "to": "debbie", "delay": 50, "text": "Debbie, I have listened to the compilation twice. For the record, Journey into Rascal Flatts is a transition I would call brave. Track 9 is out of tune by roughly a quarter step, which I note as a friend, and which I would not change. - Mr. H" },
+    { "type": "status", "from": "kayla", "delay": 85, "text": "kayla is aware that a CD is in the hands of 30 people. kayla is aware she is one of them. kayla is listening to track 9 in the library. (no one is looking) (everyone is looking)" },
+    { "type": "wallpost", "from": "brittany", "to": "debbie", "delay": 125, "text": "MRS KAYLAS MOM i was tardy 4 times this semester and i have never been so proud of it. track 7 made my whole bus cry. im making a chart of the songs. xoxo" }
+   ]
+  },
+  "end_public": {
+   "them": [
+    "Malten. I pressed the big button. It was not the envelope. It said 'Post Bulletin.' I have posted the whole thing, both paragraphs, the hospital, the retainer, Courtney, 'you were so small,' all of it. Eleven people have commented in four minutes.",
+    "Brittany says it made her cry. A boy named Randy wrote 'PIE.' I do not know why. Kayla's light is off. Her phone is face down on the hall table. I am going to go stand in the pantry for a moment. Love, Mom. P.S. How do I make this private. Love, Mom."
+   ],
+   "end": true,
+   "effects": [
+    { "type": "bulletin", "delay": 10, "subject": "HOW DO I MAKE THIS PRIVATE (A LETTER TO KAYLA) (SORRY EVERYONE)", "text": "Kayla, there is something in the Suburban for you. It is a CD. It is not a lecture. I love you. Dinner is at 6:30. You were so small in the hospital, honey. You were 6 pounds 11 ounces and furious. You still are and I would not change a thing. Courtney called last week for eleven minutes and I told nobody except a young man on a website. Your retainer is by the bananas. I have listened to all of your music and I am proud. Love, Mom. P.S. If you are reading this and you are not Kayla, hello. Please look away. Thank you." },
+    { "type": "wallpost", "from": "kayla", "to": "debbie", "delay": 40, "text": "MOM. MOM. THAT WAS THE WALL. ...ok it was a good letter. im still mad. im mad in a nice way. dinner is at 6:30 and i will be there. delete the retainer part. ily" },
+    { "type": "wallpost", "from": "randy", "to": "debbie", "delay": 75, "text": "lol mrs kaylas mom i cried a little. PIE." },
+    { "type": "wallpost", "from": "walt", "to": "debbie", "delay": 115, "text": "Dear Debbie, I have read the bulletin. It was a fine letter. It should have been private. I would not change a word of it, and I would have changed the box. Regards, Walt (your father)" }
+   ]
+  }
+ }
+}

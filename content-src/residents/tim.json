@@ -1,0 +1,190 @@
+{
+  "id": "tim",
+  "name": "ti83_tim",
+  "tag": "calculator games $2. cable rental 50 cents. no refunds (one pending, see blog)",
+  "avatar": "assets/avatar_tim.gif",
+  "gender": "Male",
+  "age": 15,
+  "hometown": "Kettering, Ohio (the one by Dayton, not the other one)",
+  "loc": "seat 9, the late bus (window side, the heater works)",
+  "zodiac": "Virgo. starxgazer did my chart without asking and said 'exact, orderly, secretly soft.' i have entered the first two in the ledger. the third is under review",
+  "status": "Single (no open positions. one open liability, see blog)",
+  "hereFor": "Friends, Networking (distribution), Sales ($2)",
+  "mood": "solvent",
+  "lastLogin": "Oct 3 2026 9:14 PM",
+  "theme": { "bg": "#b5c4a1", "fg": "#14210f", "accent": "#1d4f91" },
+  "blogTitle": "the ledger (public edition) (categories 1 through 6 only)",
+  "about": "hi. i program games on my ti-83 plus and sell them for $2. i have 5 titles, all in ti-basic, all under 4 kb: SNAKE+, BLOCKFALL, PYRAMID ESCAPE, CAVE DIVER and a custom order i dont talk about yet. transfer is by link cable, 11 seconds per game. cable rental is 50 cents. batteries (4 aaa, $4.99) are my biggest expense and yes i have a spreadsheet for that too. i keep a ledger. i started it in 7th grade and it has never been wrong, which is not the same as never being sad. im on the math team (11th of 14 at regionals, up from 13th). no refunds. feedback is accepted and costs nothing. its the only free thing here.",
+  "aboutMore": "things to know before doing business. 1) prices are posted and they do not change when you cry. 2) i dont sell answers, cheats, or anything that helps on a test. the quadratic solver is for me. 3) i sell off campus only. the late bus is technically off campus. mr henderson and i have agreed to disagree about the bus. 4) my sister maya (9) was customer #1 and has never been invoiced. she is listed under 'other.' people ask what 'other' means. it means other.",
+  "meet": "Who I'd like to meet: whoever at texas instruments gave the ti-83 24 kb of ram, to say thanks and ask why not 25. a customer who reads the price before asking the price. kate bush, about the digits. the person who invented the receipt. and henry, to hand him exactly two dollars. (that part is on a payment plan.)",
+  "interests": {
+    "General": "the ledger (maroon cloth, ruled in red, 200 pages, currently on page 61), unit prices, the link cable (2 ft, i braided the ends myself), math team, the school vending machine (3 quarters, i keep exact change in a film canister), pi day, tip math, being right about change, graph paper (5 squares per inch), the late bus (seat 9, window)",
+    "Music": "kate bush (the song is pi. she sings the digits. somewhere in the middle it goes slightly wrong and i have a printout), they might be giants (mr henderson lent me a cd in september and i still have it. it is listed as 'borrowed.' he knows), the small click a link cable makes when it connects, whatever becca is warming up in the band room (clarinet, one flat note, i can tell which one)",
+    "Movies": "october sky (mr henderson shows it every spring, i have seen it 4 times, i did not cry, room 114 is just humid), stand and deliver, apollo 13 (they do the math on paper and i respect that), a beautiful mind, spy kids 2 (the gadgets are a bad deal for the spy), proof (brad at blockbuster put a card on it. i have not rented it. the late fee is a risk i have priced)",
+    "Television": "numb3rs (the math is right about 60% of the time, i keep a tally), mythbusters (the budget alone), jeopardy (i do the wagers on paper), the price is right (i know the retail price of most things on that stage and im usually 4% off), antiques roadshow (appraisal is a beautiful thing)",
+    "Books": "a brief history of time (page 83), the phantom tollbooth (for digitopolis, with notes in the margin), the consumer reports buying guide (the annual one), flatland, my dads tax code index (its a book. 900 pages. very calming), the ti-83 plus guidebook (2 copies, 1 annotated)",
+    "Heroes": "my dad (does taxes, taught me to keep receipts), my grandma (balanced her checkbook to the penny until she was 88 and kept every statement, in order, rubber banded), mr henderson (listed in the ledger under 'teachers (positive).' i have not told him), yvette (the only person who ever asked me for an itemized receipt), devon (my rival and my best distributor, same person, i dont understand it either)"
+  },
+  "song": {
+    "name": "Pi",
+    "artist": "Kate Bush",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/36/0d/10/360d10cc-44af-cdff-2b14-c356a7957162/mzaf_17798305308236626533.plus.aac.p.m4a",
+    "pattern": [3, 1, 4, 1, 5, 9, 2, 6],
+    "bpm": 90
+  },
+  "decor": ["assets/badge_8bit.gif", "assets/deco_new_blue.gif"],
+  "friends": ["dave", "nat", "wes", "devon", "yvette", "becca", "lars", "henry"],
+  "wall": [
+    { "from": "yvette", "text": "TIM. Math Team yearbook photo is THURSDAY 7:15 AM. Not 7:20. Not 'after first period.' Wear the polo. Hold a calculator but do NOT graph anything, last time you displayed a sine wave the photographer asked what it was. Also no, we are not pricing the yearbook by the page. VOTE YVETTE", "time": "Sep 29 2026 7:20 AM" },
+    { "from": "becca", "text": "Tim!! Listen. 1 2 3 4 5 6 7 8. The late bus leaves at 5:15 whether or not you are 'one move from the high score.' I have 31 band kids, 4 sousaphones and a bass drum on that bus and you were holding the door open with your FOOT. Also the clarinets (all 11) want BLOCKFALL. 6 copies. I know you have a bulk rate. It's $1.75. I hate that I know that. 5 6 7 8.", "time": "Sep 26 2026 5:34 PM" },
+    { "from": "dave", "text": "tim i h4cked ur c4lculator. i pressed 2nd mode. then i pressed on. it said ERR:SYNTAX. i dont know what i did but i dont think its fixable. ur security is incredible. i bought 2 games ($4) and accepted the terms (i didnt read them) (they were 3 lines)", "time": "Sep 22 2026 10:41 PM" },
+    { "from": "wes", "text": "tim the frame data program is perfect. 340 bytes. every fox move, under the table at the venue, and nobody can tell it's not homework. i owe u $2. i'm paying in CRT adjustments, i'll bring the screwdriver tuesday. also ur right that my friendlies sheet has 22 names and 3 CRTs. that's 7.3 per CRT. i said it before u could.", "time": "Sep 18 2026 8:15 PM" },
+    { "from": "devon", "text": "tim PYRAMID ESCAPE sold 3 copies at locals before noon. my cut is 50 cents each so i'm holding $1.50 in escrow. escrow is a sock. the sock is safe. the sock has seen things. also the heart of the cards says u owe it an apology for the 27,000 thing", "time": "Sep 15 2026 4:12 PM" },
+    { "from": "henderson", "text": "Tim, the letter of recommendation is attached. I wrote 'punctual' and 'accurate to the penny.' I also wrote 'please stop selling games in my class,' and I did not take it out, because it is true and because I enjoy watching you read it. — Mr. H", "time": "Sep 12 2026 3:55 PM" },
+    { "from": "nat", "text": "tim i put ur template in the guild treasury. 41 sticky notes turned into 41 rows w/ formulas. i paid u 1 np like we agreed and u wrote 'imaginary income' in the ledger. im framing the 1 np. its the first thing in the whole treasury somebody signed for. also stop calling the guild smile 'unquantifiable.' im quantifying it. its an 11. ily", "time": "Sep 28 2026 4:03 AM" }
+  ],
+  "replies": [
+    "noted. entered.",
+    "that costs $0.00 to say, so thank you.",
+    "ok. is that a compliment or a complaint. both are free but i file them separately.",
+    "i would reply at length but long replies are billable.",
+    "good point. i checked it against the numbers and it holds.",
+    "interesting. do you have a source or is that a feeling.",
+    "i did the math on that and its closer than u think.",
+    "no refunds, but yes.",
+    "i read that twice. 7 out of 10, which is high.",
+    "hold on im counting something. ok. go ahead."
+  ],
+  "thanksAdd": "thanks for the add. you are now logged under 'contacts (positive).' my friendship has no fee. i checked and left that line blank on purpose. games are still $2. the two things are separate. i keep them in separate columns.",
+  "ambient": [
+    "unit price check. the pretzel at the mall is $2.25 for about 11 ounces. the one in the school cafeteria is $1.00 for about 6. the mall one wins by 4 hundredths of a dollar per ounce and loses on temperature. i keep these numbers in my head so nobody else has to.",
+    "regionals recap: 11th of 14. last year 13th. thats roughly a 15% improvement in placement and a 100% improvement in bus snacks. i am not saying the two are related. i am saying i checked.",
+    "someone asked if my ledger is a diary. no. a diary has feelings in it. the ledger has a category called 'other.' thats all i have to say about that.",
+    "pi day is in march. i have started planning the 3:14 schedule. the digits are on index cards. yes they are laminated. debbie in the front office did it for free and signed the sleeve 'Love, Mom.' i didnt ask her to. i didnt stop her.",
+    "ERR:SYNTAX on line 214. the error does not say which part of line 214. i have been staring at it for 20 minutes. i dont need advice. i need the comma i put in the wrong place.",
+    "sold BLOCKFALL to a 6th grader who paid in dimes. 20 dimes. i counted them twice, once in front of him. he said 'you dont have to.' i said 'i do.'"
+  ],
+  "saltyDm": "denied. ok. i priced that outcome in advance at about 30% so you are inside the margin. the offer stands: first game free, no cable fee. thats not a promotion, its a rounding error i decided to be generous about.",
+  "keywords": {
+    "calculator": "ti-83 plus. 24 kb of ram. 4 aaa batteries ($4.99, the biggest line in my budget). i have written 5 games on it and never used it for a test. i just want that on the record.",
+    "game": "5 titles: SNAKE+, BLOCKFALL, PYRAMID ESCAPE, CAVE DIVER, plus customs: DENNIS DODGE (long story, see blog), LAX ATTACK (delivered, unpaid) and a ghost detector that beeps at random. $2 each. bulk rate is $1.75 for 5 or more. link cable rental is 50 cents. full service operation.",
+    "price": "whatever it is, i can tell you what it costs per ounce. ask me about anything in the food court. i will also tell you its not worth it. except the pretzel. the pretzel is within tolerance.",
+    "money": "i have $61.30 in the shoebox, $14 in the film canister, and a $2.00 liability i would rather not discuss. net: fine. thats a good word for it. fine.",
+    "ledger": "maroon cloth, 200 pages, ruled in red. columns: date, item, in, out, notes. 7 categories. you can see 1 through 6 on my blog. 7 is called 'other.' 7 is not public. dont ask. i will answer. but dont ask.",
+    "math": "math team is tuesdays, thursdays and some saturdays at other schools with better snacks. we placed 11th of 14. i was the top scorer, which is also how i know the team is not very good.",
+    "refund": "all sales final. there is one refund request open right now, from a 13 year old on wheels. the bug is real. the refund is pending. pending is a legal state. i am handling it.",
+    "homework": "i dont sell answers. i sell games. different product, different ethics, different price. answers would be $5 and i would lose sleep, so i priced it high enough to be a no."
+  },
+  "banter": {
+    "yvette": [
+      "yvette your campaign budget was $38.00 and the poster receipt is $41.20. i have the receipt. i wasnt looking. it was on the floor of the yearbook room next to the paper cutter. im not accusing. i am just noting that your platform is financial transparency.",
+      "yvette i would vote for you. i wanted you to know that so you would stop slipping flyers into my calculator case. i have found 6. i kept all 6. they are in the ledger under 'paper (free).'"
+    ],
+    "becca": [
+      "becca bulk rate is $1.75 per game for 5 or more. 6 copies is $10.50, not $12. the band pays less than the math team because the band is bigger. thats just how bulk works. also sorry about the door.",
+      "becca i timed the clarinet warmup in the band room. 14 minutes of the same 5 notes. its the only noise at this school more consistent than my ledger. i mean that as a compliment. i think."
+    ],
+    "henry": [
+      "henry the bug is real. level 3 of DENNIS DODGE gives you about a 0.3% chance of surviving the fountain. thats a flaw in my math, not a feature, and i admit it. patch is in progress. refund is in progress. they are the same line item now. please stop circling my bus stop.",
+      "henry i am offering a payment plan: $0.50 a week for 4 weeks at 0% interest. i have never offered 0% in my life. you should feel something. also level 3 is fixed and beatable by exactly one route (the fountain). the route is a $1 hint. or free if you stop appearing in the window of room 114."
+    ],
+    "dave": [
+      "dave you did not hack my calculator. you pressed 2nd mode and then the wrong key and got ERR:SYNTAX. thats a syntax error, not a breach. i fixed it with 1 keypress. no charge. note it.",
+      "dave i priced a full security wipe of my link cable at $4. you offered to do it for 'respect.' respect is not legal tender. respect plus $4 is. the cable is secure. (its a cable.)"
+    ],
+    "wes": [
+      "wes the frame data program is 340 bytes and has every fox move. you can press 2nd-quit mid match and nobody knows. also your tournament entry fee is $5 and the prize pool is 'honor.' honor is not in the denominator.",
+      "wes i am coming to your next friendlies. i want to see 8 CRTs in one room. i have a feeling about your electric bill and i would like to be there when it arrives."
+    ],
+    "devon": [
+      "devon i received $4.50 for the 3 copies. exactly. to the cent. i checked it twice because it was suspicious that it was right. entered in the ledger as 'devon (honest, once).'",
+      "devon i redid the 27,000 thing and found my error. i forgot you shuffle between games. the number is closer to 1 in 24,000. i am putting the correction in the ledger. i still believe nothing."
+    ],
+    "henderson": [
+      "mr h the thermometer pun. it took me 4 seconds to get it, which is faster than 3rd period. i did not laugh. i entered a '1' in the column labeled 'amusement.' thats the top of the scale.",
+      "mr h you called my game 'excellent' during your planning period. that review is going on the price list. i priced the quote at $0 because you didnt authorize it but i am using it anyway. you can take it up with the ledger."
+    ]
+  },
+  "statuses": [
+    "tim is on the late bus, seat 9. net revenue today: $4. net batteries: -1 pack",
+    "tim is getting ERR:SYNTAX on line 214. the error does not say which part of line 214",
+    "tim just sold BLOCKFALL to a 6th grader who paid in dimes. 20 dimes. counted twice",
+    "tim is on page 61 of the ledger. his handwriting is getting better. not a metric, but noticed",
+    "tim is recalculating the odds on a card trade. the answer is still 'no'",
+    "tim is on week 2 of a payment plan he made up. 0% interest. his hands are cold",
+    "tim just placed 11th of 14. up from 13th. he would like it noted that the bus snacks were better this year",
+    "tim is making exact change for the vending machine. 3 quarters. it is a good day"
+  ],
+  "bulletins": [
+    {
+      "subject": "PRICE LIST (effective whenever i update it) (updated)",
+      "body": "SNAKE+ $2. BLOCKFALL $2. PYRAMID ESCAPE $2. CAVE DIVER $2. DENNIS DODGE $2 (custom, not currently for sale, level 3 is being fixed). LAX ATTACK $2 (custom, delivered, unpaid, filed under 'bro'). bulk: $1.75 each for 5 or more. link cable rental: $0.50 (2 feet, braided at the ends). batteries: not included, not my problem, but i know where to buy them cheaply. refunds: none, EXCEPT for bugs. bugs are refundable. there is currently one open bug. you know who you are. the refund is in process. thank you for reading the whole list. most people read the first line."
+    },
+    {
+      "subject": "MATH TEAM needs 1 more person (and a snack policy)",
+      "body": "the math team has 3 members and a 4th chair that has been empty since august. requirements: can add. can sit still for 40 minutes. does not need to enjoy it, just be there on time. we meet tuesdays and thursdays and some saturdays at other schools. we placed 11th of 14 at regionals. the snack policy is that we bring pretzel bites, 40 for $9.99, which i priced at three stores. you will not be asked to buy your own. the bus is the late bus. seat 9 is taken. seat 10 is also fine."
+    },
+    {
+      "subject": "the link cable is not a leash (an announcement)",
+      "body": "several customers have asked if they can 'just keep the cable overnight.' no. it is 2 feet long and it is my only distribution channel. when you hold it, i have no business. if you want to keep it, we can talk about a deposit, which is $5 and is returned in full when the cable is returned in full, with a receipt. i also do not rent it to people who 'will bring it back tomorrow' because that sentence has a failure rate i have measured and it is 100%."
+    }
+  ],
+  "pcComments": [
+    "nice picture. i estimate the camera at $140 and the frame at $22. both are fair.",
+    "the sky in this is a 9 out of 10. i would pay $2 for the sky. i would not pay $2 for the rest. no offense to the rest.",
+    "this pic has 14 people in it. i counted twice. one of them is a bush. i counted the bush. it was in focus.",
+    "good composition. i checked the golden ratio and its 1.58. close. not quite. still good.",
+    "i looked at this for 11 seconds which is a long time for me and a short time for a picture. thats a good sign."
+  ],
+  "dmSeed": [
+    { "text": "hi malten. tim. i saw the request go through and wanted to say hello before the ledger asks. first purchase is free: any game, your choice, cable included. i do not normally do this. i ran the math and it costs me $0.00 plus 11 seconds. so. hi." },
+    { "text": "also if you see a 13 year old on wheels outside any building i am inside, say you havent seen me. i will pay you in games. this is not a bribe. it is a retainer." }
+  ],
+  "dms": [
+    "malten a question. is it normal that the pretzel at the mall costs $2.25 and the one at school costs $1.00 and i still feel like the mall one is the better deal. i ran the numbers and the numbers disagree with me. i am keeping the feeling and ignoring the numbers. is that growth.",
+    "i got our math team scores back. 11th of 14. last year 13th. the school that took first has a coach with a laser pointer. we have a coach with a thermos. i think we are closing the gap on the thermos front.",
+    "update: mr henderson confiscated derek's calculator in 4th period. my game was on it. i filed a claim. the claim form is a post-it. the claim was denied by a teacher holding granola. i entered it under 'losses (henderson)' and then he handed me a granola bar. net: lost $2, gained about $0.40. a 20% recovery. i have never recovered a loss before.",
+    "ERR:NONREAL ANS. thats what the calculator says when you take the square root of a negative number. i find that dismissive. 'nonreal.' it has a name. its i. my math teacher says i can use it. the ledger has no use for it.",
+    "i started a pi day playlist. its one song. kate bush sings the digits and somewhere in the middle it goes wrong and i have never been able to find out why. i wrote to a fan site twice. nobody has written back. logged under 'correspondence (pending).'",
+    "a 6th grader asked me today if there was a free game. i said no. then i said let me check the ledger. then i went home and checked. there was one. i put it on her calculator. she said thanks and ran. there isnt a column for that. well. there is. never mind.",
+    "my sister maya (9) asked what a dividend is and then asked if her goldfish pays one. i said not yet. she named him Dividend anyway. he is now the only member of this household with a financial instrument for a name. i am proud and a little scared.",
+    "the vending machine in the east hall gave me an extra dime today. i walked it to the front office. debbie said 'honey, its a dime.' i said its 10 cents that is not mine. she put it in a jar on her desk labeled FOUND. the jar has $4.30 in it. thats 43 dimes from people like me, which is more people like me than i expected. i did not enter it in the ledger. i dont know which column it goes in."
+  ],
+  "blog": [
+    {
+      "title": "the ledger, quarterly (public edition)",
+      "date": "Oct 1 2026 8:30 PM",
+      "mood": "balanced",
+      "body": "QUARTER ENDING SEPT 30. 1) games sold: 31, $58.75 after bulk. 2) cable rentals: 22, $11.00. 3) batteries: 3 packs, -$14.97. 4) lunch and snacks: -$21.10 (the cafeteria pretzel remains the best value in the building). 5) supplies: -$6.45 (graph paper, 2 pens, and a sharpener to replace the one that ate the pencil). 6) math team dues: -$5.00. NET: $22.23. a few notes. sales are up about 40% since i added the cable rental, which was not a pricing decision, it was a cable i had. category 7 is not included. category 7 is not for audit. thank you for reading. that is all."
+    },
+    {
+      "title": "DENNIS DODGE: a post-mortem (refund pending)",
+      "date": "Sep 27 2026 9:12 PM",
+      "mood": "accountable",
+      "body": "on sept 22 a 13 year old on wheels placed a custom order. requirements: a stick figure on wheels, a security guard who is faster than he looks, a fountain, 3 levels. price: $2.00, same as always. labor was 11 hours, which is not a billing unit i recognize. he played levels 1 and 2 and loved them. level 3 has a bug. the guard speeds up every frame and never stops. i computed your chance of surviving the fountain at about 0.3%. i should have computed it earlier. he asked for a refund. my policy is no refunds. my policy also did not account for a bug, so i wrote an exception into the price list after the fact, which is not how rules work. i have never issued a refund so i had no form. i made one. it is a post-it. current balance: -$2.00. my first red line in 12 quarters. it is the same color as the pen i used."
+    },
+    {
+      "title": "category 7 (i said i would not do this one)",
+      "date": "Sep 14 2026 10:48 PM",
+      "mood": "quiet",
+      "body": "my grandma balanced her checkbook to the penny every month until she was 88. i found the statements in a drawer, rubber banded, in order. i think she knew the only way to be kind with money is to know exactly where it is. thats why i have a ledger. categories 1 through 6 are on this blog. category 7 is called 'other.' this year it is -$31.40. it is a 6th grader who asked 'is there a free one' with the face. it is $5 for the pie fund on pi day. it is a goldfish bowl and a goldfish for maya. it is a spare pack of batteries i left in a bag for a kid whose died during regionals. i dont audit it. every other category i check twice. this one i write down, close the book, and put the pencil down."
+    }
+  ],
+  "survey": {
+    "title": "the survey everyone forwards (answered with units)",
+    "qa": [
+      ["name:", "tim. ti83_tim on here. timothy on my permission slips. $0 for either"],
+      ["age:", "15 years, 4 months. i could give you days. i could give you hours. i will wait to be asked"],
+      ["favorite number:", "7. it is lucky and it is a category"],
+      ["last thing you bought:", "a 4 pack of aaa batteries. $4.99. same price as last month. i noticed"],
+      ["what's in your backpack:", "ti-83 plus, 2 link cables (2 ft each), the ledger, 40 sheets of graph paper, a film canister of coins, and a granola bar from mr henderson i have not eaten, on principle. the principle is that it expires in march"],
+      ["pets:", "none. my sister has a goldfish named Dividend. she is 9. she asked me what a dividend is and i said 'something that grows.' she said ok"],
+      ["what do you want to be:", "an actuary. i looked it up. it means someone who prices risk. they get paid to be careful. i thought, finally"],
+      ["best friend:", "i dont rank. it introduces error. top 3 by frequency of contact: dave, nat, devon (rival). henry is 4th by frequency, not by choice"],
+      ["biggest fear:", "ERR:MEMORY. a RAM clear in the middle of a game i have sold 6 copies of. i back up every night. twice. the second backup is in a different room"],
+      ["favorite food:", "the pretzel at the mall. within tolerance"],
+      ["describe yourself in one sentence:", "i price things, i write things down, and i keep one column where i dont"],
+      ["are you forwarding this to 10 people:", "no. i forwarded it to 1 person, with a receipt. thats 10% of the requested volume and 100% of my capacity"]
+    ]
+  }
+}

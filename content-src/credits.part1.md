@@ -1,0 +1,28 @@
+# Asset credits — part 1 (residents G1-G3)
+
+- assets/avatar_ryan.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/D7SLKSLKDRKKEUSOQLMYJB4UP37ATEU6.gif
+- assets/posts/gif_ryan_lobsterchef.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/2J67DFHYVX3PYPD2EINJ3GL6W7EU5CVL.gif
+- assets/avatar_nat.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/5MIM7M52LDCKI7T5JIXIAE44QG6FP7I5.gif
+- assets/posts/gif_nat_rosepet.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/6VB66PBFZNOZOBJMWPYTBAW4I4SFXRMI.gif
+- assets/avatar_hunter.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/5G7EPEN2DLOXA5IOPDADOQ3HI74L2NZO.gif
+- assets/avatar_rick.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/GFJZTNYANBBV7GODLK6YBX4WVZGUZGML.gif
+- assets/avatar_min.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/6TRXVITQ56LCFPZHR5BAH52S2XKWFVKZ.gif
+- assets/avatar_dmitri.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/4ZZJ5T3I6VVROL7LDCP4CJEDTFGD7DQS.gif
+- assets/posts/gif_dmitri_dust.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/FGDV4C2763HTG5SJEDPGEPQXB7CUJL3C.gif
+- assets/posts/gif_hunter_nocamping.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/KBXMORV547MOIQJJ5DUR7TCQZ73K473V.gif
+- assets/posts/gif_rick_forklift.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/BIYO4FMFAGZ5VUTR46UBIVX7ISUEQXSB.gif
+- assets/posts/gif_min_keyboardfaceplant.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/7IR7BQ7FJ4IGJY65ITOJ5RMCOHHI3ZVR.gif
+- assets/deco2_mushroom.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/2IC3RL3U5C6LKD2N4BLBMZB7P5NTPEXM.gif
+- assets/avatar_gus.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/3UTNYXVS5VQA4YSOX26YPGNF3YUA74JX.gif
+- assets/posts/gif_gus_marshall.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/2BS7ATYBAR4226DXDTBUE3LYKF3YZ3CJ.gif
+- assets/avatar_sara.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/YYYIVASBGVUFQNL4AWVZUNBJXHNEEI2Q.gif
+- assets/posts/gif_sara_couchglitch.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/S5B5AMOIG6WPEZOKPKZFTYIVYTFOES6Q.gif
+- assets/avatar_gary.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/6ZPWTZX4ELFRJJEZA4E3IT7ZRHFJ6J4M.gif
+- assets/posts/gif_gary_asciibunnytank.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/7HLLPWZWMAINM65AZFEI6YCWXI3O7TCZ.gif
+- assets/avatar_larry.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/352BEQ7TACC44XFGS7DSNKAYQLTABFD2.gif
+- assets/posts/gif_larry_hownapsterworks.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/4Z5AUOXVTYVRSWTCVOZU35XBBNSLAN6V.gif
+- assets/deco2_downloadvirus.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/2G673WUGIBE6TA3KX75QNRIVHKZQ4ALY.gif
+- assets/avatar_nick.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/22XMYONEJZZIG6D3JWGXQKAIMFLHJFEV.gif
+- assets/posts/gif_nick_stickfight.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/2DJEKAM67XALEKSHL3AKX4PYTCQNGFC5.gif
+- assets/avatar_marcus.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/ECPVNGBHJL2EUC4NI5FTD6YMWCMZRLNU.gif
+- assets/posts/gif_marcus_movealong.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/BN5ZZT6TFY6H74MRL7GS245Q6ES67QXM.gif

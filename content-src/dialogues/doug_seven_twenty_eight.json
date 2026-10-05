@@ -1,0 +1,255 @@
+{
+  "id": "doug_seven_twenty_eight",
+  "with": "doug",
+  "opener": [
+    "hi malten. its 7:26 so i have about 4 minutes. i typed this in notepad first so its ready to paste.",
+    "the saturday librarian is retiring. mrs halvorsen. 31 years. i found out from a flyer that was UNDER the bake sale flyer. her last day is this saturday.",
+    "i have never thanked her. i walk in and say 'computer 3 please' and that is the whole sentence. i have 3 days and 4 dollars and 20 cents. what do i do"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "say it to her face. one real thing she did for you. not a speech.", "next": "say_it" },
+        { "say": "four dollars goes far. what's she like? we're getting her something.", "next": "likes" },
+        { "say": "doug, half this site owes her for printing your internet. let's make it bigger than you.", "next": "crowd" }
+      ]
+    },
+
+    "say_it": {
+      "them": [
+        "to her FACE. malten one time my voice cracked on the 3 in 'computer 3' and i didnt say a whole sentence at that desk until june. she just waits. she waits so nicely. its hard to be nervous at someone that patient and also be fast",
+        "i can TYPE a thank you. typing is the only speed i have. is typed allowed"
+      ],
+      "choices": [
+        { "say": "typed counts. pencil and paper, then you hand it over yourself. let the paper do the talking.", "next": "pencil" },
+        { "say": "she opens at 9 and the cake's at 11. be at the door at 8:55 when it's just the two of you.", "next": "early" },
+        { "say": "try it on me first. type it like i'm her. i won't make it weird.", "next": "practice" }
+      ]
+    },
+
+    "early": {
+      "them": [
+        "8:55. she is always inside by 8:40, i see the light from the bike rack. i have watched her put on her cardigan through the glass like its a ceremony",
+        "oh. i could KNOCK. i have never knocked. a knock is a sentence with no words in it. i can do a knock"
+      ],
+      "choices": [
+        { "say": "knock, then hand her the note. a knock and a note is a whole speech.", "next": "note_draft" },
+        { "say": "knock, then say eleven words. 'thank you for the extra fifteen minutes.' i'll count them.", "next": "practice" }
+      ]
+    },
+
+    "pencil": {
+      "them": [
+        "write it down. ok. i have a pencil from the county fair, it says 4-H and one end is chewed (gravy did that. gravy is a dog. the cats dont chew)",
+        "but what do i put. 'dear mrs halvorsen.' then what. 'thanks for the books.' that sounds like a receipt"
+      ],
+      "choices": [
+        { "say": "the specifics. fifteen extra minutes. computer 3, by the window. the 22 things on your list that were for other people.", "next": "note_draft" },
+        { "say": "say what the hour means. you bike 6 miles each way. tell her what you carry home.", "next": "note_draft" },
+        { "say": "or say it out loud to me first, then write whatever comes out.", "next": "practice" }
+      ]
+    },
+
+    "note_draft": {
+      "them": [
+        "ok. drafting in my head. i only have the one piece of paper and its the back of a feed store receipt:",
+        "'Dear Mrs. Halvorsen. Every Saturday for three years you gave me an hour and sometimes an hour and fifteen. I carry the rest home in my backpack. Thank you. Doug (computer 3).'",
+        "thats 33 words. the receipt has room for 60. is it enough. is it too much. is the '(computer 3)' funny or sad"
+      ],
+      "choices": [
+        { "say": "it's both. leave it. add 'p.s. i know about the machine.' she'll know exactly what that means, then stop.", "next": "end_note" },
+        { "say": "that's one note. imagine 60 of us signing under it. bigger.", "next": "binder_rules" },
+        { "say": "wrap it around a hotdish. in your county that's a complete sentence.", "next": "hotdish_ask" }
+      ]
+    },
+
+    "practice": {
+      "them": [
+        "ok. youre mrs halvorsen. clipboard, cardigan, the little book pin. its 7:29 so i have to go fast. eleven words isnt enough, i tried, so here is the long one:",
+        "'dear mrs halvorsen. thank you for the extra fifteen minutes. thank you for charging me for 4 pages when it was 14. i know the machine does not miscount. i think you did that on purpose, and it is the nicest thing anyone has done for me at a compu"
+      ],
+      "effects": [
+        { "type": "status", "delay": 8, "text": "doug just got cut off in the middle of the best sentence he has ever written. it was for the saturday librarian. he will finish it after aunt carol. (it is always aunt carol)" }
+      ],
+      "choices": [
+        { "say": "'computer.' you were at a computer. i got it. i'll hold your place.", "next": "practice_back" },
+        { "say": "take your time, doug. the best sentence you ever wrote is allowed to wait.", "next": "practice_back" },
+        { "say": "i finished it for you: '...a computer that also makes toast.' you're welcome.", "next": "practice_back" }
+      ]
+    },
+
+    "practice_back": {
+      "them": [
+        "im back. 44 minutes. aunt carol got a new rug and described the whole rug. i scrolled up and read what you wrote while i was gone. the words come first. i read it three times",
+        "it was 'computer' by the way. 'at a computer.' i just wanted you to know i know how it ended",
+        "the thing is, malten, it sounded true when i typed it to you. i think it would sound true to her. i cant promise it makes it out of my mouth. but it can make it out of a pencil. what do i do with the one thing i have that works"
+      ],
+      "choices": [
+        { "say": "write that exact sentence. word for word. you already wrote the whole thing.", "next": "end_note" },
+        { "say": "that sentence is good enough that the rest of us should get to sign under it.", "next": "binder_rules" }
+      ]
+    },
+
+    "likes": {
+      "them": [
+        "ok what she likes. i know this because i read her desk the way i read your about me. all of it. a bowl of pink mints she never eats. a mug that says WORLDS OKAYEST LIBRARIAN that she uses every day. a cardigan with a little pin shaped like a book with a face",
+        "also she stamps the due dates really gently, like shes tucking the book in. i dont think they make a mug for that"
+      ],
+      "choices": [
+        { "say": "your mom's casserole recipe. you printed it at that desk. bring her the real thing in a real dish.", "next": "hotdish" },
+        { "say": "skip the mug. what did she GIVE you? write that down. a gift she can't return.", "next": "pencil" }
+      ]
+    },
+
+    "hotdish": {
+      "them": [
+        "the hotdish. my moms. the tater tot one, it serves 8. malten thats... thats actually good. mrs halvorsen eats lunch at the desk and i can see her sandwich from computer 3. its always a sad sandwich. it has one lettuce",
+        "but its my moms hotdish, which means i have to ask her. and the only time i can ask is dinner until 7:29. its the best 58 minutes of her whole day. i would be asking her to spend it in the kitchen"
+      ],
+      "choices": [
+        { "say": "ask her tonight. moms say yes to hotdish faster than they say yes to anything.", "next": "hotdish_ask" },
+        { "say": "write a note first so the hotdish has something to say. then ask her.", "next": "pencil" }
+      ]
+    },
+
+    "hotdish_ask": {
+      "them": [
+        "ok. its 7:28. i can hear mom in the kitchen. shes looking at the phone like it owes her money",
+        "i have my words ready. 'mom can we make the tater tot one for the library lady, shes retiring, i want to say thank you.' thats 20 words. i counted wrong. i have to cut six. which six",
+        "ok going downstairs. if she says yes i will be the happiest person in the whole county. if she says yes and then the phone rings i will st"
+      ],
+      "effects": [
+        { "type": "status", "delay": 10, "text": "doug is about to ask his mom a very important question about a hotdish. he has 20 words and needs 14. the phone is looking at him." }
+      ],
+      "choices": [
+        { "say": "cut 'i want to say thank you.' she'll hear it anyway. moms always do.", "next": "end_hotdish" },
+        { "say": "add 'please.' moms love 'please.' one word, doubles the odds.", "next": "end_hotdish" },
+        { "say": "just say it's for mrs halvorsen. don't explain. she'll know exactly who.", "next": "end_hotdish" }
+      ]
+    },
+
+    "crowd": {
+      "them": [
+        "the whole... malten. the SITE. thats like 60 people. i can barely load 60 people. i have 4 dollars and an aunt carol",
+        "but she did print megs clydesdale. 2 megs. 14 pages at 10 cents. she charged me for 4 and said 'the machine miscounted.' the machine does not miscount. i checked it three times. i think she wanted me to have the horse"
+      ],
+      "choices": [
+        { "say": "then she's been miscounting for you for years. pay her back in pages. a binder of messages, printed saturday.", "next": "binder" },
+        { "say": "go loud. everybody sends their biggest thing. biggest file, biggest glitter. she printed your internet, send it back.", "next": "loud" }
+      ]
+    },
+
+    "binder": {
+      "them": [
+        "a binder. a THREE RING binder. malten the librarian has one for the overdue notices. i know the sound of the rings. it is the sound of her tucking things in",
+        "ok so people write her a message and i print them saturday and put them in the binder. but each one has to load. i can only open so many. and half of you write in glitter. she would be reading a glitter binder"
+      ],
+      "choices": [
+        { "say": "rules. plain text, under 1k. you've been asking people for that for years anyway.", "next": "binder_rules" },
+        { "say": "no rules. glitter's allowed. she's a librarian, she's seen worse than sparkles.", "next": "loud" }
+      ]
+    },
+
+    "loud": {
+      "them": [
+        "BIGGEST thing. malten you are describing my nightmare and also my birthday. a lot of this site would LOVE that. meg has 2 megs of horse in a drawer. nikki has a thing. larry would burn a cd",
+        "but if they all send it at once my line will be loading until easter. one thing at a time is 9 minutes. nine things at once is the rest of my life"
+      ],
+      "choices": [
+        { "say": "then set a limit. under 1k each. you've been asking for file sizes for years.", "next": "binder_rules" },
+        { "say": "no limits. everybody, everything, all at once. we mail her the internet. i believe in your modem.", "next": "loud_wave" }
+      ]
+    },
+
+    "binder_rules": {
+      "them": [
+        "ok. rules. one) plain words. two) under 1k. three) one message each, not three like some people (meg). four) sign your name and say one thing you printed at the library, or one thing you wish you could have",
+        "posting it now. the bulletin is only 1k (i checked) so you can all read it right away. i print everything saturday, 10 cents a page. i have 4 dollars and 20 cents so past 42 pages i need a loa"
+      ],
+      "effects": [
+        { "type": "bulletin", "delay": 12, "subject": "PLEASE WRITE MRS. HALVORSEN A NOTE (a request from the countryside) (1k)", "text": "hi. doug here. typed offline. the saturday librarian at our county library, mrs halvorsen, is retiring after 31 years and her last day is this saturday. she is the reason half of what i know about all of you got printed and carried home in a backpack. i would like to give her a binder. please write her ONE message. plain words. under 1k. say what the library gave you, or what you wish it had. sign it. i will read every one first and print every one on saturday. anything over 1k goes on the list for next saturday. thank you. the words come first." }
+      ],
+      "choices": [
+        { "say": "i've got page 43 and up. don't tell anyone. consider it a loan you never repay.", "next": "end_binder" },
+        { "say": "make marcus the binder's official page counter. he'll never recover.", "next": "end_binder" },
+        { "say": "'under 1k' is a suggestion. larry won't read it and nikki will read it at 1.5x.", "next": "end_cd" }
+      ]
+    },
+
+    "loud_wave": {
+      "them": [
+        "ok. i posted it. i said 'send mrs halvorsen your biggest thing, i will print it saturday.' its been 4 minutes and my page is... you know how a progress bar lies. mine is lying about 9 things at once",
+        "larry says he can burn ALL of it to one cd. nikki is sending the dial-up remix. meg says the horse is 2 megs but its 'for a good cause so it has to be big.' malten what have we done. i love it. i think i have to go. my mom is looking at the ph"
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "larry", "to": "doug", "delay": 20, "text": "doug i saw the bulletin!! one cd for mrs h, coming up. its called THANK U MRS H. it has the lighthouse (200 pics) and 3 songs (1 says madonna) and a folder called 'for the library.' i dont know whats in the folder. it hums nicely" },
+        { "type": "wallpost", "from": "meg", "to": "doug", "delay": 45, "text": "DOUG!! the horse is on its way!! 2 megs!! its a clydesdale (for mrs h) (shes a clydesdale)!! i put a library card in its mouth so she can check it out!! (its a picture) (but also try)!!" },
+        { "type": "wallpost", "from": "nikki", "to": "doug", "delay": 70, "text": "doug the dial-up remix is attached. 2.7 megs. its the 22 seconds in 9. sending it to a librarian is the nicest use of a modem sound ive ever heard of. i added a shushing sound at the end. at 1.5x. UNTZ" }
+      ],
+      "choices": [
+        { "say": "good. let it load. aunt carol owes you one.", "next": "end_cd" },
+        { "say": "print what fits, save the rest for next saturday. that's called a series.", "next": "end_cd" },
+        { "say": "one more thing before you go: tell everybody 'under 1k.' fast. before it all lands.", "next": "binder_rules" }
+      ]
+    },
+
+    "end_note": {
+      "them": [
+        "ok. receipt, pencil, knock. i wrote it twice, once on the receipt and once on a clean sheet, and i kept the clean one. it says 'thank you for the hour' at the top now. i took out 'thanks for the books.' it still sounded like a receipt",
+        "after saturday its a new librarian and an hour that is actually an hour. i thought id be fine about that part. im not. but i think i would be sadder if i hadnt said it. thank you malten. nobody asked me what i would say. i didnt know i had one. the phone is about to ri"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "delay": 5, "text": "doug is writing a note by hand. pencil, county fair, 4-H. it is slower than dial-up. he thinks it is exactly the right speed." },
+        { "type": "wallpost", "from": "liz", "to": "doug", "delay": 40, "text": "doug. saw ur status. a pencil note. no layout, no css, no border. i tried to think of one thing to improve and i couldnt. that has never happened to me. credit urself. (i'm going to go stare at a wall)" },
+        { "type": "wallpost", "from": "fred", "to": "doug", "delay": 90, "text": "Doug. I don't know what you're writing and I'd like to give it a testimonial anyway: 'Doug. Says the true thing in his own handwriting and hands it over himself. Reads the whole page. The finest kind of member.' It's thirty words. It should load before the phone rings." },
+        { "type": "dm", "delay": 150, "text": "...ng. it rang. aunt carol, new rug, 40 minutes. anyway the thing i found out on the stairs: my mom KNOWS mrs halvorsen. they were in the same class at athens high. mom said 'tell marlene hi.' i didnt know she had a first name. it is marlene. i am going to write 'dear mrs halvorsen' at the top anyway. but i know." }
+      ]
+    },
+
+    "end_binder": {
+      "them": [
+        "ok. 31 messages already and the bulletin is 40 minutes old. liz made hers a layout. its 3 lines. its the prettiest 3 lines i have ever read. i got a green binder from the feed store. the rings click",
+        "saturday i print every one at the library, 10 cents a page, and i read them first. i cant believe the whole site said yes. i keep thinking about what it will be like when she turns a page and its a person. my mom is looking at the ph"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "delay": 5, "text": "doug has 31 messages for mrs halvorsen so far. all plain text. all under 1k. he will print them saturday (10 cents a page) and put them in a green binder with rings that click." },
+        { "type": "wallpost", "from": "meg", "to": "doug", "delay": 35, "text": "DOUG!! i wrote mine!! it is under 1k!! it is 3 sentences and a horse. the horse is WORDS. it says HORSE. thats how i did it. tell mrs h she is a clydesdale (patient + strong + great at due dates)!!" },
+        { "type": "wallpost", "from": "nikki", "to": "doug", "delay": 70, "text": "doug i wrote mine at normal speed. it was hard. it was 140 words and i read it back at 1x and cried a little. that has never happened. UNTZ (that means thank you) (mrs halvorsen)" },
+        { "type": "wallpost", "from": "marcus", "to": "doug", "delay": 110, "text": "Doug. I have submitted one (1) message to the binder. 40 bytes. It reads 'Thank you, Mrs. Halvorsen. -- Marcus.' I considered a longer version. Rule 12 does not require length. It requires that the sentence be kind and true. -- Marcus, Moderator (unofficial)" },
+        { "type": "dm", "delay": 160, "text": "...one. (that was 'phone.' it was 'looking at the phone.') ok its back. aunt carol, new rug, 38 minutes. i just counted. 44 messages. liz sent a second one. its to mrs halvorsen. it says 'u r the reason ppl find stuff.' thats 6 words. i am putting it at the front." }
+      ]
+    },
+
+    "end_cd": {
+      "them": [
+        "ok. im back. 44 minutes. there are 14 messages waiting and the progress bar says 9 percent of the first one. its megs horse. it started at 7:31. it will be a horse by breakfast",
+        "larry says the cd is burning and its called THANK U MRS H (final). malten i dont know whats on it. nobody does. but it will be on computer 3 on saturday and so will i. this is going to be the biggest thank you in the history of the county library and also the slowest. aunt carol is on the ph"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "delay": 8, "subject": "A THANK YOU FOR MRS. HALVORSEN (14 MEGS) (SIT DOWN)", "text": "hi. doug here. typed offline. this is not the small bulletin i usually write. the saturday librarian, mrs. halvorsen, is retiring this saturday and the site has decided to send her everything it has. i said i can print about 40 pages. they heard 'unlimited.' there is a horse, a cd, a remix and a lighthouse. please do not send anything else. (send something else.) it will all be there by saturday, or breakfast, or next spring. the words come first. -- doug" },
+        { "type": "wallpost", "from": "marcus", "to": "doug", "delay": 50, "text": "Doug. Fourteen megabytes is not a thank-you. It is a denial-of-service. Rule 3c (the Doug Clause) is hereby amended: a thank-you interrupted by a mother on a phone line may be finished once. It may not be finished fourteen times. I have attached nothing. I am proud of that. -- Marcus, Moderator (unofficial)" },
+        { "type": "wallpost", "from": "nick", "to": "doug", "delay": 100, "text": "doug i made a 56k version of the thank you. its 9 frames. kaze turns to the librarian. she stamps his book. he leaves. the end. it loads in 40 seconds. i think its my best work. it has a score of 5.00 (my only vote) (it counts)" },
+        { "type": "dm", "delay": 160, "text": "...one. phone. 38 minutes. update: the first thing finished loading. it was the horse. it has a library card in its mouth. i looked at it for a really long time. i think she is going to love it. i think she is going to say 'the machine miscounted.'" }
+      ]
+    },
+
+    "end_hotdish": {
+      "them": [
+        "ok. so. i asked. my mom said yes before i got to the end of the words. she said she was going to make the tater tot one on saturday anyway. (she was not.) (she is now.) she said 'Marlene Halvorsen? she taught me how to shelve.' i didnt know mrs halvorsen had a first name. its marlene",
+        "then she picked up the phone to ask aunt carol about pies and its been 52 minutes. there is a potluck now. there is a banner. aunt carol is bringing a folding table and a rug (i dont know why). i am in charge of napkins. nobody asked me. malten i think i just made a party. the phone is on its fourth pie and i can hea"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "delay": 5, "text": "doug is in charge of napkins. his mom and aunt carol are planning a potluck for the saturday librarian. the phone has been on for 52 minutes. there are four pies. nobody has asked doug anything." },
+        { "type": "wallpost", "from": "meg", "to": "doug", "delay": 35, "text": "DOUG!! a POTLUCK!! can i bring a horse (a drawing) (laminated) (the lamination is a pond)!! mrs halvorsen is a clydesdale. i decided. its final!!" },
+        { "type": "wallpost", "from": "fred", "to": "doug", "delay": 80, "text": "Doug. A potluck is a testimonial you can eat. Your mother, your aunt and a folding table are the whole argument. I'm in Sacramento and I would like it noted that I have never wanted to be in Wisconsin more. I'll send napkins in spirit." },
+        { "type": "wallpost", "from": "marcus", "to": "doug", "delay": 120, "text": "Doug. Rule 12 applies to potlucks: every guest welcome, no double dipping. I am drafting a seating chart. It is eleven pages. It is a draft. The guest of honor sits by the window. -- Marcus, Moderator (unofficial)" },
+        { "type": "wallpost", "from": "angela", "to": "doug", "delay": 150, "text": "~*~ Doug! ~*~ I am making a Potluck Banner! 468 pixels wide, no MIDI, loads in four seconds! Please tell me the guest of honor's first name so that I may CENTER it! P.S. A potluck is only a guestbook with food. ~ Angela, Webmistress" },
+        { "type": "dm", "delay": 170, "text": "...r the pies arguing. sorry. 4 pies is now 5. mom says you can come too, malten. i said i dont know where you live. she said 'then the internet can come.' i dont think she knows what she said. its the best sentence i heard all week." }
+      ]
+    }
+  }
+}

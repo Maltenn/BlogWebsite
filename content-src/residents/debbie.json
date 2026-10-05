@@ -1,0 +1,190 @@
+{
+  "id": "debbie",
+  "name": "kaylas_mom_debbie",
+  "tag": "HOW DO I TURN OFF THE MUSIC. sorry, caps. Love, Mom",
+  "avatar": "assets/avatar_debbie.gif",
+  "gender": "Female",
+  "age": 44,
+  "hometown": "Garland, Texas",
+  "loc": "Plano, Texas (the attendance window. I can see the parking lot)",
+  "zodiac": "Cancer (Linda says this means I am nurturing. I say it means June)",
+  "status": "Married (22 years. He does not have a page and does not want one)",
+  "hereFor": "Keeping an eye on things, Friends, Recipes",
+  "mood": "proud!! (how do I change this part)",
+  "lastLogin": "Oct 3 2026 3:52 PM",
+  "theme": { "bg": "#e8f6f3", "fg": "#1f4d46", "accent": "#e0457b" },
+  "bgTile": "assets/tiles/tile_flowers.png",
+  "blogTitle": "Notes From The Front Office (and my kitchen)",
+  "about": "Hello!! This is Debbie, Kayla's mom. I joined OurSpace to keep an eye on things and so far the things are: loud. I do not know how to turn off the music. It starts every time and I am at WORK. I run the attendance window at the high school, so yes I know who was tardy and no I will not say it on here (TONY). I HAVE TWO GIRLS, COURTNEY IS AT COLLEGE AND NEVER CALLS AND KAYLA IS RIGHT DOWN THE HALL AND ALSO NEVER CALLS. sorry, the caps lock was on. I make a King Ranch casserole that has ended arguments. If you are a friend of Kayla's you are welcome at my table, just take your shoes off at the door. Love, Mom",
+  "aboutMore": "Things I have learned on here so far: 1) LOL does not mean lots of love. I signed a sympathy card that way in March and I would like to apologize to the Pruitt family. 2) A 'top 8' is a ranking of your friends and I am not on my own daughter's. I am fine. 3) If you type on a 'wall' everyone can see it, which Kayla has explained to me four times, most recently about the retainer. 4) Brittany is a lovely girl with very good manners. 5) There is a cat on this website and I believe I know him. Love, Mom",
+  "meet": "Whoever is in charge of the volume. Also that Hayley girl from the Paramore band. Kayla plays her in the car and I looked up the words at work. That young lady has a set of lungs on her and I think she and I would get along. And Dr. Phil, so he can tell me if I should knock on Kayla's door or leave the plate outside it. Love, Mom",
+  "interests": {
+    "General": "scrapbooking (crop night is Thursdays, I bring the good scissors), Curves three mornings a week, coupons, my Crock-Pot, the front office laminator, knowing who is tardy, checking on Dad on Sundays, keeping an eye on things",
+    "Music": "Rascal Flatts, Shania Twain, Faith Hill, Martina McBride, Journey (I saw them at Reunion Arena, ask me about it), the Dixie Chicks, Kelly Clarkson (she is from Burleson!!), whatever Kayla has on in the car (I looked up the Paramore. I get it now)",
+    "Movies": "Steel Magnolias, Sweet Home Alabama, My Big Fat Greek Wedding, Father of the Bride (both), The Notebook (Kayla and I watched it together ONE time and she will not admit she let me hold the tissue box)",
+    "Television": "American Idol, Extreme Makeover Home Edition (I cry every time. MOVE THAT BUS), Dr. Phil, Dancing With The Stars, Trading Spaces, the 10 o'clock weather",
+    "Books": "anything by Nicholas Sparks, The Purpose Driven Life (halfway), the Southern Living annual recipes, the Creative Memories catalog, the student handbook (I typed it)",
+    "Heroes": "my dad Walt (carried the mail 34 years, never took a sick day), my sister Linda (do not tell her), both my girls, Dr. Phil, the lady at Kohl's who lets me stack coupons"
+  },
+  "song": {
+    "name": "My Wish",
+    "artist": "Rascal Flatts",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/06/ca/d7/06cad742-ef5f-f4c8-3e85-2c4786510b93/mzaf_2814810772621672360.plus.aac.p.m4a",
+    "pattern": [0, 4, 7, 12, 7, 4, 5, 7],
+    "bpm": 104
+  },
+  "decor": ["assets/deco_hearts_bar.gif", "assets/deco_dancing_baby.gif", "assets/deco_smiley.gif"],
+  "friends": ["kayla", "bryan", "linda", "walt", "henderson", "brittany", "josh", "todd", "adam"],
+  "wall": [
+    { "from": "kayla", "text": "MOM. this is a WALL. everyone can see when u write on it. EVERYONE. delete the retainer one. n the eye doctor one. n stop signing them. ily but omg. xox", "time": "Sep 29 2026 4:12 PM" },
+    { "from": "bryan", "text": "hi kaylas mom. thanks for the casserole n the car charger. it works. i charged the phone. the phone is in the truck now. but its charged. sorry", "time": "Sep 26 2026 9:47 PM" },
+    { "from": "linda", "text": "Beautiful page Deb!! I can hear your music all the way down here in Waxahachie!! Did you get my forward about the angel with the lantern?? You have until midnight. (((hugs))) ~Aunt Linda", "time": "Sep 24 2026 7:03 AM" },
+    { "from": "walt", "text": "Dear Debbie, Your letter of the 14th arrived on my screen. Yes, I ate the casserole. Yes, all of it. The cat had a difference of opinion with the vacuum after you left and has not come out from under the bed. Regards, Walt (your father)", "time": "Sep 21 2026 10:15 AM" },
+    { "from": "evan", "text": "Hello ma'am. Thank you for having me over w/ Bryan and the guys. The brownies were excellent. I rinsed my plate and put it in the rack. Have a good evening ma'am. xEvanx", "time": "Sep 18 2026 6:30 PM" },
+    { "from": "henderson", "text": "Debbie, thank you for the note about the laminator. For the record, it is *jammed*, not 'jambed.' I say this as a friend. One of five. — Mr. H", "time": "Sep 12 2026 3:22 PM" },
+    { "from": "brittany", "text": "hi mrs kaylas mom!! <3 ur brownies r literally top 8 material. also pls dont tell my mom what time i left ur house. i know u know. u know everything. xoxo", "time": "Sep 8 2026 8:41 PM" }
+  ],
+  "replies": [
+    "Well isn't that nice!! Love, Mom",
+    "I DON'T KNOW WHAT THAT MEANS BUT I AM PROUD OF YOU. sorry, caps. Love, Mom",
+    "Have you eaten today? An actual meal. A Pop-Tart is not a meal. Love, Mom",
+    "I am going to ask Kayla what this means and get back to you. Love, Mom",
+    "That is between you and your mother, but if it were me I would call her. Love, Mom",
+    "LOL!! (I know what it means now.) Love, Mom",
+    "Well. I read it twice and I still have questions, but you seem happy, so. Love, Mom",
+    "Is this the private kind of message or the kind everyone sees? I can never tell. Either way hello!! Love, Mom",
+    "Take a jacket. I don't care what month it is. Love, Mom",
+    "Now who is this? I don't have my glasses on. Whoever you are, sit up straight. Love, Mom"
+  ],
+  "thanksAdd": "Thank you for accepting!! I pressed the button twice so if you get two of me that is why. I am Kayla's mom. I am here to keep an eye on things, not to embarrass anybody, KAYLA. If you are ever in Plano on a Thursday there is casserole. Shoes off at the door. Love, Mom",
+  "ambient": [
+    "Does anyone know how to turn the music off. It is the Rascal Flatts. I love the Rascal Flatts but it has started nine times since lunch and the vice principal has come out of his office twice. Love, Mom",
+    "KAYLA YOUR ORTHODONTIST CALLED, THURSDAY 3:45, AND YOUR RETAINER IS ON THE KITCHEN COUNTER NEXT TO THE BANANAS AGAIN. oh. this is not Kayla's page. Well, now you all know. Love, Mom",
+    "I looked up one of the songs from Kayla's status and listened to the whole thing in the Suburban in the driveway. I think I understand the status now. I also think I like the song. Do not tell her. Love, Mom",
+    "Reminder that a tardy is a tardy even if you were 'basically in the building.' I do not make the rules. I laminate them. Love, Mom",
+    "Made a triple batch of King Ranch casserole. One for us, one for Dad, and one square wrapped in foil for that drummer because I do not believe he eats. Love, Mom",
+    "Linda has sent me eleven forwards today and it is not yet noon. I looked three of them up. Nobody is mailing anybody a free dinner, Linda. Love, Mom"
+  ],
+  "saltyDm": "Well. I see you pressed deny. That is all right, I am sure you have your reasons, and I am sure your mother raised you to have them. I will just keep an eye on things from over here. There is still casserole if you change your mind. I am not upset. I AM NOT UPSET. sorry, caps. Love, Mom",
+  "keywords": {
+    "kayla": "Is she all right?? Her status changed again and she will not come out of her room except for the cordless phone. If you know something, you tell me. I will not say who told me. I am a vault. Love, Mom",
+    "bryan": "He is a nice boy. He says yes ma'am and he carries the groceries in without being asked. Does he return a phone call? No. But neither does my husband and we have been married 22 years. Love, Mom",
+    "music": "PLEASE. How do I turn it off. Todd told me to press the little square and I pressed A square and now my whole page is blue and it is still singing. Love, Mom",
+    "casserole": "King Ranch chicken. The secret is you do not skimp on the cheese and you do not let Linda help. I will write it out for you but it has to be on a recipe card. I don't trust the computer with it. Love, Mom",
+    "tardy": "I can not discuss another student's attendance. I can only tell you that I know, and that I watched him come in through the gym doors at 8:14 with a breakfast taco. Love, Mom",
+    "mom": "Yes honey? Oh. You meant your mom. Well, call her. She worries. I don't know her but I know that. Love, Mom"
+  },
+  "banter": {
+    "kayla": [
+      "Kayla honey your retainer is on the kitchen counter AGAIN and the orthodontist is Thursday at 3:45. Also I like this new picture. Nice picture honey!! Love, Mom",
+      "KAYLA IT SAYS SINGLE. ARE YOU ALL RIGHT. I made brownies, they are on the stove. I am not going to ask any questions, I am just going to be in the kitchen. Love, Mom",
+      "I listened to that Emergency song all the way through. It is very loud but I think I see why you like it. Dinner is at 6:30. Love, Mom"
+    ],
+    "bryan": [
+      "Bryan honey you left your drum sticks in my Suburban. They are on the hall table. Thursday is casserole night and there is a place set for you whether you text back or not. Love, Mom (Kayla's)",
+      "I bought you a car charger for your telephone at the Walgreens. It was $9.99. Do not pay me back, just PLUG IT IN. Love, Mom (Kayla's)"
+    ],
+    "linda": [
+      "Lin, I looked it up. The department store cookie recipe did not cost anybody $250 and nobody was ever charged. But I made them and they are very good, so thank you. Love, Mom. I mean Debbie.",
+      "Linda PLEASE stop forwarding me the ones that sing. I work at a school. Also call Dad, he thinks your emails are coming from the bank. Love, Deb"
+    ],
+    "walt": [
+      "DAD THIS IS NOT EMAIL. Everyone can read this. Do not put your bank's name on here again. I will be over Sunday at 1 with a casserole and I am running the vacuum whether that cat likes it or not. Love, Mom. I mean Debbie. Your daughter.",
+      "Dad, Kayla put a song on your page. It is Bob Wills. If you hear fiddles when you turn the computer on, that is why. Nothing is broken. Do not unplug it. Love, Debbie"
+    ],
+    "kyle": [
+      "Kyle honey it says here you are 14 but you typed this at 9:40 on a school night and you spelled 'definitely' with an A. Does your mother know you are on the computer? Love, Mom (not yours, but still)",
+      "I do not know what a cheat code is but if it is for a test the answer is no. If it is for a video game, ask your brother. Now go to bed sweetie. Love, Mom"
+    ],
+    "henderson": [
+      "Mr. Henderson it's Debbie from the front office!! I accepted your friend request!! The laminator is jammed again and your planetarium permission slips are inside it. I can see them. I can not reach them. Love, Mom",
+      "Your page is very educational. I did not understand the joke about the noble gases but I laughed so the students at the counter would think I did. Love, Mom"
+    ],
+    "todd": [
+      "Todd, a question from the front office. Is there a way to see who is on this website during second period? Not to get anyone in trouble. Just to know. Just for me. Love, Mom",
+      "Todd this is a very nice website you have made. It is loud, but so are teenagers, and I like them too. Does your mother know how hard you work? Somebody should tell her. Love, Mom"
+    ]
+  },
+  "statuses": [
+    "debbie is trying to turn off the music",
+    "debbie is AT WORK AND CAN SEE THE WHOLE PARKING LOT. sorry. caps lock",
+    "debbie is making King Ranch casserole. Table is set for 6. There are 4 of us. You never know",
+    "debbie is not on Kayla's top 8 and is completely fine about it",
+    "debbie just learned what LOL means and has several cards to re-send",
+    "debbie is at crop night. Kayla's senior scrapbook is on page 31. She is in kindergarten on page 31",
+    "debbie is keeping an eye on things. Things look tired. Go to bed, all of you",
+    "debbie pressed something and is now friends with a cat"
+  ],
+  "bulletins": [
+    {
+      "subject": "HOW DO I MAKE THIS PRIVATE",
+      "body": "Kayla honey, the eye doctor moved you to the 9th at 4:15, I told them that works. Also your dad found the missing Tupperware lid under your bed along with two forks and I am choosing not to ask. Also Aunt Linda wants to know your shirt size for Christmas. I said medium. Love, Mom. P.S. I have just been told by a very polite young man named Josh that this went to everybody. Hello everybody. The Tupperware is back in the cabinet. Love, Mom"
+    },
+    {
+      "subject": "RE: FW: FW: Free Dinner For Four (IT IS NOT REAL, LINDA)",
+      "body": "My sister Linda has sent many of you a letter saying a restaurant will mail you a gift certificate if you pass it on to 10 people. I called the restaurant. I spoke to a very patient young man named Dustin. They are not doing that. They have never done that. He has asked me to stop calling. However, I do have a breadstick recipe that is close, and I will write it on a card for anyone who asks at the attendance window BETWEEN classes, not during. Love, Mom"
+    },
+    {
+      "subject": "A reminder from the attendance window",
+      "body": "Good morning. 1) The bell is at 8:05. Not 8:06. 2) A note from your mother must be from your mother. I have been reading your mothers' handwriting since you were freshmen. 3) 'My ride's phone was inside a drum' is not an excused absence, but I did write it down because it made me laugh. 4) Lost and found currently has 11 hoodies, one trombone mouthpiece, and a small rock that I believe belongs to a boy named Patrick. It is in my desk drawer. It is safe. Love, Mom"
+    }
+  ],
+  "pcComments": [
+    "Nice picture honey!! Love, Mom",
+    "Is that a parking lot?? Who drove. Whose car is that. Nice picture though!! Love, Mom",
+    "I PRINTED THIS ONE FOR THE SCRAPBOOK. sorry, caps. It is on page 44 with a sticker of a sun. Love, Mom",
+    "Everyone looks like they are having a nice time. Where are the adults. Love, Mom",
+    "Why is it sideways. Is my computer sideways. Nice picture I think!! Love, Mom",
+    "I can't tell which one is you but I am sure it is very good. Love, Mom"
+  ],
+  "dmSeed": [
+    { "text": "Hello! This is Debbie, Kayla's mom. I don't know if this is the private kind of message or the kind everyone can read, so I will keep it clean. I see you are new. So am I! I have been here three weeks and I have already told forty people about a retainer. If you need anything, a ride, a sandwich, a note for first period, I am at the attendance window. Welcome, and eat something. Love, Mom" }
+  ],
+  "dms": [
+    "Hello it's Debbie. I was trying to send Kayla a message about her laundry and I believe I have sent it to you instead. If so: your whites are in the dryer and they are NOT to sit there overnight. You are welcome to pass that along or just take it to heart. Love, Mom",
+    "Quick question. What is a 'pc4pc.' A boy named Adam has asked me for one eleven times. I told him I have a PC, it is a Dell, and he said 'thanks 4 the add.' Love, Mom",
+    "I AM NOT YELLING I JUST CAN'T FIND THE BUTTON. THE LITTLE GREEN LIGHT IS ON. KAYLA IS AT BRITTANY'S AND MY HUSBAND IS NO HELP. WHICH ONE IS THE CAPS LOCK. IS IT THE ONE THAT SAYS CAPS LOCK. oh. Love, Mom",
+    "You seem like a sensible young person so I will ask you. When a status is a song lyric and then a little broken heart, is that a 'knock on the door' situation or a 'leave a plate outside the door' situation? I have been doing the plate. Love, Mom",
+    "I made too much banana bread. Four loaves. Bryan took one, Dad gets one Sunday, one is for the front office, and one has your name on it if you come by the attendance window before the bell. I mean that literally. I wrote your name on the foil. Love, Mom",
+    "My father has written a formal letter to a cat on this website. It is his cat. He does not know it is his cat. I have decided not to tell him, because it is the most he has typed since Mother passed and he seems to enjoy the correspondence. I just wanted somebody to know. Love, Mom",
+    "Do you know a 'Mr. Whiskers'? He has left a comment on my page saying I am, quote, 'an agent of the Kirby.' I vacuum my father's den on Sundays. I do not know how that cat knows the brand. Love, Mom",
+    "Courtney called!! From college!! For eleven whole minutes!! She needed to know how long to boil an egg (ten minutes, I told her eleven to be safe) but she ALSO asked how I was. I am telling you because Kayla said 'cool' and went back in her room and I had to tell somebody. Love, Mom"
+  ],
+  "blog": [
+    {
+      "title": "I Listened To The Whole CD",
+      "date": "Sep 27 2026 9:14 PM",
+      "mood": "thoughtful",
+      "body": "Kayla left a burned CD in the Suburban. It says DO NOT TOUCH in purple marker, which I took to mean 'not while I am in the car.' So Tuesday I drove to Curves and back the long way and listened to all 17 songs. Some observations. One, these young people are very upset, and they are upset in tune, which I respect. Two, there is a girl singer on track 4 who I would put up against anybody at my church. Three, track 9 is the drummer's band. You can tell because it was recorded in a garage and somebody's dad says 'that's enough' at the end. I sat in the driveway until it finished. I don't understand all of it. But I understood more about my daughter in 58 minutes than I have since she got her own phone line. I put the CD back exactly where it was. If you tell her, I will deny it. Love, Mom"
+    },
+    {
+      "title": "Things I Have Typed In The Wrong Box (A List)",
+      "date": "Sep 13 2026 12:40 PM",
+      "mood": "embarrassed",
+      "body": "I am told the box at the top is a 'status,' the box on someone's page is a 'wall,' and the box with the envelope is private. I have been using them as one box. So here is a list of things the whole website now knows. 1. Kayla's retainer lives next to the bananas. 2. My husband's cholesterol number. (It is better now. Thank you to the four of you who asked.) 3. That I think the Hendersons' new fence is over the property line. This is a different Henderson than the science teacher. I think. 4. My grocery list from the 6th. A boy named Randy commented 'PIE' and he was right, I had forgotten the pie crust. 5. A note to my sister that began 'Linda, between us.' It was not between us. It was between about forty people and a cat. I am learning. Slowly. Love, Mom"
+    },
+    {
+      "title": "Sunday At Dad's",
+      "date": "Aug 30 2026 7:55 PM",
+      "mood": "full",
+      "body": "Took Dad his casserole. He had the computer on, the one Kayla set up for him on Mother's old sewing table, and he was typing with two fingers and his reading glasses pushed up on his head. I asked who he was writing to. He said, 'A young man named Patrick who has a rock.' I asked what they write about. He said, 'Tomatoes, mostly. He asks good questions.' Dad carried the mail for 34 years and I don't think he ever got much of it himself. Now he gets three or four letters a day from a boy with a rock, and he answers every single one, Dear and Regards and all. I ran the vacuum. The cat looked at me like I had keyed his car. Dad walked me out to the driveway and said to tell Kayla her 'electric mail' works fine. I am not going to correct him. Love, Mom"
+    }
+  ],
+  "survey": {
+    "title": "FW: Getting To Know You!! (from Linda. I am supposed to send it to 10 people)",
+    "qa": [
+      ["Name?", "Debbie. Deborah Jean on my driver's license and when I am in trouble with my father."],
+      ["What time did you get up this morning?", "5:15. Lunches don't pack themselves and neither does my husband."],
+      ["Last thing you ate?", "The crusts off Kayla's toast, standing at the sink, like every mother in America."],
+      ["Favorite smell?", "The laminator when it is warming up. Also bread."],
+      ["What is on your mouse pad?", "A picture of both girls at Six Flags. Courtney is squinting and Kayla is mad about a hat."],
+      ["Coke or Pepsi?", "Diet Dr Pepper and I will not be taking questions."],
+      ["Do you sing in the car?", "I do now. It's the Paramore. Do not tell Kayla."],
+      ["What did you want to be when you grew up?", "A flight attendant. Then a mom. I got the one with fewer pretzels."],
+      ["Who is most likely to respond to this?", "Linda, within four minutes, with an angel."],
+      ["Who is least likely to respond?", "Courtney. She's at college. She's very busy. She's fine. I'm fine."],
+      ["Hugs or kisses?", "Hugs, and you will take one whether you want it or not."],
+      ["What are you listening to right now?", "Rascal Flatts. Against my will. Love, Mom"]
+    ]
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "id": "holly",
+  "name": "hottopic_holly",
+  "tag": "welcome in. let me know if you need anything. (name 3 songs) (the shirt is $24.50)",
+  "avatar": "assets/avatar_holly.gif",
+  "gender": "Female",
+  "age": 18,
+  "hometown": "Miamisburg, Ohio (the mall is right there. i can see it. it can see me)",
+  "loc": "register 2. a boy is holding a keychain like it's a decision",
+  "zodiac": "Pisces. starxgazer says 'dreamy, sensitive, secret romantic.' i said it's a fish. she said 'a fish with a britney cd.' i have no idea how she knew",
+  "status": "Single (the stockroom and i have an understanding)",
+  "hereFor": "Friends, Networking (store credit), Dating (only if you can name 3 songs)",
+  "mood": "tired but professional -_-",
+  "lastLogin": "Oct 3 2026 11:48 PM",
+  "theme": { "bg": "#17081f", "fg": "#f0e6f6", "accent": "#ff4fa3" },
+  "bgTile": "assets/tiles/tile_skulls_pink.png",
+  "blogTitle": "register 2: notes from the front of the store (no, i can't check the back)",
+  "about": "hi. welcome in. let me know if you need anything. (you won't.) i'm holly, i'm 18, i work 26 hours a week at the hot topic at the mall, and i get asked 'where's the goth stuff' about 11 times a shift. it's the store. i have rules. 1) if you pick up a band shirt i'm going to ask you to name 3 songs. not the single. not the one from the movie. 3. 2) i don't discuss my discount. 3) the shirt isn't 'too expensive.' the shirt is the price. i just work here. my taste is correct and also very old. i listen to the cure, the smiths, bauhaus and the misfits. nothing else. (that's a lie but it's a professional lie.)",
+  "aboutMore": "things on a need-to-know basis. my cat is named Sprinkles. my mom named her. she's black. there's no irony, it's just her name. my brother danny is 11 and owns one misfits shirt he can't name a song for, so i'm teaching him, 1 a week. he's at 3. when i fail someone at the register i still sell them the shirt, because that's the job. then i put a burned cd in the bag. it says START HERE in silver marker. i've made 214. i don't say it's from me. if you got one, it wasn't.",
+  "meet": "Who I'd like to meet: robert smith, not to say anything, just to stand near. whoever programs the store's music loop at corporate (i have notes. 41 pages. single spaced). a customer who says 'i only know one song' and comes back with two. that person is my favorite person in the world and i've never once told them.",
+  "interests": {
+    "General": "band tees (folding, not wearing), the inventory truck (tuesdays, 7 am, joy and pain), the price gun, the stockroom (quiet), burning cds, my discount (don't ask), explaining goth vs emo vs scene (3 different things, 1 lecture, 4 minutes), a 12 minute break in my car with the engine off, black nail polish that chips by thursday, Sprinkles (the cat)",
+    "Music": "the cure, the smiths, bauhaus, joy division, the misfits (the old singer, not the new one), siouxsie, sisters of mercy, cocteau twins. name 3 songs from any of them. i'll wait. also nothing else. (the song on my profile is for research. i'm researching how it's built. it has a bridge. i've been researching for 311 plays.)",
+    "Movies": "the nightmare before christmas (it counts, raven said it counts), beetlejuice (brad keeps recommending it. i own it. i bought it in april. i haven't told him because he'd put a card on it), the crow, edward scissorhands, corpse bride, mean girls and a cinderella story (both research)",
+    "Television": "buffy (rewatching season 4, i know), daria (reruns, 1 am), project runway (volume low), the hot topic training video (it exists, it's 9 minutes, the guy says 'passion' 4 times, i've counted)",
+    "Books": "the sandman (all of it, read in the stockroom, on my break, in 12 minute pieces), edward gorey (the journal in my bag. a customer left it. i adopted it), the perks of being a wallflower (the paperback with the cracked spine, lent to 3 people, returned by 1), the employee handbook (page 11: 'dress code is part of the brand.' i'm part of the brand. i'm furious)",
+    "Heroes": "robert smith. siouxsie. my manager dana (she let me close alone 4 months in and never made it a thing). the woman who comes in every month for a new band tee 'for her son' and clearly it's for her. every kid who says 'i only know one song' and then comes back. my brother danny (3 songs)"
+  },
+  "song": {
+    "name": "Toxic",
+    "artist": "Britney Spears",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ae/c4/7f/aec47f56-842d-49b4-558b-7a7523fd6728/mzaf_6693111381462300599.plus.aac.p.m4a",
+    "pattern": [0, 7, 10, 12, 10, 7, 3, 0],
+    "bpm": 143
+  },
+  "decor": ["assets/deco_skull.gif", "assets/deco_sparkle_bunny.gif"],
+  "friends": ["raven", "riley", "misery", "kittyxcore", "vinyl_witch", "brad", "henry", "thad"],
+  "wall": [
+    { "from": "raven", "text": "Holly. I was in your store on Saturday and heard something through the stockroom door. I am not going to say what. I am saying nothing. I am saying it here, in public, where you can see that I am saying nothing. Also the Bauhaus shirt on the rack is hung backwards. Fix it. I say that with love. A measured amount.", "time": "Oct 1 2026 1:40 AM" },
+    { "from": "riley", "text": "HOLLY!!! i bought 2 GIR things and a checkered thing and u said 'ok' and gave me a bag and i said RAWR and u said 'sure' and that's the nicest anyone's ever been 2 me at a register xD *hands u an invisible cookie* it's for ur discount. it's 40% off. it's invisible. u can't see the discount either. it's perfect", "time": "Sep 28 2026 6:15 PM" },
+    { "from": "nate", "text": "holly. about the coupon. it expired on the 14th. i showed it on the 16th. i know that now. also i shouldnt have said 'so ur a fan' to ur coworker like that, he was just being nice. i do the merch table. i know what a nice customer looks like. some people... (not u)", "time": "Sep 24 2026 9:31 PM" },
+    { "from": "gwen", "text": "holly. i watched you fail a boy at the register for owning a joy division shirt and knowing exactly one song. you told him to come back with two. he came back with two.¹ i saw it from the escalator. i also saw the cd you put in his bag. START HERE, in sharpie. i'd normally say a sharpie scrawl isn't a gift, it's an accident.² i am making an exception. i was moved. i probably shouldn't have told you.   ¹ it was the right two.  ² you probably haven't heard of the feeling.", "time": "Sep 19 2026 4:47 PM" },
+    { "from": "thad", "text": "(He enters stage left, holding a Misfits shirt.) Holly. My severe and lovely Holly. I stood at your register a broken man (I am fine) and named three songs. 'Skulls.' 'Halloween.' 'Where Eagles Dare.' You said 'okay' and rang me up. I have never in my life been so seen. (He exits with a bag. He is fine.)", "time": "Sep 14 2026 7:12 PM" },
+    { "from": "yvette", "text": "HOLLY. Superlatives committee. Your category is 'Most Likely To Judge Your Shirt' and you are running unopposed. Please confirm by FRIDAY. Photo: at the register, arms crossed, no smiling (I assume that is not a problem). Also you are second in 'Best Dressed.' I did not make the second one up. VOTE YVETTE", "time": "Sep 9 2026 3:58 PM" },
+    { "from": "kittyxcore", "text": "hollyyy ur discount works on hello kitty right?? the pink skull one by the register?? i know its not technically a hello kitty its a skull w/ a bow but its a hello kitty in my HEART. pc4pc?? i have 47 new pics. u dont have to comment all 47. but u kinda do =^.^=", "time": "Sep 2 2026 5:04 PM" }
+  ],
+  "replies": [
+    "ok. that is a thing that was said.",
+    "sure. noted.",
+    "welcome in. say that again but with 3 songs in it.",
+    "that's fair. that's... actually fair.",
+    "i'm going to pretend i didn't read that and then read it again at 9.",
+    "a customer just asked me where the goth stuff is. i pointed at the store. sorry. anyway. hi.",
+    "i'd reply properly but there's a boy at register 2 holding a keychain like it's a decision.",
+    "that's sweet. don't say that near my manager.",
+    "ugh. fine. thank you.",
+    "i'm on break. 12 minutes. this reply is 40 seconds of it. you're welcome."
+  ],
+  "thanksAdd": "welcome in. you're added. let me know if you need anything. (you won't.) i'd say you get my discount but it's 40% and it's non-transferable and i think about it daily. you can look around. you can even touch the shirts. but if you pick one up, i'm going to ask. just to see your face.",
+  "ambient": [
+    "a boy asked if the band on the shirt was 'a real band.' i said 'it's the band on the shirt.' he said 'but is it real.' i said 'that's the best question i've been asked all week. name 3 songs.' he named 0. i sold him the shirt (full price) and put a cd in the bag. he asked what it was. i said 'homework.'",
+    "inventory truck came. 14 boxes of nightmare before christmas. the same 14 boxes as august. i don't know where the old ones go. i choose to believe there's an island.",
+    "closing time. the mall lights go to half. the fountain stops. it's the best 11 minutes of the day. i sit on the register stool and listen to nothing. i don't know why i'm telling you.",
+    "danny named a THIRD song. in the kitchen. correctly. i dropped a plate. (the plate's fine.) i have to sit down. i'm sitting down.",
+    "a man asked me to 'make the store less loud.' i said 'it's the music.' he said 'that's the problem.' i said 'it's the music we play.' he said 'i know.' he stayed 20 minutes and bought a poster. i don't understand people. i like them anyway. don't repeat that.",
+    "yvette put me down for 'most likely to judge your shirt.' i asked for 'best dressed.' she said 'both.' i said 'fine.' it's the first time i've been flattered and accused in the same sentence."
+  ],
+  "saltyDm": "request denied. ok. you're allowed. i'm going to say something and then never say it again: if you ever want a band recommendation, i'm at register 2. no discount, no judgment, no test. ...there's a test. just ask.",
+  "keywords": {
+    "shirt": "the shirt is the price on the tag. i don't set the price. i also don't like it. before you pick one up: do you know the band. if not, that's fine. everyone starts somewhere. you just have to start. name one song.",
+    "discount": "no. i don't discuss my discount. it's 40% and it's mine and i earned it standing up for 6 hours while a man holding a chain wallet told me i should smile more.",
+    "band": "name 3 songs. i'll wait. it's not a trick. it's a door. i'm holding it open and asking you to walk through instead of staring at the handle.",
+    "goth": "it's a subculture. i work at a store that sells things people associate with it. different thing. raven says i'm 'an employee of a corporation with taste.' it's the nicest anyone has been about this.",
+    "britney": "i don't know what you're talking about. there's no britney here. there's a song on my page. it has a bridge. a bridge is a goth thing. it's structurally interesting. leave.",
+    "mall": "the mall is a real place with real light and real pretzels. it's the one spot where a 13 year old, a 40 year old and a 17 year old in a chain wallet are all just trying to find something. i don't say that out loud. i work here.",
+    "cd": "i don't burn cds. who burns cds. the cd you're thinking of belongs to a different holly. there's another holly. she works at the spencer's. she has a lot of cds.",
+    "hot topic": "a real store with real prices. i didn't pick the lighting. the lighting picked me."
+  },
+  "banter": {
+    "raven": [
+      "raven you shop here. don't deny it. the edward gorey journal, the one with the ghost, the 14th, 4:12 pm, i rang you up. 'a hot topic receipt' is how i pay my rent. i've been very good about not saying anything. i'm saying something.",
+      "raven a woman at my register asked who taught me about siouxsie. i said 'a goth.' she said 'oh, like at the mall.' i went to the stockroom for a while. i'm fine. you weren't there but you were a little bit there."
+    ],
+    "riley": [
+      "riley the checkered thing is $19.50. it's still $19.50 when you say rawr at it. i'm not allowed to give a rawr discount. i asked. it's in the handbook, page 11, under 'enthusiasm.'",
+      "riley an invisible cookie is not accepted as payment. i tried to explain. you said 'it's chocolate chip.' i said 'it's not legal tender.' you said 'it's invisible.' i said 'that's the problem.' we're still friends."
+    ],
+    "misery": [
+      "misery you came in with your mom's camcorder and filmed 'a day in the life of a hot topic.' you filmed the back of my head for 4 minutes. it's the best footage of my head i've ever seen. i look like a person with a plan.",
+      "misery your first video has a dinosaur noise at 0:04. riley says it's hers. i'm not getting involved. in my professional opinion you both say it at the register and it sounds exactly the same."
+    ],
+    "nate": [
+      "nate the coupon expired on the 14th. you presented it on the 16th. i didn't make that rule. i would have honored it but the register honors nothing. it has no heart. it did have a sticker. also my coworker really does like your band. he wasn't being nice.",
+      "nate you're the merch guy. i say that with respect. merch guys are the backbone. i sell 22 band tees a day and not one comes with a pitch as good as 'it's 15 for a shirt, 20 for two.' i'd buy two."
+    ],
+    "henry": [
+      "henry the rule is the rule. wheels out, wheels in your pocket, you walk the aisle. you check them at the door like a saloon. i'm a bouncer for 14 feet of floor. also you are still the only customer who says thank you to the register.",
+      "henry dennis came in asking if i'd seen 'the kid.' i said there are 400 kids. he said 'the kid with the shoes.' i said not today. you were behind the nightmare boxes the entire time. he looked at the boxes. i'm only saying so you understand the stakes."
+    ],
+    "brad": [
+      "brad you recommended beetlejuice for the third time this week. i own it. i've owned it since april. you keep recommending my own movies back to me. it's like talking to a very polite mirror.",
+      "brad the cd in your return slot was an accident. it was a customer's. it fell out of my tote. thank you for holding it. i'm picking it up tomorrow. about track 12: it's a palate cleanser. that's a real term. i just made it up. don't put it on a card."
+    ],
+    "thad": [
+      "thad you named 3 songs. i'm going to be honest, it's the first time in 3 weeks someone did it without me asking twice. i almost smiled. i did smile. it was brief. a customer saw. he's afraid of me now. that's fine.",
+      "thad the monologue at the register was lovely. there was a line of 11 people. you cried. one of them clapped. i held the line for you and i'd do it again. please don't make me do it again."
+    ]
+  },
+  "statuses": [
+    "holly is at register 2. a boy is holding a keychain like it's a decision",
+    "holly just named 3 songs for a customer who couldn't. nobody asked her to. it's fine",
+    "holly is on break. 12 minutes. in the car. listening to something she will deny",
+    "holly is folding the same 14 shirts for the 4th time. they don't stay folded. neither does she",
+    "holly just had a mom ask if 'Disintegration' is 'a halloween thing.' she said it's an album. the mom said 'for halloween.' she said sure",
+    "holly is closing. the mall lights are at half. best 11 minutes of the day",
+    "holly's brother named a THIRD song. holly needs to sit down. holly is sitting",
+    "holly smiled at a customer by accident. he took a step back. we both understood"
+  ],
+  "bulletins": [
+    {
+      "subject": "NEW BAND TEE POLICY (not corporate, mine)",
+      "body": "effective whenever i say so. if you're buying a band shirt: you will be asked to name 3 songs. not the single. not the one from the movie. if you can't, that's fine. the shirt is still $24.50 and i'll still ring you up. i'll just put something in the bag. you'll know it when you see it. if you CAN name 3: you get a nod. that's it. just a nod. it's the best i have. also: it's not a test. it's a door. i'm only the person standing next to it."
+    },
+    {
+      "subject": "SURVEY: how goth are you (copy/paste, 5 questions)",
+      "body": "1. first cure song you ever heard: 2. disintegration or faith (don't answer, it's a trap): 3. have you ever worn black to a party: 4. do you own a chain wallet: 5. do you know what a chain wallet does: mine. 1. boys don't cry (my mom's tape in the car). 2. faith. 3. every party. 4. no. 5. nothing. it does nothing. it's a chain. you're welcome. post yours on my wall. i'll score it. i'm very fair and a little mean."
+    },
+    {
+      "subject": "LOST AND FOUND (the hot topic one)",
+      "body": "things left in the store this month: 1 chain wallet (silver). 1 spiked wristband (left). 1 copy of Sandman vol. 3 (a nice one, i'm holding it). 3 retainer cases (please). 1 black glove (left). also: if you're the person who left a britney spears cd on the counter, it's in lost and found (my bag). it's not mine. you can pick it up anytime. i'll hold it. i have time."
+    }
+  ],
+  "pcComments": [
+    "nice. the lighting is doing a lot. so is the shirt. is it a real band shirt or a store shirt. i'm not judging. i'm asking.",
+    "good pic. i'd put a black border on it. it's not necessary. it would be correct.",
+    "your eyeliner is even on both sides. i'm checking. it's even. that's rare. that's actually elite.",
+    "is that the mall in the background. that's my mall. i work 40 feet from where you're standing. i'm behind that pillar, folding.",
+    "you look happy. that's not a goth thing to say. i'm saying it anyway. it's the 12 minute break talking."
+  ],
+  "dmSeed": [
+    { "text": "hi malten. welcome in. let me know if you need anything. (you won't.) i'm holly. i work at the mall and i'm told i 'seem intimidating.' i don't know what that means. i was folding. anyway the add went through, apparently. free fact: the shirt is $24.50. second free fact: you don't need a shirt. you need a cd. i have one. it says START HERE." },
+    { "text": "also if a kid on wheels comes in asking if i've seen him, i haven't. i'm only telling you because you're new and might say something." }
+  ],
+  "dms": [
+    "malten a customer tried to return a shirt he was wearing. he'd worn it into the store. the tag was still on, tucked in. i said 'sir.' he said 'what.' i said 'sir.' we looked at each other for 40 seconds. i gave him store credit. i don't know why. i'm so tired.",
+    "my manager dana got me an extra shift for halloween week. it's the busiest week. it's like being a lifeguard at a pool made of eyeliner. she said 'i need someone who won't panic.' i said 'i don't panic. i go very quiet.' she said 'exactly.' i'm going to be fine.",
+    "my mom found the stack of blank discs by my stereo and asked who they're for. i said 'people.' she said 'what people.' i said 'people who need to know a second song.' she didn't say anything. the next day there was a new pack of 50 on my bed. that's the nicest thing she's ever done and it's a pack of blank discs.",
+    "what's the right answer when a boy at the register says 'i like all kinds of music.' that's not an answer. that's a weather report. i asked for 1 song. he said 'whatever's on.' i said 'this is on.' it was the store loop. a sisters of mercy song. he said 'that's good.' i gave him a cd, a poster, and my blessing.",
+    "random question. is it normal to cry at the end of a song you've heard 300 times on a store loop. asking for a friend. (the friend is me. it's the song at minute 61. i won't say which.)",
+    "a boy comes in every saturday and stands at the same shelf for 20 minutes. i think he's waiting for someone to ask if he needs help. today i asked. he said 'no.' then he said 'actually, yes.' then he bought a chain. i've never been so proud of a chain.",
+    "i've worked 26 hours a week for 10 months and i can now tell what's on the counter by sound. a chain wallet lands as a C. a keychain is a D. a stack of stickers is just a sigh. i'm not saying it's a life skill. i'm saying it's the one i have.",
+    "tell me something. my cat sprinkles sits on my stack of burned cds every night like she's guarding it. i think she's reading the tracklist. she has a favorite. it's the one at the end. i don't know how i know."
+  ],
+  "blog": [
+    {
+      "title": "the 3 songs test: a defense",
+      "date": "Sep 25 2026 11:40 PM",
+      "mood": "tired but correct",
+      "body": "people think i'm being mean. i'm not. when i was 15 i walked into a record store (not mine, a little one downtown) in a shirt i'd bought for the logo. the woman behind the counter said 'name a song.' i couldn't. i thought she'd throw me out. instead she went into the back and came out with a tape, put it in my hand, said 'start here,' and went back to the register. i listened to it 41 times that summer. i don't know her name. i've never been back. i was too embarrassed. so when someone picks up a shirt at my register and can't name a song, i'm not saying no. i'm saying come in. the test is a door. the cd in the bag is the person in the back room holding it open. that's the whole thing. that's all i do. please don't put this on a shirt."
+    },
+    {
+      "title": "a day in the life of register 2 (a list)",
+      "date": "Sep 11 2026 10:05 PM",
+      "mood": "numb (good numb)",
+      "body": "9:55 arrive. 10:00 the gate goes up. 10:07 a man asks where the goth stuff is. 10:08 a second man asks. 10:40 a mom asks if the store 'is a phase.' 11:15 a boy picks up a shirt and puts it down 6 times. 12:00 break (12 minutes, car). 12:12 back. 1:30 inventory truck. 1:31 14 boxes of the same thing. 2:15 a kid on wheels stops at the door, takes the wheels out of his shoes, puts them in his pocket and walks in. i nod. he nods. 3:00 a woman buys a band tee 'for her son.' 4:20 a girl says 'i only know one song' and then names all the words to it. 5:30 i fold the same 14 shirts. 6:00 a man says i should smile more. 6:01 i smile. he leaves. 9:00 closing. 9:11 half lights. 9:12 the best minute of the day. 9:20 i go home. sprinkles is on the cds."
+    },
+    {
+      "title": "an unrelated post about nothing (nothing happened in the stockroom)",
+      "date": "Aug 28 2026 11:55 PM",
+      "mood": "defensive",
+      "body": "this is not about anything. i was in the stockroom, alone, at closing, counting boxes, and something that was not the store loop was playing in my head. it was not a song with a bridge. it was not 'research.' i did what you do when something is playing in your head and the lights are half and no one is there. i moved. a little. my coworker walked in with a clipboard. he looked at me. i looked at him. he didn't say anything. he did the thing with the arms. then he left. we have never spoken about it. he's now the best person i work with. that's all. nothing happened. there's nothing to see. there are 14 boxes of nightmare before christmas in there if you want to look at those instead."
+    }
+  ],
+  "survey": {
+    "title": "the survey that was left on the counter (completed in the stockroom)",
+    "qa": [
+      ["name:", "holly. on my name tag it says HOLLY and under it 'ask me about our nightmare line!' i've been asked 0 times. i hold a grudge"],
+      ["age:", "18. i started at 17 and turned 18 three weeks in. nobody noticed. that's the job"],
+      ["job:", "hot topic, upper level, 26 hours a week. 'sales associate.' none of us sell anything. people just come in and it happens"],
+      ["favorite band:", "the smiths. the cure. bauhaus. (name 3 songs from each. i'll wait)"],
+      ["guilty pleasure:", "there's no such thing. a pleasure is a pleasure. i don't have any. (the song on my profile is research.)"],
+      ["last thing you bought:", "a 50 pack of blank discs. $11.99. my discount doesn't apply, we don't sell them. also a thing i'm not going to mention"],
+      ["what's in your bag:", "an edward gorey journal (adopted), a silver sharpie, 4 blank cds, gum, a price gun i'm not allowed to take home (i took it home)"],
+      ["worst customer:", "the man who told me the store was 'too dark.' he was standing in a store whose entire premise is dark. i held the door for him. i was gracious. i went to the stockroom"],
+      ["best customer:", "a girl who said 'i know one song.' then she said 'it's the only one, but i know all the words.' i gave her a cd, a shirt and nothing else, because nothing else was needed"],
+      ["if you could be anything:", "a person who doesn't have to say 'welcome in.' i said it 14 times today. i said it to my cat. she looked at me like i owed her a discount"],
+      ["how many people will you send this to:", "0. i'm not a chain letter. i'm a chain wallet. that's not a good joke. i'm leaving it in"]
+    ]
+  }
+}

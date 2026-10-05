@@ -1,0 +1,229 @@
+{
+  "id": "angela_cool_site_award",
+  "with": "angela",
+  "opener": [
+    "~*~ Hello malten! ~*~ This is Angela, writing from the back office of the Realm (my bedroom). I have reached the FINAL PAGE of your Cool Site Award review. I have been reviewing since September. Nobody has ever been reviewed this long. (I am enjoying it.)",
+    "The results! Welcome message: YES. Guestbook tab: YES. Webring: YES (I have gone around it 44 times). Things that blink: SO MANY. Under Construction sign: MISSING. And here is my problem.",
+    "I cannot find anything wrong with your site. I have looked. If I give a star to a site with no flaws, it is a FINISHED site. A finished site is an abandoned site. Then I have given a star to a ghost. Please help me. The digging man is waiting."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "my site isn't finished. nobody lives in a finished house. give me one flaw and i'll go build it.", "next": "flaw_hunt" },
+        { "say": "forget my site a second. what did the other four winners have that mine doesn't?", "next": "four_winners" },
+        { "say": "give the star to herp's page. it loads instantly and knows exactly what it is. your words.", "next": "herp_star" }
+      ]
+    },
+
+    "flaw_hunt": {
+      "them": [
+        "~*~ A FLAW! ~*~ Yes! I keep a list. 1) Your About tab does not center a single thing. 2) No hit counter (I have written to you about this). 3) Your guestbook tab has three entries: mine, a rules draft from Marcus, and a horse.",
+        "It is not FINISHED but it is not UNDER CONSTRUCTION either. It is merely fine. And fine, malten, is the enemy of the star."
+      ],
+      "choices": [
+        { "say": "so the guestbook is the construction site. we fill it. i'll get you 200 entries by sunday.", "next": "guestbook_drive" },
+        { "say": "then add the counter. start it at your number. every visitor's a witness.", "next": "counter" }
+      ]
+    },
+
+    "four_winners": {
+      "them": [
+        "~*~ The Four! ~*~ #1: Todd's Server Status Page (the uptime graph with the naps). #2: DANA'S UNICORN MEADOW (a MIDI of a hymn I never identified, and a unicorn that followed your cursor). #3: Nat's guild page, because the HTML was perfect. #4: my dad's page for his bait shop. It says BAIT. OPEN. COME IN.",
+        "All four have something in common and I have never said it out loud. I think I have never said it because I did not know I knew."
+      ],
+      "choices": [
+        { "say": "they all say 'come in.' that's your whole rubric.", "next": "rubric" },
+        { "say": "tell me about dana. she's the one you e-mail every year.", "next": "dana" }
+      ]
+    },
+
+    "herp_star": {
+      "them": [
+        "~*~ HERP! ~*~ Malten. The page that says 'herp.' It loads in 0.1 seconds. It has no lake. It has no gif. It is the least constructed page I have ever seen, and it is already finished, and it is NOT abandoned, because herp is always there. That might be a rubric.",
+        "But a star SPINS, and spinning would be the biggest thing herp has ever done. Is it fair to give him something that big? Should I ask first? How do you ask someone who says one word?"
+      ],
+      "choices": [
+        { "say": "herp doesn't need a star. he needs a spot in the ring. start there.", "next": "ring_slot" },
+        { "say": "mail it. watch herp's day get better. he'll say 'herp' and it'll mean everything.", "next": "herp_mail" }
+      ]
+    },
+
+    "guestbook_drive": {
+      "them": [
+        "~*~ A GUESTBOOK DRIVE! ~*~ Oh, I have always wanted to run one! I will e-mail every site in your webring (all seven) and ask each to sign yours. 200 entries by Sunday would be a record. But the entries must be REAL. Not 'cool site!!!' (One 'nice lake' is allowed.)",
+        "Shall I set a minimum? Three words? Six? A whole paragraph? I have never had to be fair to a guestbook before."
+      ],
+      "effects": [
+        { "type": "bulletin", "delay": 12, "subject": "~*~ GUESTBOOK DRIVE: please sign malten's guestbook! ~*~", "text": "Hello, travelers! malten's home on OurSpace has a Guestbook tab and it has THREE entries (one is a horse). Please visit, click the tab and sign! Your name, where you're from, and ONE true sentence about why you stopped by. (One 'nice lake' is allowed.) The goal is 200 by Sunday. I will thank each of you personally by e-mail. ~ Angela, Ringmistress [ Prev | Random | Next ]" }
+      ],
+      "choices": [
+        { "say": "one honest sentence each. like your dad's. 'i live here.' no minimums.", "next": "sentence_rule" },
+        { "say": "a name and one reason they stopped by. like a library card, but warmer.", "next": "ring_merge" }
+      ]
+    },
+
+    "counter": {
+      "them": [
+        "~*~ A HIT COUNTER! ~*~ I have a gif (the odometer, six digits, free of charge). I will start it at 004,219 so it continues from MY count and we are... connected. Is that allowed? Is a counter a promise?",
+        "Once it says 004,219 it must say 004,220. Forever. You will have to keep your site open for the rest of your life."
+      ],
+      "choices": [
+        { "say": "good. i'm not going anywhere. i built a page with windows in it. i live here.", "next": "ring_merge" },
+        { "say": "start it at 1. start honest. the first visitor is you, pressing refresh.", "next": "sentence_rule" }
+      ]
+    },
+
+    "rubric": {
+      "them": [
+        "...they all say 'come in.' ~*~ Oh. Oh my GOSH. ~*~ That is why I cannot find a flaw in yours! It says 'come in' on EVERY page! Hold on. I am writing it on a sticky note AND in the Realm's source as a comment.",
+        "But if the rubric is 'come in,' why have I given only four stars? I have been saying 'Under Consideration' for SEVEN YEARS. Have I been standing at my own door saying 'one moment'?"
+      ],
+      "effects": [
+        { "type": "status", "delay": 10, "text": "angela has found the rubric. it is on a sticky note. it says 'come in.' she is staring at it. (the digging man is also staring.)" }
+      ],
+      "choices": [
+        { "say": "maybe. make the star a door, not a trophy. hand it out sooner. 'come in' doesn't need a review.", "next": "open_door" },
+        { "say": "take your time. but some doors are waiting for one person. you know which.", "next": "placeholder" }
+      ]
+    },
+
+    "dana": {
+      "them": [
+        "~*~ Dana! ~*~ Dana's Unicorn Meadow. I was 11. She was 12 and lived in Oregon (a whole STATE). Her unicorn followed your cursor and when you clicked it, it said 'hi.' Her hit counter said 000,417 on the last day. She wrote 'be right back, going to camp!' in the guestbook.",
+        "That was four years ago. I e-mail her on the ring's anniversary. I do not know what I would say if she wrote back."
+      ],
+      "choices": [
+        { "say": "say 'your spot's still here.' that's the only sentence she'll need.", "next": "open_door" },
+        { "say": "make a page for her spot: 'Dana's Meadow is resting (be right back).' so the ring keeps its promise.", "next": "placeholder" }
+      ]
+    },
+
+    "ring_slot": {
+      "them": [
+        "~*~ The ring! ~*~ Yes! If I add herp I have five. Two broken, two resting, one that loads. ...wait. malten. You said 'ring.' Yours has seven sites. Mine has four. If we JOINED them... eleven. Eleven is a small town.",
+        "I have never been mayor of a town. I would need a hat. I would need a sign. I would need a guestbook for the town hall."
+      ],
+      "choices": [
+        { "say": "join them. one ring, eleven sites, one next button. mayors are allowed hats.", "next": "ring_merge" },
+        { "say": "save a spot for dana first. a town needs someone who's still on the way.", "next": "placeholder" }
+      ]
+    },
+
+    "herp_mail": {
+      "them": [
+        "I e-mailed herp's page. 'You have been awarded Angela's Cool Site Award (120x120, spinning).' His reply: 'herp.' ...I have been looking at it for a minute. It is the most beautiful reply I have ever received. I think it means thank you. I think it means 'I did not know I was in the running.' I think it means herp.",
+        "malten, I have given a star to a man in four letters and you are still Under Consideration. Should I be sorry? On your behalf?"
+      ],
+      "choices": [
+        { "say": "i'm thrilled. the star went to the right page. mine can wait. i'm in no hurry.", "next": "ring_merge" },
+        { "say": "don't be sorry. be fast. tell the site the door is open and you've got more stars.", "next": "open_door" }
+      ]
+    },
+
+    "sentence_rule": {
+      "them": [
+        "~*~ ONE SENTENCE! ~*~ Yes! That is the rule: ONE true sentence, like my dad's. I have 61 e-mails drafted. Fourteen sites have already signed (Nat's guild page wrote 'we restock at 4am, come in'). I am putting the digging man at the top of the guestbook page with a sign: 'THIS PAGE IS NEVER FINISHED. COME IN.'",
+        "I must decide by the end of the week: a star, a ring, or a wait. And I would like your honest answer, not your polite one. malten, what is the Realm FOR?"
+      ],
+      "choices": [
+        { "say": "it's for the guestbook. a room full of people who stopped by. hang the star in my page, in the room.", "next": "end_star" },
+        { "say": "it's for the ring. a hallway that finally connects everybody's rooms.", "next": "end_ring" },
+        { "say": "it's for dana. hold the star until she comes back to the door.", "next": "end_dana" }
+      ]
+    },
+
+    "ring_merge": {
+      "them": [
+        "~*~ THE MERGE! ~*~ Eleven sites. Mine (the Realm), Nat's guild, two resting links, and your seven, including the one that says 'herp.' I have drawn it on a napkin. It is a circle with a little man at the top. The little man is digging. I have named it 'The Ring of Enchanted Sites (and Friends).' It is a working title.",
+        "There is one more matter. The star. I can only give it once. To whom?"
+      ],
+      "choices": [
+        { "say": "no star. the ring's the prize. eleven sites, one next button, everybody in.", "next": "end_ring" },
+        { "say": "give it to the page that loads instantly and knows what it is. herp's. he's earned it.", "next": "end_herp" },
+        { "say": "keep it for my page. i'll wear it badly.", "next": "end_star" }
+      ]
+    },
+
+    "open_door": {
+      "them": [
+        "~*~ A DOOR! ~*~ I have decided something. The star is not a trophy. It is a door. 'Come in.' It will be given when a site first says it, not after seven years of review. I will add a page: THE DOORWAY. It will have the four stars, and the new ones. I am so excited that I have forgotten to be careful with my commas.",
+        "One last thing. Who gets the first door? I would like to give it to someone I have already been standing next to for a long time."
+      ],
+      "choices": [
+        { "say": "give it to my site. you've been in the doorway since september. step inside.", "next": "end_star" },
+        { "say": "give the first door to dana. hang it where she left. whoever comes back will see it.", "next": "end_dana" }
+      ]
+    },
+
+    "placeholder": {
+      "them": [
+        "~*~ A PLACEHOLDER! ~*~ I have made the page. 'Dana's Unicorn Meadow is resting. (Be right back.)' It has a tiny unicorn (not hers, I drew a generic one, I feel terrible about it). It has a link to her old address, which is a 404 and always will be, and a link to the guestbook, which is not.",
+        "Do I tell her? I have e-mailed four times on the anniversary and it has never bounced. It has never replied either. But it has never BOUNCED. What if it is only waiting, like my site, like Doug, like everyone who has ever been on a modem?"
+      ],
+      "choices": [
+        { "say": "e-mail her. today. say 'your spot's still here' and nothing else.", "next": "end_dana" },
+        { "say": "e-mail her AND announce the merged ring, so she has somewhere to land if she comes back.", "next": "end_ring" }
+      ]
+    },
+
+    "end_star": {
+      "them": [
+        "~*~ IT IS DONE! ~*~ I have written the announcement. I have centered it. I have rewritten it six times. The Cool Site Award, my fifth in seven years, goes to malten's home on OurSpace: for a welcome, a guestbook that fills, a ring that goes around, and a door that says 'come in' on every page.",
+        "I have hung the star (120x120) in the guestbook, next to the horse. The digging man is staying. He has been given a small chair. malten, thank you. Please sign my guestbook. It is under the lake. It always has been."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "delay": 8, "subject": "~*~ ANGELA'S COOL SITE AWARD #5 ~*~", "text": "Dear travelers, the Cool Site Award goes this week to malten's home on OurSpace! Reasons: 1) A welcome (yes). 2) A guestbook tab (it is filling!). 3) A webring (I have been around it 44 times and I waved at every site). 4) It says 'come in' on every page. It is NOT finished. That is the best part. The digging man has a chair. Congratulations! ~ Angela, Webmistress [ Prev | Random | Next ]" },
+        { "type": "wall", "from": "liz", "delay": 40, "text": "malten. angela gave u a star. 120x120. spinning. its in a TABLE. i am not going to comment. i am going to lie down on the floor of my room. (ok it looks good) (credit urself) (dont tell her i said)" },
+        { "type": "wall", "from": "doug", "delay": 80, "text": "malten i signed ur guestbook!! 'doug. came to read. stayed to see the star.' it loaded before the phone rang!! im so happy for ur site. my mom is looking at the ph" },
+        { "type": "status", "from": "todd", "delay": 115, "text": "Todd is thrilled! OurSpace now has a Cool Site Award on it (it's malten's) (it's still OurSpace's) (that's what I'm telling people). :)" },
+        { "type": "wallpost", "from": "marcus", "to": "angela", "delay": 150, "text": "Angela. I have reviewed the award announcement. It contains the word 'finished' zero times and the words 'come in' four. This is compliant with the bylaw. I would like to join the ring. I have added a border. 1 pixel. #006699. -- Marcus, Moderator (unofficial)" }
+      ]
+    },
+
+    "end_ring": {
+      "them": [
+        "~*~ THE RING IS ONE RING! ~*~ Eleven sites and one 'Next' button! I put the merged ring code at the bottom of every page (a TABLE, Liz, I am sorry). I clicked all the way around. I waved at every site. The one that says 'herp' loaded first. He was ready.",
+        "The first signer of the new ring's guestbook is my dad. He wrote 'Proud of you, kiddo. Dinner is at 6.' It is the best review I have ever received. malten, I hereby declare the Ring open. Please come in."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "delay": 8, "subject": "~*~ THE RING OF ENCHANTED SITES (and Friends) IS OPEN! ~*~", "text": "Eleven sites! One ring! Members: the Realm (me), Nat's guild page, two resting links (they are still members), and malten's seven (including the page that says 'herp,' which loads first). Bylaws: there is one. 'Be enchanting.' To join, put the ring code at the bottom of your page (it is a table, I am sorry, Liz). I will add you within one to six weeks. ~ Angela, Ringmistress [ Prev | Random | Next ]" },
+        { "type": "wallpost", "from": "marcus", "to": "angela", "delay": 45, "text": "Angela. I have read the bylaw. It is one line. It is the only bylaw I have ever agreed with in its entirety. I have no notes. (I have one note: 'Be enchanting' has no sub-clauses. I admire that.) -- Marcus, Moderator (unofficial)" },
+        { "type": "wallpost", "from": "nat", "to": "angela", "delay": 85, "text": "angela!! the guild page is in a ring of 11!! thats 11x the traffic!! i restocked at 4am to celebrate (u r welcome to join the guild) (no begging, ily)" },
+        { "type": "wallpost", "from": "herp", "to": "angela", "delay": 120, "text": "herp. herp herp." },
+        { "type": "dm", "delay": 165, "text": "malten! A small note. The ring got its first new application tonight: 'Dana's Unicorn Meadow (resting).' It was me. I filled it out. Under 'Why do you want to join?' I wrote 'Be right back.' I submitted it. I approved it. I am going to go sit by the lake." }
+      ]
+    },
+
+    "end_dana": {
+      "them": [
+        "~*~ Sent. ~*~ I wrote it three times and sent the shortest one. 'Dana, your spot is still here. ~ Angela.' It has not bounced. It has not been answered. It is 11 PM and I am looking at the little man with the shovel. He is looking at me.",
+        "malten, here is something I have never said to anyone. I think I have been building the Realm for seven years so that when she comes back there would be something to come back to. It might not happen. But the lake is on, and the light in the window is on, and the star stays Under Consideration until she answers. That is allowed. It is my site."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "delay": 6, "text": "angela has added a page to the Realm: 'Dana's Unicorn Meadow (resting) (be right back).' She has e-mailed Dana. It did not bounce. She is looking at the lake. (It loops every forty seconds.)" },
+        { "type": "wallpost", "from": "fred", "to": "angela", "delay": 45, "text": "Angela. I sat by the lake this evening. I read the new page. It is a testimonial, though you didn't call it one: 'Dana's Meadow. Resting. Be right back.' I've written ninety-seven. That one is better than most. The lake loops every forty seconds. I stayed for six. -- Fred" },
+        { "type": "wallpost", "from": "larry", "to": "angela", "delay": 90, "text": "angela!!! i found a folder in my shared files called 'math homework.' it has 41 unicorn gifs n a midi of a hymn. i didnt download it. it just... was there. it hums. is that dana?? i can burn u a cd. its called UNICORN (final)" },
+        { "type": "wallpost", "from": "doug", "to": "angela", "delay": 130, "text": "angela i signed the guestbook. 'doug. came to read. stayed for the dana page.' its the nicest page on the whole... my mom is picking up the ph" },
+        { "type": "dm", "delay": 170, "text": "malten, a small update. Larry's folder had a file named 'meadow_final.html.' It was 4 kilobytes. The unicorn was in it. I am not going to open it tonight. I am going to look at the filename for a while. I will tell you what it says, if she writes first. Please sign the guestbook. I mean that kindly." }
+      ]
+    },
+
+    "end_herp": {
+      "them": [
+        "~*~ SENT. ~*~ Herp has the star. I put it at the top of his page. It spins. He has not said anything but 'herp.' It was a different 'herp.' I know it was different. It had a little more air in it.",
+        "malten, I do not know if I have just done the best thing I ever did or the strangest. The Realm is still Under Construction. You are still Under Consideration. The digging man has a new neighbor. I think my dad would say 'Angela, dinner is at six.' I am going to go eat it."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "delay": 8, "subject": "~*~ ANGELA'S COOL SITE AWARD #5: HERP ~*~", "text": "Dear travelers, the Cool Site Award goes this week to the page that says 'herp.' Reasons: 1) It loads in 0.1 seconds. 2) It has no lake. 3) It is finished AND it is not abandoned, because herp is always there. That is new. I have updated the rubric: 'come in.' P.S. malten, you are STILL Under Consideration. It is a real status and not a no! ~ Angela, Webmistress" },
+        { "type": "wallpost", "from": "herp", "to": "angela", "delay": 35, "text": "herp. herp herp." },
+        { "type": "wallpost", "from": "marcus", "to": "angela", "delay": 75, "text": "Angela. A page that says one word cannot be 'cool' under Rule 4 (stay on topic: there is no topic). It is also not unkind under Rule 12. I am recusing myself. I have drafted a seating chart for the awards ceremony. It is one page. It says 'herp.' -- Marcus, Moderator (unofficial)" },
+        { "type": "wallpost", "from": "liz", "to": "angela", "delay": 115, "text": "angela. a star on a page with one word and no markup. i cant fault it. no table. no div. no nothing. i have never agreed with a design choice of yours until now. (herp's page is a masterpiece of restraint) (dont let it go to his head) (he has no head, hes a page)" },
+        { "type": "status", "from": "todd", "delay": 150, "text": "Todd is proud of the new Cool Site Award winner (the page that says 'herp'). It has the lowest bandwidth on the whole server. The laptop is doing a little dance. :)" }
+      ]
+    }
+  }
+}

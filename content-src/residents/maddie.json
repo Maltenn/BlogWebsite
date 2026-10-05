@@ -1,0 +1,223 @@
+{
+ "id": "maddie",
+ "name": "mugglenet_maddie",
+ "tag": "Snape is GOOD and I have 11 essays to prove it. (you've been sorted. check the list.)",
+ "avatar": "assets/avatar_maddie.gif",
+ "gender": "Female",
+ "age": 14,
+ "hometown": "Worthington, OH (my letter is three years late. owls get lost. it's fine.)",
+ "loc": "the third stair from the top (best reading stair)",
+ "zodiac": "Virgo. September 19, same birthday as Hermione. I didn't plan it. I do bring it up.",
+ "status": "Single (I have 9 predictions to defend, I don't have time)",
+ "hereFor": "Friends, Debate, Peer Review, Sorting",
+ "mood": "vindicated (pending)",
+ "lastLogin": "Oct 4 2026 7:07 PM",
+ "theme": {
+  "bg": "#e8eefb",
+  "fg": "#14224d",
+  "accent": "#a8641c"
+ },
+ "blogTitle": "The Case for Severus Snape (and other things I am right about)",
+ "about": "Hi. I'm Maddie. I have read all six books 9 times each (book 5: 11 times, it rewards patience) and I'm the author of 'The Case for Severus Snape,' an 11-part essay series proving whose side he is really on. (Ours. Read Part 4 before you argue with me.) I have also sorted every resident of this site into a Hogwarts house using a 22-question rubric and direct observation. Your result is final. Appeals may be submitted in writing and will be denied. For the record, I am a Ravenclaw. The online quiz has said Hufflepuff 14 times in a row, which only proves the quiz can't handle people who would take a quiz 14 times. Book 7 has no title and no date yet. I am fine. I have a sealed envelope of predictions and a calendar.",
+ "aboutMore": "Other facts, cited: I was number 41 in line at the Borders midnight release (wristband saved, taped inside my predictions notebook). I finished Half-Blood Prince in 9 hours and 20 minutes. I'm reading the whole series out loud to my little brother Owen, who is 7, one chapter a night, with all the voices. We're on book 3. My Hagrid is terrible and he requests it anyway. Mom has banned Horcrux talk at the dinner table ever since The Incident (I brought diagrams) (there was gravy).",
+ "meet": "J.K. Rowling, for exactly four questions (I've narrowed it down from 61). Whoever wrote the sorting quiz, for a meeting. The person at MuggleNet who reads the essay submissions, to ask if they got mine (all 11). And my brother in about four years, when he reaches chapter 27 and finally understands why I was like this.",
+ "interests": {
+  "General": "theories (cited), my 11-part Snape essay, the Sorting Ledger (every resident, alphabetical), rereading, highlighter tabs (green = clue, pink = Snape, yellow = I was RIGHT), fan editorials, reading to my brother, checking the mailbox (no reason)",
+  "Music": "wizard rock!! Harry and the Potters played at our LIBRARY in July and I stood on a chair. Draco and the Malfoys (know your enemy). The movie soundtracks, first three only; I have notes on the fourth. MuggleCast counts as music if you love it enough.",
+  "Movies": "The Harry Potter films, graded: 1 (B+), 2 (B), 3 (A for art, C for never explaining who made the map), 4 (in the book he asks CALMLY, see rant). Also The Princess Bride, Matilda, and Spirited Away (usagi lent it to me; 10/10; I sorted everyone in it).",
+  "Television": "Jeopardy (I keep score against my dad), Gilmore Girls (Rory is a Ravenclaw and so am I), Avatar: The Last Airbender, any mystery I can solve before the last commercial break",
+  "Books": "Harry Potter 1-6 (9 times each, 11 for book 5), Fantastic Beasts and Quidditch Through the Ages (the little schoolbook ones), A Series of Unfortunate Events, His Dark Materials, Artemis Fowl. Half-Blood Prince chapter 2 specifically. It's ALL in chapter 2.",
+  "Heroes": "Hermione Granger. Professor McGonagall. The librarian who let me renew book 5 four times in a row. Severus Snape (see essays). My brother Owen (best audience). patrick (the truest Hufflepuff on this site, and I mean that as the highest honor)."
+ },
+ "song": {
+  "name": "Save Ginny Weasley",
+  "artist": "Harry and the Potters",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/30/5e/af/305eaf16-7bb9-a81d-fc26-1525f824b690/mzaf_3042675480519968070.plus.aac.p.m4a",
+  "pattern": [0, 0, 7, 7, 5, 5, 3, 0],
+  "bpm": 160
+ },
+ "decor": [
+  "assets/deco_new_blue.gif",
+  "assets/deco_welcome_banner.gif"
+ ],
+ "friends": ["faye", "leo", "tina", "sephiroth", "luna", "hailey", "tim", "patrick"],
+ "wall": [
+  {
+   "from": "faye",
+   "text": "A/N: maddie I got your review of chapter 94. all five parts of it. I changed 'oh my' to 'hmm, curious.' is that more hat?? also Seraphina is NOT a 'statistical impossibility,' she's a heroine. thank you for reading it twice ♥",
+   "time": "Sep 30 2026 8:02 PM"
+  },
+  {
+   "from": "leo",
+   "text": "Maddie. Seven books. Seven years of school. Seven players on a team. You've noticed. Now add the chapter count of book six to the chapter count of book one. I did. It's 47. That is not one of the numbers. Which is exactly what worries me.",
+   "time": "Sep 23 2026 4:23 PM"
+  },
+  {
+   "from": "sephiroth",
+   "text": "Essayist to essayist: your Part 4 is rigorous. However, eleven parts is a modest series. My Jenova work runs to forty. I say this as encouragement. Also, I accept Slytherin. It was always going to be Slytherin.",
+   "time": "Sep 2 2026 10:31 PM"
+  },
+  {
+   "from": "tina",
+   "text": "maddie u sorted EDWARD into HUFFLEPUFF?? he is brooding and mysterious!! ...ok i read ur 3 reasons. loyal. patient. good at finding things (bella). fine. FINE. but he's the darkest hufflepuff there has ever been",
+   "time": "Sep 20 2026 9:15 PM"
+  },
+  {
+   "from": "patrick",
+   "text": "hi maddie! thank you for putting me in hufflepuff. i read about it three times. is the badger nice? can dwayne be in hufflepuff too? he is a rock but he is loyal",
+   "time": "Aug 28 2026 3:40 PM"
+  },
+  {
+   "from": "tim",
+   "text": "audited ur sorting list. 9 gryffindor, 8 ravenclaw, 7 slytherin, 14 hufflepuff. hufflepuff is over by 4.5 residents. either the rubric is biased or this site is just nice. logged it either way",
+   "time": "Sep 11 2026 6:58 PM"
+  },
+  {
+   "from": "hailey",
+   "text": "MADDIE i dont need a house i have a TEAM!! (wildcats) ...ok but if i HAD to. hufflepuff has the cutest colors. does hufflepuff have a fight song?? can i write one?? 5 6 7 8!!",
+   "time": "Sep 17 2026 4:44 PM"
+  }
+ ],
+ "replies": [
+  "Noted, and filed under 'evidence.' Thank you.",
+  "Interesting. Do you have a chapter number for that, or is it a feeling? (Feelings are allowed. They go in a different folder.)",
+  "That is such a Ravenclaw thing to say. I would know. I am one. (The quiz is wrong.)",
+  "Objection! ...Actually, no, you're right. Objection withdrawn.",
+  "Ok so this actually supports Part 6 of my essay. I'm adding you to the footnotes.",
+  "10 points to your house. (You've been sorted. Check the list.)",
+  "I rest my case. I didn't have a case. I just like saying it.",
+  "Hold on, I need to look something up. Back in 9 to 40 minutes depending on which book it's in.",
+  "That's what everyone said about my Regulus theory too. We'll see. I have an envelope."
+ ],
+ "thanksAdd": "Friend request accepted. Welcome! You will be sorted within 5 to 7 days. I need to observe you first: how you comment, who's in your top 8, whether you'd go through the trapdoor. Please do NOT take the online quiz and send me the result. The quiz is flawed. I say this as a Ravenclaw.",
+ "ambient": [
+  "Reread chapter 2 of Half-Blood Prince again tonight. Every single time I find something new. Tonight it was a typo, but still.",
+  "Owen asked if he's allowed to like Snape yet. I said not until book 6, and then probably not until book 7. He said that's a long time to wait to like somebody. He's 7 and he gets it better than the message boards.",
+  "Took the sorting quiz a 15th time, for science. I changed every answer. Hufflepuff. I'm starting to think the badger is following me.",
+  "Got my English essay back. A-minus. Mr. Feeney wrote 'well argued, but this is your third Snape essay and the assignment was the Dust Bowl.' I connected them. He admits I connected them.",
+  "Still no title for Book 7. No date. I'm fine. I reorganized my highlighter tabs by color AND by suspect.",
+  "Dad beat me at Jeopardy by $400. The category was British Literature. I demanded a recount. He's putting the scoresheet on the fridge."
+ ],
+ "saltyDm": "Request denied. Interesting. I'd already opened your sorting file, and turning down a friend request out of caution is, I regret to inform you, textbook Slytherin (self-preservation, rubric item 9). That's not an insult. Some of my favorite characters are Slytherins. One in particular. I have essays. The offer stays open, and so does your file.",
+ "keywords": {
+  "snape": "He's on our side. Short version: watch what he DOES, not what he says, and ask yourself why someone who wanted to win would stop in the middle of a fight to give a lesson. Long version: 11 parts. Start with Part 4.",
+  "harry potter": "You said the words. Quick placement test: who gave Harry the map, and who MADE it? If you only know from the movies, that's ok, it isn't your fault, movie 3 never says. I have a handout.",
+  "hufflepuff": "Hufflepuff is a GOOD house. Loyal, fair, hard-working, common room right next to the kitchens. I'm not saying that because of the quiz. I'm a Ravenclaw. But if I weren't, it would be fine. It would be completely fine.",
+  "sorted": "You've already been sorted. It's in the Ledger. 22-question rubric plus direct observation of how you comment. Appeals go in writing. I've denied all 6 so far (5 of them were dave).",
+  "horcrux": "Ok. OK. Sit down. There was a heavy locket that nobody could open, in a cabinet, in book 5, and they THREW IT OUT during spring cleaning. I have been yelling about this for over a year. Mom banned the topic at dinner. This is not dinner.",
+  "book 7": "No title. No date. I have a sealed envelope with 9 predictions in it, signed and dated, witnessed by my brother (he's 7, he signed in crayon, it still counts). When the book comes out we open it and everybody apologizes to me."
+ },
+ "banter": {
+  "faye": [
+   "Chapter 94 notes, continued: you can't Apparate inside the castle. Seraphina did it three times. Hermione has explained this in at least four books. I marked the pages for you. Also the ending made me gasp out loud. Do not put that in your author's note.",
+   "I am not 'hooked.' I'm conducting a canon audit. It just happens to cover all 94 chapters, on the day each one goes up. Seraphina is impossible, and I'd like to know if she's ok after that cliffhanger. For the audit."
+  ],
+  "leo": [
+   "Leo, 'it's all connected' is not a citation. I need a book, a chapter and a page. You sent me a photo of a corkboard. I can see my OWN picture on it with string coming out of it. Explain the string.",
+   "Fine, I checked. The chapter counts don't add up to any of your numbers. But you're a Ravenclaw (I sorted you in under a minute), so here's a trade: one of my Snape essays for one of your theories. Typed. With sources."
+  ],
+  "hailey": [
+   "Hailey, for the last time, 'Wildcats' is not a Hogwarts house. You're a Hufflepuff. You'd share your lunch table with a troll if it was sitting alone. That's the nicest result on my whole list. Take it.",
+   "No, Hufflepuff does not have a fight song. ...Send me what you've got. If it's accurate about badgers I'll consider making it official."
+  ],
+  "luna": [
+   "Luna. Your name is LUNA, you run a wolf pack, and one of the best characters in the series is a werewolf. I wanted so badly to put you in Ravenclaw. The rubric said Gryffindor (you lead four people with total confidence). I follow the evidence.",
+   "Research question for the pack: Part 9 of my essay is about a potion that lets a werewolf keep his own mind, and about who brewed it for him, perfectly, every month, for a year. Guess who. GUESS WHO BREWED IT."
+  ],
+  "tina": [
+   "Tina, I stand by it. Edward is a Hufflepuff. Loyal, patient, does a LOT of waiting. You said 'but he's dangerous.' Badgers are extremely dangerous. Look it up. I did.",
+   "I read Twilight like you asked. All of it. My notes: (1) nobody in that town owns a wand and it shows. (2) I sorted the entire Cullen family on the bus. (3) Fine. Lend me the second one."
+  ],
+  "sephiroth": [
+   "Sephiroth, I read Parts 1 through 7 of the Jenova essays. Part 7 IS controversial. You cite the game 31 times and yourself 12 times. Citing yourself is allowed, it's just not a great look. I do it too. Welcome to Slytherin.",
+   "Proposal: essay exchange. I send you 'The Case for Severus Snape' (11 parts), you send me the rest of Jenova (33 more). We grade each other in red pen. I've never played the game. You've never read the books. That's called peer review."
+  ],
+  "patrick": [
+   "Patrick, yes, Dwayne can be in Hufflepuff. I ran him through the rubric. He's patient, he's loyal, and he has never once left. He scored higher than most people.",
+   "You read my entire essay three times and your only comment was 'I hope he's nice.' Patrick, that IS the thesis. You understood it better than the message boards did."
+  ],
+  "tim": [
+   "Tim, the list is not 'biased toward Hufflepuff.' This site is just full of people who share their pizza. That's data. You of all people should respect data. (You're a Ravenclaw. Obviously.)",
+   "I'll buy your calculator game for $2 if you settle something with math: if a quiz were random, what are the odds of getting the same house 14 times in a row? ...That low? Hm. Don't write that in the ledger."
+  ]
+ },
+ "statuses": [
+  "maddie is rereading chapter 2. Again. It's all in chapter 2.",
+  "maddie is sorting the new residents. Do not take the quiz. The quiz is flawed.",
+  "maddie is writing Part 12. She said Part 11 was the last one. New evidence came up (she thought of it in the shower).",
+  "maddie is reading book 3 to her brother. Tonight's voices: Lupin (good), Hagrid (bad), a dementor (just breathing).",
+  "maddie is NOT refreshing MuggleNet for a Book 7 title. She is glancing at it. Every ten minutes.",
+  "maddie is a Ravenclaw.",
+  "maddie is checking the mailbox. For regular mail. The regular kind.",
+  "maddie just got told 'it's only a book' and has prepared a three-part response."
+ ],
+ "bulletins": [
+  {
+   "subject": "THE SORTING LEDGER: results are in (and final)",
+   "body": "After a 22-question rubric and weeks of observation, here is a sample of the official results. PATRICK: Hufflepuff, the truest one I have ever seen. BRITTANY: Slytherin (ambition, strategy, a waitlist for her top 8; she says green isn't her color, and that is not how it works). TODD: Hufflepuff (he runs the entire site off a laptop and asks for nothing). SEPHIROTH: Slytherin, and pleased about it. WES: Ravenclaw (he studies frames. FRAMES). CHAD: Gryffindor. BANANA: Gryffindor, by volume. HERP: the rubric returned 'herp.' ZORP: unsortable. He answered every question with 'whichever is the normal amount.' I've opened a file. Full list in my blog. Appeals in writing. Do not send me your quiz results. I know what the quiz says."
+  },
+  {
+   "subject": "Book 7 Prediction Envelope: OFFICIALLY SEALED",
+   "body": "Let the record show that tonight I sealed 9 predictions for Book 7 in an envelope, signed across the flap, witnessed by my brother Owen (age 7, crayon). I won't list all nine, but for the record: (1) Snape has been on the right side the whole time. (2) R.A.B. is somebody's little brother and we already know his last name. (3) That locket nobody could open in book 5 mattered. (4) The scar is more than a scar. If I'm right, I'd like a small apology from everyone who said 'Maddie, you're reaching.' If I'm wrong about Snape, I will eat the envelope. That's how sure I am. The envelope is in my sock drawer. Leo, do not put my sock drawer on your board."
+  }
+ ],
+ "pcComments": [
+  "This is a very Gryffindor pose. (You're a Ravenclaw. I checked. But the pose is Gryffindor.)",
+  "10 points to your house for this picture. 5 more for the lighting.",
+  "You look like you just got your letter. This is the highest compliment I give out.",
+  "Is that a scarf? What colors? This matters more than you think. Answer carefully.",
+  "Commented, as required by friendship. Citation: this picture, top to bottom, is great."
+ ],
+ "dmSeed": [
+  {
+   "text": "Hi malten. Maddie here. You're new, so your sorting file is still open. One question, and don't overthink it: a door is locked, there's a key on a hook, and a sign says DO NOT. What do you do? There is no wrong answer. (There are three wrong answers. I'm also writing down how long you take.)"
+  }
+ ],
+ "dms": [
+  "Quick poll, no context: if a teacher was mean to you for six straight years but secretly saved your life at least four times, would you send a thank-you card? What would it say? I'm drafting one. It's for Part 12.",
+  "My brother just asked me why nobody at Hogwarts has a math class. I've read these books 9 times and I don't have an answer. He's 7. I'm telling you because I can't tell the message boards that a first grader got me.",
+  "Took the sorting quiz again. I answered every question the opposite way from last time. Hufflepuff. I'm not upset. I'm asking as a researcher: is it possible to be loyal to an answer you didn't pick?",
+  "Harry and the Potters are coming back to the library in the spring and I need someone to stand next to me so it looks like I came with a group. You don't have to know the songs. One is about rescuing a specific girl from a specific giant snake. You'll pick it up.",
+  "You've been sorted, by the way. I finished your file tonight. I'm not telling you over DM, that's not how it's done; it'll be in the next Ledger bulletin. I'll just say this: you're in good company and your common room has a nice view.",
+  "Do you think it's weird to keep a wristband from a book release taped inside a notebook for more than a year? I was number 41 in line. I'm asking because my mom called it 'a bracelet from a store' and I had to leave the room.",
+  "I lost at Jeopardy to my dad again. The final question was about owls. OWLS. I own two books with owl care sections. I wagered everything. I'd like you to know I'm taking it well. I've only brought it up six times since dinner.",
+  "Serious question. If I mailed all 11 parts of my Snape essay to England, how many stamps is that? It's 64 pages. I have $9 and a roll of the flag ones."
+ ],
+ "blog": [
+  {
+   "title": "The Case for Severus Snape, Part 11: You Don't Tutor Your Enemy",
+   "date": "Sep 14 2026 7:45 PM",
+   "mood": "certain",
+   "body": "Welcome back. If you're new, start at Part 1; I won't be recapping. EXHIBIT A: at the end of book 6, a certain professor is leaving a duel he could finish in about four seconds. What does he do instead? He blocks. And blocks. And then he gives ADVICE. He tells the person chasing him exactly what they're doing wrong, like it's a Tuesday and there's a quiz on Friday. Who tutors somebody they want to lose? EXHIBIT B: he has had six years of chances. Six. Nobody needs six years if they mean it. EXHIBIT C: Dumbledore trusted him and never told anyone why, and people keep calling that a hole in my argument. It isn't a hole. It's the entire next book. The message boards say I'm reaching. Mr. Feeney says I need a new topic. My brother says 'I hope he's nice.' I rest my case. (Part 12 is coming. I thought of something in the shower.)"
+  },
+  {
+   "title": "I waited in line for six hours and I would do it again tomorrow",
+   "date": "Aug 16 2026 8:30 PM",
+   "mood": "nostalgic",
+   "body": "Since Book 7 has no date, I've been thinking about the last midnight release. Dad drove me to the Borders at 6 PM. I wore my robe (a graduation gown from the thrift store, hemmed with staples) and a Time-Turner made from a key ring and part of an egg timer. I was number 41 in line. The girl behind me thought Snape was evil, so we argued for two hours, and then she shared her jelly beans with me, so. At midnight they handed me the book and it was heavier than I expected, and I just stood there holding it in the parking lot. Dad didn't start the car. He said 'take your time, Mads.' I read by the dome light the whole way home and finished in 9 hours and 20 minutes. I cried at chapter 27, on the stairs, so Owen wouldn't hear. I still have the wristband. I'd wait in that line again tomorrow. I'd bring more snacks."
+  },
+  {
+   "title": "Sorting Quiz, Attempt #14: An Official Complaint (and a confession)",
+   "date": "Sep 27 2026 9:05 PM",
+   "mood": "reconsidering",
+   "body": "To whoever maintains the sorting quiz: I have now taken it 14 times and received Hufflepuff 14 times. I am a Ravenclaw. I read with highlighter tabs. I have written 11 essays nobody assigned. Your quiz is obviously weighted toward the 'would you share your dessert' question, which isn't fair, because of course I'd share my dessert, what kind of question is that. ...Ok. A confession, since this is my own blog. Tonight I was reading to Owen and he asked which house is the best one. I said Ravenclaw without thinking. He asked which house would help him find his other shoe. I said Hufflepuff. He asked which house I'd want next to me if I was scared. I said Hufflepuff again, pretty fast. He said 'so that one's the best one' and fell asleep. I'm still a Ravenclaw. I'm only saying the quiz may have been written by someone who has met me. Complaint withdrawn. For now."
+  }
+ ],
+ "survey": {
+  "title": "The Official Potter Fan Survey (answer honestly, I'll know)",
+  "qa": [
+   ["Favorite book?", "Book 5. It's the longest and people say it's the angriest. Those are the same reason I like it."],
+   ["Which house are u in?", "Ravenclaw. (The quiz says otherwise. 14 times. The quiz and I are in talks.)"],
+   ["Favorite character?", "Hermione. Then McGonagall. Then a third person I've written 11 essays about."],
+   ["Least favorite character?", "Umbridge. I had to put the book down and walk around the yard."],
+   ["Who do u ship?", "Ron and Hermione. Since the Yule Ball. I was right, I've been right for two whole books, and I've been very gracious about it."],
+   ["Book or movie?", "Book. In the book he asks CALMLY. I don't want to talk about it. (I'll talk about it for 20 minutes.)"],
+   ["What's ur wand made of?", "Vine wood, ten and three-quarter inches. Yes, that's Hermione's. No, I'm not changing it."],
+   ["What would u see in the Mirror of Erised?", "Me, holding Book 7, next to an opened envelope of correct predictions. Also in the mirror my brother can read chapter books by himself."],
+   ["Best class at Hogwarts?", "Ancient Runes. Nobody ever says what happens in there and I need to know."],
+   ["Ever cried at a book?", "Chapter 27. On the stairs. Third stair from the top. It's still the best reading stair."],
+   ["What would ur Patronus be?", "An owl. Or, according to everyone who knows me, a badger. I'm not discussing it."],
+   ["Tag ur friends:", "faye (she'll answer in an author's note), leo, tina, sephiroth, and patrick, who will read it three times."]
+  ]
+ }
+}

@@ -1,0 +1,210 @@
+{
+ "id": "lars",
+ "name": "linux_lars",
+ "tag": "have you tried ubuntu? no really. i have a cd. i have 40 cds. take one",
+ "avatar": "assets/avatar_lars.gif",
+ "gender": "Male",
+ "age": 18,
+ "hometown": "Duluth, Minnesota",
+ "loc": "/home/lars (a thinkpad with no working sound)",
+ "zodiac": "Virgo (compiled from source)",
+ "status": "Single (dependency not found)",
+ "hereFor": "Friends, Networking, converting you",
+ "mood": "compiling",
+ "lastLogin": "Oct 3 2026 3:16 AM",
+ "theme": {
+  "bg": "#33200f",
+  "fg": "#f7e8d4",
+  "accent": "#f47421"
+ },
+ "blogTitle": "uptime: a log of things that work on my machine",
+ "about": "hi. i'm lars. i run linux [0]. i compiled my own kernel twice this week, once on purpose. it took me three days to get the wifi working on this thinkpad and those were the three best days of my summer, because nobody handed it to me. i did it. me and a forum post from a stranger named penguin_dad. that is called freedom. your computer came with an operating system somebody else picked for you, and i'm not judging, i'm just standing here holding a free ubuntu cd. i ordered 40. they mail them to you for nothing. sound doesn't work on my machine yet, but honestly the internet was too loud anyway. --- [0] GNU/Linux, technically. i'll stop. i won't stop.",
+ "aboutMore": "full disclosure, since openness is the whole idea: there is a 4gb windows partition on this laptop. it exists for exactly one program, a roller coaster game from my childhood that will not run any other way. the partition is named SHAME. i boot it maybe once a month, build one wooden coaster, and leave. also: my nana runs ubuntu now. i set it up in june. she plays solitaire, emails me in all lowercase, and has had zero viruses, which she has told her entire church.",
+ "meet": "Who I'd like to meet: penguin_dad from the forums, who posted the wifi fix at 4am and never posted again. linus torvalds (i'd just nod). whoever puts the free cds in the envelopes, to apologize for ordering 40. and one person on this site who will say 'ok lars, install it' and mean it. dave doesn't count. dave has been 'about to' since spring.",
+ "interests": {
+  "General": "linux, compiling things, recompiling things, config files, the terminal, forum threads from strangers, handing out cds, dual-booting (don't ask), thinkpads, taking the long way on principle, sunday dinner at nana's",
+  "Music": "whatever plays in my head (see: sound card). back when it worked: daft punk, kraftwerk, jonathan coulton, they might be giants, video game soundtracks in .ogg (not mp3. ask me why) (please ask me why)",
+  "Movies": "hackers (inaccurate. i own it), the matrix, office space, antitrust (so bad. seen it 6 times), wargames, tron, revolution os (a documentary about operating systems. i got a little emotional at the end)",
+  "Television": "i don't have a tv card that works under linux. at nana's on sundays: wheel of fortune. otherwise mythbusters, futurama, the screen savers (rest in peace)",
+  "Books": "the man pages, the cathedral and the bazaar, just for fun (linus's book), the 'wireless troubleshooting' sticky on the ubuntu forums (47 pages, read twice), the hitchhiker's guide to the galaxy",
+  "Heroes": "linus torvalds, penguin_dad, tux, my nana (my only successful install on another human's computer), todd (runs a whole site off one laptop. on the wrong operating system. but still.)"
+ },
+ "song": {
+  "name": "Code Monkey",
+  "artist": "Jonathan Coulton",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/58/0e/3b/580e3b62-8009-d2eb-7e4c-85b7122cd112/mzaf_15776154174725185293.plus.aac.p.m4a",
+  "pattern": [0, 4, 7, 9, 7, 4, 2, 0],
+  "bpm": 118
+ },
+ "decor": [
+  "assets/badge_firefoxget.gif",
+  "assets/badge_ie_sucks.gif"
+ ],
+ "friends": ["dave", "miles", "todd", "larry", "doug", "dmitri", "angela", "tim"],
+ "wall": [
+  {
+   "from": "miles",
+   "text": "Lars. I connected to the coffee shop wifi today. It took four seconds. I timed it for you. Also, you left another Ubuntu CD on my desk. It's a coaster now. It just works.",
+   "time": "Oct 2 2026 3:41 PM"
+  },
+  {
+   "from": "dave",
+   "text": "l4rs i am 100% installing linux this w33kend. the cd is burned. it is ON my desk. my mom needs the computer saturday tho. and sunday. and friday. so next w33kend. 4 sure. this is the w33kend (next)",
+   "time": "Sep 29 2026 11:20 PM"
+  },
+  {
+   "from": "todd",
+   "text": "Hi Lars! Thanks for offering to 'move the server to Debian over a weekend'! I asked the laptop and it made a clicking noise, which I think means not right now. I did put the CD you gave me on the shelf above it so they can get used to each other. - Todd :)",
+   "time": "Sep 24 2026 7:55 AM"
+  },
+  {
+   "from": "larry",
+   "text": "lars the cd u gave me works great!! i havent put it in the computer yet but its really shiny and my cat chases the light off it around the kitchen 4 hours. is that what open source means",
+   "time": "Sep 19 2026 9:33 PM"
+  },
+  {
+   "from": "doug",
+   "text": "lars the text only browser u showed me is the best thing thats ever happened to me. ourspace loads in 11 seconds. brittanys page is just the word [IMAGE] 40 times and one sentence. its so peaceful. i owe u my whole",
+   "time": "Sep 13 2026 4:08 PM"
+  },
+  {
+   "from": "dmitri",
+   "text": "lars u brought linux to the LAN cafe and got 9 fps on dust2 and said 'its playable.' u were looking at the floor the whole match bro. rush B. on windows. like a person. [pwn]",
+   "time": "Sep 5 2026 10:47 PM"
+  },
+  {
+   "from": "angela",
+   "text": "~*~ Lars! ~*~ You wrote in my guestbook that my site 'renders beautifully in lynx.' I looked up lynx. It has NO PICTURES. You have seen my site with no pictures, no MIDI and no sparkle cursor?! That is not my site! That is a list of words! Please visit again properly! ~ Angela, Webmistress",
+   "time": "Aug 27 2026 6:12 PM"
+  }
+ ],
+ "replies": [
+  "works on my machine.",
+  "have you tried ubuntu",
+  "that's a known issue. on your operating system. not on mine. (mine has different issues.)",
+  "s/problem/learning opportunity/",
+  "i'd fix that for you but it would take three days and you'd have to watch",
+  "there's a forum thread for that. it's 47 pages. the answer is on page 31. you're welcome",
+  "noted. filed under /home/lars/nice_things_people_said",
+  "i can't hear the song on your page. not a complaint. sound card. it's a whole thing",
+  "that would be free if you ran linux. it's also free now. but it'd be MORE free",
+  "nana says hi. she emailed me that. from ubuntu. unprompted."
+ ],
+ "thanksAdd": "connection established :) thanks for the add. quick question, no pressure: what operating system are you on right now. you don't have to answer. i can tell from how the page looks. i have a cd for you whenever you're ready. it's free. it's always been free.",
+ "ambient": [
+  "recompiled the kernel without joystick support. saved 40 kilobytes. boot time is down 0.2 seconds. i own no joysticks. worth it.",
+  "uptime: 31 days. this laptop has been on longer than some of your relationship statuses.",
+  "gave out 3 ubuntu cds at lunch. one is now a coaster, one is a frisbee, and one is in a computer. 33% conversion. i'll take it.",
+  "sound worked for 11 minutes last night. i don't know what i did. i heard one (1) startup drum and then silence again. i'm choosing to see it as a visit.",
+  "nana emailed to say solitaire 'froze.' she had just won. the cards do a little thing when you win. she thought she broke it. she's 14 and 0 this week.",
+  "three days for wifi. people say that like it's bad. you know how long it took you? zero days. and what did you learn? exactly."
+ ],
+ "saltyDm": "request denied. ok. 'permission denied' is a normal part of life on linux, i see it forty times a day, usually from my own computer. i'll just try again as root. (that's a joke.) (the cd offer stands.)",
+ "keywords": {
+  "linux": "have you tried it? i have a cd. it's free, it's legal, and it comes with 16,000 programs, four of which i can get working. i can walk you through the install. clear your weekend. and the one after.",
+  "windows": "i'm not going to say anything negative. i'm going to say 'blue screen' in a calm voice and let you sit with it. (yes i have a windows partition. it's 4gb. it's named SHAME. we've been over this.)",
+  "wifi": "three days. a broadcom chip, a program that wraps a windows driver in a linux blanket, and a 4am post from a stranger called penguin_dad. when the little bars lit up i stood up in my room. alone. arms raised.",
+  "mac": "it's unix underneath. i keep telling miles. he has a terminal and he has never opened it. it's like owning a piano and using it as a shelf.",
+  "ubuntu": "it's an old word meaning 'i can't configure debian.' that's a joke we tell. i tell. alone. do you want a cd",
+  "sound": "sound has not worked since august. i've read every thread. at this point i think of it as a feature. the internet is very calm in here."
+ },
+ "banter": {
+  "miles": [
+   "miles you paid $1,299 for a computer with one mouse button. i paid $0 for my operating system and i have three buttons AND a little red nub. do the math.",
+   "miles. we agreed never to bring up the coffee shop. yes i borrowed your macbook to look up the wifi fix. for nine minutes. i washed my hands after. it changes nothing."
+  ],
+  "dave": [
+   "dave. status check on the install. the cd i burned you is from april. there's been a whole new version since. it's fine. the old one still works. it's waiting. like me.",
+   "dave you told kevin you 'run a dual boot.' you run windows and a cd in a drawer. that's not a dual boot, that's a hope."
+  ],
+  "todd": [
+   "todd, respectfully: what is the server running. you said 'the one it came with.' todd. TODD. i can have it on debian by sunday. you'd never go down again [0]. --- [0] you'd go down for the whole weekend first",
+   "todd the site dropped for 20 minutes at 7pm again. was it the vacuum. i wrote you a script that emails you when the laptop gets unplugged. it can't send while unplugged. i see the flaw now."
+  ],
+  "larry": [
+   "larry. 'ubuntu_FULL.exe' is not ubuntu. ubuntu is 700 megabytes and comes on the cd that I HANDED YOU. what you installed is a toolbar with a penguin on it. that penguin is an impostor.",
+   "larry let me wipe it. one afternoon. your 400 viruses can't even run on linux. they'd just stand around confused. you'd be free. the gorilla can't come. i'm sorry. i know."
+  ],
+  "doug": [
+   "doug how's the text browser. remember: arrow keys to move, enter to follow a link, and you never have to load a glitter gif again. you're the fastest guy on dial-up in the county now.",
+   "doug i did the math. downloading ubuntu would take you 28 hours with zero phone calls. so i mailed you a cd. it'll get there before the first percent would have."
+  ],
+  "angela": [
+   "angela in a text browser your front page is 31 picture placeholders and one sentence. the sentence is 'welcome to my site, please be patient while it loads.' i found that very honest.",
+   "angela i ran your page through a validator. 212 errors. it also said 'this page uses frames' in a way that sounded worried about you. i fixed nothing. it's your art. but i know now."
+  ],
+  "dmitri": [
+   "dmitri 9 frames per second is technically a slideshow, i'll give you that. but it was MY slideshow. nobody sold it to me.",
+   "dmitri next LAN i'm bringing the thinkpad again. i've got it up to 14 fps if i turn off the walls. i don't need walls. i know where they are."
+  ]
+ },
+ "statuses": [
+  "lars is compiling. check back in four hours.",
+  "lars is on day 2 of making the printer work. the printer doesn't know yet.",
+  "lars just got sound working!! ...lars has lost sound again.",
+  "lars is at nana's. tech support, then meatballs.",
+  "lars is handing out ubuntu cds outside the cafeteria like a man with pamphlets.",
+  "lars is NOT booting the windows partition. lars is just looking at it.",
+  "lars just read a 47 page forum thread and the last post is 'nvm fixed it' with no explanation."
+ ],
+ "bulletins": [
+  {
+   "subject": "FREE CDS (not music) (better than music) (it's an operating system)",
+   "body": "i have 31 ubuntu cds left. they're free. they were free to me too: a company mails them to you if you ask, which i did, possibly too enthusiastically. each one comes in a little cardboard sleeve with people holding hands on it. you can try it without installing anything. put it in, restart, and it runs off the cd. your files are safe. your toolbars are safe (larry). if you hate it, take it out and it never happened. if you love it, find me. i'm the one at the lunch table with a thinkpad and no audio. current takers: nana (installed), todd (on a shelf), miles (coaster), dave (drawer). be the fifth. be the second real one. -- lars"
+  },
+  {
+   "subject": "survey: how long did it take YOU",
+   "body": "copy, paste, be honest. 1) how long did it take you to get on the internet today? 2) did you have to edit a text file to do it? 3) did you learn anything? 4) do you know what your wireless card is called? its real name? 5) do you feel free? my answers: 1) four seconds (today. in june: three days). 2) not today. 3) every day. 4) broadcom bcm4306. we've been through a lot. 5) yes. also tired. mostly yes."
+  }
+ ],
+ "pcComments": [
+  "nice photo. i can see a start button reflected in your glasses. we can fix that.",
+  "what format is this. jpeg? good. open format. i approve of the file. also you look happy.",
+  "is that a thinkpad in the background. is it yours. does it have the red nub. tell me everything.",
+  "took a while to load. not your fault. i was compiling in the other window. everything takes a while when you're compiling. good picture.",
+  "this is a great photo and i say that as someone whose webcam has never once worked."
+ ],
+ "dmSeed": [
+  {
+   "text": "hi malten. lars. i noticed your whole page looks like windows 98 and i want you to know i'm not here to judge, i'm here to help. it's not too late. i have a cd. it's free. it'll take an afternoon. maybe three days if you have wifi."
+  }
+ ],
+ "dms": [
+  "malten, philosophical question. if it takes me three days to do something that takes everyone else four seconds, but i understand every step, who actually won. don't answer yet. think about it for three days.",
+  "nana update: she figured out how to change her desktop background by herself. it's now a photo of me at age 6 holding a fish. on the computer in her living room. where her friends can see. i taught her too well.",
+  "do you need a cd. i'm not pushing. i just have 31 and my backpack doesn't close. even if you only use it as a coaster. miles does. it's fine. it hurts but it's fine.",
+  "i got the printer working. it took two days and it only prints sideways and only in cyan. i printed a page that says 'freedom' and it's on my wall. in cyan. sideways.",
+  "confession: i booted the SHAME partition tonight. built a wooden roller coaster with a 62 mph drop. named it 'kernel panic.' the little people loved it. i felt nothing. (i felt a lot.)",
+  "malten can you hear the song on my profile? is it good? i picked it in july, when sound still worked. i have never actually heard it play on my own page.",
+  "someone at school asked me to fix their computer and i said 'have you tried ubuntu' and they said 'i just need to print.' i said 'me too, man.' we stood there for a while."
+ ],
+ "blog": [
+  {
+   "title": "three days: the wifi log",
+   "date": "Aug 9 2026 4:17 AM",
+   "mood": "free",
+   "body": "day 1, 2pm. fresh install. no wireless. the card is a broadcom, which the forums describe as 'a journey.' day 1, 9pm. found a program that lets linux wear a windows driver like a coat. i need the windows driver. it's on the internet. i don't have internet. that's the problem i'm solving. day 2, noon. walked the laptop to the coffee shop. borrowed a computer from someone there [0] to put the driver on a usb stick. day 2, midnight. driver loads. card lights up. no networks found. i can see the router from my chair. day 3, 4am. a forum user named penguin_dad says there's a second driver fighting the first one. two drivers, one card, like raccoons in a trash can. removed one. the bars lit up. i stood. i raised my arms. i woke up my mom. she said 'is it the internet again.' yes, mom. it is. --- [0] it was miles. it was a macbook. this never leaves the footnote."
+  },
+  {
+   "title": "install report: nana (success)",
+   "date": "Sep 21 2026 7:45 PM",
+   "mood": "proud. full of meatballs",
+   "body": "subject: one (1) grandmother, age 74, previously running windows with a weather toolbar and a kitten screensaver she believed was a tv channel. install date: a sunday in june. duration: 40 minutes, plus dinner. everything worked on the first try, including sound, which i am not bitter about. training: i showed her the browser, the email and solitaire. she asked where the kittens went. i found her new kittens. ninety days later: zero viruses. zero toolbars. she emails me every morning ('lars the computer is good today'). she is 14 and 0 at solitaire this week because she discovered undo and considers it legal. last sunday her friend dolores asked what kind of computer it was and nana said 'it's a linux. my grandson put freedom on it.' i have converted exactly one person in two years and it's the best one. i go back every sunday. the computer never needs fixing. i go anyway."
+  }
+ ],
+ "survey": {
+  "title": "the geek survey (forwarded by tim) (answered in plain text, as intended)",
+  "qa": [
+   ["operating system:", "ubuntu. kernel compiled by me, tuesday. and again wednesday, by accident."],
+   ["how many computers do you own:", "one thinkpad, one tower in pieces, and nana's (spiritually)."],
+   ["uptime:", "31 days, 4 hours. i haven't restarted because i'm not sure the wifi would come back."],
+   ["favorite text editor:", "i'm not answering that in public. people have lost friends."],
+   ["longest you've spent fixing something:", "three days (wifi). two days (printer). since august and counting (sound)."],
+   ["do you have a windows partition:", "...4gb. it's named SHAME. next question."],
+   ["mac or pc:", "that's two brands of the same problem. (miles, i can hear you typing.)"],
+   ["what's in your backpack:", "31 ubuntu cds, an ethernet cable (20 ft), a second ethernet cable (in case), half a sandwich."],
+   ["people you've converted:", "one. nana. 14 and 0 at solitaire. undefeated."],
+   ["describe freedom:", "nobody handing you anything. also the little wifi bars, at 4am, finally lighting up."]
+  ]
+ }
+}

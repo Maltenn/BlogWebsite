@@ -12,6 +12,7 @@ db.json
 
 # Local Claude settings (launch.json is shared on purpose)
 .claude/settings.local.json
+.claude/worktrees/
 
 # OS / editor junk
 .DS_Store

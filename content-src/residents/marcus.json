@@ -1,0 +1,219 @@
+{
+ "id": "marcus",
+ "name": "mod_marcus",
+ "tag": "Thread locked. Read the rules. (I am not technically a moderator here. Yet.)",
+ "avatar": "assets/avatar_marcus.gif",
+ "gender": "Male",
+ "age": 19,
+ "hometown": "Fort Wayne, Indiana",
+ "loc": "Your wall (it is under review)",
+ "zodiac": "Capricorn (Off-topic. Moved.)",
+ "status": "Single (Applications are closed. See sticky.)",
+ "hereFor": "Networking, Enforcement, Friends (see Rule 12)",
+ "mood": "vigilant",
+ "lastLogin": "Oct 3 2026 11:58 PM",
+ "theme": {
+  "bg": "#dfe5ea",
+  "fg": "#12232e",
+  "accent": "#006699"
+ },
+ "blogTitle": "ANNOUNCEMENTS (Read Before Commenting) (This Means You)",
+ "about": "Welcome. Before you comment, read the rules. They are on my wall, in my blog, and in a bulletin I repost on the 1st of each month. I have been a moderator at TankTalk (a freshwater aquarium forum, 212 members) for three years and have been named Mod of the Month four times. There are two mods. OurSpace currently has no moderators, no stickies, no search function, and one admin with a laptop. I am helping. I review walls for double posts, all caps, oversized glitter and off-topic replies, and I issue warnings where needed. The warnings are not binding. Yet. My admin application is with Todd (fourth draft, six pages, references available). Thread locked.",
+ "aboutMore": "Off the record: I have a betta named Sticky. He lives in a 5-gallon tank with a heater and a filter, because a bowl is not a home, and I will tell you that in the fish aisle whether you ask or not (I work weekends at the pet store on Route 9). Every new member at TankTalk gets a welcome message from me. I type each one by hand. If your fish is sick, post in Emergencies and I will unlock whatever needs unlocking. That is Rule 12. It is the only rule with no exceptions.",
+ "meet": "Who I'd like to meet: Todd, in an official capacity, to discuss the application. Whoever wrote the first forum rules sticky (a visionary). One (1) OurSpace member who has used a search function. And the person who gave Dave moderator powers for a day in June. I know it was Todd. I would like to hear him say it.",
+ "interests": {
+  "General": "Moderating, forum rules (writing, revising, enforcing), stickies, locking threads, splitting threads, merging threads, the Report button, freshwater aquariums, 25% weekly water changes, laminating, alphabetical order, quiet",
+  "Music": "Off-topic. Moved to Music. Fine: film scores without words (words invite debate), Jimmy Eat World, the hum of a properly seated filter, whatever plays at the pet store before opening (smooth jazz, six songs, I know them all)",
+  "Movies": "Finding Nemo (the tank scenes are accurate; the dentist's niece is a Rule 12 violation), 12 Angry Men (a thread that should have been locked on page 1), Apollo 13 (procedures save lives), School of Rock (he had no credentials. Neither do I. Moving on.)",
+  "Television": "Judge Judy (case closed in eleven minutes; that is moderation), Law & Order (all of them), Animal Planet, C-SPAN whenever a gavel is involved",
+  "Books": "The TankTalk Rules & FAQ (co-author), Robert's Rules of Order, The Simple Guide to Freshwater Aquariums, the OurSpace Terms of Service (I am the only one who has read it. There is a typo in section 3. Todd has been notified.)",
+  "Heroes": "The admin of TankTalk (username: Admin. We have never spoken informally.), Judge Judy, my betta Sticky, hall monitors everywhere, Todd (pending the outcome of my application)"
+ },
+ "song": {
+  "name": "The Authority Song",
+  "artist": "Jimmy Eat World",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e7/e3/da/e7e3da2e-7d5c-4293-9dd0-b25d539ce92a/mzaf_11391581384854769383.plus.aac.p.m4a",
+  "pattern": [0, 5, 7, 5, 0, 5, 7, 9],
+  "bpm": 150
+ },
+ "decor": [
+  "assets/badge_anybrowser.gif",
+  "assets/badge_built_with_microsoft_notepad.gif"
+ ],
+ "friends": ["todd", "dave", "gary", "angela", "doug", "fred", "patrick", "banana"],
+ "wall": [
+  {
+   "from": "todd",
+   "text": "Hi Marcus! Got the application! All six pages! And the appendix! I haven't finished it yet because the laptop is also the server and opening a file that big makes the site slow. Quick question: when you 'locked' Banana's wall, what did you... do? Because it's not locked. Anyway thanks for caring about the site! - Todd :)",
+   "time": "Oct 1 2026 9:12 AM"
+  },
+  {
+   "from": "banana",
+   "text": "I HAVE RECEIVED WARNING NUMBER 114 FOR CAPS LOCK AND I WANT YOU TO KNOW I PRINTED ALL 114 AND TAPED THEM TO MY WALL AND THEY FORM THE SHAPE OF A BANANA. THIS WAS NOT PLANNED. THIS IS DESTINY!!!",
+   "time": "Sep 27 2026 4:03 AM"
+  },
+  {
+   "from": "dave",
+   "text": "m4rcus i was m0d for 1 day and i g4ve everyone free profile views. u have been m0d for 0 days and given everyone homework. who is the real h4x0r here. (neither of us) (but mostly not u)",
+   "time": "Sep 23 2026 10:36 PM"
+  },
+  {
+   "from": "gary",
+   "text": "Marcus, re: your Rules v3.2, see my notes [1.4a] through [1.9]. Rule 4 and Rule 4b contradict each other if the topic is Rule 4. Otherwise solid work. The ASCII header could be bigger. -- Gary (FAQ v1.07)",
+   "time": "Sep 20 2026 1:14 PM"
+  },
+  {
+   "from": "angela",
+   "text": "~*~ Marcus! ~*~ Thank you for applying to the Ring of Enchanted Sites! Unfortunately a page called 'RULES (READ FIRST)' with no pictures does not meet our whimsy requirement. Please add at least one (1) animated gif and apply again! P.S. My guestbook does NOT need a moderator, it is a place of joy! ~ Angela, Webmistress",
+   "time": "Sep 14 2026 6:50 PM"
+  },
+  {
+   "from": "patrick",
+   "text": "marcus you gave my rock a warning for 'post contains no content.' he is a rock. that is all his content. he is doing his best. i read the rules three times like you said and i still like you",
+   "time": "Sep 6 2026 2:27 PM"
+  },
+  {
+   "from": "doug",
+   "text": "marcus it is NOT a double post. my mom picked up the phone in the middle of the first one. the second one is the same post finishing. its one post with a mom in it. check ur own rule 3 theres got to be a",
+   "time": "Aug 28 2026 5:55 PM"
+  },
+  {
+   "from": "herp",
+   "text": "herp. herp herp.",
+   "time": "Aug 17 2026 12:00 PM"
+  }
+ ],
+ "replies": [
+  "Thread locked.",
+  "Read the rules. They are stickied. Everything I say is stickied.",
+  "This is your first warning. (You have had several first warnings. I am generous.)",
+  "Off-topic. Moved.",
+  "Use the search function. I know there isn't one. That is not my fault. Yet.",
+  "Noted and logged. I keep a log.",
+  "That is a good post. Clear, on-topic, lowercase where appropriate. No action taken.",
+  "Please do not quote the whole post you are replying to. Rule 4.",
+  "Reopened. I can do that too.",
+  "I will allow it."
+ ],
+ "thanksAdd": "Friend request approved. Welcome. Your page has been reviewed: 2 double posts, 1 oversized image, 0 warnings issued (grace period, 7 days). The rules are on my wall. If you have a question, check whether it has been asked before. If you have a fish, I have follow-up questions.",
+ "ambient": [
+  "Reminder: replying to a wall post from July is a necro-bump. Rule 8. Let the old threads rest.",
+  "Reviewed 31 walls today. Issued 12 warnings. 0 were acknowledged. Enforcement remains a challenge without powers. See: my application.",
+  "Sticky ate all four pellets this morning and flared at his own reflection. Moderation runs in the household.",
+  "A customer in the fish aisle wanted to keep a goldfish in a flower vase. I talked for eleven minutes. She left with a 10-gallon tank and my forum username. That is the job.",
+  "To whoever posted the same glitter graphic on nine walls in one hour: that is cross-posting. I counted. I have the timestamps.",
+  "Nominated for Mod of the Month at TankTalk again. That would make five. There are two of us. I am not taking it for granted."
+ ],
+ "saltyDm": "Request denied. Understood. For the record, there is no appeal process on OurSpace, which is exactly the kind of gap I outlined on page 4 of my application. I have logged this as 'pending' rather than 'denied.' The log is mine. I can do that.",
+ "keywords": {
+  "rules": "The rules are stickied on my wall, v3.2. Rule 1 is 'read the rules.' Most people do not get past Rule 1. That is by design. It is a filter.",
+  "admin": "My application is with Todd. Fourth draft. Six pages plus an appendix on thread management. He says he is 'getting to it.' I check hourly. That is not pressure. That is availability.",
+  "fish": "What size tank? Heated? Filtered? What are your water parameters? I am not interrogating you. I am welcoming you. That is what a welcome looks like at TankTalk.",
+  "locked": "Technically nothing on this site can be locked. I say 'thread locked' and people keep posting. I consider those posts unofficial.",
+  "banned": "I have never banned anyone. Not here (no powers), not at TankTalk (not once in three years). A warning is a conversation. A ban is giving up. Do not tell the others.",
+  "mod": "Moderator. Three years at TankTalk. Here I am 'unofficial,' which Todd says means 'no' and I say means 'not yet.'"
+ },
+ "banter": {
+  "todd": [
+   "Todd. Following up on my admin application (submitted Aug 3, resubmitted Aug 19, resubmitted with appendix Sep 6). No rush. I have attached a fourth draft. It has a table of contents now.",
+   "Todd, I have drafted a Rules sticky for the OurSpace front page, free of charge. Rule 1: read the rules. Rule 2: no all caps. Banana has seen it and replied in all caps. I rest my case."
+  ],
+  "dave": [
+   "Dave. You were a moderator for ONE day and you used it to give everyone free profile views. Profile views were already free. You moderated nothing. I have been thinking about it since June.",
+   "Dave, your wall post contained four numbers pretending to be letters. Rule 2b covers this. Rule 2b is new. I wrote it during your post."
+  ],
+  "banana": [
+   "BANANA_PHONE: this is warning number 115 for all caps. Please see Rule 2. I have typed this one slowly so it stands out from the previous 114.",
+   "Banana, I went back through your wall. Every post since June is in capitals, on-topic, and friendly to new members. Under Rule 12 I am required to say: good work. Under Rule 2: warning 116."
+  ],
+  "angela": [
+   "Angela, your guestbook has 212 entries and no rules. Entry 148 is an advertisement for discount watches. Entry 149 is you, thanking it. I am offering to moderate at no cost. Think about it.",
+   "Angela, I have read the webring bylaws. There are none. The page says UNDER CONSTRUCTION and has since before I applied. A ring without bylaws is a line. Please advise."
+  ],
+  "doug": [
+   "Doug. Your last two posts were 40 seconds apart and the second began mid-word. That is a double post under Rule 3. However. I have added Rule 3c, the Doug Clause: a post interrupted by a parent on a phone line may be finished once. You are welcome.",
+   "Doug, your signature is one line of plain text with no images. It is the only compliant signature on this website. There is no award for that. I wanted you to know anyway."
+  ],
+  "fred": [
+   "Fred, this is your sixth 'I'm leaving OurSpace' bulletin. Rule 11: no departure threads. You are still here. Either leave or stop announcing it. (Do not leave. The site needs members over 20.)",
+   "Fred. A testimonial is a wall post with a different name. I have locked the debate. You may reply once to say you understand."
+  ],
+  "gary": [
+   "Gary, I reviewed your walkthrough. 300KB, numbered sections, a version history, and a rules section for emailing you. I have never said this to another member: no notes.",
+   "Gary, re: your claim that Rule 4 and Rule 4b conflict. They do not. 4b supersedes 4 when I say so. That is what the b is for."
+  ],
+  "larry": [
+   "Larry, Rule 6 prohibits links to downloads. Your entire profile is a link to downloads. Your About Me is a warning label. I would lock it if I could find it under the toolbars.",
+   "Larry. Thank you for the mix CD. Track 1 was mislabeled, track 2 was mislabeled, and track 5 was a recording of a filter running in an empty tank, which I have now listened to eleven times. Do not tell anyone."
+  ]
+ },
+ "statuses": [
+  "marcus is reviewing your wall. Please remain where you are.",
+  "marcus is locking this thread. (The thread did not lock. He stands by the decision.)",
+  "marcus just issued warning #116. He knows who you are. So do you.",
+  "marcus is refreshing his inbox for a reply from Todd. No rush.",
+  "marcus is doing a 25% water change. Sticky is supervising.",
+  "marcus is revising the rules. v3.3 adds a clause about glitter.",
+  "marcus just unlocked a thread at TankTalk because someone's tetra got better. He would like that kept quiet."
+ ],
+ "bulletins": [
+  {
+   "subject": "RULES OF OURSPACE (unofficial) (v3.2) - READ BEFORE POSTING ANYWHERE",
+   "body": "Reposted on the 1st of each month. 1. Read the rules. 2. No all caps (see: Banana, 116 warnings). 3. No double posting (3c: the Doug Clause). 4. Stay on topic. 4b. I decide the topic. 5. Signatures: 500x100 max, no animation. 6. No links to downloads (see: Larry). 7. Search before you ask. 8. No replying to posts older than 30 days. 9. No backseat moderating (I am not in the back seat). 10. Glitter: under review. 11. No 'I'm leaving' bulletins (see: Fred, six). 12. Be kind to new members. Rule 12 has no exceptions and no clauses. Thread locked. -- Marcus, Moderator (unofficial)"
+  },
+  {
+   "subject": "PSA: A bowl is not a home",
+   "body": "Off my usual topic. Moved here by me. This weekend four separate people in the fish aisle asked me which bowl is best for a betta. The answer is none. A betta needs 5 gallons minimum, a heater set to 78, a gentle filter, and a lid, because they jump. Mine is named Sticky and he has all four plus a small plastic log he ignores. If you have a fish in a bowl, I am not issuing a warning. I am asking nicely. Message me your setup and I will help you fix it for under $30. This offer does not expire. Thread open. -- Marcus"
+  }
+ ],
+ "pcComments": [
+  "Image exceeds 500 pixels in width. Rule 5. It is a nice photo. Both things are true.",
+  "Is that an aquarium in the background? What size? Is that a heater? Reply in a new comment, not here. Rule 4.",
+  "Three people have commented 'cute!!' in a row. That is a triple post by committee. Noted.",
+  "On-topic, well-lit, correctly rotated. No action taken. That is the highest outcome.",
+  "This photo was posted twice. I reported the second one to Todd. He replied with a smiley face. The matter is ongoing."
+ ],
+ "dmSeed": [
+  {
+   "text": "Hello malten. This is a courtesy notice. Your page has been reviewed and found mostly compliant. One note: your guestbook has no posted rules. I have drafted twelve. Please read them before replying. Replying before reading them is a Rule 1 violation. -- Marcus, Moderator (unofficial)"
+  }
+ ],
+ "dms": [
+  "malten, a procedural question. If I say 'thread locked' on someone's wall and they reply 'ok,' does that count as acknowledging the lock or violating it? I have been stuck on this since Tuesday.",
+  "I need a second opinion and you seem neutral. Is it unprofessional to list my fish as a reference on an admin application? He has seen my work up close. He cannot write, but neither can my other reference (Patrick's rock).",
+  "A woman came back to the fish aisle today to show me a photo of the tank I talked her into. The goldfish has doubled in size. She named it Marcus. I had to go stand in the stockroom for a minute.",
+  "malten, you run a website. How long does an admin usually take to read six pages? Todd said 'soon' in early August. I am not counting the days. (I am counting the days.)",
+  "Confession. Last night someone posted on my wall in all caps to wish me a happy birthday. It was not my birthday. Wrong wall, all caps, off-topic. I did not issue a warning. I said thank you. Do not log this.",
+  "I have drafted a proposal for a Report button on OurSpace. Reports would go to me. I would then forward them to Todd. I understand this adds a step. The step is me. That is the proposal.",
+  "Sticky built a bubble nest overnight. That means he is content with his environment. I checked the water parameters anyway. Then I checked them again. Then I told the other mod. Now I am telling you."
+ ],
+ "blog": [
+  {
+   "title": "Why I Lock Threads (A Clarification)",
+   "date": "Sep 15 2026 8:04 PM",
+   "mood": "measured",
+   "body": "Several members have asked why I 'lock' wall conversations when I have no ability to lock anything. Fair question. Asked without searching first, but fair. Three years ago at TankTalk there was a thread called 'is my fish sad.' It ran to 40 pages. By page 6 nobody was talking about the fish. By page 20 two members were arguing about gravel. The original poster never got an answer, and I later learned the fish had a simple fin problem that a $4 bottle would have fixed in a week. I was a new member then. I read all 40 pages looking for the answer for her. It was not in there. That is why I lock threads. Not because I enjoy it (I enjoy it somewhat). Because somewhere under page 20 there is a person who asked a real question. Thread locked. Comments are open. I am aware of the contradiction."
+  },
+  {
+   "title": "Admin Application: Status Update #4",
+   "date": "Oct 1 2026 7:30 AM",
+   "mood": "patient",
+   "body": "For transparency, a timeline. Aug 3: Application submitted to Todd. Six pages. Aug 4: Todd replied 'wow, thanks Marcus!' with a smiley face. Aug 19: Resubmitted with corrected page numbers. Sep 6: Resubmitted with an appendix (thread management, a proposed Report button, one diagram). Sep 7: Todd explained that the file was slowing the site down, because the server is also the computer he reads files on. I converted it to plain text. 31KB. Sep 20: I asked Dave, who was a moderator for one day in June, what his interview was like. He said there was no interview. Todd gave it to him 'because he asked nicely at lunch.' I have considered this information for eleven days. Oct 1: I asked Todd if he would like to get lunch. He said 'sure buddy!' I am bringing the fourth draft. I am also bringing a sandwich, in case that is the part that matters."
+  }
+ ],
+ "survey": {
+  "title": "Member Survey (Mandatory) (It Is Not Mandatory) (Please)",
+  "qa": [
+   ["Username and rank:", "mod_marcus. Rank at TankTalk: Moderator. Rank here: Member. For now."],
+   ["Post count:", "TankTalk: 11,402. OurSpace: 640 wall posts, of which 588 were warnings."],
+   ["Warnings issued this week:", "37. Acknowledged: 1 (Patrick, who said 'ok' and then thanked me)."],
+   ["Have you ever been warned yourself?", "Once. TankTalk, year one, for backseat moderating. I think about it. It is why Rule 9 exists."],
+   ["Favorite rule:", "Rule 12. Do not print that."],
+   ["Least favorite member behavior:", "Quoting an entire post in order to reply 'lol.'"],
+   ["Pets:", "One betta, Sticky. 5 gallons, heated, filtered. He has never broken a rule. He has never read one either."],
+   ["What would you do with admin powers?", "Day one: a search function. Day two: stickies. Day three: I would lock one thread, properly, and watch it stay locked."],
+   ["Describe yourself in three words:", "'Thread locked.' Kidding. 'Here to help.'"],
+   ["Tag five members:", "Todd, Gary, Angela, Doug (if his connection holds), Banana (lowercase only, please)."]
+  ]
+ }
+}

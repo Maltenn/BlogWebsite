@@ -1,0 +1,247 @@
+{
+  "id": "wes_fresno_nerves",
+  "with": "wes",
+  "opener": [
+    "malten. it's 11:40 pm. the fresno regional is at 9 am and i'm sitting on my bed with my shoes on. why do i have my shoes on. i don't know.",
+    "bracket dropped tonight. i'm 9th seed. dale is 8th. we play in the second round, which is the earliest the spreadsheet could possibly have put us. that's a personal insult from a spreadsheet.",
+    "dale. the marth. the middle school band teacher from stockton who says 'good game' like he's handing you a gift. i'm not scared of marth. i'm scared of the gift."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "shoes off first. nobody ever solved anything in shoes.", "next": "a_shoes" },
+        { "say": "what's the note on your bag say? you mentioned a note.", "next": "b_note" },
+        { "say": "dale's online too. ask him for a midnight set. strike first.", "next": "c_midnight" }
+      ]
+    },
+
+    "a_shoes": {
+      "them": [
+        "okay. shoes off. socks off. i'm on the floor like a monk with cold feet. you're right. it's different.",
+        "so i made a list for tomorrow. 23 steps. step 1 is 'wake up.' step 23 is 'accept result.' in my whole life i have never gotten past step 17 in a bracket."
+      ],
+      "choices": [
+        { "say": "cut the list to three steps. which three survive?", "next": "ritual_three" },
+        { "say": "your cousin has beaten you. call maya. she's the only coach you've got.", "next": "maya_call" }
+      ]
+    },
+
+    "b_note": {
+      "them": [
+        "it says 'positive!' and a smiley face. my mom has written 'positive!' and a smiley on a note on my bag before every regional since i was 19. same pen. same smiley. one eyebrow is slightly higher on the left.",
+        "and on the back, this time, in smaller letters: 'eat the banana.' that's new. i don't know what it means. i don't know if it's a threat."
+      ],
+      "choices": [
+        { "say": "go find her. a note that small means she's up worrying too.", "next": "mom_awake" },
+        { "say": "the note's perfect. stuff it in your bag. what else is on your mind besides the banana?", "next": "dale_ping" }
+      ]
+    },
+
+    "c_midnight": {
+      "them": [
+        "a midnight set. against the guy i'm scared of. that's either the mind games of a champion or the unforced error of a man with cold feet.",
+        "i typed it. i deleted it. i typed it again. i sent it. it's gone. dale is in fresno early, at his sister's, with a spare controller and, i now remember, a couch. i should have remembered the couch before i sent it."
+      ],
+      "choices": [
+        { "say": "play it straight. there's nothing to hide in a friendly. let him see your real game.", "next": "friendlies_honest" },
+        { "say": "play grabs and shines only. don't show him one frame of your good stuff.", "next": "sandbag_plan" }
+      ]
+    },
+
+    "ritual_three": {
+      "them": [
+        "three steps. okay. i can do this. one: wash my hands. three times, hot water, the way you'd scrub in for something. two: tape the thumbs. three: eat the banana, apparently.",
+        "i also need 'no johns.' it's not a step. it's a prayer. i say it to the mirror and the mirror says nothing and that's how i know it's working."
+      ],
+      "effects": [
+        { "type": "status", "text": "wes cut a 23-step bracket list down to 3: wash hands, tape thumbs, banana. 'no johns' is not a step. it's a prayer. that's 20 fewer things to be afraid of. he's still afraid of 4." }
+      ],
+      "choices": [
+        { "say": "wash, tape, banana. johns stay between you and the controller. done. what else?", "next": "dale_ping" },
+        { "say": "step four is calling maya. she's up. kids are always up.", "next": "maya_call" }
+      ]
+    },
+
+    "maya_call": {
+      "them": [
+        "i called her house. her mom answered. her mom said 'wes, it's midnight.' i said it's an emergency. she put maya on the phone. maya said 'hello' in a voice like a rolled-up sock.",
+        "i said i'm nervous about dale. she yawned and said 'you're thinking too much, wes. push the stick. hum.' then she hung up on me. she hung up on me like a professional. i've never felt so coached."
+      ],
+      "choices": [
+        { "say": "she's right and you know it. hum something. right now. what's the song?", "next": "dale_ping" },
+        { "say": "the person who's still awake and worried about you is down the hall. go see her.", "next": "mom_awake" }
+      ]
+    },
+
+    "dale_ping": {
+      "them": [
+        "hold on. dale just messaged me. no way. he says: 'Good luck tomorrow, Wes. I'm in Fresno at my sister's with a spare controller and a very comfortable couch. If you can't sleep either, I would be glad to play a few friendlies. No tech talk. I'd just like to play.'",
+        "he put a period after 'play.' who does that. who has that much self-control at midnight."
+      ],
+      "effects": [
+        { "type": "status", "text": "wes has just received a polite invitation from the man he plays in round 2. he has been staring at it for four minutes. he wants it noted that it was a very well-punctuated invitation." }
+      ],
+      "choices": [
+        { "say": "say yes. you can't be afraid of someone you've already played for fun.", "next": "friendlies_honest" },
+        { "say": "say no. keep dale a stranger until the bracket. strangers are easier to beat.", "next": "decline_cave" },
+        { "say": "say yes, but hide your good tech. play like a fox who just found a controller.", "next": "sandbag_plan" }
+      ]
+    },
+
+    "friendlies_honest": {
+      "them": [
+        "okay. we just played. 5 games, 40 minutes, and i'm shaking, and not from the cold. he took the first game, i took the second, he took the third, and in the fourth i hit a wavedash so clean it made a sound. he said 'good game.' he said it after EVERY game. even the ones he lost.",
+        "he also told me he's more nervous than i am. he conducts 140 sixth graders and says that's nothing. 'But I'm playing Marth against a Fox at nine in the morning, Wes. I'm petrified.' a man who has survived the recorder unit said that to me."
+      ],
+      "effects": [
+        { "type": "status", "text": "wes just played five friendlies with the guy he faces in round 2. it was great. he hates that it was great. the best set of his life will be remembered as 'the one that didn't count.'" }
+      ],
+      "choices": [
+        { "say": "ask how a man who runs 140 sixth graders stays calm. get the trick.", "next": "breathe_tip" },
+        { "say": "tell him you're scared too. just say it out loud. he already did.", "next": "breathe_tip" }
+      ]
+    },
+
+    "breathe_tip": {
+      "them": [
+        "he said: 'In for four counts, out for four counts, like you're holding a long note. I do it before every concert. The trumpets cry. I breathe in fours. That's the whole secret.' then he said 'whoever needs the win less will play better.' i said 'i need it more.' he said 'then you'll learn more.'",
+        "i'd like to throw something at him. politely. i'd like to hand it to him, like a gift."
+      ],
+      "choices": [
+        { "say": "he's right and you hate it. bed. sleep is a character select screen.", "next": "end_calm" },
+        { "say": "breathe with him for a full minute right now. i'll count. in four, out four.", "next": "end_calm" }
+      ]
+    },
+
+    "decline_cave": {
+      "them": [
+        "okay. declined. i wrote 'thank you, i'm going to rest.' he wrote 'Rest well.' that's it. he's a wall of politeness. you can't even be mad at it.",
+        "but i'm not going to rest. i have 11 videos of his matches. i've watched them all before, but never at midnight, and midnight is when you find the real tells."
+      ],
+      "choices": [
+        { "say": "watch one. just one. set a timer and then lie down.", "next": "vod_spiral" },
+        { "say": "watch none. go eat the toast your mom's probably making. i smell a plan.", "next": "mom_awake" }
+      ]
+    },
+
+    "vod_spiral": {
+      "them": [
+        "it is 2:50 am. i watched all 11. there was no timer. i know where he rolls. i know he looks at the ceiling when he's losing, like a teacher waiting for quiet. i have never been more tired and more ready and more scared at the same time.",
+        "and malten. in VOD 11, i heard it. before every match he hums the same four notes. low. barely there. it's a tuning note. he tunes himself. he's playing a set like a concert."
+      ],
+      "effects": [
+        { "type": "status", "text": "wes has watched 11 hours of a band teacher's matches and learned his tuning note. he does not feel more ready. he feels more respectful. this is worse." }
+      ],
+      "choices": [
+        { "say": "tell him you noticed. a rival who studied your hum is a rival who respects you.", "next": "end_3am" },
+        { "say": "close the laptop. the hum is his. leave it where you found it.", "next": "end_3am" }
+      ]
+    },
+
+    "sandbag_plan": {
+      "them": [
+        "okay. the plan: in friendlies i only use grab, shine, and the safe stuff. no tech. dale thinks i'm 'a fox who needs a grab,' and tomorrow i unleash everything. a surprise.",
+        "i've had this plan for four minutes and i already feel like a man in a trench coat holding a clipboard."
+      ],
+      "choices": [
+        { "say": "do it. let him underestimate you. he's a band teacher, not a general.", "next": "sandbag_caught" },
+        { "say": "scrap it. you'll flinch every time you hold back. play honest.", "next": "friendlies_honest" }
+      ]
+    },
+
+    "sandbag_caught": {
+      "them": [
+        "he caught me in forty seconds. after game two he said, 'Wes. I watched your wavedash at the last regional. It was lovely. Are you being modest, or are you being strategic?' i said both. he said, 'In band we call that sandbagging the clarinets.'",
+        "he wasn't mad. he was DELIGHTED. he said, 'Then let's make it interesting.' and proposed that tomorrow, whoever loses plays one full game as jigglypuff. in front of whoever's around. i said it should be called the Maya Clause. it just came out."
+      ],
+      "effects": [
+        { "type": "status", "text": "wes tried to sandbag a band teacher. it took 40 seconds to be caught. the band teacher said 'good game' while doing it." }
+      ],
+      "choices": [
+        { "say": "sign it. a gentleman's wager. maya will want royalties.", "next": "end_clause" },
+        { "say": "no clause tonight. play it straight and keep the wager for after.", "next": "breathe_tip" }
+      ]
+    },
+
+    "mom_awake": {
+      "them": [
+        "her light is on. she's at the kitchen table doing the crossword in pencil. she said 'you're up.' i said 'i'm nervous.' she said 'positive!' and then she pressed her lips together because she'd said it by accident, out loud, in the middle of the night.",
+        "we're making toast. i'm toasting. she's pretending she isn't about to cry. there's a plate of orange slices in the fridge for tomorrow, with a rubber band around the plastic wrap."
+      ],
+      "choices": [
+        { "say": "tell her the note is the best part of every drive. just say it plain.", "next": "mom_toast" },
+        { "say": "ask her what she does with her own nerves when you're the one in the bracket.", "next": "mom_toast" }
+      ]
+    },
+
+    "mom_toast": {
+      "them": [
+        "i told her. she put the butter knife down. she said 'i write positive! because i don't know the rules of your game. i only know the rules of you. and the rules of you are all pretty good.'",
+        "she told me what she does with her nerves. she folds laundry. she said 'it's why you've never had a wrinkled shirt at a regional.' i've been wearing her nerves to every bracket since i was 19."
+      ],
+      "effects": [
+        { "type": "status", "text": "wes is eating toast with his mom at 1 AM before a regional. she folds laundry when she's nervous. he found that out tonight. tomorrow's shirt is going to be extremely ironed." }
+      ],
+      "choices": [
+        { "say": "go to bed. the toast did its job. save the rest for fresno.", "next": "end_mom" },
+        { "say": "dale's still waiting on you. one friendly. then bed. fox wins on a full stomach.", "next": "dale_ping" }
+      ]
+    },
+
+    "end_calm": {
+      "them": [
+        "in for four, out for four. i did it eleven times, and on the eleventh my thumbs were warm. i know that's a small thing. it's the biggest small thing that's happened to me this year.",
+        "dale said 'good night, Wes. Good game in advance.' malten, i think i like him. this is a disaster for the bracket. four hand warmers, banana, bag. i'm going to bed. if i lose tomorrow, i'm going to lose warm."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "wes is going to sleep before a bracket for the first time in a year. in for four, out for four. a band teacher taught him. he's playing that same band teacher in round 2. he likes him. he's terrified. that's a normal ratio." },
+        { "type": "wallpost", "from": "gary", "to": "wes", "delay": 45, "text": "[WES v1.0] i have drafted 'sleeping before a bracket: a guide' (3 sections, 41 words). section 1: lie down. section 2: close eyes. section 3 [4.2b]: do NOT review the frame data. good luck tomorrow. results will be added as v1.1. i do not accept results that say 'i don't want to talk about it.'" },
+        { "type": "wallpost", "from": "becca", "to": "wes", "delay": 120, "text": "wes!! a band director taught you to breathe in fours?? that's the first rule of being a section leader!! in 4, out 4. it's what i do before every halftime show. you've been coached by an actual professional. go Fresno!! (i don't know what's in Fresno. go.)" },
+        { "type": "wall", "from": "hunter", "delay": 200, "text": "malten tell wes good luck from me. tell him i'll 1v1 him on lockout when he wins (different game) (but the energy is the same) (i'd lose)" }
+      ]
+    },
+
+    "end_clause": {
+      "them": [
+        "signed. in pencil, on the back of maya's birthday card envelope: THE MAYA CLAUSE. if i lose to dale tomorrow, i play a full game as jigglypuff, with maya coaching from the folding chairs. she doesn't know yet. i'll tell her mom at 7. i'll tell her mom with the plate of orange slices as an apology.",
+        "if i win, dale plays as jigglypuff. he said he'd 'honor it with a fully committed performance.' i believe him. i believe him so much it scares me. goodnight."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "THE MAYA CLAUSE (Fresno Regional, Winners Round 2)", "text": "Hi all. Tomorrow at the Fresno regional I play Dale (Marth, Stockton, band teacher, extremely polite) in Winners Round 2. The loser plays one full game as Jigglypuff. Coaching for the loser will be provided by my cousin Maya (9) and will be, I'm told, 'think less, hum.' She does not know she has been drafted. Predictions welcome. No john excuses will be accepted from either party. -wes" },
+        { "type": "wallpost", "from": "gary", "to": "wes", "delay": 60, "text": "[WES v1.0] the Maya Clause has been logged. i note 3 ambiguities: (a) is a 'full game' one stock or one match (b) can maya coach with her hands (c) [4.2b] what is jigglypuff's tier. please advise. i am not asking for a reason. i am asking for the record." },
+        { "type": "wallpost", "from": "devon", "to": "wes", "delay": 130, "text": "wes. a wager made at the table is the heart of the game. i respect it. i'm taking 3 trades on dale and 3 on you. i'm not saying which is which. i'm a champion. i don't have to." },
+        { "type": "status", "from": "hunter", "delay": 220, "text": "hunter just found out the Maya Clause is real. if wes loses as jigglypuff i'm clipping it for the montage. i'll put it right after the part where i get the BR. (i get the BR.)" }
+      ]
+    },
+
+    "end_3am": {
+      "them": [
+        "okay. i sent it. 'gg in advance. see you in round 2.' it's 3:10 am. he wrote back in nineteen seconds. 'Good game in advance, Wes. Sleep. (I'm awake too. I'll see you at nine.)'",
+        "so he's up. he's watching VODs of me. we're two grown men awake at three in the morning, studying each other like it's a love letter. i'm not going to feel better tonight. but i don't feel alone. i'm going to lie down and be tired. that's also an option."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "wes is going to be tired in fresno. he knows. he knows the guy he's playing is also tired. they have decided to be tired together. 6:10 AM departure. saltines are packed. dad doesn't know about 3 AM yet." },
+        { "type": "wallpost", "from": "tim", "to": "wes", "delay": 70, "text": "wes. logging 'sleep lost: 3 hrs (est.)' under 'losses (wes).' the ledger doesn't lie, it says go to bed. also i'll sell you a program for $2 that counts to four on your calculator. it just says 4. it says it 4 times. no refunds." },
+        { "type": "wallpost", "from": "josh", "to": "wes", "delay": 160, "text": "wes, youth group is praying for both of you tomorrow. i'm not taking sides. i'm taking pizza. there'll be pizza after, whoever wins. text me when you lose. i mean text me after. =]" },
+        { "type": "dm", "delay": 540, "text": "malten. it's 7:40 and we're in the car. dad asked how i slept. i said 'positive!' in my mom's voice and he laughed so hard he had to stop at a gas station. i'm holding the banana like it's a baby. i ate it. i feel okay. i feel tired and okay. that's a better sentence than i had last night." }
+      ]
+    },
+
+    "end_mom": {
+      "them": [
+        "going to bed. mom ironed tomorrow's shirt while we talked. it's hanging on the door, looking brave. dad's snoring through all of this like a man who knows how it ends.",
+        "thanks for telling me to go find her. i was going to sit in here with my shoes on and a spreadsheet. instead i got toast. i'm the luckiest wes in the whole bracket."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "wes had toast with his mom at 1 AM. she folds laundry when she's nervous. he's wearing the ironed shirt tomorrow. it says 'positive!' on it in his head. regional at nine. dale's in round 2. he's okay." },
+        { "type": "wallpost", "from": "debbie", "to": "wes", "delay": 50, "text": "Wes, Kayla tells me your mother writes 'positive!' on your bag before every tournament. I write 'Love, Mom' on everything, including a parking ticket once. We are two women with one system. Please tell her I would like her toast recipe. Good luck tomorrow. Love, Mom" },
+        { "type": "wallpost", "from": "josh", "to": "wes", "delay": 120, "text": "wes, youth group says good luck. i'm not taking sides between you and dale, i've never met dale, i'm pretty sure he's nice. there's pizza wednesday whichever of you wins. =]" },
+        { "type": "wallpost", "from": "becca", "to": "wes", "delay": 200, "text": "WES!! a mom who irons a shirt at 1 AM is a section leader. i'm just saying. she has a whole marching band's worth of love in her and she's using it on one fox. horns UP for her!!" }
+      ]
+    }
+  }
+}

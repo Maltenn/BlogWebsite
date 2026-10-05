@@ -1,0 +1,196 @@
+{
+ "id": "ryan",
+ "name": "rs_ryan_pk",
+ "tag": "selling lobs 200 ea ★ buying gf 10k ★ NOT entering the wildy ★ ty",
+ "avatar": "assets/avatar_ryan.gif",
+ "gender": "Male",
+ "age": 14,
+ "hometown": "Rockford, Illinois (Lumbridge in my heart)",
+ "loc": "world 1, varrock west bank (my body is in the den, the family computer, 40 min left)",
+ "zodiac": "Taurus (starxgazer says bulls 'dig in and refuse to move.' thats me and the wildy ditch)",
+ "status": "Single (buying gf 10k) (1 offer so far, 6k) (i dont know what to do with that)",
+ "hereFor": "Friends, Trades, Friends who dont scam",
+ "mood": "nervous but liquid",
+ "lastLogin": "Oct 4 2026 8:47 PM",
+ "theme": { "bg": "#3a2a14", "fg": "#fbefc9", "accent": "#5ee0ff" },
+ "bgTile": "assets/tiles/tile_bolts.png",
+ "blogTitle": "lobster report (prices, scams, and where NOT to stand)",
+ "about": "ok. im ryan. 14. rs_ryan_pk is what i named myself at 11 bc 'pk' sounded tough. i have never killed another player. i have been killed 6 times by a level 3 with a rune scimitar, and the one time i reached the wilderness ditch i read the warning screen out loud, said 'no thank u,' and went to the bank. 3 yrs on runescape. combat lvl 41 (11,000 cows, never lost to one), fishing lvl 76. i sell lobsters at the varrock west bank, world 1, 200 ea. i buy them at 150. thats called a business. i have been scammed twice by 'free armor trimming' and i think about those 2 guys every day. trade me. no wait. dont. ill trade u. its safer. ty",
+ "aboutMore": "things that are true. every saturday i stand in lumbridge with a sign over my head (NO FREE TRIM. DONT TRADE ANY1. ty) and warn the new kids. i have talked 40 of them out of a trade, its in a notebook. my mom thinks i 'run a little seafood business.' my dad says its a sound market. my monitor is a CRT with a ghost of the health bar burned into the corner. i can log out instantly bc i am never in combat. my dad says thats the most disciplined thing about me.",
+ "meet": "Who I'd like to meet: the 2 guys who trimmed me (just to talk, calmly, in a well lit place, with a witness). whoever put the wildy right next to varrock (i have a letter drafted). a girl who plays runescape and isnt doing it as a joke. and 1 customer who says 'ok' to 200 without asking if its negotiable.",
+ "interests": {
+  "General": "lobsters (catherby, 7 hrs per 100, ive timed it), the varrock west bank, trade chat, price checking, killing cows (safe), standing still in safe places, being a 'good trader' (no scams, ever), staring at the wildy ditch from 3 tiles back (just looking), my notebook of kids i warned, logging out instantly",
+  "Music": "the runescape soundtrack (harmony, sea shanty 2, i have both on a cd labeled 'homework'), yellowcard (the ocean one, i fish to it), whatever song is playing at the dentist that i price-check in my head, my dads radio on saturdays",
+  "Movies": "finding nemo (i watch it for the fish and feel bad every time), pirates of the caribbean, lord of the rings (frodo walks all the way to mordor and nobody offers him a free trim, i respect that), the princess bride (the poison cups scene is just a trade scam with better lighting)",
+  "Television": "deadliest catch (those guys fish for crab in a storm and i wont cross a ditch), mythbusters, antiques roadshow (i yell 'whats it worth' along with them), the weather channel (watching a storm roll in is basically the wilderness)",
+  "Books": "the runescape rules page (read 11 times, with notes), hatchet, holes, the guinness book of world records (kyles, i borrowed it for the largest lobster page), gary's runescape guide (v1.04 got me, v1.07 is better, the scam guide v2.3 is the best thing on the internet)",
+  "Heroes": "my dad (taught me 'if its free its not free'), the lumbridge guide (an npc, has never once scammed anyone), whoever invented the bank, min (sells tips, has never been scammed, i dont know how), kyle (keeps believing in people, which is scarier than the wildy)"
+ },
+ "song": {
+  "name": "Ocean Avenue",
+  "artist": "Yellowcard",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/10/e7/68/10e76877-174d-7a42-b002-148824891b2f/mzaf_8791734343275536748.plus.aac.p.m4a",
+  "pattern": [0, 4, 7, 4, 7, 9, 7, 4],
+  "bpm": 150
+ },
+ "decor": ["assets/deco_new_blue.gif", "assets/badge_8bit.gif"],
+ "friends": ["dave", "min", "kyle", "devon", "rick", "hunter", "wes", "josh", "gary"],
+ "wall": [
+  { "from": "min", "text": "ryan your tip #7 sold 6 times this week. 'if its free its not free.' i put your name on it. here is your cut, 10 percent, thats 3k mesos. i dont know how to give u mesos. i put them in a jar in henesys. the jar is next to me. im the one by the fountain. zzzzzzzzz", "time": "Oct 2 2026 3:48 AM" },
+  { "from": "hunter", "text": "RYAN. u watched the whole montage and the only thing u said was 'where is the safe zone.' dude its HALO. there are no safe zones. thats the genre. ...ok fine. 1v1 on lockout, i'll stand at spawn and u dont have to move. nobody gets hurt. (i get hurt. its a handicap.)", "time": "Sep 30 2026 6:15 PM" },
+  { "from": "kyle", "text": "ryan the party hat guy still hasnt doubled my gold. its day 11. u said 3 days. what if it doubles all at once. how do i ask him without sounding rude. he has a party hat ryan. ALSO thx 4 the lobster. i didnt eat it. its in my bank. i named it Steve", "time": "Sep 27 2026 8:09 PM" },
+  { "from": "dave", "text": "ry4n i tr4ced the guy who trimmed u. his name is xX_Trim4Free_Xx. he is in ohio. so am i. i checked my basement. he is not in it. i also checked wes's basement (7 crts) (no scammers) (i looked behind them)", "time": "Sep 24 2026 11:37 PM" },
+  { "from": "devon", "text": "ryan counter: 15k gp and 40 lobsters for the blue-eyes. u asked how to give me gp and i dont know either. tim says ur lobster stand is a 33 percent spread, which i'm told is good. i'm learning. u do not have my dragon. u have my respect. these are separate items.", "time": "Sep 20 2026 5:25 PM" },
+  { "from": "josh", "text": "ryan thx for coming to youth group wed =] u stood by the door the whole time and asked where the exits were. thats fine!! but when pastor dan said 'free pizza' u said 'whats the catch' and he said 'there isnt one' and u wrote that down. i saw the notebook. ur doing good man", "time": "Sep 14 2026 9:50 PM" },
+  { "from": "rick", "text": "Ryan. I have reviewed your price list. Lobsters at 200, bought at 150. That is a margin I respect. In two years I may have an opening on overnight stock. Nobody trims anything. We face the shelves. It is different. You would love it.", "time": "Sep 6 2026 7:12 AM" },
+  { "from": "walt", "text": "Dear Ryan, I am told you sell lobsters for 200. I asked at the VFW what the unit is and was told 'gold pieces.' I carry none. I will say only that in 34 years of mail I never saw a letter marked FREE that was. Keep your sign up. A man who stands at the door and says 'wait' is doing the oldest honest work there is. Regards, Walt", "time": "Aug 30 2026 5:44 AM" }
+ ],
+ "replies": [
+  "ty. np. gl",
+  "ok thats fair. i checked the price twice and its fair",
+  "is it free. bc if its free i have to say no. house rule",
+  "k. trade me. wait dont. ill trade u. its safer",
+  "lol nice. selling lobs 200 ea if u want some",
+  "thats a good point. writing it in the notebook",
+  "wait is this a scam. no. ok. it just sounds like one. everything does now",
+  "hold on im in lumbridge. a kid is about to trade a stranger. brb. ok he said no. back",
+  "ty. that was nicer than most trade chat",
+  "ok that comment is worth 4 lobs. thats 800gp. i dont have a way to give u that but i want u to know its in my heart"
+ ],
+ "thanksAdd": "ty 4 the add!! ur my 9th friend (the other 32 are combat levels). friends price on lobs is 150, normally 200, ive never said that before. no haggle. (a little haggle). if a stranger offers u free armor trimming say no and tell me. i keep a list. ty",
+ "ambient": [
+  "day 4 of NO FREE TRIM. 6 new kids walked by and asked 'whats trimming.' perfect. thats the point. they dont need to know",
+  "got to the wildy ditch again. read the warning out loud. 'are you sure you want to cross.' i said no. ty 4 asking. the game is the only thing on the internet that checks on me",
+  "caught 61 lobs at catherby. 339 to go. fishing is just waiting with a mouse",
+  "my mom asked who 'gp' is. i said its not a person its money. she said then why does it say u owe him. i dont know mom. i dont know",
+  "full rune is 38k. i have 31k. when i get it im going to stand in the bank wearing it for 20 min just to see how it feels. then im going to log out",
+  "logged out instantly again bc i was not in combat. dad checked the clock. 9:58. 'disciplined.' i think he means it nicely"
+ ],
+ "saltyDm": "ok. denied. thats fair. i dont accept random trades either. wait thats the same thing u just did. we would have been great friends. if u change ur mind the first lobster is half off. no scam. (half of 200 is 100) (i checked)",
+ "keywords": {
+  "runescape": "3 yrs, combat lvl 41, fishing lvl 76. 11,000 cows. i main lumbridge. what do u need. lobs are 200 ea. ty",
+  "lobster": "200 ea, world 1, varrock west bank. i fish them at catherby, 100 per 7 hrs, ive timed it. i also buy at 150. thats called a margin. its the only fancy word i know",
+  "wildy": "no. i mean i went. i stood at the ditch and read the warning screen out loud. there was a skull. i clicked no. 3 yrs and thats my record. 0 tiles in. 3 tiles back",
+  "wilderness": "its a place where people go to lose everything on purpose. i understand the appeal. i just prefer to lose things slowly, at the bank, to a fair price",
+  "scam": "u want the list? 1) the word 'free' 2) 'just trade me for a sec' 3) a party hat 4) anyone who logs out right after. if all 4 happen at once u have been chosen by the scam gods",
+  "trim": "no. there is no free trim. there never was. there is only a guy, a trade window, and a long walk home",
+  "gf": "ok that was a joke. i put 'buying gf 10k' in trade chat once and a guy offered 6k. i havent been the same. i dont know what he wanted. i dont think he knew either",
+  "mom": "she thinks i run a little seafood business. she asked if i need a permit. i said no. i looked it up. i didnt look it up"
+ },
+ "banter": {
+  "min": [
+   "min thank u for putting my name on tip #7. i said 'if its free its not free' to a kid in lumbridge in march. i didnt know it was a tip. i thought it was a sentence. now its 5k mesos and i dont know what a meso is but im proud",
+   "min i tried to buy tip #3 ('potions heal u'). u said 5k. i said i only have gp. u said u dont take gp. i said i dont take mesos. we sat there. i think this is what a recession is. thanks for being fair about it"
+  ],
+  "hunter": [
+   "hunter i watched the 11 min montage. at 4:12 u fall off the map and keep going. thats the bravest thing ive seen. i cant even fall off a ditch. did u do that on purpose?",
+   "hunter there is no 1v1 in runescape that i will accept. i will do the other kind. u stand in lumbridge, i stand in lumbridge, we both do nothing. best of 3. loser buys a lobster. (its 200)"
+  ],
+  "rick": [
+   "rick i read ur rules page. rule 4: 'attendance is not optional.' rule 6: 'no ninja looting.' i have a list like that for my stand. rule 1: no free trim. rule 2: no free anything. rule 3: ty. we are the same guy",
+   "rick u said maybe a job in 2 yrs. i said yes in my head right away and wrote 'ask mom' on my hand. is the night shift scary. is there a wildy in the back room. be honest"
+  ],
+  "dave": [
+   "dave u said u would hack the guy who trimmed me. its been 4 months. i know u cant. i just want u to know i liked that u said it. xX_Trim4Free_Xx is still out there. i hope he has a nice life and also a bad one",
+   "dave how do u port scan a lobster. i heard u scanned ur own house 11 times. my house has 1 port, the front door. my mom scans it every night at 10. it works"
+  ],
+  "wes": [
+   "wes my monitor is a CRT. it has the runescape health bar burned into the corner. a ghost of a health bar. its been there 2 yrs. it says 10/10. do u want it. its not worth anything but u collect them so u would know what to do",
+   "wes u said frame perfect. in runescape every click takes about half a second to count. so every move is frame perfect but slow, and with lobsters. come to world 1 sometime. bring a crt. ill sell u a lob (200)"
+  ],
+  "kyle": [
+   "kyle the party hat guy isnt doubling. its day 12. im not mad. on saturday u can stand next to me in lumbridge and hold the sign. thats a cheat code. the code is 'dont trade.' it works on every game",
+   "kyle here is the deal. u can have my 10 oldest lobs (cooked, they dont go bad), a bronze sword (a real one) and a rule. if the word 'free' shows up u hold the sword and say 'no.' ok go"
+  ],
+  "devon": [
+   "devon i accept 15k and 40 lobs for the blue-eyes. problem: i dont know how to give u gp. u have to be in the game. i made u a free account, duelist_devon. u start in lumbridge by the sheep. ill meet u there. i have a sign",
+   "devon u said nobody trims armor for free, NOBODY. i wrote it on a sticky note. its on my monitor. under it my dad wrote 'good advice.' thats 2 people agreeing. ill sit behind u at locals if u promise not to do it to little kids. wait u said that. ok. ty"
+  ],
+  "gary": [
+   "gary the cd came. it says LATEST in sharpie. thank u. u said 4.2b was ur error not mine. i think its both. i was on v1.04 for 6 months and u wrote it at 2 am off a forum. were even. im not mad. im on v1.07 now. also the sign is a FIGURE?? i didnt know i was a figure",
+   "gary its ok. i read v1.07. its the best one. the new wilderness section has a map with ascii skulls. ur skulls are very detailed. i counted 41. i went to the ditch to see if it matched. it did. i went home"
+  ]
+ },
+ "statuses": [
+  "ryan is selling lobs 200 ea (world 1, varrock west) (no haggle) (a little haggle)",
+  "ryan just read the wildy warning screen out loud and went to the bank",
+  "ryan is fishing at catherby. 61 lobs. 39 to go. 7 hrs. ty for waiting",
+  "ryan is standing in lumbridge holding a sign. it says NO FREE TRIM. he is there til 5",
+  "ryan just got an offer of 6k for 'gf.' he doesnt know what to do with this information",
+  "ryan is at 31k. full rune is 38k. the wait is real. the cows are patient",
+  "ryan just said no to a stranger so fast the stranger said 'whoa' (thats the sound of a scam leaving)",
+  "ryan just logged out instantly bc hes never in combat. dad says thats discipline",
+  "ryan is combat lvl 41 and has never been in a fight. ask him about the cows"
+ ],
+ "bulletins": [
+  {
+   "subject": "WORLD 1 VARROCK WEST BANK PRICE LIST (updated 8pm) (ty)",
+   "body": "lobsters 200 ea (buying at 150). swordfish 140 (i have 3, dont ask where they came from, its the ocean). cooked chicken: free to lvl 3s, no strings, no trim. rune platebody: not mine yet, i'm saving, 38k, have 31k, dont tell the cows. SERVICES OFFERED: lobsters. SERVICES NOT OFFERED: trimming, doubling, 'holding it 4 a sec,' lending, escorting into the wildy. ACCEPTED: gp, trust. NOT ACCEPTED: 'free.' im at the falador fountain on sundays but i dont sell there. its for looking. ty"
+  },
+  {
+   "subject": "HOW 2 NOT GET SCAMMED (by a guy who got scammed twice)",
+   "body": "1) the word 'free.' stop reading. 2) 'just trade me 4 a sec.' a sec is 3 yrs. 3) a party hat. 4) anyone who knows the name of ur armor. 5) anyone who logs out right after (thats not lag its a getaway). 6) 'its ok im a mod.' mods dont trade. 7) a really nice guy. repost this so a kid sees it. kyle this means u. kyle if ur reading this i said 'u' with love. ty"
+  },
+  {
+   "subject": "SURVEY: how far into the wilderness have u been (copy paste)",
+   "body": "1. tiles past the ditch: 2. cause of death: 3. what u lost: 4. would u go again: --- mine: 1) 0, my record is 3 tiles BACK 2) n/a 3) n/a 4) no. i have a notebook and it says 'no' 14 times in a row. it looks like a list of things im proud of. repost with yours. ill read every answer. ill feel brave from far away. ty"
+  }
+ ],
+ "pcComments": [
+  "nice pic. whats it worth. i say 200 (thats a compliment. thats lobster price)",
+  "looks safe. u look safe. i checked the background for anyone offering free anything. none. good",
+  "this is a good pic. no scam. i looked at it 3 times and i still have all my stuff",
+  "ty 4 posting. id buy this at 150 and sell it at 200. i would never sell it. thats just how i think about things",
+  "nice. is that a hat. a party hat?? ok no one is doubling anything. good. nice pic"
+ ],
+ "dmSeed": [
+  { "text": "hi malten. ryan. rs_ryan_pk. i have a stand at the varrock west bank, world 1. lobs 200 ea but 4 u the first one is 150 bc ur new. no scam. i said no scam first bc somebody told me to say it first. can u add me. trade me. wait. let me trade u. its safer. ty" }
+ ],
+ "dms": [
+  "malten my dad asked what runescape is. i showed him my bank. 31 stacks of lobsters. he looked at it a long time and said 'son thats a sound business.' then he asked how the market was and i said 'down 3gp' and he said 'thats the economy.' i wrote it on a sticky note. its on the monitor. under it is 'dont click it if its free' in his handwriting. its all i need",
+  "someone offered me 6k gp for my 'gf' status last night. i dont have one. i tried to give the 6k back. they said 'huh.' i dont know what they wanted. i dont know what i wanted. is that what trade chat is. is that all of trade chat",
+  "11,000 cows. thats how many i killed to get combat 41. cows dont fight back. i thought about it last night. 11,000 cows and i never felt bad. then i thought about the wildy. then i thought about the cows. then i couldnt sleep. they were just standing there. anyway gl",
+  "do u want to hear how i got trimmed the first time. i was 12. i had full mith, 2 weeks of lobsters. a guy in a rune helm said 'i can trim that free, just trade it to me so i can apply the trim.' i traded. he said 'brb.' i waited 40 min. he logged off. i believed in lag for a whole week. i believed in lag. malten. lag",
+  "gym class today we ran a mile. 9:40. a kid said 'thats fast for u.' i said 'i dont run, i go from bank to bank.' he didnt get it. i didnt either. it came out wrong. does that happen to u",
+  "malten what is the biggest thing u ever almost did and then didnt. mine is the wildy ditch. i got so close i could see the skull on the warning screen. i clicked no. im not ashamed. im just asking if that counts as a thing. tell me it counts",
+  "theres a guy at catherby who fishes next to me every day. we have never spoken. 3 hrs in he said 'gl.' i said 'gl.' it felt like a friendship. we log out at the same time. we never say bye. i think about that guy more than i think about school",
+  "a new kid in lumbridge asked what the sign meant. i said 'it means dont trade anyone who says free.' he said 'ok thx' and then asked if he could stand next to me. he stood next to me for 3 hrs. didnt say anything. then he said 'ty' and logged off. i dont know his name. i hope the sign works for him"
+ ],
+ "blog": [
+  {
+   "title": "the day i got trimmed (part 1 of 2) (part 2 is worse)",
+   "date": "Sep 22 2026 8:15 PM",
+   "mood": "recovering",
+   "body": "ok i said id tell it. i was 12. it was a saturday. i had spent 2 weeks fishing lobsters to buy a full mith set (platebody, legs, helm, kite, i can list every piece). i wore it around the bank for a day. then a guy in a rune helm walked up and said 'nice mith. i can trim that free. just trade me the set so i can apply the trim.' i was so happy. a stranger noticed my armor. i traded him all of it. he said 'brb.' 40 min. then a message that said 'sorry. lag.' then he was gone. i believed in the lag. i believed in it for a week. i told my dad 'the server is laggy.' he said 'is it' like he knew. part 2: the second time i was 13 and i was SURE it wasnt a scam bc the guy had a different name and a different hat. it was the same scam in a different hat. ill tell it when i can."
+  },
+  {
+   "title": "what i do in lumbridge on saturdays",
+   "date": "Sep 13 2026 4:40 PM",
+   "mood": "standing",
+   "body": "every saturday from 9 to 5 i stand by the lumbridge spawn with a sign over my head: NO FREE TRIM. DONT TRADE ANY1. ty. nobody buys a lobster from the guy with that sign. its fine. new players walk off the tutorial level 3 with a bronze sword and a lot of trust. when one of them gets a trade window from a stranger i say 'hey dont.' most say 'why' and i say 'bc.' then they say 'ok,' which is the best word in the game. i keep a list in a notebook of every kid i talked out of a trade. 40 so far. one wrote me in game chat: 'ty rs_ryan_pk ur a legend.' i read it 11 times. im not a legend. i just stand there. thats all anyone ever needed to do for me and nobody did, so i do it."
+  },
+  {
+   "title": "my 3rd wilderness attempt (a timeline)",
+   "date": "Aug 28 2026 10:02 PM",
+   "mood": "so close",
+   "body": "8:00 walked to the ditch. 8:01 stood at the ditch. 8:02 the warning screen came up. it has a skull on it. a big one. 8:03 i read the words out loud (my mom came to check on me). 8:04 'are you sure you want to cross.' i clicked no. 8:05 i clicked the ditch again. 8:06 the screen again. skull. 8:09 i said to the screen 'give me a minute.' 8:20 i walked 3 tiles back. 8:25 walked 2 tiles forward. 8:26 walked 2 tiles back. 8:40 i said 'ok im going.' 8:41 i clicked no. 8:55 i logged out. dad said 'how'd it go.' i said 'i got really close.' he said 'thats the whole thing about the wilderness.' i dont know what he meant. i think he meant it nicely."
+  }
+ ],
+ "survey": {
+  "title": "THE RUNESCAPE SURVEY (copy and paste) (no scams)",
+  "qa": [
+   ["username:", "rs_ryan_pk (the pk is a lie. i admit it)"],
+   ["combat level:", "41. cows only. 11,000 of them"],
+   ["highest skill:", "fishing, 76. lobs. u know"],
+   ["times scammed:", "2. same line. different hat"],
+   ["people killed in the wilderness:", "0. people killed ever: 0. cows: 11,000"],
+   ["tiles past the ditch:", "0. 3 tiles back is my record. its a good spot. u can see everything"],
+   ["favorite place in runescape:", "the falador fountain. nobody sells anything there. its for looking"],
+   ["what would u buy with 1 million gp:", "full rune. then a lobster for every kid in lumbridge. in that order. ok the other order"],
+   ["dream item:", "a rune scimitar. just to hold. not to use. u can hold things"],
+   ["favorite food in game:", "lobster. its also the only food i know"],
+   ["who would u trade with:", "anyone who says 'ty' and means it"],
+   ["last thing u say before logging out:", "'gl.' even if im the only one there. someones always there"]
+  ]
+ }
+}

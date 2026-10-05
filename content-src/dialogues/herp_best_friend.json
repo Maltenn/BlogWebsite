@@ -1,0 +1,517 @@
+{
+  "id": "herp_best_friend",
+  "with": "herp",
+  "opener": [
+    "herp.",
+    "herp. (herp.) herp?? HERP.",
+    "herp ♥ ...herp. herp herp herp herp herp. (herp)"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        {
+          "say": "hey. deep breath. banana, patrick and vinyl_witch have all messaged me about your 3:33 AM heart. want to talk it through?",
+          "next": "a1"
+        },
+        {
+          "say": "ok. banana says your ♥ was for her. patrick says it was for him AND dwayne. vinyl_witch says she's 'not asking.' she's asking. what did you do, herp.",
+          "next": "b1"
+        },
+        {
+          "say": "you carpet-bombed the whole site with love at 3:33 AM and then hid. honestly the most you thing you've ever done. i'm proud.",
+          "next": "c1"
+        }
+      ]
+    },
+    "a1": {
+      "them": [
+        "herp... (herp.)",
+        "herp. herp herp. ...herp?"
+      ],
+      "choices": [
+        {
+          "say": "nobody's upset. you didn't mean for anyone to feel left out, did you?",
+          "next": "no_hurt"
+        },
+        {
+          "say": "start at the beginning. 3:33 AM. what was on your mind when you hit post?",
+          "next": "hub"
+        }
+      ]
+    },
+    "b1": {
+      "them": [
+        "herp?!",
+        "herp. herp. HERP. (herp herp)",
+        "herp... herp herp herp. herp?"
+      ],
+      "choices": [
+        {
+          "say": "nobody's mad. they're curious. was it for one of them, or is that a trick question?",
+          "next": "hub"
+        },
+        {
+          "say": "or. hear me out. you hit alt+3 by accident reaching for the period. super easy mistake.",
+          "next": "typo"
+        }
+      ]
+    },
+    "c1": {
+      "them": [
+        "HERP?!",
+        "herp... herp. herp ♥ (herp?)",
+        "herp herp. (herp!)"
+      ],
+      "choices": [
+        {
+          "say": "keep going. start a band. 'herp and the herps.' greg needs a rival.",
+          "next": "c2"
+        },
+        {
+          "say": "ok, victory lap over. who was it actually for?",
+          "next": "hub"
+        },
+        {
+          "say": "or we say alt+3, typo, and let the whole site argue about it for a week.",
+          "next": "typo"
+        }
+      ]
+    },
+    "c2": {
+      "them": [
+        "HERP?!",
+        "herp herp herp. herp herp?? (herp!!!)",
+        "...herp. herp. herp ♥ (herp.) herp?"
+      ],
+      "effects": [
+        {
+          "type": "status",
+          "from": "greg",
+          "delay": 12,
+          "text": "garageband_greg just heard a band called 'herp and the herps' is booking a garage. u cant just book a garage. i OWN the garage. who is this. is it a trombone thing (skip says no). also we have a song called Voltage Heart so hearts are kind of OURS. just saying"
+        }
+      ],
+      "choices": [
+        {
+          "say": "ok, the band goes on hold. the heart comes first. who was it for?",
+          "next": "hub"
+        },
+        {
+          "say": "the band meets friday. tonight we settle the heart the only fair way: a bracket.",
+          "next": "bracket"
+        }
+      ]
+    },
+    "no_hurt": {
+      "them": [
+        "HERP!!",
+        "herp. herp herp herp. (herp) ♥",
+        "herp. ...herp?"
+      ],
+      "choices": [
+        {
+          "say": "i know. so let's work out what the heart actually said. tell me like you'd tell dwayne.",
+          "next": "hub"
+        },
+        {
+          "say": "you can't pick one, can you. your survey says best friend: eight herps. that's a crowd.",
+          "next": "everyone"
+        }
+      ]
+    },
+    "hub": {
+      "them": [
+        "herp. ...herp.",
+        "herp ♥ herp herp herp herp. herp?",
+        "(herp herp herp.)"
+      ],
+      "effects": [
+        {
+          "type": "status",
+          "from": "banana",
+          "delay": 8,
+          "text": "BANANA_PHONE GOT A HEART FROM HERP AT 3:33 AM. THE PHONE DID NOT RING. THE HEART RANG. I AM NUMBER ONE (I HAVE NOT CHECKED WITH ANYONE) (RING RING)"
+        },
+        {
+          "type": "status",
+          "from": "patrick",
+          "delay": 16,
+          "text": "patrick got a heart from herp at 3:33 AM. it was for me and dwayne. i read it three times and dwayne read it once (he's fast). banana says it was for her. i said it can be for both of us. she said no. i said ok"
+        },
+        {
+          "type": "status",
+          "from": "vinyl_witch",
+          "delay": 26,
+          "text": "vinyl_witch has received one (1) heart from herp. i am not asking what it means. i am calmly alphabetizing something. (it means me.)"
+        }
+      ],
+      "choices": [
+        {
+          "say": "it was for all of them. you can't rank them, you couldn't even rank your own herps. it was for everyone.",
+          "next": "everyone"
+        },
+        {
+          "say": "...or it wasn't for them at all. you list herp sr. under heroes. is he ok? is today his day?",
+          "next": "sr"
+        },
+        {
+          "say": "democracy. a bracket. wes hosts, loser buys the winner a slice, you stay out of it.",
+          "next": "bracket"
+        }
+      ]
+    },
+    "typo": {
+      "them": [
+        "herp.",
+        "herp... (herp?)",
+        "herp. herp. :("
+      ],
+      "choices": [
+        {
+          "say": "...sorry. that came out wrong. it wasn't a typo, was it.",
+          "next": "hub"
+        },
+        {
+          "say": "typo. case closed. i'll let the others know.",
+          "next": "typo_stand"
+        }
+      ]
+    },
+    "typo_stand": {
+      "them": [
+        "herp. (herp.)",
+        "...herp.",
+        "herp. herp. herp... (herp?)"
+      ],
+      "choices": [
+        {
+          "say": "official notice goes up: 'it was a typo, thank you for your concern.' signed, malten.",
+          "next": "end_typo"
+        },
+        {
+          "say": "no. i can't put my name on that. you're not a typo, herp. tell me the real thing.",
+          "next": "no_hurt"
+        }
+      ]
+    },
+    "everyone": {
+      "them": [
+        "...herp.",
+        "herp?? ...herp ♥.",
+        "herp. herp herp herp herp herp herp herp. (herp?)"
+      ],
+      "choices": [
+        {
+          "say": "all at once. one bulletin, your name on top, my translation underneath so nobody has to guess.",
+          "next": "end_everyone"
+        },
+        {
+          "say": "one at a time. each of them gets their own herp. it'll take all night. worth it.",
+          "next": "end_each"
+        }
+      ]
+    },
+    "sr": {
+      "them": [
+        "...herp.",
+        "herp. herp herp. (herp)",
+        "herp... herp ♥ herp."
+      ],
+      "choices": [
+        {
+          "say": "i'm here. no rush. tell me about him, herp for herp. i'll listen.",
+          "next": "sr_listen"
+        },
+        {
+          "say": "wait. i might be wrong. maybe it was for everyone after all?",
+          "next": "everyone"
+        }
+      ]
+    },
+    "sr_listen": {
+      "them": [
+        "...herp.",
+        "herp. herp herp herp. herp herp. (herp.)",
+        "herp ♥ ...herp."
+      ],
+      "choices": [
+        {
+          "say": "he'd be proud of you. say it where he can see it: a post for herp sr., out loud, for everyone.",
+          "next": "end_sr"
+        },
+        {
+          "say": "then it stays between us. i'll tell the others it was personal and ask them to give you room.",
+          "next": "end_sr_quiet"
+        }
+      ]
+    },
+    "bracket": {
+      "them": [
+        "HERP?!",
+        "herp. herp herp. (herp ♥?)",
+        "herp... herp?"
+      ],
+      "effects": [
+        {
+          "type": "status",
+          "from": "wes",
+          "delay": 10,
+          "text": "wavedash_wes is hosting HERP'S BEST FRIEND: a 4-entrant double-elim bracket. banana, patrick (+ dwayne, doubles), vinyl_witch, whiskers. rules pending a ruling from malten. loser buys the winner a slice. herp has no comment (herp has 'herp.')"
+        }
+      ],
+      "choices": [
+        {
+          "say": "rules: no rubbing alcohol on the ports mid-match, banana can't yell between rounds, whiskers is seeded by default (vacuum clause). go.",
+          "next": "bracket_round"
+        },
+        {
+          "say": "...no. bad idea. a heart isn't a sport. herp, tell me you don't want this.",
+          "next": "everyone"
+        }
+      ]
+    },
+    "bracket_round": {
+      "them": [
+        "herp?! herp herp. (herp...)",
+        "HERP!! herp. herp herp herp?",
+        "herp. ...herp ♥ herp."
+      ],
+      "effects": [
+        {
+          "type": "status",
+          "from": "banana",
+          "delay": 10,
+          "text": "BANANA_PHONE LOST ROUND 1 TO A CAT. THE CAT WON ON A TECHNICALITY (VACUUM CLAUSE, PAGE 3). I AM STILL NUMBER ONE IN MY HEART AND ALSO NUMBER FOUR IN THE BRACKET. RING RING"
+        },
+        {
+          "type": "status",
+          "from": "patrick",
+          "delay": 30,
+          "text": "patrick and dwayne are in the finals (doubles). dwayne is carrying the team. he hasn't moved all match but wes says that's 'a playstyle.' i'm so proud of him"
+        }
+      ],
+      "choices": [
+        {
+          "say": "final round. herp can't judge, he can only say herp. we read the herp.",
+          "next": "end_bracket"
+        },
+        {
+          "say": "stop. cancel it. hearts don't go in brackets. everybody's in the final.",
+          "next": "everyone"
+        }
+      ]
+    },
+    "end_everyone": {
+      "them": [
+        "herp!!! HERP. herp ♥ herp ♥ herp ♥ (herp)",
+        "...herp. (herp ♥) herp."
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "bulletin",
+          "delay": 5,
+          "subject": "herp ♥ (for everyone)",
+          "text": "herp herp herp. herp ♥ herp herp herp herp herp herp herp herp. (translated by malten, official herp interpreter: this one is for everyone. nobody is first. nobody is second. everybody is herp's.) herp."
+        },
+        {
+          "type": "status",
+          "from": "banana",
+          "delay": 25,
+          "text": "BANANA_PHONE HAS BEEN INFORMED THE HEART WAS FOR EVERYONE. EVERYONE IS A LOT OF PEOPLE. I AM INSIDE EVERYONE. RING RING. I AM LOUDER THAN WHEN I THOUGHT I WAS NUMBER ONE (I AM SO HAPPY)"
+        },
+        {
+          "type": "wallpost",
+          "to": "herp",
+          "from": "patrick",
+          "delay": 45,
+          "text": "herp. i'm in everyone. i counted. it's the biggest group there is. i read your bulletin three times and dwayne read it once. thank you for the heart. it was a good one"
+        },
+        {
+          "type": "wallpost",
+          "to": "herp",
+          "from": "vinyl_witch",
+          "delay": 70,
+          "text": "...everyone. fine. it is the correct answer and i am only a little moved. i'm putting the good record on. do not tell anyone i said 'moved.' ~vw"
+        }
+      ]
+    },
+    "end_each": {
+      "them": [
+        "herp. ...herp. herp herp herp herp.",
+        "herp ♥ (herp) herp!! herp. herp ♥ herp."
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "wallpost",
+          "to": "banana",
+          "delay": 5,
+          "text": "herp!! herp herp herp (herp!!) herp ♥"
+        },
+        {
+          "type": "wallpost",
+          "to": "patrick",
+          "delay": 15,
+          "text": "herp ♥ herp. (herp for dwayne.) herp herp."
+        },
+        {
+          "type": "wallpost",
+          "to": "vinyl_witch",
+          "delay": 25,
+          "text": "herp. herp herp herp ♥ (herp.) herp."
+        },
+        {
+          "type": "status",
+          "from": "banana",
+          "delay": 40,
+          "text": "BANANA_PHONE GOT A PERSONAL HEART. IT WAS SIZED FOR ME. IT HAD A LITTLE EXTRA EXCLAMATION POINT ON IT AND I KNOW WHAT THAT MEANS (HERP). THE FRIDGE OF HONOR HAS A NEW CENTER"
+        },
+        {
+          "type": "status",
+          "from": "vinyl_witch",
+          "delay": 60,
+          "text": "vinyl_witch got her own heart from herp, personally. i have decoded it. i am not sharing the decoding. it is mine. (it means me.)"
+        }
+      ]
+    },
+    "end_sr": {
+      "them": [
+        "...herp.",
+        "herp ♥ herp. (herp sr.)",
+        "herp. herp herp. (herp.)"
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "bulletin",
+          "delay": 5,
+          "subject": "herp ♥ (for herp sr.)",
+          "text": "herp. herp herp herp... herp sr. herp ♥ herp. (herp herp herp herp.) herp."
+        },
+        {
+          "type": "wallpost",
+          "to": "herp",
+          "from": "patrick",
+          "delay": 25,
+          "text": "herp. i don't know who herp sr. is but i like him already. i left a stick on your wall. it's a good one. dwayne is sitting with you. he isn't saying anything in a sitting-with-you way"
+        },
+        {
+          "type": "wallpost",
+          "to": "herp",
+          "from": "walt",
+          "delay": 45,
+          "text": "Dear Herp, I have read your bulletin three times. I do not know what your one word means this evening, but I know what it means when a man's father is on his mind. I have enclosed a reply. It is one word. It is 'Same.' Regards, Walt"
+        },
+        {
+          "type": "status",
+          "from": "banana",
+          "delay": 65,
+          "text": "BANANA_PHONE IS BEING QUIET FOR HERP SR. FOR 40 SECONDS. (THEN 41.) (THEN 42.) THIS IS THE LONGEST I HAVE EVER BEEN QUIET ON PURPOSE AND IT IS HARD AND I AM DOING IT"
+        }
+      ]
+    },
+    "end_sr_quiet": {
+      "them": [
+        "...herp.",
+        "herp. ...herp ♥. (herp.)"
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "status",
+          "delay": 8,
+          "text": "herp is herp. (herp.) (herp.)"
+        },
+        {
+          "type": "wallpost",
+          "to": "herp",
+          "from": "whiskers",
+          "delay": 30,
+          "text": "Mr. Whiskers has been seated on your wall for forty minutes. Nobody has asked me to leave. I understand this to be a form of hospitality. I will remain. -Mr. Whiskers (not written by the owner)"
+        },
+        {
+          "type": "wallpost",
+          "to": "herp",
+          "from": "patrick",
+          "delay": 50,
+          "text": "herp. i don't know why you're sad and i'm not asking. i left you my second-best stick. it's right here. you don't have to read it three times. i did"
+        },
+        {
+          "type": "wall",
+          "from": "vinyl_witch",
+          "delay": 75,
+          "text": "malten. i don't know what you said to herp tonight and i don't need to. he left me a single herp and i have played it back six times. thank you. i'll keep it quiet. ~vw"
+        }
+      ]
+    },
+    "end_bracket": {
+      "them": [
+        "HERP!! herp herp herp. HERP. (herp herp herp!!)",
+        "...herp. herp?? herp ♥ (herp herp herp herp.)"
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "bulletin",
+          "from": "wes",
+          "delay": 10,
+          "subject": "BRACKET RESULTS: HERP'S BEST FRIEND (it was a tie) (it was always a tie)",
+          "text": "final standings, double elim, 4 entrants. banana lost to whiskers in round 1 (vacuum clause, rulebook page 3). vinyl_witch withdrew mid-match to realphabetize. patrick + dwayne (doubles) met whiskers in the final. the final ended in a draw when both parties fell asleep. herp's ruling: 'herp ♥.' that's a 4-way tie by the rules of herp. no losers. i have never run a bracket where everybody won. i don't know how to feel about it. i'm feeling it. -wes"
+        },
+        {
+          "type": "wallpost",
+          "to": "herp",
+          "from": "whiskers",
+          "delay": 30,
+          "text": "Mr. Whiskers advanced to the final by default (vacuum clause) and then fell asleep on your wall during overtime. I was not defeated. I was horizontal. I accept the four-way tie. -Mr. Whiskers (not written by the owner)"
+        },
+        {
+          "type": "wallpost",
+          "to": "herp",
+          "from": "leo",
+          "delay": 55,
+          "text": "herp. I attended the bracket as an observer. 4 entrants, 3 rounds, 1 draw, 108 herps in the comment thread. I am not saying 108 is a coincidence. My mother says it is the number of herps. Both can be true. You are still on the board."
+        },
+        {
+          "type": "status",
+          "delay": 80,
+          "text": "herp herp herp... herp? herp!!! (herp ♥)"
+        }
+      ]
+    },
+    "end_typo": {
+      "them": [
+        "...herp.",
+        "herp. herp. (herp?)",
+        "...herp ♥ (herp. herp.)"
+      ],
+      "end": true,
+      "effects": [
+        {
+          "type": "status",
+          "delay": 8,
+          "text": "herp ♥ herp ♥ (herp.) herp?"
+        },
+        {
+          "type": "wall",
+          "from": "vinyl_witch",
+          "delay": 30,
+          "text": "malten. i have read the word 'typo.' two hearts is not a typo, it is a pattern. i have seen patterns on records. you told him it was a typo and he made it again, slower, on purpose. that is the most herp thing i've ever witnessed. ~vw"
+        },
+        {
+          "type": "status",
+          "from": "marcus",
+          "delay": 50,
+          "text": "marcus has reviewed herp's post for typos. none found. he has marked the heart 'intentional (x2).' there is no rule against it. he is looking for one."
+        },
+        {
+          "type": "status",
+          "from": "banana",
+          "delay": 70,
+          "text": "BANANA_PHONE: TWO HEARTS NOW. THE SECOND ONE HAD EXTRA SPACE IN IT AND I KNOW WHAT THAT MEANS. IT MEANS THE FIRST ONE WAS REAL. RING RING RING. I AM NOT YELLING I AM FEELING"
+        }
+      ]
+    }
+  }
+}

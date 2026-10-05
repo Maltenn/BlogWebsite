@@ -1,0 +1,489 @@
+{
+ "id": "misery_honor_audition",
+ "with": "misery",
+ "opener": [
+  "ok. malten. i need u 2 be serious for like 4 min. no cat jokes. (gir is on my keyboard so if this gets weird its him)",
+  "mr alvarado signed me up 4 the regional honors orchestra audition. saturday. 9am. 3 judges behind a folding table w/ a clipboard. i have a cello, the bach prelude, n a feeling in my stomach like the sbarro slice",
+  "n priscilla (1st chair) looked at the TOP of my head today n said 'u know they score the whole picture right.' i have had white hair for 2 yrs n never thought about it once. now its ALL i think about"
+ ],
+ "nodes": {
+  "start": {
+   "choices": [
+    {
+     "say": "what did mr alvarado actually say when he signed u up? exact words. no summary.",
+     "next": "alv"
+    },
+    {
+     "say": "forget priscilla. if nobody on earth had an opinion, what would u do w/ ur hair?",
+     "next": "want"
+    },
+    {
+     "say": "easy. go in as 'becky.' brown wig, cardigan, sensible folder. total infiltration.",
+     "next": "wig_idea"
+    }
+   ]
+  },
+  "alv": {
+   "them": [
+    "he said 'play like u mean it.' then he looked at my head n said 'and wear black.'",
+    "i was ALREADY wearing black. he said 'i know.' just. 'i know.' is that a good i know or a please-dont-embarrass-me i know. he has a face like a very kind mountain. i cant read it"
+   ],
+   "choices": [
+    {
+     "say": "'i know' = he's looked at that hair for 2 yrs and picked u for the solo anyway. that's an endorsement, not a warning.",
+     "next": "endorse"
+    },
+    {
+     "say": "he wears a bow tie every single day. has any judge ever asked HIM to lose it?",
+     "next": "bowtie"
+    },
+    {
+     "say": "honestly 'wear black' + 'i know' sounds like a ransom note. i'd panic too. (kidding. 70% kidding.)",
+     "next": "spiral"
+    }
+   ]
+  },
+  "endorse": {
+   "them": [
+    "...an endorsement. ok. i can hold that. it fits in my hands",
+    "but priscilla is still in my head w/ her brown ponytail n her headband like a very nice horse. she looks like the instrument. i look like the instrument's cousin who snuck in thru a window"
+   ],
+   "choices": [
+    {
+     "say": "she looks like the instrument. u sound like it. is it priscilla ur scared of, or the 3 strangers w/ the clipboard?",
+     "next": "fear"
+    },
+    {
+     "say": "ok but forget saturday for a sec. do u even LIKE doing it every sunday?",
+     "next": "want"
+    }
+   ]
+  },
+  "bowtie": {
+   "them": [
+    "...oh. no. nobody has. he told us once he wore the bow tie to his OWN audition at 17 n the whole panel just let him. he said 'its not a costume, its a signature. u play n they hear the signature.'",
+    "22 years. a different bow tie every day but the same idea. n i just thought of the violas clapping. they clapped w/ the hair RIGHT THERE in the front. hmm"
+   ],
+   "effects": [
+    {
+     "type": "status",
+     "delay": 12,
+     "text": "misery is finding out that mr alvarado's bow tie is a philosophy. 22 years. nobody has ever asked him to lose it. rawr"
+    }
+   ],
+   "choices": [
+    {
+     "say": "so the question isn't 'is it allowed.' it's 'is it YOURS.' is the hair yours, or just expected now?",
+     "next": "yours_bowtie"
+    },
+    {
+     "say": "ok so what are u actually scared of? not the hair. the real thing.",
+     "next": "fear"
+    }
+   ]
+  },
+  "spiral": {
+   "them": [
+    "RIGHT?? thats EXACTLY what it sounded like. a ransom note. 'wear black. i know.' he's holding my hair for ransom",
+    "ok now i'm spiraling. what if he KNEW something. what if the judges have a no-white-hair rule n he was gently warning me n i said 'k' n walked off w/ my stupid lashes. i have never worried about my head before today. i have a whole VIDEO where i do it for FUN"
+   ],
+   "effects": [
+    {
+     "type": "wallpost",
+     "from": "lexi",
+     "to": "misery",
+     "delay": 8,
+     "text": "mis i can feel u spiraling from the deli counter. my mom says 'tell her to eat something, nobody decides anything on an empty stomach.' i'm making u a sub. text me. leonard's warm. <3"
+    }
+   ],
+   "choices": [
+    {
+     "say": "ok stop. breathe. what's the actual fear? say it plain.",
+     "next": "fear"
+    },
+    {
+     "say": "or tone it down for ONE day. low bun, black headband. it's a hair day, not a life choice.",
+     "next": "melissa_plan"
+    }
+   ]
+  },
+  "fear": {
+   "them": [
+    "...ok. ok its not priscilla. its that 3 strangers get 4 minutes of me n the FIRST thing they see is 'girl w/ white hair' n they decide what kind of cellist i am b4 i play a note",
+    "like what if the hair is the whole sentence n the cello is just the period. what if i'm a costume w/ a cello in it. i never worried about that till today. thats what priscilla did. she moved a worry in"
+   ],
+   "choices": [
+    {
+     "say": "ur not a costume. the violas clapped. violas NEVER clap. nobody was clapping at the hair.",
+     "next": "yours_violas"
+    },
+    {
+     "say": "or give them a quieter picture for 4 min. u can be loud again at 9:05. nobody's grading ur soul.",
+     "next": "melissa_plan"
+    }
+   ]
+  },
+  "yours_bowtie": {
+   "them": [
+    "...its mine. it was always mine. i picked it in lexi's tub w/ the WRONG toner n then i picked it AGAIN w/ the right toner. nobody made me. thats the difference between a look n a costume",
+    "ok so maybe the real question isnt 'do i change it' its 'can i walk in as the whole person n let the cello do the talking.' ...i think i can. i have 3 ft of white hair n a low C n they r BOTH me"
+   ],
+   "choices": [
+    {
+     "say": "that's the answer. both of them walk in. the hair doesn't get a vote, the cello gets the last word.",
+     "next": "end_as_herself"
+    },
+    {
+     "say": "go as the whole person. when the bow tie guy asks how it went, tell him it was a signature.",
+     "next": "end_as_herself"
+    },
+    {
+     "say": "if u still wanna tone it down for one day, that's allowed too. just be honest w/ urself about why.",
+     "next": "melissa_plan"
+    }
+   ]
+  },
+  "yours_violas": {
+   "them": [
+    "...the violas clapped. they clapped w/ the hair RIGHT THERE n the lashes n the black dress. they clapped at the cello, but the cello was in the same room as the rest of me. it was all just. in there together",
+    "ok. ok ok. im not a costume. im a whole cellist who happens to have 3 ft of white hair. ...i should write that on my arm"
+   ],
+   "choices": [
+    {
+     "say": "write it on ur arm. put it in ur case. play like u mean it. that's what the man said.",
+     "next": "end_as_herself"
+    },
+    {
+     "say": "and eat a pretzel first. nobody auditions on an empty stomach. (lexi's mom's rule.)",
+     "next": "end_as_herself"
+    }
+   ]
+  },
+  "want": {
+   "them": [
+    "...honest answer? i dont know. thats the weird part",
+    "the white is my shape. its the first thing anyone knows about me. but it takes 3 hrs every sunday n 2 sets of lashes in the dark n some mornings i look in the mirror n see a girl who is DOING misery instead of just being her",
+    "is that allowed. 2 be tired of ur own look. thats like being tired of ur own face"
+   ],
+   "choices": [
+    {
+     "say": "it's allowed. wanting a break isn't quitting. u can want less without wanting none.",
+     "next": "less"
+    },
+    {
+     "say": "what would u do w/ the 3 hours on sunday? and don't say hair.",
+     "next": "three_hours"
+    }
+   ]
+  },
+  "three_hours": {
+   "them": [
+    "...cello. actually practice cello. not at 6am w/ gir howling. n sleep. n watch gir's whole day w/o a camera in my hand. i'd have 3 hrs of a person w/ no look. that sounds so. quiet",
+    "but if i stop who am i on here. 'the video girl' w/ brown hair?? i dont even HAVE a brown. it'd be ash. it'd be ASH (the font that lies). the tub would shake"
+   ],
+   "choices": [
+    {
+     "say": "u don't have to stop. do it 'lite.' hair stays, lashes shrink, sundays shrink. a look u pick on purpose, not one that picks u.",
+     "next": "less"
+    },
+    {
+     "say": "lavender sequel. 'the grout strikes back.' i'd buy a ticket.",
+     "next": "lavender"
+    }
+   ]
+  },
+  "lavender": {
+   "them": [
+    "STOP. lexi's mom would walk in n say 'oh. oh no. not again.' the tub would file a complaint. there'd be a yearbook SEQUEL",
+    "...ok no. im not going lavender again. im too old 4 grape soda hair. but the tub does have a memory. real question tho. is there a way to be tired of the 3 hrs and NOT be tired of the hair"
+   ],
+   "choices": [
+    {
+     "say": "yes. that's 'lite.' same hair, one set of lashes on school days, sundays shrink to 1 hr.",
+     "next": "less"
+    },
+    {
+     "say": "yes. be tired AND be misery. they can both be true on the same day.",
+     "next": "less"
+    }
+   ]
+  },
+  "less": {
+   "them": [
+    "less not none. ...i like that. like 1 set of lashes on school days n the full 2 for shows. the white stays bc the white is MINE. sundays = 1 hr n the other 2 r cello n sleep n gir",
+    "n i wouldnt have to be misery at 6am 4 a CAT. ok but what do i do about saturday. do i change it 4 the judges or do i stay"
+   ],
+   "effects": [
+    {
+     "type": "status",
+     "delay": 15,
+     "text": "misery is thinking about ONE set of lashes. one. dont comment. kitty dont make a chart (kitty already started the chart)"
+    }
+   ],
+   "choices": [
+    {
+     "say": "saturday is just saturday. do 'less' for u, on ur own schedule, n walk in however u feel that morning.",
+     "next": "morning_of"
+    },
+    {
+     "say": "make saturday the last full-misery day. big finish. then start 'less' on sunday.",
+     "next": "morning_of"
+    }
+   ]
+  },
+  "morning_of": {
+   "them": [
+    "ok. 6:30am saturday. alarm. gir already on my chest. i go to the mirror. what do i see. i dont know. what do u want me to see"
+   ],
+   "choices": [
+    {
+     "say": "a cellist who picked her look on purpose. the rest is just a dress code.",
+     "next": "end_less"
+    },
+    {
+     "say": "gir sitting on the bun, judging. tell him he's not qualified.",
+     "next": "end_less"
+    },
+    {
+     "say": "melissa. she's been quiet a while. maybe let her have saturday and misery gets sunday.",
+     "next": "melissa_plan"
+    }
+   ]
+  },
+  "melissa_plan": {
+   "them": [
+    "...a low bun. a black headband. 1 set of lashes. a cardigan from my nanas closet (it smells like pastelitos). i'd look like melissa ann for 4 hrs",
+    "just saturday. its fine. its a costume. u wear a costume 2 a thing u want, right. ...why do i feel like im leaving something in the car"
+   ],
+   "choices": [
+    {
+     "say": "u wear a costume to a thing u want, then u take it off. u r allowed to be melissa AND misery.",
+     "next": "end_melissa"
+    },
+    {
+     "say": "if it feels like leaving something in the car, that's ur call. go w/ it for saturday. u can come back sunday.",
+     "next": "end_melissa"
+    },
+    {
+     "say": "hold on. when u said 'low bun' did ur stomach drop or relax? that's the real answer.",
+     "next": "want"
+    }
+   ]
+  },
+  "wig_idea": {
+   "them": [
+    "BECKY??? ...the wig is real. kitty has a brown one from halloween (she went as 'a girl who does her homework') its in a ziploc under her bed. it has bangs. i'd look like a missing-person flyer for a girl named becky",
+    "...wait. wait wait wait. ok but what if i go in as becky n then PLAY like misery. the judges r like 'who IS this'"
+   ],
+   "effects": [
+    {
+     "type": "wallpost",
+     "from": "kittyxcore",
+     "to": "misery",
+     "delay": 10,
+     "text": "MIS. i heard WIG. the becky wig is in the ziploc under my bed. brown. bangs. its from when i was a girl who does her homework for halloween. it is YOURS. do NOT tell me this is a bit, i'm already brushing it =^.^="
+    }
+   ],
+   "choices": [
+    {
+     "say": "do it. go in as becky. play the Bach like a breakdown. cello drop. (gently.)",
+     "next": "wig_plan"
+    },
+    {
+     "say": "lol ok but think: if they pick becky, they picked a wig. is that a win?",
+     "next": "honest_check"
+    },
+    {
+     "say": "(kidding) (mostly) real question: what do u actually WANT to look like on saturday?",
+     "next": "want"
+    }
+   ]
+  },
+  "wig_plan": {
+   "them": [
+    "OK. THE PLAN. phase 1: kitty comes over friday w/ the wig n the ziploc. phase 2: we practice becky. becky has a voice. becky says 'hello, im becky, ill be playing the bach.' phase 3: i play. phase 4: the wig comes off",
+    "is phase 4 2 much. is it a stunt. malten is it a STUNT"
+   ],
+   "choices": [
+    {
+     "say": "it's a stunt. a good one. stunts r legal at the regional level. commit to the bit.",
+     "next": "wig_gear"
+    },
+    {
+     "say": "it's a stunt and it could backfire. do u want them to remember the wig or the Bach?",
+     "next": "honest_check"
+    }
+   ]
+  },
+  "wig_gear": {
+   "them": [
+    "ok ok ok. gear list: wig, cardigan (kittys), a sensible folder (nobody owns one, walgreens), sensible shoes (ew), lashes (1 set. becky has 1 set. its all she could afford)",
+    "n a face. becky has a calm face. im practicing it in the mirror. it looks like someone trying not to sneeze. is that calm. tell me thats calm"
+   ],
+   "choices": [
+    {
+     "say": "that's calm. commit. take the wig off on the last note. say thank u. walk out. legend.",
+     "next": "end_becky"
+    },
+    {
+     "say": "one thing. if becky wins the chair, who gets it, u or the wig? sleep on that b4 saturday.",
+     "next": "honest_check"
+    }
+   ]
+  },
+  "honest_check": {
+   "them": [
+    "...ok. ok that stung a little. if they pick becky they picked a wig. if they pick misery they picked ME. but if they DONT pick misery bc of the hair then. then what",
+    "see now im scared of the other thing. the thing under the wig. malten what am i actually scared of"
+   ],
+   "choices": [
+    {
+     "say": "u tell me. say it plain. what's the sentence?",
+     "next": "fear"
+    },
+    {
+     "say": "start smaller: do u even WANT to look the same on saturday as u do on friday?",
+     "next": "want"
+    }
+   ]
+  },
+  "end_as_herself": {
+   "them": [
+    "ok. im going as me. black dress, 3 ft of white hair, both sets of lashes, my moms pearl earrings. ill play the bach like a breakdown n if the judges dont like it at least theyll dislike me ACCURATELY",
+    "i feel dumb for being scared. i feel less dumb bc somebody asked the right question. thank u. rawr (low C)"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "status",
+     "delay": 8,
+     "text": "misery is going to the audition as MISERY. black dress. white hair. 2 sets of lashes. the cat is not coming. rawr (low C)"
+    },
+    {
+     "type": "wallpost",
+     "from": "kittyxcore",
+     "to": "misery",
+     "delay": 35,
+     "text": "MIS. we r making a SIGN. it says GO MELISSA in puffy paint n then underneath in smaller puffy paint (GO MISERY). we r not allowed in the room so i'll hold it in the parking lot. all 47 pics after =^.^="
+    },
+    {
+     "type": "wallpost",
+     "from": "holly",
+     "to": "misery",
+     "delay": 70,
+     "text": "misery. i put a skull w/ a bow pin in an envelope. its coming to ur house. its not a gift, its a pin. clip it on the case so they see it from the table. ~holly (i hope u kill it) (that is the only time i will say that)"
+    },
+    {
+     "type": "wallpost",
+     "from": "raven",
+     "to": "misery",
+     "delay": 100,
+     "text": "Misery. Most of what a panel sees is a person who is not afraid. Wear the black. Keep the white. I have been judged by committees for far less. You will be fine. (I did not say this.) - Raven"
+    }
+   ]
+  },
+  "end_less": {
+   "them": [
+    "ok. decision. i wrote it on a post-it. 'hair stays. 1 set of lashes (school). 2 sets (shows). sundays = 1 hr. cello = the rest.' its pink. its on the mirror",
+    "n saturday i go however i feel when i wake up. thats the whole rule. i didnt change bc of priscilla. i changed bc i wanted a rule thats MINE. thx malten. rawr (in dinosaur) (in cello) (in both)"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "bulletin",
+     "delay": 15,
+     "subject": "a statement about my lashes (its good news) (read all of it)",
+     "text": "ok so i am NOT quitting anything. the hair stays. the lashes stay (1 set on school days, 2 sets for shows). sundays r 1 hr now n the other 2 r 4 cello n sleep n watching gir do nothing. i didnt change bc of anyone. i changed bc i wanted a rule thats MINE. audition is saturday. wish me luck. rawr <3"
+    },
+    {
+     "type": "status",
+     "from": "kittyxcore",
+     "delay": 45,
+     "text": "kitty is NOT mad about the lashes. kitty is a LITTLE mad about the lashes. kitty made a chart called 'lashes: before / after' n it has a column labeled 'still misery' n its all checkmarks. =^.^="
+    },
+    {
+     "type": "wallpost",
+     "from": "holly",
+     "to": "misery",
+     "delay": 80,
+     "text": "misery. one set of lashes is fine for a register. the manager still wants u weekends (after the audition, obviously). also my professional opinion is the white hair is load-bearing. keep it. ~holly"
+    },
+    {
+     "type": "wallpost",
+     "from": "riley",
+     "to": "misery",
+     "delay": 110,
+     "text": "RAWR XD mis ONE set?? thats still like 6 lashes more than a normal person. random!! but also proud of u. tacos after the audition, my treat (ur treat) (i have no money)"
+    }
+   ]
+  },
+  "end_melissa": {
+   "them": [
+    "ok. low bun. black headband. 1 set of lashes. nanas cardigan. ill look like melissa ann for 4 hrs n then ill go home n be misery by lunch",
+    "im gonna play fine. im just gonna be a little quiet in the car. dont tell kitty i said that. shell make a chart"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "status",
+     "delay": 10,
+     "text": "misery is going to the audition as melissa. just saturday. low bun. black headband. 1 set of lashes. rawr (quietly)"
+    },
+    {
+     "type": "wallpost",
+     "from": "kittyxcore",
+     "to": "misery",
+     "delay": 40,
+     "text": "mis. i heard. im not mad. im SAD. i made a chart called 'what melissa wears' n it has 1 column. the other column says 'come back sunday.' pc4pc after. ily =^.^="
+    },
+    {
+     "type": "wallpost",
+     "from": "lexi",
+     "to": "misery",
+     "delay": 75,
+     "text": "mis ur allowed to be melissa for a day. ur NOT allowed to feel bad about it. leonard is outside at 8:15. im bringing a pretzel. a whole one. kitty gets 0 halves <3"
+    },
+    {
+     "type": "dm",
+     "delay": 240,
+     "text": "malten. i tried on the cardigan. i looked like my nana n i kind of liked it?? n kind of didnt. both. is that normal. dont answer. rawr (quietly)"
+    }
+   ]
+  },
+  "end_becky": {
+   "them": [
+    "operation becky is GO. kittys wig (brown, bangs), kittys cardigan, a sensible folder (im buying one at walgreens), n a plan: i play the WHOLE bach as becky",
+    "n on the last note i take the wig off. gently. say 'thank u.' n walk out. the judges will either give me 1st chair or call my mom. both r a good story. (id film it but the camcorder is dead. ill draw it. badly.)"
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "status",
+     "delay": 8,
+     "text": "misery is going to the audition as becky. you will not recognize her. (you will. its the lashes.) rawr"
+    },
+    {
+     "type": "bulletin",
+     "from": "kittyxcore",
+     "delay": 30,
+     "subject": "OPERATION BECKY: a public service announcement",
+     "text": "if u see a girl in a brown wig, a cardigan, n a sensible folder at the regional honors audition saturday, DO NOT say hi. she is a cellist named becky. she is not our friend misery. she has never met us. if u say 'misery' she will deny it. this is a covert operation. pc4pc after. -kitty =^.^="
+    },
+    {
+     "type": "wallpost",
+     "from": "riley",
+     "to": "misery",
+     "delay": 60,
+     "text": "RAWR XD BECKY!!! can i be becky's best friend. ill be beth. we'll share an invisible cookie. *hands becky a cookie* its chocolate chip. u cant tell. random!!"
+    },
+    {
+     "type": "wallpost",
+     "from": "lexi",
+     "to": "misery",
+     "delay": 90,
+     "text": "mis i love u i love the plan i am SO scared 4 u. if they call ur mom ill drive u home. leonard has a full tank. the cardigan is NOT leopard. i checked. <3"
+    }
+   ]
+  }
+ }
+}

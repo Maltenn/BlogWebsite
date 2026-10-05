@@ -72,7 +72,7 @@ app.get('/callback', async (req, res) => {
     if (response.data.refresh_token) REFRESH_TOKEN = response.data.refresh_token;
     saveTokens();
 
-    res.send('Authentication successful! Tokens saved — you can close this tab. The blog\'s MaltenAmp will now show your real top tracks.');
+    res.send('Authentication successful! Tokens saved — you can close this tab. The blog\'s OurSpace page will now show your real top songs.');
   } catch (error) {
     console.error('Error during authentication:', error.response ? error.response.data : error.message);
     res.status(500).send('Error during authentication');
@@ -126,10 +126,14 @@ app.get('/top-tracks', async (req, res) => {
             return res.status(401).json({ error: 'No access token available. Please log in.' });
         }
 
+        // ?limit=N (1-20, default 5) — OurSpace asks for 10
+        const limit = Math.min(20, Math.max(1, parseInt(req.query.limit, 10) || 5));
+        const params = { limit, time_range: 'short_term' };
+
         let response;
         try {
             response = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
-                params: { limit: 5, time_range: 'short_term' },
+                params,
                 headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` }
             });
         } catch (error) {
@@ -137,7 +141,7 @@ app.get('/top-tracks', async (req, res) => {
                 // Token expired, try to refresh
                 ACCESS_TOKEN = await refreshAccessToken();
                 response = await axios.get('https://api.spotify.com/v1/me/top/tracks', {
-                    params: { limit: 5, time_range: 'short_term' },
+                    params,
                     headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` }
                 });
             } else {
@@ -145,18 +149,23 @@ app.get('/top-tracks', async (req, res) => {
             }
         }
 
-        const topTracks = response.data.items.map(track => ({
-            name: track.name,
-            artist: track.artists[0].name,
-            album: track.album.name,
-            preview_url: track.preview_url,
-            image_url: track.album.images[0].url
-        }));
+        const topTracks = response.data.items.map(track => {
+            const images = (track.album && track.album.images) || [];   // largest first
+            return {
+                name: track.name,
+                artist: track.artists.map(a => a.name).join(', '),
+                album: track.album.name,
+                preview_url: track.preview_url,
+                image_url: images.length ? images[0].url : null,
+                image_small: images.length ? images[images.length - 1].url : null,   // 64px thumb for lists
+                url: (track.external_urls && track.external_urls.spotify) || null     // open.spotify.com link
+            };
+        });
         // Spotify deprecated preview_url (null for most tracks since late 2024).
         // Fall back to the iTunes Search API, which still serves 30s previews.
         await Promise.all(topTracks.map(async t => {
             if (t.preview_url) return;
-            t.preview_url = await itunesPreview(t.name, t.artist);
+            t.preview_url = await itunesPreview(t.name, t.artist.split(', ')[0]);
         }));
         res.json(topTracks);
     } catch (error) {

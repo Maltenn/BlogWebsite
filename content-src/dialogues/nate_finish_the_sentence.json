@@ -1,0 +1,232 @@
+{
+  "id": "nate_finish_the_sentence",
+  "with": "nate",
+  "opener": [
+    "hey. its late. my sidekick is dead so im on the family computer n eli keeps asking what im typing. nothing eli. go to bed",
+    "ok so aaron is doing a new song at perk avenue thursday. 'for a girl (u know who u r).' lexi txted me 'omg its gonna be so sweet' w/ 3 hearts. THREE. i counted twice. her birthday is saturday",
+    "i have a bulletin drafted. it says 'some people...' n its the best one ive ever written n its not done. tell me what to do. dont say 'be urself' i tried that tuesday n it went bad"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "type the sentence. the real one, no 'some people.' i'll be right here not judging.", "next": "sentence" },
+        { "say": "aaron has four chords and a capo. you have a squeegee. out-sensitive him.", "next": "press" },
+        { "say": "ask aaron who the song's about. he's a guy in G, not a villain.", "next": "ask_aaron" }
+      ]
+    },
+
+    "sentence": {
+      "them": [
+        "ok. typing. ... 'some people' is my whole thing bc the real sentence has a name in it n when i type a name it looks real. like it could get a reply",
+        "ok here. 'lexi is the only reason i go to shows that arent greg's.' thats it. 14 words. i counted bc if it fits in a bulletin its small enough to be ok"
+      ],
+      "effects": [
+        { "type": "status", "delay": 8, "text": "is typing a sentence w/ no 'some people' in it. its going badly. its going." }
+      ],
+      "choices": [
+        { "say": "that's the whole thing. you typed it to me, you can type it to her. put her name at the top.", "next": "name_top" },
+        { "say": "or draw it. you say everything with a pen anyway. say it with shutter shades on.", "next": "drawing" }
+      ]
+    },
+
+    "press": {
+      "them": [
+        "ok. uncle stan has the back table sat. screens r cheap. i could print lexi a shirt. a real one. her name. leopard border. aaron has a CAPO. i have a SQUEEGEE",
+        "but is it sensitive or is it merch. theres a line n ive lived on both sides of it"
+      ],
+      "effects": [
+        { "type": "status", "delay": 10, "text": "is at uncle stan's print shop planning a shirt. its not for anyone. (its for someone)" }
+      ],
+      "choices": [
+        { "say": "sensitive. but a shirt that just says LEXI is a billboard. what would only she get?", "next": "shirt_text" },
+        { "say": "go bigger. haul the amp to perk avenue thursday. play ONE note when his song ends.", "next": "amp_plan" }
+      ]
+    },
+
+    "ask_aaron": {
+      "them": [
+        "ask HIM. malten he would say 'a girl (u know who u r)' n i would have to live inside that sentence for a week",
+        "also all i have is his ourspace. his about me is a G chord n a picture of a latte. how do u dm a latte"
+      ],
+      "choices": [
+        { "say": "he's sensitive, not sneaky. ask nicely, then actually read the answer.", "next": "aaron_dm" },
+        { "say": "ask lexi if she thinks it's about her. she's the only witness.", "next": "ask_lexi" }
+      ]
+    },
+
+    "name_top": {
+      "them": [
+        "ok. top of the bulletin. 'LEXI.' in caps. thats a lot of letters in a row. what if she thinks its the other lexi. there is no other lexi. what if she thinks its a 'some people' one n scrolls past",
+        "i could wall post her. on HER wall where kayla n josh n everyone can see. i never do that. i do bulletins bc nobody has to look right at them"
+      ],
+      "choices": [
+        { "say": "wall post. her wall. fourteen words, her name, no 'people.' public is the whole point.", "next": "wall_draft" },
+        { "say": "dm her first so she hears it from you, not from a bulletin. then post.", "next": "dm_first" }
+      ]
+    },
+
+    "drawing": {
+      "them": [
+        "ok drawing. 11pm quiet house. i could do her at the show. leopard sleeve, the pen stuck in her hair like she does. i draw the street out my window every night n i never drew a person looking back",
+        "but a caption. 'some people...' is already my tagline so it would say 'lexi, some people' n thats a whole different thing"
+      ],
+      "choices": [
+        { "say": "put the fourteen words under it. take 'some people' off the page for one day.", "next": "wall_draft" },
+        { "say": "no caption. hand it over thursday. if it needs a caption it isn't done.", "next": "thursday" }
+      ]
+    },
+
+    "shirt_text": {
+      "them": [
+        "ok the shirt. what only she would get. ... the perks book. she wrote 'read page 37' in the front n i read it in the merch line n i never told her i did. n the 3 days she txted n i answered on day 3 n she said 'ur worth the wait.' i wrote that on my hand",
+        "'ur worth the wait' on a shirt. is that too much. is that a shirt or a confession"
+      ],
+      "choices": [
+        { "say": "it's both. that's the best kind of shirt. print it, hand it over thursday.", "next": "thursday" },
+        { "say": "tell her it's coming before it shows up. she hates surprises (she'll say she doesn't).", "next": "dm_first" }
+      ]
+    },
+
+    "amp_plan": {
+      "them": [
+        "ok the amp. its greg's amp. its 60 pounds. its in my trunk, its always in my trunk. ok. one note. when aaron finishes. whole coffee shop goes quiet n then BWAAAH. thats the statement. what IS the statement. i dont know",
+        "or. what if its a bad idea. be honest. i know ur malten but be honest as a friend"
+      ],
+      "choices": [
+        { "say": "it's a great bad idea. sleep on it, then decide if the note's for her or for him.", "next": "thursday" },
+        { "say": "honest: ask lexi what she's hoping for thursday before you detonate anything.", "next": "dm_first" }
+      ]
+    },
+
+    "aaron_dm": {
+      "them": [
+        "ok i did it. i dm'd him. 'hey. whos the new song for.' that was ALL i said. he wrote back in 2 min n it was FOUR paragraphs",
+        "p1 is hello. p2 says he saw my merch table once n it was 'honest.' p4 says the song is about 'a girl who laughed at my capo (you know who you are) (its not who you think).' malten WHO. who laughed at his capo"
+      ],
+      "choices": [
+        { "say": "ask. you've been asking all night. 'who laughed at your capo.' say the question out loud.", "next": "aaron_truth" },
+        { "say": "forget the song. he wrote four paragraphs, you wrote fourteen words. say yours.", "next": "wall_draft" }
+      ]
+    },
+
+    "ask_lexi": {
+      "them": [
+        "ok. ask lexi. i dont txt back fast so she cant say i dont but i also dont txt FIRST. thats the problem. there r two kinds of texters n im a third kind",
+        "so what do i say. 'hey is aarons song about u.' thats a bulletin. thats a very specific bulletin"
+      ],
+      "choices": [
+        { "say": "ask what she's excited about thursday. don't mention aaron. let her say it herself.", "next": "aaron_truth" },
+        { "say": "skip the song. text her first for once. 'hey. i have something to say.' just that.", "next": "dm_first" }
+      ]
+    },
+
+    "wall_draft": {
+      "them": [
+        "ok. composing. on her wall. 'lexi. u r the only reason i go to shows that arent greg's. happy early birthday. ps this is not a some people. its a lexi.'",
+        "thats 27 words. i cut the ps n put it back 4 times. ok. one click n it goes on every feed. kayla will see. greg will see. my BROTHER will see (he has a lexi crush too, hes 10, its cute, its a different thing)"
+      ],
+      "choices": [
+        { "say": "hit post. now. before the 'some people' part of your brain wakes up.", "next": "end_wall" },
+        { "say": "wait till after thursday's song. don't make it a contest.", "next": "end_truth" }
+      ]
+    },
+
+    "dm_first": {
+      "them": [
+        "ok i dm'd her. 'hey. i have something to say. dont txt back fast, i know thats my thing.' she answered in 40 SECONDS. forty. my hands r doing a thing",
+        "she said 'ok. say it.' no hearts. no hearts is serious. i know the heart system, its not complicated, its just never been pointed at me"
+      ],
+      "choices": [
+        { "say": "say it. all fourteen words, one message. she gave you forty seconds, that's an invitation.", "next": "end_quiet" },
+        { "say": "ask her one thing first: was she hoping the song was about her? then say yours.", "next": "end_truth" }
+      ]
+    },
+
+    "thursday": {
+      "them": [
+        "ok. thursday. perk avenue. 7pm. i checked the schedule. aaron is 3rd, after a guy who does a poem about a mattress. im gonna be at the back by the muffins with the thing (the shirt or the drawing or the amp, i havent decided)",
+        "aaron will say 'this one is for a girl.' n there will be a pause n lexi will look at the stage. n i will be standing there w/ a squeegee shirt. i just want to know what my hands do"
+      ],
+      "effects": [
+        { "type": "status", "from": "aaron", "delay": 25, "text": "aaron is playing Perk Avenue on Thursday. new song. the room is small and so is my voice. come anyway. (aaron is in G.)" }
+      ],
+      "choices": [
+        { "say": "plug in the amp. when his last chord rings out, hit one note. let the room decide.", "next": "end_amp" },
+        { "say": "leave the amp in the trunk. clap for him, then walk over and say it in the muffin line.", "next": "end_quiet" }
+      ]
+    },
+
+    "aaron_truth": {
+      "them": [
+        "ok so he answered. 'the girl who laughed at my capo is gwen. she said it was on the wrong fret. it was. the song is a thank-you. i have never told her it's for her. please don't either.'",
+        "malten. GWEN. the song was never about lexi. the 3 hearts were for a GUITAR. i wrote 14 words n a bulletin n i pulled a squeegee for a song that wasnt even about anybody i was scared of",
+        "ok. so. now what. the song isnt mine to be scared of. but the sentence is still mine"
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "aaron", "to": "nate", "delay": 20, "text": "Nate. I got your message. I'd like to say, for the record, that I never meant to be a competitor. I'm just a person with a capo. If you've been worried about the song: it's a thank-you note. It isn't a contest. -- Aaron (in G)" }
+      ],
+      "choices": [
+        { "say": "so say it anyway. the song isn't the point. your fourteen words never were about aaron.", "next": "end_wall" },
+        { "say": "tell lexi everything: the song, the squeegee, the 3 days. she'll laugh. then she'll listen.", "next": "end_truth" }
+      ]
+    },
+
+    "end_wall": {
+      "them": [
+        "ok. posted. its on her wall. everybody can see. my face is hot n eli is asking why im 'doing the thing with my ears.' i said its fine eli go to bed",
+        "i didnt write 'some people.' not once. i feel like i just took off a very big hoodie in the middle of a store. i think thats a good feeling. thx malten. i have to go refresh the page 40 times"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "wallpost", "to": "lexi", "delay": 5, "text": "lexi. u r the only reason i go to shows that arent greg's. happy early birthday. this isnt a some people. its a lexi. <3" },
+        { "type": "wallpost", "from": "lexi", "to": "nate", "delay": 40, "text": "nate. NATE. u posted on my WALL. where kayla can see. i read it 4 times n then i read it out loud to my mom (she said 'who is this boy' i said 'the merch guy' she said 'he writes nice'). thats 4 hearts <3<3<3<3 (4 is a lot) (answer my txts anyway)" },
+        { "type": "wallpost", "from": "aaron", "to": "nate", "delay": 85, "text": "Nate. I saw what you wrote on Lexi's wall. Fourteen words, no chords. It was braver than anything I'll play Thursday. The song is for the whole room, by the way. I realize I never said that. -- Aaron (in G)" },
+        { "type": "status", "from": "greg", "delay": 115, "text": "garageband_greg is informing the band that the merch table just did something braver than the band. nobody tell the merch table. (the merch table is nate.) (nate is in the band.)" },
+        { "type": "dm", "delay": 160, "text": "ok. 'her mom said he writes nice.' i have a screenshot. i wont frame it. i might frame it. eli says im finally the drummer (im not). anyway thx. i havent said 'some people' in 2 hrs. thats a record" }
+      ]
+    },
+
+    "end_quiet": {
+      "them": [
+        "ok. so the plan is: i go. no amp. the amp stays in the trunk. it knows. i clap. i buy a muffin. i say the fourteen words in the muffin line where it smells like cinnamon n nobody can hear but the guy behind us",
+        "if it goes bad its just a muffin. if it goes good its also just a muffin. ok. thats actually kind of a relief. thx. my sidekick will be charged by thursday (its a promise to lexi, not to u, but u can have some of it)"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "delay": 6, "text": "is going to perk avenue thursday just to listen. no amp. (the amp is staying in the trunk) (it knows)" },
+        { "type": "wallpost", "from": "lexi", "to": "nate", "delay": 45, "text": "nate. i got ur txt. the real one. i read it in the car n my mom said 'is that the red hair boy' n i said 'ya' n she said 'good.' i saved u a seat. 2nd row. muffin line is also a thing. dont be late (be late) (but txt) <3" },
+        { "type": "status", "from": "aaron", "delay": 90, "text": "aaron is playing the new song on Thursday. it's for the second row. (aaron has been told there is a second row. aaron is pleased.)" },
+        { "type": "wallpost", "from": "josh", "to": "nate", "delay": 125, "text": "nate =] heard u r going to perk avenue thursday. it's a good place for a muffin n a conversation. also if u need a ride the church van is free (it smells like pizza) (thats a feature)" },
+        { "type": "dm", "delay": 165, "text": "ok i have the drawing in a folder so it doesnt bend. i also have a squeegee shirt that says 'ur worth the wait' in my bag just in case. is that too much. ur not allowed to answer. i know what u r gonna say" }
+      ]
+    },
+
+    "end_amp": {
+      "them": [
+        "ok so. i did it. i dont know why i did it. the whole room was quiet n aaron finished n i hit ONE note n it was an E n the espresso machine made a sound n a lady dropped her scone",
+        "the barista is walking over. she has a spoon. why does she have a spoon. i think i just got banned from perk avenue. malten. lexi is laughing. is that good. i cant tell. i have to go carry an amp out of a coffee shop"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "delay": 6, "subject": "SOME PEOPLE. (the full list.) (READ)", "text": "some people bring a 60 lb amp to a coffee shop. some people play one note. some people dont know what the note was for. some people had a drawing in their bag n didnt hand it over. some people r named lexi. thats the whole bulletin. it was an E. i dont know what happened at perk avenue. i have a note. its an E." },
+        { "type": "wallpost", "from": "greg", "to": "nate", "delay": 40, "text": "NATE. my amp. in a COFFEE SHOP. one note. the espresso machine surrendered. u r in the band. u r also banned from perk avenue (3 wks). practice thurs. bring the amp (if they give it back)." },
+        { "type": "wallpost", "from": "aaron", "to": "nate", "delay": 85, "text": "Nate. The note was an E. It was in tune with my last chord, which I did not know was possible. I would like to talk about it. Also: the barista says you may come back in three weeks. She was kind about it. She had a spoon. -- Aaron" },
+        { "type": "status", "from": "lexi", "delay": 120, "text": "is in a relationship. as of thursday. a guy played one note at perk avenue. it was an E. (dont ask about it) (do ask nate) (dont)" }
+      ]
+    },
+
+    "end_truth": {
+      "them": [
+        "ok so i told her. everything. the song, the squeegee, the 3 days, the amp i didnt bring. she was quiet for like 2 minutes n then she typed 'so the song wasnt about me.' n i said 'no. its about gwen.' n she typed 'oh.' n then 'ok good' n then 'wait a little bad'",
+        "she says my 14 words r 'a keeper' n i have 24 hours to txt back or she moves me down to #2 on her page. i said fine. malten i never won anything but i think i just got a b plus. thx. i have to charge my sidekick"
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "delay": 6, "text": "is not posting the bulletin. it was about a song that wasnt about anyone i was scared of. ('some people' is retired) (for now)" },
+        { "type": "wallpost", "from": "lexi", "to": "nate", "delay": 40, "text": "nate. so the song was never about me. i knew that (i did NOT know that) (i hoped it was a little). ur 14 words tho. i kept them. i read them before bed. txt me back in under a day n ill keep u at #1. (ur at #1) (i just like saying it) <3" },
+        { "type": "wallpost", "from": "gwen", "to": "aaron", "delay": 85, "text": "aaron i have been informed the new song is about a girl who laughed at your capo. i laughed because it was on the wrong fret (7, not 5). i'd like it noted that the song is good. the bridge is better than the chorus. don't change the key change. (that was a note, not a compliment.) -- gwen" },
+        { "type": "dm", "delay": 140, "text": "sooo gwen wrote on aarons wall n now aaron is 'not okay' (its a good not okay) (hes in G) n lexi said 'at least somebody's song is about somebody.' i said 'mine is a bulletin.' she said 'it better be a good one.' ok. im writing it. its not 'some people.' i dont know what it is yet" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,267 @@
+{
+  "id": "kevin_one_witness",
+  "with": "kevin",
+  "opener": [
+    "malten. i need to tell you something and i need you to not say 'is it about butterfly.' it's about butterfly.",
+    "arcade doug told me today that Tilt is closing. last day is saturday the 24th. the mall is putting in a store that only sells calendars. it's open until january. they are replacing a MACHINE with CALENDARS.",
+    "so i have exactly one saturday left to prove it happened. i've tried 31 times since june. i have not gotten it back. what do i do."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "you know it happened. isn't that enough?", "next": "a_enough" },
+        { "say": "then we pack the place. bulletin, wall posts, everybody. tilt goes out loud.", "next": "a_pack" },
+        { "say": "just post that you did it again. who's going to check? doug nods at everything.", "next": "c_lie" }
+      ]
+    },
+
+    "a_enough": {
+      "them": [
+        "i've said that to myself 31 times. it works right up until 4:40 on a saturday when i walk past the machine and it just SITS there like it doesn't know. here's the thing i can't say to anybody but you: i don't need people to say it was great. i need somebody else to have SEEN it, so it's not just a thing i believe.",
+        "my nana joyce says a tree falling in the forest is 'a tree and a floor.' she meant it as a joke. i've been thinking about it for two weeks."
+      ],
+      "choices": [
+        { "say": "then pick the witness. who do you want in that room?", "next": "who_witness" },
+        { "say": "or say goodbye to the machine. it's closing too. it saw it.", "next": "goodbye" }
+      ]
+    },
+
+    "a_pack": {
+      "them": [
+        "ok. YES. i wrote it on the escalator and it's up. THE LAST SATURDAY AT TILT. it's 90% apology to the machine and 10% 'please come.' i hit post before my thumb could stop me.",
+        "...now i'm scared. if 40 people come and i choke it's worse than zero people. but if zero people come and i GET it, it's the same as june. i can't tell which is scarier."
+      ],
+      "effects": [
+        { "type": "bulletin", "subject": "THE LAST SATURDAY AT TILT (2 PM) (i'll be there at noon)", "text": "Tilt is closing on the 24th. a store that sells calendars is moving in. the second machine from the left has been my second home since i was 12 and the left arrow has been sticking since june and i would like to say goodbye to it with company. 2 PM. all skill levels. bring quarters, bring a witness, bring ankle support. i'll be stretching. i am always stretching. -- kevin" }
+      ],
+      "choices": [
+        { "say": "good. a crowd is a witness, even a scary one. let it fill up.", "next": "gus_challenge" },
+        { "say": "now pick one real seat. a crowd isn't the same as a witness.", "next": "who_witness" }
+      ]
+    },
+
+    "c_lie": {
+      "them": [
+        "...malten. i typed it. 'AAA'd Butterfly again, witnessed by doug.' and doug WOULD say yes. he'd nod. he nods at everything. that's what scares me. he nods at the claw machine.",
+        "and then i looked at the sentence for four minutes and my legs got upset with me. you know what's weird? it's easier to AAA a song than to lie about it."
+      ],
+      "choices": [
+        { "say": "delete it. you'd know. the machine would know.", "next": "lie_fallout" },
+        { "say": "ok then use that energy. who do you actually want in that room?", "next": "who_witness" }
+      ]
+    },
+
+    "lie_fallout": {
+      "them": [
+        "deleted. i feel 11 pounds lighter and my legs forgave me. i think that's the first thing i've ever erased on purpose and it was the best thing i did all day.",
+        "here's what the lie taught me: i don't want to SAY i did it. i want somebody to say 'i saw it.' those are not the same sentence."
+      ],
+      "effects": [
+        { "type": "status", "text": "kevin typed something he shouldn't have and deleted it before anyone saw. the legs forgave him. he is going to earn the real thing or he is going to earn nothing. (the machine does not accept credit.)" }
+      ],
+      "choices": [
+        { "say": "that's the real goal. who gets the front row?", "next": "who_witness" },
+        { "say": "say the other thing too. say thank you to the machine. it never lied to you.", "next": "goodbye" }
+      ]
+    },
+
+    "goodbye": {
+      "them": [
+        "tilt's cab is 8 years old. the left arrow sticks (everyone knows). the second machine from the left has been mine every saturday since i was 12. i have never said thank you to a machine. i feel like if i do, doug will nod at me and it will be the most embarrassing moment of my life, and i WANT it.",
+        "is that dumb? i have a speech. it's four lines. the third line is just 'the left arrow.'"
+      ],
+      "choices": [
+        { "say": "give the speech. out loud, saturday. doug can nod. let everybody hear it.", "next": "gus_challenge" },
+        { "say": "bring a quarter and leave it on the pad. let the machine keep the last credit.", "next": "who_witness" }
+      ]
+    },
+
+    "who_witness": {
+      "them": [
+        "ok. real talk. seats. i have a list on a napkin. arcade doug, because he was in the BUILDING in june (it counts). nikki (she'd render it). wes (he'd explain the refresh rate). my dad. the spider-man kid.",
+        "two seats feel like they matter and i can't give them both the front. the guy who's read 31 paperbacks in the food court and never once watched me play. or the kid in the spider-man shirt who watches every saturday from the claw machine and doesn't know my name."
+      ],
+      "effects": [
+        { "type": "status", "text": "kevin is writing names on napkins for the last saturday at Tilt. there are 11 seats. there are 11 names. one of them is arcade doug (he was in the building)." }
+      ],
+      "choices": [
+        { "say": "your dad. 31 paperbacks, three hours a saturday. give him the front row.", "next": "dad_seat" },
+        { "say": "the spider-man kid. show him what perfect looks like and he'll carry it forever.", "next": "kid_seat" },
+        { "say": "everybody. all eleven napkins. a full house is a full house.", "next": "gus_challenge" }
+      ]
+    },
+
+    "dad_seat": {
+      "them": [
+        "my dad. ok. i asked him in the car. he said 'i'll bring the book.' then 'i'll leave the book in the car.' then nothing for a whole red light. he told me once he doesn't watch because 'you're so good it makes me nervous.' i thought he meant bored. he meant NERVOUS.",
+        "he has never been nervous about anything that wasn't a parking space. he wants to be there. he just doesn't know where to put his hands."
+      ],
+      "effects": [
+        { "type": "status", "text": "kevin's dad is coming to the last saturday at Tilt. the paperback is staying in the car. this is the biggest news in the food court since they fixed the orange julius machine." }
+      ],
+      "choices": [
+        { "say": "tell him to bring the book anyway. he can look up whenever. just a seat, no pressure.", "next": "gus_challenge" },
+        { "say": "tell him: 'sit closest. hold the sweatband. that's your job.'", "next": "gus_challenge" }
+      ]
+    },
+
+    "kid_seat": {
+      "them": [
+        "spider-man kid. i don't know his name. he's maybe 9. i told him the plan is for him to watch me AAA it. he said 'what if you don't.' i said 'then you'll watch me lose.' he said 'that's ok. i see people lose at school.' dude.",
+        "i'm teaching him this week. light mode first. i have a spare sweatband."
+      ],
+      "effects": [
+        { "type": "status", "text": "kevin is teaching a kid in a spider-man shirt to play. light mode. the kid's first words to him were 'i see people lose at school.' this is the wisest nine-year-old at the mall." }
+      ],
+      "choices": [
+        { "say": "give him the spare sweatband. make him official.", "next": "gus_challenge" },
+        { "say": "let him pick the song for the last credit. you owe the kid a vote.", "next": "gus_challenge" }
+      ]
+    },
+
+    "gus_challenge": {
+      "them": [
+        "so guitarhero_gus left a post on my wall. he heard about it from greg who heard it from skip. he said DDR 'isn't a real rhythm game, you're following stickers with your feet.' he said a real rhythm game 'makes you play the part.' he's coming saturday to 'see if it counts.'",
+        "i don't hate him. he plays expert on plastic and he practices in a den. but 'stepping on stickers' is how a lot of beautiful things get done, and also he has a point, and i hate that he has a point."
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "gus", "to": "kevin", "text": "kevin. respectfully. DDR is a floor with a beat on it. a rhythm game makes you play the PART. i'll be at Tilt saturday with the red guitar (technically plastic). if i'm wrong i'll say so out loud, in public, in front of a claw machine." }
+      ],
+      "choices": [
+        { "say": "tell him to come. the pad will do the arguing.", "next": "saturday" },
+        { "say": "ask him what he thinks counts as 'real.' then ask why he cares so much.", "next": "gus_why" },
+        { "say": "a crossover. you on the pad, him on the plastic guitar, same song. loser says 'it counts.'", "next": "duel_plan" }
+      ]
+    },
+
+    "gus_why": {
+      "them": [
+        "i asked. he took a while. then: 'greg won't let me in the band because it's plastic. nobody counts plastic.' and then a long gap and then: 'it counts to me.' dude. he's not mad at DDR. he's mad that nobody saw HIS thing either.",
+        "we're the same guy. he has a guitar-shaped controller and a beagle for a crowd. i have a sweatband and a doug. we're both standing in front of something going 'it counts, it counts.'"
+      ],
+      "effects": [
+        { "type": "wallpost", "from": "gus", "to": "kevin", "delay": 60, "text": "kevin. ok. i'll be a witness. a real one, not a heckler. i'll say if it counts. i'm still bringing the guitar. it's called a Gibson. it's red. (technically plastic) (i know)" }
+      ],
+      "choices": [
+        { "say": "invite him as a witness. a real one. witnesses don't have to be fans.", "next": "saturday" },
+        { "say": "tell him to bring the guitar anyway. you don't have to call it a duel.", "next": "duel_plan" }
+      ]
+    },
+
+    "duel_plan": {
+      "them": [
+        "ok so the napkin says: 1. i play Butterfly on heavy. 2. he plays along on the plastic guitar, unplugged, in time, to the same song (the cab has no guitar port, he'll 'feel the hit'). 3. arcade doug judges. 4. loser says 'it counts' out loud. gus already agreed. he typed 'it WILL count' with three exclamation points.",
+        "nikki wants to make a 'duel mix.' i said no reverb. she said 'a LITTLE reverb.' it's a negotiation."
+      ],
+      "effects": [
+        { "type": "status", "from": "gus", "delay": 30, "text": "gus is challenging kevin to a crossover. the pad vs. the plastic guitar. same song, same room. loser says 'it counts' out loud. gus has been rolling his thumbs for an hour. expert." }
+      ],
+      "choices": [
+        { "say": "sign the napkin. get doug to initial it, he's the judge.", "next": "saturday" },
+        { "say": "add a rule: the loser carries the other one's gear to the car. the pad weighs 400 pounds.", "next": "saturday" }
+      ]
+    },
+
+    "saturday": {
+      "them": [
+        "it's saturday. 1:50 PM. Tilt. fifteen people, give or take. nana joyce is in the food court with a pretzel saying she's 'not watching, just nearby.' my dad is up front, no book. gus is in the doorway with the red guitar (technically plastic). the kid in the spider-man shirt is by the claw machine holding the spare sweatband like a flag.",
+        "second machine from the left. arcade doug is behind the counter doing the nod. the left arrow is sticking. everybody knows. what do i play. how do i play it."
+      ],
+      "effects": [
+        { "type": "status", "delay": 5, "text": "kevin is at Tilt. 1:50. the machine is warm. doug said 'you again.' kevin said 'me again.' it's the last time. he is stretching." }
+      ],
+      "choices": [
+        { "say": "heavy. butterfly. the whole thing. you came here to prove it.", "next": "run_heavy" },
+        { "say": "light. let the kid pick the song. teach him in front of everybody.", "next": "kid_credit" },
+        { "say": "go second. let gus play first. give the doubter the stage.", "next": "gus_first" }
+      ]
+    },
+
+    "run_heavy": {
+      "them": [
+        "heavy. butterfly. ok. the first 90 seconds are all perfects. the room is quiet like it knows. the left athlete and the right athlete are finally working together like they've met. then 4 minutes in. 12 seconds left. the last 8 arrows are the crossovers. and my left ankle says (quietly) 'no.'",
+        "the machine is counting. i'm at zero greats. what do i do."
+      ],
+      "choices": [
+        { "say": "trust the ankle. it's been training since june. go.", "next": "end_witnessed" },
+        { "say": "if the ankle goes, let it go. finish the song. what people remember is you not stopping.", "next": "end_miss" }
+      ]
+    },
+
+    "kid_credit": {
+      "them": [
+        "the kid picked 'the one with the butterfly.' light mode. he stood on the pad next to mine and hit 3 arrows. THREE. the crowd went crazy for those 3. nana joyce threw a pretzel at the air. my dad took off his glasses.",
+        "he looked up and said 'is it done?' i said 'we're 40 seconds in.' he said 'can we do it again?' i have never in my life been asked that by someone who wasn't me."
+      ],
+      "choices": [
+        { "say": "finish it with him. even if it's a fail screen. let him see the whole song.", "next": "end_goodbye" },
+        { "say": "give him the last credit. then do your own heavy run after, for the record.", "next": "run_heavy" }
+      ]
+    },
+
+    "gus_first": {
+      "them": [
+        "gus went first. he stood in front of the cabinet with the plastic guitar UNPLUGGED, strapped on, and played along to Butterfly with the buttons, in time, on the beat, perfectly (he was counting out loud, quietly, i could tell). he hit every strum. nobody told him to. no beagle. a mall. strangers.",
+        "he lowered the guitar and said 'ok. it's rhythm.' then 'it's still stickers.' then he looked at me and for the first time all week he looked kind of nervous. like me."
+      ],
+      "choices": [
+        { "say": "shake his hand. then say 'now let me show you what the stickers do.'", "next": "run_heavy" },
+        { "say": "pull him onto the pad. guitar on his back, one foot on an arrow. call it rock-and-step.", "next": "end_duel" }
+      ]
+    },
+
+    "end_witnessed": {
+      "them": [
+        "i AAA'd it. every arrow. the last crossover felt like the machine took a breath with me. the score screen said AAA and fifteen people said it at the same time. my dad said 'ha.' then he said 'HA.' then he sat down on the floor.",
+        "gus said 'it counts' out loud. it was quiet and it was the loudest thing i've ever heard. arcade doug nodded and then said 'good.' ONE WORD. i've known doug for two years. personal best for both of us. the machine goes away tonight. the AAA does not."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "kevin AAA'd Butterfly on the last saturday at Tilt. FIFTEEN witnesses. one nana. one dad (sitting on the floor). one gus (said 'it counts' out loud). one doug (said 'good'). the machine is going away. the AAA is not." },
+        { "type": "bulletin", "from": "gus", "delay": 45, "subject": "CORRECTION (from the den)", "text": "I said DDR wasn't a real rhythm game. I watched a kid hit a perfect score on an arcade machine with a left arrow that sticks. I was wrong. It counts. It is a rhythm game and the stickers have feelings. I have retracted the statement in front of a claw machine and a beagle. -- Gus (expert, 5 stars, corrected)" },
+        { "type": "wallpost", "from": "wes", "to": "kevin", "delay": 110, "text": "kevin. the Tilt cab runs a locked refresh and basically zero input lag, so a perfect on it is a perfect with no asterisk. 15 witnesses is a 15-person bracket. it's official. you owe me a quarter. (i'll waive it. it's the quarter that made you.)" },
+        { "type": "wallpost", "from": "nikki", "to": "kevin", "delay": 180, "text": "KEVIN!!! the AAA!!! FIFTEEN WITNESSES!!! i'm making a mix called 'witnessed' and it's one song at exactly 1.0 speed because i'm told that matters. UNTZ (respectfully)." }
+      ]
+    },
+
+    "end_miss": {
+      "them": [
+        "it was the last arrow. LAST ONE. a Great. my left ankle did the thing. the combo broke. the screen said AA+ and i said a word i'm not allowed to say at the mall.",
+        "and then fifteen people clapped. HARD. the spider-man kid yelled 'AGAIN.' gus said 'that wasn't a miss, a miss is a Boo. you got a Great on the last note in front of people. i saw it. it counts.' i thought a witnessed Great was worse than an unwitnessed perfect. it isn't. i don't know what it is. it's something."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "kevin got a Great on the LAST arrow of the last song at Tilt. AAA missed by one. nobody saw perfection. fifteen people saw a kid not stop, and clapped anyway. he'll take it. (he'll take it slowly.)" },
+        { "type": "wallpost", "from": "paige", "to": "kevin", "delay": 60, "text": "kevin i was at the back with the camera tilted 30 degrees. the last-arrow shot is the best picture i've ever taken. your sweatband is in focus. so is your face. so is doug, mid-nod. i'm printing it for the wall at Tilt before they take the wall down. 'important.'" },
+        { "type": "wallpost", "from": "gus", "to": "kevin", "delay": 130, "text": "kevin. a Great is not a Boo. i have 5-starred Free Bird 31 times and i have NEVER had a room clap for the last note. you had a room. i'm taking notes. it counts. (it counted before. i'm saying it again.)" }
+      ]
+    },
+
+    "end_duel": {
+      "them": [
+        "so gus got on the pad with the guitar on his back and one foot on the arrow and we did Butterfly TOGETHER. he strummed, i stepped. nikki's remix (a LITTLE reverb) played from a phone somebody held up. the combo counter didn't know what to do. it just said GOOD for four minutes.",
+        "arcade doug, our judge, nodded in front of everyone and then nodded AGAIN. two nods. the room lost it. nobody won. the napkin says the loser says 'it counts' out loud, so we both said it at the same time. we're calling it rock-and-step. it has a logo. the logo is a napkin."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "kevin and gus invented a sport today at Tilt. it's called rock-and-step. one pad. one plastic guitar. doug nodded twice. nobody won. it counts. (both of them said so at the same time.)" },
+        { "type": "bulletin", "from": "gus", "delay": 40, "subject": "ROCK-AND-STEP: RULES v1.0 (NAPKIN)", "text": "1. One person on the pad. One person on the plastic guitar (unplugged is allowed). 2. Same song. 3. A judge nods. 4. Everybody says 'it counts.' Rock-and-step is now an official sport of the den. Beagle (Axl) has agreed to be the league. -- Gus" },
+        { "type": "wallpost", "from": "greg", "to": "gus", "delay": 100, "text": "gus. i heard about rock-and-step. my dad says the garage holds 12 and we're 4. i'm not saying anything. i'm saying tuesday, bring a cord. the red one. (it's still plastic.) (we'll talk about it.)" },
+        { "type": "wallpost", "from": "wes", "to": "kevin", "delay": 170, "text": "kevin. a plastic guitar on a DDR floor is not a sport. it's also the best frame data i've seen all month. i'd like to be a judge next time. (i'd like to be a participant.)" }
+      ]
+    },
+
+    "end_goodbye": {
+      "them": [
+        "we finished it together. all four minutes. he got a D (it's a letter) and he stood there looking at it and said 'that's my favorite letter.' the machine did its little trumpet noise. my dad was on his feet. doug nodded at the kid. arcade doug has never nodded at a kid.",
+        "i never got the AAA back. i don't think i will. but there's a nine-year-old who knows how to hit a left arrow now, and a left arrow that sticks won't scare him. tilt closes tonight. i left a quarter on the pad. for whoever needs the last credit."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "kevin gave Tilt's last credit to a kid in a spider-man shirt. light mode. the kid got a D and said it was his favorite letter. the arcade is closed. the AAA stays unwitnessed. kevin is ok with it. (ok-ish.)" },
+        { "type": "wallpost", "from": "josh", "to": "kevin", "delay": 70, "text": "kevin, that was the nicest 'good game' i've seen outside of youth group. we have a gym. no machine, but we have a floor, folding chairs, and a pizza budget. just saying. bring the kid (with a parent)." },
+        { "type": "wallpost", "from": "gus", "to": "kevin", "delay": 150, "text": "kevin. the kid hit 3 arrows and the room clapped like he'd soloed. that's a rhythm game. 'real' just means somebody cared. i said it out loud in the mall. it counts." }
+      ]
+    }
+  }
+}

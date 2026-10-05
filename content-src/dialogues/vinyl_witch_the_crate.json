@@ -1,0 +1,235 @@
+{
+  "id": "vinyl_witch_the_crate",
+  "with": "vinyl_witch",
+  "opener": [
+    "malten. i have a boy at the counter, a crate on the counter, and a cat on the crate. it isn't a crisis yet. it's a sentence with three parts.",
+    "the boy is limewire_larry. he dragged a milk crate of his dad's records out of the garage and he wants twenty dollars for all of it. he said 'i need a bigger hard drive.' i said 'darling, let me look.'",
+    "i looked. the pink label. the first pressing of pink moon, original sleeve. it is worth about what his entire computer is worth, and he's standing there rubbing his thumb on my counter like it might offer a better price."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        { "say": "does larry know what he's holding? start there.", "next": "a_know" },
+        { "say": "what's the store's rule on crates? there's always a rule.", "next": "b_rule" },
+        { "say": "what's mingus doing? she's on that crate for a reason.", "next": "c_mingus" }
+      ]
+    },
+
+    "a_know": {
+      "them": [
+        "he doesn't. he described it as 'the pink one with the sad guy' and said he thinks the sad guy might be 'from the radio.'",
+        "that isn't an insult to nick drake, darling. it's a review. i've heard worse, and paid for them."
+      ],
+      "choices": [
+        { "say": "then it's his call, not yours. what else is in that crate?", "next": "raymond" },
+        { "say": "skip the jokes. what is this doing to you, honestly?", "next": "temptation" }
+      ]
+    },
+
+    "b_rule": {
+      "them": [
+        "the crate rate. two dollars a record, no appraisals, no questions, because the woman who runs the place says 'our margins.' it's a good rule for crates. it's a terrible rule for this crate.",
+        "she's at the bank until five. so it's me, the boy and the cat, which is exactly the staffing level at which a person finds out what she's made of."
+      ],
+      "choices": [
+        { "say": "rules are written for crates, not records. what else is in there?", "next": "raymond" },
+        { "say": "so nobody's watching. what do you want to do when nobody's watching?", "next": "temptation" }
+      ]
+    },
+
+    "c_mingus": {
+      "them": [
+        "she's been on the crate for twenty minutes. when i lifted her off she walked straight back and sat on one record. that one. she has never been wrong about a person, darling, and i can't work out whether she's telling me to keep it or warning me what kind of person i'm about to be.",
+        "she's also looking at me. she knows i know she's looking."
+      ],
+      "choices": [
+        { "say": "she picked pink moon. so what are you going to do about it?", "next": "temptation" },
+        { "say": "trust the cat. but check the rest of the crate first.", "next": "raymond" }
+      ]
+    },
+
+    "raymond": {
+      "them": [
+        "the rest of the crate. a stack of hymnals nobody sang from, three polka records, and... oh. oh no. darling, it's a spoken word record. 'the model 8N: a farmer's guide.' narrated by a man named, i checked the sleeve twice, raymond.",
+        "raymond is real. i named him on a hunch and he exists. he describes a tractor for forty minutes. side two is called 'the hydraulics.' i need a moment and some tea."
+      ],
+      "effects": [
+        { "type": "status", "text": "vinyl_witch has found Raymond. he is real. he narrated a record about a tractor and side two is called 'the hydraulics.' she is having a moment. it is going well. the tea is helping." }
+      ],
+      "choices": [
+        { "say": "keep him. raymond deserves a good home.", "next": "temptation" },
+        { "say": "offer to buy raymond at the crate rate. that part's honest at least.", "next": "temptation" }
+      ]
+    },
+
+    "temptation": {
+      "them": [
+        "here's the part that makes my stomach go quiet. since i was seventeen i've wanted this exact pressing. i own 3,400 records and a drawer of promises and i have never owned this one. i can't afford it. the store can't afford it.",
+        "and nothing has happened yet. everything is still available to me. the rule says twenty-four dollars. the boy says 'sure.' the cat has gone to sleep on it. nobody would ever know but me, and the cat, and now you.",
+        "so. you're the neutral party. you have no cat and no turntable in this. what do i do."
+      ],
+      "choices": [
+        { "say": "tell larry what he's holding. all of it. then let it be his call.", "next": "tell_larry" },
+        { "say": "pay the crate rate. the rule's the rule. see how it feels by closing time.", "next": "crate_paid" },
+        { "say": "post it on the site. let everybody bid, in public, loud and fair.", "next": "bid_plan" }
+      ]
+    },
+
+    "tell_larry": {
+      "them": [
+        "i told him. i said 'darling, sit down,' and he sat on the nearest available thing and held very still. i said the number out loud. he asked me to say it again. i said it again.",
+        "he asked, 'is that in dollars.' then: 'does that include the sad guy, or just the cover.' now he's looking at the record like it might have a virus. it's the first time i've seen larry afraid of a file."
+      ],
+      "choices": [
+        { "say": "play him side a first. before anyone says another number.", "next": "play_side" },
+        { "say": "let him do the math. it's his record. he's allowed to want the money.", "next": "larry_math" }
+      ]
+    },
+
+    "play_side": {
+      "them": [
+        "i put on side a. the room did what rooms do. he sat on the floor, which is also a chair. he didn't say a word, and when the needle lifted he held one breath without being told. nobody tells you. it arrives.",
+        "then he said, 'is it allowed to want this?' he meant the record. i think he also meant the quiet."
+      ],
+      "effects": [
+        { "type": "status", "from": "larry", "text": "larry is sitting on the floor of a record store. no talking. he is doing GREAT. 22 minutes and he hasnt touched a computer. a record. (like the thing)" }
+      ],
+      "choices": [
+        { "say": "tell him it's allowed. it was his dad's before it was his. his dad might like to hear it too.", "next": "end_keeps" },
+        { "say": "tell him to keep it. and that you have a spare turntable he can borrow.", "next": "end_keeps" }
+      ]
+    },
+
+    "larry_math": {
+      "them": [
+        "he did the math with his lips moving. he said it would be a new drive, a better monitor, and 'maybe a thing for my dad.' he said it quietly, like a person confessing to a crime he didn't commit.",
+        "i can't pay him that. the store can't. the one person who can is a man named arthur who comes on thursdays and says 'it's a nice little shop' like it's a compliment. i could list it. it would leave the building in a trench coat."
+      ],
+      "choices": [
+        { "say": "list it. let him have the real price. you can love a record from across the room.", "next": "end_sold" },
+        { "say": "ask what the 'thing for my dad' is. the money might be going somewhere better than a drive.", "next": "larry_dad" }
+      ]
+    },
+
+    "larry_dad": {
+      "them": [
+        "i asked what thing. he said, in a very small voice, 'a record player. for the garage. so he can hear these. he said they were from a long time ago and he never had a place to play them.'",
+        "darling, i have fifteen kinds of bravery and none of them are armored against that sentence."
+      ],
+      "choices": [
+        { "say": "then list it. a dad gets a turntable, a boy gets a drive, and a first pressing finds a vault.", "next": "end_sold" },
+        { "say": "ask larry if he'd like to hear it once before it goes. one side. no talking.", "next": "play_side" }
+      ]
+    },
+
+    "crate_paid": {
+      "them": [
+        "i paid him. twenty-four dollars, in the green bills i keep for emergencies and tea. he said 'thanks!! ur so nice' and left, and i'm standing here holding the best pressing i've ever held, and i have never felt so thoroughly unblessed.",
+        "it feels like i swallowed a cold coin. i'd like it noted that this was the advice. the cat has left the building. she took the long way around me."
+      ],
+      "effects": [
+        { "type": "status", "text": "vinyl_witch has done something technically legal and spiritually damp. the candle went out on its own. she isn't saying anything else. mingus has moved to the window." }
+      ],
+      "choices": [
+        { "say": "go after him. he's still on the sidewalk. bring him back inside and undo it.", "next": "tell_larry" },
+        { "say": "put it in the drawer. hold it until you can make it right.", "next": "drawer_night" }
+      ]
+    },
+
+    "drawer_night": {
+      "them": [
+        "the drawer is nineteen records long. nineteen promises, and now a twentieth, which is a promise to someone who doesn't know he's owed. that's a new kind. it's the worst kind. it's also the only kind that's actually mine.",
+        "it's tuesday. listening night. four chairs, one side, tea. i don't know how to sit in a room of strangers with a record i didn't earn sleeping in a drawer behind me."
+      ],
+      "choices": [
+        { "say": "play something else tonight. tomorrow, find larry and pay him what it's worth, even if it takes a year of tea money.", "next": "end_drawer" },
+        { "say": "tell the first person who walks in, out loud, once. it gets lighter.", "next": "end_drawer" }
+      ]
+    },
+
+    "bid_plan": {
+      "them": [
+        "a public auction. on the site. in a bulletin. it's undignified, it's democratic, and it will be the loudest hour that place has ever had.",
+        "except i've just remembered that half those people bid in things that aren't money. i've watched tony pay for a wink in capri suns. i've watched banana offer a phone number that isn't a phone number. this might be the dumbest thing i've ever allowed. the cat approves. she's asleep."
+      ],
+      "choices": [
+        { "say": "post it. let the site do what the site does.", "next": "bid_day" },
+        { "say": "post it, with one rule: every bid has to be something you'd actually miss.", "next": "bid_day" }
+      ]
+    },
+
+    "bid_day": {
+      "them": [
+        "it's been up eleven minutes. forty-one bids. banana has offered thirty-seven bananas. patrick has offered his rock, and then 'i changed my mind,' and then 'i changed it back.' darkangel offered a poem, and it's annoyingly good.",
+        "wes has offered one regional entry fee in cash, labeled 'one balloon arch.' tony has offered a sincere compliment and a capri sun, and i don't know what's happening to that boy. larry is refreshing the page like a man whose toolbars have finally paid off.",
+        "i have to pick. or larry does. it's his record."
+      ],
+      "effects": [
+        { "type": "bulletin", "subject": "AUCTION: one first pressing (bids in the comments)", "text": "one copy of pink moon, first pressing, original sleeve, belonging to a boy named larry who deserves to be paid fairly for it. bids may be money, favors, or poetry. no spotify. no 'i'll pay you next week.' the cat is the judge and the cat is asleep, so i am the judge. blessed be, and mind the needle. ~vw" }
+      ],
+      "choices": [
+        { "say": "pool it. everybody chips in, larry gets paid, and the record stays with the room.", "next": "end_auction" },
+        { "say": "let larry pick the winner. whatever he says, you honor.", "next": "end_auction" }
+      ]
+    },
+
+    "end_keeps": {
+      "them": [
+        "he's keeping it. he said 'it's my dad's. he should get to hear the sad guy.' he's taking pink moon home on the bus in a milk crate with a bungee cord around it like a seatbelt. i lent him my spare turntable for the winter. the nice one. don't tell anyone.",
+        "and darling, i bought raymond. two dollars. the crate rate, the honest kind. the man who describes tractors is mine now, and i'll play him at a volume that respects him.",
+        "larry's coming to listening night. he'll sit on the floor. the floor is also a chair."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "LISTENING NIGHT (tuesday): a new rule, written by a cat", "text": "four chairs. one side. tea. the floor is also a chair, and as of tonight the floor has a regular. tonight's side: pink moon, side a, a first pressing owned by a boy who didn't know what he had until he sat down and heard it. no talking. you may cry. tissues under the third chair. ~vw" },
+        { "type": "status", "from": "larry", "delay": 60, "text": "larry just heard a record. a whole side. no skipping. there was no toolbar. i think i learned something. i dont know what. i have a turntable until spring (its on loan) (ive never been trusted w/ a nice thing)" },
+        { "type": "wallpost", "from": "gwen", "to": "vinyl_witch", "delay": 120, "text": "you probably haven't heard what happened at the store today, but honestly? you were there. sorry, nervous habit. holly told me. i made larry a mix, hand-lettered, fourteen tracks and a moth in the corner. there's one tractor on it. i couldn't help it." },
+        { "type": "dm", "from": "larry", "delay": 240, "text": "malten. i heard a record. the pink moon one. the sad guy has a really good voice. do u know any1 else like him. also do u know if u can put a turntable thru a virus scan" }
+      ]
+    },
+
+    "end_sold": {
+      "them": [
+        "it's done. arthur came at four, said 'it's a nice little shop,' and paid the real number for pink moon without blinking. i took my ten percent and a deep breath. larry got the rest in an envelope.",
+        "he bought the drive. he also bought his dad a turntable, secondhand, from the other store (the one that isn't mine). i drove him. the first record his dad played was raymond, and he laughed until he had to sit down on a bucket.",
+        "pink moon is in a vault in arthur's den. i don't mind. (i mind.) it went where it needed to go first."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "vinyl_witch has let a first pressing leave the building at its honest price. nobody lied to anyone. nobody took what wasn't theirs. the shop is a little quieter. the tea is the same tea." },
+        { "type": "status", "from": "larry", "delay": 60, "text": "larry got a new hard drive AND a record player 4 my dad. the first thing dad played was a man describing a tractor. he had 2 sit down. he said 'raymond!' he knew his NAME. i have never been so confused or so happy" },
+        { "type": "wallpost", "from": "fred", "to": "vinyl_witch", "delay": 120, "text": "remember when profiles had testimonials? i'd write you one: 'she sold a record for exactly what it was worth.' five stars. that's rarer than a first pressing. (i'm still leaving this site soon.) (i'm not.)" },
+        { "type": "wallpost", "from": "todd", "to": "larry", "delay": 180, "text": "Larry! Congratulations on the new hard drive. A friendly admin note: it will be empty for the first few days. Please let it stay empty and sit with it. It's very peaceful. :)" }
+      ]
+    },
+
+    "end_drawer": {
+      "them": [
+        "okay. the drawer has twenty records now. the twentieth has a sticky note on it that says OWED. LARRY. (HE DOESN'T KNOW.) (I DO.) i'm going to find him tomorrow with the rest of the money, even if it takes a year of tea money and a lot of silences.",
+        "i played something quiet tonight. four chairs, one side, nobody talked. and for the first time, darling, the quiet in the room was about me. i didn't mind. it was fair."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "status", "text": "vinyl_witch has a twentieth record in the drawer. the first nineteen are promises to people who haven't come back. the twentieth is a promise to someone who doesn't know yet. she is going to find him. the cat has agreed to help (by sitting on things)." },
+        { "type": "status", "from": "larry", "delay": 50, "text": "larry got $24 4 a crate of old records + a new hard drive from a different store. the lady at the record store looked sad when i left. i think shes sad abt something else. i hope. (she gave me a bag of tea) (i dont know what 2 do w/ tea)" },
+        { "type": "wallpost", "from": "raven", "to": "vinyl_witch", "delay": 110, "text": "I saw your status. Twenty records. I keep a drawer like that. Mine is called 'letters.' I won't say more. Come by, bring the cat, and I will provide Bauhaus and silence. The hard thing is the real thing. -Raven" },
+        { "type": "dm", "from": "larry", "delay": 300, "text": "malten is it normal 4 a record store lady to give u tea n then stand by the door n look at u like u forgot ur umbrella. just asking. 4 a friend" }
+      ]
+    },
+
+    "end_auction": {
+      "them": [
+        "it's done. sort of. the site pooled. forty-one people, every bid, mostly in currencies i can't deposit. larry got his full four hundred and change in actual dollars (todd kept the ledger, i don't know how), and pink moon is staying in the shop.",
+        "it's in the window with forty-one names on an index card. the sign says SHARED CUSTODY. tuesday listening night is its permanent home. i've never owned anything with forty-one owners. it feels like a spell. i'm not allowed to say that. (it is.)",
+        "darling, i was wrong about the auction. i still think it was a terrible idea."
+      ],
+      "end": true,
+      "effects": [
+        { "type": "bulletin", "subject": "THE PINK MOON AUCTION: results", "text": "after eleven minutes, forty-one bids and one rock, a first pressing of pink moon has been purchased by the people of this site on behalf of a boy named larry (paid in full) and a room (custody: shared). it lives in the window of the good record store. every bidder may sit in a chair on listening night. patrick: dwayne gets a chair. banana: please send fewer bananas. darkangel: the poem won the poem category. ~vw" },
+        { "type": "wallpost", "from": "banana", "to": "vinyl_witch", "delay": 40, "text": "I BID 37 BANANAS AND I WANT YOU TO KNOW THEY ARE ALL IN THE MAILBOX AND ALSO ON YOUR CAT. THE CAT IS FINE. THE BANANAS ARE ECSTATIC. SHARED CUSTODY IS THE BEST WORDS I HAVE EVER HEARD" },
+        { "type": "wallpost", "from": "patrick", "to": "vinyl_witch", "delay": 90, "text": "i bid dwayne. then i changed my mind. then i changed it back. can dwayne come to listening night. he is quiet i promise. he listens really good" },
+        { "type": "wallpost", "from": "tony", "to": "vinyl_witch", "delay": 150, "text": "i bid one (1) sincere compliment and a capri sun. vinyl_witch your aura is a first pressing. no winky face. (ok one winky face ;))" }
+      ]
+    }
+  }
+}

@@ -1,0 +1,197 @@
+{
+ "id": "hunter",
+ "name": "xX_NoScope_Xx",
+ "tag": "MLG 4 life ★ 1v1 me on lockout ★ no radar ★ (i get the BR)",
+ "avatar": "assets/avatar_hunter.gif",
+ "gender": "Male",
+ "age": 15,
+ "hometown": "Overland Park, Kansas",
+ "loc": "the basement (the couch, the xbox, 4 ft from the tv, the true MLG distance)",
+ "zodiac": "Leo (the sniper's sign. u cant prove otherwise)",
+ "status": "Single (focused) (sponsor application pending)",
+ "hereFor": "Friends, Scrims (4v4), Sponsors (pm me), Rematches",
+ "mood": "headshot-ready",
+ "lastLogin": "Oct 4 2026 11:51 PM",
+ "theme": { "bg": "#0c0c14", "fg": "#e8ecff", "accent": "#ff2d55" },
+ "blogTitle": "NOSCOPE TV (montage notes, 1v1 results, the credits)",
+ "about": "xX_NOSCOPE_Xx IS ONLINE. i play halo 2 and i make montages. i have made 9. the newest is 11 min long (the intro is 4 of them) and has 14 clips (the same rocket is in it 3 times, its a good rocket). most of the kills in them are by other people but i edited them, so they are mine in spirit. thats how editing works. i play lockout, midship, headlong and zanzibar and my k/d is .7 which is a TEAM stat. i wear sunglasses to play. indoors. in my basement. my mom asked if i was ok. i said 'MLG' and she said 'is that a vitamin.' 1v1 me on lockout. (i get the BR) (u get the pistol) (its a handicap)",
+ "aboutMore": "the part nobody sees: my dad watches every montage on the living room tv all the way through, with pretzels. after vol. 9 he asked 'which one is you.' i said 'the one who falls off the map at 4:12.' he said 'thats my favorite.' i didnt know what to say so i said 'MLG.' then i burned him a copy. its in his truck. its been there 3 weeks. he plays it at red lights. also every clip in my credits says who got it. if josh got the kill, josh gets the kill. thats my only rule.",
+ "meet": "Who I'd like to meet: the pro circuit guys (to ask how they aim, and if any of them need a guy who edits). whoever put the edge on lockout so i can say 'we need to talk.' a sponsor who will say yes. josh's brain. whoever invented slow-mo, to thank them. and one person who accepts a 1v1 without looking sad for me.",
+ "interests": {
+  "General": "halo 2 (lockout, midship, headlong, zanzibar), montages (9 so far, vol. 10 in progress), no scopes (in the name, not in the skill), sunglasses indoors, my cousins capture card (weekends only), crossfades (one per video), party chat, 1v1s, the pro circuit videos, carrying (a team) (when i say carrying i mean i was on it)",
+  "Music": "breaking benjamin (blow me away is THE halo 2 song, its on the soundtrack, i edit to it), linkin park (every montage needs one), system of a down, the halo theme with the monks (the intro of vol. 9 is the monks), whatever my cousin burned me called MONTAGE MIX 3",
+  "Movies": "the matrix (bullet time is a slow-mo cut), top gun (the volleyball scene is the best montage ever made), star wars (the trench run is a no scope, canon), rocky IV (the training montage, ive studied it frame by frame)",
+  "Television": "g4 (attack of the show, x-play, cheat!), sportscenter (the top 10 plays is basically my format), scrubs, whatever pro circuit tapes my cousin has",
+  "Books": "halo: the fall of reach (josh lent it, i read the part with the ship), the official halo 2 strategy guide (i look at the map pages), the art of war (a kid at school said read it, i read page 1, its about knowing yourself, im working on it), the manual for pinnacle studio (the only manual ive ever read all the way)",
+  "Heroes": "my dad (watches all 11 min), josh (so good its not even funny, never gloats), master chief (silent, effective, no k/d), whoever invented the slow-mo button, kyle (watched my montage 6 times, my biggest fan, he's 14 supposedly)"
+ },
+ "song": {
+  "name": "Blow Me Away",
+  "artist": "Breaking Benjamin",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e1/fc/b9/e1fcb91b-1961-34a4-2561-4e8a7e1088f8/mzaf_12044705347423518164.plus.aac.p.m4a",
+  "pattern": [0, 0, 7, 0, 5, 3, 0, -2],
+  "bpm": 140
+ },
+ "decor": ["assets/deco_flames_bar.gif", "assets/badge_Sega-Elite.gif"],
+ "friends": ["josh", "wes", "andy", "kyle", "dmitri", "ryan", "rick", "nat", "gus"],
+ "wall": [
+  { "from": "josh", "text": "hunter thx 4 the credit in vol. 9 =] 'clip: josh (youth group)' made my mom cry a little. u didnt have to put my streak at the 7 min mark but u did and its the best part. also come thursday, no pressure. bring the sunglasses, pastor dan wants to try them on", "time": "Oct 1 2026 9:20 PM" },
+  { "from": "wes", "text": "hunter i watched vol. 9 on CRT #3. the intro is 4 minutes. in melee thats 14,400 frames of no input. i have never been so patient. but the fall at 4:12 is frame perfect. you did not edit it, you left it in. thats the best edit in the whole thing. no johns.", "time": "Sep 28 2026 10:05 PM" },
+  { "from": "dmitri", "text": "hunter. 'sector clear' means no enemies in the area. you asked if its a win. it is a win. its the best kind, nobody dies. i watched the montage again. same rocket. i'm starting to like the rocket. [pwn] approves.", "time": "Sep 25 2026 11:11 PM" },
+  { "from": "andy", "text": "hunter i put ur 4:12 fall in my amv (u said ok) at the part where the hero loses his sword. it WORKED. the watermark is in the middle (u can see it) (it says UNREGISTERED) (im working on it). ur crossfade at 4:11 is 2 seconds too long but i didnt say anything. i said it just now", "time": "Sep 20 2026 5:34 PM" },
+  { "from": "kyle", "text": "hunter i tried 2 no scope at dylans n i shot the wall 40 times n then dylans mom said 'thats enough.' it was the best day of my life. can u teach me the thing where u fall off the map on purpose. dylan says u cant do it on purpose. i said u can. was i rite", "time": "Sep 15 2026 8:46 PM" },
+  { "from": "gus", "text": "Hunter. I accept the 10%. I accept the 15% too if the montage has the whole Free Bird solo, no cuts. Four minutes. Dani will hold the camera. You can put the crossfade wherever you want. One. \\m/", "time": "Sep 9 2026 4:02 PM" },
+  { "from": "rick", "text": "Hunter. Your hunter, the class, pulled the entire room in Lucifron. I said it was fine. It was not fine. I want to thank you for feigning death immediately and whispering me 'gg.' That is the most professional thing anyone has done in my raid.", "time": "Sep 3 2026 6:20 AM" },
+  { "from": "dave", "text": "h4nter i p4used ur montage at 4:12 and zoomed in. ur health bar was FULL. u fell with a full health bar. thats not a death its a CHOICE. also i can h4ck ur k/d. its .7. i made it .71. i dont know if that was a hack or just rounding", "time": "Aug 28 2026 11:48 PM" }
+ ],
+ "replies": [
+  "GG. clean.",
+  "NICE SHOT. (in words. a headshot.)",
+  "u just got no-scoped by a comment. clean.",
+  "respect. 1v1 me tho",
+  "acknowledged. ur in the credits now. small font. but its THERE",
+  "BR or pistol. choose",
+  "hold on im mid-crossfade. u dont interrupt a crossfade",
+  "[SLOW-MO] ur comment arrives [END SLOW-MO] ok. read it. good",
+  "k/d on that comment: 1.0. thats a first. thank u",
+  "thats clean. id put it in vol. 10. credit: u"
+ ],
+ "thanksAdd": "NEW FRIEND ACQUIRED. gg. u are now in my party chat (the party chat is my brother. hes 7). u can be in vol. 10. ur name will be in the credits. small font. but its THERE. 1v1 me on lockout whenever (not now, mom is calling dinner)",
+ "ambient": [
+  "just got a double kill. a REAL one. on purpose. no clip bc the capture card was at my cousins. this is why u always record. nobody will believe me. ill believe me",
+  "vol. 10 in progress. NOSCOPE VOL. 10. 11 min. 11 kills (4 mine) (counting the one on the ground)",
+  "my cousin only lends me the capture card on weekends. weekdays: no clips. weekdays all my kills are rumors",
+  "crossfade tip: dont. thats the tip. every kid on the forums uses crossfades and its a mistake. ...ok i use one. at 4:11. its a good one",
+  "mom left a post-it on the xbox. 'dinner at 6. i mean it.' i respect a woman who says 'i mean it.' i got off at 5:59. rare",
+  "controversial: the battle rifle is better than the sniper. i say this and my name is NoScope. my own name is wrong. im working through it"
+ ],
+ "saltyDm": "DENIED?? ok. thats a clean loss and i wasnt even playing. putting it in the montage anyway. title card: REJECTED [CRASH ZOOM] (linkin park). u will be the villain. ur name will be in the credits (small font) (cool name). request me again when ur ready. ill be here. in the basement. in the sunglasses",
+ "keywords": {
+  "halo": "halo 2. lockout, midship, headlong, zanzibar. BR starts, no radar. my k/d is .7 and thats a TEAM stat. what do u play. its a 1v1 question",
+  "montage": "NOSCOPE VOL. 9. 11 min. 4 min intro. 14 clips. the same rocket 3 times (its a good rocket). credits are 1:10. if ur in it u know. if ur not ur in vol. 10. small font",
+  "lockout": "i dont play on lockout so much as lockout plays on me. but ill 1v1 u. BR starts. no radar. u get the pistol. (its a handicap) (for u)",
+  "scope": "no scope: shooting a sniper rifle without looking through the scope. its in my name. i have hit 2. both by accident. both in the montage. thats called planning",
+  "sunglasses": "MLG shades. i wear them in the basement. my mom thinks its a vitamin. they dim the tv a little. it makes my kills look better. its science",
+  "dad": "he watches every montage with pretzels. after vol. 9 he asked which one was me. i said the one who falls off the map. he said 'thats my favorite.' im keeping that forever",
+  "sponsor": "sent vol. 9 to 4 sponsors. 2 replied. 1 auto reply (framed). 1 said 'not currently looking for new talent in the sports category.' CURRENTLY. thats a maybe. i read it every night",
+  "mlg": "major league gaming. the pros. i emailed them twice. once about me, once about gus's guitar division. 1 reply. the reply was 'who.' im treating it as a question and im going to answer it",
+  "edit": "pinnacle studio. 1 crossfade only. slow-mo goes ON the kill, not before. credit everybody. if josh got it, josh gets it. thats the only real rule of editing and probably life"
+ },
+ "banter": {
+  "dmitri": [
+   "dmitri keyboard and mouse is training wheels. a controller has 2 thumbs and a dream. u have 10 fingers and a mouse that costs 40 dollars. fine. 1v1. i pick lockout. 'sector clear' means no enemies. im taking it as a win. thx",
+   "dmitri u asked what lockout is. its 2 towers, some lasers, a pit. u said 'and a pit?' yes. a pit. i fell in it 11 times. thats vol. 9. u get it"
+  ],
+  "ryan": [
+   "ryan no there is no safe zone in halo. there is spawn. spawn is 5 seconds of safe. then theres a sniper. thats the genre. ill stand in spawn w/ u anytime. we can look at the map together",
+   "ryan i saw ur stand. u hold a sign that says NO FREE TRIM. thats the best title card ive ever seen. can i use it in vol. 10. credit: ryan (the sign)"
+  ],
+  "rick": [
+   "rick i played ur raid as a hunter (the class) bc of my name. i feigned death 14 times. it works. u said 'good job' in the voice. the voice that means it isnt. i have never been so seen",
+   "rick u run a raid at 8 and a shift at 11. i run a montage. we both manage people who arent doing what we say. difference is mine have gamertags. u should have credits. 'tank: terry (stood)'"
+  ],
+  "josh": [
+   "josh ur 25 streak at the 7 min mark is the best part of vol. 9 and i filmed it w/ my dads camcorder from the back row. u had no idea. now u know. its shaky. the shake is the art",
+   "josh rematch. no radar, BR starts, lockout, 1v1. ill let u pick the side. ill pick the sunglasses. i do not need u to feel bad for me. thats not a handicap its a request"
+  ],
+  "wes": [
+   "wes BXR is a 3 button combo with frame perfect timing. its a wavedash w/ a gun. u said 'johns.' i looked it up. its excuses. wes. a sticky grenade is not an excuse. its a sticky grenade",
+   "wes ur CRT lag is 0. i played halo on it for a week. my k/d didnt change. thats a controlled experiment. thats SCIENCE. u cant blame lag"
+  ],
+  "dave": [
+   "dave u said u could hack my k/d. its .7. u made it .71. i dont know if that was a hack or rounding. ill take it. also ur lan ends at 9 sharp. i have an 11 min montage. we'd have to start at 8:49",
+   "dave u found the exact frame the capture card drops. frame 14,404. thats the start of the fall. thank u. i didnt want it fixed. i just wanted to know"
+  ],
+  "kyle": [
+   "kyle lesson 1 of no scope: u need a sniper. lesson 2: hit the guy. lesson 3: i dont know. thats where i keep falling. but i can teach u to edit. ur 6 views are my biggest audience",
+   "kyle ur gamertag says 'welcome back sharon.' tell dylans mom i said hi. tell her ty 4 the pizza rolls. tell her im not scared of her. tell her i am. ok. saturday. 2 til she says stop"
+  ],
+  "andy": [
+   "andy ur watermark is on my kill. in the middle. in red. i zoomed in frame by frame and where my kill should be it just says UNREGISTERED",
+   "andy u said use ur plugin. i opened it. it says 'trial period: 3 days remaining.' u have been on day 3 since june. i respect it"
+  ]
+ },
+ "statuses": [
+  "hunter is editing. crossfade crisis. do not interrupt",
+  "hunter just got 14 kills (it was the whole team) (our combined 14)",
+  "hunter is 1v1 ready. lockout. BR on his side. pistol on yours. (handicap)",
+  "hunter just fell off the map. on purpose. for vol. 10. (it was on purpose)",
+  "hunter is wearing sunglasses in the basement for no reason. for MLG",
+  "hunter got a reply from a sponsor!! (automatic) (framed)",
+  "hunter is waiting for the weekend. the capture card comes home saturday. kills become real again",
+  "hunter is [SLOW-MO] walking to the fridge [END SLOW-MO] (it was a long walk) (mom said hurry up)",
+  "hunter just said 'gg' to a guy who beat him 50-4 and the guy said 'ty.' best exchange of the week"
+ ],
+ "bulletins": [
+  {
+   "subject": "NOSCOPE VOL. 9 IS OUT (11 MIN) (bring a blank DVD-R)",
+   "body": "NOSCOPE VOL. 9. 11 min. 4 min intro (the monks). 14 clips (the same rocket 3 times, its a good rocket). the fall is at 4:12 (on purpose). credits are 1:10 and every clip is credited: josh (youth group), wes (not on purpose), and a guy named SteelCurtain who left the game before i could ask. to get a copy bring a blank DVD-R to my locker or my basement. no uploads. it took 4 hours last time and the site ate it. comments welcome. if u hated it say it in the credits. thats a joke. there are no comments in the credits"
+  },
+  {
+   "subject": "LOCKOUT TOURNAMENT (my basement) (saturday 2pm) (8 players max) (my mom says)",
+   "body": "single elim. BR starts. no radar. 8 players: josh (seed 1), wes (seed 2, must bring CRT), dmitri (if he will try a controller), kyle (dylans house rules), ryan (spectator, there is a couch), dave (must not hack), and me. i seeded myself 3rd. im actually 7th. its a montage seed. prizes: a blank DVD-R, a spot in vol. 10, and my moms chicken fingers at 4. sunglasses mandatory for the host. tell no one how bad i am. ok tell josh. he knows"
+  },
+  {
+   "subject": "SURVEY: MLG OR NOT (copy paste) (honesty required)",
+   "body": "1. controller or keyboard: 2. k/d (the real one): 3. best kill (not on a clip): 4. worst fall: 5. who carries ur team (be honest): --- mine: 1) controller 2) .7 (TEAM stat) (ok its me) 3) the one with the pistol that nobody saw 4) 4:12 5) josh. its always josh. repost with yours. no judging. my dad says 'which one is you' about every survey and i say 'the one who falls'"
+  }
+ ],
+ "pcComments": [
+  "NICE SHOT. no scope. clean.",
+  "this pic has 14 kills in it. i counted. (11 are the lighting)",
+  "ur posing like u just won lockout. respect. (u didnt) (thats ok)",
+  "this is a montage thumbnail. can i use it. credit: u. small font",
+  "nice pic. u look like the guy who always gets the BR. u dont have to say anything. just stand like that"
+ ],
+ "dmSeed": [
+  { "text": "NEW PLAYER JOINED. malten. hunter. xX_NoScope_Xx. MLG 4 life (pending). i have a montage for u. 11 min. u dont have to watch it all (u do) (the fall is at 4:12) (its on purpose). 1v1 me on lockout whenever. ok bye" }
+ ],
+ "dms": [
+  "malten my dad watched vol. 9 3 times in a row. then he said 'son which one is you.' i said 'the one who falls off the map.' he said 'oh. i like that guy.' i dont know what to do with that. i like that guy too i guess",
+  "i wore the sunglasses to school and a teacher asked if i had a doctors note. i said 'MLG.' she said 'whats that.' i said 'a vitamin.' (my moms line). she said 'ok.' i got to wear them 2nd period. is that a win",
+  "my cousin lends me the capture card on weekends. on weekdays i got a 3 kill streak in 9 seconds and nobody saw it. no clip. nobody believes me. best thing ive ever done and i have no witness. kevin knows how i feel (about the AAA)",
+  "my k/d is .7. do u know what that means. for every 10 kills i get i die 14 times. i looked it up. its not a team stat. it never was. im telling u bc u seem like someone who can take it. also im really good at editing",
+  "no one has accepted a 1v1 on lockout. i asked 40 people. josh said 'sure' once and beat me 25-3 and said 'good game' and i said 'thanks' and he looked sad for me. i dont want the look. i want the loss without the look",
+  "can i ask u something. when u make something (a video, a layout, anything) and u watch it back and its actually good. like actually. what do u do. i make a montage and its good and i just sit there. my mom says 'what r u doing' and i say 'nothing.' and i watch it again",
+  "got a reply from a sponsor!! a REAL person. it said 'thank u for your interest. unfortunately were not currently looking for new talent in the sports category.' i read the words 'currently' and 'new' and its not a no. its a pause. u see it too right. say u see it",
+  "MLG replied to my email. 1 word. 'who.' i told gus it means they want to know more about his guitar thing. gus said 'yes.' i said 'yes.' we both know thats not what it means. were keeping it",
+  "kyle keeps asking me how to no scope. i said id teach him. i dont know how. so ive been practicing in secret. 2 hrs. 0 no scopes. but i got really good at editing the practice"
+ ],
+ "blog": [
+  {
+   "title": "HOW I MADE NOSCOPE VOL. 9 (a guide) (3 min read)",
+   "date": "Sep 27 2026 11:40 PM",
+   "mood": "crossfaded",
+   "body": "step 1. record. (my cousins capture card. weekends only. plan ur life around the weekend.) step 2. watch EVERYTHING. 9 hrs of footage becomes 11 min. most of it is me falling or looking at a wall. step 3. pick the song first. the song is the boss. u edit to the drum hit. a cut on the drum hit is a gunshot. step 4. one crossfade. ONE. step 5. slow-mo goes ON the kill, not before it. before it is just waiting. step 6. credit everybody. if josh got the kill, josh gets the kill. i dont care if its my montage. thats the only rule. step 7. put the best thing at 4:12. step 8. show it to someone who loves u. they dont have to get it. they just have to sit there with pretzels."
+  },
+  {
+   "title": "THE FALL (4:12) (what really happened) (i can say it now)",
+   "date": "Sep 11 2026 10:15 PM",
+   "mood": "honest",
+   "body": "ok everyone asks. the fall at 4:12 wasnt a trick. i was on lockout trying to jump from the top of one tower to the other (its been done, i saw it on a forum). i ran, i jumped, and the game was like 'no.' i fell for 4 full seconds. in the clip u can hear me say 'oh' and then 'ohhhh' and then nothing. i was going to cut it. i was. then my dad walked in and saw it on the tv and laughed so hard he had to sit on the stairs. best laugh ive ever heard from him. so i put it at 4:12 and im leaving it there until im 40. its the only honest clip in vol. 9. everything else is edited. that one is just me."
+  },
+  {
+   "title": "SPONSOR LETTER (draft 6) (not sent) (sent)",
+   "date": "Aug 24 2026 7:30 PM",
+   "mood": "professional",
+   "body": "To Whom It May Concern, My name is Hunter. I am 15. I make montages (9 so far). I would like to represent your brand in the Halo 2 community. I do not currently have followers, but I have a dad who watches every one and a kid named Kyle who watched one 6 times. My k/d is not what you would call competitive, but I would like to point out that k/d is a team stat. I edit. I credit. I show up. If you send me a free shirt I will wear it in every montage. If you send me a controller I will wear that too. Sincerely, Hunter (xX_NoScope_Xx). P.S. My mom says to add 'thank you for your time.' Thank you for your time. P.P.S. She also says to remove 'k/d is a team stat.' I did not."
+  }
+ ],
+ "survey": {
+  "title": "HALO 2 SURVEY (repost 4 respect) (honesty is optional)",
+  "qa": [
+   ["gamertag:", "xX_NoScope_Xx. the xX is for style. the _ is for balance"],
+   ["k/d:", ".7. (TEAM stat.) (its not.)"],
+   ["favorite map:", "lockout. i have fallen off it 14 times. its a good map"],
+   ["favorite weapon:", "the battle rifle. i said it. my name is NoScope. im working through it"],
+   ["best kill ever:", "a triple. 1 rocket, 1 sword, 1 mistake. no clip. nobody believes me. kevin would"],
+   ["worst death:", "4:12. 4 seconds. nobody pushed me. the map just said no"],
+   ["best montage song:", "blow me away. (its on the halo 2 soundtrack. u have to.)"],
+   ["who carries ur team:", "josh. its always josh. i carry the snacks"],
+   ["sensitivity:", "medium-high. (joshs is lower. josh is better. correlation is not causation)"],
+   ["who would u 1v1:", "anyone who says yes. nobody says yes. so its me vs me. i win 50 percent"],
+   ["message to ur fans:", "kyle (6 views) and my dad (all 11 min). thats the whole audience. ty. u dont have to like it. u just have to sit there"],
+   ["what do u want to be:", "a pro (pending). an editor (probably). a guy who falls on purpose (already)"]
+  ]
+ }
+}

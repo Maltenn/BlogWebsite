@@ -1,0 +1,30 @@
+{
+  "wes": {
+    "avatar": "assets/avatar_wes_v2.gif",
+    "was": "dartmonkey.png",
+    "why": "The old picture was two dart-throwing monkeys from Bloons Tower Defense side by side, which has nothing to do with a competitive Melee player. Wes collects GameCube controllers and inspects everyone's controller ports, so the controller is what he would put up.",
+    "desc": "an indigo Nintendo GameCube controller with its cable, under a purple GAMECUBE wordmark banner, on a white background (the banner shimmers across 4 frames)",
+    "source": "https://blob.gifcities.org/gifcities/C5M6KEE6V7R65ARSMW3CIP3I6BBYD72N.gif"
+  },
+  "liz": {
+    "avatar": "assets/avatar_liz_v2.gif",
+    "was": "assets/avatar_liz.gif",
+    "why": "The old picture was a desktop computer whose monitor cycles through four photographs of real small children's faces: not something a 17-year-old layout coder would choose, and photos of real private kids besides. Kept the computer idea, swapped in a girl coding at one.",
+    "desc": "pixel-art girl with brown hair typing at a blue CRT computer on a desk while a yellow sticky note flutters overhead (8 frames)",
+    "source": "https://blob.gifcities.org/gifcities/24MUMGR6HNISUXEN65G2SFVRRIPU2B3D.gif"
+  },
+  "josh": {
+    "avatar": "assets/avatar_josh_v2.gif",
+    "was": "assets/avatar_josh.gif",
+    "why": "The old picture was a pair of clapping hands in dark suit sleeves, which matches none of his things (youth group, pizza, Halo 2, ultimate frisbee). His whole headline is that there is pizza, so a friendly pizza slice is the obvious default for him.",
+    "desc": "a grinning cartoon pizza slice with big eyes, pepperoni, a green pepper and dripping cheese, flipping left and right (2 frames)",
+    "source": "https://blob.gifcities.org/gifcities/AB3Z7LZ6U3MXDBZUZADYWLMGKFSWHZJW.gif"
+  },
+  "kevin": {
+    "avatar": "assets/avatar_kevin_v2.gif",
+    "was": "assets/avatar_kevin.gif",
+    "why": "The old picture was a 1950s-style couple swing dancing in pink and black: dancing, but the wrong kind entirely for a solo arcade Dance Dance Revolution player. The new one is an actual DDR arrow screen showing PERFECT, which is the one thing he wants everyone to know about him. Least clear-cut of the four swaps; delete this entry to keep the old picture.",
+    "desc": "a tiny Dance Dance Revolution screen on a green background: the row of four step-target arrows, pink arrows scrolling up, the yellow PERFECT judgment, and a white DDR scrawl flashing on (50x50, 2 frames)",
+    "source": "https://blob.gifcities.org/gifcities/633ZGF47S3BE54IY4XMDAEB625O6Z4AF.gif"
+  }
+}

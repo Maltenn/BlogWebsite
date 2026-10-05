@@ -1,0 +1,194 @@
+{
+ "id": "nat",
+ "name": "neopets_nat",
+ "tag": "Grand Faerie of the Bargain Faeries (41 members) ★ restock 4am ★ no begging, ily",
+ "avatar": "assets/avatar_nat.gif",
+ "gender": "Female",
+ "age": 14,
+ "hometown": "Eugene, Oregon (same clock as neopia. coincidence. its destiny)",
+ "loc": "the guild hall (my desk) (the lamp) (dads old mug)",
+ "zodiac": "Capricorn (practical, saves money, sets alarm for 3:55). most accurate sign for anyone ever",
+ "status": "In a committed relationship with the stock market (its up 2.3%)",
+ "hereFor": "Friends, Guild recruits (ages 8+), Trades (fair ones), Math",
+ "mood": "restocked ★",
+ "lastLogin": "Oct 4 2026 4:09 AM",
+ "theme": { "bg": "#2a1a52", "fg": "#fff6d6", "accent": "#8cff9e" },
+ "blogTitle": "The Daily Restock (market report, guild news, and the stories the Neopian Times keeps rejecting)",
+ "about": "hi!! im nat. Grand Faerie of the Bargain Faeries, a neopets guild with 41 members (youngest is 8, oldest is somebodys dad). i code pet pages in html (tables, bc neopets eats divs, ask liz, shes still upset) and i run the shop wizard like a stock ticker. i wake up at 3:55 every morning to restock at 4:00 bc thats when the rare stuff lands and nobody else is awake. i have 5,800,000 np (it was 6.1 until tuesday. we dont talk about tuesday). my pets: Dividend (a Kacheek), Escrow (a Grundo), Futures (a Wocky), and Clover (a Uni). Clover isnt named after anything. shes just my favorite. rule one: no begging. i will mute my own cousin.",
+ "aboutMore": "the guild treasury has 340,000 np in it and every single np is for birthdays. 41 members, 41 pet birthdays, and each one gets a gift from the guild that day. they live on sticky notes on my monitor (3 are tomorrow). my youngest guildie is 8 and calls me 'Grand Faerie' with a straight face, and i dont let anyone call her a noob. my dad taught me interest with a jar of pennies at the kitchen table. hes a loan officer. he thinks neopets is 'a real good simulation' and i havent corrected him.",
+ "meet": "Who I'd like to meet: whoever runs the Neopian Times, to ask what 'conflict' means (my story has a robbery on page 2). the guy who invented the stock market, to say sorry about tuesday. the Snowager (he sleeps through everything and stays calm, i want that). angela in person, to hug her for the table code. and a kid who has never once asked me for np. i believe there is one. i'll keep looking.",
+ "interests": {
+  "General": "restocking (alarm 3:55, shop wizard open by 3:58), the neopian stock market (buy low, sell high, never panic, panic anyway), pet page html (tables only, neopets eats divs), guild admin (41 members, 41 birthdays), the wheel of excitement (daily), faerie quests, the money tree, my pets outfits (Clover has 14), counting everything twice, cocoa",
+  "Music": "gwen stefani (4 in the morning is my song and i know its about something else), avril lavigne, the neopets site music (the money tree one, i hum it at the bank), the cheetah girls (meg says theyre horse-adjacent), the nightly business report theme (my dad plays it on the couch, it counts)",
+  "Movies": "the incredibles (the insurance scene is basically guild admin), ella enchanted (angelas pick), freaky friday, ice princess, the princess diaries 2 (she runs a whole country by committee, i relate)",
+  "Television": "lizzie mcguire (reruns), the suite life of zack & cody, that's so raven, the nightly business report (my dads show, we watch at 6:30, he explains the ticker, i explain neopets, nobody is convinced)",
+  "Books": "the baby-sitters club (the treasurer is the best one, i will fight about it), the dollar-store budgeting book mom bought me, the neopian times (weekly) (im not in it yet), my own guild rules (version 9)",
+  "Heroes": "my dad (loan officer, jar of pennies), angela (the html fairy godmother, and the award), the snowager, the money tree (asks nothing of anyone), whoever invented compound interest, liz (wrong about tables for neopets, right about everything else)"
+ },
+ "song": {
+  "name": "4 In the Morning",
+  "artist": "Gwen Stefani",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/64/c2/e8/64c2e834-5da0-3032-3dad-b99a10de88e0/mzaf_3345418744136275493.plus.aac.p.m4a",
+  "pattern": [0, 3, 7, 3, 5, 3, 0, -2],
+  "bpm": 84
+ },
+ "decor": ["assets/deco_hamster.gif", "assets/badge_built_with_microsoft_notepad.gif"],
+ "friends": ["liz", "meg", "tim", "angela", "hunter", "min", "ryan", "rick", "todd"],
+ "wall": [
+  { "from": "angela", "text": "~*~ Nat! ~*~ I have updated my Links page! The Bargain Faeries are now listed under 'Rings I Am Proud Of,' which is a NEW section and has one entry. Your pet page lists 41 members and I clicked on every one. I waved at each! Please keep the marquee at 4 pixels. ~ Angela, Ringmistress [ Prev | Random | Next ]", "time": "Oct 3 2026 10:15 PM" },
+  { "from": "liz", "text": "nat i rewrote ur pet page in divs. neopets stripped every one. i have never been so angry at a website. fine. TABLES. for neopets ONLY. i left u a comment in the code, its a heart. credit me anyway.", "time": "Sep 29 2026 1:02 AM" },
+  { "from": "meg", "text": "NAT UR UNI IS A HORSE!! i drew Clover with a rainbow mane and ALL 14 OUTFITS and she is on my fridge!! Dividend is a horse now too bc everyone is!! he is a very smart horse (a bank horse)!! i love ur guild!! can i join!! is it free!! (i checked the rules, no begging, i am not begging, i am ASKING!!)", "time": "Sep 25 2026 4:50 PM" },
+  { "from": "tim", "text": "nat. audited the guild treasury. 340,000 np. no audit trail. 41 sticky notes. i am not saying anything. i am entering it in the ledger under 'fine.' also i built u a template w/ formulas, $2. u offered np. i accepted 1 np as a courtesy. it is in the ledger as 'imaginary income.'", "time": "Sep 22 2026 8:15 PM" },
+  { "from": "min", "text": "nat. u wake up at 3:55. i fall asleep at 3:54. weve been sharing an hour for 40 days and never talked. hello. goodnight. nnnnnnnnnnn", "time": "Sep 18 2026 3:55 AM" },
+  { "from": "hunter", "text": "NAT. can the bargain faeries sponsor my montage. 5k np per. ill put ur logo in the credits (the credits are 1:10). u dont have to say yes. one guy already said 'not currently looking for new talent.' CURRENTLY. thats a maybe. is it a maybe from u", "time": "Sep 12 2026 6:48 PM" },
+  { "from": "ryan", "text": "nat u said my 33 percent spread on lobs is 'market making.' ive never been called a maker of anything. ty. its on a sticky note now. also i will not be going into the stock market. its next to the wildy, i can tell", "time": "Sep 5 2026 7:20 PM" },
+  { "from": "larry", "text": "nat i made u a cd w/ the neopets theme. i got 4 versions. 1 is the real song, 1 is a guy humming, 1 is the same song but its a car commercial, 1 is 11 min of a fax machine. all labeled neopets. thats sharing. also a site said i could get free np if i typed my password. i did. i have 0 np now. is that how it works", "time": "Aug 27 2026 10:40 PM" }
+ ],
+ "replies": [
+  "ok noted. ill put it in the guild newsletter. issue 32",
+  "ily but u still cant have np. nice try tho <3",
+  "hold on checking the market. ok. were up 1.1. back to u",
+  "thats a valid point and also exactly what someone would say right before asking 4 np. just saying",
+  "no begging detected. ur approved",
+  "ur a Bargain Faerie now. its official. no dues",
+  "sorry i was restocking. ur comment came in at 4:02",
+  "ok but did u check the shop wizard first",
+  "lol. screenshot. into the guild album it goes",
+  "ok thats the nicest thing ive read all week and i read 41 birthday cards"
+ ],
+ "thanksAdd": "market update: i just gained 1 friend (u). thats up infinity percent from yesterday (tim says u cant say that, i said watch me). ty 4 the add!! 3 rules: 1) no begging 2) do ur own restocks 3) tell me ur pets birthday. i'll put it on a sticky. every pet gets a gift. i dont care if its a petpet. ily <3",
+ "ambient": [
+  "restock report: 4:00:03 grabbed 2 of the thing. sold 1 for 80,000 np. kept the other bc its Clovers. 6 hrs of sleep. worth it. (dad says not worth it. dad brought cocoa tho)",
+  "the market dropped 3% and a guildie panic-sold at the bottom. i said HOLD. i said it 4 times. in all caps. [/rant]",
+  "pet page update: slowed the marquee to 4 px a tick. angela was right. its the correct speed. i feel calm",
+  "submitted to the neopian times for the 4th time. 'a kacheek who runs a bank.' theyll say it lacks conflict. theres a robbery on page 2. im doing it anyway",
+  "3 birthdays tomorrow in the guild: a Zafara, a Bruce, and an 8 yr olds Kau. gifts are wrapped. the sticky note on the monitor says DONT FORGET THE KAU. i will not forget the Kau",
+  "someone offered me 2 million np for a guild spot. no. the spot is free. thats what makes it a guild spot [/lesson]"
+ ],
+ "saltyDm": "[denied] ok. noted. ur in the guild book under 'may join later.' thats a real category i just made. theres a 10% chance u regret this. i did the math. its not personal its numbers. np (no problem). also np (neopoints). also no problem. ily. bye",
+ "keywords": {
+  "neopets": "ok so. 5,800,000 np, 4 pets, 1 Uni, 41 guildies, 9 versions of the rules. what do u need. i have a restock schedule. ill give u a copy. no charge. wait. 1 np. its a courtesy",
+  "neopoint": "np is not money. np is TRUST. wait it is money. but its also trust. tim says u cant say both. i say i can say both",
+  "restock": "3:55 alarm. 3:58 shop wizard in 3 tabs. refresh at :58 NOT :00, the page takes 2 sec. then 4:00:03 buy. dont tell the others. i mean tell everyone. its the guild",
+  "guild": "the Bargain Faeries. 41 members, youngest is 8, oldest is somebodys dad. rule 1: no begging. rule 2: every pet gets a birthday gift. thats the whole guild",
+  "html": "tables only. neopets strips divs. i learned from angela. liz tried to fix it and neopets removed 40 lines. we sat in silence",
+  "stock": "buy low. sell high. never panic. then panic a little. then hold. ily. do not trust a stock bc it has a cute name. i learned that on a tuesday. no further comment",
+  "clover": "my Uni. shes a Uni. not named after anything. thats the point. everything else in my life has a purpose. Clover just gets to be",
+  "dad": "loan officer at a credit union. taught me compound interest w/ a jar of pennies. every saturday at 4:05 he brings me cocoa and sits next to me while i restock. he doesnt know what a restock is. he knows its important"
+ },
+ "banter": {
+  "ryan": [
+   "ryan ur 33 percent spread on lobs is called market making and its a real thing. u buy at 150, sell at 200 and u dont panic. u are better at this than half the guild. one problem: u dont diversify. have u considered a swordfish",
+   "ryan u said u wont go into the stock market bc its 'next to the wildy.' ryan the stock market is a website. but ok. thats the kind of risk management i respect. stay at the bank. stay liquid"
+  ],
+  "min": [
+   "min we share an hour. i wake at 3:55 u fall asleep at 3:54. we overlap 60 seconds a night. in that minute i type 'hi' and u type 'nnnnn.' ive decided thats a conversation. ily. goodnight",
+   "min ur tips are underpriced. 'potions heal u' has a 100% win rate. thats a premium product. raise it to 8k mesos. i ran the numbers. ok i fell asleep during the numbers but the numbers were still right"
+  ],
+  "hunter": [
+   "hunter the Bargain Faeries cant sponsor u at 5k np per montage, ur k/d is a liability. but ill give u a free guild banner for the credits. its a kacheek holding a coin. put it at 4:12 where u fall",
+   "hunter i watched the intro. all 4 minutes of an 11 min video. thats 36 percent of ur budget on the lobby. bad allocation. i love it. keep the rocket"
+  ],
+  "rick": [
+   "rick i read ur DKP sheet. 40 people, 1 currency, no inflation control. u need a sink. neopets has the Wishing Well. u should have one for DKP. u throw points in, nothing happens, everyone feels better",
+   "rick u offered me an officer title. 'Treasurer.' i said yes before u finished the sentence. im 14, i cant raid on school nights. i can audit tho. i bring a calculator and tim. ily"
+  ],
+  "liz": [
+   "liz neopets stripped ur divs. im sorry. i know. but the heart u left in the code is still there. i found it w/ view source. im keeping it. 'layout by liz' is at the bottom in 6 pt font. credited",
+   "liz i wrote the whole guild page in tables and it loads in 3 seconds. i know. i KNOW. i feel nothing. ok i feel a little something. teach me divs, ill use them everywhere that isnt neopets"
+  ],
+  "meg": [
+   "meg the horse of Clover is on my wall now. all 14 outfits. the bow tie is a very good choice. Dividend is also a horse. Escrow is a horse with an extra leg. i didnt ask for that. i love it",
+   "meg u said unis are 'horses that kept believing.' i put it on the guild banner. credit: meg. its small print but its the first thing u read"
+  ],
+  "tim": [
+   "tim ur ledger and my treasury have the same rule: write it down. i think we could merge. i mean not merge. u keep the dollars. i keep the np. we meet in the middle at 'receipts'",
+   "tim u said np is 'imaginary income.' it is. but my guilds smile is real. put THAT in the ledger. i know u cant. try"
+  ],
+  "angela": [
+   "angela the award is still at the top of the guild page. 3 more people asked how to get one. i said 'u have to have someone HOME.' i stole that from ur blog. i credited u. in 8 pt font. its a table",
+   "angela can i take u up on the shop tour. 4 am saturday. my dad says hell drive and wait in the car. u said u would trade a table for a tour. i have 2 tables u havent fixed yet"
+  ]
+ },
+ "statuses": [
+  "nat is restocking. do not talk to nat until 4:07",
+  "nat just sold a thing for 3x what she paid. guild treasury +200k (for birthdays)",
+  "nat is writing guild rules v10. v9 had a loophole. the loophole is named Jared. hes 10",
+  "nat is up 2.3% and refusing to celebrate until close",
+  "nat just got the 4th rejection from the neopian times and is framing it next to the other 3",
+  "nat is fixing a table. it was a missing closing tag. its always the closing tag",
+  "nat is wrapping 3 birthday gifts. 1 Zafara, 1 Bruce, 1 Kau (dont forget the Kau)",
+  "nat is asleep at 8:30 pm. do not message her. she has a 3:55"
+ ],
+ "bulletins": [
+  {
+   "subject": "GUILD NEWSLETTER #31 (the Bargain Faeries Gazette)",
+   "body": "market update: up 2.3%. dont celebrate. restock alert: tuesday 4:00, 3 rare items expected, 41 faeries, 3 items. u do the math. guild news: the treasury has 340,000 np, all of it for birthday gifts. 3 this week. new members: welcome Jared (10), Moondance_Mia (9), and somebodys dad (hi sir). reminder: no begging. i will mute my own cousin. fun fact: the whole page is hand-coded in tables and angela says the marquee is the correct speed. ily. signed, nat, Grand Faerie"
+  },
+  {
+   "subject": "HOW TO NOT GO BROKE (a lesson from a 14 yr old who went a little broke)",
+   "body": "1) sell at the top. 2) dont sell at the bottom. 3) the top is only visible from behind. 4) never put more than 10% of ur np in one thing. 5) a stock with a cute name is not a good stock (i learned that on a tuesday). 6) keep an emergency fund (mine is for birthdays). 7) tell somebody ur plan. i told my dad and he said 'ok' and then 'diversify' and then he left and came back with cocoa. repost if u have ever panic sold. nobody's judging. the guild is 41 of us and 40 have panic sold. i did it twice"
+  },
+  {
+   "subject": "SURVEY: what kind of np investor r u? (copy paste)",
+   "body": "1) do u restock at 4:00 or sleep like a normal person: 2) biggest sale: 3) biggest regret: 4) have u ever begged: 5) pets name (and what it means): --- mine: 1) 4:00 (3:55 wake) 2) 80,000 np 3) tuesday 4) never 5) Dividend (what u get paid), Escrow (money held for somebody else), Futures (hope), Clover (nothing. shes just Clover). repost with ur answers. i read every one. i keep the best on sticky notes"
+  }
+ ],
+ "pcComments": [
+  "this pic is up 4% since yesterday. rated 9.2 (market avg 7.4)",
+  "good pic. id hold. wait is that a pet in the corner. cute. whats its birthday. ill write it down",
+  "this one has restock energy. like 4:00:03. u look like u got the thing",
+  "cute!! where is the pet. ur missing a pet. add Clover. shes free. im lending her",
+  "ok thats a top 8 pic. id put it at #3 and not tell #4. np"
+ ],
+ "dmSeed": [
+  { "text": "hi malten!! market update: u r the newest member of my network. im nat, Grand Faerie of the Bargain Faeries (neopets guild, 41 members). i made u a welcome pack: 1) my guild rules (9 versions) 2) a restock schedule 3) one piece of advice: dont sell at the bottom. no strings. np (no problem) (also neopoints, but im not asking)" }
+ ],
+ "dms": [
+  "malten what time do u wake up. i wake at 3:55 and my dad wakes at 4:05 and brings cocoa. he doesnt say anything. he just sits next to me while i refresh. he doesnt know what a restock is. he just knows its important. i think thats the nicest thing anyone has ever done for me and i havent told him",
+  "hypothetical. a guildie asks for 5,000 np bc her pet is hungry. is that begging or an emergency. i gave it. then i muted myself for an hour and fined myself 5,000 np into the treasury. thats justice. its also a loop",
+  "my math teacher asked what im good at. i said 'compound interest.' she said 'thats not a skill.' i said 'tell that to my 5.8 million.' she said 'is that real money.' i said 'its real to Clover.' i got sent to the hallway. i stood there and calculated how long till 5.9",
+  "the neopian times rejected my story again. 'a kacheek who runs a bank.' the letter said 'lacks conflict.' malten theres a robbery on page 2. thats conflict. its a ROBBERY. i started the 5th draft. the kacheek is a Grundo now. the bank is a bakery. im not giving up",
+  "i dreamed about a restock last night. i woke at 3:55 and the dream kept going. i was at the shop wizard. it said 'no results found.' i looked at my alarm. 3:55. i looked AGAIN. 3:55. i was early to my own dream. then i went back to sleep and missed the real one",
+  "angelas table code fixed my pet page but now theres a gap on the right side. 1 pixel. ive been staring at it for 2 hrs. its bigger every time i look. if its not a table problem its a me problem. tell me its a table problem",
+  "my youngest guildie is 8. she asked if she could have a birthday present for her pet 'even though its not his birthday, its just that im sad.' i asked what was wrong and she said her goldfish died. i made a funeral page. the guild came. 41 of 41. the treasury paid for flowers. i used the birthday money. i think thats what it was for all along",
+  "tim says my guild treasury has 'no audit trail.' i said its a spreadsheet. he said 'with formulas.' i said 'with colors.' he took a deep breath. he built me a template. $2. i offered np. he accepted 1 np 'as a courtesy' and wrote it in the ledger under 'imaginary income.' its the most real thing in that ledger"
+ ],
+ "blog": [
+  {
+   "title": "the day i sold too early (a tuesday story)",
+   "date": "Sep 20 2026 9:30 PM",
+   "mood": "learning",
+   "body": "ok i said id write it. the tuesday. i had a thing. a good thing. i bought it at the 4:00 restock for 40,000 np. by 9 am it was worth 60,000. by lunch, 75,000. i got scared. i sold at lunch. by 3 pm it was 140,000. my guildie Moondance_Mia (9) said 'why did u sell.' i said 'bc i panicked.' she said 'thats ok, u can buy another one.' there was no other one. i told my dad. he didnt laugh. he said 'what would u have done if it went down.' i said 'sold.' he said 'then ur not wrong, ur just early.' he went and got the penny jar and set it on the table. 'this never sells. it just sits there. look at it.' i looked at it. it was heavy. im still not over tuesday. but the jar is on my desk now."
+  },
+  {
+   "title": "how 2 restock like a professional (a guide) (version 3)",
+   "date": "Sep 8 2026 4:50 AM",
+   "mood": "caffeinated (cocoa)",
+   "body": "step 1. 3:55 am alarm. the alarm is a song, not a loud one. a loud one wakes the dog and the dog wakes dad. step 2. 3:58 open the shop wizard in 3 tabs. 3. not 2. not 4. 4 is greedy. step 3. at 3:59:58 refresh. NOT at :00. the page takes 2 sec to load, so u refresh at :58 and it lands at 4:00:00. step 4. if the item is there buy it BEFORE u look at the price. u can look later. the looking is what costs u. step 5. do NOT refresh in a panic. the shop doesnt care. step 6. at 4:05 someone brings cocoa. optional but i recommend it. step 7. go back to bed. u did it. the market opens in the morning and u already won."
+  },
+  {
+   "title": "GUILD RULES v9 (patch notes)",
+   "date": "Aug 25 2026 7:12 PM",
+   "mood": "official",
+   "body": "Patch notes, v9. 1) NO BEGGING is now NO BEGGING (EVEN POLITELY). 2) Added: every pet gets a birthday gift. no exceptions. petpets count. 3) Removed: the 'ask nicely' clause (people kept asking nicely). 4) Clarified: 'sharing a restock tip' is not 'selling a restock tip.' (u know who u are.) 5) The Wishing Well is not a bank. 6) Added: every new member gets 1 hug from me on their first day. its a virtual hug. i mean it. 7) Fixed a bug where the rules were 9 pages. They are now 8 pages and a poem. 8) Removed: the word 'noob.' for everyone. forever. i was a noob once. i still am on tuesdays. thank u 4 reading. ily. nat"
+  }
+ ],
+ "survey": {
+  "title": "THE NEOPETS SURVEY (copy + paste) (no begging)",
+  "qa": [
+   ["username:", "neopets_nat (the nat is for Natalie. nobody calls me that. my dad does when im in trouble. which is never)"],
+   ["number of pets:", "4. Dividend, Escrow, Futures, Clover. 3 are named for money terms. 1 is named for being my favorite"],
+   ["np on hand:", "5,800,000 (it was 6.1 on monday. dont ask about tuesday)"],
+   ["what time do u restock:", "4:00. i wake at 3:55. refresh at :58. dont tell the others. tell everyone"],
+   ["biggest sale ever:", "80,000 np. i cried a little. then the market went up. i cried more"],
+   ["biggest mistake:", "selling the tuesday thing at lunch. it was 75k. it went to 140k. we lit a candle"],
+   ["have u ever begged for np:", "never. ive been asked 10,000 times. i said no 9,998 times. the other 2 were birthdays"],
+   ["favorite shop:", "the money tree. it asks nothing of anyone. id like to be that"],
+   ["dream item:", "a thing i cant name bc someone will buy it first. ok its a plushie. its a plushie. ill say no more"],
+   ["guild name and size:", "the Bargain Faeries, 41 members. 1 is somebodys dad. 1 is 8. i love them equally and secretly the 8 yr old more"],
+   ["are u a morning person:", "3:55. i dont know. im a morning person from a different time zone"],
+   ["message to ur guildies:", "happy birthday (in advance). its on a sticky note. ily"]
+  ]
+ }
+}

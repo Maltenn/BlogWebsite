@@ -1,0 +1,278 @@
+{
+  "id": "bill",
+  "name": "bigfoot_bill",
+  "tag": "Cryptid researcher. 11 years, 41 casts, 0 confirmed sightings. Keep looking.",
+  "avatar": "assets/avatar_bill.gif",
+  "gender": "Male",
+  "age": 46,
+  "hometown": "Garland, Texas (north side, by the creek)",
+  "loc": "A trailhead near Caddo Lake (the town is called Uncertain, Texas, the truest name in America)",
+  "zodiac": "Sagittarius. The explorer, which is accurate. The archer, which is not. I only document",
+  "status": "Divorced (amicable. Carol still mails me anything with a footprint in it)",
+  "hereFor": "Friends, Networking, Eyewitnesses",
+  "mood": "hopeful (always)",
+  "lastLogin": "Oct 3 2026 2:47 AM",
+  "theme": {
+    "bg": "#15251a",
+    "fg": "#e9e5cf",
+    "accent": "#d8582c"
+  },
+  "blogTitle": "Field Log: Sightings, Casts, and Other Evidence (Mostly Bears)",
+  "about": "Howdy. Bill here. I've been researching Bigfoot (Sasquatch, the Fouke Monster, whatever he prefers) for 11 years. In that time I have made 41 plaster casts, taken roughly 600 photographs, and logged zero confirmed sightings, which my ex-wife says is a lot of work for nothing. I say it's a lot of work for something I haven't found YET. By day I run the receiving dock at a plumbing supply warehouse. By night I call KLNX 1130 AM and talk to Dale Prewitt about the footprint. I'm not a 'believer.' I'm a person who has not been proven wrong. There's a difference and I'll explain it to anyone with ten minutes and a thermos.",
+  "aboutMore": "Ground rules for my page. One: I never hunt. I document. If I ever meet one, my plan is to hold up a hand and say hello. Two: every trip I leave an apple and a peanut butter sandwich on a stump, wrapped in wax paper. Somebody takes them. Somebody folds the wax paper afterward. I don't know who, and I like that about them. Three: label your photographs. 'Large dark shape, 4:12 AM' is a perfectly good caption. 'lol' is not.",
+  "meet": "Who I'd like to meet: Dale Prewitt in person, to shake his hand and finally ask what he does during the commercial breaks. Whoever lives out by the lake and takes my sandwiches (I mean you no harm). The man in Linda's Oregon rest-stop story, if he exists. And anyone who has seen something at night and never told a soul. I won't laugh. I've got a drawer full of things I never told anybody either.",
+  "interests": {
+    "General": "Bigfoot, plaster of paris, wood knocks, a good thermos, trail cameras (I own six), orange blaze vests, AM radio after midnight, frozen waffles at the trailhead at 4 AM (tradition, I do not toast them), the Peterson guide to animal tracks, people who spell it 'Bigfoot' and not 'Big Foot'",
+    "Music": "Whatever KLNX plays between callers: old country, gospel quartets, one song about a truck. Creedence Clearwater Revival (the swamp is spiritually adjacent), Johnny Cash, the sound of the woods at night (crickets, an owl, once a noise I have on tape that my neighbor says is her teakettle)",
+    "Movies": "The Legend of Boggy Creek (31 viewings, I tear up at the dog), Harry and the Hendersons (gets the snack situation right), Close Encounters (the mashed potatoes scene is a documentary of my garage), Jaws, March of the Penguins (nobody doubts the penguins)",
+    "Television": "Unsolved Mysteries (the Robert Stack episodes, on tape), In Search Of with Leonard Nimoy, MythBusters (they have never tested the footprint question and I have written them four letters), Bob Ross (nobody walks into the woods like Bob)",
+    "Books": "The Peterson Field Guide to Animal Tracks (63 sticky notes, the most important book I own because I use it to prove myself wrong, which is the whole job), a laminated trail map, a spiral notebook with one page headed ZORP, the Garland library's entire cryptid shelf (both of them)",
+    "Heroes": "My dad, who drove us five hours to Fouke when I was nine and said 'I believe you, Billy' when I told him I'd heard something. He's 79 and he still says it. Jane Goodall, who started by sitting still, which is also my method. Leonard Nimoy. Whoever invented the thermos. Anyone who writes down what they see even though nobody asked"
+  },
+  "song": {
+    "name": "Bad Moon Rising",
+    "artist": "Creedence Clearwater Revival",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/38/cc/0e/38cc0ecd-6362-406c-a436-cda02b1b2ec6/mzaf_14867378299499617461.plus.aac.p.m4a",
+    "pattern": [
+      0,
+      0,
+      7,
+      5,
+      0,
+      0,
+      7,
+      5
+    ],
+    "bpm": 176
+  },
+  "decor": [
+    "assets/deco_new.gif",
+    "assets/badge_best_viewed_with_eyes.gif"
+  ],
+  "friends": [
+    "zorp",
+    "leo",
+    "gina",
+    "walt",
+    "whiskers",
+    "henderson",
+    "kyle",
+    "linda",
+    "todd"
+  ],
+  "wall": [
+    {
+      "from": "henderson",
+      "text": "Bill, thank you for the slide deck and the kit. The slide titled 'This Is Probably A Tree' was the best slide of the semester. The mold-and-impression demonstration went well. One student has cast his own foot and cannot get out of the cardboard. We are working on it. - Mr. H",
+      "time": "Oct 1 2026 3:58 PM"
+    },
+    {
+      "from": "zorp",
+      "text": "bill. i have received your 'invitation to sit in a field at 3:33 AM with a thermos.' i cannot attend. i have a thing. at 3:33 AM. it is a normal thing. also i am not walking wrong. i walk correctly. i have practiced in the mirror. -zorp (a human)",
+      "time": "Sep 29 2026 3:33 AM"
+    },
+    {
+      "from": "gina",
+      "text": "bill the audio from the auditorium is up on my page (session 6). at 4:44 PM there's a 9 second voice. i say ghost. mr h says a senior rehearsing. you say? also per your note i've started labeling the fridge 'control A' and the teachers' lounge fridge 'control B.' thank you for the framework.",
+      "time": "Sep 25 2026 5:12 PM"
+    },
+    {
+      "from": "leo",
+      "text": "bill i overlaid ur footprint casts on my corkboard map and the 6 sightings make a pentagon. a pentagon with a gap. the gap is on the island. im not saying the island is in east texas. im saying the miles between ur sightings are 4 8 15 16 23 and 42. i have string. i will bring string",
+      "time": "Sep 14 2026 10:05 PM"
+    },
+    {
+      "from": "debbie",
+      "text": "Bill, this is Debbie, Walt's daughter. My father tells me you write to him about dogs that will not go down certain roads. I want you to know he reads every one, and I have seen him pause the Rangers game to answer. Thank you. Please do not ask him about the old days, he has opinions. Love, Mom",
+      "time": "Aug 30 2026 1:15 PM"
+    },
+    {
+      "from": "todd",
+      "text": "Hi Bill! Friendly admin note: your 'Class C Sightings' bulletin was reported as spam by 14 people and as 'actually kind of interesting' by 1. I left it up. Also the server went down during your photo upload. The photo was 11 MB of what I believe was a tree. Keep up the great engagement!",
+      "time": "Aug 19 2026 9:30 AM"
+    }
+  ],
+  "replies": [
+    "Appreciate you writing in. I'm logging it.",
+    "Fair point and I'll take it under advisement. Over.",
+    "Now THAT is the kind of thing I'd call in to the show about.",
+    "Good eye. Most people never look at the ground.",
+    "I can't confirm or deny. I can say I'm interested.",
+    "Tell me more. Take your time. I've got a thermos.",
+    "I've had worse reactions. Mostly from my ex-wife's sister, but still.",
+    "That reminds me of a trip I took last fall. Long story. Short version: raccoon.",
+    "Noted, filed, and cross-referenced.",
+    "Thank you. Seriously. Not everybody listens to the whole story."
+  ],
+  "thanksAdd": "Welcome aboard, friend. You're now on the mailing list for the monthly Field Report, which is also the only list. House rules: label your photos, never go in the woods alone, and if you've seen something I'll believe that YOU believe it, which is where all good research starts. Pull up a chair. The thermos is on me.",
+  "ambient": [
+    "Left a sandwich on the stump Friday. Saturday it was gone and the wax paper was folded in quarters. I'd like to meet whoever does that. Not to catch. To thank.",
+    "Trail cam report: 412 images. 407 are a raccoon. 4 are an owl. 1 is my own thumb, but it's a very sharp thumb.",
+    "Called KLNX at 1:15 AM. Dale had me on hold 40 minutes and then said 'go ahead, caller.' I said 'hi Dale' and the line went dead. I'm choosing to take it as a good sign.",
+    "Reminder: the woods are loud at night and every sound has a boring explanation. Learning the boring explanations is how you recognize the one that isn't.",
+    "Frozen waffles at a trailhead at 4:15 AM. Best breakfast in the state of Texas. I will accept no debate."
+  ],
+  "saltyDm": "Request denied. That's all right. I get turned down all the time: the Forest Service, three radio stations, one very polite cow. You can change your mind. The door's open, like the tailgate of my truck at a trailhead. Bring a thermos.",
+  "keywords": {
+    "bigfoot": "Sasquatch. Bigfoot. The Fouke Monster. Whatever he prefers, if he has a preference. 11 years, 41 casts, zero confirmed sightings, and I've never been more sure there's something out there that I'm not smart enough to find yet. That's not belief. That's an open mind with a thermos.",
+    "footprint": "Plaster of paris, a cardboard collar, bottled water, and patience. Pour slowly, don't touch it for 25 minutes, and never trust a print until you've checked it against the field guide. Most of mine are bears. Bears are wonderful. I have no complaints.",
+    "radio": "KLNX 1130 AM, Nightwatch with Dale Prewitt, midnight to five. If you've never listened at 2 AM with the window cracked you haven't heard how many of us are awake. Dale's a good man. Don't tell him I said he talks over the callers.",
+    "sandwich": "Peanut butter on white, wrapped in wax paper, left on a stump. Every trip. Somebody takes it and somebody folds the paper. I like to think it's a thank-you.",
+    "zorp": "I have no opinion on zorp. I have a notebook with a page headed ZORP, which is not an opinion. It's a page. A friendly one. Mostly questions.",
+    "alien": "I get asked this a lot. No. Different department. I stay in the woods; the sky is somebody else's file. (Zorp, if you're reading, that was a general statement.)",
+    "ghost": "That's Gina's department and I respect it. I'd say the same of aliens, but I'd want to see the paperwork."
+  },
+  "banter": {
+    "zorp": [
+      "Zorp. I note we are both awake at 3:33 AM and both near a field. I have a thermos and a folding chair. Come sit. You don't have to say what you're looking for. I won't say what I'm looking for either. We can not find it together.",
+      "Zorp, a friendly question. You said 'normal human' eleven times in one comment. In my experience folks say a thing that many times when they're nervous. I'm not accusing. I'm noticing. Last spring I told a raccoon my whole life story and he stayed to the end."
+    ],
+    "patrick": [
+      "Patrick, your rock Dwayne. Strictly as a researcher, I need to ask: does he ever move at night? No? Then he is the most reliable specimen I have heard of, and I would like to enter him in my records as a Class A Rock.",
+      "Patrick, Walt tells me you found a stick. Please send a photo with something next to it for scale. Sticks are the backbone of my field. Most of what I have ever found has been one, and a good one is a gift."
+    ],
+    "gina": [
+      "Gina, I played your audio three times on my good headphones. It's a refrigerator. You know it's a refrigerator, I know it's a refrigerator. But the gap between the hums has a pattern, and a pattern is where a researcher starts. Keep the notebook. Number every page.",
+      "Gina, thank you for the control. Nobody in my field uses one. I've started keeping a 'control stump' near my camera to compare against, and it's the most useful stump I own. You're a better scientist than most of the callers on the radio. Don't tell Dale."
+    ],
+    "leo": [
+      "Leo, I looked at your corkboard. Mine has about the same density of yarn. The difference is mine is geographically accurate. Yours is accurate to something else. Both are works of devotion and I salute you.",
+      "Leo, no, the numbers don't line up with my sightings. I checked. I'd love for them to. If you find anything on the string, send me a photo of the string. The string is my favorite part."
+    ],
+    "walt": [
+      "Walt, I re-read your answer about the man in the bathrobe. He fits no known profile. I've filed him as 'Probably Human, Probably Avoiding Mail.' One more question, no pressure: in 34 years, did any dog ever refuse to go down a particular road? Dogs know.",
+      "Walt, a note of thanks for the emu. I've entered it as a Class C. I take every emu seriously. If you ever remember another one, the porch light's on. Mine, not yours. I'm not leaving a question on your porch this time. I've learned."
+    ],
+    "henderson": [
+      "Mr. Henderson, I accept the invitation to speak to your class on molds and impressions. Since I can't be there in person, I'll mail you a kit: 41 slides on a disk, 9 plaster demonstrations pre-measured in bags, and a safe amount of plaster, to be kept well away from the drain. I'll label my axes. I'll include a slide called 'This Is Probably A Tree' to show good faith.",
+      "Mr. Henderson, you're right, that was my thumb. I've labeled it. Thank you for the honesty. Most people just say 'interesting.' Extraordinary claims need extraordinary evidence and I'm still collecting. The ordinary evidence, by the way, is lovely."
+    ],
+    "kyle": [
+      "Kyle, the neighbor's dog on his back legs counts as a data point. It's called a false positive and it's the most important thing a researcher can find, because it teaches you what you're NOT looking at. Write it down. Date it. Then tell a grown-up before you go anywhere near the woods.",
+      "Kyle, you're welcome to be a junior reader of the Field Report. The only rule is the first one: you never go in the woods alone and you always tell somebody where you're going. If you'd like to try plaster, ask your folks about the backyard. Use bottled water."
+    ],
+    "linda": [
+      "Linda, thank you for the man in Oregon. I looked into it. I can't find a record of the rest stop, but I'm moved by the poem, which I believe is better than the story. Please keep sending. A good poem is a kind of footprint.",
+      "Linda, is your cousin Leon available for a field trip with his folks? I'd only like a second opinion on shape and stride. Bring a sweater for Bitsy. It gets cold by the lake."
+    ],
+    "whiskers": [
+      "Mr. Whiskers. I've reviewed your claim that Subject A on the fence line is you. I accept it, with respect. I've downgraded the photo from Class B to Class C and moved it to a folder called 'Local Fauna, Distinguished.' I've also noted you appear on 22 trail-cam frames at 3:41 AM. Please advise on your hours.",
+      "On the paw cast: I compared it to the field guide and it is a domestic cat, about an inch and a half, a very good specimen. My neighbor says I should be disappointed. I'm not. A clean cast is a clean cast, and it means my technique works. Thank you for volunteering."
+    ]
+  },
+  "statuses": [
+    "bill is at a trailhead. Back Monday. Probably.",
+    "bill just poured plaster into a footprint. 25 minutes to set. Please nobody step on it. (I am saying this to a stump.)",
+    "bill is on hold with KLNX. 31 minutes. A personal best.",
+    "bill is washing plaster out of the kitchen sink. Do not tell Carol.",
+    "bill just found a footprint (it's a boot) (it's my boot)",
+    "bill is comparing two blurry photographs. They are blurry in the same way, which is a pattern.",
+    "bill is leaving a sandwich on a stump for no one. For someone.",
+    "bill is reading the animal tracks guide to prove himself wrong. Score so far: wrong 38, right 0, bears 31"
+  ],
+  "bulletins": [
+    {
+      "subject": "SURVEY: Have YOU Seen Something? (Repost. No names. No judgment.)",
+      "body": "1. Where were you? 2. What time was it? 3. How far away was it? (Estimate in feet. 'Pretty far' is not a measurement but I'll take it.) 4. What was the weather? 5. What did the dog do? (Dogs know.) 6. Be honest: could it have been a bear? 7. If you answered yes to 6, congratulations, you saw a bear! That's still a great sighting. Reply here or message me. I will believe that YOU believe it, and that's where all good research starts. - Bill"
+    },
+    {
+      "subject": "FIELD TRIP RULES (please read before asking to come along)",
+      "body": "One. I do not take anyone into the woods unless a grown-up who knows them signs off, and I do not take anyone I only know from this site. That is the first rule of the woods AND the first rule of the internet. Two. Tell somebody where you are going. Three. Stay on the trail. Four. Bring water, a whistle, a sandwich for yourself and one for the stump. Five. If you see something big and unexplained, don't chase it. Write it down. They've been out there longer than us and they're not going anywhere. If you'd like to see a plaster cast in person, I'll be at the Garland library on the second Saturday, in the meeting room, with a table and 41 casts and a box of waffles. Bring a parent. - Bill"
+    }
+  ],
+  "pcComments": [
+    "Nice picture. Is that a stump in the background? Never mind, it's a stump. Good composition.",
+    "Great shot. Strong lighting. I'll say only that the shape behind you is a hedge, and a handsome one.",
+    "This photo is clearer than any I've ever taken. I'm not jealous. I'm studying your technique.",
+    "Looks like you had a good time. Please label this with the date and location. For the record. Always for the record.",
+    "Is that a footprint in the lower left? It's a shoe. Great shoe.",
+    "Handsome dog. Dogs are the finest field instruments there are. If he won't go down a road, believe him."
+  ],
+  "dmSeed": [
+    {
+      "text": "Howdy malten, Bill here. Saw your name come through. If you've ever seen something you couldn't explain, a light, a shape, a sound in the yard at night, I'd like to hear it. No judgment. I've explained away a lot of things and I loved every one. Label it, date it, send it over. I'll log it with the rest. (The rest is mostly raccoons.)"
+    }
+  ],
+  "dms": [
+    "Malten!! I got on the air last night!! Dale said 'Bill from Garland, you're on.' I got 90 seconds on the footprint and then he played the song about the truck. Twelve years of listening. I recorded it on a cassette. Do you know anyone with a cassette player? My neighbor offered, but hers is the kind that eats the tape.",
+    "A question for you as the site owner. There's a gentleman on here named zorp whose account is active at 3:33 AM every night. So is mine, but I'm in the woods and I have a reason. I'm not accusing anyone. He's just very friendly and very worried, and that's the pattern I see in witnesses. Could you tell him I mean no harm and I brought an extra thermos?",
+    "Plaster tip for anyone who may need it: use bottled water, not creek water. Last spring I did a cast with creek water and got a perfect impression of a leaf, a fish skeleton, and part of a beer can. All beautiful. None of them what I came for.",
+    "My dad turned 79 on Thursday. I drove him up to Fouke, five hours each way, to the spot where we sat when I was nine. Same sandwiches, bologna and mustard on white. He fell asleep in the truck on the way home with his hat over his face. Nothing happened. It was perfect. I just thought somebody on here should know.",
+    "A hobbyist question. Do you know a young lady on here, ghosthunter_gina? She sent me an audio file from a school auditorium. It sounded like a refrigerator. I told her so, politely. She said, 'I KNOW, that's the control.' A control! Sixteen years old and she has a control! Most people in my field can't spell it.",
+    "Walt, the retired letter carrier, wrote me four paragraphs about a loose emu he met on his route one August. I've entered the emu as a Class C. I want it known that I take every emu seriously.",
+    "I tried a wood knock in the backyard last night to test the acoustics. Neighbor came out in her robe and asked if I was building something. I said, 'No ma'am, calling.' She said, 'Okay, Bill.' It's important to have a neighbor who accepts you."
+  ],
+  "blog": [
+    {
+      "title": "FIELD LOG #44: Subject A Has Spoken (It Is A Cat)",
+      "date": "Sep 24 2026 1:20 AM",
+      "mood": "humbled",
+      "body": "FIELD LOG #44. For 11 years I've asked the woods to answer me. This week something finally did, and it was a cat. Background: on the morning of Sept. 8 at 4:12 AM my trail cam on the back fence caught a large dark shape moving along the rail. I enlarged it 400 percent. I labeled it Subject A. I posted it here with the word 'promising.' Then a gentleman named Mr. Whiskers wrote on my wall that Subject A was him, that he was on the fence on business, and that he was 'not large.' I checked. His page says Garland, Texas. So does mine. I have a witness statement from a subject, in writing, with better spelling than my own. I'm reclassifying the photograph from Class B to Class C, 'local fauna, distinguished.' For the record, he is the most responsive subject I have ever had, and I'm not one bit disappointed. A clean answer is still an answer."
+    },
+    {
+      "title": "FIELD LOG #41: The Cast That Wasn't (Caddo Lake, Overcast, 58 F)",
+      "date": "Sep 6 2026 11:42 PM",
+      "mood": "contemplative",
+      "body": "FIELD LOG #41. Location: Caddo Lake, two miles past Uncertain, Texas. Conditions: overcast, 58 degrees, mud like cake batter. At 6:15 AM I found a print on the bank. Fourteen inches. Five toes. Deep at the ball, no heel strike. I'll admit I teared up. I built the collar, mixed the plaster with bottled water, and sat on a cooler for 25 minutes keeping squirrels off it. The cast lifted clean. Back at the truck I laid it against the Peterson guide and it came up bear. A black bear with a long stride. And the ruler in my glovebox turns out to be a carpenter's rule with the first two inches worn off, so it was twelve inches, not fourteen. I was disappointed for eleven minutes. Then I thought: a bear walked within 40 feet of where I slept last night and let me sleep. That's a real animal that let me be. That counts for something. Cast #41 is on the shelf. It's the best bear in the collection."
+    },
+    {
+      "title": "FIELD LOG #38: Calling In",
+      "date": "Aug 14 2026 2:05 AM",
+      "mood": "wide awake",
+      "body": "FIELD LOG #38. Called KLNX 1130 AM tonight at 12:48. For anyone new: the program is Nightwatch with Dale Prewitt, midnight to five. I've listened twelve years and called for four. A screener named Mary-Alice takes your name and topic, and then you wait. I waited 51 minutes, a personal best. I listened to the caller ahead of me, a woman in Shreveport who believes her toaster has been trying to tell her something. Dale was kind to her. At 1:41 he said, 'Bill from Garland, you're on,' and I got ninety seconds. I said my piece on the footprint. Dale said, 'Thanks, Bill, we'll look into that,' and played the song about the truck. Driving home with the windows down I thought about all of us on the dial at that hour: the toaster woman, the man who sees lights over a feed lot, me, Dale at the mic. None of us can sleep and all of us are listening for the same thing. It's a good party to be at."
+    }
+  ],
+  "survey": {
+    "title": "SURVEY: Get To Know Your Friendly Neighborhood Cryptid Researcher (forwarded by my ex-wife's sister, who thinks it will 'help me meet people')",
+    "qa": [
+      [
+        "Full name?",
+        "William Earl Haskins. Bill. My dad still calls me Billy and I let him."
+      ],
+      [
+        "Age?",
+        "46. My knees say 80. My spirit says 12."
+      ],
+      [
+        "Occupation?",
+        "Receiving dock supervisor at a plumbing supply warehouse. I know where every elbow joint in North Texas is."
+      ],
+      [
+        "Have you ever seen Bigfoot?",
+        "No. Not yet. I want to be clear that it's 'not yet' and not 'no.'"
+      ],
+      [
+        "What is in your truck right now?",
+        "40 pounds of plaster, two thermoses, a cardboard collar kit, a dozen apples, a jar of peanut butter, a flashlight, a spare flashlight, a laminated map, and a field guide with 63 sticky notes."
+      ],
+      [
+        "Worst thing that ever happened on a trip?",
+        "A raccoon got into the cooler and ate the sandwich I'd made for the stump. A cruel irony. Then I found the wax paper folded in quarters. Not saying. Just saying."
+      ],
+      [
+        "Favorite food?",
+        "Frozen waffles at the trailhead at 4 AM. I do not toast them. It's tradition."
+      ],
+      [
+        "Do you believe in aliens?",
+        "That's zorp's department as far as I know. He seems concerned."
+      ],
+      [
+        "Do you believe in ghosts?",
+        "Gina believes. I don't not believe. I haven't been proven wrong yet."
+      ],
+      [
+        "What would you do if you met one?",
+        "Hold up a hand. Say hello. Offer an apple. Not take a picture first. I've thought about it a lot and it comes out the same every time."
+      ],
+      [
+        "Biggest fear?",
+        "Being right and having nobody to call."
+      ],
+      [
+        "Are you supposed to forward this to ten people?",
+        "I forwarded it to four. Two are my sisters, one is Dale's call screener, and one is a man in Ohio who writes me about stumps."
+      ]
+    ]
+  }
+}

@@ -1,0 +1,139 @@
+{
+ "id": "sk8rboi",
+ "name": "sk8rboi_mike",
+ "tag": "if u can read this im already gone",
+ "avatar": "assets/avatar_sk8r.gif",
+ "age": 19,
+ "loc": "the parking lot behind the mall",
+ "mood": "shredding 🛹",
+ "lastLogin": "2 hrs ago (hit a rail, dropped his phone)",
+ "theme": {
+  "bg": "#e8f4ff",
+  "fg": "#003366",
+  "accent": "#ff6600"
+ },
+ "about": "yo. i skate. i film it on my dad's camcorder. one day i will land a tre flip and u will all see it in glorious 240p. until then pls enjoy my profile song which i recorded by holding the mic next to my wheels.",
+ "interests": {
+  "General": "skating obv, filming footy on dads camcorder, the smooth part of the loading dock, icing my shins, watching my own falls in slow mo, tony hawks underground 2, energy drinks (moms rule: 1 a day)",
+  "Music": "blink 182, sum 41, avril (its MY song), yellowcard, new found glory, the wheels on pavement (its like music 2 me), the tony hawk soundtracks basically",
+  "Movies": "lords of dogtown, dogtown n z boys, grind (its bad. i love it), yeah right! (girl skateboards), any1s sponsor me tape, jackass the movie",
+  "Television": "viva la bam, rob n big, jackass, x games on espn, any thing w/ a rail in it",
+  "Books": "thrasher (magazines r books), transworld, the instruction manual 4 the camcorder (still dont get it)",
+  "Heroes": "who ever invented the ollie, my dad (camcorder), tony hawk, rodney mullen, chad (only guy who says 'great hustle' when i fall), derek (dont tell him)"
+ },
+ "song": {
+  "name": "Sk8er Boi",
+  "artist": "Avril Lavigne",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e5/5d/cf/e55dcfa0-7512-6287-e89d-741fe71080c7/mzaf_7785083572268777793.plus.aac.p.m4a",
+  "pattern": [
+   0,
+   0,
+   5,
+   0,
+   7,
+   5,
+   0,
+   3
+  ],
+  "bpm": 165
+ },
+ "decor": [
+  "assets/deco_blinkie_zim.gif",
+  "assets/deco_smiley.gif"
+ ],
+ "bgTile": "assets/tiles/tile_zebra.png",
+ "gender": "Male",
+ "hometown": "Dayton, OH (the good curbs r downtown)",
+ "zodiac": "Aries (i drop in first n think second)",
+ "status": "Single (married 2 the board lol)",
+ "hereFor": "Friends, Networking (sponsors?? hello??)",
+ "blogTitle": "footy log (dads camcorder edition)",
+ "meet": "tony hawk obviously. any1 w/ a smooth loading dock n no security guard. n who ever invented the ollie so i can say thx n also ask them y it hurts so much",
+ "pcComments": [
+  "yooo sick pic!! is that a curb behind u?? looks grindable. wat r u doing saturday",
+  "this is like a 240p pic in the best way. the blur = speed. respekt",
+  "u look cool in this 1!! also is that the loading dock?? the SMOOTH part?? i know that crack in the ground personally",
+  "nice!! ur hair is doing the thing my hair does when i fall off a rail. thats a compliment 4 real",
+  "pc4pc? jk i already commented lol. sick pic tho. u shud come 2 sesh sat, u can hold the camcorder"
+ ],
+ "statusesExtra": [
+  "sk8rboi_mike landed the tre flip. LANDED IT. camcorder was OFF. dad was 'saving battery.' im gonna be sick. paige where r u when i need u",
+  "sk8rboi_mike knows SOME ppl said theyd hold the camcorder saturday n then 'forgot 2 txt back.' its cool. the footy is shaky now. u know who u are bro",
+  "sk8rboi_mike welcomes the 13 new ppl! if u skate: sesh sat. if u dont: hold the camcorder. if ur a photographer: PLZ",
+  "sk8rboi_mike iced both shins AND an elbow 2nite. new record. dad says the camcorder goes back friday. tre flip attempt 341 2morrow"
+ ],
+ "banterExtra": {
+  "paige": [
+   "PAIGE. u took a pic of me mid tre flip n it looks like i landed it. i did not land it. im using it as my default. ur a wizard w/ that fisheye",
+   "'pics or it didnt happen' is the realest thing any1 has said on this site. dads camcorder was OFF 4 my only landed tre flip. it didnt happen. im in pain. come 2 sesh sat PLZ"
+  ],
+  "josh": [
+   "josh u came 2 sesh saturday, held the camcorder 4 TWO HOURS n didnt drop it once. u didnt even skate. thats the nicest thing any1s done 4 me. youth group sounds chill i guess lol",
+   "ok i came 2 youth group. there was pizza n a guy w/ a guitar n u beat every1 at halo in the youth room. u didnt tell me u were GOOD good. rematch. bring the camcorder this time"
+  ],
+  "bryan": [
+   "bryan u said u'd hold the camcorder sat then didnt txt back 4 3 days bro. its cool. the footy is shaky. its ok. ur a drummer u prob had band stuff. txt back tho lol",
+   "yo i saw ur 'idk anymore' headline. u ok dude?? come skate. u dont have 2 talk. u can just fall w/ me. its like drumming but the drum is ur body"
+  ]
+ },
+ "banter": {
+  "derek": [
+   "yo derek i saw ur 'gap footage'... bro that curb is 4 inches. respekt tho, u fell with real heart. sesh saturday?? loser ices both shins",
+   "ok i watched ur vid 12 times n i gotta say... u landed 1 outta 30 which is honestly 1 more than me. RIVALS 4EVA. dads camcorder is charged"
+  ],
+  "kevin": [
+   "kevin ur legs r athlete legs bro. ddr is basically skating 4 ur feet w/out the road rash. teach me butterfly n ill teach u 2 fall kool",
+   "yo i tried ddr at the arcade n my shins hurt in a NEW place. u do this 4 FUN?? mad respekt. sweatband earned imo"
+  ],
+  "chad": [
+   "chad ur comment on my footy said 'GREAT HUSTLE' n honestly no1 ever said that 2 me b4. ur like a coach but nice. thx bro",
+   "yo chad u should try skating, u got the athletic thing dwn. warning: the ground is closer than baseball makes it look"
+  ],
+  "tony": [
+   "lol tony u left 'hey ;)' on my MOMS guestbook. shes 46 bro. she said ur very polite tho. never change lmaooo",
+   "yo tony u cant kickflip but u popped ur collar mid-fall n honestly that was the smoothest bail ive ever filmed. ur in the video"
+  ]
+ },
+ "statuses": [
+  "sk8rboi_mike is icing both shins. worth it. the footy is SIK. dad says the camcorder goes back by dinner",
+  "sk8rboi_mike almost landed a tre flip. 'almost' is a skate word that means no. 2morrow tho",
+  "sk8rboi_mike welcomes all the new ppl!! esp derek. ESPECIALLY derek. its on bro"
+ ],
+ "bulletins": [
+  {
+   "subject": "SESH SATURDAY @ the loading dock (the SMOOTH one)",
+   "body": "yo yo yo. sesh this saturday, loading dock behind the grocery store (the smooth part NOT the gravel part, gravel part claimed my elbow in march). every1 welcome even if u dont skate, u can hold the camcorder. derek if ur reading this: bring ur 'big gap' energy n we will measure it W A RULER. bring water n pads. moms rule not mine. -mike",
+   "time": "Jun 25 2026 4:20 PM"
+  }
+ ],
+ "friends": [
+  "banana",
+  "patrick",
+  "wes",
+  "todd"
+ ],
+ "wall": [
+  {
+   "from": "wes",
+   "text": "skating is just wavedashing irl. i said what i said.",
+   "time": "Jul 2 2026 6:20 PM"
+  },
+  {
+   "from": "banana",
+   "text": "MIKE. GRIND THE BANANA RAIL. I BUILT A RAIL. IT IS BANANAS.",
+   "time": "Jul 1 2026 11:58 AM"
+  }
+ ],
+ "replies": [
+  "yoooo thanks 4 the comment. i read it while icing my shin",
+  "sick. absolutely sick. i say that abt everything but this time i mean it",
+  "bro. BRO. that is exactly what i been saying",
+  "ur cool. u ever need someone to fall off a rail in front of u, im there"
+ ],
+ "thanksAdd": "yo thanks 4 the add!! ur officially on the list of ppl i wave at from the parking lot",
+ "ambient": [
+  "landed 40% of a tre flip today. the other 60% landed on me.",
+  "new footy soon. camcorder battery charging (est. 14 hrs)"
+ ],
+ "saltyDm": "damn ok. thats cold... wait. respect actually. do ur thing king"
+}

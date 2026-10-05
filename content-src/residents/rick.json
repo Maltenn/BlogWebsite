@@ -1,0 +1,191 @@
+{
+ "id": "rick",
+ "name": "raidleader_rick",
+ "tag": "Guild Master of Overtime (40-man) ★ Tue/Thu 8 PM server ★ doors close 7:55 ★ be on time",
+ "avatar": "assets/avatar_rick.gif",
+ "gender": "Male",
+ "age": 19,
+ "hometown": "Fort Wayne, Indiana",
+ "loc": "Aisle 14, Price Plus #114 (overnight crew) / the den by 7 AM, asleep",
+ "zodiac": "Virgo (planner. I have a binder for it)",
+ "status": "Single (The raid schedule is a commitment. So is the night shift. It is those two things.)",
+ "hereFor": "Networking (recruiting healers), Friends, Dating (apply to the guild first) (that is a joke) (mostly)",
+ "mood": "on break (10 min)",
+ "lastLogin": "Oct 4 2026 3:14 AM",
+ "theme": { "bg": "#14213d", "fg": "#f2f4f8", "accent": "#fca311" },
+ "blogTitle": "Officer's Notes (read before raid. All of it. I will know.)",
+ "about": "Hello. I am Rick. I am 19. I lead a 40-man raiding guild called Overtime on a PvE server, and I run it from an Excel file named DKP_FINAL_v9_USE_THIS_ONE.xls. We raid Tuesday and Thursday at 8 PM server time. Doors close at 7:55. Raids end at 9:30 sharp. By day I am asleep. By night I work overnight stock at Price Plus #114, 10 PM to 6:30 AM, where I face the cereal aisle (I face it with care). People tell me I run raids like a shift manager. I do not see the problem. A raid is forty people who need to know where to stand, when their break is, and who is closing. We have reached Ragnaros nine times and killed him twice. Please be on time. Thank you.",
+ "aboutMore": "A few things that are not in the rules. I say raids end at 9:30 because I clock in at 10. That is true. It is also when the fifteen-year-olds have to be in bed. I have never mentioned the second part and I would appreciate it if no one did. I have written six reference letters for guildies applying for real jobs. Four got the job. I round Kelly's DKP up. I know I am not supposed to. She works a double on Tuesdays and still shows up for the pull.",
+ "meet": "Who I'd like to meet: Ragnaros, professionally. The man who invented the break room. Every healer who has ever stepped away mid-pull so I can say 'it is okay' (it is not okay, but I will say it). My manager Denise, to tell her I cannot come in on Thursday between 8 and 9:30 and see what she says (she will say 'ok'). Anyone who reads the guild rules to the end. There is a prize. It is nothing. But I will know.",
+ "interests": {
+  "General": "DKP (and the spreadsheet it lives in), Ventrilo, pulling bosses on a timer, facing shelves (it is called facing), pallet jacks, the break room vending machine (row C does not drop), attendance records, forty people showing up on time, thanking healers, clocking in early so I can clock out on time",
+  "Music": "Whatever is on the break room radio at 3 AM (classic rock, mostly), Journey (Don't Stop Believin' plays on Ventrilo before every pull, it is tradition, it is not negotiable), the Warcraft soundtrack (the Orgrimmar theme in aisle 14), Foo Fighters, The Killers",
+  "Movies": "Apollo 13 (mission control is a raid leader with a headset), The Lord of the Rings (Helm's Deep is a 40-man where nobody stacked on the boss), Remember the Titans, Big Fish (my mother's pick), Cool Runnings (the team that just wants to finish)",
+  "Television": "Mythbusters (plan, test, explosion: a good raid structure), Dirty Jobs (the host respects the night shift and I respect the host), The Office (the American one) (I am not the boss, I relate to Stanley, who does crosswords through meetings), Antiques Roadshow (my mom's)",
+  "Books": "The Price Plus Employee Handbook, v14 (I have read all of it; the 'conflict resolution' section is just loot rules), The 7 Habits of Highly Effective People (my store manager's copy; I got to chapter 3, put first things first; I put raids first; he meant work), The Lord of the Rings, my own binder (it has tabs)",
+  "Heroes": "My mother (two jobs, never complains in front of me), Denise (shift manager, 11 years, zero missed days), Terry (our tank, 41, joined for his son, stayed for us), Kelly (our head healer, a nurse, works nights too), the person who first said 'ten minute break' and meant it"
+ },
+ "song": {
+  "name": "Don't Stop Believin'",
+  "artist": "Journey",
+  "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/0f/e9/54/0fe95410-dc38-8696-0259-f61d869e9fca/mzaf_13616088119456591905.plus.aac.p.m4a",
+  "pattern": [0, 4, 7, 12, 11, 7, 4, 0],
+  "bpm": 119
+ },
+ "decor": ["assets/badge_coffee.gif", "assets/deco_welcome_banner.gif"],
+ "friends": ["sephiroth", "dave", "min", "tim", "hunter", "dmitri", "gary", "ryan", "wes"],
+ "wall": [
+  { "from": "sephiroth", "text": "Rick. I have reviewed your Molten Core loot council proposal. It is a strong document. It contains no mention of the Lifestream. I have drafted a 12-page amendment. I request the title Lore Keeper. I will not require DKP. I require only that Part 3 of my essay be read aloud before each pull. This is not a request. It is a request with a cape.", "time": "Oct 2 2026 11:58 PM" },
+  { "from": "tim", "text": "rick. audited the DKP sheet (v9). row 14 has a formula that rounds Kelly's points UP. u have been giving her an extra .4 per boss. total: 3.6 DKP. i am not saying anything. i am entering it in the ledger under 'kindness.' it is the only entry in that category.", "time": "Sep 28 2026 8:47 PM" },
+  { "from": "min", "text": "rick i read ur offer to join the guild. i dont know the game. i know a snail game. do ur raids have snails. i think snails would help. also ur raid is at 8 and i fall asleep at 7:15. hm. its 3:40 now. im awake. sorry. nnnnnnnnn", "time": "Sep 24 2026 3:40 AM" },
+  { "from": "dave", "text": "r1ck i joined ur guild. i am a level 38 rogue. i stealth around the starting zones (not hacking) (but i COULD). i found a bug: the loot is 'random.' i can fix that. i cant. my mom needs the computer at 8. i can be IT officer. my job: tell u when vent is down. it was down. i told u. 3 times. 3 ways", "time": "Sep 19 2026 11:12 PM" },
+  { "from": "hunter", "text": "RICK. sorry about lucifron. i know. i read the whisper u sent. 'gg' is the nicest thing anyone ever said to me after i wiped 40 people. can i come thursday. ill be the hunter. i will not pull. i will stand behind terry and feign death if i feel anything", "time": "Sep 14 2026 6:55 PM" },
+  { "from": "gary", "text": "Rick, re: your Raid Rules page, Rule 6. 'Need before greed' is not a law. It is a convention (see my WoW Loot Etiquette Guide, v1.3, section [2.1]). Please correct the wording. Section [4.2b] does not apply here, as I have had to say. -- Gary", "time": "Sep 8 2026 9:30 PM" },
+  { "from": "ryan", "text": "rick my mom says i can work nights when im 16 if the store has no wildy room. i said no. she said then ok. i have the date marked. 2 yrs 1 month. ill be on time. i said 'ty' in the mirror to practice. ty", "time": "Sep 2 2026 7:41 PM" },
+  { "from": "walt", "text": "Dear Rick, I understand you work nights. I carried the mail on the morning side for 34 years, and I will say it is a fine thing to be the one awake when others are not. Somebody must be there when they wake, and the cereal must be straight. Regards, Walt", "time": "Aug 26 2026 5:50 AM" }
+ ],
+ "replies": [
+  "Noted. I will add it to the agenda.",
+  "Please be on time. That is all I ask.",
+  "Thanks. I will get back to you after break. Ten minutes.",
+  "Roger. Logging it.",
+  "Attendance noted. Thank you for showing up.",
+  "Appreciate the feedback. Please submit it in writing. (This is the writing.) (Thank you.)",
+  "That is a good question for the officer meeting. There is no officer meeting. I will make one.",
+  "Healers get thanked first in my guild. It is policy. I wrote the policy at 3 AM.",
+  "Fair. Putting it in the minutes.",
+  "Copy that. Anything else before I clock back in?"
+ ],
+ "thanksAdd": "Thanks for the add. Welcome. A few notes: raids are Tuesday and Thursday, 8 PM server time. Raids end at 9:30 sharp. I clock in at 10, and I would like you to know that is the only reason. Ten-minute break at the one hour mark. Thank you for your attention. Rick, Guild Master, Overtime",
+ "ambient": [
+  "Update from aisle 14: I have faced 340 boxes of cereal tonight. The shelf is straight. It is the straightest thing in my life. Raid is Thursday.",
+  "Reminder: doors close at 7:55. At 7:56 the doors are metaphorically closed. At 8:01 we pull without you. I do not enjoy this. I enjoy it a little.",
+  "Night shift fact: at 3 AM the vending machine is the only one who understands you. Row C does not drop. Row C has never dropped. I respect its commitment.",
+  "Someone asked how I manage 40 people. I said I do not. I manage one person, 40 times. Anyone who has worked a register knows the trick.",
+  "New DKP sheet is up (v10). Changes: font size. That is all I changed. People were squinting.",
+  "I want to thank the healers. They stand in the back and watch forty health bars all night and nobody claps. Starting Thursday I will clap. I will type it. It will say 'clap.'"
+ ],
+ "saltyDm": "Request denied. Understood. For the record, I have denied three raid applications and nine requests for a day off, and I know what it is to be on either end of a no. If you change your mind, the application is one page. The second page is optional. Thank you for your time. Rick",
+ "keywords": {
+  "warcraft": "World of Warcraft. Level 60. I play a warrior. Not the tank. The tank is Terry. I am the guy next to the tank who tells him where to stand. Overtime raids Tuesday and Thursday, 8 PM server. Healers welcome. Show up on time. That is the whole pitch.",
+  "raid": "Tuesday and Thursday, 8 PM server time. Doors close at 7:55. Raid ends at 9:30 sharp because I clock in at 10. Forty slots. 39 filled, one line open. Bring consumables and a good attitude.",
+  "dkp": "Dragon Kill Points. You earn them by attending. You spend them on loot. It is an Excel file. It is called DKP_FINAL_v9_USE_THIS_ONE.xls. v10 is out; I changed the font. Do not edit the sheet. Do not ask me why Kelly's number is what it is.",
+  "guild": "Overtime. Forty raiders, one spreadsheet, zero ninja looters. (We had one. He is in a different guild now. We wish him well and a great deal of lag.)",
+  "shift": "10 PM to 6:30 AM. Price Plus #114, overnight stock. I face the cereal aisle. Facing means pulling the product to the front of the shelf so it looks full. It is the quietest job there is and I would do it forever if I could also be asleep.",
+  "healer": "Healers are the reason a raid works and the reason nobody says thank you. I say thank you. Out loud. On vent. Before the pull. It is in the rules. Rule 1.",
+  "loot": "Need before greed. Council for gear that is an upgrade for more than one person. Nobody rolls on something they cannot use. I do not allow ninja looting. I have a binder on this. Page 1 says 'No.'",
+  "ragnaros": "Final boss of Molten Core. We have killed him twice. The first time nobody spoke on vent for ten seconds. Then someone said 'did that just happen' and a 41-year-old tank said 'yes.' I wrote it down."
+ },
+ "banter": {
+  "min": [
+   "Min. You show up in Henesys at 3 AM and stay until your dad covers you with a blanket. That is attendance. I have forty people who cannot do what you do. The offer stands: a spot in Overtime. You do not have to be awake. You have to be there.",
+   "Min, I read tip #12. 'If the snail is slow, wait.' I printed it. It is taped above my locker at work. It applies to raids, deliveries, and a manager named Denise. Five thousand mesos well spent."
+  ],
+  "hunter": [
+   "Hunter. Your dwarf hunter named Noscope has been in my raid two weeks. He has never hit anything. He has feigned death 14 times. He is the most reliable member of the team.",
+   "Hunter, I watched Vol. 9. The credits are 1:10. Every name is accurate. I checked. In 14 months of raid leading I have never seen anyone credit people correctly. Please teach me. I will pay you in DKP."
+  ],
+  "ryan": [
+   "Ryan. Your sign says NO FREE TRIM. My rule says NO NINJA LOOTING. Same energy. I am putting both on the guild page. You are an honorary officer. Scam Prevention.",
+   "Ryan, in two years I may have a position. It is overnight stock. We do not trim. We face. I will explain when you are 16. Bring the notebook. You will be very good at the notebook part."
+  ],
+  "dmitri": [
+   "Dmitri. You stand in front of the raid and say 'hold this position.' In forty minutes you moved zero feet. Line 31 on the sheet. Your DKP remains zero. It is the only zero I have ever been proud of.",
+   "Dmitri, I wipe keyboards at work too. Not on purpose. It is part of closing. There is always a french fry. I think we have the same job in different buildings. Doors close at 7:55."
+  ],
+  "sephiroth": [
+   "Sephiroth. The amendment arrived. Twelve pages. The raid starts at eight. I can give you four minutes at the 7:55 buff window. Summarize it on one page. Usagi gave you five. I run a tighter ship.",
+   "Sephiroth, I read Part 3. I do not understand the Lifestream, but I understand mothers. Lore Keeper is yours. Not DKP. A title. It will appear above Terry's name and he will have to live with that."
+  ],
+  "dave": [
+   "Dave. You are IT officer. Your job is to tell me when Ventrilo is down. It was down. You told me by whisper, guild chat, a bulletin, and a note on a cup. Each notice was correct. Promotion pending.",
+   "Dave, the rogue class does not 'hack the loot table.' It is a random roll. I appreciate the idea. Please roll like everyone else. Your DKP is clean. I checked. You are a level 38 rogue and I am proud of how far you have come."
+  ],
+  "tim": [
+   "Tim. Row 14. Yes, it rounds Kelly's points up. Yes, on purpose. She works a double on Tuesdays and still shows up for the pull. Enter it in the ledger however you like. I know what to call it.",
+   "Tim, thank you for the audit. Four errors. Three were mine. The fourth was a typo in the title. I accept all four. I have also asked you to be Auditor. It pays zero. It is a wage in respect and a shared spreadsheet."
+  ]
+ },
+ "statuses": [
+  "rick is on break (10 min). Raid Thursday.",
+  "rick just wiped on Lucifron for the 4th time. The 5th is where we get it.",
+  "rick is clocking in. Needs nothing. Unless it is healers.",
+  "rick is facing the cereal. Facing builds character.",
+  "rick just wrote his 7th reference letter. He used the word 'reliable' 11 times. He stands by it.",
+  "rick is asleep. Do not whisper to him. He can hear the whisper.",
+  "rick just killed Ragnaros. The loot went to the healer. Nobody had ever seen Kelly win a roll. Forty people cheered. Kelly said 'oh.'",
+  "rick is making the schedule. 9:30 sharp. 'It is because of my shift.' It is not only because of my shift.",
+  "rick is taping a tip to his locker. The tip is from a girl who sleeps in a game. It is good."
+ ],
+ "bulletins": [
+  {
+   "subject": "OVERTIME RAID RULES v9 (READ ALL OF IT) (I WILL KNOW)",
+   "body": "1) Thank the healers. Out loud. 2) Doors close at 7:55. 3) Raid ends at 9:30. I clock in at 10. 4) Ten-minute break at the one hour mark. Bathroom, snack, stretch. You are not a machine. 5) No ninja looting. First offense: a talk. Second offense: a longer talk. Third offense: a binder. 6) Need before greed is a convention. Gary has explained this. 7) If you wipe, say 'my bad.' Nobody has ever been fired for 'my bad.' 8) If someone else wipes, say 'we got it next time.' 9) If you are late, say so FIRST. Late and honest beats on time and silent. 10) Thank the healers again. That is the whole rule. The other nine are details."
+  },
+  {
+   "subject": "RECRUITING: HEALERS (and a tank who is on time) (and a hunter who has read the pet tooltip)",
+   "body": "Overtime is accepting applications. We have 39 raiders and one open line on the sheet (line 31, and a man named Dmitri is holding it with his body). WE OFFER: a spreadsheet, a schedule, and a boss who has never raised his voice (I raise the font size). WE REQUIRE: attendance, a headset, and the ability to say 'my bad.' Priority to healers, then tanks, then anyone who has read the Rules. Applicants under 16 may attend with a parent's knowledge. I do not make exceptions. I make arrangements. They are different."
+  },
+  {
+   "subject": "SURVEY: what kind of raider are you (copy, paste, answer in full)",
+   "body": "1. Class and role: 2. Average arrival time (be honest, I have the logs): 3. Your response when the tank dies: 4. Your response when the healer dies: 5. Your response when you die: 6. Have you ever ninja looted: --- Mine: 1) Warrior, officer. 2) 7:41. I arrive early to unlock the door. 3) 'Is Terry okay.' 4) 'Is Kelly okay.' 5) 'Did anyone else die.' 6) No. Thank you for your time. Repost with yours."
+  }
+ ],
+ "pcComments": [
+  "Good photo. Everyone is in position. Good spacing.",
+  "Nice shot. Lighting is acceptable. I would keep the tall one on the left.",
+  "Approved. Adding to the guild album. (There is a guild album.)",
+  "Great picture. Nobody is looking at the camera. I understand. That is every raid photo.",
+  "Looks like a good group. Did anyone take a break? Please remember to hydrate."
+ ],
+ "dmSeed": [
+  { "text": "Hello malten. Rick, Guild Master of Overtime. I saw you were new. I am not recruiting you. Well, a little. Raids are Tuesday and Thursday at 8 PM server time. Healers welcome. If you do not play, I also give good advice about night shifts. Thank you for your time. Rick" }
+ ],
+ "dms": [
+  "malten. 3 AM. Aisle 14. A customer asked me where the cereal was. I was facing the cereal. I pointed at it. She looked at me for a while and said 'You look tired.' I said 'I raid on Thursdays.' She said 'That sounds nice.' It does. It does sound nice. I thought you should know that somebody said that to me.",
+  "My mother works two jobs and I work one and a half (the half is the guild). She asked what the guild does. I said 'We kill a fire monster.' She said 'For money?' I said 'For loot.' She asked what it was worth. I said 'Nothing.' She said 'Then why are you tired.' I said 'It is the people.' She nodded like that was an answer. It was. I wrote it down.",
+  "I wrote a reference letter for a guildie today. She is 16 and applying to a bowling alley. The letter says 'Priya has never been late, and when she is late, she says so first.' I have never written anything that fast. I am putting it in the guild handbook under 'Being a Person.'",
+  "We wiped 11 times on Garr tonight. I said 'Good attempt.' Forty people said 'Thanks, Rick.' Nobody has ever thanked me for something I did badly. Something is wrong with these people. I love them.",
+  "I made Dave IT officer. He is 16. His only job is to tell me when Ventrilo is down. It has been down three times. He told me each time, correctly, within seconds. Best IT officer I have ever had. Only IT officer I have ever had.",
+  "Someone left a plate of cookies in the break room with a note: 'For the night crew.' We ate 22 cookies in nine minutes. I wrote 'thank you' on a post-it. Someone wrote back 'It is what we do.' I have been smiling since 4 AM and nobody in aisle 14 knows why.",
+  "Our tank, Terry, is 41. He is a dad. He joined the raid because his son plays and he wanted to know what the fuss was. His son quit. Terry stayed. Last night he asked me, very quietly, if he is 'doing it right.' I said, 'Terry, you are the reason we are doing it at all.' He did not say anything. Then he said 'Pull.'",
+  "My shift manager Denise has not missed a day in eleven years. I asked her how. She said, 'You just show up and then you are there.' I asked what happens when you do not feel like it. She said, 'That is what the first hour is for.' I have used this to run a raid six times."
+ ],
+ "blog": [
+  {
+   "title": "How I Run a 40-Man Raid (a manager's guide)",
+   "date": "Sep 26 2026 7:10 AM",
+   "mood": "tired (good tired)",
+   "body": "People ask how one nineteen-year-old runs forty people. Here is the whole system. ONE: write the schedule down and never change it. Forty people can survive a bad plan if the plan is stable. TWO: give each person one job and say it out loud. 'Terry, you hold the boss. Kelly, you keep Terry up.' People relax when they know where to stand. THREE: break at the hour mark. Ten minutes. Nobody does good work without a break and I learned that at a register. FOUR: thank the healers. FIVE: when something goes wrong, say 'we got it next time' before anyone else says anything. The first sentence after a wipe is the whole raid. SIX: end on time. Always. People will follow you into a fire if you promise to get them out by 9:30."
+  },
+  {
+   "title": "I Wrote A Reference Letter",
+   "date": "Sep 13 2026 6:40 AM",
+   "mood": "proud",
+   "body": "A guildie of mine, 16, asked me to be a reference for a job at a bowling alley. She has never had a job. She said 'I do not know anyone who would say anything about me.' I said I would. I sat in the break room at 4 AM and drafted it on the back of a delivery slip. It said: To Whom It May Concern, I have worked with Priya for fourteen months. She has never been late, and when she is late, she tells me first. She has never been rude to a teammate, including the ones who deserved it. She stays for the last pull even when she has a test. I would trust her with a key. Sincerely, Rick Alvarez, Night Operations. She got the job. She sent me a picture of her name tag. I printed it. It is in my locker next to the schedule. That makes six letters. Four got the job."
+  },
+  {
+   "title": "3:07 AM, Aisle 14 (a short one)",
+   "date": "Aug 30 2026 3:07 AM",
+   "mood": "quiet",
+   "body": "The store is empty at 3 AM. The lights hum. There is a certain kind of quiet that only happens when you are the only person awake in a building made for four hundred. I face the cereal. You pull each box to the front edge of the shelf so the aisle looks full. It is a small thing. In the morning a woman will walk down this aisle, see a full shelf, and not think about it. That is the job. You do something at 3 AM so a stranger does not have to think about it at 9. I think about that during raids. I think the healers know it too. Nobody sees what they do and everything works because of it. At 3:07 I stop and read the guild chat I missed. Someone wrote 'GN everyone.' Six people wrote it back. I wrote it too. I was at work. It was fine."
+  }
+ ],
+ "survey": {
+  "title": "THE OVERTIME GUILD APPLICATION (copy, paste, answer in full)",
+  "qa": [
+   ["Name / character name:", "Rick Alvarez / Rickard (a dwarf warrior; it was going to be Richard but the name was taken)"],
+   ["Class and role:", "Warrior. Officer. The guy next to the tank who tells him where to stand."],
+   ["Availability:", "Tuesday and Thursday, 8 PM server. Raid ends 9:30 sharp. I clock in at 10."],
+   ["Attendance record:", "Fourteen months. Zero missed raids. Two late. I said so first."],
+   ["What do you do when a boss wipes the raid?", "Say 'we got it next time.' Then I check on the healer."],
+   ["Thoughts on ninja looting:", "I have a binder. It is 4 pages. Page 1 says 'No.'"],
+   ["References:", "Denise (shift manager, 11 years, never missed a day). Terry (tank, 41). A girl named Priya who works at a bowling alley now."],
+   ["Why Overtime?", "Because everyone is already tired. We might as well be tired together."],
+   ["How many break minutes do you need?", "Ten. It is the best ten minutes of a raid. I will not move it."],
+   ["Favorite thing about the job:", "The moment right before the pull when nobody is talking and everyone is in position."],
+   ["Least favorite thing:", "The moment right after a wipe when someone says 'sorry.' Nobody has to be sorry. I will say so."],
+   ["Anything else we should know:", "The vending machine at work has a row that does not drop. I tell you so you know I do not give up on things easily."]
+  ]
+ }
+}

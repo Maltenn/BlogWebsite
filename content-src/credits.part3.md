@@ -1,0 +1,11 @@
+- assets/avatar_angela.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/4DQXEOAKCQVIH7G2M3KOLM4QJJPADK33.gif
+- assets/avatar_penny.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/F452EQHFNUNC7WI3ZGOVTRYJNVPXNJ5X.gif
+- assets/avatar_gwen.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/IUUCAPKFE3YFK76X53HYMZBV7U5RNGEG.gif
+- assets/avatar_evan.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/ZZ64EX44KXHHD4JV4L2R2UDGSBZRN2FM.gif
+- assets/avatar_adam.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/GKDTKJOEL5Z4RGU73352Q7UNSX63NV56.gif
+- assets/avatar_hailey.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/I22LW7XTIO724TACWETL5GYCEQDSYBRI.gif
+- assets/avatar_andy.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/N727ZCLIRZ7DY5LH2UJSSMLRKPKKN7D2.gif
+- assets/avatar_luna.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/3GVXYRGLV4Q2FS3QG4RWM5OVEWDGE33Y.gif
+- assets/avatar_fred.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/HSHGZGKQ2LWAK6LV66BQMVRWDLJY6KOA.gif
+- assets/avatar_lars.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/3HDQAIT4EBDFXA6IRUIKXQFMRQS6CKDG.gif
+- assets/avatar_miles.gif — GifCities (Internet Archive GeoCities collection): https://blob.gifcities.org/gifcities/DH2B43LMVSO6DLDJ7SZMY4KMLYJVJTOT.gif

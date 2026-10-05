@@ -1,0 +1,214 @@
+{
+ "id": "adam_teen_nite_conductor",
+ "with": "adam",
+ "opener": [
+  "thanks 4 the add!!! (u haven't added me yet, i'm early, it's a habit)",
+  "malten i did a thing. vince asked me 2 be the CONDUCTOR of the TEEN NITE add train. it's FRIDAY at the Rollerdome. first 50 free. i sent the invite 2 all 10,412 of my friends at 12:40 AM. it's 3:18 now",
+  "so far: 3 yeses. 41 maybes. 1 'who is this.' 1 'lol' (i'm counting the lol). malten if i ask 10,412 people 2 come somewhere and 3 come then i'll KNOW the number. i don't wanna know the number. can u un-send 10,412"
+ ],
+ "nodes": {
+  "start": {
+   "choices": [
+    { "say": "u can't un-send. but u can show up. conductors ride their own train.", "next": "show_up" },
+    { "say": "forget the 10,412. pick 5 names. write each one a real invite.", "next": "five_names" },
+    { "say": "think bigger. countdown, 'first 50 free,' a free cherry for the first 3. HUGE.", "next": "bigger" }
+   ]
+  },
+  "show_up": {
+   "them": [
+    "ride my own train. that's so smart. i never thought of being a passenger. i'm always the conductor. the conductor stays in the front car and says 'all aboard' and never has 2 find a seat. i've never found a seat. i don't know where ppl SIT",
+    "i also don't know what 2 say. i practiced 'hi i'm adam' in the drive-thru voice and it came out 'welcome 2 the Dairy Dream, what can i get started 4 u.' i did that 11 times in a row 2 the router. the router didn't answer. it's a good router"
+   ],
+   "choices": [
+    { "say": "ask vince how to be a passenger. he's thrown 38 of these.", "next": "vince_call" },
+    { "say": "start smaller. invite one person yourself. someone who said they believe in u.", "next": "tony_reply" }
+   ]
+  },
+  "five_names": {
+   "them": [
+    "ok. five. five names. that's SO few. i have a spreadsheet w/ 10,412 rows and 5 is 0.05 percent. i did the math. i think that's called a 'guest list'",
+    "ok who. i know all their birthdays but i don't know who'd come. walt is 78 and in texas. mr h has a newt. kitty has 47 pics and 1 might be her real face. tony said he believes in me. brittany says i'm in her top 8 SPIRITUALLY which i think means she'd come spiritually. who do i ask first"
+   ],
+   "choices": [
+    { "say": "tony. he said he believes in u. ask the guy who said it.", "next": "tony_reply" },
+    { "say": "walt. he asked how many ppl u've sat down to supper with. give him a number.", "next": "walt_letter" }
+   ]
+  },
+  "bigger": {
+   "them": [
+    "OOOH. a countdown. ok. 'THE ROLLERDOME TEEN NITE: T-MINUS 48 HRS. FIRST 50 FREE. FIRST 3 GET A CHERRY (from me, from the Dairy Dream, 3 cherries in a cup).' ok posted. i put a train sticker on it. i have 214 train stickers",
+    "it's up. it's re-sent 2 all 10,412. 3 more yeses already (it's 3:31). 1 person wrote 'stop.' i'm counting that as engagement. vince just wrote 'MY GUY' in 14 capital letters. he said 'IT'S GONNA BE HUGE.' malten i think it's gonna be big. i think i'm scared of big"
+   ],
+   "effects": [
+    { "type": "bulletin", "delay": 10, "subject": "TEEN NITE: T-MINUS 48 HOURS (ADD TRAIN SPECIAL) (FIRST 3 GET A CHERRY)", "text": "ALL ABOARD!!! The Late Train is leaving the station and the station is the Rollerdome!!! Friday, doors at 7, first 50 free, skate rental $2. 1. Add the person above u. 2. Add the person below u. 3. COME IN PERSON!!! (that's new.) The first 3 people through the door get a cherry from the Dairy Dream (i'm bringing them in a cup, it's a good cup). I'll be the one with the name tag. I'll say 'hi i'm adam.' choo choo!!! - Adam, Conductor" }
+   ],
+   "choices": [
+    { "say": "scared of big is normal. big is just a lot of 'hi i'm adam' in a row. call vince.", "next": "vince_call" },
+    { "say": "go even bigger. everybody brings 1 friend. a train of trains. u r the engine.", "next": "rsvp_rolls" }
+   ]
+  },
+  "vince_call": {
+   "them": [
+    "i called vince. on the phone. a real one, the kitchen one w/ the long cord. he picked up on the 2nd ring and said 'ROLLERDOME TEEN NITE THIS IS VINCE' and i said 'hi i'm adam' and he said 'MY GUY' and then he was quiet for 4 seconds which for vince is a year",
+    "he said 'adam can i tell u something. it's never huge. last week was 42. the regulars are rhonda (she has the whistle) and a kid named stu who only does the limbo and me. i say HUGE bc if i say medium nobody comes. u have 10 thousand friends. i have 42 people. i'm scared u'll come and think it's small.' malten i said 'it's the biggest thing i've ever been invited 2.'"
+   ],
+   "effects": [
+    { "type": "wallpost", "from": "vince", "to": "adam", "delay": 20, "text": "ADAM!!! MY GUY!!! the TEEN NITE street team has a CONDUCTOR!!! doors at 7!!! it's gonna be HUGE!!! (it's gonna be medium. i'm ok w/ medium. bring a friend.)" }
+   ],
+   "choices": [
+    { "say": "tell vince medium is perfect. u can see everybody's face. then promise u'll come.", "next": "panic" },
+    { "say": "ask him who he'd call at 3 AM. a real question. he won't have the answer either.", "next": "the_list" }
+   ]
+  },
+  "rsvp_rolls": {
+   "them": [
+    "the RSVPs r pouring in. it's 3:50 AM. 31 yeses now. 104 maybes. 4 'who is this.' 2 'stop.' 1 'lol' (the same lol, it came back). a lady named tammy replied 'sure hon' and i don't KNOW a tammy. it's 3:50. i love tammy",
+    "BANANA_PHONE wrote 'RING RING I WILL BE THERE.' tony wrote 'brother. i'm in. i'll be the guy w/ the capri suns ;)' and kitty wrote 'if the lighting is good i'll come. send a pic of the rink first.' it's the most replies i've ever gotten in 3 hours. 2.1 percent of everything. it's gonna be 2.1 percent of a room"
+   ],
+   "effects": [
+    { "type": "wallpost", "from": "banana", "to": "adam", "delay": 20, "text": "ADAM. I HAVE BEEN DIALING YOU. YOU DID NOT PICK UP. I WILL BE AT THE ROLLERDOME. RING RING. -BANANA_PHONE" }
+   ],
+   "choices": [
+    { "say": "stop counting. read tony's reply again. that's not a number, that's a person.", "next": "tony_plan" },
+    { "say": "keep counting. but ask: of those 31, who'd u actually sit at a table with?", "next": "panic" }
+   ]
+  },
+  "tony_reply": {
+   "them": [
+    "i wrote tony. 'dear tony. there's a thing at a roller rink. would u come. it's ok if not.' (i don't usually say 'it's ok if not.' i say 'choo choo.') he wrote back in 40 sec. 'brother. i'm in.' then 'i've never been 2 a rink. i can't skate. i can't skate backwards. i can't skate forwards. i can fall elegantly ;)'",
+    "then he wrote 'u know i'm 0 for 53 right. at the other thing. but i've never been 0 at showing up. bring that cup of cherries.' malten HE SAID SHOWING UP. he said 'brother' 3 times. i printed it. i don't have a printer. i copied it by hand"
+   ],
+   "effects": [
+    { "type": "wallpost", "from": "tony", "to": "adam", "delay": 15, "text": "adam. brother. i have been practicing my wink for the rink. 200 screenshots. look 4 the collar. i'll be the guy w/ the collar. ;)" }
+   ],
+   "choices": [
+    { "say": "tony's a yes. now plan it w/ him. where do u meet. who says hi first.", "next": "tony_plan" },
+    { "say": "tony's just 1. who's line 2 on ur 3 AM list? u said u'd fill it in.", "next": "the_list" }
+   ]
+  },
+  "walt_letter": {
+   "them": [
+    "i wrote walt. a real letter. i started w/ 'Dear Walt' and ended w/ 'Regards, Adam' (i learned regards). it said 'there is a thing at a roller rink. i would like it if u could come but u r in texas. i would like it if u knew i asked.' i hit send at 3:41",
+    "he wrote back at 3:44!!! HE'S AWAKE!!! he said 'Dear Adam, I am awake at this hour as a rule. I have a cat on the sewing table and a second cup, so I am glad of company. I do not skate, I am 78, and I live in Texas, but I would like to know how many people sat down to supper. That is my only question. Take your time. Regards, Walt.'"
+   ],
+   "effects": [
+    { "type": "wallpost", "from": "walt", "to": "adam", "delay": 25, "text": "Dear Adam, I am told you are conducting a gathering at a roller rink. I wish to say that in 34 years I never arrived at a door where I was not expected and was not glad, and I recommend the practice to anyone. Regards, Walt" }
+   ],
+   "choices": [
+    { "say": "he asked the right question. 'how many sat down to supper.' make that the goal.", "next": "supper_math" },
+    { "say": "tell walt about ur 3 AM list. he's up. he's the one who'd answer.", "next": "the_list" }
+   ]
+  },
+  "panic": {
+   "them": [
+    "it's thursday. 11:42 PM. i'm in the kitchen and the router is blinking and my stomach has a train in it. i have a plan 4 the cherries (3 in a cup) and a plan 4 the polo (it's clean) and NO plan 4 the part where nobody comes. i looked 4 an un-send button 11 times. it doesn't exist",
+    "the number's gonna be the number. 3 or 12 or 0. what if it's 0. then i'll know that 10,412 is the same as 0 and i've been counting 0 as 10,412 since i was 17. what do i do. i'm not asking u 2 fix it. i'm asking what u would do"
+   ],
+   "choices": [
+    { "say": "tell vince ur scared. he's scared too. u can be scared together.", "next": "at_the_door" },
+    { "say": "u can't un-send, so go. bring the cherries. let it be whatever number it is.", "next": "end_two" }
+   ]
+  },
+  "the_list": {
+   "them": [
+    "ok. the list. i've never shown any1. it's on lined paper taped inside my closet door. 'PEOPLE I WOULD CALL AT 3 AM.' line 1: Mom. lines 2 through 10: blank. i made it in march. i've looked at the blank lines every night since march. i've been awake at 3 AM every night since march. i never called any1. not 1 time",
+    "i'm not asking u 2 be on it. i'm asking who'd be ok w/ it. i don't wanna ask someone who'll say 'why r u calling.' i wanna ask someone who'll say 'i'm up.' who's a person who's up"
+   ],
+   "effects": [
+    { "type": "status", "delay": 10, "text": "adam is looking at a piece of paper w/ 9 blank lines on it. (it's fine) (it's a design choice)" }
+   ],
+   "choices": [
+    { "say": "walt. he's up at 4. he sets out a second cup. he'd pick up.", "next": "end_line2" },
+    { "say": "tony. he said 'brother' 3 times. try someone ur own age. ask in person.", "next": "tony_plan" }
+   ]
+  },
+  "tony_plan": {
+   "them": [
+    "so tony and i made a plan. he'll be at the door at 6:45 w/ 2 capri suns. he said 'one is 4 me and one is 4 destiny.' i said who's destiny. he said 'i don't know yet. i'll know when i see her.' i said it could be a guy. he said 'brother. destiny doesn't care.' i've never been so impressed by a drink",
+    "he said 'look 4 the collar.' i said look 4 the name tag. i'm wearing my Dairy Dream name tag. it says ADAM. it's the only thing i own w/ my name on it. is that weird. he said 'it's perfect. it's a name. wear a name.' i've never gotten advice that good from a guy who's 0 for 53"
+   ],
+   "effects": [
+    { "type": "status", "from": "tony", "delay": 20, "text": "tony is practicing walking on his kitchen tile in socks to prepare for a rink floor. 0 for 53 but 1 for 1 at falling elegantly. he will be at the Rollerdome. he will be wearing a collar. he will be bringing 2 capri suns. ;)" }
+   ],
+   "choices": [
+    { "say": "wear the name tag. say 'hi i'm adam.' that's all. u'll be fine.", "next": "at_the_door" },
+    { "say": "tell tony u're nervous. not a speech, just 'i'm nervous.' he's tried 53 times. he knows.", "next": "end_rink" }
+   ]
+  },
+  "supper_math": {
+   "them": [
+    "supper. he asked how many sat down to supper. ok so i did the math. i've eaten supper w/ my mom 6,570 times (18 yrs x 365). i've eaten supper w/ 1 other person ever, a boy named Pete in 3rd grade, he had a pudding cup. so total 6,571. i don't think that's the number he means",
+    "he means a number i can get on friday. 3 is a table. 4 is a booth. 6 is 2 booths. i could get 1. ok. 1 is a person. if i get 1 person and a slice of rink pizza i win. malten. what's the best way 2 get 1"
+   ],
+   "choices": [
+    { "say": "write it down: 'goal: 1.' forget the 10,412. 1 conversation. 1 slice.", "next": "at_the_door" },
+    { "say": "write walt first. tell him the goal. he'll hold the number with u.", "next": "end_line2" }
+   ]
+  },
+  "at_the_door": {
+   "them": [
+    "it's friday. 6:52 PM. i'm in the lot. mom dropped me off and said 'eat' and drove away. i'm holding a cup w/ 3 cherries. i can hear the music thru the doors and i can see the disco ball. vince is at the door in a headset. i counted the cars. 38. he says that's the usual",
+    "i've been standing here 4 min. my name tag says ADAM. my polo is clean. i have 3 cherries and no plan. what do i do. the door is RIGHT THERE. it's a door. i say hi 2 61 people a day. why is this door different"
+   ],
+   "choices": [
+    { "say": "go in. normal voice. 'hi i'm adam.' say it to the first person who looks lost.", "next": "end_rink" },
+    { "say": "stand at the door. be the welcome committee. say hi to everyone. don't count.", "next": "end_huge" },
+    { "say": "wait in the lot w/ the cherries till 7:30. see who really comes.", "next": "end_two" }
+   ]
+  },
+  "end_rink": {
+   "them": [
+    "i went in. i said 'hi i'm adam' in my REAL voice. not the drive-thru voice. 2 the first person who looked lost. a girl w/ a ponytail who was looking 4 the bathroom. i said 'it's past the nacho cheese.' that was a conversation. then tony walked in w/ the collar and 2 capri suns and said 'adam.' not 'brother.' ADAM. he gave me 1. he said 'i figured out who destiny was.'",
+    "we skated. i held the wall 4 the whole lap. tony fell 4 times. elegantly. vince said it was the biggest turnout since july (44). rhonda blew the whistle at tony 3 times. at the pizza table 4 of us sat down: tony, vince, a kid named stu, and me. that's a booth. i counted. then i stopped counting, which i've never done. tony said 'same time next friday.' i said 'ok.' he said 'say it like u mean it.' i said 'ok!!!' he said 'there it is.'"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "delay": 15, "text": "adam met 4 friends in person tonight. it was a 100 percent reply rate. (it's a booth) (we sat down) (there was pizza) (adam stopped counting at 3)" },
+    { "type": "status", "from": "tony", "delay": 45, "text": "tony brought 2 capri suns to the Rollerdome. one for him. the other for destiny. destiny turned out to be a guy named adam. tony is 1 for 1. (not that kind of 1) (the better kind) ;)" },
+    { "type": "bulletin", "from": "vince", "delay": 80, "subject": "TEEN NITE UPDATE: IT WAS HUGE (44 PEOPLE) (A PERSONAL BEST)", "text": "Friends, Romans, Teen Nite regulars. Attendance Friday night: 44. That is up from 42. A double-digit increase (4.8 percent, but the point stands). Special thanks to the Conductor, who arrived in a name tag and said 'hi i'm adam' to every person at the snack bar until Rhonda blew the whistle. Same time next Friday. It's gonna be HUGE. (It's going to be 44.) -Vince" },
+    { "type": "wallpost", "from": "walt", "to": "adam", "delay": 130, "text": "Dear Adam, I am told four persons sat down to supper. A booth, by my reckoning. In 34 years of delivering other people's news I never received a better piece of it. Please write when you are able. I will answer before the coffee cools. Regards, Walt" },
+    { "type": "wallpost", "from": "brittany", "to": "adam", "delay": 170, "text": "adam!!! i heard u met ppl IN PERSON. im so proud im crying into my chart. ur not in my top 8 but ur in my top 8 CHART. xoxo. also pls tell tony 'destiny turned out to be a guy named adam' is the cutest thing ive ever heard" }
+   ]
+  },
+  "end_two": {
+   "them": [
+    "i waited by the door w/ the cherries. 7:00. 7:15. 7:30. the 3 yeses didn't come. the 41 maybes didn't come. banana didn't come. tony wrote 'brother im so sorry my mom needs the car.' kitty sent a pic of her hair w/ 'sorry!! lighting!!' it was a really good hair pic. 0 of 10,412. malten that's the number. 0",
+    "then vince came out in the headset and said 'adam. my guy. i've been looking 4 u. u r the 43rd.' he said it's never huge. last week was 42. 'u r the 43rd. that's a RECORD.' he took the cup and gave a cherry 2 rhonda and she put it on her whistle like a ring. a kid named stu did the limbo 4 me. i minded the 0 for a whole lap. then i minded less. i ate a slice of pizza w/ 2 strangers. both said 'thanks 4 the add' 2 ME. first time anyone ever said it first. 43. it's a good number"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "delay": 15, "text": "adam went to the Rollerdome. 0 of 10,412 came. 43 people were there. adam is number 43. adam ate pizza w/ 2 strangers and both said thanks 4 the add. (to him first) (nobody ever has) (he's fine) (he's a little more than fine)" },
+    { "type": "bulletin", "from": "vince", "delay": 60, "subject": "TEEN NITE ATTENDANCE: 43 (A RECORD) (DO NOT ASK ABOUT THE CHEESE)", "text": "Friday: 43. Up from 42. That's a RECORD. Special thanks to a guy named Adam, the Conductor, who stood at the door for 45 minutes with 3 cherries and an open face and then came in. Rhonda says the cherry stays on the whistle forever. Same time next Friday. Bring ONE person. It's gonna be 44. -Vince" },
+    { "type": "wallpost", "from": "tony", "to": "adam", "delay": 100, "text": "adam. brother. i am SO sorry about friday. my mom needed the car (it was the dentist) (it was a real dentist). i'm coming next friday. i'll bring 2 capri suns. one for me, one for u. destiny can wait. ;)" },
+    { "type": "wallpost", "from": "kittyxcore", "to": "adam", "delay": 140, "text": "adam. sorry i bailed. the lighting was rly bad. the real reason is i was scared. the rink is a LOT of ppl. u went anyway. thats elite. ur at #2 now. =^.^= pc4pc? ill comment all 3 of ur pics. the cap n gown one twice." }
+   ]
+  },
+  "end_huge": {
+   "them": [
+    "i stood at the door w/ the cherries. 'hi i'm adam.' 'hi i'm adam.' 'hi i'm adam.' at first it was 1 every 30 seconds. then banana walked in w/ a literal phone and said 'RING RING' and 6 ppl came in behind him. then 12. the line went out the door. vince cried a little. he said 'HUGE. IT'S HUGE.'",
+    "61 people. the Rollerdome record. the rink ran out of size 9 skates at 7:40 and rhonda blew the whistle 11 times. the 51st person had 2 pay the $2. it was TODD (todd came!!! friend #1!!! he said 'friendly admin note: u r doing great' and gave me a high 5). i said thanks 4 the add 2 every single person. somewhere in there i stopped counting. i don't know when. it's the first time i've ever stopped. malten i don't know the number!!!"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "bulletin", "from": "vince", "delay": 15, "subject": "IT WAS HUGE. (61 PEOPLE.) (WE RAN OUT OF SIZE 9 SKATES.) (THE CHEESE IS GONE.)", "text": "I said it for six months and it came true. Friday: 61. The previous record was 44 (July). The line went out the door and around the Orange Julius. The snack bar ran out of nacho cheese at 7:12. Rhonda blew the whistle 11 times and says she 'felt something.' Special thanks to the Conductor. I do not know what he did. There was a name tag and a cup of cherries. They came. - Vince, Promoter (HUGE)" },
+    { "type": "status", "delay": 30, "text": "adam stopped counting. adam does not know the number. adam is lying on the floor of the Rollerdome tired in a good way. thanks 4 the add (to 61 people) (a lot of them were strangers) (all of them were there)" },
+    { "type": "wallpost", "from": "todd", "to": "adam", "delay": 65, "text": "Hi Adam! Friendly admin note: I was the 51st person through the door at the Rollerdome and I paid my $2. Best $2 I've spent. You said 'hi i'm adam' and I said 'I know, I'm Todd, I made the site' and you said 'thanks 4 the add' and we both laughed for a full minute. Come back next week :)" },
+    { "type": "wallpost", "from": "banana", "to": "adam", "delay": 100, "text": "ADAM. I CAME. I BROUGHT A PHONE. IT RANG. IT WAS NOT FOR ME. IT WAS FOR THE GUY BEHIND ME. I STAYED FOR THE LIMBO. RING RING. -BANANA_PHONE" },
+    { "type": "wallpost", "from": "tony", "to": "adam", "delay": 140, "text": "adam. brother. i showed up. 0 for 53 and now 1 for 1 at the rink. i fell 6 times (a kid laughed) (i laughed too). found u by the nacho cheese. same time next friday. i bring the capri suns. ;)" }
+   ]
+  },
+  "end_line2": {
+   "them": [
+    "i wrote walt: 'Dear Walt, i have a list taped inside my closet. it's called PEOPLE I WOULD CALL AT 3 AM. line 1 is my mom. lines 2 through 10 are blank. i don't have a phone number for letters. but i'd like 2 put u on line 2. in pen. is that ok? Regards, Adam.' he wrote back in 6 minutes",
+    "he wrote: 'Dear Adam, I am awake at this hour as a rule. A man who is awake at that hour is exactly the man for a list like that. I accept line 2. I will answer before the coffee cools, which is about 30 minutes, and I will answer anything, even a single word. The cat will be informed. I do not skate, but I will be at the rink in the only way a man in Texas can, which is in the den, holding a number in his head. Please write and tell me how many sat down to supper. I am not worried about the number. I only like to know who was fed. Regards, Walt.' i wrote WALT on line 2. in pen. my mom saw it from the doorway. she said 'who's walt.' i said 'a mailman.' she said 'ok' and put a waffle in the toaster. i cried a little into the waffle. it was a really good waffle"
+   ],
+   "end": true,
+   "effects": [
+    { "type": "status", "delay": 15, "text": "adam has a name on line 2. in pen. (it's walt) (he's a retired mailman) (he's up at 4) (he'll answer before the coffee cools)" },
+    { "type": "wallpost", "from": "walt", "to": "adam", "delay": 50, "text": "Dear Adam, I am honored to be on line 2. I have entered the list in my own records, in the shoebox, next to Dorothy's. It is the first time anyone has put me on a list since the Postal Service retired me. I will be up at four. Write whenever. Regards, Walt" },
+    { "type": "wallpost", "from": "henderson", "to": "adam", "delay": 100, "text": "Adam, I have been informed there is a list with a name on it in pen. Pen is the correct choice. I recommend line 3 be in pencil, for flexibility, and line 4 be in the form of a question. The newt says hello. He is camera shy but not message shy. - Mr. H" },
+    { "type": "wallpost", "from": "debbie", "to": "adam", "delay": 145, "text": "Adam honey, my father told me about line 2. I am not on your list and I accept that. I will say that if you ever need a sandwich or a note for first period I am at the attendance window, and I am sending your mother a recipe card. Do not tell her. I will tell her. Love, Mom (Kayla's)" }
+   ]
+  }
+ }
+}

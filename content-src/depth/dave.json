@@ -1,0 +1,167 @@
+{
+ "id": "dave",
+ "aboutMore": "things i have ACTUALLY fixed (with my real hands, not the mainframe): my grandma's computer (a toolbar named Steve, she asked me to keep him, he lives in a folder now), mrs. abernathy's printer next door (the cat was in the tray), my dad's work laptop (it was 61 screensavers), and our router twice, after my mom unplugged it at 10 and then forgot where the cable went. i don't charge. mrs. abernathy pays me in lemon bars. best salary in the industry. i wouldn't call it hacking. it's closer to being a doctor for beige boxes. a doctor who also holds the flashlight.",
+ "blog": [
+  {
+   "title": "field guide: is ur computer sick? (a checklist for normal people)",
+   "date": "Sep 22 2026 10:14 PM",
+   "mood": "helpful (it's a mood now)",
+   "body": "i get asked this about 3 times a week so here it is in writing. ur computer is sick if: 1) ur homepage changed to a site that sells watches. 2) a gorilla talks to u (larry, i'm looking at u, i'm looking at the Beast). 3) the little clock in the corner is off by a week. 4) there's a toolbar on ur toolbar. 5) it takes 14 minutes to boot and u have a theory about why. ur computer is NOT sick if: it's slow on a hot day (dust, blow on it, gently), the mouse is stuck (it's the ball, take it out, there's a little carpet in there), or the screen is black (check the cable. it's the cable. i'd say 97% of cases. 2% is the toolbar. 1% is something i have to read about at 2am and then enjoy). step 6: don't panic. step 7: call me. it's free. i'm up. (this is not sad it's tactical)"
+  },
+  {
+   "title": "my dad and the basement ceiling (a story about cable)",
+   "date": "Aug 30 2026 9:48 PM",
+   "mood": "grateful (quietly)",
+   "body": "when i was 12 i asked my dad how the internet got into the basement. he's a lineman for the electric company so he didn't answer, he went and got a roll of blue cable and a crimper and said 'hold this.' we ran it through the ceiling over one whole saturday. he asked what the load was going to be. i said 'a game of counter strike.' he said 'then we over-build it,' and he did, about 4 times what it needed. he made me put masking tape on both ends of every cable and write where it goes. his rule: if you can't find the other end in the dark, the job isn't done. there are 11 jacks in our house. 9 go nowhere. my mom calls them decorations. my dad calls them 'for later.' i have never told him i don't totally know what i do on the computer. he has never asked. he just holds the flashlight. sometimes for 3 hours. i think that's the harder job."
+  },
+  {
+   "title": "mr henderson's newt has a temperature log now",
+   "date": "Sep 12 2026 8:20 PM",
+   "mood": "official",
+   "body": "so mr henderson (science, room 114) asked if i could 'make the computer in the corner stop saying a thing.' the thing was a pop-up. it was the only pop-up. he'd been closing it since august like a man bailing out a boat. fixed in 4 minutes. while i was in there i noticed his grade file was called PASSWORDS_DO_NOT_OPEN and his login was SirIsaacNewt1. i did NOT open the file. i sat him down and explained, calmly, with a diagram. he took it very well. he wrote DAVE: IT on the whiteboard in green pen (he says red is aggressive). then i hooked a little thermometer to the newt's tank and now there is a log. sir isaac newt: 71 degrees. 71 degrees. 71.4. he gave me a granola bar. i have never felt more like a professional. security level: maximum. (the newt is fine) (the newt does not care)"
+  },
+  {
+   "title": "THE BLACKOUT LAN (an after-action report)",
+   "date": "Aug 9 2026 11:30 PM",
+   "mood": "dimly lit",
+   "body": "attendance: 6 (mom's rule). wes (2 CRTs), josh, kevin (a sweatband and 4 energy drinks, the 4th at 8:58 which is a violation), a kid from down the street named pete, my cousin who doesn't play but wanted to see, and me. at 8:12 i plugged in the 7th monitor and the entire basement went dark. i had run 6 towers, 2 CRTs, a lava lamp and a space heater (not mine) off one outlet. we sat there for 14 minutes. nobody spoke. then wes said very quietly 'frame data' and we laughed so hard my mom came downstairs with a flashlight and pizza rolls. we played charades by flashlight. wes did the matrix. it looked exactly like melee. kevin did 'butterfly' with his feet. josh got it. best LAN i've ever hosted. i'm logging it as SUCCESSFUL (power: no)."
+  }
+ ],
+ "survey": {
+  "title": "the 'what kind of computer person are u' survey (everybody did it) (i did it twice)",
+  "qa": [
+   [
+    "name / handle:",
+    "dave. hax0r_dave. 'the IT guy' to anybody over 40"
+   ],
+   [
+    "first computer u ever used:",
+    "a beige thing in my dad's office with a sticker that said PROPERTY OF HILLIARD TOOL AND DIE. he let me have it. it's legally mine now (haven't checked)"
+   ],
+   [
+    "how many monitors:",
+    "3. one CRT, one flat, one my cousin left and never asked for back. the middle one is for sandstorm"
+   ],
+   [
+    "operating system(s):",
+    "windows, ubuntu, and a third one i don't know the name of. it boots sometimes. i call it the guest"
+   ],
+   [
+    "typing speed:",
+    "74 wpm. 61 if somebody is watching"
+   ],
+   [
+    "worst virus u ever had:",
+    "one that turned every icon on my desktop into a lizard. i left it 3 days. i got attached. (the lizard. he was a nice lizard)"
+   ],
+   [
+    "what's on ur desktop:",
+    "one folder called taxes. it's not taxes. it's also not what u think. it's wallpapers"
+   ],
+   [
+    "most-used keyboard shortcut:",
+    "ctrl+z. it's the closest thing to a time machine most people will ever own. i give it a moment of silence on sundays"
+   ],
+   [
+    "who do u call for tech support:",
+    "nobody. i'm the number. my grandma has me in her phone as 'computer grandson' (i'm her only grandson) (still)"
+   ],
+   [
+    "something u've never deleted:",
+    "my first batch file. 3 lines. it says hello and then closes. i think about it a lot"
+   ],
+   [
+    "what do u do when the power goes out:",
+    "hold the router like a baby bird and listen to 11 machines not running. security is also physical"
+   ],
+   [
+    "dream setup:",
+    "a room with no windows (glare) and one window (the sun) and a snack drawer. i know that doesn't work. i'm working on it"
+   ],
+   [
+    "describe urself in one sentence:",
+    "i could hack the site but i would rather fix your printer"
+   ]
+  ]
+ },
+ "dms": [
+  "malten the printer next door said paper jam again. it was the cat. he was IN the tray. just sitting there. printing himself. i'm now a cat rescue and a printer technician and i'd like to know if that is one job or two",
+  "i signed ur guestbook. under 'name' i put hax0r_dave. under 'comments' i put 'security: excellent.' it's the highest rating i give. my dad got 'adequate' for the garage door opener",
+  "i went through ur whole webring last night. 11 sites and the last link sends u back to the first one. as a security guy i respect a closed loop. nothing gets in. nothing gets out. everyone's just fine in there",
+  "i read 'why do we create' twice. then i wrote a batch file that says 'because' and runs when i boot up. it's one line. it's the most honest program i own",
+  "the power went out at 8:12 mid-update. 11 machines dead. my dad came down w/ a candle and said 'now you know what a lineman does.' we sat there for 20 minutes. it was one of the best parts of my week and i had no screen",
+  "update on grandma's toolbar Steve: Steve now has a friend. she installed him herself. his name is Stephanie. they are both toolbars. i'm taking my time with this one",
+  "random q: do u know ur screen resolution. don't look. ok look. if it's 800x600 i'm not judging. i'm just making a note",
+  "i went outside for 3 hours today. it was fine. very bright. the sky has no scroll bar. also there is only ONE sun. no backup. someone should really look into that",
+  "mom says i can have 8 people at the next LAN if two of them are quiet ones. i went through the list. none of them are quiet. i started a column called quiet-ish. it has wes in it. he was quiet for one round",
+  "question for the site owner: is ur guestbook backed up. its a text file right. a text file is the most fragile thing in the world and also the most beautiful. i'll bring a floppy. i have 3. one is empty. one is the matrix. one i'm not sure about"
+ ],
+ "repliesExtra": [
+  "ur message has been logged. (the log is a notepad file called taxes.) (security.)",
+  "read this on monitor 2. monitor 1 is for the reply. monitor 3 is for sandstorm. it's a system",
+  "ok but is it backed up. kidding. but is it",
+  "sorry for the delay. my mom unplugged the router. that is called a physical layer attack. she is very good at it",
+  "ur message arrived with 0 packets lost. i checked. i'm kind of proud of the internet right now",
+  "noted. i'm adding it to the wiki. (the wiki is a spiral notebook.) (it has a lock.) (the lock is a rubber band.)",
+  "interesting. let me run that by my team. (my team is me.) (they say yes.)",
+  "have u tried turning it off and on again. i say that to everybody. it's not a joke. it's a blessing",
+  "that sentence has excellent uptime. i read it 3 times and it never crashed",
+  "thanks. i'd say more but the mainframe is currently also timing the pizza rolls"
+ ],
+ "statusesExtra": [
+  "hax0r_dave is helping mrs. abernathy with the printer again. the cat is in the tray. it is not a hack. it is a rescue",
+  "hax0r_dave is labeling both ends of every cable in the basement (dad's rule). 112 labels so far. it's like a library for wires",
+  "hax0r_dave is on the phone with his grandma. 'sweetie, Steve wants an update.' it's day 4 of Steve",
+  "hax0r_dave is writing a script to remind him to go outside. it keeps crashing. (i think it doesn't want me to leave)",
+  "hax0r_dave just got paid in lemon bars for fixing a router. the economy is strong",
+  "hax0r_dave is sitting in the dark. the breaker went. 11 machines are quiet. it's honestly kind of nice. sandstorm is on batteries"
+ ],
+ "wallExtra": [
+  {
+   "from": "henderson",
+   "text": "Dave, thank you for the temperature log. Sir Isaac Newt has held at a steady 71 degrees, which I find very 'cool.' (That was a pun.) There is a granola bar on my desk with your name on it. I wrote the name in green. — Mr. H"
+  },
+  {
+   "from": "lars",
+   "text": "dave. i left cd number 41 in your mailbox. it's ubuntu. i know that's a lot of cds. you don't have to say anything. you also don't have to triple boot it. -lars"
+  },
+  {
+   "from": "larry",
+   "text": "dave my computer is doing the thing again. i tried what u said, the restart, and the gorilla restarted 2. can i bring the Beast over. it takes 14 min 2 boot so call ahead"
+  },
+  {
+   "from": "marcus",
+   "text": "Dave. A reminder that nothing on this wall constitutes a moderator action. I noticed the word 'admin' in your last post. I am keeping an eye on it. Respectfully, Marcus (unofficial)"
+  },
+  {
+   "from": "tim",
+   "text": "dave CAVE DIVER now has a boss. 212 lines. ur 'hack' is a batch file. i keep a ledger. u owe me $2 for the demo and $4 for the link cable wipe. checkmate"
+  }
+ ],
+ "banterExtra": {
+  "lars": [
+   "lars i have a confession. i opened the drawer. the cd is from april (u said). i installed it anyway. wifi works. sound works. i have never been so afraid. nothing is broken, which means something is about to be",
+   "lars ur wifi story took 3 days. mine took 11 minutes. i don't say that to brag. i say it because i feel like i missed something important (the pain)",
+   "lars ur cds are on my shelf next to the other 40 lars cds. i organized them by how much i believe in them. #1 has the penguin sticker"
+  ],
+  "marcus": [
+   "marcus i read all 12 of ur rules. rule 7 says no impersonating a moderator. i never have. i did once ask todd if i could be moderator in training and he said the position doesn't exist. so we're the same, u and me. two guys waiting on todd",
+   "marcus ur warning #116 says 'warnig.' i didn't touch it. i just want u to know i see it and i'm proud of u anyway"
+  ],
+  "larry": [
+   "larry i ran a scan on ur mix cd (legally). found 14 viruses, 2 songs, and a file called readme.txt that just says 'enjoy.' i respect the honesty",
+   "larry i've been back to the Beast 3 times. i've identified 9 of the 11 toolbars and i have a theory about the gorilla. i'm not removing anything. nobody has ever been inside a computer that old and come out the same. i brought a sandwich this time (yours)"
+  ],
+  "dmitri": [
+   "dmitri u asked me to show u the wall (the wallhack). the wall is in my basement. it's drywall. there's a hole in it from the time wes wavedashed. i've been calling it a wallhack since june. u can see it any time. (ohio is a long way from duluth) (bring the flashlight)",
+   "dmitri ur 'a library with extension cords' line is on my fridge. my mom read it and said 'he's not wrong.' she's changed the rule to 'no energy drinks after 9 unless it's dmitri.' she's never met u. she says a young man with a flashlight is entitled"
+  ]
+ },
+ "keywordsExtra": {
+  "printer": "mrs. abernathy's printer says paper jam about once a week. it's the cat. he gets in the tray. he likes the warm part. i'm not allowed to charge her. she pays me in lemon bars. it's the best deal in technology",
+  "grandma": "my grandma's computer has a toolbar named Steve. she asked me not to delete him so he lives in a folder. he's happy there. we check on him at thanksgiving",
+  "cable": "cable management is the only art form where nobody can see your best work. the back of my desk looks like a library. my dad labels both ends. i label both ends. it's a family thing",
+  "linux": "ok lars gave me a cd and it actually worked. i have a dual boot. it's a triple boot. the third one is a mystery. don't tell lars i said it works. he'll make me a 41st cd",
+  "newt": "sir isaac newt is a fire-bellied newt in room 114. i built him a temperature log. he's held at 71 for 4 weeks. mr. henderson cried a little. (he said it was the heater fumes.) (it's a very clean heater)"
+ }
+}

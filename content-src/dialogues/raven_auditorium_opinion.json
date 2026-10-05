@@ -1,0 +1,476 @@
+{
+ "id": "raven_auditorium_opinion",
+ "with": "raven",
+ "opener": [
+  "Good evening, malten. I would like to consult you on a matter of professional ethics. I realize this is a strange sentence to send to a person who keeps a webring.",
+  "A sixteen-year-old named Gina has asked for my 'expert opinion, as a goth' on the haunting of her school auditorium. She has fourteen hours of audio and a binder with tabs.",
+  "I have listened to the audio. It is a refrigerator. It is an unusually expressive refrigerator, but it is a refrigerator. She has invited me to an investigation on Saturday. I have not replied. It has been four days. What does one say?"
+ ],
+ "nodes": {
+  "start": {
+   "choices": [
+    {
+     "say": "she asked a goth, not a scientist. what does she actually want from you?",
+     "next": "a1_notebook"
+    },
+    {
+     "say": "write her a letter. one page, citations. she's a scientist, she'll respect a bibliography.",
+     "next": "b1_letter"
+    },
+    {
+     "say": "make it falsifiable. a ghost that can't name three Bauhaus songs is just a fridge.",
+     "next": "c1_test"
+    }
+   ]
+  },
+  "a1_notebook": {
+   "them": [
+    "Hm. That is an irritatingly good question.",
+    "At sixteen I had a notebook of poems and a Cure tape, and nobody to hand either to. I would have given a great deal for one adult to say 'show me the notebook' and mean it. I suspect Gina does not need the building to be haunted. I suspect she needs someone to come.",
+    "The difficulty is that I do not lie. If I go, she will ask whether I feel a presence. What I feel is a draft and a sense of civic neglect."
+   ],
+   "choices": [
+    {
+     "say": "say exactly that. 'a draft and civic neglect' is a real answer. kids can handle real.",
+     "next": "a2_honest"
+    },
+    {
+     "say": "give her a small yes. you do it for families all the time. 'something's there.' it's an auditorium, it's basically asking.",
+     "next": "a2_yes"
+    }
+   ]
+  },
+  "a2_honest": {
+   "them": [
+    "Very well. Sent. I wrote: 'I will come on Saturday. I do not know what is in the building. I would like to find out with you. I will bring a thermos.'",
+    "She replied in forty seconds, in lowercase, which I have decided to treat as a form of warmth: 'THANK U. ok. civic neglect is going in tab 7. do u want to hear the 3 hours under review? i have never played them for an adult. i'm nervous. (that's data.)'",
+    "I have been given a tab. I have not been given a tab since the library issued me a card."
+   ],
+   "effects": [
+    {
+     "type": "status",
+     "from": "gina",
+     "delay": 10,
+     "text": "gina has received a reply from an EXPERT (adult) (goth) (credentialed). filed under Witness Statements. a new tab has been created. tab 7: civic neglect."
+    }
+   ],
+   "choices": [
+    {
+     "say": "ask her what she's hoping to find in those three hours. start there.",
+     "next": "a3_ask"
+    },
+    {
+     "say": "she's nervous because she's about to get a real audience. lighten it: run the three-Bauhaus-songs test on the ghost.",
+     "next": "c1_test"
+    }
+   ]
+  },
+  "a2_yes": {
+   "them": [
+    "A small yes. I know the kind. I have written them for families: 'He loved the lake,' when he mostly loved the idea of a lake. A euphemism is permissible when the family has chosen it. I did not expect to be on the other side of the desk.",
+    "Sent: 'I believe there is something in the building. Cold. Near the balcony.' I do not know why I said balcony. It arrived at the keyboard fully formed.",
+    "Gina replied: 'THANK U. i'm bringing the kitchen thermometer. a presence reads as a cold spot. if u say balcony i will measure the balcony.' I have now committed to a location."
+   ],
+   "effects": [
+    {
+     "type": "status",
+     "from": "gina",
+     "delay": 8,
+     "text": "gina is packing for Saturday: 1 recorder, 1 flashlight (red filter), 1 kitchen thermometer (calibrated), 1 adult expert who says the balcony is cold. gina is professionally alert."
+    }
+   ],
+   "choices": [
+    {
+     "say": "stay on the balcony. cold is cold. someone has to be right about it.",
+     "next": "a3_balcony"
+    },
+    {
+     "say": "walk it back, kindly, before she measures anything. 'poetically speaking.' then ask what she hopes to find.",
+     "next": "a3_ask"
+    }
+   ]
+  },
+  "a3_ask": {
+   "them": [
+    "Sent. I asked what, precisely, she hopes to find in that building. Her answer arrived in pieces, the way it does from someone typing fast in the dark:",
+    "'honestly? i don't need it to be a ghost. i need somebody else to HEAR it. 14 hours and 11 are the fridge and i KNOW that. but there's 3 hours i can't explain and every adult says it's an old building and then changes the subject. i just want one person to listen to all 3 and say what they heard. even if it's nothing. i can handle nothing.'",
+    "I read that twice. I had not expected to be asked for nothing. Nothing is a very reasonable thing to ask a person for."
+   ],
+   "choices": [
+    {
+     "say": "tell her she isn't weird. she's thorough. there's a difference, and you'd know.",
+     "next": "end_witness"
+    },
+    {
+     "say": "also make saturday fun. three Bauhaus songs, one ghost, holly as examiner.",
+     "next": "c1_test"
+    }
+   ]
+  },
+  "a3_balcony": {
+   "them": [
+    "Saturday, 4:20 PM. The balcony. Gina held the kitchen thermometer over the third row for ninety seconds, as if hatching it. Seventy-one degrees. She wrote it down in a numbered notebook, carefully, under my name.",
+    "She looked up and said, 'that's ok. it doesn't have to be cold.' She said it kindly. I would rather she had shouted.",
+    "I am standing in a balcony, in a cardigan, with a thermos and a lie. What is the correct form?"
+   ],
+   "choices": [
+    {
+     "say": "confess in public, in the format you know best. print a correction. it's what your trade does.",
+     "next": "end_correction"
+    },
+    {
+     "say": "tell her now, quietly, in the third row. then ask to hear the three hours. she wanted the truth, not a performance.",
+     "next": "end_witness"
+    }
+   ]
+  },
+  "b1_letter": {
+   "them": [
+    "A letter. Yes. I have, in fact, drafted one. It is two pages. It has a bibliography. It cites Mr. Henderson's backscatter chart, which she herself posted. It is correct in every particular.",
+    "I have read it aloud to Dorian. He left the room. I have chosen to interpret this as a review."
+   ],
+   "choices": [
+    {
+     "say": "send it as is. she'd rather be corrected than patted on the head.",
+     "next": "b2_cold"
+    },
+    {
+     "say": "add one warm line. just one. 'i would like to hear the three hours.'",
+     "next": "b2_warm"
+    }
+   ]
+  },
+  "b2_cold": {
+   "them": [
+    "Sent. Gina replied in four minutes: 'thank you for your feedback. it has been filed as Witness Statement 32 (Adult, Credentialed). the investigation is saturday at 4 in the auditorium and is open to anyone. you do not have to come. thank u again.'",
+    "She has returned my own tone to me with a stamp on it. It is an excellent tone. I have used it for years. I did not know it had an edge until it was pointed at me."
+   ],
+   "effects": [
+    {
+     "type": "status",
+     "from": "gina",
+     "delay": 12,
+     "text": "gina has filed Witness Statement 32 (Adult, Credentialed). it was typed. it had a bibliography. gina is fine. gina is professionally alert."
+    }
+   ],
+   "choices": [
+    {
+     "say": "go anyway. a letter is a wall. a thermos is a door.",
+     "next": "b3_go"
+    },
+    {
+     "say": "let it stand. you made a correct point. she has her investigation.",
+     "next": "b3_hold"
+    }
+   ]
+  },
+  "b2_warm": {
+   "them": [
+    "One line. Added. I felt as if I were pressing a flower into a ledger.",
+    "Gina replied in nineteen seconds: 'ok. THAT line. u can come, u can leave, i won't be weird about it. but if u come i'm giving u the headphones. the good ones. (i have one good pair.)'",
+    "I have been offered the good headphones. I understand this to be the highest honor in her system."
+   ],
+   "choices": [
+    {
+     "say": "take the headphones. ask what she hopes to find in those three hours.",
+     "next": "a3_ask"
+    },
+    {
+     "say": "accept, with one condition: holly examines, three Bauhaus songs, and the ghost has to pass.",
+     "next": "c1_test"
+    }
+   ]
+  },
+  "b3_go": {
+   "them": [
+    "A letter is a wall and a thermos is a door. Yes. I will put that on a card and keep it in the drawer with the driver's license.",
+    "I will arrive early. She will be in the third row with the binder and a flashlight with a red filter. The first sentence matters. I have drafted four. None of them is a sentence a person says."
+   ],
+   "choices": [
+    {
+     "say": "apologize for the tone. not for the refrigerator.",
+     "next": "end_witness"
+    },
+    {
+     "say": "walk in with a protocol instead of an apology: three Bauhaus songs, one ghost. give her something to DO.",
+     "next": "c1_test"
+    }
+   ]
+  },
+  "b3_hold": {
+   "them": [
+    "Let it stand. Yes. That is the correct thing to do, and it is the thing I do.",
+    "...Hold on. Gina has just posted on her wall. DarkAngel has volunteered to attend Saturday's investigation. DarkAngel, who writes 'poetry' in glitter, will be in the auditorium. In glitter. With a flashlight.",
+    "I have nothing against this. I would like that noted. I am only observing that the room I was not quite welcome in will now contain a person at 11:11."
+   ],
+   "effects": [
+    {
+     "type": "wallpost",
+     "from": "darkangel",
+     "to": "gina",
+     "delay": 6,
+     "text": "~*~ gina. i heard u have an investigation saturday. i will come. i will bring a flashlight and NO glitter (a small amount of glitter). 11:11 is a ghost hour u know. i will be very quiet. i have practiced. ~*~"
+    }
+   ],
+   "choices": [
+    {
+     "say": "it's fine. you made your point. let darkangel have saturday.",
+     "next": "end_letter"
+    },
+    {
+     "say": "go. right now. say yes to gina before the glitter gets there first.",
+     "next": "b3_go"
+    }
+   ]
+  },
+  "c1_test": {
+   "them": [
+    "A falsifiable test. I consulted you about ethics and have been handed a protocol. Very well. The ghost must name three Bauhaus songs, unprompted. If it names none, it is a refrigerator. If it names three, I will need to sit down.",
+    "It is the first sensible proposal anyone has made about that building. Holly would insist on administering it. She does so eleven times a shift. And the drama club controls the lights, so someone will have to inform Thad."
+   ],
+   "choices": [
+    {
+     "say": "holly examines. she's the only one qualified to fail a ghost.",
+     "next": "c2_holly"
+    },
+    {
+     "say": "start with thad. whoever controls the lights controls the evidence.",
+     "next": "c2_thad"
+    }
+   ]
+  },
+  "c2_holly": {
+   "them": [
+    "I wrote to Holly. She replied: 'i'll administer. rules: 1) the single doesn't count. 2) the one from the movie doesn't count. 3) a ghost that names 3 gets a cd. a ghost that names 0 gets a pamphlet. 4) i'm on the clock, i get 11 minutes.'",
+    "She added a separate line, to me only: 'don't mention the stockroom.' I said I had no idea what she meant. We understand each other perfectly."
+   ],
+   "effects": [
+    {
+     "type": "wallpost",
+     "from": "holly",
+     "to": "gina",
+     "delay": 10,
+     "text": "gina. i'll administer the test. bring a pen, the protocol, and 3 songs you can actually name. i will know. i do this 11 times a shift. (the pamphlet is free.)"
+    }
+   ],
+   "choices": [
+    {
+     "say": "pre-register the verdict. write down what a flicker means before anyone walks in.",
+     "next": "c3_prereg"
+    },
+    {
+     "say": "make sure thad's on lights. a building's secrets belong to the drama club.",
+     "next": "c2_thad"
+    }
+   ]
+  },
+  "c2_thad": {
+   "them": [
+    "Thad has been notified. Thad responded with a four-paragraph acceptance, a request for a cue sheet, and the sentence 'I live for the dark.' He will run the lights on Saturday and is, as far as I can tell, already in costume.",
+    "He wants the ghost light on until the test begins, then off, then, at the examiner's word, 'a single dramatic fade.' I am not certain a fade is a control."
+   ],
+   "effects": [
+    {
+     "type": "wallpost",
+     "from": "thad",
+     "to": "gina",
+     "delay": 12,
+     "text": "(The lights come up on THAD, who clutches a clipboard.) Gina. I have been cast. I will run the lights for your experiment. I will be silent. I will be professional. I will be... (a long pause) ...in the wings, with both hands visible at all times. - Thad"
+    }
+   ],
+   "choices": [
+    {
+     "say": "pre-register everything. thad, holly, the whole protocol. before anyone touches a switch.",
+     "next": "c3_prereg"
+    },
+    {
+     "say": "inspect the dimmer panel the night before. a good scientist checks the boring explanation first.",
+     "next": "c3_dimmer"
+    }
+   ]
+  },
+  "c3_prereg": {
+   "them": [
+    "Pre-registered. Gina insisted on a document and I find I am enjoying the document. Controls: the thermometer, a photograph of Dorian taped to the first row (if the ghost fails to react to a seventeen-pound orange cat, it is not a ghost with taste), and Thad's hands, which are to remain visible.",
+    "One line remains blank: what a flicker means. Gina proposed 'inconclusive.' Holly proposed 'I go home.' I must put something in the box."
+   ],
+   "choices": [
+    {
+     "say": "write it honestly: a flicker on a correct title and you owe gina a candle and a real concession, in writing.",
+     "next": "end_exam"
+    },
+    {
+     "say": "before you sign, check the dimmer panel. science, and also thad.",
+     "next": "c3_dimmer"
+    }
+   ]
+  },
+  "c3_dimmer": {
+   "them": [
+    "I have inspected the dimmer panel. It is very old. It has a label in marker: DO NOT TOUCH (THAD). There is a thumbprint on the master fader. It is the size of a thumb that has opinions.",
+    "This is the boring explanation. In my line of work the boring explanation is usually the family's favorite. I must decide whether to tell Gina now, or let the test run and see what the building does."
+   ],
+   "choices": [
+    {
+     "say": "tell gina. a real scientist reports the boring explanation first. then run the test anyway, for fun.",
+     "next": "end_dimmer"
+    },
+    {
+     "say": "run it blind. you're allowed one honest mystery. if it flickers, concede.",
+     "next": "end_exam"
+    }
+   ]
+  },
+  "end_witness": {
+   "them": [
+    "I went. I said it aloud, in the third row, in front of the binder: 'I do not know what is in this building.' She said, 'that's the correct answer,' and handed me the good headphones.",
+    "We listened to all three hours. Tape nine, at 2:14, there is a long breath and a word that may be 'ok.' It may be a pipe. It may be a tired person. It may be a refrigerator practicing English. I said so. She wrote down every word of that, including 'practicing English.' I should like a copy of her notes.",
+    "On the way out I thanked the room, as per cemetery rules. I felt foolish. Nothing happened. It was the nicest nothing I have had in some time."
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "bulletin",
+     "subject": "Field Report: A Saturday in an Auditorium",
+     "text": "I was asked to attend a paranormal investigation as an expert. I attended as a witness, which is the correct role. Findings: a draft, civic neglect, an excellent thermos, and a sixteen-year-old with the most careful notebook I have ever seen. The recording says 'ok.' I have no further comment. I would only say that if a young person asks you to listen, you should go, and bring tea."
+    },
+    {
+     "type": "status",
+     "from": "gina",
+     "delay": 20,
+     "text": "gina just finished EVP session #62 with 1 (one) adult expert present. result: 4 seconds of audio that says 'ok.' filed under Under Review. (it might be the fridge.) (it might not.) thank u for coming raven."
+    },
+    {
+     "type": "wallpost",
+     "from": "henderson",
+     "to": "gina",
+     "delay": 45,
+     "text": "Gina, the visitor log for Saturday reads 'R. Nocturne (guest observer),' with a thermos listed as equipment. In all my years of teaching I have never been so moved by a sign-in sheet. Your data table earns 3 points. A thermos is, technically, a calorimeter. (That was a pun.) - Mr. H"
+    }
+   ]
+  },
+  "end_correction": {
+   "them": [
+    "I have posted a correction. It is the only form I trust. I wrote it in the style we use at the desk, with a headline, a retraction, and no adjectives.",
+    "Gina read it standing in the aisle. She said, 'ok. thank u for telling me. it's ok if you don't believe in it.' Then she asked me, very formally, to listen to the three hours anyway. She said a witness who corrects herself is worth two who don't. She has never been more correct.",
+    "I am going to sit here a while, in the balcony. It is seventy-one degrees."
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "bulletin",
+     "subject": "CORRECTION",
+     "text": "In a message sent to a sixteen-year-old investigator earlier this week, this writer stated that there was 'something cold near the balcony.' There was not. The balcony is seventy-one degrees. This writer regrets the error, the cardigan, and the tone. The auditorium contains a draft, a refrigerator, and a person with a very good notebook. This writer will remain for the rest of the investigation as a witness. We regret the error."
+    },
+    {
+     "type": "status",
+     "from": "gina",
+     "delay": 15,
+     "text": "gina has accepted a correction. it was typed. it had a heading. gina is giving it a B-plus (A for the heading). the balcony is 71 degrees. the investigation continues."
+    },
+    {
+     "type": "wallpost",
+     "from": "bill",
+     "to": "gina",
+     "delay": 40,
+     "text": "Gina. In 11 years in this field I have seen an expert issue a written correction exactly one time. It was a man in Oregon and it was about a bear. You've got a rare one there. Keep her. Over."
+    }
+   ]
+  },
+  "end_letter": {
+   "them": [
+    "Very well. The letter stands. I sent it with the bibliography. She will be in the third row on Saturday with a recorder, a red flashlight, a thermometer, and, I understand, a poet.",
+    "I am happy for her. I would like that noted. I would also like it noted that I am going to stand at this window for ten minutes counting streetlights before I consider whether one can be happy and, in a small and correct way, wrong."
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "status",
+     "text": "raven sent a very correct letter to a sixteen-year-old today. it had a bibliography. it was correct. it was also the wrong thing. raven knows."
+    },
+    {
+     "type": "status",
+     "from": "gina",
+     "delay": 30,
+     "text": "gina saved a seat in the third row. the expert said she's probably not coming. the seat is still there. (it's a good seat. it's near the vent.)"
+    },
+    {
+     "type": "wallpost",
+     "from": "josh",
+     "to": "raven",
+     "delay": 120,
+     "text": "hey raven. gina told me about the letter. she says its a really good letter. it has a bibliography. she also said she'd save u a seat either way. no pressure at all. theres snacks at youth group wednesday too, i know u said no, the offer stands =]"
+    }
+   ]
+  },
+  "end_exam": {
+   "them": [
+    "The test was administered Saturday at 4:40 PM. Holly stood center stage with a clipboard and read the rules to an empty house in the voice she uses at the register. The building named zero songs. Gina logged each second.",
+    "Then I said a title, as a courtesy to the ghost. The famous one, the one that does not count. At the second word, the ghost light flickered. Once. For about a second. Holly said, 'I'm going home.' She did not go home. Thad, in the wings, said, 'I did not touch it,' in the voice of a trained professional.",
+    "I have no explanation. I have a pre-registered concession, in writing, and a debt of one candle. I am paying both. Do not discuss it with me."
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "bulletin",
+     "from": "gina",
+     "subject": "CASE FILE #10: THE BAUHAUS PROTOCOL (RESULT: INCONCLUSIVE)",
+     "text": "PRESENT: 1 investigator, 1 examiner (Holly), 1 lighting technician (Thad), 1 guest expert (R. Nocturne, credentialed), 1 photograph of a cat (control). TEST: the ghost was asked to name three Bauhaus songs. IT NAMED ZERO. HOWEVER: when a title was said aloud, the ghost light flickered for 1.1 seconds. Thad's hands were visible. R. Nocturne has conceded in writing (attached). The refrigerator remains the refrigerator. This is not proof. It is a very good data point. - Gina, OVPS Jr.",
+     "delay": 30
+    },
+    {
+     "type": "status",
+     "from": "holly",
+     "delay": 15,
+     "text": "holly just administered the 3 songs test to a building. the building named 0. a light flickered during a title. holly did not go home. holly is on the clock until 5."
+    },
+    {
+     "type": "status",
+     "from": "thad",
+     "delay": 60,
+     "text": "thad was in the wings. both hands visible. at all times. he did NOT touch the dimmer. (a long pause.) the dimmer would like it noted that it is also fine."
+    },
+    {
+     "type": "wall",
+     "delay": 90,
+     "text": "I owe a sixteen-year-old a candle and a written concession. I will deliver both. If you repeat this, I will deny it in four paragraphs."
+    }
+   ]
+  },
+  "end_dimmer": {
+   "them": [
+    "Case closed, with ceremony. I told Gina about the dimmer before the test, and she took the news like a professional. She wrote 'thumbprint: Thad' and said, 'that's the boring explanation. it's the best kind.'",
+    "We ran the test anyway. The ghost named zero songs. Holly gave it the pamphlet. Then, when she believed the house was empty, she left a burned CD on the stage, marked START HERE in silver marker. For the ghost. I said nothing. I am saying nothing about it here.",
+    "Thad confessed to the fader at length, with hand gestures. I have written the ghost's obituary. It is the kindest thing I have done this week."
+   ],
+   "end": true,
+   "effects": [
+    {
+     "type": "bulletin",
+     "subject": "OBITUARY: The Auditorium Ghost (unknown - Saturday)",
+     "text": "The Auditorium Ghost, long a resident of the stage left wing, was found on Saturday afternoon to have been a dimmer, a refrigerator, and a boy named Thad. It was known for its flickers, its patience, and a sense of timing any actor would envy. It is survived by a sixteen-year-old investigator, eleven hours of refrigerator, and three hours Under Review. In lieu of flowers, please leave the ghost light on. It has been on all along."
+    },
+    {
+     "type": "wallpost",
+     "from": "thad",
+     "to": "gina",
+     "delay": 20,
+     "text": "(The lights come up on THAD, holding a dimmer panel's honor.) I confess. The thumbprint is mine. In my defense, the master fader has a very inviting travel. I would also like it noted that the ghost light was NOT me. That is tradition. That is the theater. (He bows. Nobody is there. He bows again.)"
+    },
+    {
+     "type": "wallpost",
+     "from": "holly",
+     "to": "gina",
+     "delay": 50,
+     "text": "gina. the cd on the stage was a donation. it says START HERE. it's for whoever finds it next. (not a ghost. a person. the next person who can't name 3.) i'm not saying who it's from. you saw nothing."
+    },
+    {
+     "type": "status",
+     "from": "gina",
+     "delay": 75,
+     "text": "gina has closed Case File #10 (cause: dimmer, fridge, thad). 3 hours remain Under Review. the ghost light stays on. that's not evidence. that's just tradition."
+    }
+   ]
+  }
+ }
+}
