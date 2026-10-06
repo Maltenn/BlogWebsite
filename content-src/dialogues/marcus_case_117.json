@@ -2,7 +2,7 @@
   "id": "marcus_case_117",
   "with": "marcus",
   "opener": [
-    "Hello malten. This is a procedural request. I need a second moderator for a ruling. You are the only member who has never received a warning, which makes you neutral. (Do not read into that. It is a compliment.)",
+    "Hello {you}. This is a procedural request. I need a second moderator for a ruling. You are the only member who has never received a warning, which makes you neutral. (Do not read into that. It is a compliment.)",
     "Case 117. BANANA_PHONE, 3:41 AM, the wall of a new member (kyles_lil_bro, age 11, on his brother's account, which is a separate matter under Rule 9b). Entire post: 'WELCOME!!! YOU ARE NOW MY FRIEND!!! DO YOU LIKE BANANAS!!!' Rule 2 prohibits all caps. Rule 12 requires kindness to new members. They collide. In three years I have never had two rules collide.",
     "Todd has agreed to lunch Friday. His words: 'show me how you handle a hard call, buddy!' This is the hard call. I have the fourth draft in my bag and a sandwich. Please advise. You have eleven minutes. I have to change a filter."
   ],
@@ -40,7 +40,7 @@
 
     "trial": {
       "them": [
-        "A TRIAL. Malten. I have a script. I have had one since June. I do not have a gavel. I have a ladle. A jury of twelve requires twelve. I have Gary, Patrick (and his rock, who Patrick says counts as 1.5), Dave (disqualified, see: June), and Sticky, who would have to be carried.",
+        "A TRIAL. {you}. I have a script. I have had one since June. I do not have a gavel. I have a ladle. A jury of twelve requires twelve. I have Gary, Patrick (and his rock, who Patrick says counts as 1.5), Dave (disqualified, see: June), and Sticky, who would have to be carried.",
         "The risk is obvious. If it goes sideways Todd sees a circus. The upside is also obvious. Todd said 'wow, thanks, Marcus' to six pages. He may enjoy a circus."
       ],
       "effects": [
@@ -66,7 +66,7 @@
     "ask_kyle": {
       "them": [
         "I messaged him. Quote: 'who is the banana guy. is he in trouble. i liked it. i had 2 friends and now i have 3. also can i have cheats for halo.' I informed him cheats are off-topic. I informed him there is a search function. There isn't one. I told him gently.",
-        "Malten. He said 'now i have 3.' Three. He counted. I have told eleven thousand people to use the search function and not one of them has ever said 'three.'"
+        "{you}. He said 'now i have 3.' Three. He counted. I have told eleven thousand people to use the search function and not one of them has ever said 'three.'"
       ],
       "effects": [
         { "type": "status", "from": "kyle", "delay": 20, "text": "kyle is at 3 friends now. 3. one is a banana guy. he yells but its a welcome i think. theres a rules guy too. he told me about the search function. there isnt one. he was nice about it" }
@@ -135,7 +135,7 @@
     "verdict": {
       "them": [
         "Sticky has been brought forward. Banana's name was read aloud, in full, in a lowered voice. Sticky flared. At his reflection. At the lid. At the ladle. The record shows a flare. I am not certain at what.",
-        "Dave: 'guilty!' Gary: 'the record is inconclusive under [7.1].' Patrick: 'he flared because he's happy.' Todd: 'haha this is the best thing on the site.' Malten, I believe I have lost control of my own courtroom."
+        "Dave: 'guilty!' Gary: 'the record is inconclusive under [7.1].' Patrick: 'he flared because he's happy.' Todd: 'haha this is the best thing on the site.' {you}, I believe I have lost control of my own courtroom."
       ],
       "choices": [
         { "say": "let the betta decide. 'guilty by flare.' warning 117 stands. thread locked. (it won't lock.)", "next": "end_trial" },
@@ -162,7 +162,7 @@
     "end_amended": {
       "them": [
         "Decided. Friday I hand him the application. Page 7 is Rule 2d, with the Banana dismissal attached as Exhibit A. I have also posted v3.3 now, so the members see the amendment before Todd does. That is called transparency. It is also called nerves.",
-        "I am going to eat the sandwich on Thursday as a test. If it is still a good sandwich, it will survive Friday. If it is not, I am bringing two. Thank you, malten. This is, procedurally, the best hour I have had since the Mod of the Month nomination. Thread locked. (Left open for Todd.)"
+        "I am going to eat the sandwich on Thursday as a test. If it is still a good sandwich, it will survive Friday. If it is not, I am bringing two. Thank you, {you}. This is, procedurally, the best hour I have had since the Mod of the Month nomination. Thread locked. (Left open for Todd.)"
       ],
       "end": true,
       "effects": [

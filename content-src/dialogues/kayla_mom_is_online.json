@@ -2,7 +2,7 @@
  "id": "kayla_mom_is_online",
  "with": "kayla",
  "opener": [
-  "malten. EMERGENCY. my mom took the scanner from the attendance office. it is on our kitchen table right now. it is PLUGGED IN",
+  "{you}. EMERGENCY. my mom took the scanner from the attendance office. it is on our kitchen table right now. it is PLUGGED IN",
   "she is scanning my entire childhood and putting it on ourspace. there is a bulletin. it is called KAYLA THROUGH THE YEARS. there r 3 albums and the first one has a bath in it",
   "it goes up at midnight bc 'the rates are lower.' there are no rates. i dont know what rates she means. help"
  ],
@@ -17,7 +17,7 @@
   "bath_pic": {
    "them": [
     "im 3. im in a tub w/ bubbles up to my chin. i have a duck shower cap on and im holding a spatula like a sword. my face says 'i am the CEO of bath.' she says its 'the best one.' she says everyone will 'love it'",
-    "malten brittany will find it. lexi will find it. HER WHOLE HOMEROOM will find it, she friended all of them. and bryan. bryan will see me w/ a DUCK on my HEAD and then hes gonna be at practice thinking about it while he drums"
+    "{you} brittany will find it. lexi will find it. HER WHOLE HOMEROOM will find it, she friended all of them. and bryan. bryan will see me w/ a DUCK on my HEAD and then hes gonna be at practice thinking about it while he drums"
    ],
    "effects": [
     { "type": "bulletin", "from": "debbie", "delay": 15, "subject": "COMING TONIGHT AT MIDNIGHT: KAYLA THROUGH THE YEARS", "text": "Hello everyone!! Tonight at midnight (the rates are lower) I will be uploading Albums 1 through 3 of KAYLA THROUGH THE YEARS. Album 1: Baby. Album 2: Toddler (with the duck). Album 3: The Teeth Years (kindergarten to now). Kayla has asked me to 'not.' I have heard her. I am doing it with love. Bring tissues. Love, Mom" }
@@ -31,7 +31,7 @@
   "bryan_reacts": {
    "them": [
     "ok. telling him. typed: 'hi. my mom is scanning baby pics tonite. there is a duck hat. dont be weird.' sent. he replied in 40 seconds. thats a WORLD RECORD for him",
-    "'k. send me the duck.' then 'i mean not send. i wanna see. all of them.' then 'i show up. thats the thing i do.' MALTEN HE SAID THE SHOW-UP THING. from his survey. he DOESNT KNOW i read his survey"
+    "'k. send me the duck.' then 'i mean not send. i wanna see. all of them.' then 'i show up. thats the thing i do.' {you} HE SAID THE SHOW-UP THING. from his survey. he DOESNT KNOW i read his survey"
    ],
    "effects": [
     { "type": "wallpost", "from": "bryan", "to": "kayla", "delay": 20, "text": "kayla. i saw the bulletin. im gonna look at the duck. im not gonna be weird. ok i might be a little weird. practice at 6." }
@@ -44,7 +44,7 @@
   "negotiate": {
    "them": [
     "ok. i went down w/ a post-it that said TERMS. i stuck it on the scanner. she read it and corrected my commas",
-    "her counter: 'i will remove the bath. i will keep the duck hat. they are separate photographs.' malten she split the bath from the HAT. they r 2 pics. she works the attendance window. she negotiates w/ 400 teenagers a day"
+    "her counter: 'i will remove the bath. i will keep the duck hat. they are separate photographs.' {you} she split the bath from the HAT. they r 2 pics. she works the attendance window. she negotiates w/ 400 teenagers a day"
    ],
    "choices": [
     { "say": "take it. a duck hat by itself is almost cute. cut ur losses.", "next": "midnight" },
@@ -88,7 +88,7 @@
   "walt_letter": {
    "them": [
     "i asked. he wrote back in 9 min. printed. 'Dear Kayla, The record is this. Your grandmother kept every picture of your mother in a drawer in the hall. She would visit the drawer when the house was quiet. Dorothy would have liked a scanner. Your mother is not trying to embarrass you. She is trying to get in the room. Regards, Grandpa.'",
-    "malten i read it standing up in my kitchen and i had to sit on the floor. he doesnt SAY things. he mails them"
+    "{you} i read it standing up in my kitchen and i had to sit on the floor. he doesnt SAY things. he mails them"
    ],
    "choices": [
     { "say": "go downstairs. dorothy would have wanted a scanner. so would u, probably.", "next": "end_top8" },
@@ -108,7 +108,7 @@
   "boxes": {
    "them": [
     "she showed me. box 1: hospital bracelet and a lock of hair in a snack bag. box 2: every drawing i ever made of 'my family' (courtney is always bigger than me in every single one, w/ no hands). box 3: just pictures of my face asleep. box 4: the bath",
-    "she says courtney doesnt call. she says the house gets quiet at 4. she says she joined ourspace so she could 'be where i already am.' malten shes not trying to embarrass me. shes trying to get in the room"
+    "she says courtney doesnt call. she says the house gets quiet at 4. she says she joined ourspace so she could 'be where i already am.' {you} shes not trying to embarrass me. shes trying to get in the room"
    ],
    "effects": [
     { "type": "status", "from": "debbie", "delay": 20, "text": "debbie is at the kitchen table with a box and her daughter. the scanner is off." }
@@ -121,7 +121,7 @@
   "compromise": {
    "them": [
     "ok so we did the thing. 6 she picked, 6 i picked. she picked the bath. i picked us at the pumpkin patch where shes holding a pumpkin like a baby. we looked at each other. we r the same person",
-    "then it fell out of my mouth. i said 'do u want to be on my top 8.' she said 'what is that.' i said its a ranking. she said 'where would i be.' malten i dont know where to put my own MOM"
+    "then it fell out of my mouth. i said 'do u want to be on my top 8.' she said 'what is that.' i said its a ranking. she said 'where would i be.' {you} i dont know where to put my own MOM"
    ],
    "choices": [
     { "say": "#8. its the 'people ur not mad at' slot. say it out loud.", "next": "end_top8" },
@@ -178,7 +178,7 @@
   "end_embrace": {
    "them": [
     "i did it. i put up my own status first, then i told her go. she hit upload and the whole bathroom ceiling in my brain fell down. 47 pics. all 3 albums. the bath. the duck. the retainer one that isnt even a baby",
-    "and malten. nobody is being mean. 11 comments in 5 min. lexi wants her to be her mom now. bryan commented on the duck. i cant even look. ok i looked. he put 'best hat ive seen' and i had to lie down on the floor"
+    "and {you}. nobody is being mean. 11 comments in 5 min. lexi wants her to be her mom now. bryan commented on the duck. i cant even look. ok i looked. he put 'best hat ive seen' and i had to lie down on the floor"
    ],
    "end": true,
    "effects": [
@@ -210,7 +210,7 @@
    "effects": [
     { "type": "status", "from": "debbie", "delay": 30, "text": "debbie put the scanner back in its box. it goes back to the attendance office in the morning. she is fine." },
     { "type": "wallpost", "from": "walt", "to": "kayla", "delay": 90, "text": "Dear Kayla, Your mother telephoned to say she is fine. She said it three times. In 34 years on Route 14 I learned that a person who says it three times is not. I enclose nothing. I only thought you should know. Regards, Grandpa" },
-    { "type": "dm", "from": "brittany", "delay": 150, "text": "malten. whatever happened at kaylas tonight, her moms status says 'fine' and kaylas page says NOTHING. ive never seen both be quiet at the same time. im going over there w/ limeades and a chart. dont tell her i told u. xoxo" }
+    { "type": "dm", "from": "brittany", "delay": 150, "text": "{you}. whatever happened at kaylas tonight, her moms status says 'fine' and kaylas page says NOTHING. ive never seen both be quiet at the same time. im going over there w/ limeades and a chart. dont tell her i told u. xoxo" }
    ]
   }
  }

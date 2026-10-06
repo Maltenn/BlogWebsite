@@ -27,7 +27,7 @@
   "tell_kayla": {
    "them": [
     "ok. texted her. 'i said yea to greg too. the show is at 7. im sorry. ill figure it out.' sent it from the cupholder (the phone was in the cupholder)",
-    "she replied in 3 seconds. 'ok.' with a period. malten. the period. kayla has never used a period. she uses 'xox' and 3 dots. a period is a closed door"
+    "she replied in 3 seconds. 'ok.' with a period. {you}. the period. kayla has never used a period. she uses 'xox' and 3 dots. a period is a closed door"
    ],
    "effects": [
     { "type": "status", "from": "kayla", "delay": 15, "text": "kayla is ~*~ ok. ~*~ (that is the whole status) (the period is on purpose)" }
@@ -95,7 +95,7 @@
   "call_greg": {
    "them": [
     "asked greg. he said 'no.' then 'no' again. then 'a set list is a promise, bryan.' then 'the closer closes. thats the whole job of the closer.' he is wearing a shirt that says STATIC PROPHECY in sharpie. he made the shirt",
-    "then he said 'kevin is available on the pad' like it was a threat. malten kevin is ALWAYS available on the pad"
+    "then he said 'kevin is available on the pad' like it was a threat. {you} kevin is ALWAYS available on the pad"
    ],
    "effects": [
     { "type": "status", "from": "greg", "delay": 20, "text": "greg is not moving the set list. a set list is a promise. the closer closes. (drums, usually)" }

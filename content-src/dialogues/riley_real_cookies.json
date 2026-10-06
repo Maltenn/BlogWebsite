@@ -2,7 +2,7 @@
  "id": "riley_real_cookies",
  "with": "riley",
  "opener": [
-  "malten. ok. i need u to be SO serious for like four minutes. can u do that. u can go back to being random after, i'll hold ur invisible cookie",
+  "{you}. ok. i need u to be SO serious for like four minutes. can u do that. u can go back to being random after, i'll hold ur invisible cookie",
   "i have been lying to everybody on this site for a year. about the invisible cookies",
   "they're not invisible. they were never invisible. there's a tin under my bed and flour on Destiny and i cannot explain the flour"
  ],
@@ -80,7 +80,7 @@
   },
   "practice": {
    "them": [
-    "...practice. for handing people something. wait. wait wait wait. malten that's actually what it was",
+    "...practice. for handing people something. wait. wait wait wait. {you} that's actually what it was",
     "every invisible cookie was a rehearsal for somebody saying thank u. i've gotten like 400 thank-yous for NOTHING. i'm so good at the part where they say it. i've just never given anyone a real thing to say it about"
    ],
    "choices": [
@@ -136,7 +136,7 @@
   "tell_misery": {
    "them": [
     "ok i texted her. 'i have a thing to tell u and it's not about rawr.' she goes 'is it worse than zorp.' i said it's COOKIES. she went quiet for like 3 whole minutes. i held Destiny the whole time",
-    "then she called. she said 'riley. do they taste good.' i said yeah. she said 'then why are u whispering.' malten i don't know why i'm whispering"
+    "then she called. she said 'riley. do they taste good.' i said yeah. she said 'then why are u whispering.' {you} i don't know why i'm whispering"
    ],
    "effects": [
     { "type": "status", "from": "misery", "text": "misery just got a text from riley that said 'it's cookies.' misery has thoughts. misery will share them at the mall. rawr (what KIND of cookies)", "delay": 20 }
@@ -189,7 +189,7 @@
   },
   "end_ribbon": {
    "them": [
-    "MALTEN. 2ND PLACE. orange ribbon. junior snickerdoodles. the lady from kowalski's bakery said 'the crackle on top is correct' and i almost fell INTO the table",
+    "{you}. 2ND PLACE. orange ribbon. junior snickerdoodles. the lady from kowalski's bakery said 'the crackle on top is correct' and i almost fell INTO the table",
     "then at the mall i put the tin on the table in front of misery and kitty and said 'they're real.' misery bit one. she did THE FACE. i've never seen the face!!! i waited a whole year for the face!!!",
     "rawr stays split but 'snickerdoodle' is HERS now. it means i love u in cookie. we fought about the trademark for 9 more minutes and then ate every single one. thank u. u get the next real one. it's got ur name on it (visibly)"
    ],
@@ -211,7 +211,7 @@
    "effects": [
     { "type": "status", "text": "riley is eating a cookie at the bus stop. a real one. by herself. it's perfect. it's a secret. (it's a little sad) (it's mostly perfect) rawr xD", "delay": 15 },
     { "type": "status", "from": "patrick", "text": "patrick ate a mystery cookie at the rec center. it was the best cookie of his life. he looked at the recipe card for a long time. there was a tiny raccoon stripe drawn on it. he is not saying anything. dwayne is also not saying anything", "delay": 50 },
-    { "type": "dm", "from": "raven", "text": "Malten. I was at the bake-off for my aunt's pie (third place; do not ask). 'A Friend of the Parish' won first with snickerdoodles. The recipe card in the display case had a very small raccoon stripe drawn in the margin. I know exactly one person who draws those. I will not tell anyone. I am telling you because you seem to be the person people tell things to. Please let her know the card was the best-looking thing in the case. I took a cookie. It was extremely good. - Raven", "delay": 100 }
+    { "type": "dm", "from": "raven", "text": "{you}. I was at the bake-off for my aunt's pie (third place; do not ask). 'A Friend of the Parish' won first with snickerdoodles. The recipe card in the display case had a very small raccoon stripe drawn in the margin. I know exactly one person who draws those. I will not tell anyone. I am telling you because you seem to be the person people tell things to. Please let her know the card was the best-looking thing in the case. I took a cookie. It was extremely good. - Raven", "delay": 100 }
    ]
   },
   "end_roulette": {
@@ -225,7 +225,7 @@
     { "type": "bulletin", "subject": "COOKIE ROULETTE RESULTS (11 invisible, 1 real) (+6 in my backpack)", "text": "kitty: REAL. randy: invisible (he said it was 'crunchy'). misery: invisible (she said 'it's chocolate chip' and i said 'ur right'). the 6 backpack cookies: gone in 4 min. i have a new job. every saturday. bring ur hand. rawr xD", "delay": 20 },
     { "type": "status", "from": "kittyxcore", "text": "kittyxcore is covered in cinnamon sugar and does not want to talk about it. (it was good.) (cookie roulette. ask riley.) (paige has it on film) =^.^=", "delay": 50 },
     { "type": "wallpost", "from": "misery", "to": "riley", "text": "riley the napkin said RAWR on it. we need to talk. at the mall. with cookies. also i have never been so proud of u. rawr <3", "delay": 85 },
-    { "type": "wall", "from": "randy", "text": "malten i got an invisible one and i said 'it's chocolate chip' and riley said 'u know it' and i'm pretty sure i tasted it. PIE. ...kitty got the real one. kitty is mad at me for no reason.", "delay": 130 }
+    { "type": "wall", "from": "randy", "text": "{you} i got an invisible one and i said 'it's chocolate chip' and riley said 'u know it' and i'm pretty sure i tasted it. PIE. ...kitty got the real one. kitty is mad at me for no reason.", "delay": 130 }
    ]
   }
  }

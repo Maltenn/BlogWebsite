@@ -2,7 +2,7 @@
   "id": "yvette_last_name_on_the_list",
   "with": "yvette",
   "opener": [
-    "malten. It is 10:47 PM on a Thursday. Ballots close tomorrow at 3:00 PM and I am in Room 112 with a granola bar, a steel ruler and a problem.",
+    "{you}. It is 10:47 PM on a Thursday. Ballots close tomorrow at 3:00 PM and I am in Room 112 with a granola bar, a steel ruler and a problem.",
     "The Ghost List is down to ONE name. It was 61 in September. I have found people in the band room, the library and a freshman bathroom (long story, he's the photo editor now). One name left. Garrett Pell.",
     "My opponent. He appears in exactly one photograph in this yearbook: the Free Pizza Friday sign-up table, shot from behind. You can see his ear. The Rule of Two says he gets a second photo. The Night Before The Election says I should ask somebody calm what to do. (Briefly. It is 10:47.)"
   ],
@@ -41,7 +41,7 @@
       "them": [
         "Sent. He answered in forty seconds, which means he is awake, which is the first thing the two of us have ever had in common.",
         "Transcript, for the record. He: 'sure. do I have to bring anything.' Me: 'no.' He: 'do I have to smile.' Me: 'that is up to you.' He: 'ok. I'm up redoing my budget anyway.' Then: 'am I only in the book once?'",
-        "I wrote 'yes.' He wrote: 'oh. I figured you might leave me out. for the vote.' malten, I didn't write back for eleven seconds. I counted them. I don't know why those eleven seconds happened. I do not leave people out. It is the one thing I do."
+        "I wrote 'yes.' He wrote: 'oh. I figured you might leave me out. for the vote.' {you}, I didn't write back for eleven seconds. I counted them. I don't know why those eleven seconds happened. I do not leave people out. It is the one thing I do."
       ],
       "choices": [
         { "say": "say it back to him in one sentence: nobody gets left out on your watch. that includes him.", "next": "a_where" },
@@ -52,7 +52,7 @@
     "a_where": {
       "them": [
         "Sent. (I asked where regardless. I am incapable of not asking where.) Not the gym. Not the cafeteria, where the pizza table lives. He wrote: 'by the second floor fountain. the one that doesn't work yet.'",
-        "I said 'that's Plank 3.' He said 'I know. I read the whole platform. it's the best one.' malten. Nobody has read the platform. Todd called it 'structured.' My own mother skimmed it for the word 'casserole.'",
+        "I said 'that's Plank 3.' He said 'I know. I read the whole platform. it's the best one.' {you}. Nobody has read the platform. Todd called it 'structured.' My own mother skimmed it for the word 'casserole.'",
         "Then: 'I'm not going to win. I ran because nobody else would and I like pizza. I'd just like to stand next to the thing you're right about.' I have written nine drafts of a platform. I have never once written a sentence like that."
       ],
       "effects": [
@@ -81,7 +81,7 @@
       "them": [
         "...'Good enough.' I want it noted that it hurt to type. Okay. Good enough. On time.",
         "It's 2:49. I'm at the fountain. He's already here, leaning on the dead button like it owes him money. His sash is crooked. I'm not going to fix his sash. (I'm going to fix his sash.) Three frames. One blink. I did NOT say 'one more.' I said 'thank you.'",
-        "And now he's holding my camera out to me. 'your turn.' I'm the editor, malten. The editor is in the book once: page 3, on the end, blurred because Gerald jammed. He said 'Rule of Two.' He said it like a person who read it."
+        "And now he's holding my camera out to me. 'your turn.' I'm the editor, {you}. The editor is in the book once: page 3, on the end, blurred because Gerald jammed. He said 'Rule of Two.' He said it like a person who read it."
       ],
       "choices": [
         { "say": "hand him the camera. the rule cuts both ways.", "next": "end_good" },
@@ -93,7 +93,7 @@
       "them": [
         "'As many takes as it needs.' ...Yes. That is the right answer and the wrong answer and I knew which one I'd pick.",
         "2:49. Take one: blink. Take two: fountain dust, he sneezes. Take three: Mr. Henderson walks past asking if this is the egg drop, and he is IN the frame, and he thanks me. Take four. It's perfect. It's 3:00:40. The shoebox is two flights down.",
-        "I'm standing here holding a camera in one hand and the page 114 proof in the other, and for the first time in my life the clock has gotten ahead of me. malten. What do I DO."
+        "I'm standing here holding a camera in one hand and the page 114 proof in the other, and for the first time in my life the clock has gotten ahead of me. {you}. What do I DO."
       ],
       "effects": [
         { "type": "status", "delay": 5, "text": "yvette is on the second floor with a perfect photograph of her opponent and about 20 seconds of slack. she has never been this far into a deadline. she says it's like standing 4 feet from the edge of a very organized cliff" }
@@ -107,7 +107,7 @@
     "debate_set": {
       "them": [
         "A DEBATE. At the fountain. Two candidates, one milk crate (it lives in the boiler room next to the sprinkler clipboard; we've met). Twelve words per answer. One minute each. Paige photographs it. She'll tilt it. She'll say it's 'on the record.'",
-        "I need a moderator with no ballot and no bias. Mr. Henderson has a whiteboard and a timer shaped like an egg. Marcus has asked three times and is, I suspect, typing right now. malten, that would be the best thing to ever happen to this election. It would also be a disaster with a gavel. Say it out loud so I know which."
+        "I need a moderator with no ballot and no bias. Mr. Henderson has a whiteboard and a timer shaped like an egg. Marcus has asked three times and is, I suspect, typing right now. {you}, that would be the best thing to ever happen to this election. It would also be a disaster with a gavel. Say it out loud so I know which."
       ],
       "choices": [
         { "say": "send the challenge. 'twelve words. 2:50. the crate.' let him say yes.", "next": "end_joint" },
@@ -131,7 +131,7 @@
       "them": [
         "'Funded to 7%.' That's three words. A caption is twelve. I'm counting. I hate that I'm counting.",
         "'Garrett Pell, mid-slice, funded to seven percent. The class treasury weeps quietly.' Twelve. TWELVE. It fits. I do have the frame: slice at his mouth, eyes closed, the best-composed photograph of a candidate I've ever taken. It's perfect and it's a trap.",
-        "malten. I just wrote a perfect caption about being mean. What does that say about me."
+        "{you}. I just wrote a perfect caption about being mean. What does that say about me."
       ],
       "choices": [
         { "say": "it says you're good at this. spend that skill on a nice message to him instead. ask for the photo.", "next": "a_draft" },
@@ -205,7 +205,7 @@
     "end_late": {
       "them": [
         "UPDATE, 3:04 PM. The photo is perfect. Page 114, level, nobody blinking, and he is looking at the camera like he already won something else.",
-        "I did both: I ran AND I called. (Not recommended. I dropped the strap twice.) I reached Room 112 at 3:02:22. Mr. Dombrowski had the ladder in both hands. He didn't say 'good enough.' He said 'you've got a minute.' I said 'yes.' To a MINUTE. malten, I have never said yes to a minute.",
+        "I did both: I ran AND I called. (Not recommended. I dropped the strap twice.) I reached Room 112 at 3:02:22. Mr. Dombrowski had the ladder in both hands. He didn't say 'good enough.' He said 'you've got a minute.' I said 'yes.' To a MINUTE. {you}, I have never said yes to a minute.",
         "I am eighty-two seconds late. It is the first time in my life. It feels like falling off a roof, but a gentle one, onto a couch."
       ],
       "end": true,

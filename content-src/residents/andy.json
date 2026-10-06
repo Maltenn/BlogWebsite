@@ -90,7 +90,7 @@
   "ok. thanks. saving this comment in the 'good clips' folder",
   "i'll make a video about that. 3 minutes. i'll tell you when it's thirsty. (i mean done) (i mean rendered)"
  ],
- "thanksAdd": "thanks for the add!! i'm making you a video. it's called 'malten: a place for friends (amv)'. 3 minutes. it's rendering. it'll be done in 6h 41m. there's a watermark in the top left. it's red. it says 'Unregistered HyperCam 2.' it's not about you. it's about me. i'll explain in the render.",
+ "thanksAdd": "thanks for the add!! i'm making you a video. it's called '{you}: a place for friends (amv)'. 3 minutes. it's rendering. it'll be done in 6h 41m. there's a watermark in the top left. it's red. it says 'Unregistered HyperCam 2.' it's not about you. it's about me. i'll explain in the render.",
  "ambient": [
   "render at 91%. movie maker has stopped responding. i'm not touching anything. i'm just sitting here next to it like it's a hospital",
   "pringles can update: $31.40. i was gonna put in $5 from my birthday money. then ben's training video needed 10 blank dvds. so, $31.40. the can understands",
@@ -170,20 +170,20 @@
  ],
  "dmSeed": [
   {
-   "text": "hi malten. andy. i made you a video. 3 minutes. it's rendering. it'll be done in about 6 hours 41 minutes (the computer says 4. don't believe it). there's a red watermark in the corner. it says 'Unregistered HyperCam 2.' it's not about you. i just want you to know it's coming and it's not a virus. ok bye."
+   "text": "hi {you}. andy. i made you a video. 3 minutes. it's rendering. it'll be done in about 6 hours 41 minutes (the computer says 4. don't believe it). there's a red watermark in the corner. it says 'Unregistered HyperCam 2.' it's not about you. i just want you to know it's coming and it's not a virus. ok bye."
   },
   {
    "text": "update: movie maker stopped responding at 91%. i'm sitting next to it. i'll let you know."
   }
  ],
  "dms": [
-  "malten quick question. is a video done when it renders or when somebody watches it. i made one 3 weeks ago and the view count is 9. i'm 8 of them. i'm trying to decide if it's finished",
+  "{you} quick question. is a video done when it renders or when somebody watches it. i made one 3 weeks ago and the view count is 9. i'm 8 of them. i'm trying to decide if it's finished",
   "my guidance counselor gave me a pamphlet for a film program at a state school. real editing lab. real software. no watermark. i put it in the pringles can. i haven't read it. i'm not scared. i'm saying i'm at 40%",
   "if you could pick any song for a video of your own life, what would you pick. don't say linkin park. i'll know. i'll still use it, but i'll know",
-  "malten do you think a progress bar lies. mine said 4 minutes remaining for an hour. but once it finished early. i don't think it's lying. i think it's nervous",
+  "{you} do you think a progress bar lies. mine said 4 minutes remaining for an hour. but once it finished early. i don't think it's lying. i think it's nervous",
   "i found a way to get rid of the watermark. i cropped it. now the video is 4 pixels shorter and the watermark is still there but smaller. it says 'Unreg.' like a name tag at school",
   "do you know how many frames are in a cry. i do. i counted. 22 if it's a sad one. 40 if it's a happy one. anyway that's what my night's about",
-  "malten my sister kelsey asked if she can be in a video. i said what would it be about. she said 'me, on neopets.' it's 3 minutes of her feeding a pet a sandwich. i've watched it 12 times. i think it's the best thing i've made. don't tell her. she'll want a budget"
+  "{you} my sister kelsey asked if she can be in a video. i said what would it be about. she said 'me, on neopets.' it's 3 minutes of her feeding a pet a sandwich. i've watched it 12 times. i think it's the best thing i've made. don't tell her. she'll want a budget"
  ],
  "blog": [
   {

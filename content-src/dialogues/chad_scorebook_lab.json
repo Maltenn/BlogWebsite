@@ -2,7 +2,7 @@
   "id": "chad_scorebook_lab",
   "with": "chad",
   "opener": [
-    "DUDE malten. EMERGENCY. u there?? its 10:40 PM and my lab report is due at 8 AM and i have a D in science and if i dont turn it in i CANT PLAY SATURDAY. its the PLAYOFF.",
+    "DUDE {you}. EMERGENCY. u there?? its 10:40 PM and my lab report is due at 8 AM and i have a D in science and if i dont turn it in i CANT PLAY SATURDAY. its the PLAYOFF.",
     "sven is on the trundle bed w/ a flashlight reading my lab sheet like its a BOOK. he said 'this is not difficult, chad.' he said it NICELY. he said it like a hug.",
     "i have the data!! we bounced a baseball off 3 floors w/ a ruler. but i dont know how to TYPE it into a REPORT. mr h says it needs a 'purpose' and a 'conclusion.' i know what a purpose is. its to PLAY. typing w/ one finger. help."
   ],
@@ -118,7 +118,7 @@
     "print_it": {
       "them": [
         "printing. the printer's out of black ink, so it's printing everything in a very light gray. it looks like a document that's whispering. dad said 'call the printer guy' and then we both realized there's no printer guy.",
-        "i have a stapler. i have a folder. i have a lab report that's light gray and not mine. malten. i keep looking at it and it keeps looking like a ghost wrote it."
+        "i have a stapler. i have a folder. i have a lab report that's light gray and not mine. {you}. i keep looking at it and it keeps looking like a ghost wrote it."
       ],
       "choices": [
         { "say": "staple it. turn it in. get the D out of the way. you did your best with what you had.", "next": "end_caught" },
@@ -165,7 +165,7 @@
     "site_oops": {
       "them": [
         "ok. i pressed the thing. i was going for 'message.' i think i hit 'bulletin.' i think it just went to EVERYONE. the whole thing. in caps. it said 'PLEASE READ' at the top, w/ the sticker, i don't know how that got there.",
-        "there's 14 comments. there's 14 MORE. someone named gary says there's an error in section '4.2b.' malten. there's no section 4.2b. i don't KNOW what's happening. i've never been this popular. i think it's the lab report."
+        "there's 14 comments. there's 14 MORE. someone named gary says there's an error in section '4.2b.' {you}. there's no section 4.2b. i don't KNOW what's happening. i've never been this popular. i think it's the lab report."
       ],
       "choices": [
         { "say": "don't delete it. let them read it. let the whole school be your lab partner.", "next": "end_bulletin" },
@@ -176,7 +176,7 @@
     "end_scorebook": {
       "them": [
         "it's in my bag. it's in a folder. there's a pencil drawing of a baseball next to the 'PURPOSE.' sven said 'lagom' in his sleep. i'm not going to say anything, but i think the word was 'tack.'",
-        "thanks, malten. i thought i was gonna have to choose between failing and cheating. turns out there was a 3rd option and it was my grandpa. GO EAGLES (quietly)."
+        "thanks, {you}. i thought i was gonna have to choose between failing and cheating. turns out there was a 3rd option and it was my grandpa. GO EAGLES (quietly)."
       ],
       "end": true,
       "effects": [
@@ -190,7 +190,7 @@
     "end_bulletin": {
       "them": [
         "THE WHOLE SITE IS READING MY LAB REPORT. i have 40 comments. gary found a mistake that wasn't a mistake. tim checked my math (it's right!!). somebody said the cinnamon bun was 'a bold control.' i'm gonna cry. i'm a LOUD cryer.",
-        "and mr h answered. 3 words: 'Received. Excellent. Printing.' i can't tell if that's a grade or a threat. thanks, malten. it's the first time my homework had an audience, and honestly?? it was a GOOD crowd."
+        "and mr h answered. 3 words: 'Received. Excellent. Printing.' i can't tell if that's a grade or a threat. thanks, {you}. it's the first time my homework had an audience, and honestly?? it was a GOOD crowd."
       ],
       "end": true,
       "effects": [
@@ -204,14 +204,14 @@
     "end_caught": {
       "them": [
         "turned it in at 7:55, light gray, stapled crooked. mr h read it at his desk during homeroom w/ his green pen. he stopped at the 2nd page. he put the pen down. he looked up and said, very quietly, 'Chad. Come see me at lunch.' sven turned into a very pale Swede.",
-        "he said 'lagom.' he said 'furthermore.' he said 'I have taught neither.' he's not mad, malten. he said 'we'll fix this together.' that's worse. i'd rather be mad at. i need to go sit w/ my glove in my lap for a while."
+        "he said 'lagom.' he said 'furthermore.' he said 'I have taught neither.' he's not mad, {you}. he said 'we'll fix this together.' that's worse. i'd rather be mad at. i need to go sit w/ my glove in my lap for a while."
       ],
       "end": true,
       "effects": [
         { "type": "status", "text": "chad has a meeting in room 114 at lunch. he's FINE. he's NOT fine. (he's fine.) (his glove is on his lap.) GO EAGLES (quietly)" },
         { "type": "wallpost", "from": "henderson", "to": "chad", "delay": 60, "text": "Chad, your report contains the word 'lagom' and a correctly used semicolon. I have taught neither. Room 114, lunch, bring Sven and a pencil. We will rewrite it together, in your own words. This is not a punishment. It is a lab. (A lab is a place where we find out what happens. That was not a pun. That was a definition.) -- Mr. H" },
         { "type": "status", "from": "sven", "delay": 130, "text": "sven has done something he believed was kind. it was not kind. he has learned that a shortcut is a long way home. (this is not a Swedish proverb. he made it up. it is true. he has put it on page 44.)" },
-        { "type": "dm", "delay": 480, "text": "malten. ok. mr h let me redo it at lunch w/ a pencil. i used the scorebook thing. he LOVED the scorebook thing. sven sat next to me and didn't write a single word. he held the ruler. i got a C-. it's the best C- of my life. i'm still eligible. i think i'm gonna be OK. (i'm a LITTLE bit bold, i hit something.)" }
+        { "type": "dm", "delay": 480, "text": "{you}. ok. mr h let me redo it at lunch w/ a pencil. i used the scorebook thing. he LOVED the scorebook thing. sven sat next to me and didn't write a single word. he held the ruler. i got a C-. it's the best C- of my life. i'm still eligible. i think i'm gonna be OK. (i'm a LITTLE bit bold, i hit something.)" }
       ]
     }
   }

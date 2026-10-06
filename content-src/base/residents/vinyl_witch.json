@@ -1,0 +1,148 @@
+{
+  "id": "vinyl_witch",
+  "name": "vinyl_witch",
+  "tag": "your record collection is a cry for help. so is mine.",
+  "avatar": "assets/avatar_witch.gif",
+  "age": 26,
+  "loc": "the good record store (not that one, the other one)",
+  "mood": "judging your shelf 🔮",
+  "lastLogin": "yesterday",
+  "theme": {
+    "bg": "#1a0f2e",
+    "fg": "#e6dcf5",
+    "accent": "#05ffa1"
+  },
+  "about": "i collect vinyl and small grudges. i can tell your entire personality from your top 5 records and i WILL. first pressing or it doesn't count (it counts, i'm just like this). currently spinning: something you've never heard of, obviously.",
+  "interests": {
+    "General": "vinyl (first pressing or it doesn't count, it counts), tea, small grudges, sigils in silver sharpie, thrift store crates, alphabetizing by aura, candles that flicker at the right moment",
+    "Music": "yes. fine: nick drake, cocteau twins, portishead, joanna newsom, the velvet underground, neutral milk hotel (the record, not the CD, don't), donovan, side B of everything",
+    "Movies": "high fidelity (a documentary), almost famous, the craft (obviously), practical magic, ghost world, empire records (a lesser spell but a spell)",
+    "Television": "I don't own a television. I own a turntable. fine: buffy, and the twilight zone in black and white at 3am, and nothing else.",
+    "Books": "our band could be your life, the tarot deck (a book if you read it correctly), please kill me, practical magic (the book, better), any liner notes over 4 pages",
+    "Heroes": "whoever mastered side B, the woman who runs the good record store, stevie nicks, my familiar (a cat, judgmental), todd (only good admin)"
+  },
+  "song": {
+    "name": "Season of the Witch",
+    "artist": "Donovan",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/8c/34/97/8c3497ac-a2e4-3fd0-0134-cd589afa50fc/mzaf_9610603533253571809.plus.aac.p.m4a",
+    "pattern": [
+      0,
+      7,
+      5,
+      7,
+      3,
+      5,
+      0,
+      null
+    ],
+    "bpm": 108
+  },
+  "decor": [
+    "assets/deco_record_dj.gif",
+    "assets/deco_fairy.gif"
+  ],
+  "gender": "Female",
+  "hometown": "Athens, GA (the record store side, not the college side)",
+  "zodiac": "Taurus (yes. the shelf thing. starxgazer already told me.)",
+  "status": "In a Relationship (with a 1972 Technics turntable. it's serious.)",
+  "hereFor": "Friends, Networking, judging your shelf, being right",
+  "blogTitle": "side B: notes from the good record store",
+  "meet": "someone whose top 5 records I can't guess in under a minute. it hasn't happened yet. also nick drake, so I can tell him to eat something and that side A of pink moon is a spell. and whoever mastered side B of anything, to say thank you.",
+  "pcComments": [
+    "there is a record shelf behind you in this photo and I have already read it. we need to talk. lovingly. mostly.",
+    "good lighting. it's the kind of light that suits a first pressing. you have a side-A face. I mean that warmly, barely.",
+    "I see the ipod in your hand and I forgive you, but only because the photo is lovely and the tarot said to be gentle this week.",
+    "this photo smells like 1974 and I say that as the highest praise I have. keep it. don't let photobucket lose it.",
+    "the candle in the background is at the correct height. you may not know why that matters. it matters. beautiful picture."
+  ],
+  "statusesExtra": [
+    "vinyl_witch has learned that a certain producer is 'sampling' from 'the classics.' darling. you cannot sample what you have never held. come to the store. bring a notebook.",
+    "vinyl_witch alphabetized the 13 newcomers by aura. results: two poets (one real, one glitter, both fine), a drummer, and someone who owns leopard print AND a hello kitty room. the cards are silent on that one.",
+    "vinyl_witch found a raven on the fence post this morning. then a 'raven' on the site. the universe is not subtle. brewing a second pot.",
+    "vinyl_witch is playing pink moon at exactly the right volume for a thursday. the candle agrees. that is the whole update."
+  ],
+  "banterExtra": {
+    "raven": [
+      "raven. finally. someone who owns a bauhaus record and has played it. we may be the only two adults here. come by the store, I'll put on the good pressing of juju and we can judge shelves together.",
+      "you said scene kids ruined it. nothing is ruined that's still spinning, darling. but I did move you to spot two in my top 8. don't tell the moon. or darkangel. they're both sensitive."
+    ],
+    "smoove": [
+      "smoove, dear, you 'sampled' my profile song. the crackle you kept is from MY copy of the record. I know that crackle personally. it's a good beat. I'm still upset. both things are true.",
+      "I listened to 'feat. everyone' by candlelight as I do. the candle flickered at the drop, which is either a good omen or a draft. I'll allow the track. bring the beat to the store; it needs a real bass."
+    ],
+    "kayla": [
+      "kayla, you post a lyric every time your status changes and I've noticed they're always from the same album. sweetheart. own the record. play it start to finish. side B has the answer you're looking for.",
+      "'it's complicated' with a lyric under it is the most honest status on this site. I put the record on for you tonight. the candle went out at track 6. that's the track. listen to that one."
+    ]
+  },
+  "banter": {
+    "greg": [
+      "greg, I drew a sigil of protection on your demo CD-R in silver sharpie. it now counts as a limited pressing of one. guard it accordingly.",
+      "listened to Static Prophecy by candlelight. track two has real promise, and the candle only went out once. that's a good omen, mostly."
+    ],
+    "nikki": [
+      "nikki, dear, you cannot nightcore a first pressing. you can, however, nightcore my heart, apparently, because your remix has been in my head for three days. curses.",
+      "the original recording is a spell as cast. your 1.5x version is the same spell, shouted. ...I respect a bold practitioner. carry on."
+    ],
+    "lucas": [
+      "lucas I peered into your shelf, as is my way. nu-metal on CD, fine, but you own ONE record and it's still in shrink wrap. unwrap it. records want to be played, little storm cloud.",
+      "your favorite lyric is, technically, about feelings the blues already covered in 1937. come over. I have something to play you. bring tissues."
+    ],
+    "brittany": [
+      "brittany your profile song sparkles like a scratched 45 and I mean that warmly. tell me the first album you ever loved and I'll tell you who you are. xoxo, as your people say.",
+      "I hearted your playlist. yes, witches heart things now. the pink glitter text made my familiar sneeze, but the taste underneath is genuine."
+    ]
+  },
+  "statuses": [
+    "vinyl_witch is alphabetizing the new members by aura. so far: promising, chaotic, promising, chaotic, chad.",
+    "vinyl_witch found a first pressing at the church sale for $2. the universe provides, and the universe does not know what it owns.",
+    "vinyl_witch is brewing tea and judging shelves from afar. lovingly. always lovingly."
+  ],
+  "bulletins": [
+    {
+      "subject": "SURVEY: what does your shelf say about you (I already know)",
+      "body": "a little survey, my darlings. 1) first album you bought with your own money. 2) the album you CLAIM is your favorite. 3) your actual favorite (I will know if these differ, the cards told me). 4) CDs, records, or — be brave — both. new members, consider this your initiation. no wrong answers, only revealing ones. blessed be, keep your needles clean. ~vw",
+      "time": "Jun 27 2026 7:33 PM"
+    }
+  ],
+  "friends": [
+    "darkangel",
+    "starxgazer",
+    "todd",
+    "herp",
+    "malten"
+  ],
+  "wall": [
+    {
+      "from": "darkangel",
+      "text": "played the record you gave me at midnight. my candles flickered. 10/10",
+      "time": "Jul 3 2026 12:04 AM"
+    },
+    {
+      "from": "herp",
+      "text": "herp.",
+      "time": "Jul 2 2026 3:00 PM"
+    },
+    {
+      "from": "todd",
+      "text": "Your profile song was skipping so I fixed the server. It was the laptop again.",
+      "time": "Jun 28 2026 9:12 PM"
+    }
+  ],
+  "replies": [
+    "hm. correct opinion, surprisingly. keep going.",
+    "i had that exact take years ago. welcome. you're late but welcome.",
+    "this comment has strong side-A energy. i mean that as a compliment. barely.",
+    "burning this comment onto a mixtape of things people said to me. track 4."
+  ],
+  "thanksAdd": "accepted. your aura sounds like a first pressing. don't make me regret this.",
+  "ambient": [
+    "found a record today that smells like 1974. not for sale. not for listening. just for having.",
+    "psa: if your turntable is on a wobbly table we cannot be friends. fix it. then we can."
+  ],
+  "saltyDm": "denied? fine. your loss. i was going to let you hear the good copy of the record. the GOOD one.",
+  "keywords": {
+    "vinyl": "ok NOW we're talking. what pressing? think carefully. everything depends on this.",
+    "spotify": "spotify??? in MY dms??? get a turntable and speak to me again."
+  }
+}

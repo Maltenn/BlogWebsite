@@ -3,8 +3,8 @@
  "with": "adam",
  "opener": [
   "thanks 4 the add!!! (u haven't added me yet, i'm early, it's a habit)",
-  "malten i did a thing. vince asked me 2 be the CONDUCTOR of the TEEN NITE add train. it's FRIDAY at the Rollerdome. first 50 free. i sent the invite 2 all 10,412 of my friends at 12:40 AM. it's 3:18 now",
-  "so far: 3 yeses. 41 maybes. 1 'who is this.' 1 'lol' (i'm counting the lol). malten if i ask 10,412 people 2 come somewhere and 3 come then i'll KNOW the number. i don't wanna know the number. can u un-send 10,412"
+  "{you} i did a thing. vince asked me 2 be the CONDUCTOR of the TEEN NITE add train. it's FRIDAY at the Rollerdome. first 50 free. i sent the invite 2 all 10,412 of my friends at 12:40 AM. it's 3:18 now",
+  "so far: 3 yeses. 41 maybes. 1 'who is this.' 1 'lol' (i'm counting the lol). {you} if i ask 10,412 people 2 come somewhere and 3 come then i'll KNOW the number. i don't wanna know the number. can u un-send 10,412"
  ],
  "nodes": {
   "start": {
@@ -37,7 +37,7 @@
   "bigger": {
    "them": [
     "OOOH. a countdown. ok. 'THE ROLLERDOME TEEN NITE: T-MINUS 48 HRS. FIRST 50 FREE. FIRST 3 GET A CHERRY (from me, from the Dairy Dream, 3 cherries in a cup).' ok posted. i put a train sticker on it. i have 214 train stickers",
-    "it's up. it's re-sent 2 all 10,412. 3 more yeses already (it's 3:31). 1 person wrote 'stop.' i'm counting that as engagement. vince just wrote 'MY GUY' in 14 capital letters. he said 'IT'S GONNA BE HUGE.' malten i think it's gonna be big. i think i'm scared of big"
+    "it's up. it's re-sent 2 all 10,412. 3 more yeses already (it's 3:31). 1 person wrote 'stop.' i'm counting that as engagement. vince just wrote 'MY GUY' in 14 capital letters. he said 'IT'S GONNA BE HUGE.' {you} i think it's gonna be big. i think i'm scared of big"
    ],
    "effects": [
     { "type": "bulletin", "delay": 10, "subject": "TEEN NITE: T-MINUS 48 HOURS (ADD TRAIN SPECIAL) (FIRST 3 GET A CHERRY)", "text": "ALL ABOARD!!! The Late Train is leaving the station and the station is the Rollerdome!!! Friday, doors at 7, first 50 free, skate rental $2. 1. Add the person above u. 2. Add the person below u. 3. COME IN PERSON!!! (that's new.) The first 3 people through the door get a cherry from the Dairy Dream (i'm bringing them in a cup, it's a good cup). I'll be the one with the name tag. I'll say 'hi i'm adam.' choo choo!!! - Adam, Conductor" }
@@ -50,7 +50,7 @@
   "vince_call": {
    "them": [
     "i called vince. on the phone. a real one, the kitchen one w/ the long cord. he picked up on the 2nd ring and said 'ROLLERDOME TEEN NITE THIS IS VINCE' and i said 'hi i'm adam' and he said 'MY GUY' and then he was quiet for 4 seconds which for vince is a year",
-    "he said 'adam can i tell u something. it's never huge. last week was 42. the regulars are rhonda (she has the whistle) and a kid named stu who only does the limbo and me. i say HUGE bc if i say medium nobody comes. u have 10 thousand friends. i have 42 people. i'm scared u'll come and think it's small.' malten i said 'it's the biggest thing i've ever been invited 2.'"
+    "he said 'adam can i tell u something. it's never huge. last week was 42. the regulars are rhonda (she has the whistle) and a kid named stu who only does the limbo and me. i say HUGE bc if i say medium nobody comes. u have 10 thousand friends. i have 42 people. i'm scared u'll come and think it's small.' {you} i said 'it's the biggest thing i've ever been invited 2.'"
    ],
    "effects": [
     { "type": "wallpost", "from": "vince", "to": "adam", "delay": 20, "text": "ADAM!!! MY GUY!!! the TEEN NITE street team has a CONDUCTOR!!! doors at 7!!! it's gonna be HUGE!!! (it's gonna be medium. i'm ok w/ medium. bring a friend.)" }
@@ -76,7 +76,7 @@
   "tony_reply": {
    "them": [
     "i wrote tony. 'dear tony. there's a thing at a roller rink. would u come. it's ok if not.' (i don't usually say 'it's ok if not.' i say 'choo choo.') he wrote back in 40 sec. 'brother. i'm in.' then 'i've never been 2 a rink. i can't skate. i can't skate backwards. i can't skate forwards. i can fall elegantly ;)'",
-    "then he wrote 'u know i'm 0 for 53 right. at the other thing. but i've never been 0 at showing up. bring that cup of cherries.' malten HE SAID SHOWING UP. he said 'brother' 3 times. i printed it. i don't have a printer. i copied it by hand"
+    "then he wrote 'u know i'm 0 for 53 right. at the other thing. but i've never been 0 at showing up. bring that cup of cherries.' {you} HE SAID SHOWING UP. he said 'brother' 3 times. i printed it. i don't have a printer. i copied it by hand"
    ],
    "effects": [
     { "type": "wallpost", "from": "tony", "to": "adam", "delay": 15, "text": "adam. brother. i have been practicing my wink for the rink. 200 screenshots. look 4 the collar. i'll be the guy w/ the collar. ;)" }
@@ -138,7 +138,7 @@
   "supper_math": {
    "them": [
     "supper. he asked how many sat down to supper. ok so i did the math. i've eaten supper w/ my mom 6,570 times (18 yrs x 365). i've eaten supper w/ 1 other person ever, a boy named Pete in 3rd grade, he had a pudding cup. so total 6,571. i don't think that's the number he means",
-    "he means a number i can get on friday. 3 is a table. 4 is a booth. 6 is 2 booths. i could get 1. ok. 1 is a person. if i get 1 person and a slice of rink pizza i win. malten. what's the best way 2 get 1"
+    "he means a number i can get on friday. 3 is a table. 4 is a booth. 6 is 2 booths. i could get 1. ok. 1 is a person. if i get 1 person and a slice of rink pizza i win. {you}. what's the best way 2 get 1"
    ],
    "choices": [
     { "say": "write it down: 'goal: 1.' forget the 10,412. 1 conversation. 1 slice.", "next": "at_the_door" },
@@ -172,7 +172,7 @@
   },
   "end_two": {
    "them": [
-    "i waited by the door w/ the cherries. 7:00. 7:15. 7:30. the 3 yeses didn't come. the 41 maybes didn't come. banana didn't come. tony wrote 'brother im so sorry my mom needs the car.' kitty sent a pic of her hair w/ 'sorry!! lighting!!' it was a really good hair pic. 0 of 10,412. malten that's the number. 0",
+    "i waited by the door w/ the cherries. 7:00. 7:15. 7:30. the 3 yeses didn't come. the 41 maybes didn't come. banana didn't come. tony wrote 'brother im so sorry my mom needs the car.' kitty sent a pic of her hair w/ 'sorry!! lighting!!' it was a really good hair pic. 0 of 10,412. {you} that's the number. 0",
     "then vince came out in the headset and said 'adam. my guy. i've been looking 4 u. u r the 43rd.' he said it's never huge. last week was 42. 'u r the 43rd. that's a RECORD.' he took the cup and gave a cherry 2 rhonda and she put it on her whistle like a ring. a kid named stu did the limbo 4 me. i minded the 0 for a whole lap. then i minded less. i ate a slice of pizza w/ 2 strangers. both said 'thanks 4 the add' 2 ME. first time anyone ever said it first. 43. it's a good number"
    ],
    "end": true,
@@ -186,7 +186,7 @@
   "end_huge": {
    "them": [
     "i stood at the door w/ the cherries. 'hi i'm adam.' 'hi i'm adam.' 'hi i'm adam.' at first it was 1 every 30 seconds. then banana walked in w/ a literal phone and said 'RING RING' and 6 ppl came in behind him. then 12. the line went out the door. vince cried a little. he said 'HUGE. IT'S HUGE.'",
-    "61 people. the Rollerdome record. the rink ran out of size 9 skates at 7:40 and rhonda blew the whistle 11 times. the 51st person had 2 pay the $2. it was TODD (todd came!!! friend #1!!! he said 'friendly admin note: u r doing great' and gave me a high 5). i said thanks 4 the add 2 every single person. somewhere in there i stopped counting. i don't know when. it's the first time i've ever stopped. malten i don't know the number!!!"
+    "61 people. the Rollerdome record. the rink ran out of size 9 skates at 7:40 and rhonda blew the whistle 11 times. the 51st person had 2 pay the $2. it was TODD (todd came!!! friend #1!!! he said 'friendly admin note: u r doing great' and gave me a high 5). i said thanks 4 the add 2 every single person. somewhere in there i stopped counting. i don't know when. it's the first time i've ever stopped. {you} i don't know the number!!!"
    ],
    "end": true,
    "effects": [

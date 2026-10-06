@@ -97,7 +97,7 @@
   "I am updating my site right now, but I stopped to read this, and I am glad I did!",
   "That is very kind! I will e-mail you a proper thank-you note. I e-mail everyone."
  ],
- "thanksAdd": "~*~ Thank you for the add! ~*~ You are now on my Links page under 'Friends of the Realm'! I visited your page, signed your guestbook, AND clicked all the way around your webring (I waved at every site). You have a lovely home on the web. Please visit mine and sign my guestbook! It is right under the lake!",
+ "thanksAdd": "~*~ Thank you for the add! ~*~ You are now on my Links page under 'Friends of the Realm'! I visited your page, left a note on your wall, AND clicked all the way around the webring on this desktop (I waved at every site). You have a lovely home on the web. Please visit mine and sign my guestbook! It is right under the lake!",
  "ambient": [
   "~ Site Update! ~ Today I changed the word 'Welcome' to 'Welcome!' on my front page. Seven years of daily updates and counting!",
   "A new guestbook entry has arrived! It is from my dad. He signs once a month and always answers 'How did you find my site?' with 'I live here.'",
@@ -108,8 +108,8 @@
  ],
  "saltyDm": "~*~ Oh! ~*~ My friend request was declined. That is all right! I have added you to my Links page anyway, under 'Sites I Admire From Afar.' You are the only entry. The section is Under Construction. Please sign my guestbook if you ever change your mind!",
  "keywords": {
-  "guestbook": "SIGN IT! Please! It is at the bottom of my site, under the lake. 214 entries so far and I answer every single one by e-mail. I signed yours already. I wrote that your page 'feels like somebody lives here.' I meant it!",
-  "webring": "I am Ringmistress of the Ring of Enchanted Sites! Four members: me, Nat's guild page, and two broken links I refuse to remove. I clicked all the way around YOUR ring, too. Seven sites! I waved at each one.",
+  "guestbook": "SIGN IT! Please! It is at the bottom of my site, under the lake. 214 entries so far and I answer every single one by e-mail. I left a note on your wall already. It says your page 'feels like somebody lives here.' I meant it!",
+  "webring": "I am Ringmistress of the Ring of Enchanted Sites! Four members: me, Nat's guild page, and two broken links I refuse to remove. I clicked all the way around the webring on this desktop, too. Seven sites! I waved at each one.",
   "award": "Angela's Cool Site Award is a 120x120 spinning star and I have given it out exactly four times in seven years. It cannot be bought. It cannot be rushed. Your page is currently Under Consideration, which is a real status and not a no!",
   "construction": "Yes, still! A site that is finished is a site that is abandoned. The digging man and I have an understanding.",
   "shrine": "I maintain two: the Vulpix Grove (est. age 10, original spelling preserved) and the Legolas Gallery (est. age 13, 340 screen captures sorted by braid). A third is in progress. No, I will not say what it is!",
@@ -177,18 +177,18 @@
  ],
  "dmSeed": [
   {
-   "text": "~*~ Hello malten! ~*~ I am Angela, Webmistress of Angela's Enchanted Realm. I have signed your guestbook (I am the long entry) and I have gone all the way around your webring twice. You have a real homepage! With windows! I am placing you Under Consideration for my Cool Site Award. Only four sites have ever won. Please do not change anything while I review."
+   "text": "~*~ Hello {you}! ~*~ I am Angela, Webmistress of Angela's Enchanted Realm. I have written on your wall (I am the long entry) and I have gone all the way around the webring on this desktop twice. You have a real homepage! With windows! I am placing you Under Consideration for my Cool Site Award. Only four sites have ever won. Please do not change anything while I review."
   }
  ],
  "dms": [
-  "malten! A question from one webmaster to another. How do you decide when a page is finished? I have never finished one. I am asking for research purposes, and also because my dad asked me last night and I did not have an answer.",
-  "I have clicked 'Random' on your webring 40 times and I keep landing on the page that only says 'herp.' I have decided it is my favorite. It loads instantly and it knows exactly what it is. Not every site can say that!",
+  "{you}! A question from one webmaster to another. How do you decide when a page is finished? I have never finished one. I am asking for research purposes, and also because my dad asked me last night and I did not have an answer.",
+  "I have clicked 'Random' on the webring on this desktop 40 times and I keep landing on the page that only says 'herp.' I have decided it is my favorite. It loads instantly and it knows exactly what it is. Not every site can say that!",
   "Good news! My dad signed the guestbook again. Under 'Comments' he wrote 'Proud of you, kiddo. Dinner is at 6.' I have archived it under Awards I've Won.",
-  "malten, do you still have your very first web page? I do. It says 'Vulpix is the most beatiful pokemon' in purple on a green background and I will never fix it. I was ten and I meant every word.",
+  "{you}, do you still have your very first web page? I do. It says 'Vulpix is the most beatiful pokemon' in purple on a green background and I will never fix it. I was ten and I meant every word.",
   "A small confession. One of the broken sites in my webring belonged to a girl named Dana who had a unicorn page. It went dark four years ago. I still e-mail her on the ring's anniversary. If she ever comes back, her spot is right where she left it.",
-  "Your Cool Site Award review is going well! So far: a welcome message (yes), a guestbook (yes), a webring (yes!), things that blink (many). The only missing item is an 'Under Construction' sign. Is your site FINISHED? That would be very unusual.",
+  "Your Cool Site Award review is going well! So far: a welcome message (yes), a wall (yes), a Top 8 (yes!), things that blink (many). The only missing item is an 'Under Construction' sign. Is your page FINISHED? That would be very unusual.",
   "I tried to teach my mom to sign a guestbook tonight. She typed her whole message into the 'Homepage' box and pressed Submit. It is now the best entry I have. Her homepage is 'Hi honey it's mom I love your lake.'",
-  "Larry says he has 200 pictures of a lighthouse in his shared folder, labeled as something else. malten, I think it may be the lost lighthouse site from my webring! I have asked him for a CD. I am trying not to get my hopes up. (They are up.)"
+  "Larry says he has 200 pictures of a lighthouse in his shared folder, labeled as something else. {you}, I think it may be the lost lighthouse site from my webring! I have asked him for a CD. I am trying not to get my hopes up. (They are up.)"
  ],
  "blog": [
   {

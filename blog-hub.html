@@ -4,40 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog Hub — MALTEN.EXE</title>
+    <meta name="description" content="Every blog post on MALTEN.EXE, all in one place.">
     <link rel="icon" href="pfp.png">
     <link rel="stylesheet" href="styles.css">
     <script src="desktop.js" defer></script>
 </head>
 <body>
     <div class="container">
-        <div class="nav-bar">
-            <a href="index.html" target="_self">🏠 Home</a>
-            <a href="https://x.com/Maltennn" target="_blank" rel="noopener">Twitter</a>
-            <a href="https://discordapp.com/users/798692143308210217" target="_blank" rel="noopener">Discord</a>
-            <a href="https://open.spotify.com/user/moltennebula?si=b7fd44e7448847c3" target="_blank" rel="noopener">Spotify</a>
-            <a href="https://steamcommunity.com/id/Malten/" target="_blank" rel="noopener">Steam</a>
-        </div>
-
-        <div class="window">
+        <div class="window page-window" data-task="📁 Blog Hub">
             <div class="title-bar">
-                <div class="title-bar-text">📁 Blog Hub — every post, all in one place</div>
+                <div class="title-bar-text">🌐 Blog Hub — Maltenscape Navigator</div>
                 <div class="title-bar-controls">
-                    <img src="Minimize.png" alt="Minimize">
-                    <img src="Fullscreen.png" alt="Maximize">
-                    <img src="Close.png" alt="Close">
+                    <img src="Minimize.png" alt="Minimize" title="minimize">
+                    <img src="Fullscreen.png" alt="Maximize" title="wider / narrower">
+                    <img src="Close.png" alt="Close" title="close (back to the desktop)">
                 </div>
             </div>
-            <div class="window-body">
-                <img src="assets/deco_welcome_banner.gif" alt="Welcome" class="deco-center" style="max-width:100%;">
-                <p class="rainbow-text" style="text-align:center; font-size:16px;">★ THE ARCHIVES ★</p>
+            <div class="nav-chrome">
+                <div class="nav-row nav-tools">
+                    <a class="btn98" href="index.html" title="back to the desktop">🖥️ Desktop</a>
+                    <a class="btn98" href="blog-hub.html" aria-current="page">📁 Blog Hub</a>
+                    <a class="btn98" href="index.html?open=myspace">👥 OurSpace</a>
+                    <a class="btn98" href="index.html?tab=guestbook">📖 Guestbook</a>
+                </div>
+                <div class="nav-row nav-address">
+                    <span class="wr-label">Address</span>
+                    <span class="wr-url">http://www.malten.exe/blog/</span>
+                </div>
+                <div class="nav-row nav-links">
+                    <span class="wr-label">Links</span>
+                    <a href="https://x.com/Maltennn" target="_blank" rel="noopener">Twitter</a>
+                    <a href="https://discordapp.com/users/798692143308210217" target="_blank" rel="noopener">Discord</a>
+                    <a href="https://open.spotify.com/user/moltennebula?si=b7fd44e7448847c3" target="_blank" rel="noopener">Spotify</a>
+                    <a href="https://steamcommunity.com/id/Malten/" target="_blank" rel="noopener">Steam</a>
+                </div>
+            </div>
+            <div class="page-doc">
+                <p class="rainbow-text" style="text-align:center; font-size:16px; margin:0 0 8px; padding:5px 0; background:#2b1a4d;">★ THE ARCHIVES ★</p>
                 <img src="assets/deco_hearts_bar.gif" alt="" class="bar-gif">
 
+                <!-- newest post first. one .blog-preview block per post. -->
                 <div class="blog-preview" style="margin-bottom:14px;">
-                    <img src="dartmonkey.png" alt="Why do we create?">
+                    <img src="pfp.png" alt="">
                     <div>
-                        <a href="First-blog.html">Why do we create?</a>
-                        <div class="blog-date">post #001</div>
-                        <div class="desc">my first post ever. i ask the big questions and then immediately regret it.</div>
+                        <a href="why-do-i-create.html">Why do I create?</a>
+                        <div class="blog-date">post #001 · October 5, 2026</div>
+                        <div class="desc">why i spent two years on a website nobody asked for. losing my faith, finding poetry, and what making things gives back.</div>
                     </div>
                 </div>
 
@@ -50,6 +62,7 @@
                     <span style="font-size:11px; color:#555;">(no promises on the schedule)</span>
                 </p>
             </div>
+            <div class="status-bar"><span>✔ Document: Done</span><span>1 post</span><span>🌐 malten.exe</span></div>
         </div>
     </div>
 </body>

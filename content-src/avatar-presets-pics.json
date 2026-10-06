@@ -1,0 +1,751 @@
+[
+  {
+    "file": "assets/avatars/pic_glitter_heart_red.gif",
+    "desc": "red glitter heart",
+    "source": "https://web.archive.org/web/20091021133701/http://geocities.com/angelmomfriends7/daveybd.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_glitter_heart_pink.gif",
+    "desc": "pink glitter heart",
+    "source": "https://web.archive.org/web/20091026205920/http://us.geocities.com/brit-con/calendar.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_neon_heart.gif",
+    "desc": "neon heart",
+    "source": "https://web.archive.org/web/20091022081204/http://geocities.com/kisses4jessemccartney/Boyz_Love_2.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_heart_gold_stars.gif",
+    "desc": "red heart with gold stars",
+    "source": "https://web.archive.org/web/20090902205225/http://geocities.com/najim46/heart9.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_glitter_butterfly_pastel.gif",
+    "desc": "pastel glitter butterfly",
+    "source": "https://web.archive.org/web/20091022150928/http://geocities.com/splashyartlady/index.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_glitter_butterfly_pink.gif",
+    "desc": "pink glitter butterfly",
+    "source": "https://web.archive.org/web/20090829021247/http://geocities.com/olivia_sites5/butterfly2",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_glitter_butterfly_blue.gif",
+    "desc": "blue glitter butterfly",
+    "source": "https://web.archive.org/web/20090730064725/http://hk.geocities.com/ywgs04051c32/my_hobbies.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_butterfly_night.gif",
+    "desc": "butterfly in the night sky",
+    "source": "https://web.archive.org/web/20090829055253/http://geocities.com/regalmap/Story.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_glitter_star_gold.gif",
+    "desc": "gold glitter star",
+    "source": "https://web.archive.org/web/20091021172936/http://geocities.com/gottadancebc/Indianapolisin2007.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_neon_star_pink.gif",
+    "desc": "neon pink star",
+    "source": "https://web.archive.org/web/20091024080338/http://geocities.com/bad_baybee_gurl/",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_glitter_star_blue.gif",
+    "desc": "blue glitter star",
+    "source": "https://web.archive.org/web/20091021183449/http://geocities.com/iwant2playwithu_promisenot2bite/AllAboutMe.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_glitter_rainbow.gif",
+    "desc": "rainbow glitter",
+    "source": "https://web.archive.org/web/20091024060634/http://geocities.com/XVEXELQUEENX/",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_glitter_hotpink.gif",
+    "desc": "hot pink glitter",
+    "source": "https://web.archive.org/web/20090723061606/http://br.geocities.com/abertura228/brilho.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_glitter_purple.gif",
+    "desc": "purple glitter",
+    "source": "https://web.archive.org/web/20090723061606/http://br.geocities.com/abertura228/brilho.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_bat_moon.gif",
+    "desc": "bat over a yellow moon",
+    "source": "https://web.archive.org/web/20091023111310/http://geocities.com/SCOTTISHANGEL4U/halloween.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_bat_cartoon.gif",
+    "desc": "goofy gray bat",
+    "source": "https://web.archive.org/web/20090803190225/http://geocities.com/ResearchTriangle/Node/9820/halloween/bats4.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_broken_heart_black.gif",
+    "desc": "bleeding broken heart",
+    "source": "https://web.archive.org/web/20090901213759/http://geocities.com/marakita.geo/music2.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_heart_skull.gif",
+    "desc": "dark heart with a skull",
+    "source": "https://web.archive.org/web/20091026065617/http://geocities.com/mutilated_butterfly/pics.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_checker_pink.gif",
+    "desc": "pink and black checkerboard",
+    "source": "https://web.archive.org/web/20091027080247/http://hk.geocities.com/yuka_lovestar/ocean/48.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_checker_bw.gif",
+    "desc": "black and white checkerboard",
+    "source": "https://web.archive.org/web/20091027154454/http://geocities.com/mojdownload/ven46-iluzija/animacija14.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_skull_red.gif",
+    "desc": "red skull and crossbones",
+    "source": "https://web.archive.org/web/20000829040349/http://www.geocities.com:80/noel_mitchell/skull.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_skull_flame.gif",
+    "desc": "flaming skull and crossbones",
+    "source": "https://web.archive.org/web/20090729123704/http://geocities.com/vieuxdo/",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_skull_neon_green.gif",
+    "desc": "neon green skull",
+    "source": "https://web.archive.org/web/20040925060432/http://www.geocities.com/kaotickornkrazer/Neon-skull.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_skull_neon_pink.gif",
+    "desc": "neon pink skull with headphones",
+    "source": "https://web.archive.org/web/20091027114643/http://geocities.com/pinkhairedfreek/askull6.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_coffin.gif",
+    "desc": "black coffin with a gold cross",
+    "source": "https://web.archive.org/web/20091027033210/http://mx.geocities.com/lorena_g_20/laquinta.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_coffin_smiley.gif",
+    "desc": "smiley in a coffin",
+    "source": "https://web.archive.org/web/20091027034720/http://de.geocities.com/marga_spaniel/Smilies/sarg_220.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_ghost_blue.gif",
+    "desc": "little blue ghost",
+    "source": "https://web.archive.org/web/20091025072848/http://geocities.com/scandalicious31/",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_ghost_black.gif",
+    "desc": "white ghost on black",
+    "source": "https://web.archive.org/web/20091027105122/http://hk.geocities.com/sillyguy4hk/webm_intro.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_spiderweb_red.gif",
+    "desc": "red neon spiderweb",
+    "source": "https://web.archive.org/web/20040925060450/http://www.geocities.com/kaotickornkrazer/Neon-web.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_spiderweb_silver.gif",
+    "desc": "silver spiderweb",
+    "source": "https://web.archive.org/web/20090725104621/http://ca.geocities.com/usual_turbocharged_philosopher/submissions/linkexchangetop.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_eye_cartoon.gif",
+    "desc": "sleepy eye with a tear",
+    "source": "https://web.archive.org/web/20090803180431/http://geocities.com/Petsburgh/Zoo/4080/tailandia.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_cupcake_purple.gif",
+    "desc": "cupcake on purple",
+    "source": "https://web.archive.org/web/20091021104225/http://geocities.com/dfire_tsf/bday_quilt.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "kawaii"
+  },
+  {
+    "file": "assets/avatars/pic_cupcake_orange.gif",
+    "desc": "orange cupcake",
+    "source": "https://web.archive.org/web/20091026194703/http://es.geocities.com/tdost2002/index.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "kawaii"
+  },
+  {
+    "file": "assets/avatars/pic_bunny_yellow.gif",
+    "desc": "fuzzy yellow bunny",
+    "source": "https://web.archive.org/web/20000828103043/http://www.geocities.com:80/EnchantedForest/Glade/9060/lf4.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "kawaii"
+  },
+  {
+    "file": "assets/avatars/pic_bunny_blue.gif",
+    "desc": "fuzzy blue bunny",
+    "source": "https://web.archive.org/web/20090731134507/http://geocities.com/EnchantedForest/Glade/6067/fantasypets.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "kawaii"
+  },
+  {
+    "file": "assets/avatars/pic_bunny_carrot.gif",
+    "desc": "bunny with a carrot",
+    "source": "https://web.archive.org/web/20090728213913/http://hk.geocities.com/melodykyc2001/icechan/csk.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "kawaii"
+  },
+  {
+    "file": "assets/avatars/pic_onigiri_heart.gif",
+    "desc": "onigiri with a heart",
+    "source": "https://web.archive.org/web/20091027032304/http://www.geocities.com/m4232@ymail.com/icon/f04.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "kawaii"
+  },
+  {
+    "file": "assets/avatars/pic_star_smile_night.gif",
+    "desc": "smiling star in the night sky",
+    "source": "https://web.archive.org/web/20091027141345/http://geocities.com/diamond2001th/birthday/data/birthday5.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "kawaii"
+  },
+  {
+    "file": "assets/avatars/pic_star_orange_blush.gif",
+    "desc": "blushing orange star",
+    "source": "https://web.archive.org/web/20090725175654/http://geocities.com/ballchai_hk/",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "kawaii"
+  },
+  {
+    "file": "assets/avatars/pic_star_top_hat.gif",
+    "desc": "smiling star in a top hat",
+    "source": "https://web.archive.org/web/20090902125347/http://geocities.com/l_pok/weapon.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "kawaii"
+  },
+  {
+    "file": "assets/avatars/pic_lollipop_swirl.gif",
+    "desc": "swirl lollipop",
+    "source": "https://web.archive.org/web/20070829184956/http://it.geocities.com/vanillina88/CANDY_02.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "kawaii"
+  },
+  {
+    "file": "assets/avatars/pic_lollipops_pixel.gif",
+    "desc": "three pixel lollipops",
+    "source": "https://web.archive.org/web/20090728041647/http://es.geocities.com/x_bagli_x/coreanos.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "kawaii"
+  },
+  {
+    "file": "assets/avatars/pic_blep_face.gif",
+    "desc": "kawaii blep face",
+    "source": "https://web.archive.org/web/20091026222335/http://hk.geocities.com/gj2iw3/s_forum1.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "kawaii"
+  },
+  {
+    "file": "assets/avatars/pic_alien_green_head.gif",
+    "desc": "green alien head",
+    "source": "https://web.archive.org/web/20031108091257/http://www.geocities.com/lord_visionary/alien.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_alien_night.gif",
+    "desc": "green alien on black",
+    "source": "https://web.archive.org/web/20091027025724/http://br.geocities.com/alienworld66/principal.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_alien_cartoon.gif",
+    "desc": "dancing cartoon alien",
+    "source": "https://web.archive.org/web/20091022185440/http://geocities.com/speechy23/UnNamed.html?950911699045",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_ufo_cartoon.gif",
+    "desc": "cartoon flying saucer",
+    "source": "https://web.archive.org/web/20090821080525/http://geocities.com/superkarin1/main.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_ufo_night.gif",
+    "desc": "flying saucer at night",
+    "source": "https://web.archive.org/web/20091022201423/http://geocities.com/Area51/Hollow/5529/scmenu.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_ufo_road.gif",
+    "desc": "flying saucer over the highway",
+    "source": "https://web.archive.org/web/20090725060618/http://geocities.com/alien_dance/",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_robot_red.gif",
+    "desc": "red pop-art robot",
+    "source": "https://web.archive.org/web/20060928045437/http://www.geocities.com/magarmor2112/homepgart/robotxx4.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_robot_head.gif",
+    "desc": "round robot head",
+    "source": "https://web.archive.org/web/20091026223938/http://geocities.com/omdidok/software.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_robot_blue.gif",
+    "desc": "blue cartoon robot",
+    "source": "https://web.archive.org/web/20091026150634/http://geocities.com/gjhappy2002/CyberPages/CyberPages.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_robot_striped.gif",
+    "desc": "striped-leg robot",
+    "source": "https://web.archive.org/web/20000919022300/http://www.geocities.com:80/Area51/Dunes/5580/robotclr.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_planet_earth.gif",
+    "desc": "planet earth",
+    "source": "https://web.archive.org/web/20091027030519/http://hk.geocities.com/findingjohnny2002/gif/planet.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_planet_tan.gif",
+    "desc": "tan planet",
+    "source": "https://web.archive.org/web/20090728082532/http://geocities.com/magnusnh1/",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_saturn_neon.gif",
+    "desc": "neon pink Saturn",
+    "source": "https://web.archive.org/web/20091024220040/http://geocities.com/blu_angel318/index.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_saturn_red.gif",
+    "desc": "red ringed planet",
+    "source": "https://web.archive.org/web/20091025040654/http://geocities.com/cirban/giypo/",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_moon_golden.gif",
+    "desc": "golden moon",
+    "source": "https://web.archive.org/web/20091023094333/http://geocities.com/Paris/Gallery/5359/nermin.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_moon_gray.gif",
+    "desc": "gray full moon",
+    "source": "https://web.archive.org/web/19970414155815/http://www8.geocities.com:80/Area51/Vault/8921/moon.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_rocket_retro.gif",
+    "desc": "retro rocket in the stars",
+    "source": "https://web.archive.org/web/20091026115246/http://geocities.com/silgado106/contact.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_astronaut_cartoon.gif",
+    "desc": "floating cartoon astronaut",
+    "source": "https://web.archive.org/web/20091027033936/http://geocities.com/mrjsclass/",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_astronaut_helmet.gif",
+    "desc": "astronaut helmet",
+    "source": "https://web.archive.org/web/20091026031656/http://geocities.com/paiste_whole/",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/pic_tv_retro_red.gif",
+    "desc": "retro red TV",
+    "source": "https://web.archive.org/web/20090724160801/http://es.geocities.com/ciolon/anigif.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_tv_pink_teal.gif",
+    "desc": "pink and teal TV",
+    "source": "https://web.archive.org/web/20061025232017/http://mx.geocities.com:80/anahel_a1/tele_a.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_tv_color_bars.gif",
+    "desc": "color bars TV buddy",
+    "source": "https://web.archive.org/web/20090727155243/http://geocities.com/fletch60/",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_flip_phone.gif",
+    "desc": "flip phone",
+    "source": "https://web.archive.org/web/20091027002617/http://au.geocities.com/magdalena_babblejack/mobile.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_phone_buddy.gif",
+    "desc": "cell phone buddy",
+    "source": "https://web.archive.org/web/20090804072055/http://geocities.com/SunsetStrip/Arena/3230/internet_che_paga.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_phone_red.gif",
+    "desc": "red telephone",
+    "source": "https://web.archive.org/web/20010922225251/http://us.geocities.com:80/Heartland/9251/PHONE.GIF",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_cd_iridescent.gif",
+    "desc": "iridescent CD",
+    "source": "https://web.archive.org/web/20091027105038/http://geocities.com/lechugh/contests.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_cd_rainbow.gif",
+    "desc": "rainbow CD",
+    "source": "https://web.archive.org/web/20091027131518/http://in.geocities.com/sinkg2002/gifsite/graphics/cd.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_cd_blue.gif",
+    "desc": "blue CD",
+    "source": "https://web.archive.org/web/20090903050658/http://geocities.com/qftmp3/ptreleases.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_boombox.gif",
+    "desc": "boombox",
+    "source": "https://web.archive.org/web/20060503212608/http://mx.geocities.com:80/visualtnt/images/Ghettoblaster.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_jukebox.gif",
+    "desc": "neon jukebox",
+    "source": "https://web.archive.org/web/20091027031900/http://geocities.com/irock60441/",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_gamepad.gif",
+    "desc": "game pad",
+    "source": "https://web.archive.org/web/20091027134949/http://geocities.com/darkmoon_2000_2000/account.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_joystick.gif",
+    "desc": "joystick",
+    "source": "https://web.archive.org/web/20010630183629/http://www.geocities.com:80/CapitolHill/Parliament/1929/45.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_floppy_buddy.gif",
+    "desc": "floppy disk buddy",
+    "source": "https://web.archive.org/web/20090810015243/http://geocities.com/lermi01/animacije.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_floppy_pink.gif",
+    "desc": "pink floppy disk",
+    "source": "https://web.archive.org/web/20091026215817/http://geocities.com/filemanager_aka_jennifer/Animations.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_floppy_blue.gif",
+    "desc": "blue floppy disk",
+    "source": "https://web.archive.org/web/20091027034714/http://es.geocities.com/jazf28/relaciones.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_modem.gif",
+    "desc": "dial-up modem",
+    "source": "https://web.archive.org/web/20090831175650/http://geocities.com/mmtlh/main.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_computer_heart.gif",
+    "desc": "computer with a pixel heart",
+    "source": "https://web.archive.org/web/20091026072316/http://geocities.com/lotsanimations/Holiday-Valentines-4.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_computer_smile.gif",
+    "desc": "smiling computer",
+    "source": "https://web.archive.org/web/20090727114937/http://es.geocities.com/matohi7/?curDrag.top:curDrag.style.pixelTop",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_computer_beige.gif",
+    "desc": "beige computer",
+    "source": "https://web.archive.org/web/20091027160713/http://geocities.com/cfplweb/computers.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_pizza_slice.gif",
+    "desc": "pizza and a slice",
+    "source": "https://web.archive.org/web/20091022134034/http://geocities.com/our_lil_corner/Funnies_Stress-Diet.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "food"
+  },
+  {
+    "file": "assets/avatars/pic_pizza_cheesy.gif",
+    "desc": "cheesy pizza",
+    "source": "https://web.archive.org/web/20090728041647/http://es.geocities.com/x_bagli_x/coreanos.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "food"
+  },
+  {
+    "file": "assets/avatars/pic_ramen_bowl.gif",
+    "desc": "ramen bowl",
+    "source": "https://web.archive.org/web/20091025195547/http://geocities.com/thehiddenleafvillage/",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "food"
+  },
+  {
+    "file": "assets/avatars/pic_ramen_buddy.gif",
+    "desc": "noodle bowl buddy",
+    "source": "https://web.archive.org/web/20091027104732/http://hk.geocities.com/vgotit2004/2.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "food"
+  },
+  {
+    "file": "assets/avatars/pic_sushi_board.gif",
+    "desc": "sushi board",
+    "source": "https://web.archive.org/web/20090831073208/http://geocities.com/cheffer_1/sushi.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "food"
+  },
+  {
+    "file": "assets/avatars/pic_sushi_smiley.gif",
+    "desc": "smiley with sushi",
+    "source": "https://web.archive.org/web/20060105131655/http://www.geocities.com/farid_la2002/emot4.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "food"
+  },
+  {
+    "file": "assets/avatars/pic_clef_stars.gif",
+    "desc": "treble clef and stars",
+    "source": "https://web.archive.org/web/20091025165152/http://geocities.com/southernsugar39/index5",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "music"
+  },
+  {
+    "file": "assets/avatars/pic_note_pink.gif",
+    "desc": "pink glitter note",
+    "source": "https://web.archive.org/web/20001010122840/http://www.geocities.com:80/Tokyo/Shrine/8608/notax.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "music"
+  },
+  {
+    "file": "assets/avatars/pic_clef_red.gif",
+    "desc": "red treble clef",
+    "source": "https://web.archive.org/web/20091021104920/http://geocities.com/TheTropics/Beach/8261/ms6.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "music"
+  },
+  {
+    "file": "assets/avatars/pic_headphones_neon.gif",
+    "desc": "neon headphones",
+    "source": "https://web.archive.org/web/20091026160222/http://geocities.com/ttn71/music_bottom.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "music"
+  },
+  {
+    "file": "assets/avatars/pic_headphones_waves.gif",
+    "desc": "headphones and sound waves",
+    "source": "https://web.archive.org/web/20090724200619/http://mx.geocities.com/hematrev/audifonos.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "music"
+  },
+  {
+    "file": "assets/avatars/pic_headphones_birdie.gif",
+    "desc": "birdie in headphones",
+    "source": "https://web.archive.org/web/20091027044400/http://hk.geocities.com/minmin888hk/gif/music.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "music"
+  },
+  {
+    "file": "assets/avatars/pic_guitar_flying_v.gif",
+    "desc": "red flying V guitar",
+    "source": "https://web.archive.org/web/20090808185054/http://geocities.com/hale317/musmovhome.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "music"
+  },
+  {
+    "file": "assets/avatars/pic_guitar_cyan.gif",
+    "desc": "cyan guitar",
+    "source": "https://web.archive.org/web/20090903043819/http://geocities.com/parascolaire2000/Arts.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "music"
+  },
+  {
+    "file": "assets/avatars/pic_guitar_buddy.gif",
+    "desc": "guitar buddy",
+    "source": "https://web.archive.org/web/20091027042935/http://br.geocities.com/leticiajak/gifs.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "music"
+  },
+  {
+    "file": "assets/avatars/pic_gramophone.gif",
+    "desc": "gramophone",
+    "source": "https://web.archive.org/web/20040420123922/http://www.geocities.com/Heartland/Lake/7853/denney/Rootsweb_Mail/IMAG0018.GIF",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "music"
+  },
+  {
+    "file": "assets/avatars/pic_turntable_silver.gif",
+    "desc": "silver turntable",
+    "source": "https://web.archive.org/web/20091025105125/http://geocities.com/robmarshall2004/music.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "music"
+  },
+  {
+    "file": "assets/avatars/pic_turntable_red.gif",
+    "desc": "turntable on red",
+    "source": "https://web.archive.org/web/20091027041004/http://br.geocities.com/ecarvalhostadlinger/compras_01.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "music"
+  },
+  {
+    "file": "assets/avatars/pic_cassettes_stack.gif",
+    "desc": "stack of cassette tapes",
+    "source": "https://web.archive.org/web/20090729063628/http://es.geocities.com/jacintofmadu/",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_cherries_pink.gif",
+    "desc": "pink pixel cherries",
+    "source": "https://web.archive.org/web/20091027054136/http://hk.geocities.com/mikopeach/cherry.GIF",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_cherries_black.gif",
+    "desc": "red cherries on black",
+    "source": "https://web.archive.org/web/20090902020334/http://geocities.com/bleedingwrists85/HeavenSent.html",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/pic_heart_glossy.gif",
+    "desc": "glossy red heart",
+    "source": "https://web.archive.org/web/20090725201855/http://es.geocities.com/ferkantabru/menu.htm",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "glitter"
+  },
+  {
+    "file": "assets/avatars/pic_boba_tea.gif",
+    "desc": "boba tea",
+    "source": "original pixel art drawn for this project (no external source)",
+    "license": "CC0 (original artwork made for this project)",
+    "group": "kawaii"
+  },
+  {
+    "file": "assets/avatars/pic_cassette_tape.gif",
+    "desc": "pink cassette tape",
+    "source": "original pixel art drawn for this project (no external source)",
+    "license": "CC0 (original artwork made for this project)",
+    "group": "tech"
+  },
+  {
+    "file": "assets/avatars/pic_onigiri_face.gif",
+    "desc": "kawaii onigiri",
+    "source": "original pixel art drawn for this project (no external source)",
+    "license": "CC0 (original artwork made for this project)",
+    "group": "kawaii"
+  }
+]

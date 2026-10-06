@@ -3,8 +3,8 @@
   "with": "dave",
   "opener": [
     "greetings. security level: critical. this is a priority transmission from the basement.",
-    "malten. i found something. a REAL something. on the SITE. not a 'port scanned my own house' something. i have been staring at it for three hours and i have told no one, including my mom, who thinks it's homework.",
-    "my inbox says '-1 new messages.' MINUS ONE. i double-clicked delete on a message i never got and now the site thinks i owe it a message. malten. i think i found a bug."
+    "{you}. i found something. a REAL something. on the SITE. not a 'port scanned my own house' something. i have been staring at it for three hours and i have told no one, including my mom, who thinks it's homework.",
+    "my inbox says '-1 new messages.' MINUS ONE. i double-clicked delete on a message i never got and now the site thinks i owe it a message. {you}. i think i found a bug."
   ],
   "nodes": {
     "start": {
@@ -39,7 +39,7 @@
 
     "c_exploit": {
       "them": [
-        "...malten. i... may have tested it. (i tested it.) ONE account. the admin one. for science. to see if it works on other people. i'm a scientist. mr henderson would be proud (and slightly worried).",
+        "...{you}. i... may have tested it. (i tested it.) ONE account. the admin one. for science. to see if it works on other people. i'm a scientist. mr henderson would be proud (and slightly worried).",
         "it works. todd's inbox says -3. i did it three times because the first one might have been a fluke and the second might have been a fluke of the fluke. he doesn't know. he's going to log on and think he owes three messages nobody sent."
       ],
       "choices": [
@@ -51,7 +51,7 @@
     "fix_kind": {
       "them": [
         "ok. sending. 'hi todd.' 'hi todd.' 'hi todd :)' (the smile took a minute.) ...his counter says 0. he'll never know. unless he reads them. 'hi todd' times three. he'll think he has a new friend named Hi.",
-        "but malten, the hole is still there. i patched one person and left the door open for everybody. that's not what a white hat does. that's what a very polite burglar does."
+        "but {you}, the hole is still there. i patched one person and left the door open for everybody. that's not what a white hat does. that's what a very polite burglar does."
       ],
       "effects": [
         { "type": "wallpost", "to": "todd", "text": "hi todd :) this is a regular message. it is not about anything. nothing is wrong with your inbox. have a good day. (it says zero. that's correct.) - dave" }
@@ -79,7 +79,7 @@
     "show_lars": {
       "them": [
         "i showed him. he did the two clicks. there was a silence of four minutes. then: 'it's real.' then: 'i would have found it with a terminal.' then: 'i'm not mad.' then: 'i am a little mad.' then: 'do you want to write an advisory with me. i have a template. it has a logo.'",
-        "he said 'coordinated' four times. malten, he's EXCITED. i've never seen lars excited about anything that wasn't a kernel. and i'm a little scared of how much i like it."
+        "he said 'coordinated' four times. {you}, he's EXCITED. i've never seen lars excited about anything that wasn't a kernel. and i'm a little scared of how much i like it."
       ],
       "choices": [
         { "say": "do it. you found it, he writes it. you both get a name on the door.", "next": "end_advisory" },
@@ -114,7 +114,7 @@
     "todd_reply": {
       "them": [
         "he replied in 90 seconds. quote: 'Dave!! This is a real bug report and it has STEPS. Thank you!! I will fix it tonight. P.S. -1 new messages means I owe you one. Hi Dave.' ...then he sent me an actual message. i have 0 messages now. the counter is at zero.",
-        "he said 'what can I do to thank you?' malten. nobody has ever thanked me for a hack. i don't know what to ask for. a title? a badge? or just... 'we're friends'?"
+        "he said 'what can I do to thank you?' {you}. nobody has ever thanked me for a hack. i don't know what to ask for. a title? a badge? or just... 'we're friends'?"
       ],
       "effects": [
         { "type": "wallpost", "from": "todd", "to": "dave", "delay": 20, "text": "Dave! Got the report. It has STEPS. It has a SUBJECT LINE. I'm fixing it tonight and I'm putting your name on it. (P.S. I just checked my own inbox. It says zero. I have never been so happy to have no new messages.) - Todd :)" }
@@ -127,7 +127,7 @@
 
     "brag_bulletin": {
       "them": [
-        "posted. 'ATTENTION OURSPACE: HAX0R_DAVE HAS FOUND A BUG IN THE SITE. DOUBLE-CLICK DELETE. WATCH THE COUNTER. I AM THE ONLY ONE WHO KNEW.' it's been 90 seconds. malten. the bulletin has 41 views. i have never had 41 of anything.",
+        "posted. 'ATTENTION OURSPACE: HAX0R_DAVE HAS FOUND A BUG IN THE SITE. DOUBLE-CLICK DELETE. WATCH THE COUNTER. I AM THE ONLY ONE WHO KNEW.' it's been 90 seconds. {you}. the bulletin has 41 views. i have never had 41 of anything.",
         "...42. 43. wait. the replies. patrick says his inbox says -1 and 'is that good.' chad says he doesn't have an inbox. somebody named herp just said herp and now their count is -12. what have i done."
       ],
       "effects": [
@@ -153,7 +153,7 @@
     "keep_secret": {
       "them": [
         "ok. door B. i'm keeping it. secret power. i can feel it. i'm very calm. my hands are shaking. i'm not going to press the button. i'm just going to know it's there.",
-        "...malten. patrick just posted that his inbox says -1 too. he double-clicked by accident. it's out there already. other people are going to find it. i can't keep a secret that's already walking around. the door isn't mine. it's everyone's."
+        "...{you}. patrick just posted that his inbox says -1 too. he double-clicked by accident. it's out there already. other people are going to find it. i can't keep a secret that's already walking around. the door isn't mine. it's everyone's."
       ],
       "choices": [
         { "say": "then tell todd after all. an open door needs a lock, not a guard.", "next": "draft_report" },
@@ -163,7 +163,7 @@
 
     "end_report": {
       "them": [
-        "i asked. he said 'Security Researcher. Yes. That's real. That's a real job. I'll make a badge.' then 'a .gif of a badge.' then 'a good one.' malten i have a badge. it's a .gif. it's blinking.",
+        "i asked. he said 'Security Researcher. Yes. That's real. That's a real job. I'll make a badge.' then 'a .gif of a badge.' then 'a good one.' {you} i have a badge. it's a .gif. it's blinking.",
         "he fixed it by dinner. zero messages. no more minus. the hole is a wall now. i stood in the basement and said 'i did it' to nobody and then said it again to the cat. i did a real thing. it had two clicks. it's mine."
       ],
       "end": true,
@@ -191,7 +191,7 @@
     "end_brag": {
       "them": [
         "ok. an hour. it was the best hour of my life and now it's the worst one. 112 people. patrick's at -1,200 (he left to eat dinner and came back). marcus issued 31 warnings, the first 19 to himself, to be fair. todd posted 'known issue.' (it was not known four hours ago.) he's calling. i'm not answering. i'm answering.",
-        "i'm going to hand him the two clicks and a cookie. he's going to fix it. i know. but i want you to know: for one hour, malten, the whole site said my name."
+        "i'm going to hand him the two clicks and a cookie. he's going to fix it. i know. but i want you to know: for one hour, {you}, the whole site said my name."
       ],
       "end": true,
       "effects": [
@@ -212,14 +212,14 @@
         { "type": "status", "text": "hax0r_dave knows something about the site. hax0r_dave is not telling. hax0r_dave is being SO normal about it. (he's standing in a doorway. it is a metaphor. dave would like it noted that he is very calm.)" },
         { "type": "wallpost", "from": "lars", "to": "dave", "delay": 60, "text": "dave. you have the look of a man who got wifi working. i know the look. i had it for three days. i'm not asking what it is. i'm saying: when you're ready, i'll have the penguin warm. (that's not a figure of speech. there's a penguin. it's a mug.)" },
         { "type": "wallpost", "from": "zorp", "to": "dave", "delay": 130, "text": "hello dave. a normal human question: when a counter says negative one, is it an unfinished friendship or a tiny black hole? asking for a human friend. also i double-clicked once (accidentally) (twice) and it did not hurt." },
-        { "type": "dm", "delay": 420, "text": "malten. it's tomorrow. i told todd. he said 'thank you!! :)' and then 'you could have told me sooner.' and then 'but you told me.' that's the whole thing. i feel like i hacked something and it was me. security level: lighter." }
+        { "type": "dm", "delay": 420, "text": "{you}. it's tomorrow. i told todd. he said 'thank you!! :)' and then 'you could have told me sooner.' and then 'but you told me.' that's the whole thing. i feel like i hacked something and it was me. security level: lighter." }
       ]
     },
 
     "end_advisory": {
       "them": [
         "we sent todd the advisory. it's called OSA-001. it has a logo: a penguin holding a tiny magnifying glass. todd read it and typed 'it has a LOGO' and then 'fixed' and then 'thank you both.' then lars waited, like a gentleman, until the fix was in before he posted it. that's 'coordinated disclosure.' lars said it nine times.",
-        "lars and i are 'co-researchers' now. he's going to review my future findings. i said i don't have future findings. he said 'you will.' that's the nicest thing he's said to anyone. i'm going to be a hacker, malten. a real one. with a penguin."
+        "lars and i are 'co-researchers' now. he's going to review my future findings. i said i don't have future findings. he said 'you will.' that's the nicest thing he's said to anyone. i'm going to be a hacker, {you}. a real one. with a penguin."
       ],
       "end": true,
       "effects": [

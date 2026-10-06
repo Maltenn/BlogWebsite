@@ -2,7 +2,7 @@
   "id": "gus_real_audition",
   "with": "gus",
   "opener": [
-    "Soundcheck. malten. It's 9:41 PM Monday and tomorrow at 4:00 in Greg's garage I either become the second guitarist of STATIC PROPHECY or I go back to being the guy who carries the amp. (I carry it well. Greg has said so. It was the nicest thing anyone's ever said to me and I'm choosing to be cool about it.)",
+    "Soundcheck. {you}. It's 9:41 PM Monday and tomorrow at 4:00 in Greg's garage I either become the second guitarist of STATIC PROPHECY or I go back to being the guy who carries the amp. (I carry it well. Greg has said so. It was the nicest thing anyone's ever said to me and I'm choosing to be cool about it.)",
     "Greg's exact words on my wall: 'tuesday, bring a cord.' That's an audition. I've never been so sure of anything, including the 98%. Setlist: Voltage Heart (his) and Free Bird (mine). Two songs. One shot. Dani already booked the minivan. Dani charges 2 Fruit Roll-Ups per booking.",
     "Problem. Two guitars are on my bed right now. One is red, plastic, and plugs into an 83-pound TV. One is a REAL Gibson that Mr. Hollis next door loaned me for the week. It has six strings, no colors, and I know four chords. Voltage Heart has five. The fifth one is a wall. I need a tour decision. Pick a guitar, man. \\m/"
   ],
@@ -65,7 +65,7 @@
     "a_text": {
       "them": [
         "Texted him. 10:03 PM. 'Greg. I've been learning real guitar. 4 chords. I have a Gibson. I don't know if you want that.' Typing bubble. Gone. Typing bubble. Gone. It's the longest 40 seconds since the key change.",
-        "He wrote back: 'i know.' Then: 'skip told me in september. dani told me in october. chad yelled it at me at school. the beagle's been howling in the right key outside my garage for a week.' Then: 'bring the gibson. bring the cord. i want to see you miss a note. the controller never misses. i can't put a controller in a band.' malten. I'm sitting very straight."
+        "He wrote back: 'i know.' Then: 'skip told me in september. dani told me in october. chad yelled it at me at school. the beagle's been howling in the right key outside my garage for a week.' Then: 'bring the gibson. bring the cord. i want to see you miss a note. the controller never misses. i can't put a controller in a band.' {you}. I'm sitting very straight."
       ],
       "choices": [
         { "say": "tell him deal. you'll miss one and keep going. that's the whole job.", "next": "garage_real" },
@@ -112,7 +112,7 @@
     "b_skip": {
       "them": [
         "Skip texted at 9:12. 'gus!! luis's mouth is all the way healed. he's back on guitar sunday. BUT the tenth chair stays. i made it. it's a folding chair with a checkerboard cover. it has your name on it in marker. three horns, luis, bass, big tom, keys, the singer, fitz and a tenth chair. we are TEN now. we are making it work =D'",
-        "A real band. A band with a chair. It's the first time anyone has made me furniture. Be honest, malten: if tomorrow goes sideways I have a place that has a chair, and Luis, and Big Tom in charge of when. That's a tour with a soft landing. What do I tell Skip."
+        "A real band. A band with a chair. It's the first time anyone has made me furniture. Be honest, {you}: if tomorrow goes sideways I have a place that has a chair, and Luis, and Big Tom in charge of when. That's a tour with a soft landing. What do I tell Skip."
       ],
       "effects": [
         { "type": "wallpost", "from": "skip", "to": "gus", "delay": 15, "text": "gus!! the tenth chair is yours. i put a checkerboard cover on it. i'm not saying ska is alive. i'm saying there is a chair with your name on it and a band with the wrong number of members (ten). no pressure. (there's a little pressure.) =D" }

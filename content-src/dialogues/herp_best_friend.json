@@ -185,7 +185,7 @@
       ],
       "choices": [
         {
-          "say": "official notice goes up: 'it was a typo, thank you for your concern.' signed, malten.",
+          "say": "official notice goes up: 'it was a typo, thank you for your concern.' signed, {you}.",
           "next": "end_typo"
         },
         {
@@ -256,7 +256,7 @@
           "type": "status",
           "from": "wes",
           "delay": 10,
-          "text": "wavedash_wes is hosting HERP'S BEST FRIEND: a 4-entrant double-elim bracket. banana, patrick (+ dwayne, doubles), vinyl_witch, whiskers. rules pending a ruling from malten. loser buys the winner a slice. herp has no comment (herp has 'herp.')"
+          "text": "wavedash_wes is hosting HERP'S BEST FRIEND: a 4-entrant double-elim bracket. banana, patrick (+ dwayne, doubles), vinyl_witch, whiskers. rules pending a ruling from {you}. loser buys the winner a slice. herp has no comment (herp has 'herp.')"
         }
       ],
       "choices": [
@@ -312,7 +312,7 @@
           "type": "bulletin",
           "delay": 5,
           "subject": "herp ♥ (for everyone)",
-          "text": "herp herp herp. herp ♥ herp herp herp herp herp herp herp herp. (translated by malten, official herp interpreter: this one is for everyone. nobody is first. nobody is second. everybody is herp's.) herp."
+          "text": "herp herp herp. herp ♥ herp herp herp herp herp herp herp herp. (translated by {you}, official herp interpreter: this one is for everyone. nobody is first. nobody is second. everybody is herp's.) herp."
         },
         {
           "type": "status",
@@ -441,7 +441,7 @@
           "type": "wall",
           "from": "vinyl_witch",
           "delay": 75,
-          "text": "malten. i don't know what you said to herp tonight and i don't need to. he left me a single herp and i have played it back six times. thank you. i'll keep it quiet. ~vw"
+          "text": "{you}. i don't know what you said to herp tonight and i don't need to. he left me a single herp and i have played it back six times. thank you. i'll keep it quiet. ~vw"
         }
       ]
     },
@@ -497,7 +497,7 @@
           "type": "wall",
           "from": "vinyl_witch",
           "delay": 30,
-          "text": "malten. i have read the word 'typo.' two hearts is not a typo, it is a pattern. i have seen patterns on records. you told him it was a typo and he made it again, slower, on purpose. that is the most herp thing i've ever witnessed. ~vw"
+          "text": "{you}. i have read the word 'typo.' two hearts is not a typo, it is a pattern. i have seen patterns on records. you told him it was a typo and he made it again, slower, on purpose. that is the most herp thing i've ever witnessed. ~vw"
         },
         {
           "type": "status",

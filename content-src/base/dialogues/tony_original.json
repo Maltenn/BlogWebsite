@@ -1,0 +1,312 @@
+{
+  "id": "tony_original",
+  "with": "tony",
+  "opener": [
+    "{you}. {you}. code red. this is not a drill. this is the opposite of a drill",
+    "ok so. i'm about to message xoxo_brittany and for the first time in my life i don't want to open with hey ;)",
+    "my fingers typed 'greetings, brittany' and then i blacked out for a second. i need coaching. you seem like the calmest person on this site. help me"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        {
+          "say": "ok breathe. forget lines for a sec. what do you actually like about her — not her top 8, her.",
+          "next": "sincere_data"
+        },
+        {
+          "say": "tony. you've been rejected 53 times and you're still the happiest guy on this site. just be that guy.",
+          "next": "be_yourself"
+        },
+        {
+          "say": "easy. open with 'are you a parking ticket? cause you've got fine written all over your profile song'",
+          "next": "worse_line"
+        }
+      ]
+    },
+    "sincere_data": {
+      "them": [
+        "ok. ok. deep collar breaths. she... leaves nice comments on everyone's page when they're having a rough one. even the soup review guy. NOBODY comments on the soup guy",
+        "also she changed her profile song to something acoustic last week and i've listened to it like 9 times. is that information i'm allowed to use or is that weird"
+      ],
+      "choices": [
+        {
+          "say": "that's not weird, that's paying attention. tell her 'i noticed you check on people. that's rare here.' zero winky faces.",
+          "next": "draft_sincere"
+        },
+        {
+          "say": "lead with the song. 'your new profile song has been stuck in my head all week.' true AND smooth.",
+          "next": "draft_song"
+        },
+        {
+          "say": "hold on. she comments on the soup guy's page?",
+          "next": "soup_guy_tangent"
+        }
+      ]
+    },
+    "soup_guy_tangent": {
+      "them": [
+        "EVERYONE'S page man. she's like the site's guardian angel but with better font choices",
+        "wait. WAIT. is that the move?? do i just... be nice to people?? with no agenda?? tony what is happening to you"
+      ],
+      "choices": [
+        {
+          "say": "that's called being a gentleman. you literally call yourself that. go be one, in writing, to her.",
+          "next": "draft_sincere"
+        },
+        {
+          "say": "no agenda. one capri sun, not two. this is your training arc.",
+          "next": "draft_sincere"
+        }
+      ]
+    },
+    "draft_sincere": {
+      "them": [
+        "ok drafting: 'hey brittany. no winky face today. i noticed you always check on people when they're down and i think that's the coolest thing on this site.'",
+        "{you} my hands are SWEATING. the axe phoenix is wearing off. i can feel it wearing off. do i send it. tell me to send it"
+      ],
+      "choices": [
+        {
+          "say": "send it. right now. before the collar pops back up.",
+          "next": "sent_sincere"
+        },
+        {
+          "say": "read it once more, then send. you wrote something true, tony. that's rarer than smooth.",
+          "next": "sent_sincere"
+        },
+        {
+          "say": "if you truly can't send that, send anything. even the winky face. forward motion.",
+          "next": "chickened_out"
+        }
+      ]
+    },
+    "draft_song": {
+      "them": [
+        "ok ok: 'hey brittany. your new profile song has been in my head all week. it's a good one. you have great taste in sad guitars.'",
+        "wait is 'sad guitars' too much?? is it not enough?? i've never sent a second sentence before, the pressure is enormous"
+      ],
+      "choices": [
+        {
+          "say": "'sad guitars' is the best thing you've ever written. send it before you fix it into something worse.",
+          "next": "sent_sincere"
+        },
+        {
+          "say": "it's perfect. and hey — whatever she says back, you already leveled up.",
+          "next": "sent_sincere"
+        },
+        {
+          "say": "hmm. add a winky face at the end. for tradition.",
+          "next": "hybrid_wink"
+        }
+      ]
+    },
+    "hybrid_wink": {
+      "them": [
+        "a winky face AND sincerity?? the forbidden combo. that's like wearing two popped collars. the world isn't ready",
+        "you know what — no. today the wink rests. today tony writes SENTENCES. sending the clean version. for both of us"
+      ],
+      "choices": [
+        {
+          "say": "godspeed, you magnificent weirdo.",
+          "next": "sent_sincere"
+        },
+        {
+          "say": "'today the wink rests.' i'm putting that on a t-shirt.",
+          "next": "sent_sincere"
+        }
+      ]
+    },
+    "be_yourself": {
+      "them": [
+        "be MYSELF? {you} i have been 53 different versions of myself and every single one got left on read",
+        "unless... you mean the core tony. the guy who brings a backup capri sun in case someone else is thirsty. the gentleman. is THAT the guy you mean"
+      ],
+      "choices": [
+        {
+          "say": "that's the guy. the backup capri sun guy. the one who's genuinely kind under all that axe.",
+          "next": "core_tony"
+        },
+        {
+          "say": "53 versions got read and dropped. maybe version 54 just says something true.",
+          "next": "core_tony"
+        },
+        {
+          "say": "honestly? the winky face is also you. maybe the 54th hey ;) is the charm.",
+          "next": "embrace_wink"
+        }
+      ]
+    },
+    "core_tony": {
+      "them": [
+        "the capri sun guy. ok. okay. typing: 'hey brittany. this is tony. no line today. i just think you're cool and i wanted to say it like a normal human being.'",
+        "this is the scariest thing i've ever typed and i once messaged a girl who was ALSO named toni"
+      ],
+      "choices": [
+        {
+          "say": "send it. worst case you're 0 for 54. best case is something brand new.",
+          "next": "sent_sincere"
+        },
+        {
+          "say": "scary means it's real. the line was armor, tony. send it without the armor.",
+          "next": "sent_sincere"
+        },
+        {
+          "say": "wait. you messaged a girl also named toni?",
+          "next": "tony_and_tony"
+        }
+      ]
+    },
+    "tony_and_tony": {
+      "them": [
+        "toni with an i. she said 'we can't date, it'd be confusing at parties.' honestly? respect. we still trade top 8 spots sometimes",
+        "ANYWAY stop distracting me. the message is just sitting there. cursor blinking. judging me. what do i DO"
+      ],
+      "choices": [
+        {
+          "say": "you hit send. that's what you do. go.",
+          "next": "sent_sincere"
+        },
+        {
+          "say": "close your eyes and click. i'll be right here.",
+          "next": "sent_sincere"
+        }
+      ]
+    },
+    "embrace_wink": {
+      "them": [
+        "the 54th hey ;)... the anniversary wink... that's either the worst advice ever or the most beautiful thing anyone's said to me",
+        "no. NO. i came to you because i wanted to GROW. but the wink is my heritage. {you} i am at war with myself"
+      ],
+      "choices": [
+        {
+          "say": "then compromise: 'hey brittany ;) ok that was the last one ever. how was your actual day?'",
+          "next": "hybrid_send"
+        },
+        {
+          "say": "growth it is. put the wink down, tony. slowly.",
+          "next": "core_tony"
+        },
+        {
+          "say": "heritage wins. send the wink with pride. 54's probably a lucky number.",
+          "next": "chickened_out"
+        }
+      ]
+    },
+    "hybrid_send": {
+      "them": [
+        "'the last one ever'... a retirement announcement INSIDE the message... that's poetry. that's a whole character arc in one line",
+        "sending. SENDING. oh no. ok it's sent. i'm gonna go scream into my collar real quick, brb"
+      ],
+      "choices": [
+        {
+          "say": "proud of you. report back.",
+          "next": "sent_sincere"
+        },
+        {
+          "say": "screaming into the collar is valid. tell me what she says.",
+          "next": "sent_sincere"
+        }
+      ]
+    },
+    "worse_line": {
+      "them": [
+        "...hold on. getting a pen. 'parking ticket'... 'fine written all over'... {you} this is either garbage or the greatest thing i have ever heard",
+        "my gut says garbage. my heart says GREATNESS. but my gut has been wrong 53 straight times. tiebreaker??"
+      ],
+      "choices": [
+        {
+          "say": "send it. what's the worst that could happen. actually don't answer that.",
+          "next": "send_courage"
+        },
+        {
+          "say": "ok no, i was kidding. put the pen down. let's write something real.",
+          "next": "sincere_data"
+        },
+        {
+          "say": "if you're going down, go down bigger: 'is your name wifi? because i'm not feeling a connection with anyone else'",
+          "next": "even_worse"
+        }
+      ]
+    },
+    "send_courage": {
+      "them": [
+        "ok. OK. typing it. my hands know these words are cursed and they're typing anyway. this is what bravery looks like. probably",
+        "sent. SENT. no takebacks. the gentleman has left the building. stand by for impact"
+      ],
+      "choices": [
+        {
+          "say": "standing by. thoughts and prayers to brittany.",
+          "next": "sent_terrible"
+        },
+        {
+          "say": "for the record i cannot believe you actually sent it.",
+          "next": "sent_terrible"
+        }
+      ]
+    },
+    "even_worse": {
+      "them": [
+        "'i'm not feeling a connection with ANYONE ELSE'... you turned the wifi line into a LOYALTY statement... {you} you're an evil genius. a gentleman scientist",
+        "i can't choose between parking ticket and wifi, so i'm doing what any gentleman would do. sending BOTH. double capri sun protocol. wish me luck"
+      ],
+      "choices": [
+        {
+          "say": "godspeed. report back immediately.",
+          "next": "sent_terrible"
+        },
+        {
+          "say": "tony wait—",
+          "next": "too_late"
+        }
+      ]
+    },
+    "too_late": {
+      "them": [
+        "TOO LATE. both lines. deployed. i regret nothing and also everything simultaneously",
+        "{you}. she's typing. SHE'S TYPING. oh no oh no oh no. stand by"
+      ],
+      "choices": [
+        {
+          "say": "i can't look. tell me what she says.",
+          "next": "sent_terrible"
+        },
+        {
+          "say": "the double capri sun protocol was never tested for a reason.",
+          "next": "sent_terrible"
+        }
+      ]
+    },
+    "sent_sincere": {
+      "them": [
+        "{you}. SHE REPLIED. she said 'this is the nicest message anyone has ever sent me on this site' and a smiley. a REAL smiley. not even an ironic one",
+        "we're friends now. official. she signed my guestbook. i owe you a capri sun. i owe you BOTH capri suns. you beautiful genius"
+      ],
+      "end": true,
+      "effect": {
+        "type": "wall",
+        "text": "shoutout to {you}, my wingman ;) a gentleman AND a scholar. both capri suns are yours forever buddy"
+      }
+    },
+    "chickened_out": {
+      "them": [
+        "update: hey ;) number 54 has been deployed. the streak lives. my hands basically did it without me",
+        "BUT. for the first time ever it felt like a CHOICE. i'm not stuck being smooth — i'm smooth ON PURPOSE now. that's growth baby. thank you for believing in me"
+      ],
+      "end": true,
+      "effect": {
+        "type": "bulletin",
+        "subject": "a new era (of the same era)",
+        "text": "today i almost sent xoxo_brittany a sincere message. i didn't. but i ALMOST did, and that's basically character development. shoutout to my life coach {you}. also brittany if you're reading this: hey ;)"
+      }
+    },
+    "sent_terrible": {
+      "them": [
+        "report: she replied 'tony. did {you} write that.' HOW DID SHE KNOW. is my brand that strong??",
+        "anyway now she's asking about YOU, which was not the plan, but a conversation is a conversation. 0 for 54 has never felt this much like a win. adding you as my friend so she can see we're cool"
+      ],
+      "end": true,
+      "effect": {
+        "type": "friend"
+      }
+    }
+  }
+}

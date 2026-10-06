@@ -162,14 +162,14 @@
  ],
  "dmSeed": [
   {
-   "text": "hi malten. trevor. i'm on thefacebook, which is college only, so you probably haven't heard of it. i'm on here as a favor to some people from home. i noticed you're new. welcome to the kids' table. it's a good table. i sat there for four years. i just. you know."
+   "text": "hi {you}. trevor. i'm on thefacebook, which is college only, so you probably haven't heard of it. i'm on here as a favor to some people from home. i noticed you're new. welcome to the kids' table. it's a good table. i sat there for four years. i just. you know."
   },
   {
    "text": "also i should say i'm not on here every day. it's more like most days. ok every day. it's a habit. like laundry."
   }
  ],
  "dms": [
-  "malten what's your major. don't say you're in high school. say undeclared. everybody says undeclared. it sounds like you're going somewhere.",
+  "{you} what's your major. don't say you're in high school. say undeclared. everybody says undeclared. it sounds like you're going somewhere.",
   "my philosophy professor asked us to define 'home.' i wrote 'the place with the good gas station.' he gave me a B-plus. he wrote 'be specific.' i have never been more specific in my life.",
   "the dean's list lost again. 41-0 against a team of RAs. one RA had a whiteboard. he used it for plays. we've never had plays. we have a huddle and a feeling.",
   "do you know how to say 'i'm fine' so it sounds like you're fine. asking for my mom. she asked on the phone if i was eating. i said 'yes, a lot of cereal.' she was quiet for a while. then she said 'what kind.'",

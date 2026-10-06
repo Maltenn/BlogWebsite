@@ -2,7 +2,7 @@
   "id": "kevin_one_witness",
   "with": "kevin",
   "opener": [
-    "malten. i need to tell you something and i need you to not say 'is it about butterfly.' it's about butterfly.",
+    "{you}. i need to tell you something and i need you to not say 'is it about butterfly.' it's about butterfly.",
     "arcade doug told me today that Tilt is closing. last day is saturday the 24th. the mall is putting in a store that only sells calendars. it's open until january. they are replacing a MACHINE with CALENDARS.",
     "so i have exactly one saturday left to prove it happened. i've tried 31 times since june. i have not gotten it back. what do i do."
   ],
@@ -42,7 +42,7 @@
 
     "c_lie": {
       "them": [
-        "...malten. i typed it. 'AAA'd Butterfly again, witnessed by doug.' and doug WOULD say yes. he'd nod. he nods at everything. that's what scares me. he nods at the claw machine.",
+        "...{you}. i typed it. 'AAA'd Butterfly again, witnessed by doug.' and doug WOULD say yes. he'd nod. he nods at everything. that's what scares me. he nods at the claw machine.",
         "and then i looked at the sentence for four minutes and my legs got upset with me. you know what's weird? it's easier to AAA a song than to lie about it."
       ],
       "choices": [

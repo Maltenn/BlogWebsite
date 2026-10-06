@@ -1,0 +1,165 @@
+{
+  "id": "usagi",
+  "name": "animegurl_usagi",
+  "tag": "anime club president ♥ subs ONLY ♥ ganbatte!!",
+  "avatar": "assets/avatar_usagi.gif",
+  "age": 16,
+  "loc": "room 204 (anime club HQ) (also just a classroom)",
+  "mood": "genki!! ☆",
+  "lastLogin": "Jul 3 2026 9:20 PM",
+  "theme": {
+    "bg": "#ffe4f1",
+    "fg": "#7a1048",
+    "accent": "#ff69b4"
+  },
+  "about": "konnichiwa minna-san!! i'm usagi, PRESIDENT of the anime club (4 members, one of them is technically banana who came for the pocky and never left, membership is membership). i am learning japanese from anime and my vocabulary is 90% battle cries and dramatic declarations, which means i can surrender OR declare war but cannot yet order lunch. SUBS NOT DUBS — this is the hill, i live on the hill, i have decorated the hill. i call my teacher sensei and honestly? it's working. if u comment on my page i WILL respond like the last episode of an anime. ganbatte!!",
+  "interests": {
+    "General": "anime club (PRESIDENT!!), pocky, learning japanese from anime (300 episodes at a time), dramatic wind, fansub notes ('keikaku means plan'), drawing sparkly eyes in the margins of my math homework, cosplay (in progress) (it's a bedsheet right now)",
+    "Music": "every anime opening (skipping is a crime), A Cruel Angel's Thesis, the sailor moon theme (japanese) (OBVIOUSLY), Utada Hikaru, the .hack soundtrack, whatever's playing at the anime store in the mall",
+    "Movies": "spirited away (i cried), princess mononoke (i cried differently), end of evangelion (i did not cry i just stared for an hour), advent children (club-approved, sephiroth-kun stop)",
+    "Television": "evangelion, sailor moon (japanese), fullmetal alchemist, ouran high school host club (it's SO new and SO perfect), toonami until it was taken from us (we remember)",
+    "Books": "manga counts. fruits basket, chobits, the fullmetal manga which is BETTER than the show (do not tell wes-kun i said 'better' about anything on a screen), my japanese phrasebook (chapter 1) (still)",
+    "Heroes": "every protagonist who yelled their attack name. usagi tsukino (i'm named after her) (by me). my club members (all 4) (banana counts). sensei."
+  },
+  "song": {
+    "name": "A Cruel Angel's Thesis (Director's Edit Version)",
+    "artist": "Yoko Takahashi",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/9c/de/ee/9cdeee60-4087-e848-7fe5-bd1ba8000795/mzaf_12533848052351672003.plus.aac.p.m4a",
+    "pattern": [
+      0,
+      4,
+      7,
+      4,
+      0,
+      4,
+      7,
+      12
+    ],
+    "bpm": 120
+  },
+  "decor": [
+    "assets/badge_hello_kitty.gif",
+    "assets/deco_fairy.gif",
+    "assets/deco_hearts_bar.gif"
+  ],
+  "friends": [
+    "sephiroth",
+    "wes",
+    "tina",
+    "meg",
+    "zorp",
+    "darkangel"
+  ],
+  "wall": [
+    {
+      "from": "sephiroth",
+      "text": "president usagi. my proposal for the JRPG division awaits your review. i have trimmed it to 38 pages. we all make sacrifices for the club.",
+      "time": "Jun 23 2026 10:40 PM"
+    },
+    {
+      "from": "zorp",
+      "text": "usagi-chan (i am told this suffix indicates warm human friendship), anime club is my favorite earth gathering. the cartoons about giant robots feel very... familiar. ha ha. normal joke from a normal human.",
+      "time": "Jun 26 2026 3:33 AM"
+    },
+    {
+      "from": "meg",
+      "text": "I DREW U AS A MAGICAL GIRL ON A UNICORN!!! ms paint took 3 hours and i regret NOTHING. her name is Sparkle-sensei. check ur inbox!!!",
+      "time": "Jun 30 2026 5:52 PM"
+    },
+    {
+      "from": "tina",
+      "text": "ok FINE i watched one (1) episode of vampire knight like u said. it was... ok it was really good. TEAM EDWARD STILL. but it was really good.",
+      "time": "Jul 2 2026 8:11 PM"
+    }
+  ],
+  "replies": [
+    "arigatou!! (that means thank you. i'm basically fluent. don't fact-check this.)",
+    "kyaaa!! this comment is so sugoi!! club-approved!!",
+    "*bows respectfully at my computer* thank you, comment-san.",
+    "this made me smile like a protagonist in the finale. ganbatte!!"
+  ],
+  "thanksAdd": "yatta!! welcome, {you}-kun!! friendship with me includes ONE free anime recommendation, non-refundable. it's evangelion. we can be confused about it together, that's the intended experience!!",
+  "ambient": [
+    "learned a new japanese word from anime today. it is a battle cry. i can now surrender OR declare war, vocabulary-wise. lunch remains unorderable.",
+    "anime club budget update: we have $7 and a pocky IOU from banana. thriving.",
+    "called my mom 'okaa-san' at dinner and she said 'finish your rice.' counting it as a successful cultural exchange."
+  ],
+  "saltyDm": "eehh?? denied?? *dramatic anime fall with speed lines* ...it's ok!! this is simply my tragic backstory arc. when you accept my request in season two it will be SO much more meaningful. ganbatte, future friend-kun!!",
+  "keywords": {
+    "anime": "you said the word!! by the powers vested in me as club president, you are now legally invited to friday's screening. room 204. bring nothing but an open heart (and pocky if possible).",
+    "manga": "manga counts as books, reading manga counts as studying japanese, and i count as fluent. the club has voted on all three. unanimously. (i am the tiebreaker.)"
+  },
+  "banter": {
+    "sephiroth": [
+      "sephiroth-kun, i approved the JRPG division on ONE condition: the weekly essay has a five page LIMIT. i saw your face just now through the internet. FIVE. PAGES.",
+      "ruling from the president's desk: advent children counts as anime for club purposes. do not make me regret this. do NOT bring the yardstick."
+    ],
+    "zorp": [
+      "zorp-kun you ask the best questions in club, like 'do all humans cry at endings or only advanced ones.' only advanced ones, zorp-kun. it's us. we're advanced.",
+      "we watched a space anime friday and zorp took NOTES and muttered 'inaccurate' twice?? dedication award. president's honors. best member."
+    ],
+    "wes": [
+      "wes-kun i saw your melee match and you yelled a BATTLE CRY when you won. announcing your attacks is anime protagonist behavior. you are READY. room 204. friday.",
+      "fox's whole moveset is basically a magical girl transformation sequence if you think about it. do not argue with your club president."
+    ],
+    "tina": [
+      "tina-chan the club voted: vampire knight double feature is ON for friday. you may bring the edward poster for emotional support but it stays IN the bag. president's ruling.",
+      "received your chain letter and reposted immediately!! not because i fear bad luck, but because a true protagonist respects the rules of the cursed video. it's basic media literacy."
+    ],
+    "mika": [
+      "mika-chan!! ur OC has a SWORD, a TRAGIC PAST, and green hair (comic relief with a tragic past per my survey, which is CANON now). anime club needs an art division. u're the art division. it's decided. ganbatte!!",
+      "someone TRACED her?? on deviantART?? this is a tournament arc, mika-chan. u will draw her better. they cannot trace what does not exist yet. i believe in u like an opening theme believes in a protagonist."
+    ],
+    "kittyxcore": [
+      "kittyxcore-chan!! hello kitty is SANRIO which is JAPANESE which makes u an honorary anime club member. no it doesn't. but i'm the president and i'm making it true. room 204. friday. bring the bedspread. (a joke) (bring it)",
+      "commented ur new pics!! all 12!! pc4pc?? mine are up but they're all me in a bedsheet and it's 'cosplay' and nobody is allowed to say otherwise ☆"
+    ],
+    "josh": [
+      "josh-kun u said youth group is 'chill' and also that u 'don't judge people for watching cartoons' and honestly?? most protagonist thing anyone has said to me this week. i'm not coming (friday is club) but i respect the invitation deeply.",
+      "wait u beat wes-kun at HALO?? in front of PEOPLE?? that's a tournament arc. that's a whole tournament arc with a training montage. tell me everything. the club needs to know."
+    ]
+  },
+  "statuses": [
+    "is practicing her dramatic wind-blown-hair pose (the fan is borrowed from the science room, i'm returning it, sensei, i promise)",
+    "is subbing. never dubbing.",
+    "is recruiting for anime club!! we have pocky (one box) (banana ate most of it) (membership is membership)",
+    "learned 'itadakimasu' from anime and said it at lunch and the cafeteria lady said 'ok honey.' cultural exchange ACHIEVED.",
+    "is watching ouran and screaming into a pillow at a respectful volume",
+    "ahem. SOME people on this site watched a DUB and then came to club and QUOTED THE DUB. i said nothing. the club said nothing. the club is thinking about it.",
+    "anime club budget: $7 and a pocky IOU. we are unstoppable. ganbatte!!"
+  ],
+  "bulletins": [
+    {
+      "subject": "ANIME CLUB FRIDAY!!! room 204 ★ subs only zone ★",
+      "body": "AGENDA: 1) attendance (zorp please stop answering 'present in this dimension,' it's funny but it slows us down) 2) vampire knight double feature 3) sephiroth-kun's essay (FIVE PAGE LIMIT, it's in the bylaws now) 4) pocky, if banana left any. all are welcome!! bring a friend-kun!!",
+      "time": "Jul 1 2026 4:44 PM"
+    },
+    {
+      "subject": "SURVEY: which anime hair color would u have??",
+      "body": "rules: your anime hair color reveals your soul. pink = protagonist energy. blue = mysterious rival. green = comic relief with a tragic past (banana). repost with yours!! i'm pink. obviously. i did not make this survey just to say i'm pink. (i did.)",
+      "time": "Jul 3 2026 6:06 PM"
+    }
+  ],
+  "dmSeed": [
+    {
+      "who": "them",
+      "text": "konnichiwa!! i saw you were new to ourspace and i simply must ask: have you considered... anime club? no pressure!! (some pressure) (we have pocky) (one box) ganbatte!!",
+      "time": "Jun 29 2026 7:33 PM"
+    }
+  ],
+  "bgTile": "assets/tiles/tile_flowers.png",
+  "gender": "Female",
+  "hometown": "Westerville, OH (Tokyo-3 in my heart) (it's near Columbus, sensei)",
+  "zodiac": "Cancer!! the MOON sign!! sailor moon!! i did not choose this, it was CHOSEN. ☆",
+  "status": "is practicing her transformation sequence. the pose part. in the mirror. don't come upstairs, mom.",
+  "hereFor": "Friends!! Networking (anime club recruitment)!! (Dating: only if u agree subs not dubs) (that's a joke) (it's not)",
+  "blogTitle": "President's Log ★ Room 204 ★ subs only zone",
+  "meet": "Hideaki Anno so i can ask him what the ending MEANT (gently). Naoko Takeuchi so i can bow for 30 seconds. anyone who will join anime club!! we have pocky. (one box.) (banana.)",
+  "pcComments": [
+    "kyaaa!! ur hair in this is SO shoujo!! sparkles are implied!! ☆",
+    "this pic has opening-theme energy. like, opening-theme-ending-pose energy. sugoi!!",
+    "*bows at this photo* arigatou for posting it. commented as promised, comment-san.",
+    "if this were an anime this is the frame where the wind blows and the music swells. i can hear it. it's a cruel angel's thesis. it's always a cruel angel's thesis.",
+    "ur eyes are so big in this it's basically canon. club-approved!! ganbatte!!"
+  ]
+}

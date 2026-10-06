@@ -2,7 +2,7 @@
   "id": "todd_the_clicking",
   "with": "todd",
   "opener": [
-    "Hi malten. Are you awake? (Silly question. You're online.)",
+    "Hi {you}. Are you awake? (Silly question. You're online.)",
     "The laptop has started making the CLICK sound. The one from the Field Guide. The one we do not discuss. It has been going for eleven minutes and it is 2:07 AM.",
     "I know the answer is 'back it up.' I'm backing it up. I'm asking about the OTHER thing, and I don't know how to say it, so can I just talk at you for a second."
   ],
@@ -42,7 +42,7 @@
 
     "c_freezer": {
       "them": [
-        "...A freezer. malten. I want to respect the suggestion. It's a real thing people do. I have even seen it work, once, on a drive that was already a ghost.",
+        "...A freezer. {you}. I want to respect the suggestion. It's a real thing people do. I have even seen it work, once, on a drive that was already a ghost.",
         "The problem is the peas. My mom's freezer is a delicate ecosystem and there is a bag of peas she calls 'the good peas.' I can't move the good peas."
       ],
       "choices": [
@@ -65,7 +65,7 @@
     "freezer_wait": {
       "them": [
         "Ten minutes. The site is up. I checked from my mom's computer in the den while she slept. I used the mouse like a burglar.",
-        "And malten, it's loading FAST. It's the fastest it has been all week. I think the laptop is happier cold. I think that's a thing about me, too, and I'm going to need a minute."
+        "And {you}, it's loading FAST. It's the fastest it has been all week. I think the laptop is happier cold. I think that's a thing about me, too, and I'm going to need a minute."
       ],
       "choices": [
         { "say": "leave it in there. the good peas will understand.", "next": "end_freezer" },
@@ -109,7 +109,7 @@
       ],
       "choices": [
         { "say": "read them. that's the whole point of having them.", "next": "the_ask" },
-        { "say": "is my guestbook in that pile? your 'todd was here' entry is the best thing in it.", "next": "the_ask" }
+        { "say": "is the guestbook in that pile? your 'todd was here' entry is the best thing in it.", "next": "the_ask" }
       ]
     },
 
@@ -165,7 +165,7 @@
     "truth_sent": {
       "them": [
         "It's up. The honest one. I posted it and put my hands in my lap like I was waiting at the dentist.",
-        "...Malten. People are already replying. Brittany posted 'if anyone sees todd tell him it's ok.' She did it AGAIN. Lars says he has a spare 40 GB drive. Larry says he has a spare 'drive' (I did not ask follow-up questions).",
+        "...{you}. People are already replying. Brittany posted 'if anyone sees todd tell him it's ok.' She did it AGAIN. Lars says he has a spare 40 GB drive. Larry says he has a spare 'drive' (I did not ask follow-up questions).",
         "Patrick wrote 'is the laptop ok' and then 'is todd ok.' In that order. Then he swapped them. I have to go stand in the hall for a second."
       ],
       "effects": [
@@ -238,7 +238,7 @@
         { "type": "bulletin", "subject": "Please welcome Marcus, Honorary Wall Monitor", "text": "Hi everybody. As of tonight, Marcus is OurSpace's first Honorary Wall Monitor. His job is to answer 'is the site down?' in complete sentences while the laptop and I work through a thing. He does not have admin powers. He has a badge. It's a .gif. Please be nice to him, or at least be quiet about it. Thank you, Marcus. - Todd :)" },
         { "type": "status", "from": "marcus", "delay": 30, "text": "marcus is the Honorary Wall Monitor. The position did not exist until tonight. He was not asked to apply. He is monitoring. He is not crying. It is the glow of the screen." },
         { "type": "wallpost", "from": "banana", "to": "marcus", "delay": 90, "text": "HONORARY WALL MONITOR!!! I RECEIVED WARNING 117 FOR THE LETTER B AND I WANT YOU TO KNOW IT WAS THE BEST WARNING OF MY LIFE. I TAPED IT TO THE BANANA. THE BANANA IS NOW OFFICIAL!!!" },
-        { "type": "dm", "from": "marcus", "delay": 240, "text": "malten. A procedural question. Does an Honorary Wall Monitor issue 'warnings' or 'friendly reminders'? I have drafted both. Also: whatever you said to Todd, thank you. I have never been given a badge. It blinks. I am not going to say anything else about it. (Thread unlocked.)" }
+        { "type": "dm", "from": "marcus", "delay": 240, "text": "{you}. A procedural question. Does an Honorary Wall Monitor issue 'warnings' or 'friendly reminders'? I have drafted both. Also: whatever you said to Todd, thank you. I have never been given a badge. It blinks. I am not going to say anything else about it. (Thread unlocked.)" }
       ]
     },
 
@@ -253,14 +253,14 @@
         { "type": "bulletin", "from": "marcus", "delay": 40, "subject": "ANNOUNCEMENT FROM THE INTERIM ADMINISTRATOR", "text": "Effective immediately and until 8 AM, OurSpace is under interim administration. RULES v4.0: 1. No all caps. 2. No glitter above 40 pixels. 3. No posting on a wall that is not yours without a reason. 4. Thread locked (all of them). Todd is resting. Please do not disturb the laptop. It is making a sound. I have named the sound Sticky II. Warnings are not binding. Yet. -- Marcus (Interim)" },
         { "type": "status", "from": "banana", "delay": 100, "text": "BANANA_PHONE HAS BEEN WARNED BY THE INTERIM ADMINISTRATOR FOR A B THAT WAS 'LOUD IN SPIRIT.' THIS IS WARNING 117. THE BANANA IS UNAFRAID. THE BANANA IS UNLOCKED." },
         { "type": "status", "from": "dave", "delay": 150, "text": "hax0r_dave is not trying to h4ck the interim admin. dave is just l00king at admin.txt. it is not password protected. it is in a folder called misc. dave is going to bed. dave is not going to bed." },
-        { "type": "dm", "delay": 600, "text": "Hi malten. It's 8:02 AM. I slept five hours, the best five since March. There are 41 warnings, a new rule about 'tone,' and the best-run walls this site has ever had. The laptop is still clicking. Marcus left a note: 'handing back the folder. it was an honor. reply when convenient.' I'm going to need to think about all of this and eat something." }
+        { "type": "dm", "delay": 600, "text": "Hi {you}. It's 8:02 AM. I slept five hours, the best five since March. There are 41 warnings, a new rule about 'tone,' and the best-run walls this site has ever had. The laptop is still clicking. Marcus left a note: 'handing back the folder. it was an honor. reply when convenient.' I'm going to need to think about all of this and eat something." }
       ]
     },
 
     "end_dark": {
       "them": [
         "Okay. Posting. Resting. The place can keep itself for one night. Nobody ever told me that was allowed, and I don't think I would have believed them.",
-        "Goodnight, malten. The clicking is gone and I can hear the fridge, and the house, and my own breathing. It's the quietest it's been since March. I think I might like it for about an hour."
+        "Goodnight, {you}. The clicking is gone and I can hear the fridge, and the house, and my own breathing. It's the quietest it's been since March. I think I might like it for about an hour."
       ],
       "end": true,
       "effects": [
@@ -274,7 +274,7 @@
     "end_freezer": {
       "them": [
         "Okay. It stays. Two bags, cold shelf, peas on the counter. I'll tell my mom in the morning. I'll say I made the server 'comfortable.'",
-        "Thank you for the worst advice I have ever acted on, malten. It's the best night the laptop has had since March."
+        "Thank you for the worst advice I have ever acted on, {you}. It's the best night the laptop has had since March."
       ],
       "end": true,
       "effects": [

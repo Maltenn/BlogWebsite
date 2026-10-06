@@ -2,7 +2,7 @@
   "id": "lucas_porch_light",
   "with": "lucas",
   "opener": [
-    "malten. i need to tell u something and u can't use the notebook voice. no 'deep.' no 'pain.' just read it.",
+    "{you}. i need to tell u something and u can't use the notebook voice. no 'deep.' no 'pain.' just read it.",
     "andy messaged me. amv_andy (the one w/ the red HyperCam thing in the corner of everything). he's been reading my statuses and he says they're 'the best lyrics he's ever seen' and he wants to put my words in a video. w/ my name in the credits. 'words by linkin_lucas.'",
     "his premiere is thursday at 7 at the library. aaron's open mic is thursday at 7:30 at perk avenue, 4 blocks away. i've never read anything out loud. not even to the dishwasher. i'm not saying i'm scared. i'm saying i haven't eaten since 3."
   ],
@@ -29,7 +29,7 @@
     "b_andy": {
       "them": [
         "his pitch: it's for the last episode of a robot show. 26 episodes. in 25 the robot doesn't say anything for four minutes. he wants words for the end. he said, quote, 'i need words that sound like the robot is almost home.'",
-        "he said the red HyperCam thing stays 'as a design choice.' he has $31.40 in a pringles can. a 3 minute video takes him 6 hours 40 minutes to render and it stops at 91 percent sometimes and he just starts over. malten that man does not give up."
+        "he said the red HyperCam thing stays 'as a design choice.' he has $31.40 in a pringles can. a 3 minute video takes him 6 hours 40 minutes to render and it stops at 91 percent sometimes and he just starts over. {you} that man does not give up."
       ],
       "effects": [
         { "type": "status", "from": "andy", "text": "andy has asked a poet for words. the poet said 'maybe.' andy is already rendering a test. 4%. he's not breathing near the computer." }
@@ -65,7 +65,7 @@
     "p47": {
       "them": [
         "'the porch light stays on till the last car gets home.' that's it. i wrote it in 40 seconds at a red light coming back from practice. it isn't even sad. it's about my mom's porch light. she leaves it on when i'm late. i put it in the notebook as a throwaway.",
-        "and then on page 53 i wrote a whole song around it. 14 lines. it's my answer to your blog post, 'Why do we create?' it's not about pain. i don't know where to put a song that isn't about pain."
+        "and then on page 53 i wrote a whole song around it. 14 lines. it's my answer to malten's blog post, 'Why do I create?' it's not about pain. i don't know where to put a song that isn't about pain."
       ],
       "effects": [
         { "type": "status", "text": "lucas wrote something down tonight that wasn't about the rain. he is not discussing it. (it was about a porch light.) (he's not discussing the porch light.)" }
@@ -78,7 +78,7 @@
 
     "owen_listen": {
       "them": [
-        "i read one to owen. in the hall outside his room, door open. he was playing mario kart. he PAUSED it, malten. he never pauses. i read the one from page 47. he said 'that one's about mom.' i said no. he said 'it's about mom.' i said it's about a light. he said 'mom's the light.'",
+        "i read one to owen. in the hall outside his room, door open. he was playing mario kart. he PAUSED it, {you}. he never pauses. i read the one from page 47. he said 'that one's about mom.' i said no. he said 'it's about mom.' i said it's about a light. he said 'mom's the light.'",
         "he's 11. then he said 'is it sad or just tired.' i said 'tired.' he said 'good. i like the tired ones. they're real.' then he unpaused and a blue shell hit me from a room away."
       ],
       "effects": [
@@ -144,7 +144,7 @@
     "both_plan": {
       "them": [
         "he wants to do both. the library at 7, then perk avenue at 7:30 with the video behind me on a bedsheet. his mom's flowered one. he asked the librarian for a projector. she said 'if it comes back.' aaron said he'd 'make room in the set.' he said a bedsheet is 'the most acoustic thing i've heard of.'",
-        "the render takes 6 hours 40. it's tuesday. everything hangs on movie maker and a flowered sheet and the number 91. malten, that's the most dangerous plan i've ever been in."
+        "the render takes 6 hours 40. it's tuesday. everything hangs on movie maker and a flowered sheet and the number 91. {you}, that's the most dangerous plan i've ever been in."
       ],
       "choices": [
         { "say": "do it. flowered bedsheet, 7:30. believe in 91.", "next": "end_frozen_91" },
@@ -192,7 +192,7 @@
     "end_frozen_91": {
       "them": [
         "so. the video froze. at 91 percent. you could hear the whole room go 'oh.' the frame was stuck on the robot's face with the red 'Unregistered HyperCam 2' in the corner. andy stood there with his hand on the bedsheet like he could hold it up.",
-        "i said 'it's ok.' and i read the dishwasher out loud, to a frozen robot on a flowered sheet in a coffeehouse, and they LAUGHED. at the right parts. and at the end part, they stopped. malten, i meant it to be a tragedy. it was both. it was both the whole time."
+        "i said 'it's ok.' and i read the dishwasher out loud, to a frozen robot on a flowered sheet in a coffeehouse, and they LAUGHED. at the right parts. and at the end part, they stopped. {you}, i meant it to be a tragedy. it was both. it was both the whole time."
       ],
       "end": true,
       "effects": [
@@ -206,7 +206,7 @@
     "end_wrong_L": {
       "them": [
         "it played at the library. the whole room howled at the dishwasher. i was in the back row in the hoodie. it ended and the credits said 'Words by L.' and everybody clapped. and then everybody started asking who L was. and larry stood up and said 'i can neither confirm nor deny.'",
-        "he has not written a word in his life. he's now in the credits. i'm clapping for my own words, quietly, in the dark, for a person named L. malten. it's the best and worst feeling at the same time. it's like a hoodie. it fits and it covers everything."
+        "he has not written a word in his life. he's now in the credits. i'm clapping for my own words, quietly, in the dark, for a person named L. {you}. it's the best and worst feeling at the same time. it's like a hoodie. it fits and it covers everything."
       ],
       "end": true,
       "effects": [
@@ -214,7 +214,7 @@
         { "type": "status", "text": "lucas is clapping. (quietly) (in the back row) (for a person named L.)" },
         { "type": "status", "from": "larry", "delay": 50, "text": "larry accepts the credit for a thing he didnt do. he doesnt know what it was. he was in the credits. he thinks it was about a dishwasher. (shared) also does anyone know how 2 close a toolbar" },
         { "type": "wallpost", "from": "vinyl_witch", "to": "lucas", "delay": 130, "text": "lucas. i know it was you. the cat knows. it was the only thing in the credits that sounded like a person. keep the 'L.' for now. when you want your name back, i'll make the sign. in the meantime i put a record on in your honor. it's 'a plain one.' you'll know." },
-        { "type": "dm", "delay": 420, "text": "malten. everybody clapped. nobody knew it was me. it's like wearing the hoodie and it being enough. next time i want the credit. maybe. (not the pain. just the credit.) mom said 'dinner's ready' and it meant something. i don't know if that counts. i think it counts. page 54." }
+        { "type": "dm", "delay": 420, "text": "{you}. everybody clapped. nobody knew it was me. it's like wearing the hoodie and it being enough. next time i want the credit. maybe. (not the pain. just the credit.) mom said 'dinner's ready' and it meant something. i don't know if that counts. i think it counts. page 54." }
       ]
     },
 
@@ -228,7 +228,7 @@
         { "type": "status", "text": "lucas read page 53 out loud tonight. to nobody. he's counting it. it went fine. (it went really fine.) (the door said nothing. it's a very good door.)" },
         { "type": "wallpost", "from": "aaron", "to": "lucas", "delay": 50, "text": "lucas, the sheet is on the clipboard every thursday. i wrote your name on it in pencil. erase it any time. (it's in pencil.) (i've been where you are. i'm always in G. it's fine.) no one is counting but me. i'm counting. it's 1." },
         { "type": "wallpost", "from": "andy", "to": "lucas", "delay": 120, "text": "lucas. i said ok and i meant ok. i have 31 videos and 31 red corners and i know what 'not yet' means. it means 'later, if the render finishes.' the words will wait. the robot will wait. the movie maker will wait. (it will stop at 91 and wait.)" },
-        { "type": "dm", "delay": 420, "text": "malten. mom knocked. 'dinner's ready.' and i said 'ok' and went, and it meant something. i don't know if that counts. i think it counts. i'm putting it on page 54. (it's not about pain.) (it's about dinner.)" }
+        { "type": "dm", "delay": 420, "text": "{you}. mom knocked. 'dinner's ready.' and i said 'ok' and went, and it meant something. i don't know if that counts. i think it counts. i'm putting it on page 54. (it's not about pain.) (it's about dinner.)" }
       ]
     }
   }

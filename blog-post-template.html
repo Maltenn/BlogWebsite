@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>POST TITLE HERE — MALTEN.EXE</title>
+    <meta name="description" content="ONE SENTENCE ABOUT THE POST (shows up in link previews and search results)">
     <link rel="icon" href="pfp.png">
     <link rel="stylesheet" href="styles.css">
     <script src="desktop.js" defer></script>
@@ -12,47 +13,76 @@
     <!-- ============================================================
          HOW TO USE THIS TEMPLATE:
          1. Save a copy as your-post-name.html
-         2. Replace POST TITLE HERE (twice: <title> and title-bar)
-         3. Replace the post number/date line
-         4. Write your post inside .blog-content
-         5. Add a link to it in blog-hub.html and the Blog window in index.html
+         2. Replace POST TITLE HERE (4 places: <title>, data-task, the title bar, the <h1>)
+            and your-post-name in the Address bar
+         3. Replace the post number/date line (2 places: under the heading, and the status bar)
+         4. Write your post inside .post-body, one <p> per paragraph
+         5. Link it in three places:
+              - blog-hub.html            (copy a .blog-preview block to the top of the list)
+              - index.html               (the Blog Posts window has the same kind of block)
+              - ourspace.js MS.blogPosts (one line; feeds OurSpace's Blog tab and My Page)
+         The taskbar and Start menu at the bottom are added by desktop.js — nothing to copy.
          ============================================================ -->
     <div class="container">
-        <div class="nav-bar">
-            <a href="index.html" target="_self">🏠 Home</a>
-            <a href="blog-hub.html" target="_self">📁 Blog Hub</a>
-            <a href="https://x.com/Maltennn" target="_blank" rel="noopener">Twitter</a>
-            <a href="https://discordapp.com/users/798692143308210217" target="_blank" rel="noopener">Discord</a>
-            <a href="https://open.spotify.com/user/moltennebula?si=b7fd44e7448847c3" target="_blank" rel="noopener">Spotify</a>
-            <a href="https://steamcommunity.com/id/Malten/" target="_blank" rel="noopener">Steam</a>
-        </div>
-
-        <div class="window">
+        <div class="window page-window" data-task="📝 POST TITLE HERE">
             <div class="title-bar">
-                <div class="title-bar-text">📝 POST TITLE HERE</div>
+                <div class="title-bar-text">🌐 POST TITLE HERE — Maltenscape Navigator</div>
                 <div class="title-bar-controls">
-                    <img src="Minimize.png" alt="Minimize">
-                    <img src="Fullscreen.png" alt="Maximize">
-                    <img src="Close.png" alt="Close">
+                    <img src="Minimize.png" alt="Minimize" title="minimize">
+                    <img src="Fullscreen.png" alt="Maximize" title="wider / narrower">
+                    <img src="Close.png" alt="Close" title="close (back to the desktop)">
                 </div>
             </div>
-            <div class="window-body">
-                <div class="blog-date">post #00X — date or vibe goes here</div>
-                <!-- optional header image: -->
-                <!-- <img src="your-image.png" alt="" class="blog-image" style="width: 200px;"> -->
-                <div class="blog-content">
-                    <p>Your blog post content goes here. The window expands to fit
-                    however much you write.</p>
-
-                    <h2>use h2 for section headings</h2>
-                    <p>paragraphs, lists, images — whatever you want.</p>
-
-                    <!-- fun extras you can sprinkle in: -->
-                    <img src="assets/construction_line.gif" alt="" class="divider-gif">
-                    <p class="rainbow-text" style="text-align:center;">★ rainbow text ★</p>
-                    <p class="blink" style="text-align:center;">blinking text (use responsibly. or don't.)</p>
+            <div class="nav-chrome">
+                <div class="nav-row nav-tools">
+                    <a class="btn98" href="index.html" title="back to the desktop">🖥️ Desktop</a>
+                    <a class="btn98" href="blog-hub.html">📁 Blog Hub</a>
+                    <a class="btn98" href="index.html?open=myspace">👥 OurSpace</a>
+                    <a class="btn98" href="index.html?tab=guestbook">📖 Guestbook</a>
+                </div>
+                <div class="nav-row nav-address">
+                    <span class="wr-label">Address</span>
+                    <span class="wr-url">http://www.malten.exe/blog/your-post-name.html</span>
+                </div>
+                <div class="nav-row nav-links">
+                    <span class="wr-label">Links</span>
+                    <a href="https://x.com/Maltennn" target="_blank" rel="noopener">Twitter</a>
+                    <a href="https://discordapp.com/users/798692143308210217" target="_blank" rel="noopener">Discord</a>
+                    <a href="https://open.spotify.com/user/moltennebula?si=b7fd44e7448847c3" target="_blank" rel="noopener">Spotify</a>
+                    <a href="https://steamcommunity.com/id/Malten/" target="_blank" rel="noopener">Steam</a>
                 </div>
             </div>
+            <div class="page-doc">
+                <article class="post">
+                    <header class="post-head">
+                        <div class="blog-date">post #00X · Month Day, Year · by malten</div>
+                        <h1>POST TITLE HERE</h1>
+                    </header>
+                    <!-- optional header image: -->
+                    <!-- <img src="your-image.png" alt="" class="blog-image" style="width: 200px;"> -->
+                    <div class="blog-content post-body">
+                        <p>Your blog post content goes here. The window expands to fit
+                        however much you write.</p>
+
+                        <h2>use h2 for section headings</h2>
+                        <p>paragraphs, lists, images — whatever you want. <em>italics</em> with
+                        &lt;em&gt;, <strong>bold</strong> with &lt;strong&gt;.</p>
+
+                        <!-- fun extras you can sprinkle in: -->
+                        <img src="assets/construction_line.gif" alt="" class="divider-gif">
+                        <p class="rainbow-text" style="text-align:center;">★ rainbow text ★</p>
+                        <p class="blink" style="text-align:center;">blinking text (use responsibly. or don't.)</p>
+                    </div>
+                    <footer class="post-foot">
+                        <img src="assets/deco_rainbow_bar.gif" alt="" class="bar-gif">
+                        <p>thanks for reading. if you want to say something back, the
+                        <a href="index.html?tab=guestbook">guestbook</a> is open.</p>
+                        <a class="btn98" href="blog-hub.html">📁 all posts</a>
+                        <a class="btn98" href="index.html">🖥️ back to the desktop</a>
+                    </footer>
+                </article>
+            </div>
+            <div class="status-bar"><span>✔ Document: Done</span><span>post #00X</span><span>🌐 malten.exe</span></div>
         </div>
     </div>
 </body>

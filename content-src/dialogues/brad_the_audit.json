@@ -2,7 +2,7 @@
   "id": "brad_the_audit",
   "with": "brad",
   "opener": [
-    "Hi malten. Brad. Blockbuster. I have an emergency that is exactly the size of a movie, and I don't have the movie. That has never happened. I'm shaking a little. The receipt printer can tell.",
+    "Hi {you}. Brad. Blockbuster. I have an emergency that is exactly the size of a movie, and I don't have the movie. That has never happened. I'm shaking a little. The receipt printer can tell.",
     "Mr. Dwyer got a call from corporate. A District Audit, Friday, 9 AM. A Mr. Teague, with a clipboard. He's auditing 'long-term outstanding rentals.' There is exactly one: THE SPONGEBOB SQUAREPANTS MOVIE. Out 214 days. Rented by a customer I'm not able to name. (It's Patrick. It's always been Patrick.)",
     "Here's what the receipt doesn't say. In April I paid the replacement cap, $19.99, in ones, out of my own pocket. The account says GOOD STANDING. Mr. Dwyer asked what happened and I said 'software.' I prescribe a movie for every person who walks through that door. I can't read the back of my own box. Please. Prescribe."
   ],
@@ -29,7 +29,7 @@
     "a_say": {
       "them": [
         "...Said it. 'I paid the cap on Patrick's tape in April. In ones. I wrote software. I'd do it again.' Mr. Dwyer looked at the register for eleven seconds. I counted. Then he said, 'I know.'",
-        "He knew in April. The ones were in a rubber band. He counts the drawer. He wrote 'software' on the log too. We both wrote 'software,' malten. For six months. Two people telling the same small lie, neither willing to say it first. I don't think either of us was lying. I think we were each waiting for the other one to need a movie."
+        "He knew in April. The ones were in a rubber band. He counts the drawer. He wrote 'software' on the log too. We both wrote 'software,' {you}. For six months. Two people telling the same small lie, neither willing to say it first. I don't think either of us was lying. I think we were each waiting for the other one to need a movie."
       ],
       "effects": [
         { "type": "status", "delay": 8, "text": "brad just told his manager something true. the register has no field for it. brad wrote 'honesty' in the margin of the receipt book anyway. it's a thick margin" }
@@ -148,7 +148,7 @@
     "p_visit": {
       "them": [
         "Thursday, 4:30. Patrick lives by the pond. His door has a pizza sticker. I knocked the way I knock at the return slot: twice, with respect. He opened it with Dwayne in his hand. 'Brad!' he said. 'Is it time?' I said 'time for what?' He said 'I don't know. I just always wonder.'",
-        "I told him. The audit, the shelf, and the one other option: the store can sell it to a customer for $4.99, previously viewed, which is what happens to every tape that's been loved this long. He thought for four seconds. He said, 'oh. so it was never mine. it was just ours for a while.' Then: 'that's okay. that's how most things are.' ...malten. I had a movie ready for every other answer. I did not have one for that.",
+        "I told him. The audit, the shelf, and the one other option: the store can sell it to a customer for $4.99, previously viewed, which is what happens to every tape that's been loved this long. He thought for four seconds. He said, 'oh. so it was never mine. it was just ours for a while.' Then: 'that's okay. that's how most things are.' ...{you}. I had a movie ready for every other answer. I did not have one for that.",
         "He's holding it with both hands. Dwayne is on the porch rail, facing the tape. He asked 'what happens now.' It's my line. I give it to everyone. I'm standing on a porch and I don't know the next ten minutes."
       ],
       "choices": [
@@ -195,7 +195,7 @@
         { "type": "status", "text": "brad bought a tape for $4.99 and put it on a shelf with a card. the card says ON LOAN: P. (STANDING). it's the only standing loan in the store. there's no field for it" },
         { "type": "status", "from": "patrick", "delay": 40, "text": "patrick gave the tape back to the store. he is not sad. he is sad in a different way that is also okay. dwayne is being held. he understands. he's a rock" },
         { "type": "wallpost", "from": "tim", "to": "brad", "delay": 95, "text": "brad. ledger update. outstanding rental: 214 days. closed. account 'patrick' reopened as 'standing loan, fridays, 3 days.' i have never seen a rental structure this long. i did the math. it is the best deal in the store. i am requesting the same terms. i would return it 11 minutes early. i would put it in the ledger under 'friends.' (new column.)" },
-        { "type": "dm", "delay": 220, "text": "Malten. It's 11:20 PM. I've looked at the card on the shelf four times. ON LOAN: P. (STANDING). It's the best receipt I've ever written. There's no field for it. I'm going to ask corporate for one. Corporate is a building. I'm going to ask the building. Thank you for staying on the line. Please rewind." }
+        { "type": "dm", "delay": 220, "text": "{you}. It's 11:20 PM. I've looked at the card on the shelf four times. ON LOAN: P. (STANDING). It's the best receipt I've ever written. There's no field for it. I'm going to ask corporate for one. Corporate is a building. I'm going to ask the building. Thank you for staying on the line. Please rewind." }
       ]
     },
 

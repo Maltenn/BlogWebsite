@@ -1,0 +1,151 @@
+{
+  "id": "lucas",
+  "name": "linkin_lucas",
+  "tag": "the deepest pain is the pain nobody sees (i wrote that)(don't check)",
+  "avatar": "assets/avatar_lucas.gif",
+  "age": 16,
+  "loc": "the void (my room)",
+  "mood": "misunderstood",
+  "lastLogin": "Jul 3 2026 11:58 PM",
+  "theme": {
+    "bg": "#000000",
+    "fg": "#cccccc",
+    "accent": "#cc0000"
+  },
+  "about": "u wouldn't understand. nobody does. that's kind of my whole thing. i own six black hoodies. they are identical. they are each completely different. i keep a black notebook where i write the truths society isn't ready for, like my three-page piece about how taking out the trash is a metaphor for how they treat my ideas. Hybrid Theory changed me. Meteora changed me BACK, and then further. my mom says 'dinner's ready' like that MEANS anything. it means nothing. (i did go eat. the pain requires fuel.)",
+  "interests": {
+    "General": "the black notebook, black hoodies (6), staring out rainy windows, feeling everything at maximum volume, the rain, annotating lyrics booklets, garage practice (friday), being misunderstood (professionally)",
+    "Music": "linkin park (hybrid theory), linkin park (meteora), linkin park (reanimation) (the remix one) (it changed me sideways), papa roach, evanescence (tina and i have an understanding), static prophecy (i'm the words)",
+    "Movies": "the crow (in the rain). donnie darko (i understood it) (i didn't) (that's the point). the matrix (dave's idea) (the rain parts)",
+    "Television": "whatever's on when it's raining. mtv2 at 2 AM when they play the video for Numb and my mom's asleep",
+    "Books": "the meteora lyrics booklet (annotated), the hybrid theory booklet (more annotated), the black notebook (47 pages), the perks of being a wallflower (i AM the wallflower)",
+    "Heroes": "chester. mike shinoda. darkangel (glitter tragedy is still tragedy). the rain. my mom (she knocks, but she knocks gently)"
+  },
+  "song": {
+    "name": "In the End",
+    "artist": "LINKIN PARK",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/3f/cb/c7/3fcbc7cc-0606-7f6e-7fc3-793318cfd1ed/mzaf_16081918663584534594.plus.aac.p.m4a",
+    "pattern": [
+      0,
+      4,
+      7,
+      4,
+      0,
+      4,
+      7,
+      12
+    ],
+    "bpm": 120
+  },
+  "decor": [
+    "assets/deco_skull.gif",
+    "assets/badge_winamp.gif"
+  ],
+  "bgTile": "assets/tiles/tile_bolts.png",
+  "friends": [
+    "darkangel",
+    "greg",
+    "riley",
+    "sk8rboi",
+    "tina"
+  ],
+  "wall": [
+    {
+      "from": "darkangel",
+      "text": "lucas. your away message last night ('the rain doesn't ask permission')... i felt that in my soul's soul. 11:11. always.",
+      "time": "Jul 2 2026 11:11 PM"
+    },
+    {
+      "from": "greg",
+      "text": "dude static prophecy NEEDS lyrics like yours. show friday. my garage. bring the black notebook. bring an amp if u have one. bring an amp even if u don't",
+      "time": "Jun 30 2026 6:47 PM"
+    },
+    {
+      "from": "nikki",
+      "text": "lucas i nightcored ur favorite song for u!! it's 1.5x faster so the pain arrives SOONER!! ur welcome!! UNTZ UNTZ",
+      "time": "Jun 27 2026 9:58 PM"
+    },
+    {
+      "from": "chad",
+      "text": "LUCAS ur poems are AWESOME dude. i don't get them but i can tell they're deep. KEEP SWINGING",
+      "time": "Jun 23 2026 5:11 PM"
+    }
+  ],
+  "replies": [
+    "u say that now. but in the end... think about it. really think about it.",
+    "deep. but is it DEEP deep? i'll journal on this and report back.",
+    "nobody understands me. except possibly u. jury's still out. stay tuned.",
+    "i felt this. i feel everything. it's a burden i carry (in the notebook)."
+  ],
+  "thanksAdd": "{you}. accepting my request means u SEE me. few do. welcome. my page is black for a reason. the reason is pain. (also it looks awesome)",
+  "ambient": [
+    "it's raining. finally, weather that gets it.",
+    "wrote 4 pages in the black notebook tonight. my mom knocked and said 'dinner's ready.' she has no idea what i'm becoming (hungry, partially)",
+    "played Numb on repeat until the meaning changed. it did change. i can't explain how. that's the point."
+  ],
+  "saltyDm": "denied. of course. one more shadow for the notebook. it's fine. pain is my co-author. (the request stands, if u ever start feeling things.)",
+  "keywords": {
+    "linkin park": "finally. someone who speaks the language of my soul. which album. answer carefully. this determines everything between us.",
+    "deep": "u think that's deep? i've written deeper. i'll show u. wait. no. it's not ready. NOTHING in the notebook is ready."
+  },
+  "banter": {
+    "darkangel": [
+      "ur 11:11 poem broke me. i read it at 11:12 and honestly? still worked. THAT is craft.",
+      "we should collab. u bring the glitter tragedy, i bring the rage whisper. the black notebook is ready. it's been ready."
+    ],
+    "greg": [
+      "greg i wrote lyrics for static prophecy. title: 'Screaming Silently (The Silence Screams)'. it's about my chores. it's about SO much more than my chores.",
+      "friday. the garage. i'll be the one in the black hoodie. (i know. i'll be in the BLACKEST one. u'll know it when u feel it.)"
+    ],
+    "chad": [
+      "chad u commented 'NICE POEM DUDE' on my darkest work and somehow it helped?? i can't explain the feelings this causes. good hustle to u as well.",
+      "no chad, 'the abyss' is not a pool. but thank u for offering to teach me to swim in it. genuinely. don't tell anyone i said genuinely."
+    ],
+    "nikki": [
+      "nikki u can't nightcore my pain. my pain is 60 bpm. the tempo IS the suffering. that's the whole point of the pain.",
+      "ok. i listened to ur remix. i say this under protest: the pain kind of slaps at 1.5x. delete this comment. DELETE IT."
+    ],
+    "nate": [
+      "nate ur bulletin said 'some people...' and then nothing. no period. no follow up. that's the most honest thing anyone's posted on this site. i want it on my wall. can i have it. i'll credit u in the notebook",
+      "we both posted 'idk anymore' at 11:58 pm on the same night and neither of us said what. that's not a coincidence. that's a genre."
+    ],
+    "raven": [
+      "raven u said my 'Trash Night' poem was 'derivative but felt.' nobody has ever said 'felt' about my work. i wrote FELT on my hoodie. the blackest one. u'll know it when u see it",
+      "u told me real darkness doesn't need a hoodie. then u told me the hoodie was fine and to keep writing. i don't know what to do with kindness from a goth. it's in the notebook now. page 50."
+    ],
+    "bryan": [
+      "bryan u drum like u're mad at the kit and the kit deserves it. nobody at school gets that. the garage gets it. friday. bring the anger. (greg says also bring the cymbal u left)",
+      "u posted 'idk anymore' and then didn't text kayla back and then came to practice and played the loudest i've ever heard u. that's not bad texting. that's a lyric. i wrote it down. u're page 51."
+    ]
+  },
+  "statuses": [
+    "is staring at the rain. the rain is staring back.",
+    "is one skipped chore away from writing his greatest work",
+    "is listening to Hybrid Theory in the dark and understanding EVERYTHING",
+    "wrote page 48. it's about the dishwasher. it's about how we all get loaded in and no one asks if we're clean.",
+    "is at practice. the amp buzzed. i buzzed back. greg said 'lucas that's feedback.' i said 'exactly.'",
+    "some people say 'ur not even sad, ur just wearing a hoodie.' the hoodie is HOW u know. i'm not naming anyone. (it was my brother.) (he's 11.)",
+    "it rained today. for once, the sky did my homework."
+  ],
+  "bulletins": [
+    {
+      "subject": "a poem (do not comment unless u FELT it)",
+      "body": "'Trash Night' — they say take it out / but what if i am the one being taken out / of the conversation / of society / of dinner (i was late)(they started without me) / the bag is full / so am i. — from the black notebook, page 47. don't repost this. actually repost it everywhere.",
+      "time": "Jul 1 2026 11:34 PM"
+    }
+  ],
+  "gender": "Male",
+  "hometown": "Canton, OH (the void has a zip code)",
+  "zodiac": "Capricorn. the goat. alone on the mountain. it doesn't need anyone to understand it. (starxgazer said this and i felt seen. don't tell her.)",
+  "status": "is listening to Numb in the dark. the dark is listening too.",
+  "hereFor": "Friends (who understand). Serious Relationships (with the notebook). Networking (no). Dating (u wouldn't understand)",
+  "blogTitle": "from the black notebook (pages society isn't ready for)",
+  "meet": "chester bennington, so i can nod at him and he can nod at me and nothing needs to be said. the rain. someone who reads page 47 and doesn't ask 'is this about the trash.' (it is about the trash.) (it's about so much more than the trash.)",
+  "pcComments": [
+    "this pic is dark. not the lighting. the meaning. i felt it.",
+    "u're looking away from the camera. away from all of us. i get it. i get it more than u know.",
+    "in the end... u know how the song goes. but this pic? it matters. nice pic.",
+    "the rain in the background... did u plan that. u didn't. the rain planned it. it always does.",
+    "i wrote about this pic in the notebook. page 49. u can't read it. it's not ready. but it's about u."
+  ]
+}

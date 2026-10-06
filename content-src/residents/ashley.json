@@ -114,7 +114,7 @@
   "I'd like to table this until after Regionals. [PINK] That's a yes though",
   "Thank you. I put it in the folder. The good folder."
  ],
- "thanksAdd": "[GREEN] Request ACCEPTED. Welcome aboard, malten. You've been assigned a color (pending, please advise your favorite). Standing orders: (1) be early, (2) if you're early you're on time, (3) nobody falls. [PINK] I'm glad you're here. [ORANGE] Snacks are oranges. That is not a joke. It's a tradition.",
+ "thanksAdd": "[GREEN] Request ACCEPTED. Welcome aboard, {you}. You've been assigned a color (pending, please advise your favorite). Standing orders: (1) be early, (2) if you're early you're on time, (3) nobody falls. [PINK] I'm glad you're here. [ORANGE] Snacks are oranges. That is not a joke. It's a tradition.",
  "ambient": [
   "[PURPLE] The 3-high wobbled at 4:12 today. Nobody fell. Nobody touched the ground. I caught Jenna and Priya at the same time and I'd like it noted that I have two arms. [GREEN] Great teamwork.",
   "[YELLOW] Reminder: standing order #4 is label your things. If you can't find your water bottle it's because it isn't labeled. If it's labeled and you can't find it, you're not looking in the right color.",
@@ -205,13 +205,13 @@
  ],
  "dmSeed": [
   {
-   "text": "[RED] Malten. Ashley here, captain of the Eagles varsity cheer squad. You're now a friend, and a friend has a place in my organization. [GREEN] Welcome. First assignment: tell me your favorite color. I keep a chart. [PINK] It's not a test. It's a hug with a spreadsheet."
+   "text": "[RED] {you}. Ashley here, captain of the Eagles varsity cheer squad. You're now a friend, and a friend has a place in my organization. [GREEN] Welcome. First assignment: tell me your favorite color. I keep a chart. [PINK] It's not a test. It's a hug with a spreadsheet."
   }
  ],
  "dms": [
-  "[PURPLE] Malten. Emergency. Someone put pretzels in the ORANGE column of the snack schedule. I'm not angry. I'm in the garage with the whiteboard. I'll be fine in 11 minutes.",
+  "[PURPLE] {you}. Emergency. Someone put pretzels in the ORANGE column of the snack schedule. I'm not angry. I'm in the garage with the whiteboard. I'll be fine in 11 minutes.",
   "Question. Can someone be a good captain if she can't do a back handspring? I'm a base. I stand on the ground. I catch. I've never flipped in front of anybody. [PINK] Don't answer that. I just wanted to ask someone who isn't on the squad.",
-  "[BLUE] Malten, what's your favorite color? I'm making cards. I make one for everyone on the squad, and I've decided you're on the squad. Not in a cheer way. In a 'gets a card' way.",
+  "[BLUE] {you}, what's your favorite color? I'm making cards. I make one for everyone on the squad, and I've decided you're on the squad. Not in a cheer way. In a 'gets a card' way.",
   "I have three label makers: garage, binder, bedroom. Last week I labeled the dog. His label says CAPTAIN OF NOTHING. He doesn't mind. He's a very good sport.",
   "[ORANGE] Oranges update: it was Priya's turn. She brought 40 slices on a tray with a doily. A DOILY. She's a freshman. I teared up. [PINK] Nobody saw.",
   "[RED] I need a favor. If you see Chad at the pep rally, tell him the Eagle suit isn't a costume. It's a role. [YELLOW] That's all.",

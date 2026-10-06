@@ -2,7 +2,7 @@
  "id": "paige_leaning_cover",
  "with": "paige",
  "opener": [
-  "malten. emergency. yvette broke her silence. 3 days of nothing and then a message with a deadline in it",
+  "{you}. emergency. yvette broke her silence. 3 days of nothing and then a message with a deadline in it",
   "she wants the bleachers panorama for the yearbook COVER. the 340 people leaning left one. my name on the cover, bottom right, 6 pt font",
   "there is one condition. u can probably guess the condition"
  ],
@@ -17,7 +17,7 @@
   "read_message": {
    "them": [
     "ok. verbatim. 'PAIGE. The senior panorama is selected for the cover pending ONE adjustment: please rotate it 2 degrees clockwise so the horizon is level. The committee votes Friday at 3:00. Reply by Thursday. ~Yvette'",
-    "then a second paragraph. 'I looked at the full size file for 40 minutes before writing this. I did not reply for 2 days because I did not know what I wanted to say.' malten she has never typed a sentence that wasnt a deadline"
+    "then a second paragraph. 'I looked at the full size file for 40 minutes before writing this. I did not reply for 2 days because I did not know what I wanted to say.' {you} she has never typed a sentence that wasnt a deadline"
    ],
    "choices": [
     { "say": "40 minutes. thats not a no. shes stuck on it. thats different.", "next": "yvette_loved_it" },
@@ -154,7 +154,7 @@
   "ultimatum_result": {
    "them": [
     "sent. she replied in 4 seconds: 'Noted.' with a period. i cant tell if i won or got filed",
-    "10 min later: 'The committee will review the file as submitted. Do not contact me again before Friday. ~Y.' malten. 'as submitted.' thats either a yes or an execution"
+    "10 min later: 'The committee will review the file as submitted. Do not contact me again before Friday. ~Y.' {you}. 'as submitted.' thats either a yes or an execution"
    ],
    "effects": [
     { "type": "status", "from": "yvette", "delay": 30, "text": "yvette is in the yearbook room with the door closed and the blinds down. (the yearbook room does not have blinds. she brought some.)" }
@@ -195,7 +195,7 @@
    ],
    "end": true,
    "effects": [
-    { "type": "wall", "text": "malten thank u. i asked instead of guessing and yvette told me shes been scared of the tilt for 3 days bc she liked it too much. we r basically the same person. do NOT tell her i said that" },
+    { "type": "wall", "text": "{you} thank u. i asked instead of guessing and yvette told me shes been scared of the tilt for 3 days bc she liked it too much. we r basically the same person. do NOT tell her i said that" },
     { "type": "wallpost", "from": "yvette", "to": "paige", "delay": 40, "text": "Paige. The inside back cover is approved: full page, 8 pt, 'AS SHOT.' This is the first time I have been glad to be outvoted by myself. Contact sheets are still due Friday at 3:00. Green. ~Yvette" },
     { "type": "wallpost", "from": "thad", "to": "paige", "delay": 100, "text": "(Thad rises from the cheap seats.) Paige. The golden hour on 340 faces, full page, at the back of the house. The best seat is always the last one. I wept in the wings. (The wings were the hallway.) ~Thad" }
    ]

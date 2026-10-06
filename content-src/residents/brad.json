@@ -137,11 +137,11 @@
     "I'd rent this. Five stars. Please return it by Thursday."
   ],
   "dmSeed": [
-    { "text": "Hi malten. Brad here, shift supervisor at the Blockbuster. I looked at your page and you didn't list any movies. A person who doesn't list movies is either a mystery or hasn't been asked. So I'm asking: what's the last good one? Also your account has 0 late fees. Keep it that way. Please rewind." },
+    { "text": "Hi {you}. Brad here, shift supervisor at the Blockbuster. I looked at your page and you didn't list any movies. A person who doesn't list movies is either a mystery or hasn't been asked. So I'm asking: what's the last good one? Also your account has 0 late fees. Keep it that way. Please rewind." },
     { "text": "Also, I should say I will recommend something to you eventually. I can't help it. It's not personal. It's a condition. It starts with THE PRINCESS BRIDE and it goes from there." }
   ],
   "dms": [
-    "Malten. A man just returned a tape with a Post-it that said 'sorry, the dog ate it.' I said did the dog eat it. He said no. I said I appreciate that you said no. I waived the fee. On the receipt I wrote 'honesty.' There's no field for honesty. There should be. I'm going to raise it with corporate. Corporate is a building in another state. I've never met it.",
+    "{you}. A man just returned a tape with a Post-it that said 'sorry, the dog ate it.' I said did the dog eat it. He said no. I said I appreciate that you said no. I waived the fee. On the receipt I wrote 'honesty.' There's no field for honesty. There should be. I'm going to raise it with corporate. Corporate is a building in another state. I've never met it.",
     "I just signed up for a second class. Film History, Wednesdays. My mom said 'that's good, honey.' I said it's a plan. She said 'it's a good plan.' I've never had a plan before. It feels like wearing a new coat.",
     "A girl asked me what I'd recommend for a first date. I said THE PRINCESS BRIDE because it has everything. She said 'that's it? That's what you'd pick?' I said I've thought about this a lot. She said 'have you ever been on one?' I said I know exactly which movie. I've never gotten past asking. She said 'oh.' She rented RUDY. I don't know what that means.",
     "Fun fact: the average person spends about 3 minutes in the aisle deciding a movie isn't for them. I've timed it. The ones who read the back of the box for 20 seconds rent it 90% of the time. I think it means people want to be told. So I tell them.",

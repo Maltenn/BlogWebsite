@@ -2,9 +2,9 @@
   "id": "kittyxcore_friend_number_one",
   "with": "kittyxcore",
   "opener": [
-    "malten. EMERGENCY. adam posted a pic of me.",
+    "{you}. EMERGENCY. adam posted a pic of me.",
     "u know adam. add_me_adam. the 10,412 friends guy. he went 2 the mall sat like i told him 2 n we met irl (HES REAL (hes 6'1 n very shy)). we split a pretzel. it stormed at 4 like always n we got caught running 2 the car.",
-    "n he took a pic of me under the fountain awning n put it UP. caption says 'friend #1 (MET!!!!)'. malten my hair is FLAT. like a wet hello kitty pillow. its UNTEASED. nobody has ever seen me untouched. it has 11 comments already n under pc4pc law i have 2 comment it back."
+    "n he took a pic of me under the fountain awning n put it UP. caption says 'friend #1 (MET!!!!)'. {you} my hair is FLAT. like a wet hello kitty pillow. its UNTEASED. nobody has ever seen me untouched. it has 11 comments already n under pc4pc law i have 2 comment it back."
   ],
   "nodes": {
     "start": {
@@ -87,7 +87,7 @@
     "adam_reply": {
       "them": [
         "i wrote: 'friend #1 back at u. best day of my summer. i look like a wet kitten n id do it again. pc4pc (this 1 counts double).' i hit post. i didnt even check 4 typos. thats a first.",
-        "he answered in 3 seconds. 'THANKS 4 THE COMMENT!!!' n then, a second later: 'sorry, that was autopilot. i meant it. i meant THANK YOU. nobody ever commented a real thing before.' malten. i have to go sit on the bathroom floor."
+        "he answered in 3 seconds. 'THANKS 4 THE COMMENT!!!' n then, a second later: 'sorry, that was autopilot. i meant it. i meant THANK YOU. nobody ever commented a real thing before.' {you}. i have to go sit on the bathroom floor."
       ],
       "effects": [
         { "type": "wallpost", "from": "adam", "to": "kittyxcore", "delay": 15, "text": "thanks 4 the comment!!! (sorry. autopilot.) i meant it. i printed it. it's the first one i ever printed. it's in my room, next 2 the vending machine pic. the pretzel was a 10. you're friend #1 and i'm saying it on purpose." }
@@ -101,7 +101,7 @@
     "ask_takedown": {
       "them": [
         "ok. i'm typing 2 him. 'adam can u take the pic down.' ...no thats mean. 'adam i look like a drowned hello kitty pillow.' ...he'll say thank u 4 the compliment. 'adam its not u its me.' ...i look 12 yrs old. who sends that.",
-        "i hate that i'm even asking. he finally had a thing 2 post that wasn't a vending machine. malten. he posted something REAL. n i want 2 delete it."
+        "i hate that i'm even asking. he finally had a thing 2 post that wasn't a vending machine. {you}. he posted something REAL. n i want 2 delete it."
       ],
       "choices": [
         { "say": "be kind. ask him to swap it for one where the hat's on. he still gets 'friend #1 (met)'.", "next": "hat_compromise" },
@@ -112,7 +112,7 @@
     "truth_to_adam": {
       "them": [
         "i told him. i wrote the whole thing. 'my hair is flat n i've never let anybody see it n im scared nobody will comment.' i hit send n put my face in the hello kitty pillow (the real one, not the one i look like in the pic).",
-        "he wrote back: 'i'll take it down if u want. i like it flat. i like it every way. its a lot of hair either way (i mean that as a compliment).' malten. he said 'i'll take it down' FIRST. before 'don't.' he said it first."
+        "he wrote back: 'i'll take it down if u want. i like it flat. i like it every way. its a lot of hair either way (i mean that as a compliment).' {you}. he said 'i'll take it down' FIRST. before 'don't.' he said it first."
       ],
       "choices": [
         { "say": "keep it up. let him keep the best day of his summer. you lose a little hair-pride, he gets a lot.", "next": "end_honest" },
@@ -173,7 +173,7 @@
     "end_honest": {
       "them": [
         "ok. its up. my comment, his pic, my flat hair. i'm leaving all 3. i'm putting my hand on my own hair, its so soft its like a wet mouse.",
-        "thanks, malten. i thought if i let anyone see it nobody would comment. instead i got 16 comments n a guy who printed one. i'm gonna keep the hat in the bag until next saturday. n then i'm gonna wear it. n then i'm gonna leave my hair flat in the car on the way home. =^.^="
+        "thanks, {you}. i thought if i let anyone see it nobody would comment. instead i got 16 comments n a guy who printed one. i'm gonna keep the hat in the bag until next saturday. n then i'm gonna wear it. n then i'm gonna leave my hair flat in the car on the way home. =^.^="
       ],
       "end": true,
       "effects": [
@@ -208,7 +208,7 @@
         { "type": "status", "text": "kittyxcore is wearing a hat. its the right hat. the hair under it is flat n shes ok w/ that for now. 'for now' is a real thing. =^.^=" },
         { "type": "wallpost", "from": "adam", "to": "kittyxcore", "delay": 45, "text": "thanks 4 the swap!!! the new one is great!!! (i kept the old one. on my computer. just for me. in a folder called 'friend #1'. i hope that's ok. u can say no. i'll delete it. it's ok if u say no.)" },
         { "type": "wallpost", "from": "misery", "to": "kittyxcore", "delay": 130, "text": "rawr XD kitty u wore a hat to hide the flat hair?? thats ok. i hid under a hat for ALL of 8th grade. (i said it first.) (the hat was a beanie.) (in july.) ur gonna be ok. XD" },
-        { "type": "dm", "delay": 420, "text": "hey malten. ok i did it. i posted 1 flat pic. its tiny. its the back of my head on a bench at the salon w/ marisa's hand in it. its my hair from behind. 4 comments already. nobody can see my face. but u can see my hair. ok. i can do this. baby steps =^.^=" }
+        { "type": "dm", "delay": 420, "text": "hey {you}. ok i did it. i posted 1 flat pic. its tiny. its the back of my head on a bench at the salon w/ marisa's hand in it. its my hair from behind. 4 comments already. nobody can see my face. but u can see my hair. ok. i can do this. baby steps =^.^=" }
       ]
     }
   }

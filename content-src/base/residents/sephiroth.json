@@ -1,0 +1,164 @@
+{
+  "id": "sephiroth",
+  "name": "xXSephirothXx",
+  "tag": "SOLDIER 1st Class (in my heart)",
+  "avatar": "assets/avatar_sephiroth.gif",
+  "age": 16,
+  "loc": "Midgar (legally: Ohio)",
+  "mood": "vengeful, but in a chill way",
+  "lastLogin": "Jul 3 2026 11:58 PM",
+  "theme": {
+    "bg": "#000000",
+    "fg": "#c0c0c0",
+    "accent": "#39ff14"
+  },
+  "about": "Greetings. You have entered the domain of the one true xXSephirothXx (there are 6 others on this site's search results. they are pretenders). I have completed Final Fantasy VII nine (9) times, including once with the sound off so I could hear the story in my SOUL. I am currently writing a 40-part essay series on the Jenova problem. Part 7 is where it gets controversial. My masamune is a yardstick with electrical tape on it and it is MAGNIFICENT. Do not speak to me of Advent Children spoilers. I have seen it 14 times. I AM the spoiler.",
+  "interests": {
+    "General": "materia (ranking), long coats (one, silver, from goodwill), stairwells, the lifestream, yardstick maintenance, correcting people about Advent Children",
+    "Music": "Nobuo Uematsu. One-Winged Angel. the Nibelheim theme at 2 AM. Those Who Fight Further (for gym class). all other music is a side quest.",
+    "Movies": "Advent Children (14 viewings, going on 15), The Spirits Within (i alone defend it), Kill Bill (the sword parts)",
+    "Television": "Toonami. the FF7 commercial from 1997 which i have on a VHS my cousin taped. that is television.",
+    "Books": "the FF7 Ultimania (imported, unread, cherished), the Advent Children novella (also japanese) (also cherished), my own essay series (40 parts) (in progress)",
+    "Heroes": "Sephiroth (before). Cloud (grudgingly). Zack (Crisis Core isn't out yet and i am ALREADY emotional). my mom (normal way)."
+  },
+  "song": {
+    "name": "One-Winged Angel",
+    "artist": "Nobuo Uematsu",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/94/a5/5d/94a55d02-ff61-880f-2fd9-74136f4fb1f2/mzaf_5399793743448038487.plus.aac.p.m4a",
+    "pattern": [
+      0,
+      4,
+      7,
+      4,
+      0,
+      4,
+      7,
+      12
+    ],
+    "bpm": 120
+  },
+  "decor": [
+    "assets/deco_skull.gif",
+    "assets/deco_dragon.gif",
+    "assets/badge_8bit.gif"
+  ],
+  "bgTile": "assets/tiles/tile_bolts.png",
+  "friends": [
+    "darkangel",
+    "wes",
+    "usagi",
+    "kevin",
+    "dave"
+  ],
+  "wall": [
+    {
+      "from": "darkangel",
+      "text": "your page is the only other one on this site that understands true darkness... also it's 11:11, i wished for matching masamune replicas for us. the glitter kind.",
+      "time": "Jun 22 2026 11:11 PM"
+    },
+    {
+      "from": "usagi",
+      "text": "sephiroth-kun!! anime club is screening Advent Children friday. you may bring the essay. NOT the 40 page one. the 5 page one. i'm watching you.",
+      "time": "Jun 27 2026 4:15 PM"
+    },
+    {
+      "from": "wes",
+      "text": "if sephiroth were in melee he'd be low tier. no wavedash, laggy sword, all cutscene. don't @ me. anyway your page loads slow on all 7 of my CRTs, feature not bug",
+      "time": "Jun 30 2026 1:04 AM"
+    },
+    {
+      "from": "herp",
+      "text": "HERP-herp-HERP-herp-HERRRRRP... HERP!!!",
+      "time": "Jul 2 2026 9:41 PM"
+    }
+  ],
+  "replies": [
+    "Your comment has been recorded in the lifestream. It will outlive us all.",
+    "I acknowledge you, as one warrior acknowledges another. *nods slowly*",
+    "An astute observation. Almost... Ultimania-level. Almost.",
+    "This wall grows stronger with each post. As do I."
+  ],
+  "thanksAdd": "You have been added, {you}. Do not take this lightly — my friends list is forged in fire and materia. When the reunion comes (my birthday party, august, there will be cake shaped like meteor), you shall be summoned.",
+  "ambient": [
+    "just perfected my hallway walk. cape physics are extremely difficult without a cape. day 12.",
+    "day 3 of asking my mom to address me as 'the one-winged angel.' she said finish the dishes. even gods have chores.",
+    "if you hear choir and electric guitar leaking from my headphones, do not perceive me. i am ascending."
+  ],
+  "saltyDm": "Denying my friend request... you are made of sterner stuff than most who walk this site. I respect it. The reunion can wait. (The offer remains open. It always remains open. That is the whole thing about reunions.)",
+  "keywords": {
+    "materia": "you have spoken the sacred word. which slot? which color? i have a ranking. i have SEVERAL rankings. sit down, this takes a moment.",
+    "ff7": "at LAST. a person of culture approaches my wall. tell me your favorite party composition and i will tell you who you truly are."
+  },
+  "banter": {
+    "darkangel": [
+      "your poem 'crimson tears pt IV' had powerful Nibelheim energy. this is the highest praise i am capable of giving. frame this comment.",
+      "11:11. i wished for the meteor. do not be alarmed. a cool one. a respectful meteor."
+    ],
+    "wes": [
+      "you own SEVEN CRTs and have played FF7 on NONE of them. i am bringing my PS1 to your house friday. this is not a request, it is a prophecy.",
+      "i have concluded that wavedashing is simply materia-less haste magic, and honestly? respect."
+    ],
+    "usagi": [
+      "usagi-chan (am i doing the suffix correctly) the anime club requires a JRPG division. i have prepared a 40-page proposal. it is about one game. you know the game.",
+      "subs not dubs, agreed, and furthermore: sephiroth's japanese voice actor could read a cafeteria menu and i would weep openly. this is canon now."
+    ],
+    "kevin": [
+      "kevin. hear me. Butterfly on heavy mode is functionally a boss theme, which makes you a boss fight. the arcade is your Northern Crater. go with honor.",
+      "i attempted DDR once and failed the tutorial. my power lies elsewhere. (menus. my power is menus.)"
+    ],
+    "mika": [
+      "mika, i have viewed your OC. she has an extremely long sword, one wing, and 'a complicated relationship with her mother.' i am not saying it is me. i am saying we should talk. respectfully. at length.",
+      "regarding the person who TRACED your OC: in the lore, copying someone's cells never ends well for the copier. tell them i said that. tell them sephiroth said that. it will mean something."
+    ],
+    "raven": [
+      "raven, you wrote that 'darkness is a discipline, not a layout.' i have written this on the inside of my coat. i believe we would have been colleagues at Shinra. (the good years.)",
+      "you do not 'get' Final Fantasy VII and i do not 'get' Bauhaus. yet we have nodded at each other in the hallway twice. that is a treaty."
+    ],
+    "epic": [
+      "epic_faic. the 'sephiroth is a 40 part essay' ytmnd was, i admit, well made. the song choice (One-Winged Angel, looped) was correct. i have watched it 30 times. this is not a defeat.",
+      "you cannot 'lol ur mom' a man whose entire story is about his mother. i have processed this. i have journaled. touche. part 10 will address you directly."
+    ]
+  },
+  "statuses": [
+    "is one-winged and dangerous (metaphorically) (for now)",
+    "is rewriting his About Me. it lacked sufficient lore.",
+    "is listening to One-Winged Angel for the 9th consecutive time. the neighbors have complained. they lack vision.",
+    "is rereading Part 4 of his essay. it holds up. the comments do not (todd is 'looking into it')",
+    "is at the goodwill and they have a LONGER coat. this changes everything.",
+    "notes that SOME people on this site claim to be 'the real' sephiroth. there are 6 of you. there is 1 of me. that is all i will say. (for now.) (part 9 will say more.)",
+    "has retaped the masamune. the yardstick is at full power."
+  ],
+  "bulletins": [
+    {
+      "subject": "LORE ESSAY PART 7: THE JENOVA PROBLEM (important)",
+      "body": "in part 6 we established the cells. in part 7 i ask the question NOBODY on this site is brave enough to ask. full essay in the comments. (comments broke at part 4. todd says he is 'looking into it.' todd. the people are WAITING.)",
+      "time": "Jun 29 2026 10:12 PM"
+    },
+    {
+      "subject": "SURVEY: which FF7 character are you (there is a correct answer)",
+      "body": "1. favorite weapon shape? 2. do you keep your best materia equipped or saved 'for later' like a coward? 3. how many wings is ideal (trick question). repost with answers. i will grade them.",
+      "time": "Jul 2 2026 8:30 PM"
+    }
+  ],
+  "dmSeed": [
+    {
+      "who": "them",
+      "text": "greetings, traveler. i observed that you are new here and have prepared a brief six-part introduction to the lore of Final Fantasy VII. part one is attached below. (it is not attached. todd says the site does not do attachments. so i will simply type it. get comfortable.)",
+      "time": "Jun 28 2026 11:47 PM"
+    }
+  ],
+  "gender": "Male",
+  "hometown": "Nibelheim (legally: Dayton, OH)",
+  "zodiac": "Scorpio (obviously. i checked twice. both times: Scorpio.)",
+  "status": "is standing at the top of the stairwell. dramatically. between classes.",
+  "hereFor": "Networking (the Reunion). Friends (worthy ones). Dating (my heart belongs to the lifestream, but i am open to a co-op partner)",
+  "blogTitle": "The Jenova Problem: A 40-Part Series (Part 8 Is Coming)",
+  "meet": "Nobuo Uematsu, so I may bow. Anyone who has finished the game more than 9 times, so we may compare notes and I may win. Also Tetsuya Nomura, to ask about the belts. Respectfully. There are so many belts.",
+  "pcComments": [
+    "your lighting in this photo is very Shinra Headquarters, 68th floor. this is a compliment of the highest order.",
+    "a strong pose. i give it 7 out of 7 materia slots. do not ask what the 8th slot would have been. there is no 8th slot.",
+    "this picture has powerful Nibelheim energy. the good Nibelheim. before.",
+    "commenting as promised. your hair in this pic defies gravity in a way i have only seen once before (silver, one wing).",
+    "i have gazed upon this photo the way one gazes into the lifestream. it gazed back. nice pic."
+  ]
+}

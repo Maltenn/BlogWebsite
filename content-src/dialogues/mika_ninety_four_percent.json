@@ -2,9 +2,9 @@
   "id": "mika_ninety_four_percent",
   "with": "mika",
   "opener": [
-    "ok malten i need to tell someone and usagi-chan is at the dentist and she would be so disappointed and she has the projector",
+    "ok {you} i need to tell someone and usagi-chan is at the dentist and she would be so disappointed and she has the projector",
     "faye asked me to draw the COVER for chapter 95!! Seraphina coming out of the lake, one hand up. its due friday. its an art trade (she writes me a side chapter of Mika Destruction) (my first real one) and i got stuck on the pose so i opened my FMA artbook for 'reference'",
-    "i made an overlay. of MY drawing. on the artbook page. i did it for fun (i did it bc i couldnt breathe). its 94 percent. malten the number is 94. THE SAME NUMBER"
+    "i made an overlay. of MY drawing. on the artbook page. i did it for fun (i did it bc i couldnt breathe). its 94 percent. {you} the number is 94. THE SAME NUMBER"
   ],
   "nodes": {
     "start": {
@@ -18,7 +18,7 @@
     "what_kept": {
       "them": [
         "ok. what i kept. the arm angle. the hair blowing the wrong way (wind) (theres no wind in a lake). and the HAND. arakawa draws hands RIGHT n i copied the right hand n it looks SO good n i hate that it looks good",
-        "n i turned the sleeve into seraphinas cloak but the lines UNDER the sleeve r hers. i traced UNDER THE SLEEVE malten. thats a layer. thats a whole layer"
+        "n i turned the sleeve into seraphinas cloak but the lines UNDER the sleeve r hers. i traced UNDER THE SLEEVE {you}. thats a layer. thats a whole layer"
       ],
       "effects": [
         { "type": "status", "delay": 8, "text": "is staring at an overlay of her OWN drawing. 94%. its a coincidence. (its not a coincidence)" }
@@ -98,7 +98,7 @@
     "public_confess": {
       "them": [
         "ok. ok ok ok. the bulletin. left: artbook page. right: my cover. 11 arrows. one points at my own elbow. one points at the sleeve. one just points at me, sitting there",
-        "usagi-chan would do a whole presentation. i can already hear the gasp. but the cover isnt DONE malten. i would be confessing to a drawing that doesnt exist yet"
+        "usagi-chan would do a whole presentation. i can already hear the gasp. but the cover isnt DONE {you}. i would be confessing to a drawing that doesnt exist yet"
       ],
       "choices": [
         { "say": "then do the presentation anyway. 'the honorable overlay.' anime club needs a story like this.", "next": "usagi_back" },
@@ -119,7 +119,7 @@
 
     "overlay_again": {
       "them": [
-        "ok. overlay. new drawing on the artbook page. 50 percent. ... eleven. ELEVEN percent. malten the 11 is the number of arrows i used before. i dont know whats happening. the numbers keep matching",
+        "ok. overlay. new drawing on the artbook page. 50 percent. ... eleven. ELEVEN percent. {you} the 11 is the number of arrows i used before. i dont know whats happening. the numbers keep matching",
         "the hand is different. the arm is different. ok the wrist is a little the same bc wrists only go so many ways. but its MINE. its my sausage. its wrong in a specific way. MY specific way"
       ],
       "choices": [
@@ -131,7 +131,7 @@
     "faye_call": {
       "them": [
         "faye called. a REAL call, on the house phone, my mom answered n said 'a girl named fanfic wants you.' she said 'Mika. it's a lake. there's a girl in it. nobody in the history of the fandom has been this precise about a lake.'",
-        "she says if i need till monday she'll move chapter 95 to monday. she said 'author's note: the chapter arrives when the cover arrives. define arrives.' malten shes giving me a choice n i dont know which one is the brave one"
+        "she says if i need till monday she'll move chapter 95 to monday. she said 'author's note: the chapter arrives when the cover arrives. define arrives.' {you} shes giving me a choice n i dont know which one is the brave one"
       ],
       "choices": [
         { "say": "friday. credit the artbook, keep the pose, finish what you can. faye can live with an honest cover.", "next": "end_credit" },
@@ -142,7 +142,7 @@
     "usagi_back": {
       "them": [
         "usagi-chan is BACK from the dentist. her mouth is numb. she typed 'mika-chan whts wrng' in lowercase which has NEVER happened",
-        "i told her everything. she said 'put it on the projector. i will do the presentation.' she said 'honor is a hand that is wrong the SAME wrong every time.' malten i think she is crying. her typing is crying"
+        "i told her everything. she said 'put it on the projector. i will do the presentation.' she said 'honor is a hand that is wrong the SAME wrong every time.' {you} i think she is crying. her typing is crying"
       ],
       "effects": [
         { "type": "wallpost", "from": "usagi", "to": "mika", "delay": 30, "text": "mika-chan!!! i saw the overlay on YOUR OWN drawing. that is the most honorable thing i have ever seen at anime club and i have seen a boy dub a subbed episode by himself in the cafeteria. anime club is behind u. subs not dubs, honesty not tracing. ganbatte!!" }
@@ -168,7 +168,7 @@
     "end_original": {
       "them": [
         "ok. DONE. cover. hands wrong in MY way. the arm is mine, the wrist is mine, the elbow is a sausage n i love it. i ran the overlay one more time just to hear the number: 11. i havent told the number to anyone but u",
-        "faye is gonna see it in 4 min. i have never been so nervous or so... clean? i feel clean. is that a thing. like i washed my hands (they r wrong) (theyre mine). thx malten. i think 'DO NOT TRACE' is a promise i get to keep now"
+        "faye is gonna see it in 4 min. i have never been so nervous or so... clean? i feel clean. is that a thing. like i washed my hands (they r wrong) (theyre mine). thx {you}. i think 'DO NOT TRACE' is a promise i get to keep now"
       ],
       "end": true,
       "effects": [
@@ -191,7 +191,7 @@
         { "type": "wallpost", "from": "faye", "to": "mika", "delay": 45, "text": "Mika! The credits are the best part of the cover. 'Pose referenced from p.114' reads like a poem. I am adding a citations section to chapter 95's author's note (it is 1,200 words now) ♥ R&R pls!" },
         { "type": "wallpost", "from": "sephiroth", "to": "mika", "delay": 90, "text": "Mika. I read your bulletin. It contains five numbered points and one parenthetical. Point 2 is a legitimate maxim. I have notes: eleven pages, all about the word 'trace.' I withhold them. This is the first time. I would like it logged." },
         { "type": "wallpost", "from": "meg", "to": "mika", "delay": 125, "text": "mika!! i read ur bulletin!! 'say where u got it'!! i got my horses from horses!! n i got my hooves from a calendar!! i dont have to say but i SAID!! love u!! (the green horse is canon now) (u did that)" },
-        { "type": "dm", "delay": 160, "text": "ok malten the second ive posted it 12 ppl said 'cute!!' n one of them was faye n one was my art teacher n one just said 'nice lake' (angela?). the point is nobody asked me to prove anything. i think thats what honest feels like. its quiet. i didnt know it was quiet" }
+        { "type": "dm", "delay": 160, "text": "ok {you} the second ive posted it 12 ppl said 'cute!!' n one of them was faye n one was my art teacher n one just said 'nice lake' (angela?). the point is nobody asked me to prove anything. i think thats what honest feels like. its quiet. i didnt know it was quiet" }
       ]
     },
 
@@ -212,7 +212,7 @@
 
     "end_stick": {
       "them": [
-        "ok. i told faye monday. she said 'Mika. take the time.' n then she said 'but chapter 95 posts friday so i asked Nick to do a stand-in cover. just for the week.' malten. NICK. a STICK. Seraphina as a stick. coming out of a lake with one hand up. the hand is a line",
+        "ok. i told faye monday. she said 'Mika. take the time.' n then she said 'but chapter 95 posts friday so i asked Nick to do a stand-in cover. just for the week.' {you}. NICK. a STICK. Seraphina as a stick. coming out of a lake with one hand up. the hand is a line",
         "n i love it. thats the worst part. it will be the best stand-in in the history of the fandom n my cover will come monday n look like a REAL drawing next to a stick. i feel like i lost friday. but i didnt lose the hands. the hands r still mine. i have to go draw an arm. in a mirror"
       ],
       "end": true,

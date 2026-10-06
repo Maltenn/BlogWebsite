@@ -2,7 +2,7 @@
  "id": "henry_one_wheel_short",
  "with": "henry",
  "opener": [
-  "malten. i lost a wheel.",
+  "{you}. i lost a wheel.",
   "the left one. it popped out in the middle of a power slide by the fountain, rolled 40 feet, hit the wall w/ a clunk, and went under the glass elevator through the grate. i can see it. it's 4 inches past my fingertips. grate rating: 2/10. floor around it: tile, 9/10. a cruel combination",
   "the mall closes in 50 min. the grate has a lock. there is exactly 1 person in this building w/ the key. he's 30 feet away by the pretzel place. he hasn't seen me. he's looking at the pretzels like they owe him money"
  ],
@@ -27,7 +27,7 @@
   "who_else": {
    "them": [
     "ok inventory. 1) tim has a link cable. 50 cents a day, no refunds. the cable is 6 feet. the wheel is 7 feet from the grate edge so it's a 1 foot problem. 2) holly knows everyone and she has the saloon rule so she'd at least look. 3) derek has longer arms than me. derek is at the skatepark. skatepark rating 6/10",
-    "problem w/ all 3: nobody can open the grate. the grate has a lock. only dennis can open the grate. so every plan has dennis at the end of it. malten every road in this mall leads 2 a mustache"
+    "problem w/ all 3: nobody can open the grate. the grate has a lock. only dennis can open the grate. so every plan has dennis at the end of it. {you} every road in this mall leads 2 a mustache"
    ],
    "choices": [
     { "say": "call holly. she can talk 2 dennis in a language u don't speak. it's called 'ma'am.'", "next": "holly_call" },
@@ -60,7 +60,7 @@
   "holly_call": {
    "them": [
     "ok i went to hot topic. i checked my 1 wheel at the door like a saloon. holly looked at me. at my foot. at my hand. she said 'where's the other one.' i said under the elevator. she closed her eyes for 4 seconds. she said 'name 3 things you did wrong.' i said rolled too fast, rolled by the fountain, 33 chases. she said 'that's 3.'",
-    "then she said 'i'll walk over there w/ you. i don't talk to security. i just stand near it.' malten she wants to STAND NEAR it. her shirt says I LOVE MY MOM in gothic letters. he's going to read it. it's the best backup i've ever had"
+    "then she said 'i'll walk over there w/ you. i don't talk to security. i just stand near it.' {you} she wants to STAND NEAR it. her shirt says I LOVE MY MOM in gothic letters. he's going to read it. it's the best backup i've ever had"
    ],
    "effects": [
     { "type": "status", "from": "holly", "delay": 20, "text": "holly is closing out register 2. a boy has asked her to 'stand near a mustache.' she is considering it. (she is wearing the shirt that says I LOVE MY MOM in gothic letters) (she is going)" }
@@ -73,7 +73,7 @@
   "tim_cable": {
    "them": [
     "i found tim at the food court (he was selling BLOCKFALL 2 a 6th grader who paid in dimes). i said i need the cable. he said 'rental is 50 cents a day.' i said apply it against the $2 you owe me. he said 'noted.' he took out a ledger. he wrote 'T. owes H. 2 dollars. H. owes T. 50 cents. net: T. owes H. 1.50.' he looked at it. he said 'this is a good day for H.'",
-    "he's got the 6 foot cable. he said 'it's a one foot problem. i can solve one foot problems.' he also said 'no refunds.' we have 3 shoelaces, a paperclip, and a glasses case. malten. we're building a crane"
+    "he's got the 6 foot cable. he said 'it's a one foot problem. i can solve one foot problems.' he also said 'no refunds.' we have 3 shoelaces, a paperclip, and a glasses case. {you}. we're building a crane"
    ],
    "effects": [
     { "type": "status", "from": "tim", "delay": 20, "text": "tim is renting a cable for a rescue operation. net revenue today: -$0.00 (applied against debt). net dignity: unknown. entered." }
@@ -109,7 +109,7 @@
   "closing_time": {
    "them": [
     "the speakers just said 'the mall will close in 15 minutes.' the lights over the fountain went to evening mode, which is 3 lights fewer. the wheel is still there. i can see it. it's an orange wheel and it picked up a little shine from the elevator",
-    "dennis is by the exit w/ the radio. i could ask now. or i could keep practicing. it's been 7 months. it survived a 40 foot roll and a wall. but it's the brave one. i can't leave it. but i also can't ask. malten what do i do"
+    "dennis is by the exit w/ the radio. i could ask now. or i could keep practicing. it's been 7 months. it survived a 40 foot roll and a wall. but it's the brave one. i can't leave it. but i also can't ask. {you} what do i do"
    ],
    "choices": [
     { "say": "ask him. he's right there. 1 word: 'sir.' the rest will come out.", "next": "end_hour" },
@@ -119,7 +119,7 @@
   "saloon_rules": {
    "them": [
     "holly came. she stood near it. she stood SO near it. she didn't say anything. she crossed her arms and looked at dennis and dennis looked at the shirt. he said 'ma'am.' she said 'officer.' that's the whole language. then she said, flat, 'the boy lost a wheel. the boy has a rule. the boy has never broken the rule at my door.'",
-    "dennis said 'he's broken a rule at every other door.' holly said 'every door is a different rule.' that's when i realized holly knows the mall like a city she's the mayor of. dennis said 'son, what do you want.' holly said 'he wants to say something.' she's looking at me. malten i have 2 sentences and i can't remember either"
+    "dennis said 'he's broken a rule at every other door.' holly said 'every door is a different rule.' that's when i realized holly knows the mall like a city she's the mayor of. dennis said 'son, what do you want.' holly said 'he wants to say something.' she's looking at me. {you} i have 2 sentences and i can't remember either"
    ],
    "choices": [
     { "say": "say the sorry first. then the wheel. holly set the table. u just sit down.", "next": "end_thirty" },
@@ -129,7 +129,7 @@
   "cable_rig": {
    "them": [
     "we built it. a 6 foot link cable, 2 shoelaces tied together, a paperclip hook, tim's glasses case as a counterweight (he said 'refundable'). i lay on the tile and lowered the hook through the grate. i HOOKED it. the wheel moved 3 inches toward me. tim whispered 'steady.' he has never whispered in his life",
-    "then the radio crackled: 'unit 4 to unit 1, what's going on at the elevator.' malten that's dennis's radio. he's 40 feet away and walking. squeak squeak. i've got the wheel on the hook. it's swinging. tim is holding the cable like a fishing rod. we have about 2 minutes. do we pull or do we wait"
+    "then the radio crackled: 'unit 4 to unit 1, what's going on at the elevator.' {you} that's dennis's radio. he's 40 feet away and walking. squeak squeak. i've got the wheel on the hook. it's swinging. tim is holding the cable like a fishing rod. we have about 2 minutes. do we pull or do we wait"
    ],
    "choices": [
     { "say": "pull. now. hand over hand. finish what u started.", "next": "end_cable" },
@@ -138,7 +138,7 @@
   },
   "humming": {
    "them": [
-    "ok i did it. i said 'sir, do you hum.' he blinked. he said 'son?' i said 'i hear it from the stockroom. when you walk. it's a polka i think. i'm not saying it's bad. i'm saying 8/10.' he didn't say anything. then he said 'my father's.' that's all. 'my father's.' malten i have never heard him say 3 words in a row",
+    "ok i did it. i said 'sir, do you hum.' he blinked. he said 'son?' i said 'i hear it from the stockroom. when you walk. it's a polka i think. i'm not saying it's bad. i'm saying 8/10.' he didn't say anything. then he said 'my father's.' that's all. 'my father's.' {you} i have never heard him say 3 words in a row",
     "he said 'it's the only one i know all of.' then he looked at the grate and the pretzel stuck in it and he said 'is that yours.' i said the pretzel is the pretzel lady's, the wheel is mine. he said 'figured.' he's still holding the polka in his face. he's thinking about the key. what do i say"
    ],
    "choices": [
@@ -157,7 +157,7 @@
     { "type": "wallpost", "from": "holly", "to": "henry", "delay": 50, "text": "henry. i heard. a security guard stopped at register 2 and asked if the saloon rule 'works on anyone.' i said it works on anyone who hands over the thing they love at the door. he said 'that's reasonable' and left. he didn't buy anything. i'm still thinking about it. i don't discuss it. -holly" },
     { "type": "wallpost", "from": "sk8rboi", "to": "henry", "delay": 85, "text": "yo henry. DENNIS gave u a SCHEDULE. bro i got asked to leave a rail once and u got a standing appointment. thats sponsored. bring the camcorder sunday, dads charged it. i'll hold it so still. -mike" },
     { "type": "wallpost", "from": "derek", "to": "henry", "delay": 120, "text": "henry. thats 2 'nice ones.' the first was the one foot roll. this 1 is 4 the rolling hour. i didnt even see it, mike told me. dont tell mike i said it. my gap is still bigger." },
-    { "type": "dm", "delay": 240, "text": "malten. its sunday. 7:04 AM. the long hall is a 10/10 and its empty and he's at the end w/ a coffee. he said 'son' twice. the second one was different. i rated it. i'm not telling u the number." }
+    { "type": "dm", "delay": 240, "text": "{you}. its sunday. 7:04 AM. the long hall is a 10/10 and its empty and he's at the end w/ a coffee. he said 'son' twice. the second one was different. i rated it. i'm not telling u the number." }
    ]
   },
   "end_thirty": {
@@ -176,7 +176,7 @@
   "end_cable": {
    "them": [
     "we pulled. hand over hand. tim counted '1, 2, 3.' the wheel came up through the grate on the paperclip hook. i HAD IT. i was holding the wheel in 1 hand and a calculator cable w/ 3 shoelaces on it in the other, tim was holding my shoulders, a pretzel was in the grate. and the radio said 'unit 1, i see it.'",
-    "dennis was standing there. he looked at the cable. the pretzel. the shoelaces. tim. me. he took a long breath. he said 'son.' i said 'sir.' he said 'who's the kid w/ the glasses.' tim said 'TIM. cable rental. 50 cents.' dennis wrote me a pink slip. #7. 'unauthorized grate.' he spelled it right. then he said 'good crane.' malten HE SAID GOOD CRANE. i'm putting it on a shirt"
+    "dennis was standing there. he looked at the cable. the pretzel. the shoelaces. tim. me. he took a long breath. he said 'son.' i said 'sir.' he said 'who's the kid w/ the glasses.' tim said 'TIM. cable rental. 50 cents.' dennis wrote me a pink slip. #7. 'unauthorized grate.' he spelled it right. then he said 'good crane.' {you} HE SAID GOOD CRANE. i'm putting it on a shirt"
    ],
    "end": true,
    "effects": [
@@ -189,7 +189,7 @@
   "end_retired": {
    "them": [
     "dennis opened the grate. he got the wheel w/ 2 fingers and held it up to the light. it's cracked. a thin line right through the orange. that was the clunk. he looked at it a long time. he said 'son. it won't roll true again.' i said 'i know.' i did know. i knew at the fountain",
-    "he put it in a ziploc bag off his belt (he has ziplocs on his belt, malten, of course he does) and handed it to me. he said 'keep it.' then he walked me to the front door, because the mall was closing, and held it open. i walked out. WALKED. he said 'son.' i said 'sir.' he said 'size 7 comes with a new wheel.' how does he know my size. rating: 7/10, a walk. the bravest thing i know is in a ziploc in my pocket. i'm gonna buy the plaque. $9.99"
+    "he put it in a ziploc bag off his belt (he has ziplocs on his belt, {you}, of course he does) and handed it to me. he said 'keep it.' then he walked me to the front door, because the mall was closing, and held it open. i walked out. WALKED. he said 'son.' i said 'sir.' he said 'size 7 comes with a new wheel.' how does he know my size. rating: 7/10, a walk. the bravest thing i know is in a ziploc in my pocket. i'm gonna buy the plaque. $9.99"
    ],
    "end": true,
    "effects": [

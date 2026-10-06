@@ -2,9 +2,9 @@
   "id": "epic_good_night_gabe",
   "with": "epic",
   "opener": [
-    "malten i need advice and i need u 2 NOT say lol ur mom (ill know)",
+    "{you} i need advice and i need u 2 NOT say lol ur mom (ill know)",
     "i made a ytmnd yesterday. 'good night gabe.' its my little brother asleep in the cow box. 12 seconds. slow piano. i was gonna put picard at the end and i FORGOT. i went 2 bed",
-    "its at 4,112 votes. its on the front page. the top comment says 'i cried' and there r 61 more that say the same thing. malten nobody laughed. NOBODY LAUGHED"
+    "its at 4,112 votes. its on the front page. the top comment says 'i cried' and there r 61 more that say the same thing. {you} nobody laughed. NOBODY LAUGHED"
   ],
   "nodes": {
     "start": {
@@ -29,7 +29,7 @@
     "b_shot": {
       "them": [
         "i did. i looked at the screenshot and my brain said 'thats not mine.' its 2 nice. somebody nice made it. i think it was me. i looked at my own name 3 times",
-        "also randy found out. he messaged 'is that the one with the box.' i said yes. he said 'cool.' no PIE. no caps. just 'cool.' malten randy has never said anything that quiet. im worried about him"
+        "also randy found out. he messaged 'is that the one with the box.' i said yes. he said 'cool.' no PIE. no caps. just 'cool.' {you} randy has never said anything that quiet. im worried about him"
       ],
       "effects": [
         { "type": "status", "text": "epic is on the front page of ytmnd with 4,112 votes. he would like everyone 2 know it was SUPPOSED to have picard in it. (it was an accident.) (dont ask about the picard.) (lol ur mom)" }
@@ -65,7 +65,7 @@
 
     "randy_pie": {
       "them": [
-        "randy made a version. 'good night gabe (pie edition).' its the same 12 seconds and at the end a pie slides in. 2,900 votes. malten it made people LAUGH. and i hate that its funny. the pie is so well timed. he must have used a stopwatch",
+        "randy made a version. 'good night gabe (pie edition).' its the same 12 seconds and at the end a pie slides in. 2,900 votes. {you} it made people LAUGH. and i hate that its funny. the pie is so well timed. he must have used a stopwatch",
         "he left a comment under mine: 'i didnt want to PIE the real one so i PIEd a copy. no offense. the real one is the real one.' RANDY said 'the real one is the real one.' ive never been so proud and so mad at the same time"
       ],
       "effects": [
@@ -80,7 +80,7 @@
     "nana": {
       "them": [
         "i called her back. she said 'epic, is your brother ok? he looks so little.' i said hes fine hes asleep. she said 'in a box?' i said its a cow box. she said 'ok.'",
-        "then she said 'i think its the nicest thing youve made. i voted three times. dont tell the library.' then she said 'do the picard one again tho.' malten she wants me 2 be BOTH. nobody told me i could be both"
+        "then she said 'i think its the nicest thing youve made. i voted three times. dont tell the library.' then she said 'do the picard one again tho.' {you} she wants me 2 be BOTH. nobody told me i could be both"
       ],
       "choices": [
         { "say": "you can be both. 40 ytmnds and one real one is just a good catalog.", "next": "the_pressure" },
@@ -105,7 +105,7 @@
     "sequel_draft": {
       "them": [
         "ok i started. i put the 12 seconds in. i put picard at the end. i put 'lol ur mom' in a font. i put the epic face spinning over the box. its 9 minutes now. gabe is in the middle of the screen asleep and the epic face is going around him like a planet",
-        "and malten its the funniest thing ive ever made. and it feels like i put a mustache on a church. my cursor is on 'publish.' my cursor is shaking. my mom says ur mom is not a good reason 2 shake a cursor"
+        "and {you} its the funniest thing ive ever made. and it feels like i put a mustache on a church. my cursor is on 'publish.' my cursor is shaking. my mom says ur mom is not a good reason 2 shake a cursor"
       ],
       "choices": [
         { "say": "post it. gabe sleeps through everything. so does the internet.", "next": "end_trollback" },
@@ -116,7 +116,7 @@
     "tell_gabe": {
       "them": [
         "ok i did it. gabe's in the box (the door's open, hes playing runescape on my dads laptop, he calls the box 'the base'). i showed him the 12 seconds",
-        "he watched all of it. then he said 'thats the box.' i said yeah. he said 'am i famous.' i said a little. he said 'does runescape know.' i said no. he said 'ok.' and went back 2 the game. malten what does 'ok' mean. i need the 12 year old translation"
+        "he watched all of it. then he said 'thats the box.' i said yeah. he said 'am i famous.' i said a little. he said 'does runescape know.' i said no. he said 'ok.' and went back 2 the game. {you} what does 'ok' mean. i need the 12 year old translation"
       ],
       "choices": [
         { "say": "that's 'i'm thinking.' ask him if he wants it up.", "next": "gabe_answer" },
@@ -138,7 +138,7 @@
     "silent_day": {
       "them": [
         "its been 4 hours. ive typed 'lol ur' 11 times. i delete the 'ur' every time. im on a streak. my hands know the words by themselves like those people who play piano in their sleep",
-        "my mom just said 'ur mom' to me in the kitchen. she says it back whenever, its our thing. i said NOTHING. she looked at me like i was sick. she put her hand on my head. 'u feel warm.' malten im not sick. im being sincere. is there a difference at 2 PM"
+        "my mom just said 'ur mom' to me in the kitchen. she says it back whenever, its our thing. i said NOTHING. she looked at me like i was sick. she put her hand on my head. 'u feel warm.' {you} im not sick. im being sincere. is there a difference at 2 PM"
       ],
       "choices": [
         { "say": "20 more hours. drink water. watch picard (don't make one).", "next": "end_sincere" },
@@ -148,7 +148,7 @@
 
     "take_down": {
       "them": [
-        "ok im taking it down. it has 4,531 votes now. the most anything of mine has ever had. my cursor is on 'delete this ytmnd' and malten 'delete' is a very normal word and im sweating",
+        "ok im taking it down. it has 4,531 votes now. the most anything of mine has ever had. my cursor is on 'delete this ytmnd' and {you} 'delete' is a very normal word and im sweating",
         "im gonna save 1 copy. 4 nana betty. she can watch it at the library tuesdays. itll be a thing she has. does that count. is it still deleting if only nana betty knows"
       ],
       "choices": [
@@ -160,7 +160,7 @@
     "end_sincere": {
       "them": [
         "ok. its staying up. 4,131 votes (the number changes, the feeling doesnt) and gabe doesnt know the internet is crying at him. im gonna tell him its like when the lost beagle on the news got found. (not a real example) (he'll nod)",
-        "in 19 hours i can say ur mom again. i think ill save it 4 gabe. tomorrow at 6 PM im gonna walk into the box and say it at him and hes gonna laugh or say 'ok.' either way i win. thank u malten. u were right about the box"
+        "in 19 hours i can say ur mom again. i think ill save it 4 gabe. tomorrow at 6 PM im gonna walk into the box and say it at him and hes gonna laugh or say 'ok.' either way i win. thank u {you}. u were right about the box"
       ],
       "end": true,
       "effects": [
@@ -174,7 +174,7 @@
     "end_trollback": {
       "them": [
         "posted. 'good night gabe 2: lol ur mom edition (9 min).' its the same box. the same gabe. the same picard. the epic face is going around him like a moon. in 11 minutes it had 600 votes and 20 comments that say 'im confused and im crying and im laughing and its the best of all 3.'",
-        "nana betty called. she said 'THERE you are.' malten im both. im BOTH. gabe has no idea. hes asleep in a box in the middle of the screen with the whole internet going round him and hes unbothered. hes the calmest guy on the site"
+        "nana betty called. she said 'THERE you are.' {you} im both. im BOTH. gabe has no idea. hes asleep in a box in the middle of the screen with the whole internet going round him and hes unbothered. hes the calmest guy on the site"
       ],
       "end": true,
       "effects": [

@@ -2,7 +2,7 @@
  "id": "walt_dear_malten",
  "with": "walt",
  "opener": [
-  "Dear Malten, I write on a matter of etiquette, and also of a cat.",
+  "Dear {you}, I write on a matter of etiquette, and also of a cat.",
   "At 5:52 this morning I received a letter from Mr. Whiskers, the orange gentleman. It is one line long. It says, 'Who is the second cup for?' I have not answered. I have not moved from the kitchen.",
   "There is a cup of coffee in front of me, and there is a second one beside it, and one of them is cold. Please advise. Regards, Walt"
  ],
@@ -16,7 +16,7 @@
   },
   "second_cup": {
    "them": [
-    "Dear Malten, You ask directly. I respect that. It is how the better postal inspectors asked. The second cup is Dorothy's. I fill it at 5:30 when I fill mine, and at 6:30 I pour it on the tomatoes. They have never done better. Dorothy's coffee was, to be fair, not good. I never said.",
+    "Dear {you}, You ask directly. I respect that. It is how the better postal inspectors asked. The second cup is Dorothy's. I fill it at 5:30 when I fill mine, and at 6:30 I pour it on the tomatoes. They have never done better. Dorothy's coffee was, to be fair, not good. I never said.",
     "What troubles me is that nobody knows about the cup. I have not told Debbie, or Kayla, or the VFW hall. Yet a cat I have never met has written to ask. Saturday is the seventh. It would have been fifty-five. Regards, Walt"
    ],
    "effects": [
@@ -29,7 +29,7 @@
   },
   "suspects": {
    "them": [
-    "Dear Malten, I have conducted an inquiry. Suspect one: Patrick. He writes 'regards' and does not know what it means. I do not believe he could manage the word 'second.' Suspect two: Linda. She would have included an angel. Suspect three: Debbie. She would have signed it 'Love, Mom' and capitalized.",
+    "Dear {you}, I have conducted an inquiry. Suspect one: Patrick. He writes 'regards' and does not know what it means. I do not believe he could manage the word 'second.' Suspect two: Linda. She would have included an angel. Suspect three: Debbie. She would have signed it 'Love, Mom' and capitalized.",
     "That leaves the cat himself, who sits upon the sewing table every morning at 5:50. I find I can not rule him out. I will say the spelling is excellent. Regards, Walt"
    ],
    "effects": [
@@ -42,7 +42,7 @@
   },
   "stakeout_idea": {
    "them": [
-    "Dear Malten, A stakeout. I looked it up in the big Webster's and it is 'a period of surveillance.' I have done several. In my third year on Route 14 I watched a porch for six mornings because a Mrs. Alvarez was owed a check from her son and I wished to be present when it came.",
+    "Dear {you}, A stakeout. I looked it up in the big Webster's and it is 'a period of surveillance.' I have done several. In my third year on Route 14 I watched a porch for six mornings because a Mrs. Alvarez was owed a check from her son and I wished to be present when it came.",
     "I am willing. I have a thermos. I do not have a rock, but Patrick does, and says he has already named it for the purpose. I will need a second man for the porch. Do you know anyone who does this professionally? Regards, Walt"
    ],
    "choices": [
@@ -52,7 +52,7 @@
   },
   "seventh": {
    "them": [
-    "Dear Malten, Every seventh we went to the Longhorn Ballroom, and I stepped on her feet for three songs, and then the band played San Antonio Rose and I sat down, because she would not allow me to ruin that one. That was the whole arrangement for fifty-one years.",
+    "Dear {you}, Every seventh we went to the Longhorn Ballroom, and I stepped on her feet for three songs, and then the band played San Antonio Rose and I sat down, because she would not allow me to ruin that one. That was the whole arrangement for fifty-one years.",
     "The Longhorn is a long way and I do not drive the highway after dark. I have thought of staying in the den, where nobody will see me be sensible. What would you advise a man? Regards, Walt"
    ],
    "choices": [
@@ -62,7 +62,7 @@
   },
   "porch_idea": {
    "them": [
-    "Dear Malten, A porch is not a quiet place if one leaves it empty, that is true. I have sat on mine four years and I can report that it is extremely quiet.",
+    "Dear {you}, A porch is not a quiet place if one leaves it empty, that is true. I have sat on mine four years and I can report that it is extremely quiet.",
     "But I do not wish to make a fuss. A fuss was never my department. Suppose I did, however. Who would a man ask? I have nine friends on this service and have met three. Regards, Walt"
    ],
    "choices": [
@@ -72,7 +72,7 @@
   },
   "cat_letter": {
    "them": [
-    "Dear Malten, I have written to Mr. Whiskers as you suggest. For the record I wrote, 'Dear Mr. Whiskers, The second cup is for my wife, Dorothy. She is not here. I pour it anyway. If you are the party who typed the question, please write and tell me how you knew. If you are the cat, please get off the sewing table. Regards, Walt.'",
+    "Dear {you}, I have written to Mr. Whiskers as you suggest. For the record I wrote, 'Dear Mr. Whiskers, The second cup is for my wife, Dorothy. She is not here. I pour it anyway. If you are the party who typed the question, please write and tell me how you knew. If you are the cat, please get off the sewing table. Regards, Walt.'",
     "I sent it at 6:09. At 6:10 the reply light came on. I have never seen anyone answer that quickly, not even Patrick, and Patrick is on the line at all hours. I have not opened it. Regards, Walt"
    ],
    "effects": [
@@ -85,7 +85,7 @@
   },
   "bill_plan": {
    "them": [
-    "Dear Malten, I have written to Mr. Bill. He replied in nine minutes. He has plaster, a flashlight, a tape recorder, 'a good feeling,' and a recommendation that I wear a dark shirt. I told him the porch is mine and I will wear what I like.",
+    "Dear {you}, I have written to Mr. Bill. He replied in nine minutes. He has plaster, a flashlight, a tape recorder, 'a good feeling,' and a recommendation that I wear a dark shirt. I told him the porch is mine and I will wear what I like.",
     "He wishes to know whether the creature in question is bipedal. I said the cat is orange and has four feet and a grudge. He said, 'Then it's not the same creature, but it could be related.' Regards, Walt"
    ],
    "effects": [
@@ -98,7 +98,7 @@
   },
   "whiskers_reply": {
    "them": [
-    "Dear Malten, Mr. Whiskers has written back. I am transcribing it as it arrived: 'Dear Mailman, I do not know how I knew. I only know it is the kind of cup that is waited on. Please keep pouring it. I will keep the chair warm. Yours, Mr. Whiskers.'",
+    "Dear {you}, Mr. Whiskers has written back. I am transcribing it as it arrived: 'Dear Mailman, I do not know how I knew. I only know it is the kind of cup that is waited on. Please keep pouring it. I will keep the chair warm. Yours, Mr. Whiskers.'",
     "I have read it eleven times. I do not know who typed it, and I find I would like to keep not knowing. For the first time in four years a letter has said what I was thinking before I thought it, and I minded for about a minute, and then I was glad. Regards, Walt"
    ],
    "choices": [
@@ -108,7 +108,7 @@
   },
   "shoebox": {
    "them": [
-    "Dear Malten, I went to the sewing table, opened the bottom drawer, and took out the shoebox. There are 1,400 letters in it. The first is from before we were married. The last is the grocery list I mentioned, with the line about my sense of humor.",
+    "Dear {you}, I went to the sewing table, opened the bottom drawer, and took out the shoebox. There are 1,400 letters in it. The first is from before we were married. The last is the grocery list I mentioned, with the line about my sense of humor.",
     "I mean to read the first one aloud on Saturday, and write her one in return. I can not mail it. But I can put it in the box, and then there will be a box with both our hands in it. Do you think that is foolish? Regards, Walt"
    ],
    "effects": [
@@ -121,7 +121,7 @@
   },
   "patrick_news": {
    "them": [
-    "Dear Malten, I wrote to Patrick. He replied in one minute and forty seconds. He said, 'yes. what time. i will bring dwayne. is it ok if dwayne has a seat. he is a rock but he is a good one.' I said Dwayne may have the good chair.",
+    "Dear {you}, I wrote to Patrick. He replied in one minute and forty seconds. He said, 'yes. what time. i will bring dwayne. is it ok if dwayne has a seat. he is a rock but he is a good one.' I said Dwayne may have the good chair.",
     "Then he asked what a porch party is, and I said it is when people sit and do nothing in particular and call it company. He said, 'that is my favorite thing.' I told him to bring a jacket. Regards, Walt"
    ],
    "effects": [
@@ -134,7 +134,7 @@
   },
   "debbie_phones": {
    "them": [
-    "Dear Malten, I telephoned Debbie. I do not use the telephone before seven as a rule, but this was not a rule matter. She answered on the first ring, which tells me she was awake. I said, 'Deb, Saturday is the seventh.' There was a long pause, and then she said, 'I know, Dad. I've been trying to figure out how to say it.'",
+    "Dear {you}, I telephoned Debbie. I do not use the telephone before seven as a rule, but this was not a rule matter. She answered on the first ring, which tells me she was awake. I said, 'Deb, Saturday is the seventh.' There was a long pause, and then she said, 'I know, Dad. I've been trying to figure out how to say it.'",
     "She has a casserole. She will bring Kayla, and 'maybe the drummer, because he does not eat.' I said that is a great many people for a den. She said, 'Then we'll do the porch.' I said we do not do the porch. She said, 'We do now.' Regards, Walt"
    ],
    "effects": [
@@ -147,8 +147,8 @@
   },
   "summons": {
    "them": [
-    "Dear Malten, I have drafted a formal Notice. It reads, 'To Mr. Whiskers, Orange, Correspondent: You are hereby invited to appear on the porch at 5:50 AM on Saturday the seventh, where a cup of coffee will be provided. Bring no one. If you are the cat, bring nothing.' I am told this is 'a bit much.'",
-    "Mr. Bill has replied that he will secure the perimeter. I asked what perimeter. He said, 'The Buick.' Patrick asks whether Dwayne may be on watch. It seems I have organized an event, Malten. I did not intend this. It was a letter. Regards, Walt"
+    "Dear {you}, I have drafted a formal Notice. It reads, 'To Mr. Whiskers, Orange, Correspondent: You are hereby invited to appear on the porch at 5:50 AM on Saturday the seventh, where a cup of coffee will be provided. Bring no one. If you are the cat, bring nothing.' I am told this is 'a bit much.'",
+    "Mr. Bill has replied that he will secure the perimeter. I asked what perimeter. He said, 'The Buick.' Patrick asks whether Dwayne may be on watch. It seems I have organized an event, {you}. I did not intend this. It was a letter. Regards, Walt"
    ],
    "effects": [
     { "type": "wallpost", "from": "patrick", "to": "walt", "delay": 20, "text": "dear walt. dwayne is on watch. he has been on watch for 20 minutes. nothing has happened. he is doing great. regards, patrick" }
@@ -160,7 +160,7 @@
   },
   "end_porch": {
    "them": [
-    "Dear Malten, It is done. I have posted a notice at the top of the service, which my granddaughter says is called a 'bulletin' and is 'basically a porch for everybody.' It says: Open Porch, Saturday the seventh, from 5:50 until the coffee is gone. Write to me. Every letter will be answered in the order received.",
+    "Dear {you}, It is done. I have posted a notice at the top of the service, which my granddaughter says is called a 'bulletin' and is 'basically a porch for everybody.' It says: Open Porch, Saturday the seventh, from 5:50 until the coffee is gone. Write to me. Every letter will be answered in the order received.",
     "The second cup will be out, as it always is. I told them so and nobody objected. I find I am looking forward to Saturday, which I have not done on the seventh in four years. Thank you for your advice. It was good advice. Regards, Walt"
    ],
    "end": true,
@@ -173,7 +173,7 @@
   },
   "end_two_cups": {
    "them": [
-    "Dear Malten, I have decided. On Saturday I will sit at the sewing table with the shoebox, and I will read her the first letter aloud, and then write her a new one. The cat will be on the second chair. Debbie will telephone twice. I will say I am fine. I will mean it about half.",
+    "Dear {you}, I have decided. On Saturday I will sit at the sewing table with the shoebox, and I will read her the first letter aloud, and then write her a new one. The cat will be on the second chair. Debbie will telephone twice. I will say I am fine. I will mean it about half.",
     "I am told half is the correct amount for the seventh. I should like it very much if you wrote to me that morning, around six. Not a long letter. A short one is still a letter. Regards, Walt"
    ],
    "end": true,
@@ -186,7 +186,7 @@
   },
   "end_stakeout": {
    "them": [
-    "Dear Malten, The Notice is up. It has been read by 31 persons, none of whom were the intended recipient. Mr. Bill has staked out a corner of my yard with tape. I told him the yard is not a crime scene. He said, 'Not yet.'",
+    "Dear {you}, The Notice is up. It has been read by 31 persons, none of whom were the intended recipient. Mr. Bill has staked out a corner of my yard with tape. I told him the yard is not a crime scene. He said, 'Not yet.'",
     "Debbie is on her way with a casserole and 'a talking-to.' Patrick has mailed the rock a map. The cat is in the window and has not typed anything. I would swear to it. I have never been so entertained on the seventh, and I did not think it possible. Dorothy would have enjoyed all of it. Regards, Walt"
    ],
    "end": true,
@@ -199,12 +199,12 @@
   },
   "end_cat": {
    "them": [
-    "Dear Malten, I have written back to Mr. Whiskers. I said 'Thank you.' I signed it 'Regards,' and, for the first time, 'your friend.' I do not need to know who typed it. In 34 years I delivered ten thousand letters from people who did not sign them, and every one got read.",
-    "The cat came in at six and sat on the sewing table, and I poured the second cup, and I said good morning to it, to the cat and the cup, and then to the room. It was not a quiet kitchen. It was a kitchen with company in it. I thank you for being company, Malten. Regards, Walt"
+    "Dear {you}, I have written back to Mr. Whiskers. I said 'Thank you.' I signed it 'Regards,' and, for the first time, 'your friend.' I do not need to know who typed it. In 34 years I delivered ten thousand letters from people who did not sign them, and every one got read.",
+    "The cat came in at six and sat on the sewing table, and I poured the second cup, and I said good morning to it, to the cat and the cup, and then to the room. It was not a quiet kitchen. It was a kitchen with company in it. I thank you for being company, {you}. Regards, Walt"
    ],
    "end": true,
    "effects": [
-    { "type": "wall", "delay": 20, "text": "Dear Malten, I enclose nothing. I only wished to say thank you for the advice about the cup. It is a short letter. A short letter is still a letter. Regards, Walt" },
+    { "type": "wall", "delay": 20, "text": "Dear {you}, I enclose nothing. I only wished to say thank you for the advice about the cup. It is a short letter. A short letter is still a letter. Regards, Walt" },
     { "type": "status", "from": "whiskers", "delay": 45, "text": "whiskers is on the sewing table. The Mailman said good morning. whiskers said nothing, because he is a cat, and because someone left the lid down." },
     { "type": "wallpost", "from": "linda", "to": "walt", "delay": 90, "text": "Daddy!! Debbie says you wrote 'your friend' to a CAT!! I cried into a casserole!! Beautiful!! I am lighting a candle for the whole kitchen ~*~ (((hugs))) ~Aunt Linda" },
     { "type": "wallpost", "from": "todd", "to": "walt", "delay": 140, "text": "Hi Walt! Friendly admin note: your letter to Mr. Whiskers is the most-read thing on the site today. Also, the colon in my signature is a smile. I've been meaning to tell you :)" }

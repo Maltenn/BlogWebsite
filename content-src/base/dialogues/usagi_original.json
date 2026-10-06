@@ -1,0 +1,378 @@
+{
+  "id": "usagi_original",
+  "with": "usagi",
+  "opener": [
+    "ohayo {you}-kun!! (⌒▽⌒) it is i, usagi-chan, president AND founder of the friday night anime society. we are extremely official. i made the banner myself in MS paint.",
+    "THIS friday: a screening. my basement. snacks provided (pocky) (it is a japanese snack) (you eat it).",
+    "BUT!! membership is not given, {you}-kun. it is EARNED. are you prepared for the vetting questions? sou desu ka!! (that means 'let us begin')"
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        {
+          "say": "vetting me. i just got here. bold. okay usagi, hit me with the questions",
+          "next": "vet_1"
+        },
+        {
+          "say": "full disclosure: i have never seen a single anime. is that disqualifying",
+          "next": "blank_slate"
+        },
+        {
+          "say": "what happens if i fail the vetting",
+          "next": "fail_stakes"
+        }
+      ]
+    },
+    "vet_1": {
+      "them": [
+        "YOSH!! question one. the big one. the one that reveals your soul: subs or dubs. think VERY carefully, {you}-kun. friendships have ended over this. i ended them."
+      ],
+      "choices": [
+        {
+          "say": "subs, obviously. i want the voice actor's real unfiltered anguish",
+          "next": "subs_correct"
+        },
+        {
+          "say": "dubs. i like looking at the screen AND eating cereal. sue me",
+          "next": "dubs_landmine"
+        }
+      ]
+    },
+    "subs_correct": {
+      "them": [
+        "CORRECT!! (≧∇≦) the japanese voice actors trained their WHOLE LIVES to scream like that, and i intend to hear every scream.",
+        "question two: it is the big fight. the hero is mid-punch. how long is the flashback before the punch actually lands. (this is a math question.)"
+      ],
+      "choices": [
+        {
+          "say": "three episodes minimum. the punch lands next season",
+          "next": "flashback_correct"
+        },
+        {
+          "say": "flashbacks are padding and i skip them",
+          "next": "skip_gasp"
+        },
+        {
+          "say": "however long it takes to honor the fallen",
+          "next": "flashback_correct"
+        }
+      ]
+    },
+    "flashback_correct": {
+      "them": [
+        "{you}-kun. exactly right. you understand that the punch is not about the punch. (;ω;) i am not crying. it is allergies. (it is passion.)",
+        "FINAL question: a new member arrives at the screening. what snack is in their hands."
+      ],
+      "choices": [
+        {
+          "say": "pocky. it was in your opener. i pay attention",
+          "next": "end_admitted"
+        },
+        {
+          "say": "hot cheetos, and i will not be apologizing",
+          "next": "end_admitted_cheetos"
+        },
+        {
+          "say": "nothing but my sincere heart",
+          "next": "end_admitted_sincere"
+        }
+      ]
+    },
+    "skip_gasp": {
+      "them": [
+        "you SKIP the flashbacks?!?! the flashback IS the episode!! the flashback is where the FEELINGS live!! (╬ಠ益ಠ)",
+        "...inhale. exhale. usagi is calm. this is fixable. final question, and please think of my blood pressure: what snack does a new member bring."
+      ],
+      "choices": [
+        {
+          "say": "pocky. obviously pocky. please keep breathing",
+          "next": "end_admitted"
+        },
+        {
+          "say": "pocky, plus my controversial flashback opinions",
+          "next": "end_homework"
+        }
+      ]
+    },
+    "dubs_landmine": {
+      "them": [
+        "..............dubs. you said dubs. i am rereading it and it still says dubs. {you}-kun i had to sit down in a chair i was ALREADY sitting in.",
+        "...no. NO. usagi does not abandon people. (ᗒᗣᗕ) we can fix you. do you WANT to be fixed. answer honestly."
+      ],
+      "choices": [
+        {
+          "say": "fix me, sensei",
+          "next": "fix_me"
+        },
+        {
+          "say": "the cowboy bebop dub is good and i will die on this hill",
+          "next": "bebop_hill"
+        },
+        {
+          "say": "i said what i said. cereal visibility matters",
+          "next": "unfixable"
+        }
+      ]
+    },
+    "fix_me": {
+      "them": [
+        "YOSH!! admitting it is the first of the twelve steps!! (the steps are twelve episodes of fruits basket.)",
+        "i am prescribing you a beginner's homework list, effective immediately. it goes on your WALL so you cannot lose it. this is for your own good. and my records."
+      ],
+      "choices": [
+        {
+          "say": "posting my shame publicly. bold. proceed",
+          "next": "end_homework"
+        },
+        {
+          "say": "will there be a quiz",
+          "next": "end_homework_quiz"
+        }
+      ]
+    },
+    "bebop_hill": {
+      "them": [
+        "...{you}-kun. i cannot believe you are making me type this where my club could someday see it: the bebop dub is... good. DELETE THIS AFTER READING.",
+        "but one exception does not a philosophy make!! everything else: subs. do we have a treaty."
+      ],
+      "choices": [
+        {
+          "say": "treaty accepted. bebop dubbed, everything else subbed",
+          "next": "end_admitted_treaty"
+        },
+        {
+          "say": "no treaty. dubs forever. i am unfixable",
+          "next": "end_honorary"
+        }
+      ]
+    },
+    "unfixable": {
+      "them": [
+        "(ノಠ益ಠ)ノ ...you know what, {you}-kun. you know what. standing by your terrible beliefs while everyone screams at you is the most anime thing a person can do. you are ACCIDENTALLY the most anime person i know.",
+        "i cannot grant full membership. the bylaws are clear (gel pen, binding). BUT there is... another way. an ancient way. (i invented it just now.)"
+      ],
+      "choices": [
+        {
+          "say": "i accept whatever mysterious ancient rank this is",
+          "next": "end_honorary"
+        },
+        {
+          "say": "or hear me out: i do the homework and get fixed properly",
+          "next": "end_homework"
+        }
+      ]
+    },
+    "blank_slate": {
+      "them": [
+        "EH?!?! (⊙_⊙) never?? NEVER never?? {you}-kun do you understand what this MEANS??",
+        "you are a BLANK SLATE. no bad opinions. no filler arc trauma. no dub damage. i could build you CORRECTLY from the ground up. i have literally dreamed about this. (twice.)"
+      ],
+      "choices": [
+        {
+          "say": "should i be worried about how excited you are right now",
+          "next": "blank_plan"
+        },
+        {
+          "say": "build me, president. i am clay",
+          "next": "blank_plan"
+        },
+        {
+          "say": "counterpoint: i just show up friday and wing it",
+          "next": "wing_it"
+        }
+      ]
+    },
+    "blank_plan": {
+      "them": [
+        "do not be worried!! be EXCITED. i have a curriculum. i made it years ago and have been waiting for a worthy vessel. it is laminated. it is color-coded. there is a flowchart.",
+        "we start gentle: fruits basket. then cowboy bebop. then, when you are strong enough... FLCL. (nobody is ever strong enough for FLCL. that is the lesson of FLCL.)"
+      ],
+      "choices": [
+        {
+          "say": "the flowchart sold me. assign the homework",
+          "next": "end_homework"
+        },
+        {
+          "say": "can't i just skip to the strongest one",
+          "next": "flcl_warning"
+        }
+      ]
+    },
+    "flcl_warning": {
+      "them": [
+        "{you}-kun. NO. watching flcl first is how we lost kevin. he went in cold, described it as 'a guitar hitting me personally,' and now he only communicates in vespa facts.",
+        "the order exists for your PROTECTION. fruits basket first. build the heart. THEN break it. that is the anime way."
+      ],
+      "choices": [
+        {
+          "say": "okay okay. heart first, guitar later. give me the list",
+          "next": "end_homework"
+        },
+        {
+          "say": "kevin sounds like he's thriving, honestly",
+          "next": "kevin"
+        }
+      ]
+    },
+    "kevin": {
+      "them": [
+        "kevin is BANNED from vespa facts during screenings and STILL finds a way. last week he did one in sign language. nobody knows where he learned sign language.",
+        "...oh no. you would LIKE kevin. you are going to be kevin 2. take the homework list, {you}-kun. it is the only thing standing between you and vespa facts."
+      ],
+      "choices": [
+        {
+          "say": "give me the list before i become kevin 2",
+          "next": "end_homework"
+        },
+        {
+          "say": "too late. i'm already googling vespas",
+          "next": "end_homework"
+        }
+      ]
+    },
+    "wing_it": {
+      "them": [
+        "you cannot WING fullmetal alchemist, {you}-kun!! people who wing it ask 'who is that' during THE MOMENT and get pocky thrown at them. (we throw gently.) (it is still shameful.)",
+        "compromise: you attend friday as a PROBATIONARY guest, and you take a tiny homework list. three titles. i am being SO reasonable right now. ask anyone."
+      ],
+      "choices": [
+        {
+          "say": "deal. tiny homework list, probationary pocky privileges",
+          "next": "end_homework"
+        },
+        {
+          "say": "i'll take my chances with the thrown pocky",
+          "next": "end_honorary"
+        }
+      ]
+    },
+    "fail_stakes": {
+      "them": [
+        "fail?? hmm. nobody has ever asked that. usually people just panic-agree with me.",
+        "if you fail, {you}-kun, i simply vet you AGAIN. harder. until you pass. the club needs mem— the club CHOOSES you. it is destiny. sou ka? (that means 'no refunds')"
+      ],
+      "choices": [
+        {
+          "say": "hold on. how many members does this club currently have",
+          "next": "member_count"
+        },
+        {
+          "say": "relentless. okay. hit me with question one",
+          "next": "vet_1"
+        }
+      ]
+    },
+    "member_count": {
+      "them": [
+        "the society has a robust membership of: myself (president), mochi (my cat) (treasurer), and kevin (probation) (vespa incident).",
+        "you would be our FOURTH, {you}-kun. four is enough for a tournament arc. do not ask what the tournament is. i am still designing it."
+      ],
+      "choices": [
+        {
+          "say": "you had me at tournament arc. skip the vetting, i'm in",
+          "next": "vet_skip"
+        },
+        {
+          "say": "kevin's on probation and mochi's a cat. i'd be your only real member",
+          "next": "vet_skip"
+        }
+      ]
+    },
+    "vet_skip": {
+      "them": [
+        "okay YES the membership is in a rebuilding arc. which is famously when the best characters join!! you would be founding class. i have been saving the title 'vice president of snacks' for YEARS.",
+        "the vetting can be waived (new bylaw, just wrote it, gel pen, binding). but ONE question is sacred: subs or dubs. choose like the club's fate depends on it. (it does.)"
+      ],
+      "choices": [
+        {
+          "say": "subs. obviously. i want that vice presidency",
+          "next": "end_admitted"
+        },
+        {
+          "say": "dubs. i know. i KNOW. admit me anyway",
+          "next": "end_honorary"
+        }
+      ]
+    },
+    "end_admitted": {
+      "them": [
+        "VETTING COMPLETE!! welcome to the society, {you}-kun!! ヽ(´▽`)/ friday. 7pm. my basement. we are watching fullmetal alchemist and you WILL be emotionally prepared. (you will not be emotionally prepared.)",
+        "i am announcing this to the entire site immediately. it is bulletin-worthy. omedetou!! (that means 'you may sit on the good beanbag')"
+      ],
+      "end": true,
+      "effect": {
+        "type": "bulletin",
+        "subject": "NEW MEMBER ALERT!!! (OFFICIAL)",
+        "text": "everyone!! {you} has PASSED anime society vetting!! screening friday 7pm. subs forever. pocky mandatory. attendance is destiny. (^_^)v"
+      }
+    },
+    "end_admitted_cheetos": {
+      "them": [
+        "hot cheetos... unconventional. non-canon, even. and yet... red IS a very shounen color. APPROVED. but you are ALSO bringing pocky. it is in the bylaws i wrote on the bus.",
+        "VETTING COMPLETE!! welcome, {you}-kun!! friday, 7pm, basement. prepare your heart. (you cannot prepare your heart.) bulletin incoming!!"
+      ],
+      "end": true,
+      "effect": {
+        "type": "bulletin",
+        "subject": "NEW MEMBER ALERT!!! (OFFICIAL)",
+        "text": "{you} has passed vetting AND invented the society's first fusion snack policy (hot cheetos + pocky). friday 7pm. history will remember this. (^_^)v"
+      }
+    },
+    "end_admitted_sincere": {
+      "them": [
+        "a sincere heart... (´;ω;`) that is LITERALLY what kenshin would say. {you}-kun are you SURE you have never trained in the anime arts??",
+        "the council has voted (the council is me and mochi) (mochi votes yes on everything) (the system works): ADMITTED. friday. 7pm. basement. bring the heart. also bring pocky."
+      ],
+      "end": true,
+      "effect": {
+        "type": "bulletin",
+        "subject": "NEW MEMBER ALERT!!! (OFFICIAL)",
+        "text": "{you} has been admitted by unanimous council vote (me and mochi). they said something so sincere i had to go lie down. friday 7pm. bring tissues. (;_;)"
+      }
+    },
+    "end_admitted_treaty": {
+      "them": [
+        "treaty RATIFIED. stamped with mochi's paw. (my cat.) (club treasurer.) (long story.) you argued your case with honor, {you}-kun. like a true shounen protagonist.",
+        "vetting: PASSED, on a technicality i just invented. friday, 7pm, basement. we are watching bebop DUBBED as a one-time treaty celebration. and never speaking of it again."
+      ],
+      "end": true,
+      "effect": {
+        "type": "bulletin",
+        "subject": "TREATY ANNOUNCEMENT + NEW MEMBER!!",
+        "text": "the society welcomes {you}, who negotiated the bebop exception into LAW. one (1) dub is now legal per semester. this is called diplomacy. friday 7pm. (⌒▽⌒)"
+      }
+    },
+    "end_homework": {
+      "them": [
+        "it is DONE, {you}-kun: i am assigning you the official BEGINNER'S HOMEWORK LIST. posted to your wall, so the entire site can hold you accountable. this is called community. (◕‿◕)",
+        "watch them IN ORDER. the order is load-bearing. report your findings friday!! ganbatte!! (that means 'do not disappoint me')"
+      ],
+      "end": true,
+      "effect": {
+        "type": "wall",
+        "text": "{you}'s BEGINNER HOMEWORK (assigned by usagi-sensei): 1. fruits basket (for the heart). 2. cowboy bebop (SUBBED. i will know.). 3. FLCL (do NOT start with this one). report to me friday!! ganbatte!! (^_~)"
+      }
+    },
+    "end_homework_quiz": {
+      "them": [
+        "there is ALWAYS a quiz, {you}-kun. the quiz is friday. the quiz is me asking 'did you cry' and the correct answer is yes.",
+        "list is going on your wall right now. watch them IN ORDER. the order is load-bearing. study hard!! yamete!! (that means 'good luck')"
+      ],
+      "end": true,
+      "effect": {
+        "type": "wall",
+        "text": "{you}'s BEGINNER HOMEWORK (quiz edition): 1. fruits basket. 2. cowboy bebop (subbed!!). 3. FLCL (LAST. i mean it.). quiz friday: 'did you cry.' correct answer: yes. (^_~)"
+      }
+    },
+    "end_honorary": {
+      "them": [
+        "...you are lucky you are funny, {you}-kun. FINE. by the power vested in me by MYSELF: i declare you an HONORARY member. you may attend. you may eat pocky. you may NOT touch the remote. never the remote.",
+        "see you friday, baka-kun. (affectionate.) (mostly.) (⌒▽⌒)"
+      ],
+      "end": true,
+      "effect": {
+        "type": "friend"
+      }
+    }
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "id": "lexi",
+  "name": "leopardluvr_lexi",
+  "tag": "in a relationship. as of thursday. dont ask about tuesday.",
+  "avatar": "assets/pfp/pfp_lexi.jpg",
+  "gender": "Female",
+  "age": 17,
+  "hometown": "Tampa, FL",
+  "loc": "Tampa, FL",
+  "zodiac": "Libra",
+  "status": "In a Relationship",
+  "hereFor": "Friends, Serious Relationships",
+  "mood": "in love (this week) <3",
+  "lastLogin": "Sep 5 2026 3:18 PM",
+  "theme": {
+    "bg": "#120012",
+    "fg": "#ffe0f4",
+    "accent": "#ff5cb8"
+  },
+  "bgTile": "assets/tiles/tile_leopard.png",
+  "blogTitle": "the truth about me n nate (long. read it. dont comment till the end)",
+  "about": "lexi. 17. leopard print is not a phase its a PERSONALITY. my room is 60% hello kitty n 40% pics of nate n kitty n misery n the ratio changes weekly depending on nate. i drive a 99 corolla w/ a leopard steering wheel cover n misery screams in the passenger seat. my status is accurate as of the last time i logged in. if u want the current one txt my sidekick. i sleep w/ it.",
+  "meet": "Who I'd like to meet: hayley williams so she can tell nate what im thinking. also anyone who has a boyfriend who txts back within an hour, so u can tell me what thats like.",
+  "interests": {
+    "General": "leopard print (all of it), my sidekick, driving w/ the windows down screaming, hello kitty (kitty got me into it, dont tell her), warped, kandi trading, teasing misery's hair when she cant see, being in a relationship, being single, repeat",
+    "Music": "Paramore, Fall Out Boy, Panic! at the Disco, The Academy Is..., Cute Is What We Aim For, Hellogoodbye, Boys Like Girls, Bring Me The Horizon in the car w/ mis, Static Prophecy (nates friends band) (theyre ok) (dont tell greg)",
+    "Movies": "Mean Girls, Napoleon Dynamite, The Notebook (nate fell asleep), John Tucker Must Die, Nightmare Before Christmas, Bring It On",
+    "Television": "Laguna Beach, The Hills, Degrassi, Next, Room Raiders, Invader Zim w/ misery",
+    "Books": "Twilight (tina made the whole trio read it, its a cult), Perks of Being a Wallflower, the txts nate doesnt answer (theres like 400 of them, its basically a book)",
+    "Heroes": "my mom (she has been thru 3 nate breakups w/ me), kitty n mis, hayley williams, whoever invented leopard print"
+  },
+  "song": {
+    "name": "Thnks fr th Mmrs",
+    "artist": "Fall Out Boy",
+    "pattern": [
+      0,
+      4,
+      7,
+      4,
+      0,
+      4,
+      7,
+      12
+    ],
+    "bpm": 120
+  },
+  "decor": [
+    "assets/badge_hello_kitty.gif",
+    "assets/deco_hearts_bar.gif",
+    "assets/deco_email_roses.gif"
+  ],
+  "friends": [
+    "nate",
+    "kittyxcore",
+    "misery",
+    "brittany",
+    "kayla",
+    "paige",
+    "josh",
+    "tina"
+  ],
+  "wall": [
+    {
+      "from": "nate",
+      "text": "lex. its back. i changed it back. it was a glitch. ok it wasnt a glitch but i changed it back. txt me. my sidekicks dead so txt the house",
+      "time": "Sep 4 2026 11:50 PM"
+    },
+    {
+      "from": "kittyxcore",
+      "text": "lexi i made a CHART of ur status this month. mon: single. wed: in a rel. fri: complicated. sun: in a rel. its on my blog. ily but im tired",
+      "time": "Sep 3 2026 5:12 PM"
+    },
+    {
+      "from": "josh",
+      "text": "hey lexi! saw the status thing. no judgment. if u n nate ever wanna just talk it out w/ someone whos not gonna post about it, im around. also youth group thurs if u wanna come, its chill, theres pizza",
+      "time": "Sep 2 2026 9:34 PM"
+    },
+    {
+      "from": "kayla",
+      "text": "girl. GIRL. we r the same person. bryan hasnt txted back since saturday n his status still says single from AUGUST. wanna go 2 the mall n be complicated together",
+      "time": "Sep 1 2026 7:20 PM"
+    }
+  ],
+  "replies": [
+    "aww thanks <3 commented u back!! (nate hasnt commented me back since aug. just saying. not that its about that.)",
+    "lol ur cute. ok so real question do u think its weird that my status changed twice today. dont answer.",
+    "omg hi!!! ok u get a spot on my top 8 but its nate's spot n hes on thin ice so it might be temporary",
+    "haha thank u. u txt back fast, thats rare on here. thats a compliment btw",
+    "rawr <3 (misery says i cant say that but shes not here)"
+  ],
+  "thanksAdd": "thanks 4 the add!! ur page is cute. ok dont read my status right now its being updated. its complicated. its not complicated. its in a relationship. its whatever it says by the time u read this <3",
+  "ambient": [
+    "status change #4 this month. i counted. nate did not count. nate does not count things.",
+    "my sidekick has 41 unsent txts to nate in the drafts folder. thats normal right",
+    "kitty made a CHART of my relationship. its color coded. i cant even be mad, its really cute",
+    "leopard steering wheel cover came in the mail. my corolla is now 90% leopard. the other 10% is misery's hairspray fumes"
+  ],
+  "saltyDm": "u viewed my page right after nate viewed my page n neither of u commented. im not saying ur working together. im saying its weird. (im kidding) (comment tho)",
+  "keywords": {
+    "nate": "ok so we r together. as of thursday. tuesday we werent, monday we were, it goes like that. he posts 'some people...' bulletins n i KNOW theyre about me n he says theyre not n then he txts me at 2am like nothing happened. hes really sweet tho. dont tell him i said that.",
+    "single": "who told u. was it kitty. was it the chart. im NOT single, that was tuesday, its thursday, check the status. ok check it again. ok now its right."
+  },
+  "banter": {
+    "nate": [
+      "nate ur status says complicated. mine says in a relationship. one of us is wrong n its not me. its NEVER me. fix it",
+      "ok i saw the drawing u did of us on ur page. the shutter shades one. ok fine. ur back at #1. dont make me regret it <3"
+    ],
+    "kittyxcore": [
+      "kitty the chart is cute but did u have to color code it. n did u have to put it in a BULLETIN. everyone at school saw it",
+      "ok the chart is on my wall now bc its actually the funniest thing anyone has ever made about me. ily. add a column for this week (in a rel.)"
+    ],
+    "misery": [
+      "mis i watched ur video 4 times n the 4th time i noticed the leopard hoodie on ur bed is MINE. i want it back. after video #2.",
+      "ur cat is the star. ur hair is 2nd. u r 3rd. sorry. rawr <3"
+    ],
+    "kayla": [
+      "kayla u n bryan r us but w/ drums. we should get matching 'its complicated' shirts n go 2 the mall n scare ppl",
+      "ur status was a thnks fr th mmrs lyric today n mine was TOO. we didnt plan that. we r the same person. txt me"
+    ],
+    "josh": [
+      "josh u r the only person on here who doesnt post about my status n i notice that n i appreciate that",
+      "ok i might come to youth group thurs but only if nate isnt there. or only if he IS. idk. ill txt u"
+    ]
+  },
+  "statuses": [
+    "is in a relationship. as of thursday. dont ask about tuesday.",
+    "is single. (edit: not anymore) (edit: yes) (edit: just ask nate)",
+    "thinks if ur gonna post 'some people' bulletins u should have the guts to txt some people back",
+    "is driving w/ the windows down n misery is screaming BMTH in the passenger seat n life is ok actually",
+    "changed her status 2x today n is NOT taking questions. pc4pc tho"
+  ],
+  "bulletins": [
+    {
+      "subject": "ok. the truth about me n nate. (READ ALL OF IT)",
+      "body": "since everyone keeps asking n kitty made a CHART: we r together. we were together in june, not together in july for 9 days, together again, not together on aug 12 (he knows why), together again on aug 19, complicated for like 2 days last week bc he posted a 'some people' bulletin n i took it personally (it was about GREG, apparently), n as of thursday we r together. thats it. thats the whole story. if my status says something else its bc im updating it. dont comment 'lol' on this. i will see it. <3 lex",
+      "time": "Sep 4 2026 8:55 PM"
+    },
+    {
+      "subject": "50 things about me (stolen from kayla)",
+      "body": "1. name: lexi 2. single? no (as of today) 3. best friends: kitty n mis 4. phone: sidekick, pink, dont txt it after 2am unless ur nate 5. car: leopard corolla 6. favorite band: paramore 7. do u say dawg a lot: no 8. ever been in love: yes. same person. 4 times. 9. whos #1 on ur top 8: depends on the day. today: nate. 10. whos ALWAYS on ur top 8: kitty n mis n tom. ok thats 10 im bored. the other 40 r on kaylas page.",
+      "time": "Aug 26 2026 10:02 PM"
+    }
+  ],
+  "pcComments": [
+    "cute!! is that leopard. it better be leopard",
+    "ur hair is so big i love it",
+    "pc4pc?? i put up pics from the mall",
+    "omg is that nate in the back. he wasnt supposed to be there",
+    "this is ur new default. im deciding for u. <3"
+  ],
+  "dmSeed": [
+    {
+      "who": "them",
+      "text": "hii!! ur new so u dont know yet but if my status looks different every time u check my page thats normal, thats nate, dont worry about it. anyway welcome!! comment my pics n ill comment urs <3 also if u ever need a ride my car is the leopard one",
+      "time": "Aug 30 2026 9:14 PM"
+    }
+  ]
+}

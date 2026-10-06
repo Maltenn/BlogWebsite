@@ -1,0 +1,165 @@
+{
+  "id": "greg",
+  "name": "garageband_greg",
+  "tag": "STATIC PROPHECY. friday. my garage. be there",
+  "avatar": "assets/avatar_greg.gif",
+  "age": 17,
+  "loc": "the garage (venue)",
+  "mood": "amped (practice went ok)",
+  "lastLogin": "Jul 4 2026 5:26 PM",
+  "theme": {
+    "bg": "#161616",
+    "fg": "#f0ead6",
+    "accent": "#e63946"
+  },
+  "about": "founder/guitarist/manager/roadie of STATIC PROPHECY (est. march). we have 4 songs, 3 of which are finished, 2 of which are good, 1 of which is honestly great (it's called 'Voltage Heart' and it goes hard). shows every friday in my garage, 7pm, done by 8:15 (dad's rule). demo CD-Rs available, burned personally by me, sharpie art on every disc, $2 or free if u seem into it. we WILL be famous, or at least popular at school by fall.",
+  "interests": {
+    "General": "the band, band practice, talking about the band, flyers (ms word) (word art), burning CD-Rs, sharpie art, the extension cord rule, the merch table (card table), the band binder, the mailing list (a page in the binder), finding a 5th song",
+    "Music": "jimmy eat world, taking back sunday, the starting line, fall out boy (the first one) (the good one), brand new, us (static prophecy) (4 songs) (5 soon), everything on the radio i pretend not to like",
+    "Movies": "school of rock (documentary), almost famous (i'm the kid) (i'm also the band), that thing you do (i cried at the drummer part) (don't tell bryan)",
+    "Television": "mtv when videos are on (rare), fuse (the videos are ALWAYS on) (bless), whatever's on in the garage between songs (it's a radio) (it's not on)",
+    "Books": "the band binder (setlists, flyers, mailing list, dad's rules), the guitar tab book i got for christmas (page 40 of 200), rolling stone from the dentist (they let me keep it)",
+    "Heroes": "jim (jimmy eat world). my dad (extension cord exception). lucas (the words). bryan (the beat) (when he shows up). chad (the crowd). vinyl_witch (she listened twice)"
+  },
+  "song": {
+    "name": "The Middle",
+    "artist": "Jimmy Eat World",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview116/v4/fd/d5/6e/fdd56edc-082e-0612-2fc9-2fa9ed797a8d/mzaf_8473238736295829666.plus.aac.p.m4a",
+    "pattern": [
+      0,
+      4,
+      7,
+      4,
+      0,
+      4,
+      7,
+      12
+    ],
+    "bpm": 120
+  },
+  "decor": [
+    "assets/badge_winamp.gif",
+    "assets/deco_new.gif",
+    "assets/badge_coffee.gif"
+  ],
+  "friends": [
+    "lucas",
+    "nikki",
+    "vinyl_witch",
+    "sk8rboi",
+    "kevin",
+    "tony"
+  ],
+  "wall": [
+    {
+      "from": "lucas",
+      "text": "practice changed me. when the amp buzzed i felt like the buzz was IN me, like the lyrics say. nobody at school gets it but the garage gets it",
+      "time": "Jul 3 2026 9:02 PM"
+    },
+    {
+      "from": "vinyl_witch",
+      "text": "a CD-R with sharpie art is not a pressing, gregory. but i listened to voltage heart twice, which is one more time than i planned to. keep going.",
+      "time": "Jul 1 2026 8:47 PM"
+    },
+    {
+      "from": "nikki",
+      "text": "GREG ok i nightcored voltage heart. it's 1:40 long now and the chipmunk vocals SLAP. UNTZ UNTZ. sending it over. do not be mad. be AMAZED",
+      "time": "Jun 29 2026 10:33 PM"
+    },
+    {
+      "from": "tony",
+      "text": "hey greg ;) quick q, does the band have like... a merch guy position. asking for me. i'd be great at it. hey ;)",
+      "time": "Jun 26 2026 7:19 PM"
+    }
+  ],
+  "replies": [
+    "thanks!! new song friday. it's called 'Circuit Breaker' bc that's what tripped while we were writing it",
+    "appreciate u. want a demo CD-R? i have 9 left (limited edition) (that's all i could burn before dinner)",
+    "the band thanks u. i am the band's spokesman. also its guitarist. also its van (i have a bike)",
+    "this is going on the flyer as a quote. ur getting credited as 'early supporter'"
+  ],
+  "thanksAdd": "welcome to the static prophecy family (mailing list) (it's a page in my binder). show friday, my garage, 7pm. bring a chair. ur first demo CD-R is on the house",
+  "ambient": [
+    "practice tonight. the neighbors have been notified (they actually notified us)",
+    "burned 6 CD-Rs, sharpied 6 covers, my hand smells like marker, the dream is alive",
+    "wrote a new riff during study hall. teacher confiscated my air guitar. worth it"
+  ],
+  "saltyDm": "u passed on the friend request, which, respect — gotta curate ur top 8. BUT the friday show invite stands. general admission (my driveway). also this rejection is going in the band bio. builds mystique. thanks in advance",
+  "keywords": {
+    "band": "STATIC PROPHECY. 4 songs. fridays. my garage. this week's setlist: all 4 songs, then Voltage Heart a second time bc it goes hard. do u want a flyer? i have flyers",
+    "show": "friday. 7pm. my garage. done by 8:15 (dad's rule). free. bring a chair and a minimum of one friend. tell them it's a venue"
+  },
+  "banter": {
+    "lucas": [
+      "lucas ur audition was unreal. u screamed one lyric, knocked over my dad's rake, and stared at the wall. ur in. practice tuesday. bring a mic (a flashlight is fine)",
+      "lucas i understand that 'the lyrics are the only ones who understand u' but also practice is at 6 and ur mom said u left ur amp here on purpose. bring the amp"
+    ],
+    "nikki": [
+      "nikki the nightcore remix of voltage heart cut my entire guitar solo AND it's the best we have ever sounded. i have complicated feelings. will u play it at the show",
+      "nikki genuine offer: static prophecy feat. nightcore_nikki, one song, this friday. my dad says the strobe light is fine as long as it stays off"
+    ],
+    "vinyl_witch": [
+      "ok i accept that a CD-R is not a 'pressing' but only 9 copies exist and i sharpied each one differently. that's not a demo. that's an ARTIST SERIES",
+      "when static prophecy makes it big i'm doing our first vinyl run and ur getting copy #1. u said 'we'll see,' which from u is basically a hug"
+    ],
+    "chad": [
+      "CHAD. u were the entire crowd on friday and it FELT like a stadium. u yelled FREEBIRD, we don't know freebird, we played the middle again, and u cheered anyway. legend",
+      "chad ur officially head of security. duties so far: none. once u moved a chair. incredible instincts. see u friday"
+    ],
+    "bryan": [
+      "bryan. practice. tuesday. 6pm. u said 'sick' on friday and that's not a yes or a no. i need one word and it's not 'sick.' also u left ur cymbal. it's the loud one. we need it",
+      "ok whatever's going on with u and kayla, bring it to the kit. the loudest u've ever played was the day u posted 'idk anymore.' lucas wrote it down. i'm not saying be sad. i'm saying be at practice"
+    ],
+    "nate": [
+      "nate u posted 'some people are in a band and some people aren't' and then came to practice and stood by the amp. dude just ASK. we need a second guitar. or a guy who holds the flashlight (lucas's mic). u're in. friday. hood optional",
+      "u said 'the band could be way bigger' and didn't say how. that's vague. i need specifics. write a riff. bring it tuesday. if it's good it's song #6. if it's not it's still song #6 (we need songs)"
+    ],
+    "smoove": [
+      "smoove u put 'feat. static prophecy' on ur track and u used 4 seconds of Voltage Heart (the good 4 seconds) and it sounds INSANE over a beat. we're on a music page. we have a FEATURE. i'm putting it in the binder",
+      "static prophecy feat. dj_smoove, this friday, the garage. u bring the beat (ur laptop). we bring the amps (my dad's extension cord). dad says the strobe stays off. nothing else has rules. let's go"
+    ]
+  },
+  "statuses": [
+    "garageband_greg is at practice (the garage) (u could probably hear us from ur house)",
+    "garageband_greg is making friday's flyer. word art was invented for this exact moment",
+    "garageband_greg is one power chord away from figuring out song #5",
+    "garageband_greg finished song #5. it's called Rake Incident. lucas won the poll. lucas voted 40 times. we counted them all",
+    "garageband_greg is making the friday flyer. word art is the closest thing to a record label i have. it's ENOUGH",
+    "garageband_greg notes that SOME people who are IN the band are also posting 'idk anymore' at 11 PM and then not texting back about practice. u're in the band. i need a yes or a no. or a 'sick.' just say 'sick.' (bryan.)",
+    "garageband_greg burned 9 CD-Rs, one for each person who came friday. 3 people came. i have 6 left. limited edition just got MORE limited"
+  ],
+  "bulletins": [
+    {
+      "subject": "STATIC PROPHECY -- LIVE -- THIS FRIDAY -- THE GARAGE",
+      "body": "FRIDAY. 7:00pm SHARP (done by 8:15, dad's rule). THE GARAGE (my house, the one with the basketball hoop). free show. all 4 songs + a Voltage Heart reprise. demo CD-Rs at the merch table (card table), $2 or free if u seem into it. bring: a chair, a friend, earplugs (my mom's suggestion) (she might be right)",
+      "time": "Jun 30 2026 6:00 PM"
+    },
+    {
+      "subject": "POLL: name for song #5",
+      "body": "options: 1. Thunder Protocol 2. Midnight Circuitry 3. Rake Incident (lucas's idea) (it's about the rake). vote on my wall. the band (me) will count the votes friday",
+      "time": "Jul 3 2026 10:15 PM"
+    }
+  ],
+  "dmSeed": [
+    {
+      "who": "them",
+      "text": "hey! new to ourspace? cool. i'm greg. i run (am in) (founded) the band STATIC PROPHECY. show this friday, my garage, 7pm, free. no pressure, but if u come early u can help carry the amp (this is the VIP experience)",
+      "time": "Jul 2 2026 12:41 PM"
+    }
+  ],
+  "bgTile": "assets/tiles/tile_zebra.png",
+  "gender": "Male",
+  "hometown": "Mansfield, OH (venue capital of the world) (my garage)",
+  "zodiac": "Leo. starxgazer said it's 'the frontman sign.' i'm not the frontman. i'm the guitarist/manager/roadie. but i'll take it",
+  "status": "garageband_greg is at practice. bryan is late. bryan is always late. bryan is the best drummer we have (the only one)",
+  "hereFor": "Networking (the band) (STATIC PROPHECY) (friday). Friends (fans) (both). Dating (band-adjacent) (it's a small garage)",
+  "blogTitle": "STATIC PROPHECY: THE OFFICIAL BLOG (updates, setlists, dad's rules)",
+  "meet": "jim from jimmy eat world (assuming). the guy who does the sound at the VFW hall (to ask about a real show). anyone with a van (we have a bike). a label. or a guy who knows a guy who knows a label. or just a guy",
+  "pcComments": [
+    "sick pic. u'd look good on a flyer. i'm putting u on a flyer. (with permission) (this is me asking)",
+    "nice. is that my garage in the background?? that's my garage. that's a VENUE. u were at a show",
+    "this pic goes hard. like Voltage Heart goes hard. that's the highest thing i can say about a picture",
+    "cool pic!! u want a demo CD-R? i have 6. they're limited. i'll sharpie ur name on it",
+    "great pic. show friday. my garage. 7pm. bring a chair. (this is a comment AND a flyer)"
+  ]
+}

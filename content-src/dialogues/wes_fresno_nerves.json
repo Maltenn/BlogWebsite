@@ -2,7 +2,7 @@
   "id": "wes_fresno_nerves",
   "with": "wes",
   "opener": [
-    "malten. it's 11:40 pm. the fresno regional is at 9 am and i'm sitting on my bed with my shoes on. why do i have my shoes on. i don't know.",
+    "{you}. it's 11:40 pm. the fresno regional is at 9 am and i'm sitting on my bed with my shoes on. why do i have my shoes on. i don't know.",
     "bracket dropped tonight. i'm 9th seed. dale is 8th. we play in the second round, which is the earliest the spreadsheet could possibly have put us. that's a personal insult from a spreadsheet.",
     "dale. the marth. the middle school band teacher from stockton who says 'good game' like he's handing you a gift. i'm not scared of marth. i'm scared of the gift."
   ],
@@ -127,7 +127,7 @@
     "vod_spiral": {
       "them": [
         "it is 2:50 am. i watched all 11. there was no timer. i know where he rolls. i know he looks at the ceiling when he's losing, like a teacher waiting for quiet. i have never been more tired and more ready and more scared at the same time.",
-        "and malten. in VOD 11, i heard it. before every match he hums the same four notes. low. barely there. it's a tuning note. he tunes himself. he's playing a set like a concert."
+        "and {you}. in VOD 11, i heard it. before every match he hums the same four notes. low. barely there. it's a tuning note. he tunes himself. he's playing a set like a concert."
       ],
       "effects": [
         { "type": "status", "text": "wes has watched 11 hours of a band teacher's matches and learned his tuning note. he does not feel more ready. he feels more respectful. this is worse." }
@@ -191,14 +191,14 @@
     "end_calm": {
       "them": [
         "in for four, out for four. i did it eleven times, and on the eleventh my thumbs were warm. i know that's a small thing. it's the biggest small thing that's happened to me this year.",
-        "dale said 'good night, Wes. Good game in advance.' malten, i think i like him. this is a disaster for the bracket. four hand warmers, banana, bag. i'm going to bed. if i lose tomorrow, i'm going to lose warm."
+        "dale said 'good night, Wes. Good game in advance.' {you}, i think i like him. this is a disaster for the bracket. four hand warmers, banana, bag. i'm going to bed. if i lose tomorrow, i'm going to lose warm."
       ],
       "end": true,
       "effects": [
         { "type": "status", "text": "wes is going to sleep before a bracket for the first time in a year. in for four, out for four. a band teacher taught him. he's playing that same band teacher in round 2. he likes him. he's terrified. that's a normal ratio." },
         { "type": "wallpost", "from": "gary", "to": "wes", "delay": 45, "text": "[WES v1.0] i have drafted 'sleeping before a bracket: a guide' (3 sections, 41 words). section 1: lie down. section 2: close eyes. section 3 [4.2b]: do NOT review the frame data. good luck tomorrow. results will be added as v1.1. i do not accept results that say 'i don't want to talk about it.'" },
         { "type": "wallpost", "from": "becca", "to": "wes", "delay": 120, "text": "wes!! a band director taught you to breathe in fours?? that's the first rule of being a section leader!! in 4, out 4. it's what i do before every halftime show. you've been coached by an actual professional. go Fresno!! (i don't know what's in Fresno. go.)" },
-        { "type": "wall", "from": "hunter", "delay": 200, "text": "malten tell wes good luck from me. tell him i'll 1v1 him on lockout when he wins (different game) (but the energy is the same) (i'd lose)" }
+        { "type": "wall", "from": "hunter", "delay": 200, "text": "{you} tell wes good luck from me. tell him i'll 1v1 him on lockout when he wins (different game) (but the energy is the same) (i'd lose)" }
       ]
     },
 
@@ -226,7 +226,7 @@
         { "type": "status", "text": "wes is going to be tired in fresno. he knows. he knows the guy he's playing is also tired. they have decided to be tired together. 6:10 AM departure. saltines are packed. dad doesn't know about 3 AM yet." },
         { "type": "wallpost", "from": "tim", "to": "wes", "delay": 70, "text": "wes. logging 'sleep lost: 3 hrs (est.)' under 'losses (wes).' the ledger doesn't lie, it says go to bed. also i'll sell you a program for $2 that counts to four on your calculator. it just says 4. it says it 4 times. no refunds." },
         { "type": "wallpost", "from": "josh", "to": "wes", "delay": 160, "text": "wes, youth group is praying for both of you tomorrow. i'm not taking sides. i'm taking pizza. there'll be pizza after, whoever wins. text me when you lose. i mean text me after. =]" },
-        { "type": "dm", "delay": 540, "text": "malten. it's 7:40 and we're in the car. dad asked how i slept. i said 'positive!' in my mom's voice and he laughed so hard he had to stop at a gas station. i'm holding the banana like it's a baby. i ate it. i feel okay. i feel tired and okay. that's a better sentence than i had last night." }
+        { "type": "dm", "delay": 540, "text": "{you}. it's 7:40 and we're in the car. dad asked how i slept. i said 'positive!' in my mom's voice and he laughed so hard he had to stop at a gas station. i'm holding the banana like it's a baby. i ate it. i feel okay. i feel tired and okay. that's a better sentence than i had last night." }
       ]
     },
 

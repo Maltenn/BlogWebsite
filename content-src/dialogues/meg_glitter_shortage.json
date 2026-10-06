@@ -2,9 +2,9 @@
   "id": "meg_glitter_shortage",
   "with": "meg",
   "opener": [
-    "AAAAAA malten!! crisis!! (the glitter kind)",
+    "AAAAAA {you}!! crisis!! (the glitter kind)",
     "ashley (CHEER CAPTAIN ashley!!) ordered glitter from me for the competition!!! 12 jars, one per girl, in SILVER and EAGLE BLUE. i said YES because it's my first real order!!! i have a business!!! it's called Glitterpony Supply!! (it's me)",
-    "and i counted my glitter and i have SEVEN jars. and the craft store on route 9 is OUT. a lady said 'there's a shortage.' there's a SHORTAGE, malten. it's due saturday. ashley sent me a legend. it has colors."
+    "and i counted my glitter and i have SEVEN jars. and the craft store on route 9 is OUT. a lady said 'there's a shortage.' there's a SHORTAGE, {you}. it's due saturday. ashley sent me a legend. it has colors."
   ],
   "nodes": {
     "start": {

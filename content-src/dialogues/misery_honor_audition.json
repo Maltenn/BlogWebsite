@@ -2,7 +2,7 @@
  "id": "misery_honor_audition",
  "with": "misery",
  "opener": [
-  "ok. malten. i need u 2 be serious for like 4 min. no cat jokes. (gir is on my keyboard so if this gets weird its him)",
+  "ok. {you}. i need u 2 be serious for like 4 min. no cat jokes. (gir is on my keyboard so if this gets weird its him)",
   "mr alvarado signed me up 4 the regional honors orchestra audition. saturday. 9am. 3 judges behind a folding table w/ a clipboard. i have a cello, the bach prelude, n a feeling in my stomach like the sbarro slice",
   "n priscilla (1st chair) looked at the TOP of my head today n said 'u know they score the whole picture right.' i have had white hair for 2 yrs n never thought about it once. now its ALL i think about"
  ],
@@ -302,7 +302,7 @@
   "wig_plan": {
    "them": [
     "OK. THE PLAN. phase 1: kitty comes over friday w/ the wig n the ziploc. phase 2: we practice becky. becky has a voice. becky says 'hello, im becky, ill be playing the bach.' phase 3: i play. phase 4: the wig comes off",
-    "is phase 4 2 much. is it a stunt. malten is it a STUNT"
+    "is phase 4 2 much. is it a stunt. {you} is it a STUNT"
    ],
    "choices": [
     {
@@ -334,7 +334,7 @@
   "honest_check": {
    "them": [
     "...ok. ok that stung a little. if they pick becky they picked a wig. if they pick misery they picked ME. but if they DONT pick misery bc of the hair then. then what",
-    "see now im scared of the other thing. the thing under the wig. malten what am i actually scared of"
+    "see now im scared of the other thing. the thing under the wig. {you} what am i actually scared of"
    ],
    "choices": [
     {
@@ -385,7 +385,7 @@
   "end_less": {
    "them": [
     "ok. decision. i wrote it on a post-it. 'hair stays. 1 set of lashes (school). 2 sets (shows). sundays = 1 hr. cello = the rest.' its pink. its on the mirror",
-    "n saturday i go however i feel when i wake up. thats the whole rule. i didnt change bc of priscilla. i changed bc i wanted a rule thats MINE. thx malten. rawr (in dinosaur) (in cello) (in both)"
+    "n saturday i go however i feel when i wake up. thats the whole rule. i didnt change bc of priscilla. i changed bc i wanted a rule thats MINE. thx {you}. rawr (in dinosaur) (in cello) (in both)"
    ],
    "end": true,
    "effects": [
@@ -446,7 +446,7 @@
     {
      "type": "dm",
      "delay": 240,
-     "text": "malten. i tried on the cardigan. i looked like my nana n i kind of liked it?? n kind of didnt. both. is that normal. dont answer. rawr (quietly)"
+     "text": "{you}. i tried on the cardigan. i looked like my nana n i kind of liked it?? n kind of didnt. both. is that normal. dont answer. rawr (quietly)"
     }
    ]
   },

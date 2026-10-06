@@ -2,7 +2,7 @@
   "id": "doug_seven_twenty_eight",
   "with": "doug",
   "opener": [
-    "hi malten. its 7:26 so i have about 4 minutes. i typed this in notepad first so its ready to paste.",
+    "hi {you}. its 7:26 so i have about 4 minutes. i typed this in notepad first so its ready to paste.",
     "the saturday librarian is retiring. mrs halvorsen. 31 years. i found out from a flyer that was UNDER the bake sale flyer. her last day is this saturday.",
     "i have never thanked her. i walk in and say 'computer 3 please' and that is the whole sentence. i have 3 days and 4 dollars and 20 cents. what do i do"
   ],
@@ -17,7 +17,7 @@
 
     "say_it": {
       "them": [
-        "to her FACE. malten one time my voice cracked on the 3 in 'computer 3' and i didnt say a whole sentence at that desk until june. she just waits. she waits so nicely. its hard to be nervous at someone that patient and also be fast",
+        "to her FACE. {you} one time my voice cracked on the 3 in 'computer 3' and i didnt say a whole sentence at that desk until june. she just waits. she waits so nicely. its hard to be nervous at someone that patient and also be fast",
         "i can TYPE a thank you. typing is the only speed i have. is typed allowed"
       ],
       "choices": [
@@ -82,7 +82,7 @@
       "them": [
         "im back. 44 minutes. aunt carol got a new rug and described the whole rug. i scrolled up and read what you wrote while i was gone. the words come first. i read it three times",
         "it was 'computer' by the way. 'at a computer.' i just wanted you to know i know how it ended",
-        "the thing is, malten, it sounded true when i typed it to you. i think it would sound true to her. i cant promise it makes it out of my mouth. but it can make it out of a pencil. what do i do with the one thing i have that works"
+        "the thing is, {you}, it sounded true when i typed it to you. i think it would sound true to her. i cant promise it makes it out of my mouth. but it can make it out of a pencil. what do i do with the one thing i have that works"
       ],
       "choices": [
         { "say": "write that exact sentence. word for word. you already wrote the whole thing.", "next": "end_note" },
@@ -103,7 +103,7 @@
 
     "hotdish": {
       "them": [
-        "the hotdish. my moms. the tater tot one, it serves 8. malten thats... thats actually good. mrs halvorsen eats lunch at the desk and i can see her sandwich from computer 3. its always a sad sandwich. it has one lettuce",
+        "the hotdish. my moms. the tater tot one, it serves 8. {you} thats... thats actually good. mrs halvorsen eats lunch at the desk and i can see her sandwich from computer 3. its always a sad sandwich. it has one lettuce",
         "but its my moms hotdish, which means i have to ask her. and the only time i can ask is dinner until 7:29. its the best 58 minutes of her whole day. i would be asking her to spend it in the kitchen"
       ],
       "choices": [
@@ -130,7 +130,7 @@
 
     "crowd": {
       "them": [
-        "the whole... malten. the SITE. thats like 60 people. i can barely load 60 people. i have 4 dollars and an aunt carol",
+        "the whole... {you}. the SITE. thats like 60 people. i can barely load 60 people. i have 4 dollars and an aunt carol",
         "but she did print megs clydesdale. 2 megs. 14 pages at 10 cents. she charged me for 4 and said 'the machine miscounted.' the machine does not miscount. i checked it three times. i think she wanted me to have the horse"
       ],
       "choices": [
@@ -141,7 +141,7 @@
 
     "binder": {
       "them": [
-        "a binder. a THREE RING binder. malten the librarian has one for the overdue notices. i know the sound of the rings. it is the sound of her tucking things in",
+        "a binder. a THREE RING binder. {you} the librarian has one for the overdue notices. i know the sound of the rings. it is the sound of her tucking things in",
         "ok so people write her a message and i print them saturday and put them in the binder. but each one has to load. i can only open so many. and half of you write in glitter. she would be reading a glitter binder"
       ],
       "choices": [
@@ -152,7 +152,7 @@
 
     "loud": {
       "them": [
-        "BIGGEST thing. malten you are describing my nightmare and also my birthday. a lot of this site would LOVE that. meg has 2 megs of horse in a drawer. nikki has a thing. larry would burn a cd",
+        "BIGGEST thing. {you} you are describing my nightmare and also my birthday. a lot of this site would LOVE that. meg has 2 megs of horse in a drawer. nikki has a thing. larry would burn a cd",
         "but if they all send it at once my line will be loading until easter. one thing at a time is 9 minutes. nine things at once is the rest of my life"
       ],
       "choices": [
@@ -179,7 +179,7 @@
     "loud_wave": {
       "them": [
         "ok. i posted it. i said 'send mrs halvorsen your biggest thing, i will print it saturday.' its been 4 minutes and my page is... you know how a progress bar lies. mine is lying about 9 things at once",
-        "larry says he can burn ALL of it to one cd. nikki is sending the dial-up remix. meg says the horse is 2 megs but its 'for a good cause so it has to be big.' malten what have we done. i love it. i think i have to go. my mom is looking at the ph"
+        "larry says he can burn ALL of it to one cd. nikki is sending the dial-up remix. meg says the horse is 2 megs but its 'for a good cause so it has to be big.' {you} what have we done. i love it. i think i have to go. my mom is looking at the ph"
       ],
       "effects": [
         { "type": "wallpost", "from": "larry", "to": "doug", "delay": 20, "text": "doug i saw the bulletin!! one cd for mrs h, coming up. its called THANK U MRS H. it has the lighthouse (200 pics) and 3 songs (1 says madonna) and a folder called 'for the library.' i dont know whats in the folder. it hums nicely" },
@@ -196,7 +196,7 @@
     "end_note": {
       "them": [
         "ok. receipt, pencil, knock. i wrote it twice, once on the receipt and once on a clean sheet, and i kept the clean one. it says 'thank you for the hour' at the top now. i took out 'thanks for the books.' it still sounded like a receipt",
-        "after saturday its a new librarian and an hour that is actually an hour. i thought id be fine about that part. im not. but i think i would be sadder if i hadnt said it. thank you malten. nobody asked me what i would say. i didnt know i had one. the phone is about to ri"
+        "after saturday its a new librarian and an hour that is actually an hour. i thought id be fine about that part. im not. but i think i would be sadder if i hadnt said it. thank you {you}. nobody asked me what i would say. i didnt know i had one. the phone is about to ri"
       ],
       "end": true,
       "effects": [
@@ -225,7 +225,7 @@
     "end_cd": {
       "them": [
         "ok. im back. 44 minutes. there are 14 messages waiting and the progress bar says 9 percent of the first one. its megs horse. it started at 7:31. it will be a horse by breakfast",
-        "larry says the cd is burning and its called THANK U MRS H (final). malten i dont know whats on it. nobody does. but it will be on computer 3 on saturday and so will i. this is going to be the biggest thank you in the history of the county library and also the slowest. aunt carol is on the ph"
+        "larry says the cd is burning and its called THANK U MRS H (final). {you} i dont know whats on it. nobody does. but it will be on computer 3 on saturday and so will i. this is going to be the biggest thank you in the history of the county library and also the slowest. aunt carol is on the ph"
       ],
       "end": true,
       "effects": [
@@ -239,7 +239,7 @@
     "end_hotdish": {
       "them": [
         "ok. so. i asked. my mom said yes before i got to the end of the words. she said she was going to make the tater tot one on saturday anyway. (she was not.) (she is now.) she said 'Marlene Halvorsen? she taught me how to shelve.' i didnt know mrs halvorsen had a first name. its marlene",
-        "then she picked up the phone to ask aunt carol about pies and its been 52 minutes. there is a potluck now. there is a banner. aunt carol is bringing a folding table and a rug (i dont know why). i am in charge of napkins. nobody asked me. malten i think i just made a party. the phone is on its fourth pie and i can hea"
+        "then she picked up the phone to ask aunt carol about pies and its been 52 minutes. there is a potluck now. there is a banner. aunt carol is bringing a folding table and a rug (i dont know why). i am in charge of napkins. nobody asked me. {you} i think i just made a party. the phone is on its fourth pie and i can hea"
       ],
       "end": true,
       "effects": [
@@ -248,7 +248,7 @@
         { "type": "wallpost", "from": "fred", "to": "doug", "delay": 80, "text": "Doug. A potluck is a testimonial you can eat. Your mother, your aunt and a folding table are the whole argument. I'm in Sacramento and I would like it noted that I have never wanted to be in Wisconsin more. I'll send napkins in spirit." },
         { "type": "wallpost", "from": "marcus", "to": "doug", "delay": 120, "text": "Doug. Rule 12 applies to potlucks: every guest welcome, no double dipping. I am drafting a seating chart. It is eleven pages. It is a draft. The guest of honor sits by the window. -- Marcus, Moderator (unofficial)" },
         { "type": "wallpost", "from": "angela", "to": "doug", "delay": 150, "text": "~*~ Doug! ~*~ I am making a Potluck Banner! 468 pixels wide, no MIDI, loads in four seconds! Please tell me the guest of honor's first name so that I may CENTER it! P.S. A potluck is only a guestbook with food. ~ Angela, Webmistress" },
-        { "type": "dm", "delay": 170, "text": "...r the pies arguing. sorry. 4 pies is now 5. mom says you can come too, malten. i said i dont know where you live. she said 'then the internet can come.' i dont think she knows what she said. its the best sentence i heard all week." }
+        { "type": "dm", "delay": 170, "text": "...r the pies arguing. sorry. 4 pies is now 5. mom says you can come too, {you}. i said i dont know where you live. she said 'then the internet can come.' i dont think she knows what she said. its the best sentence i heard all week." }
       ]
     }
   }

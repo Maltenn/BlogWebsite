@@ -1,0 +1,57 @@
+{
+ "ben": {
+  "avatar": "assets/avatar_ben.gif",
+  "avatarDesc": "a tiny blue pixel-art ninja with a sword on his back who throws a smoke puff and swaps himself for a log",
+  "sources": [
+   "https://blob.gifcities.org/gifcities/2DYZTBY7RSMEMBDCFV454UO6HDKIKGGD.gif"
+  ]
+ },
+ "devon": {
+  "avatar": "assets/avatar_devon.gif",
+  "avatarDesc": "a playing card, the ace of spades, slowly spinning",
+  "sources": [
+   "https://blob.gifcities.org/gifcities/YH22J4X7A4EYKFVSNART4XXRWDF75JTC.gif"
+  ]
+ },
+ "doug": {
+  "avatar": "assets/avatar_doug.gif",
+  "avatarDesc": "a grey external dial-up modem with a row of blinking red lights",
+  "sources": [
+   "https://blob.gifcities.org/gifcities/J7G4BTIH63PJ6WQDMY2JVW72GLRZY7A5.gif"
+  ]
+ },
+ "faye": {
+  "avatar": "assets/avatar_faye.gif",
+  "avatarDesc": "a blue feather quill in an inkwell beside an open yellow book, writing in it",
+  "sources": [
+   "https://blob.gifcities.org/gifcities/22VO5WOJXIARHYJOYCZNVQPM26WDIRRL.gif"
+  ]
+ },
+ "leo": {
+  "avatar": "assets/avatar_leo.gif",
+  "avatarDesc": "a pixel-art corkboard in a wooden frame with index cards, colored pushpins, the numbers 4 8 15 16 23 42 on one card, and red string being pulled between the pins",
+  "sources": []
+ },
+ "maddie": {
+  "avatar": "assets/avatar_maddie.gif",
+  "avatarDesc": "a brown owl in glasses and a graduation cap perched on a stack of books with a red apple and a calculator",
+  "sources": [
+   "https://blob.gifcities.org/gifcities/JHZCYSEFQQDUQ63JQ6CI6UIPNEG4QYXK.gif"
+  ]
+ },
+ "tj": {
+  "avatar": "assets/avatar_tj.gif",
+  "avatarDesc": "a waving black jolly roger flag, the letters VS, and a dark pixel ninja crouching with a sword, above the tally 507 : 499",
+  "sources": [
+   "https://blob.gifcities.org/gifcities/IORTZLDQ4IU44I3V32MUECRPL465FO65.gif",
+   "https://blob.gifcities.org/gifcities/IN5NOXMEEKKZTA2MSZJ35IADI7A3EREN.gif"
+  ]
+ },
+ "trevor": {
+  "avatar": "assets/avatar_trevor.gif",
+  "avatarDesc": "a black graduation cap with a gold tassel resting on a rolled diploma tied with red ribbon",
+  "sources": [
+   "https://blob.gifcities.org/gifcities/PAWR5RAXY6S7FQ3WXTOLYES6IDRTCPWW.gif"
+  ]
+ }
+}

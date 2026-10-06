@@ -2,7 +2,7 @@
  "id": "debbie_mix_for_kayla",
  "with": "debbie",
  "opener": [
-  "Hello malten! This is Debbie, Kayla's mom. I am writing PRIVATELY. I pressed the envelope and I watched it say 'sent' so I believe this one stays between us. I need your help with something delicate.",
+  "Hello {you}! This is Debbie, Kayla's mom. I am writing PRIVATELY. I pressed the envelope and I watched it say 'sent' so I believe this one stays between us. I need your help with something delicate.",
   "Kayla left a burned CD in the Suburban in September. It says DO NOT TOUCH in purple marker. I touched it. I told everyone on my blog, which I am told was a mistake. Anyway, I have made her one back.",
   "It is in the cup holder. I am sitting in the school parking lot with the engine off, eleven minutes before the first bell. How do you give a teenager something she does not know she wants? Love, Mom"
  ],
@@ -36,7 +36,7 @@
   },
   "window_plan": {
    "them": [
-    "Malten. Thirty. I have thirty blank discs in the supply closet from a project the district cancelled. And I have the laminator. I could laminate the labels. They would survive a flood.",
+    "{you}. Thirty. I have thirty blank discs in the supply closet from a project the district cancelled. And I have the laminator. I could laminate the labels. They would survive a flood.",
     "I could hand them to the tardy line. 'Here you go honey, you are late and you are loved.' I would do it with joy. I am also aware that Kayla would die. I have not decided whether that is a cost or a feature. Love, Mom"
    ],
    "effects": [
@@ -73,7 +73,7 @@
   "say_it": {
    "them": [
     "I practiced in the Suburban mirror. Version one: 'I made you a CD.' (Too casual.) Version two: 'I listened to the whole thing, and this is my answer.' (Too much like a courtroom.) Version three: 'Here.' (Best so far. But then what do I do with my hands?)",
-    "I am holding a casserole for balance. It is not even hers, it is for the front office. I have been rehearsing with a casserole, malten. Love, Mom"
+    "I am holding a casserole for balance. It is not even hers, it is for the front office. I have been rehearsing with a casserole, {you}. Love, Mom"
    ],
    "choices": [
     { "say": "go with 'here.' hold the casserole. u need something to do w/ ur hands.", "next": "kayla_door" },
@@ -82,7 +82,7 @@
   },
   "vp_scene": {
    "them": [
-    "Malten. It is 8:02 and there are thirty discs on the counter in a fan shape. I laminated the labels. They say FROM THE FRONT OFFICE, WITH LOVE, and underneath, smaller, 'track 9 is a student band, please be kind.'",
+    "{you}. It is 8:02 and there are thirty discs on the counter in a fan shape. I laminated the labels. They say FROM THE FRONT OFFICE, WITH LOVE, and underneath, smaller, 'track 9 is a student band, please be kind.'",
     "The vice principal came out of his office, picked one up, and said 'is this the music from your page?' I said it is the music from MY HEART. He said 'ok' and put it in his pocket. Kayla's second period starts in four minutes. Love, Mom"
    ],
    "effects": [
@@ -128,7 +128,7 @@
   },
   "window_cds": {
    "them": [
-    "Malten, the line is out the door. A boy named Tyler took three. He says 'bro' to me now. A girl took one and said 'is this Journey' and I said YES and she said 'my mom loves Journey' and we stood there. It was the nicest tardy line of my career.",
+    "{you}, the line is out the door. A boy named Tyler took three. He says 'bro' to me now. A girl took one and said 'is this Journey' and I said YES and she said 'my mom loves Journey' and we stood there. It was the nicest tardy line of my career.",
     "Then Kayla came to the window. She did not say anything. She looked at the fan of discs, then at me. She picked up the one labeled FOR KAYLA, TRACK 12 IS ONLY FOR YOU and walked out. The line said 'oooh.' What do I do now? Love, Mom"
    ],
    "choices": [
@@ -138,7 +138,7 @@
   },
   "music_swap": {
    "them": [
-    "Malten, Dad is right about the volume, and I have an idea. I can not turn the music off. I have tried for three weeks. So I thought, if it must play, let it play something she likes. Todd told me there is a 'song' box. I found it. It is a very small box.",
+    "{you}, Dad is right about the volume, and I have an idea. I can not turn the music off. I have tried for three weeks. So I thought, if it must play, let it play something she likes. Todd told me there is a 'song' box. I found it. It is a very small box.",
     "I typed in the Paramore. It asked if I was sure. I said I have never been so sure. The vice principal is going to come out of his office. I am going to let him. Do I also give her the CD, or is the page the present? Love, Mom"
    ],
    "effects": [
@@ -152,7 +152,7 @@
   "end_hand": {
    "them": [
     "She came to the table at 6:30. Nobody said anything about the CD. She said 'is there more casserole,' which in this house means yes. After dinner she took the Suburban keys and went out and sat in the driveway with the engine off for twenty-two minutes. I watched from the kitchen window. I did not go out. I am learning.",
-    "When she came in she said, 'track 7 is a lot, Mom.' Then she said, 'but track 12.' And she did not finish the sentence. She did not have to. I am not crying. There are onions. Thank you, malten. I will tell nobody you were involved. I will tell everybody. Love, Mom"
+    "When she came in she said, 'track 7 is a lot, Mom.' Then she said, 'but track 12.' And she did not finish the sentence. She did not have to. I am not crying. There are onions. Thank you, {you}. I will tell nobody you were involved. I will tell everybody. Love, Mom"
    ],
    "end": true,
    "effects": [
@@ -164,19 +164,19 @@
   },
   "end_cupholder": {
    "them": [
-    "Malten. She said nothing. I stood there a long time with the plate and the disc. The Paramore got quieter, and then it stopped. I put everything on the floor, knocked once, and walked away. I did the dishes. They were already clean.",
+    "{you}. She said nothing. I stood there a long time with the plate and the disc. The Paramore got quieter, and then it stopped. I put everything on the floor, knocked once, and walked away. I did the dishes. They were already clean.",
     "This morning at 7:50 I went out to the Suburban. There was a CD in the cup holder. Not mine. Hers. The one that says DO NOT TOUCH. Somebody had crossed that out with the purple marker and written underneath, very small, 'ok u can.' I am sitting in the parking lot with the engine off. I am not crying. There are onions. Love, Mom"
    ],
    "end": true,
    "effects": [
     { "type": "status", "delay": 20, "text": "debbie found something in the Suburban. debbie is fine. debbie is having a moment. debbie will be at the attendance window in four minutes. Love, Mom" },
     { "type": "wallpost", "from": "walt", "to": "debbie", "delay": 70, "text": "Dear Debbie, Your mother sat in the car in our driveway most Sundays after church, until someone came to the door and said 'did you eat.' It was never that she did not want to come in. It was that she wanted to be asked. I will leave it to you which of you is the one in the car. Regards, Walt (your father)" },
-    { "type": "dm", "from": "kayla", "delay": 120, "text": "malten. did my mom tell u about the cd. dont tell her i said this. i listened to ALL of it. the garage band one is bryans and she PUT IT ON THERE. i cant even. im gonna sit in the car a while. xox" }
+    { "type": "dm", "from": "kayla", "delay": 120, "text": "{you}. did my mom tell u about the cd. dont tell her i said this. i listened to ALL of it. the garage band one is bryans and she PUT IT ON THERE. i cant even. im gonna sit in the car a while. xox" }
    ]
   },
   "end_free_cds": {
    "them": [
-    "Malten. THE SCHOOL HAS A COMPILATION. By lunch the thirty discs were gone and four students have come back to ask whether there is a volume 2. Mr. Henderson has written me a three-paragraph critique. A girl named Brittany said, quote, 'this is top 8 material,' and she meant it, she has a chart.",
+    "{YOU}. THE SCHOOL HAS A COMPILATION. By lunch the thirty discs were gone and four students have come back to ask whether there is a volume 2. Mr. Henderson has written me a three-paragraph critique. A girl named Brittany said, quote, 'this is top 8 material,' and she meant it, she has a chart.",
     "Kayla walked past the window at lunch, did not look at me, and put one hand flat against the glass for a second. I have decided that is a review. I am keeping the laminator warm. Love, Mom"
    ],
    "end": true,
@@ -189,12 +189,12 @@
   },
   "end_public": {
    "them": [
-    "Malten. I pressed the big button. It was not the envelope. It said 'Post Bulletin.' I have posted the whole thing, both paragraphs, the hospital, the retainer, Courtney, 'you were so small,' all of it. Eleven people have commented in four minutes.",
+    "{you}. I pressed the big button. It was not the envelope. It said 'Post Bulletin.' I have posted the whole thing, both paragraphs, the hospital, the retainer, Courtney, 'you were so small,' all of it. Eleven people have commented in four minutes.",
     "Brittany says it made her cry. A boy named Randy wrote 'PIE.' I do not know why. Kayla's light is off. Her phone is face down on the hall table. I am going to go stand in the pantry for a moment. Love, Mom. P.S. How do I make this private. Love, Mom."
    ],
    "end": true,
    "effects": [
-    { "type": "bulletin", "delay": 10, "subject": "HOW DO I MAKE THIS PRIVATE (A LETTER TO KAYLA) (SORRY EVERYONE)", "text": "Kayla, there is something in the Suburban for you. It is a CD. It is not a lecture. I love you. Dinner is at 6:30. You were so small in the hospital, honey. You were 6 pounds 11 ounces and furious. You still are and I would not change a thing. Courtney called last week for eleven minutes and I told nobody except a young man on a website. Your retainer is by the bananas. I have listened to all of your music and I am proud. Love, Mom. P.S. If you are reading this and you are not Kayla, hello. Please look away. Thank you." },
+    { "type": "bulletin", "delay": 10, "subject": "HOW DO I MAKE THIS PRIVATE (A LETTER TO KAYLA) (SORRY EVERYONE)", "text": "Kayla, there is something in the Suburban for you. It is a CD. It is not a lecture. I love you. Dinner is at 6:30. You were so small in the hospital, honey. You were 6 pounds 11 ounces and furious. You still are and I would not change a thing. Courtney called last week for eleven minutes and I told nobody except a kind person on a website. Your retainer is by the bananas. I have listened to all of your music and I am proud. Love, Mom. P.S. If you are reading this and you are not Kayla, hello. Please look away. Thank you." },
     { "type": "wallpost", "from": "kayla", "to": "debbie", "delay": 40, "text": "MOM. MOM. THAT WAS THE WALL. ...ok it was a good letter. im still mad. im mad in a nice way. dinner is at 6:30 and i will be there. delete the retainer part. ily" },
     { "type": "wallpost", "from": "randy", "to": "debbie", "delay": 75, "text": "lol mrs kaylas mom i cried a little. PIE." },
     { "type": "wallpost", "from": "walt", "to": "debbie", "delay": 115, "text": "Dear Debbie, I have read the bulletin. It was a fine letter. It should have been private. I would not change a word of it, and I would have changed the box. Regards, Walt (your father)" }

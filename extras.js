@@ -28,6 +28,8 @@ const Presence = {
       });
     this.online.todd = true;               // todd is always online. he is load-bearing.
     delete this.away.todd;
+    // so is the owner (malten "lives here") — and nothing ever signs him off or writes his away message
+    Object.keys(MS.people).filter(id => MS.people[id].owner).forEach(id => { this.online[id] = true; delete this.away[id]; });
     // whoever has a scripted conversation waiting on you is signed on
     (MS.activeTreeIds ? MS.activeTreeIds() : []).forEach(tid => { this.online[MS.trees[tid].with] = true; delete this.away[MS.trees[tid].with]; });
     setInterval(() => this.tick(), 22000);
@@ -49,7 +51,7 @@ const Presence = {
 
   tick() {
     if (Math.random() < 0.45) return;
-    const ids = Object.keys(MS.people).filter(i => i !== 'todd');
+    const ids = Object.keys(MS.people).filter(i => i !== 'todd' && !MS.people[i].owner);
     // drift toward the target headcount: a coin flip per random resident would fill the room at 92 residents
     const on = ids.filter(i => this.online[i]), off = ids.filter(i => !this.online[i]);
     const goal = this.target();
@@ -100,10 +102,14 @@ const BuddyList = {
   build(container) {
     const body = container || document.querySelector('.window[data-app="buddylist"] .window-body');
     if (!body) return;
+    const me = (MS.state && MS.state.me) || null;
     body.innerHTML = `
-      <div class="bl-me">🟣 <b>malten</b><div class="bl-mystatus">online — building the site</div></div>
+      <div class="bl-me">🟣 <b></b><div class="bl-mystatus"></div></div>
       <div id="bl-list"></div>
       <div class="bl-foot">${Object.keys(MS.people).length} buddies · sounds on</div>`;
+    // the visitor's own screen name + mood (text nodes: a name is user input)
+    body.querySelector('.bl-me b').textContent = MS.myName ? MS.myName() : 'you';
+    body.querySelector('.bl-mystatus').textContent = me ? 'online — ' + (me.mood || 'here') : 'online — signing up…';
     this.paint();
   },
 
@@ -139,20 +145,22 @@ const BuddyList = {
         const row = document.createElement('div');
         row.className = 'bl-row ' + cls;
         const activeConvo = mail.has(id);
-        row.innerHTML = `<span class="bl-dot"></span>${p.name}${activeConvo ? ' <span class="bl-mail blink">✉</span>' : ''}`;
-        if (cls === 'away') row.title = 'away: ' + Presence.away[id];
+        row.innerHTML = `<span class="bl-dot"></span>${p.name}${p.owner ? ' <span class="bl-owner" title="built this desktop">★</span>' : ''}${activeConvo ? ' <span class="bl-mail blink">✉</span>' : ''}`;
+        if (cls === 'away') row.title = 'away: ' + MS.t(Presence.away[id]);
+        else if (p.owner) row.title = 'malten built this desktop — click for his page';
         row.addEventListener('click', () => {
           if (cls === 'away' && !row.dataset.shown) {
             row.dataset.shown = '1';
             const msg = document.createElement('div');
             msg.className = 'bl-awaymsg';
-            msg.textContent = '⏳ ' + Presence.away[id];
+            msg.textContent = '⏳ ' + MS.t(Presence.away[id]);
             row.insertAdjacentElement('afterend', msg);
             Sfx.click();
             return;
           }
           WM.open('myspace');
-          MS.show('inbox', id);
+          if (p.owner) MS.show('profile', id);     // a real person: no inbox bot, his page has the guestbook
+          else MS.show('inbox', id);
         });
         list.appendChild(row);
       });
@@ -221,7 +229,7 @@ const Chat = {
   },
 
   synth(silent) {
-    const ids = Object.keys(MS.people);
+    const ids = Object.keys(MS.people).filter(id => !MS.people[id].owner);   // malten is in the room, but nobody types for him
     const onlineIds = ids.filter(id => Presence.online[id]);
     const pool = onlineIds.length >= 3 ? onlineIds : ids;
     const rnd = arr => arr[Math.floor(Math.random() * arr.length)];
@@ -244,7 +252,7 @@ const Chat = {
       const p = rnd(pairs);
       this.chatUsed[p.key] = 1;
       this.addLine({ kind: 'msg', from: p.a, text: `${MS.people[p.t] ? MS.people[p.t].name : p.t}: ${p.line}` });
-      if (MS.people[p.t] && Math.random() < 0.55) {
+      if (MS.people[p.t] && !MS.people[p.t].owner && (MS.people[p.t].replies || []).length && Math.random() < 0.55) {
         const reply = rnd(MS.people[p.t].replies || ['lol']);
         const say = () => this.addLine({ kind: 'msg', from: p.t, text: reply });
         silent ? say() : setTimeout(say, 2000 + Math.random() * 4000);
@@ -277,7 +285,7 @@ const Chat = {
     Sfx.click();
     // who answers? name/keyword match first, otherwise maybe a random reaction
     const lower = text.toLowerCase();
-    const ids = Object.keys(MS.people);
+    const ids = Object.keys(MS.people).filter(id => !MS.people[id].owner);   // malten never auto-answers
     // named = whole words only: with ~92 residents, ids like "min", "tim", "wes" hide inside ordinary words
     const words = new Set(lower.split(/[^a-z0-9_]+/));
     let target = ids.find(id => {
@@ -309,18 +317,20 @@ const Chat = {
     if (!el) return;
     const atBottom = stick || el.scrollTop + el.clientHeight >= el.scrollHeight - 20;
     el.innerHTML = '';
+    // lines are stored raw; the visitor's name (and {you} in what residents say) is filled in here, so a rename shows
+    const nameOf = id => (id === 'you' ? MS.myName() : MS.people[id] ? MS.people[id].name : id);
     this.log.forEach(l => {
       const row = document.createElement('div');
       row.className = 'chat-line ' + l.kind;
-      if (l.kind === 'sys') row.textContent = l.text;
-      else if (l.kind === 'me') row.textContent = `* ${l.from === 'you' ? 'malten' : MS.people[l.from].name} ${l.text}`;
+      if (l.kind === 'sys') row.textContent = MS.t(l.text);
+      else if (l.kind === 'me') row.textContent = `* ${nameOf(l.from)} ${MS.t(l.text)}`;
       else {
         const nick = document.createElement('b');
         nick.className = 'chat-nick' + (l.from === 'you' ? ' me' : '');
-        nick.textContent = `<${l.from === 'you' ? 'malten' : MS.people[l.from].name}>`;
-        if (l.from !== 'you') nick.addEventListener('click', () => { WM.open('myspace'); MS.show('profile', l.from); });
+        nick.textContent = `<${nameOf(l.from)}>`;
+        nick.addEventListener('click', () => { WM.open('myspace'); if (l.from === 'you') MS.show('home'); else MS.show('profile', l.from); });
         row.appendChild(nick);
-        row.appendChild(document.createTextNode(' ' + l.text));
+        row.appendChild(document.createTextNode(' ' + MS.t(l.text)));
       }
       el.appendChild(row);
     });
@@ -338,12 +348,13 @@ const Chat = {
     el.appendChild(head);
     const you = document.createElement('div');
     you.className = 'chat-nickrow';
-    you.textContent = '@malten (you)';
+    you.textContent = MS.myName() + ' (you)';
     el.appendChild(you);
     online.forEach(id => {
       const row = document.createElement('div');
       row.className = 'chat-nickrow' + (Presence.away[id] ? ' away' : '');
-      row.textContent = (Presence.away[id] ? '⏳ ' : '') + MS.people[id].name;
+      // the owner gets the channel-operator @ (it's his server)
+      row.textContent = (Presence.away[id] ? '⏳ ' : '') + (MS.people[id].owner ? '@' : '') + MS.people[id].name;
       row.addEventListener('click', () => { WM.open('myspace'); MS.show('profile', id); });
       el.appendChild(row);
     });
@@ -362,7 +373,7 @@ const Nudge = {
   },
 
   fromResident() {
-    const online = Object.keys(MS.people).filter(id => Presence.online[id] && MS.state.friends.includes(id));
+    const online = Object.keys(MS.people).filter(id => Presence.online[id] && MS.state.friends.includes(id) && !MS.people[id].owner);
     if (!online.length) return;
     const id = online[Math.floor(Math.random() * online.length)];
     Sfx.buzz();
@@ -406,7 +417,7 @@ const Horoscope = {
     const rng = this.mulberry(seed);
     const pick = arr => arr[Math.floor(rng() * arr.length)];
 
-    const moods = ['chaotic good', 'suspiciously lucky', 'main character', 'cozy with a chance of drama', 'unstoppable (mildly)', 'sparkly', 'contemplative (rare)'];
+    const moods = ['chaotic good', 'suspiciously lucky', 'protagonist of the week', 'cozy with a chance of drama', 'unstoppable (mildly)', 'sparkly', 'contemplative (rare)'];
     const items = ['a backup capri sun', 'your rock', 'side B of anything', 'one (1) unspent materia', 'the good CRT', 'a fresh 88x31 badge', 'exact change', 'the third slice of pizza'];
     const dos = [
       'say hi to someone first for once. the stars are tired of doing it for you.',
@@ -423,16 +434,21 @@ const Horoscope = {
       'checking who viewed your profile. (it was tony. it\'s always tony.)',
     ];
     const targeted = rng() < 0.25;
+    // the visitor's sign from their page; no sign yet = starxgazer guesses (scorpio, she's sure)
+    const signs = ['aries', 'taurus', 'gemini', 'cancer', 'leo', 'virgo', 'libra', 'scorpio', 'sagittarius', 'capricorn', 'aquarius', 'pisces'];
+    const mine = String((MS.state && MS.state.me && MS.state.me.zodiac) || '').trim().toLowerCase();
+    const sign = signs.includes(mine) ? mine : 'scorpio';
+    const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
     const special = pick([
       'the stars say check your guestbook. someone meant what they wrote.',
       'mercury says your minesweeper record falls today. mercury is rarely wrong about minesweeper.',
       'someone viewed your profile 4 times today. the stars know who. (it was tony)',
-      'your profile song choice will be validated by a stranger this week. hold the line.',
-      'an aries with your exact name will have a great day. draw your own conclusions.',
+      'your top 5 will be validated by a stranger this week. hold the line.',
+      `a ${sign} named ${esc(MS.myName ? MS.myName() : 'you')} will have a great day. draw your own conclusions.`,
     ]);
 
     body.innerHTML = `
-      <div class="horo-head">🔮 daily forecast — <b>aries</b></div>
+      <div class="horo-head">🔮 daily forecast — <b>${sign}</b>${signs.includes(mine) ? '' : ' <span class="horo-guess">(a guess)</span>'}</div>
       <div class="horo-line">mood: <b>${pick(moods)}</b></div>
       <div class="horo-line">lucky item: <b>${pick(items)}</b></div>
       <div class="horo-line">lucky number: <b>${Math.floor(rng() * 88) + 1}</b></div>
@@ -531,13 +547,14 @@ const Glitter = {
     body.dataset.built = '1';
     body.innerHTML = `
       <div class="paint-toolbar" id="glit-styles"></div>
-      <input id="glit-input" class="glit-input" placeholder="type something sparkly…" maxlength="60" value="malten rules ok">
+      <input id="glit-input" class="glit-input" placeholder="type something sparkly…" maxlength="60">
       <div class="glit-preview" id="glit-preview"></div>
       <div class="paint-toolbar">
         <button class="btn98" id="glit-wall">📌 post to my wall</button>
         <button class="btn98" id="glit-gb">📖 sign the guestbook</button>
         <button class="btn98" id="glit-copy">📋 copy</button>
       </div>`;
+    body.querySelector('#glit-input').value = (MS.myName ? MS.myName() : 'ourspace') + ' rules ok';
     const stylesBar = body.querySelector('#glit-styles');
     Object.entries(this.styles).forEach(([key, s]) => {
       const b = document.createElement('button');
@@ -595,7 +612,7 @@ const Glitter = {
       MS.pushFeed({ type: 'status', from: 'you', text, time: MS.now() });
       MS.toast('posted to your wall, at maximum sparkle');
     } else {
-      Guestbook.postExternal('malten', text);
+      Guestbook.postExternal(MS.myName(), text);         // signed as the visitor (malten owns the guestbook)
       MS.toast('the guestbook has been glitterized', 'guestbook');
     }
     Sfx.tada();
@@ -603,8 +620,15 @@ const Glitter = {
 };
 
 /* ======================= PROFILE CUSTOMIZER ======================= */
+// "Edit My Page": the editor for everything on the visitor's page (MS.state.me), as ONE scrolling page of compact
+// sections — 📷 picture & name · 👤 about · 🎨 look (theme, background, font, decor gifs, 88x31 buttons) · 🎵 my top 5
+// (searchable through SongSearch in apps.js) · ⭐ top 8 — above a save bar that stays in reach. Edits a draft; 💾 save
+// writes state.me and the neighborhood reacts. Every open starts at the top; MS.openEditor(section) scrolls to one.
 const Customizer = {
+  jump: null,               // a section to scroll to on the next open: 'pic' | 'about' | 'blog' | 'look' | 'music' | 'friends'
+  built: false,
   swatches: [
+    { bg: '#eef3fb', fg: '#000000', accent: '#3b6fb6', name: 'ourspace blue' },
     { bg: '#f3eefb', fg: '#000000', accent: '#9370DB', name: 'classic purple' },
     { bg: '#0a0a0a', fg: '#e0d5f5', accent: '#c3002f', name: 'midnight' },
     { bg: '#e8f4ff', fg: '#003366', accent: '#ff6600', name: 'sk8r blue' },
@@ -613,106 +637,330 @@ const Customizer = {
     { bg: '#ffe8f0', fg: '#5c1a33', accent: '#ff71ce', name: 'bubblegum' },
     { bg: '#1a0033', fg: '#00ffff', accent: '#ff44cc', name: 'nightcore' },
     { bg: '#fff8f0', fg: '#5c3a1a', accent: '#cc8844', name: 'horse girl' },
+    { bg: '#000000', fg: '#ff99cc', accent: '#ff0066', name: 'scene queen' },
+  ],
+  tiles: [
+    ['', 'plain color'], ['assets/bg_stars_tile.gif', 'twinkling stars'], ['assets/tiles/tile_skulls.png', '☠ rainbow skulls'],
+    ['assets/tiles/tile_skulls_pink.png', '☠ pink skulls'], ['assets/tiles/tile_hearts.png', '♥ hearts'],
+    ['assets/tiles/tile_checker.png', 'checkerboard'], ['assets/tiles/tile_checker_pink.png', 'pink checker'],
+    ['assets/tiles/tile_leopard.png', 'pink leopard'], ['assets/tiles/tile_leopard_tan.png', 'leopard'],
+    ['assets/tiles/tile_zebra.png', 'zebra'], ['assets/tiles/tile_zebra_pink.png', 'pink zebra'], ['assets/tiles/tile_web.png', '🕸 spider webs'],
+    ['assets/tiles/tile_stars_neon.png', '★ neon stars'], ['assets/tiles/tile_flowers.png', '✿ flowers'], ['assets/tiles/tile_bolts.png', '⚡ bolts'],
   ],
   fonts: [
     { v: '', label: 'MS Sans (default)' },
     { v: '"Comic Sans MS", cursive', label: 'Comic Sans (the people\'s font)' },
     { v: '"Courier New", monospace', label: 'Courier (h4x0r)' },
     { v: '"Times New Roman", serif', label: 'Times (fancy. suspicious.)' },
+    { v: 'Verdana, sans-serif', label: 'Verdana (the sensible one)' },
+    { v: 'Georgia, serif', label: 'Georgia (poetry blog)' },
+    { v: '"Trebuchet MS", sans-serif', label: 'Trebuchet (layout site energy)' },
+    { v: '"Lucida Console", monospace', label: 'Lucida Console (terminal goth)' },
   ],
+  // decor gifs for under the picture (pick up to 3) and 88x31 buttons (up to 12)
+  decorGifs: ['deco_welcome_banner', 'deco_new', 'deco_new_blue', 'deco_sparkle_bunny', 'deco_hearts_bar', 'deco_rainbow_bar', 'deco_flames_bar',
+    'deco_smiley', 'deco_skull', 'deco_moon', 'deco_fairy', 'deco_dragon', 'deco_hamster', 'deco_dancing_baby', 'deco_email_bear',
+    'deco_email_roses', 'deco_record_dj', 'deco_banana_tiny', 'deco_blinkie_zim', 'deco2_atom', 'deco2_mushroom', 'deco2_goth_inside',
+    'deco2_ska_checker', 'deco2_downloadvirus'].map(n => `assets/${n}.gif`),
+  badgeGifs: ['badge_best_viewed_with_eyes', 'badge_aim', 'badge_icq', 'badge_netscape', 'badge_ie_anim', 'badge_ie_sucks', 'badge_firefoxget',
+    'badge_anybrowser', 'badge_geocities', 'badge_GuestWorldbutton', 'badge_winamp', 'badge_midi_files_now', 'badge_mspaint',
+    'badge_built_with_microsoft_notepad', 'badge_hello_kitty', 'badge_8bit', 'badge_Sega-Elite', 'badge_coffee', 'badge_blink',
+    'badge_aol-sucks'].map(n => `assets/${n}.gif`),
+  zodiac: [['Aries', '♈'], ['Taurus', '♉'], ['Gemini', '♊'], ['Cancer', '♋'], ['Leo', '♌'], ['Virgo', '♍'], ['Libra', '♎'],
+    ['Scorpio', '♏'], ['Sagittarius', '♐'], ['Capricorn', '♑'], ['Aquarius', '♒'], ['Pisces', '♓']],
+  statuses: ['Single', 'In a Relationship', 'It\'s Complicated', 'Married to my Wacom', 'Engaged to my Xbox', 'Taken (by my homework)',
+    'Swiss (neutral)', 'Divorced from my Tamagotchi', 'Saving myself for my Top 8', 'Married'],
+  hereFor: ['Friends', 'Networking', 'Pen pals', 'The bulletins', 'Top 8 drama', 'Free layouts', 'Music', 'Glitter', 'Minesweeper', 'Gossip (respectfully)'],
+  genders: ['Male', 'Female', 'Nonbinary', 'Prefer not to say', 'Robot (beep)', 'Cryptid'],
   reactions: [
-    { from: 'brittany', text: "malten's new layout is giving 2004 and i mean that as the highest compliment xoxo" },
+    { from: 'brittany', text: "{you}'s new layout is giving 2004 and i mean that as the highest compliment xoxo" },
     { from: 'todd', text: 'I see you customized your page! The server noticed too. It is coping.' },
     { from: 'darkangel', text: 'your new page palette speaks to the void. the void says "nice."' },
-    { from: 'nikki', text: 'NEW LAYOUT?? ok now it needs a faster profile song. i can fix that. i WILL fix that.' },
+    { from: 'nikki', text: 'NEW LAYOUT?? ok now your top 5 needs faster songs. i can fix that. i WILL fix that.' },
     { from: 'patrick', text: 'i clicked your page three times just to watch it load. it\'s beautiful' },
   ],
   comicReaction: { from: 'wes', text: 'comic sans on your profile. bold pick. frame data on that font is actually incredible, look it up' },
 
+  // Open/refresh: called on every app-open. Already open → keep the unsaved edits (and scroll only if a section was
+  // asked for); otherwise build the page fresh from state.me, starting at its top.
   build() {
     const body = document.querySelector('.window[data-app="customize"] .window-body');
     if (!body) return;
     body.dataset.built = '1';
-    const mp = MS.state.myProfile || {};
-    const songs = [
-      { name: '(none — my spotify top songs do the talking)', none: true },
-      { name: 'malten_theme.mid', pattern: [0, 0, 7, 5, 3, 5, 7, 10], bpm: 140 },
-      { name: 'untitled banger.mid', pattern: [0, 3, 7, 3, 10, 7, 12, 7], bpm: 130 },
-      { name: '4am insomnia loop.mid', pattern: [12, 10, 7, 10, 5, 7, 3, 0], bpm: 96 },
-      ...Object.values(MS.people).filter(p => p.song && p.song.url).map(p => p.song),
-    ];
+    if (this.built && MS.state && MS.state.me) { this.scrollTo(body); return; }
+    body.innerHTML = '';
+    if (!MS.state || !MS.state.me) {
+      // nobody to edit yet: the sign-up comes first
+      this.jump = null;
+      body.innerHTML = '<div class="cz-nome"><p><b>you don\'t have a page yet!</b></p><p>pick a screen name in OurSpace first, then come back here to decorate.</p><button class="btn98" id="cz-gosign">👥 go sign up</button></div>';
+      body.querySelector('#cz-gosign').addEventListener('click', () => { WM.close('customize'); WM.open('myspace'); MS.show('home'); });
+      return;
+    }
+    this.built = true;
+    const me = MS.state.me;
+    const d = JSON.parse(JSON.stringify(me));          // the draft; read back from the form on save
+    const mk = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
 
     body.innerHTML = `
-      <div class="cz-sec"><b>🎨 page theme</b><div class="cz-swatches" id="cz-swatches"></div></div>
-      <div class="cz-sec"><b>🌌 background</b><div class="cp-row">
-        <label><input type="radio" name="cz-tile" value=""> plain color</label>
-        <label><input type="radio" name="cz-tile" value="assets/bg_stars_tile.gif"> twinkling stars</label>
-        <label><input type="radio" name="cz-tile" value="assets/tiles/tile_skulls.png"> ☠ rainbow skulls</label>
-        <label><input type="radio" name="cz-tile" value="assets/tiles/tile_skulls_pink.png"> ☠ pink skulls</label>
-        <label><input type="radio" name="cz-tile" value="assets/tiles/tile_hearts.png"> ♥ hearts</label>
-        <label><input type="radio" name="cz-tile" value="assets/tiles/tile_checker.png"> checkerboard</label>
-        <label><input type="radio" name="cz-tile" value="assets/tiles/tile_checker_pink.png"> pink checker</label>
-        <label><input type="radio" name="cz-tile" value="assets/tiles/tile_leopard.png"> pink leopard</label>
-        <label><input type="radio" name="cz-tile" value="assets/tiles/tile_zebra.png"> zebra</label>
-        <label><input type="radio" name="cz-tile" value="assets/tiles/tile_web.png"> 🕸 spider webs</label>
-        <label><input type="radio" name="cz-tile" value="assets/tiles/tile_stars_neon.png"> ★ neon stars</label>
-        <label><input type="radio" name="cz-tile" value="assets/tiles/tile_flowers.png"> ✿ flowers</label>
-        <label><input type="radio" name="cz-tile" value="assets/tiles/tile_bolts.png"> ⚡ bolts</label>
-      </div></div>
-      <div class="cz-sec"><b>🔤 font</b><select id="cz-font" class="cz-select"></select></div>
-      <div class="cz-sec"><b>🎵 profile song</b><select id="cz-song" class="cz-select"></select></div>
-      <div class="cz-sec"><b>⭐ top 8 (friends only. choose wisely.)</b><div class="cz-swatches" id="cz-top8"></div></div>
-      <div class="paint-toolbar">
+      <section class="cz-sec cz-block" data-sec="pic">
+        <h3 class="cz-h">📷 picture &amp; name</h3>
+        <div class="cz-avrow">
+          <img class="cz-avnow" alt="your picture">
+          <div class="cz-avside">
+            <label class="cz-lbl" for="cz-name">screen name</label>
+            <div class="cz-namerow"><input id="cz-name" maxlength="20" autocomplete="off" spellcheck="false"><button class="btn98" id="cz-dice" type="button" title="pick one for me">🎲 pick one for me</button></div>
+            <div class="cz-err" id="cz-nameerr" role="alert"></div>
+            <div class="cz-avbtns">
+              <label class="btn98 cz-upload">📂 upload a picture<input type="file" accept="image/*" id="cz-file"></label>
+              <button class="btn98" id="cz-paintav" type="button">🎨 use my Paint drawing</button>
+            </div>
+            <div class="cz-note">uploads get shrunk to 120px. animated gifs freeze (bandwidth reasons).</div>
+          </div>
+        </div>
+        <div id="cz-gallery"></div>
+        <div class="cz-fields">
+          <label>tagline<input id="cz-tag" maxlength="80"></label>
+          <label>mood<input id="cz-mood" maxlength="40" list="cz-moods"></label>
+          <datalist id="cz-moods"></datalist>
+        </div>
+      </section>
+      <section class="cz-sec cz-block" data-sec="about">
+        <h3 class="cz-h">👤 about</h3>
+        <div class="cz-fields">
+          <label>gender<input id="cz-gender" maxlength="30" list="cz-genders" placeholder="(optional)"></label>
+          <label>age<input id="cz-age" type="number" min="1" max="120" placeholder="(optional)"></label>
+          <label>hometown<input id="cz-home" maxlength="40" placeholder="Somewhere, USA"></label>
+          <label>zodiac sign<select id="cz-zodiac" class="cz-select"></select><input id="cz-zodiac-x" maxlength="30" placeholder="your own sign" hidden></label>
+          <label>status<select id="cz-status" class="cz-select"></select><input id="cz-status-x" maxlength="40" placeholder="it's complicated (describe)" hidden></label>
+          <datalist id="cz-genders"></datalist>
+        </div>
+        <div class="cz-lbl">here for</div>
+        <div class="cz-checks" id="cz-herefor"></div>
+        <div class="cz-fields cz-wide">
+          <label>about me<textarea id="cz-about" rows="3" maxlength="1500"></textarea></label>
+          <label>who i'd like to meet<textarea id="cz-meet" rows="2" maxlength="500"></textarea></label>
+        </div>
+        <div class="cz-lbl">interests</div>
+        <div class="cz-fields" id="cz-ints"></div>
+        <div class="cz-fields cz-wide" data-sec="blog">
+          <label>blog title<input id="cz-blogtitle" maxlength="60" placeholder="my thoughts (unedited)"></label>
+        </div>
+      </section>
+      <section class="cz-sec cz-block" data-sec="look">
+        <h3 class="cz-h">🎨 look</h3>
+        <div class="cz-lbl">theme</div>
+        <div class="cz-swatches cz-themes" id="cz-swatches"></div>
+        <div class="cz-lbl">background</div>
+        <div class="cp-row cz-tiles" id="cz-tiles"></div>
+        <div class="cz-lbl">font</div>
+        <select id="cz-font" class="cz-select" aria-label="font"></select>
+        <div class="cz-lbl">decor gifs <span class="cz-count" id="cz-decorn"></span> <span class="cz-note">under your picture</span></div>
+        <div class="cz-gifgrid" id="cz-decor"></div>
+        <div class="cz-lbl">my buttons (88x31s) <span class="cz-count" id="cz-badgen"></span></div>
+        <div class="cz-gifgrid cz-badges" id="cz-badges"></div>
+      </section>
+      <section class="cz-sec cz-block" data-sec="music">
+        <h3 class="cz-h">🎵 my top 5 <span class="cz-hnote">on your page, with ▶ previews</span></h3>
+        <div id="cz-top5"></div>
+      </section>
+      <section class="cz-sec cz-block" data-sec="friends">
+        <h3 class="cz-h">⭐ top 8 <span class="cz-hnote">friends only. choose wisely.</span></h3>
+        <div class="cz-swatches" id="cz-top8"></div>
+        <div class="cz-note">picking someone who's already ranked swaps the two. the drama is not our responsibility.</div>
+      </section>
+      <div class="cz-foot">
         <button class="btn98" id="cz-save">💾 save my page</button>
-        <button class="btn98" id="cz-reset">↩ reset to default</button>
-      </div>
-      <p style="font-size:10px;color:#666;margin:4px 0 0;">warning: the neighborhood WILL have opinions about your redesign.</p>`;
+        <button class="btn98" id="cz-reset" title="theme, background, font, decor and buttons back to the defaults (right away)">↩ reset layout</button>
+        <span class="cz-warn">warning: the neighborhood WILL have opinions about your redesign.</span>
+      </div>`;
+    const $ = sel => body.querySelector(sel);
 
-    const sw = body.querySelector('#cz-swatches');
-    this.swatches.forEach((s, i) => {
-      const b = document.createElement('button');
-      b.className = 'cz-swatch' + ((mp.theme && mp.theme.bg === s.bg) ? ' sel' : '');
-      b.style.background = s.bg;
-      b.style.color = s.fg;
-      b.style.borderColor = s.accent;
-      b.textContent = s.name;
-      b.dataset.i = i;
-      b.addEventListener('click', () => {
-        sw.querySelectorAll('.cz-swatch').forEach(x => x.classList.remove('sel'));
-        b.classList.add('sel');
-      });
+    /* ---- picture: the preset gallery (MS.avatarGallery, shared with the sign-up), upload, Paint ---- */
+    const avNow = $('.cz-avnow');
+    const gallery = MS.avatarGallery(d.avatar, src => { setAvatar(src); Sfx.click(); });
+    $('#cz-gallery').replaceWith(gallery);
+    const setAvatar = src => {
+      d.avatar = src;
+      avNow.src = src;
+      gallery.select(src);
+    };
+    setAvatar(d.avatar || MS.myAvatar());
+    // any image (or canvas) → fits in 120x120, as a data URL small enough for localStorage
+    const toAvatar = (source, w, h) => {
+      const k = Math.min(1, 120 / Math.max(w, h));
+      const c = document.createElement('canvas');
+      c.width = Math.max(1, Math.round(w * k)); c.height = Math.max(1, Math.round(h * k));
+      const x = c.getContext('2d');
+      x.fillStyle = '#fff'; x.fillRect(0, 0, c.width, c.height);
+      x.imageSmoothingQuality = 'high';
+      x.drawImage(source, 0, 0, c.width, c.height);
+      return c.toDataURL('image/jpeg', 0.88);
+    };
+    $('#cz-file').addEventListener('change', e => {
+      const f = e.target.files && e.target.files[0];
+      e.target.value = '';
+      if (!f) return;
+      if (!/^image\//.test(f.type) || f.size > 15 * 1024 * 1024) { Sfx.error(); MS.toast('that doesn\'t look like a picture (or it\'s huge). try a .jpg, .png or .gif'); return; }
+      const rd = new FileReader();
+      rd.onload = () => {
+        const img = new Image();
+        img.onload = () => { setAvatar(toAvatar(img, img.naturalWidth, img.naturalHeight)); Sfx.click(); MS.toast('picture uploaded! (hit 💾 save to keep it)'); };
+        img.onerror = () => { Sfx.error(); MS.toast('your computer says that picture is broken. try another one?'); };
+        img.src = rd.result;
+      };
+      rd.readAsDataURL(f);
+    });
+    $('#cz-paintav').addEventListener('click', () => {
+      const cv = document.getElementById('paint-canvas');
+      if (!cv || !cv.width) { Sfx.error(); MS.toast('open Paint and draw something first 🎨 (then come back here)'); WM.open('paint'); return; }
+      setAvatar(toAvatar(cv, cv.width, cv.height));
+      Sfx.click();
+      MS.toast('your Paint masterpiece is your picture now (hit 💾 save to keep it)');
+    });
+
+    /* ---- screen name + the profile fields ---- */
+    const nameInp = $('#cz-name'), nameErr = $('#cz-nameerr');
+    nameInp.value = d.guest ? '' : d.name;
+    nameInp.placeholder = d.guest ? 'pick a screen name!' : d.name;
+    nameInp.addEventListener('input', () => { nameErr.textContent = ''; });
+    $('#cz-dice').addEventListener('click', () => { nameInp.value = MS.randomName(); nameErr.textContent = ''; Sfx.click(); });
+    const fill = (sel, v) => { $(sel).value = v == null ? '' : v; };
+    fill('#cz-tag', d.tag); fill('#cz-mood', d.mood); fill('#cz-gender', d.gender); fill('#cz-age', d.age);
+    fill('#cz-home', d.hometown); fill('#cz-blogtitle', d.blogTitle); fill('#cz-about', d.about); fill('#cz-meet', d.meet);
+    MS.moodPresets.forEach(m => { const o = mk('option'); o.value = m; $('#cz-moods').appendChild(o); });
+    this.genders.forEach(g => { const o = mk('option'); o.value = g; $('#cz-genders').appendChild(o); });
+    // a <select> of presets with a "custom…" option that reveals a text box
+    const pickOrType = (selId, xId, options, value, blank) => {
+      const sel = $(selId), x = $(xId);
+      if (blank) { const o = mk('option', null, blank); o.value = ''; sel.appendChild(o); }
+      options.forEach(([v, label]) => { const o = mk('option', null, label); o.value = v; sel.appendChild(o); });
+      const cu = mk('option', null, 'custom…'); cu.value = '__x'; sel.appendChild(cu);
+      const known = !value || options.some(([v]) => v === value);
+      sel.value = known ? (value || '') : '__x';
+      x.value = known ? '' : value;
+      x.hidden = known;
+      sel.addEventListener('change', () => { x.hidden = sel.value !== '__x'; if (!x.hidden) x.focus(); });
+      return () => (sel.value === '__x' ? x.value.trim() : sel.value);
+    };
+    const zodiacVal = pickOrType('#cz-zodiac', '#cz-zodiac-x', this.zodiac.map(([s, g]) => [s, `${g} ${s}`]), d.zodiac, '(not telling)');
+    const statusVal = pickOrType('#cz-status', '#cz-status-x', this.statuses.map(s => [s, s]), d.status, null);
+    const here = new Set(String(d.hereFor || '').split(',').map(s => s.trim()).filter(Boolean));
+    const hfBox = $('#cz-herefor');
+    [...this.hereFor, ...[...here].filter(h => !this.hereFor.includes(h))].forEach(h => {
+      const l = mk('label', 'cz-check');
+      const cb = mk('input'); cb.type = 'checkbox'; cb.value = h; cb.checked = here.has(h);
+      l.append(cb, ' ' + h);
+      hfBox.appendChild(l);
+    });
+    const ints = $('#cz-ints');
+    const intKeys = ['General', 'Music', 'Movies', 'Television', 'Books', 'Heroes'];
+    const intPh = { General: 'video games, the mall, staying up too late', Music: 'bands, burned CDs, the one song you play on repeat', Movies: 'anything with a training montage',
+      Television: 'what you rush home for', Books: 'the last thing you read (cereal boxes count)', Heroes: 'todd, probably' };
+    intKeys.forEach(k => {
+      const l = mk('label', null, k.toLowerCase());
+      const ta = mk('textarea'); ta.rows = 2; ta.maxLength = 300; ta.dataset.k = k; ta.placeholder = intPh[k];
+      ta.value = (d.interests && d.interests[k]) || '';
+      l.appendChild(ta);
+      ints.appendChild(l);
+    });
+
+    /* ---- look: theme (the preset swatches), tile, font, decor, buttons — each settable again by ↩ reset ---- */
+    const sw = $('#cz-swatches');
+    const colors = s => ({ bg: s.bg, fg: s.fg, accent: s.accent });
+    const same = (a, b) => ['bg', 'fg', 'accent'].every(k => String(a[k] || '').toLowerCase() === String(b[k] || '').toLowerCase());
+    let theme = colors(d.theme || this.swatches[0]);
+    // colours from the old custom pickers stay on offer as a swatch of their own, so saving never repaints a page by surprise
+    const themes = this.swatches.some(s => same(s, theme)) ? this.swatches : [{ ...theme, name: '✎ my own colours' }, ...this.swatches];
+    const markSwatch = () => sw.querySelectorAll('.cz-swatch').forEach((b, i) => {
+      const on = same(themes[i], theme);
+      b.classList.toggle('sel', on);
+      b.setAttribute('aria-pressed', on);
+    });
+    themes.forEach(s => {
+      const b = mk('button', 'cz-swatch', s.name);
+      b.type = 'button';
+      b.style.background = s.bg; b.style.color = s.fg; b.style.borderColor = s.accent;
+      b.addEventListener('click', () => { theme = colors(s); markSwatch(); Sfx.click(); });
       sw.appendChild(b);
     });
-    const tiles = body.querySelectorAll('input[name="cz-tile"]');
-    tiles.forEach(t => { t.checked = (mp.bgTile || '') === t.value; });
-    if (!mp.bgTile) tiles[0].checked = true;
-
-    const fontSel = body.querySelector('#cz-font');
+    const tilesBox = $('#cz-tiles');
+    this.tiles.forEach(([v, label]) => {
+      const l = mk('label');
+      const r = mk('input'); r.type = 'radio'; r.name = 'cz-tile'; r.value = v;
+      l.append(r, ' ' + label);
+      if (v) { const im = mk('span', 'cz-tileprev'); im.style.backgroundImage = `url(${v})`; l.appendChild(im); }
+      tilesBox.appendChild(l);
+    });
+    const setTile = v => {
+      const radios = [...tilesBox.querySelectorAll('input')];
+      (radios.find(r => r.value === (v || '')) || radios[0]).checked = true;
+    };
+    const fontSel = $('#cz-font');
     this.fonts.forEach(f => {
-      const o = document.createElement('option');
-      o.value = f.v; o.textContent = f.label;
-      if ((mp.font || '') === f.v) o.selected = true;
+      const o = mk('option', null, f.label);
+      o.value = f.v;
       fontSel.appendChild(o);
     });
-    const songSel = body.querySelector('#cz-song');
-    songs.forEach((s, i) => {
-      const o = document.createElement('option');
-      o.value = i;
-      o.textContent = s.artist ? `${s.name} — ${s.artist}` : s.name;
-      if (mp.song && mp.song.name === s.name) o.selected = true;
-      songSel.appendChild(o);
-    });
+    const setFont = v => { fontSel.value = v || ''; if (fontSel.selectedIndex < 0) fontSel.value = ''; };
+    // toggle grids (decor ≤3, buttons ≤12): .picked is the live choice, .set(list) replaces it
+    const gifPicker = (boxSel, countSel, all, max, full) => {
+      const box = $(boxSel), count = $(countSel);
+      const picked = [];
+      const paint = () => { count.textContent = `(${picked.length}/${max})`; box.querySelectorAll('.cz-gif').forEach(b => b.classList.toggle('sel', picked.includes(b.dataset.src))); };
+      const tile = src => {
+        const b = mk('button', 'cz-gif');
+        b.type = 'button'; b.dataset.src = src; b.title = src.split('/').pop().replace(/\.\w+$/, '').replace(/^(deco2?|badge)_/, '').replace(/_/g, ' ');
+        const im = mk('img'); im.loading = 'lazy'; im.alt = b.title; im.src = src;
+        b.appendChild(im);
+        b.addEventListener('click', () => {
+          const i = picked.indexOf(src);
+          if (i >= 0) picked.splice(i, 1);
+          else if (picked.length >= max) { Sfx.error(); MS.toast(full); return; }
+          else picked.push(src);
+          Sfx.click(); paint();
+        });
+        box.appendChild(b);
+      };
+      all.forEach(tile);
+      const set = list => {
+        const srcs = [...new Set((Array.isArray(list) ? list : []).filter(s => typeof s === 'string' && s))].slice(0, max);
+        picked.splice(0, picked.length, ...srcs);
+        srcs.forEach(src => { if (![...box.children].some(b => b.dataset.src === src)) tile(src); });   // one that isn't on offer any more
+        paint();
+      };
+      return { picked, set };
+    };
+    const decor = gifPicker('#cz-decor', '#cz-decorn', this.decorGifs, 3, 'three gifs max. your page is not a gif museum. (yet.)');
+    const badges = gifPicker('#cz-badges', '#cz-badgen', this.badgeGifs, 12, 'twelve buttons max. the badge wall has a weight limit.');
+    const setLook = m => {
+      theme = colors(m.theme || this.swatches[0]);
+      markSwatch();
+      setTile(m.bgTile);
+      setFont(m.font);
+      decor.set(m.decor);
+      badges.set(m.badges);
+    };
+    setLook(d);
 
-    // top 8: one dropdown per slot; picking someone who's already ranked swaps the two slots
-    const t8 = body.querySelector('#cz-top8');
+    /* ---- music: the top 5 (visitors have no profile song — the top 5 is the soundtrack) ---- */
+    if (window.SongSearch && SongSearch.picker) {
+      $('#cz-top5').appendChild(SongSearch.picker({
+        max: 5, picked: (d.top5 || []).slice(0, 5), placeholder: 'search a song for your top 5…',
+        onChange: picked => { d.top5 = picked.slice(0, 5); },
+      }));
+    } else {
+      $('#cz-top5').appendChild(mk('div', 'cz-note', '🔎 song search is still loading… close and reopen Edit My Page in a sec.'));
+    }
+
+    /* ---- top 8: one dropdown per slot; picking someone who's already ranked swaps the two slots ---- */
+    const t8 = $('#cz-top8');
     const top8 = MS.myTop8();
     const pool = [...new Set([...top8, ...MS.state.friends.filter(id => MS.people[id])])];
     top8.forEach((id, i) => {
-      const sel = document.createElement('select');
-      sel.className = 'cz-select';
+      const sel = mk('select', 'cz-select');
       pool.forEach(fid => {
-        const o = document.createElement('option');
-        o.value = fid; o.textContent = `#${i + 1} ${MS.people[fid].name}`;
+        const o = mk('option', null, `#${i + 1} ${MS.people[fid].name}`);
+        o.value = fid;
         if (fid === id) o.selected = true;
         sel.appendChild(o);
       });
@@ -724,41 +972,91 @@ const Customizer = {
       t8.appendChild(sel);
     });
 
-    body.querySelector('#cz-save').addEventListener('click', () => {
-      const selSwatch = sw.querySelector('.cz-swatch.sel');
-      const theme = selSwatch ? this.swatches[+selSwatch.dataset.i] : null;
-      const tile = [...tiles].find(t => t.checked);
-      const font = fontSel.value;
-      const song = songs[+songSel.value];
-      MS.state.myProfile = {
-        theme: theme ? { bg: theme.bg, fg: theme.fg, accent: theme.accent } : (MS.state.myProfile || {}).theme,
-        bgTile: tile && tile.value ? tile.value : undefined,
-        font: font || undefined,
-        song: song && !song.none ? song : undefined,
-      };
-      MS.state.top8 = top8.slice();
+    /* ---- save / reset ---- */
+    $('#cz-save').addEventListener('click', () => {
+      const cur = MS.state.me;
+      if (!cur) { WM.close('customize'); return; }
+      let name = nameInp.value.trim();
+      if (!name && d.guest) name = cur.name;          // a guest who didn't pick a name stays "guest"
+      if (name !== cur.name) {
+        const err = MS.validName(name);
+        if (err) { nameErr.textContent = err; Sfx.error(); this.scrollTo(body, 'pic'); nameInp.focus({ preventScroll: true }); return; }
+      }
+      const old = { name: cur.name, font: cur.font };
+      d.name = name;
+      if (name !== old.name) delete d.guest;
+      d.tag = $('#cz-tag').value.trim();
+      d.mood = $('#cz-mood').value.trim();
+      d.gender = $('#cz-gender').value.trim();
+      const age = parseInt($('#cz-age').value, 10);
+      d.age = age >= 1 && age <= 120 ? age : '';
+      d.hometown = $('#cz-home').value.trim();
+      d.zodiac = zodiacVal();
+      d.status = statusVal() || 'Single';
+      d.hereFor = [...hfBox.querySelectorAll('input:checked')].map(c => c.value).join(', ') || 'Friends';
+      d.about = $('#cz-about').value.trim();
+      d.meet = $('#cz-meet').value.trim();
+      d.blogTitle = $('#cz-blogtitle').value.trim();
+      d.interests = {};
+      ints.querySelectorAll('textarea').forEach(ta => { d.interests[ta.dataset.k] = ta.value.trim(); });
+      d.theme = { ...theme };
+      const tile = tilesBox.querySelector('input:checked');
+      d.bgTile = tile ? tile.value : '';
+      d.font = fontSel.value;
+      d.decor = decor.picked.slice();
+      d.badges = badges.picked.slice();
+      d.top8 = top8.slice();
+      d.blog = cur.blog;                                // entries written while the editor was open stay
+      delete d.song;                                    // (no profile songs for visitors)
+      MS.state.me = d;
       MS.save();
+      MS.meChanged();
+      if (name !== old.name && window.Chat) Chat.sysLine(`* ${old.name} is now known as ${name}`);
       Sfx.tada();
       MS.toast('your page has been renovated ✨');
-      const r = (font && font.includes('Comic')) ? this.comicReaction
+      const r = (d.font && d.font.includes('Comic') && !(old.font || '').includes('Comic')) ? this.comicReaction
         : this.reactions[Math.floor(Math.random() * this.reactions.length)];
-      setTimeout(() => {
+      if (MS.people[r.from]) setTimeout(() => {
         MS.pushFeed({ type: 'status', from: r.from, text: r.text, time: MS.now() });
         MS.state.myWall.push({ from: r.from, text: r.text, time: MS.now() });
         MS.save();
+        if (MS.view.page === 'home') MS.render();
         MS.toast(MS.people[r.from].name + ' has opinions about your new layout!', 'home');
       }, 7000 + Math.random() * 8000);
       WM.close('customize');
       WM.open('myspace');
       MS.show('home');
     });
-    body.querySelector('#cz-reset').addEventListener('click', () => {
-      MS.state.myProfile = null;
-      delete MS.state.top8;
+    // ↩ reset: the layout goes back to the defaults right away (saved); the look section follows, and everything else
+    // on the page keeps its unsaved edits
+    $('#cz-reset').addEventListener('click', () => {
+      const cur = MS.state.me;
+      if (!cur) return;
+      const def = MS.defaultMe();
+      Object.assign(cur, { theme: def.theme, bgTile: '', font: '', decor: def.decor, badges: def.badges });
       MS.save();
-      MS.toast('back to factory settings. respectable.');
+      setLook(cur);
+      this.scrollTo(body, 'look');
+      Sfx.click();
+      MS.toast('layout back to factory settings. respectable.');
       if (MS.view.page === 'home') MS.render();
     });
+
+    body.scrollTop = 0;                                 // a fresh open starts at the top (or wherever openEditor asked)
+    gallery.reveal();
+    this.scrollTo(body);
+  },
+
+  // scroll the editor to a section (data-sec) — the one asked for, else the pending this.jump (used up either way)
+  scrollTo(body, sec) {
+    const want = sec || this.jump;
+    this.jump = null;
+    const el = want && body.querySelector(`[data-sec="${want}"]`);
+    if (!el) return;
+    const pad = el.tagName === 'SECTION' ? 0 : 30;      // inside a section: clear its sticky heading
+    if (body.scrollHeight > body.clientHeight + 4) body.scrollTop += el.getBoundingClientRect().top - body.getBoundingClientRect().top - pad;
+    else el.scrollIntoView({ block: 'start' });
+    if (want === 'blog') { const t = body.querySelector('#cz-blogtitle'); if (t) t.focus({ preventScroll: true }); }
   },
 };
 
@@ -848,6 +1146,10 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     document.addEventListener('app-close', e => {
       if (e.detail === 'myspace') Chat.onClose();
+      if (e.detail === 'customize') {
+        Customizer.built = false;                                // the next open starts from the saved page again
+        if (window.TopSongs && TopSongs.stop) TopSongs.stop();   // the pickers' ▶ previews
+      }
     });
   };
   boot();

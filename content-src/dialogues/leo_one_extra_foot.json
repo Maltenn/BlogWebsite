@@ -2,7 +2,7 @@
   "id": "leo_one_extra_foot",
   "with": "leo",
   "opener": [
-    "EXHIBIT 1. malten. It is 4:08 PM. I am not saying anything about the time. I am saying that at 6:50 this morning I measured the string and it was 214 feet. On Tuesday it was 213. I have not added any.",
+    "EXHIBIT 1. {you}. It is 4:08 PM. I am not saying anything about the time. I am saying that at 6:50 this morning I measured the string and it was 214 feet. On Tuesday it was 213. I have not added any.",
     "EXHIBIT 2. Subtraction is theft. ADDITION is a message. One foot of blue string was added to my board between Tuesday at 9 PM and this morning. It is tied with a knot I do not use (a bowline; mine are always granny; I'm not proud). It runs from card #1, which is me, to card #212, which is you. It is the only string on this wall I did not pull myself.",
     "EXHIBIT 3. You are on my board as a reference point, not a suspect. I want to be clear that as of 4:08 PM you are both. The show returns tonight at nine. Where were you Tuesday between 9 PM and 6:50 AM. Please answer in a calm voice."
   ],
@@ -89,7 +89,7 @@
 
     "c_quiz": {
       "them": [
-        "EXHIBIT 6. That was not the knot. Not one word of it. A person who tied it knows what they tied. A person who confesses to a knot he can't describe wanted to be on the board. You are cleared. I've put a small line through LONG ARMS. It's pen. It will be visible forever.",
+        "EXHIBIT 6. That was not the knot. Not one word of it. A person who tied it knows what they tied. A person who confesses to a knot they can't describe wanted to be on the board. You are cleared. I've put a small line through LONG ARMS. It's pen. It will be visible forever.",
         "EXHIBIT 7. Which brings me to something I don't put on cards. People confess to things they wish they'd done. So I'm going to ask once, in a calm voice, and I want a true answer. If you'd had the chance, would you have tied the string."
       ],
       "choices": [
@@ -116,7 +116,7 @@
 
     "ask_mom": {
       "them": [
-        "EXHIBIT 12. I went down. She was at the stove. I said 'did you buy blue string.' She said 'I bought what you asked for and one extra. In case.' I said 'did you tie a string between me and malten.' She didn't turn around. She said 'you've said his name at dinner four times this week. I counted. That's a lot, for you. I thought it ought to be on the wall.'",
+        "EXHIBIT 12. I went down. She was at the stove. I said 'did you buy blue string.' She said 'I bought what you asked for and one extra. In case.' I said 'did you tie a string between me and {you}.' She didn't turn around. She said 'you've said that name at dinner four times this week. I counted. That's a lot, for you. I thought it ought to be on the wall.'",
         "EXHIBIT 13. I stood in the kitchen for four minutes. I said 'it's not a clue, Mom.' She said 'it's a string, honey. I used a slip knot so you could take it down if you wanted.' I'm back in my room. The string is still on the wall. I have a question for you and I want you to answer it plainly, because I'm a little shaky and the show is in five hours."
       ],
       "effects": [
@@ -163,7 +163,7 @@
 
     "end_blue": {
       "them": [
-        "EXHIBIT 16. 8:52 PM. I re-tied it. A square knot. It holds; it stays. It's the first blue string I've tied to someone who wasn't on the board before I met them. I pinned a new card next to #212: MALTEN (KNOWN). I've never used the word 'known.' I don't know what it does to a wall.",
+        "EXHIBIT 16. 8:52 PM. I re-tied it. A square knot. It holds; it stays. It's the first blue string I've tied to someone who wasn't on the board before I met them. I pinned a new card next to #212: {you} (KNOWN). I've never used the word 'known.' I don't know what it does to a wall.",
         "EXHIBIT 17. My mother left a plate of pizza on the arm of the good couch and said nothing. There are five chairs. One is extra. It's for you. It's empty. I'm not asking you to come. I'm saying there's a chair, and it's blue."
       ],
       "end": true,
@@ -186,7 +186,7 @@
         { "type": "status", "text": "leo changed the color of a string from blue to red. it's the only string on the board that was both. the tag says PENDING (CHAIR KEPT). he is not sad. he is waiting. he is very good at waiting" },
         { "type": "wallpost", "from": "maddie", "to": "leo", "delay": 45, "text": "Leo. I read your tag. 'Pending.' I looked up how many cards on your board have ever said that. It's one. This one. For six months you have labeled every connection 'blue' without being asked. 'Pending' is the first honest label you've made. I am proud, which I'm not supposed to be in public. Stair. Nine. Sock drawer. - Maddie" },
         { "type": "status", "from": "brad", "delay": 95, "text": "brad has a recommendation for someone who is waiting to be added to something. it's THE SANDLOT. it's about a boy who is invited into the game one inning at a time. he put a card on it. it says 'for L. (pending).' he wasn't asked. nobody ever asks" },
-        { "type": "dm", "delay": 240, "text": "malten. 9:41. i left the chair where it was. i looked at it for three minutes during the opening. i've never looked at anything that wasn't the screen during the opening. it's the first time. i don't mind. i wrote the time down anyway. it was 9:13. it's on a card." }
+        { "type": "dm", "delay": 240, "text": "{you}. 9:41. i left the chair where it was. i looked at it for three minutes during the opening. i've never looked at anything that wasn't the screen during the opening. it's the first time. i don't mind. i wrote the time down anyway. it was 9:13. it's on a card." }
       ]
     },
 

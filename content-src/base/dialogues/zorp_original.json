@@ -1,0 +1,402 @@
+{
+  "id": "zorp_original",
+  "with": "zorp",
+  "opener": [
+    "greetings {you}. it is i, zorp_51. a normal human web-friend who is awake at this normal hour (3:33 AM) (for jobs).",
+    "i am conducting a ROUTINE HUMAN VERIFICATION SURVEY for a school project. (i am in school.) (human school.) (it is fine.)",
+    "question 1: where do you keep your skeleton. take your time. there are no wrong answers. there is one wrong answer."
+  ],
+  "nodes": {
+    "start": {
+      "choices": [
+        {
+          "say": "inside my body? standard placement. is this for biology",
+          "next": "quiz_teeth"
+        },
+        {
+          "say": "define 'keep.' mine is more of a temporary arrangement",
+          "next": "alien_hint"
+        },
+        {
+          "say": "what school assigns this. name the school. i'll wait",
+          "next": "school_defense"
+        }
+      ]
+    },
+    "quiz_teeth": {
+      "them": [
+        "CORRECT. internal skeleton. the classic. i also store mine internally and always have, since being born (normally) (in a hospital).",
+        "question 2: how many teeth is normal for a human. answer fast. do not count them. counting is suspicious."
+      ],
+      "choices": [
+        {
+          "say": "28 to 32, depending how the wisdom teeth went",
+          "next": "quiz_liquid"
+        },
+        {
+          "say": "why would counting be suspicious. now i'm counting",
+          "next": "counting"
+        },
+        {
+          "say": "somewhere between 1 and 100. teeth are a spectrum",
+          "next": "teeth_spectrum"
+        }
+      ]
+    },
+    "counting": {
+      "them": [
+        "NO. no counting. counting means you do not KNOW, and humans KNOW their teeth. i know mine instantly. the number is normal and i will not be saying it.",
+        "please just estimate. from the heart. the single heart."
+      ],
+      "choices": [
+        {
+          "say": "fine. 32. straight from my one single heart",
+          "next": "quiz_liquid"
+        },
+        {
+          "say": "how many teeth do YOU have, zorp",
+          "next": "zorp_teeth"
+        }
+      ]
+    },
+    "zorp_teeth": {
+      "them": [
+        "a normal amount. rows and rows of a normal amount.",
+        "MOVING ON. final question: what is your favorite earth liquid. this one is just for me. the school also wants to know. but mostly me."
+      ],
+      "choices": [
+        {
+          "say": "water. but we are absolutely circling back to 'rows'",
+          "next": "end_pass"
+        },
+        {
+          "say": "the big salt one. the ocean. in its entirety",
+          "next": "moon_check"
+        }
+      ]
+    },
+    "teeth_spectrum": {
+      "them": [
+        "teeth are NOT a spectrum. they are a fixed and knowable number, which i know, and am not saying.",
+        "i am marking you 'human (probably).' final question: what is your favorite earth liquid. choose wisely. choose water. no pressure."
+      ],
+      "choices": [
+        {
+          "say": "water then. i was going to say water anyway",
+          "next": "end_pass"
+        },
+        {
+          "say": "the ocean. the whole thing. is that allowed",
+          "next": "moon_check"
+        }
+      ]
+    },
+    "quiz_liquid": {
+      "them": [
+        "correct. instant tooth knowledge. this goes in the file. the good file.",
+        "final question: what is your favorite earth liquid. i will say mine after. it will be the same as yours. whatever you say."
+      ],
+      "choices": [
+        {
+          "say": "water. dependable. no notes",
+          "next": "end_pass"
+        },
+        {
+          "say": "coffee. it's less a liquid and more a load-bearing wall",
+          "next": "end_pass"
+        },
+        {
+          "say": "the ocean. all of it. every drop",
+          "next": "moon_check"
+        }
+      ]
+    },
+    "moon_check": {
+      "them": [
+        "'all of it.' {you}. that is not a favorite. that is an INVENTORY.",
+        "bonus question. off the record. off every record. when you look up at the moon: how is it doing. answer carefully."
+      ],
+      "choices": [
+        {
+          "say": "honestly? the moon looks like it's doing great",
+          "next": "end_recruit_moon"
+        },
+        {
+          "say": "it's fine? it's the moon. it does moon stuff",
+          "next": "end_pass"
+        }
+      ]
+    },
+    "alien_hint": {
+      "them": [
+        "...temporary. ha ha. yes. all skeleton arrangements are temporary, if you think about it. i have never thought about it.",
+        "unrelated follow-up: are you being a human ON PURPOSE, or is it more of a... placement. asking for the survey. the survey is me."
+      ],
+      "choices": [
+        {
+          "say": "i can't discuss my placement on an open channel. you understand",
+          "next": "alien_excited"
+        },
+        {
+          "say": "on purpose. extremely on purpose. why. what have you heard",
+          "next": "alien_backpedal"
+        },
+        {
+          "say": "kidding. it's inside my body like everybody else's",
+          "next": "alien_backpedal"
+        }
+      ]
+    },
+    "alien_excited": {
+      "them": [
+        "I KNEW IT. i mean: i suspected nothing, and continue to suspect nothing. but IF you were also on placement, blink twice. this is text. describe two blinks.",
+        "i have so many questions. do you also find knees to be A Lot. do you also practice the smile in the reflective bathroom wall."
+      ],
+      "choices": [
+        {
+          "say": "blink. blink. and yes, knees are genuinely too much",
+          "next": "recruit_offer"
+        },
+        {
+          "say": "shh. not on an unsecured channel. are you insane",
+          "next": "recruit_secure"
+        },
+        {
+          "say": "the smile practice stops being weird around year six",
+          "next": "recruit_offer"
+        }
+      ]
+    },
+    "alien_backpedal": {
+      "them": [
+        "ha. yes. good. normal answers all around. nobody in this chat is anything.",
+        "question 2, quickly, while the mood is normal: how many teeth is standard. do not count. counting is for people who do not know."
+      ],
+      "choices": [
+        {
+          "say": "28 to 32. and zorp — whatever i heard, consider it unheard",
+          "next": "touched"
+        },
+        {
+          "say": "32, officially. moving on before this gets weirder",
+          "next": "quiz_liquid"
+        }
+      ]
+    },
+    "recruit_offer": {
+      "them": [
+        "{you}. web-friend. COLLEAGUE. i am adding you to my top 8 and also to the other list. the important one. it lives in a normal notebook that is also a ship's log.",
+        "as a welcome gift you are cleared to receive one (1) classified item. are you ready. you are ready."
+      ],
+      "choices": [
+        {
+          "say": "hit me with the classified item",
+          "next": "end_recruit"
+        },
+        {
+          "say": "if it's about the fields, i already know about the fields",
+          "next": "end_recruit_fields"
+        }
+      ]
+    },
+    "recruit_secure": {
+      "them": [
+        "you are RIGHT. this is why you were chosen. initiating secure mode: i will now type quieter.",
+        "(quiet) {you}. do you accept the position of co-observer, earth division, pond subcommittee. the badge is a leaf. i laminated it myself. with my hands."
+      ],
+      "choices": [
+        {
+          "say": "(quiet) i accept the leaf",
+          "next": "end_recruit_pond"
+        },
+        {
+          "say": "(quiet) first tell me what the pond subcommittee actually does",
+          "next": "end_recruit_pond"
+        }
+      ]
+    },
+    "school_defense": {
+      "them": [
+        "it is a normal school. a human high school community college university. you would not know it. it is in canada. the canada of— regular canada.",
+        "this survey is 40% of my grade in Blending I— in Biology. please. question 1 stands. the skeleton. where."
+      ],
+      "choices": [
+        {
+          "say": "'blending i—'. finish the word, zorp",
+          "next": "caught"
+        },
+        {
+          "say": "fine. inside my body, like most torso-havers",
+          "next": "quiz_teeth_b"
+        },
+        {
+          "say": "40% for one survey? i'm emailing your professor",
+          "next": "professor"
+        }
+      ]
+    },
+    "quiz_teeth_b": {
+      "them": [
+        "thank you. recording: skeleton, internal. suspicion: lowered.",
+        "question 2: how many teeth is standard for a human. quickly. from memory. counting is technically cheating."
+      ],
+      "choices": [
+        {
+          "say": "32ish. i'm basically a tooth professional",
+          "next": "quiz_liquid"
+        },
+        {
+          "say": "a normal amount. same as you, zorp. exactly the same as you",
+          "next": "alien_excited"
+        }
+      ]
+    },
+    "professor": {
+      "them": [
+        "NO. do not email the professor. he is real but extremely busy, and also has not invented— has not GIVEN me his email yet.",
+        "if i fail this survey they will send me back to summer school. human summer school. on earth. where i already am. normally."
+      ],
+      "choices": [
+        {
+          "say": "fine, fine: skeleton inside body, 32 teeth, favorite liquid water. did i pass",
+          "next": "end_speed"
+        },
+        {
+          "say": "'send you back'? back WHERE, zorp",
+          "next": "caught"
+        }
+      ]
+    },
+    "caught": {
+      "them": [
+        "okay. OKAY. stop typing. i can explain, and the explanation is normal.",
+        "hypothetically. web-friend to web-friend. if a person were not from around here — cosmically speaking — would you report that person to, for example, everyone."
+      ],
+      "choices": [
+        {
+          "say": "i wouldn't report you, man. your secret's safe with me",
+          "next": "touched"
+        },
+        {
+          "say": "depends. is this person doing the crop spirals? those were gorgeous",
+          "next": "flattered"
+        }
+      ]
+    },
+    "touched": {
+      "them": [
+        "...this is a very human kindness, {you}. i am experiencing eye moisture, which is normal, and mine.",
+        "i cannot make you a colleague, since you are of course a regular human. but i CAN verify you. the highest honor a survey can bestow."
+      ],
+      "choices": [
+        {
+          "say": "verify me, zorp",
+          "next": "end_pass_touched"
+        },
+        {
+          "say": "what if my skeleton arrangement were also, hypothetically... temporary",
+          "next": "end_recruit_late"
+        }
+      ]
+    },
+    "flattered": {
+      "them": [
+        "you SAW the spirals?? four hours those took. reportedly. by someone with excellent taste and a normal amount of arms.",
+        "{you}. the survey is over. you pass. but between us: i could instead make you CO-OBSERVER, earth division. the badge is a leaf. i laminated it."
+      ],
+      "choices": [
+        {
+          "say": "a laminated leaf badge. say no more. i'm in",
+          "next": "end_recruit"
+        },
+        {
+          "say": "tempting, but i'll take the regular human verification",
+          "next": "end_pass_touched"
+        }
+      ]
+    },
+    "end_pass": {
+      "them": [
+        "verification complete. you are a certified normal human. i am also that. we are both that. which is why this conversation was so easy and normal.",
+        "enjoy your skeleton and your liquid, web-friend. i will now log off until 3:33 AM, for job reasons."
+      ],
+      "end": true,
+      "effect": {
+        "type": "wall",
+        "text": "this user is a VERIFIED normal human. do not investigate further."
+      }
+    },
+    "end_pass_touched": {
+      "them": [
+        "it is done. you are the most verified human i have ever surveyed. this is on the record. i keep the record in my chest cavity. normally.",
+        "thank you, web-friend. as a courtesy, tuesday's lights will avoid your house. from whoever does them."
+      ],
+      "end": true,
+      "effect": {
+        "type": "wall",
+        "text": "this user is a VERIFIED normal human. do not investigate further."
+      }
+    },
+    "end_speed": {
+      "them": [
+        "...you completed the entire survey in one message. no subject has ever been this efficient. i am moved. and suspicious. but mostly moved.",
+        "PASSED. maximum grade. for both of us. i mean for me. in school."
+      ],
+      "end": true,
+      "effect": {
+        "type": "wall",
+        "text": "this user is a VERIFIED normal human. do not investigate further."
+      }
+    },
+    "end_recruit": {
+      "them": [
+        "your welcome gift. one (1) classified item, effective immediately: the moon is doing great. thriving. that is the whole item. guard it.",
+        "observation begins friday. it is a pond. bring your human face and a standard number of legs, colleague."
+      ],
+      "end": true,
+      "effect": {
+        "type": "friend"
+      }
+    },
+    "end_recruit_fields": {
+      "them": [
+        "you know about the FIELDS?? the fields are tier three, {you}. here is tier one: the moon is doing great. do not ask how i know. (i visited. no. i read it.)",
+        "welcome aboard, colleague. friend request incoming. accept it with your hand, in the human style."
+      ],
+      "end": true,
+      "effect": {
+        "type": "friend"
+      }
+    },
+    "end_recruit_pond": {
+      "them": [
+        "(quiet) the subcommittee watches the pond. someone must. the ducks have been organized lately and i do not care for it.",
+        "(LOUD) WELCOME ABOARD, COLLEAGUE. your classified welcome gift, one (1) item: the moon is doing great. friday. pond. bring your face."
+      ],
+      "end": true,
+      "effect": {
+        "type": "friend"
+      }
+    },
+    "end_recruit_late": {
+      "them": [
+        "WHAT. {you}. {you}. i knew it. i absolutely did not know it. this is the best day of my placem— my LIFE. my normal human life.",
+        "welcome, colleague. friend request incoming. and one (1) classified gift: the moon is doing great. that is all i know about it. savor it."
+      ],
+      "end": true,
+      "effect": {
+        "type": "friend"
+      }
+    },
+    "end_recruit_moon": {
+      "them": [
+        "it IS doing great. IT IS. nobody down here ever says it. they say 'wow' and move on. you SEE it, {you}. the survey is over. you exceed the survey.",
+        "friend request incoming. accept it with your hand. observation begins friday. it is a pond. i will explain nothing further, colleague."
+      ],
+      "end": true,
+      "effect": {
+        "type": "friend"
+      }
+    }
+  }
+}

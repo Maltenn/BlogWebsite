@@ -46,16 +46,16 @@
     ]
   },
   "dms": [
-    "Hi malten! Quick maintenance note: I signed your guestbook to make sure it was working. It says 'Todd was here.' That was supposed to be a test entry. I forgot to delete it. I'm leaving it.",
+    "Hi {you}! Quick maintenance note: I signed malten's guestbook to make sure it was working. It says 'Todd was here.' That was supposed to be a test entry. I forgot to delete it. I'm leaving it.",
     "Small update from the Server Room: the laptop battery has swollen to roughly the size of a sandwich, so I took it out. We now run directly off the wall. If the power flickers, we all go home together. :)",
     "My mom asked what OurSpace is. I said it's a place where people put up pictures and talk. She said, 'Oh, like the church directory.' I've been thinking about that for three days. It's basically right.",
-    "I read your 'Why do we create?' post again last night. I think I create because at 3 AM somebody has to leave a light on. Anyway. Good post. Thank you for writing it.",
+    "I read malten's 'Why do I create?' post again last night. I think I create because at 3 AM somebody has to leave a light on. Anyway. Good post. Worth your time.",
     "Angela mailed me a three-page letter asking for a hit counter on OurSpace. I'm building it this weekend. It is a very small program and I am more nervous about it than I have been about anything since the weekend I built the site.",
     "Just a reminder to back up your profile. I'm not saying anything is going to happen. I'm saying I have fifteen CD-Rs and a Sharpie and I am READY.",
     "Weekly stat: 4,100 profile views, and about 3,100 of them were people checking whether their top 8 changed. It didn't. Nobody wants to hear this but I find it very peaceful.",
     "Do you ever refresh the page just to see if anybody posted? I've decided that's called 'being a host.' It's not loneliness. It's hospitality. I looked it up.",
     "A quick note on the green album: it gets unfair treatment. 'Hash Pipe' is a genuinely good song. I'll be taking questions in the guestbook.",
-    "Question for you as a fellow site owner: when it's quiet and nobody has posted in ten minutes, do you also say 'good, everything's running' out loud, to nobody? Just curious. No reason."
+    "Question for you as a fellow page owner: when it's quiet and nobody has posted in ten minutes, do you also say 'good, everything's running' out loud, to nobody? Just curious. No reason."
   ],
   "repliesExtra": [
     "Thanks for letting me know! I've written it on a sticky note, which is where all the serious things live.",
@@ -106,7 +106,7 @@
     "backup": "I have fifteen CD-Rs in a shoebox in the hall closet and I think of them as a very quiet family. Yes, you're on one.",
     "laptop": "The laptop is fine. (It's warm. It's always warm. I put a book under it. It's fine.)",
     "weezer": "Blue album AND green album. I don't discriminate. I will, however, discuss 'Hash Pipe' for an hour.",
-    "guestbook": "Your guestbook is the best thing on the internet and I'm not saying that because I signed it 'Todd was here.' Okay I am.",
+    "guestbook": "I think malten's guestbook is the best thing on the internet and I'm not saying that because I signed it 'Todd was here.' Okay I am.",
     "webring": "Angela's webring is the only part of the internet that has ever asked me to join it. I said yes immediately. I have never been so happy to be a link."
   }
 }

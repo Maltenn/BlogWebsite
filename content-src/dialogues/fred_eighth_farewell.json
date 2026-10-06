@@ -2,7 +2,7 @@
   "id": "fred_eighth_farewell",
   "with": "fred",
   "opener": [
-    "Hello, malten. It's 11:48 and I've written it. The eighth. I'm sending it to you first, because you're the only one who hasn't told me not to leave, which I've decided to read as respect.",
+    "Hello, {you}. It's 11:48 and I've written it. The eighth. I'm sending it to you first, because you're the only one who hasn't told me not to leave, which I've decided to read as respect.",
     "It's two paragraphs. The second is the good one. I'm saving the draft every minute, because Biscuit has walked across the keyboard twice, and the first time he deleted a sentence I was proud of.",
     "Before I post it, would you read the first line? 'To everyone I've met here.' That's all I have of the first paragraph. I've known the second line seven times. I don't know it tonight."
   ],
@@ -158,7 +158,7 @@
     "end_stay": {
       "them": [
         "I've deleted the draft. It's the first one I've deleted instead of posting. I expected it to feel like standing at the edge of something. It felt like closing a door I'd been holding open for the cold air. Biscuit is on the chair. He's looking at me the way he looks at a full bowl.",
-        "I'm not leaving. I'm not promising never to leave. I'm saying 'not tonight,' and tomorrow I'll say it again. Marcus has a count to update, and I'd like to be the one to tell him. Thank you, malten. Nobody asked me what I was looking for. They asked where I was going. It's a different question. It was the right one."
+        "I'm not leaving. I'm not promising never to leave. I'm saying 'not tonight,' and tomorrow I'll say it again. Marcus has a count to update, and I'd like to be the one to tell him. Thank you, {you}. Nobody asked me what I was looking for. They asked where I was going. It's a different question. It was the right one."
       ],
       "end": true,
       "effects": [

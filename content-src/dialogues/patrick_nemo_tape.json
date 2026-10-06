@@ -2,7 +2,7 @@
   "id": "patrick_nemo_tape",
   "with": "patrick",
   "opener": [
-    "hi malten. i have a problem. it's small but it's also big. i can't tell which",
+    "hi {you}. i have a problem. it's small but it's also big. i can't tell which",
     "brad called my house. he never calls. he said 'bud, we're doing inventory saturday and the tape's gonna get written off.' i asked what that means. he said 'it means the store stops waiting.'",
     "the store stops waiting. i didn't know the store was WAITING. i thought it was just me. now i don't know what to do with my hands"
   ],
@@ -214,7 +214,7 @@
     },
     "postit": {
       "them": [
-        "a post-it. on the tape. for the NEXT person. malten that's so good. that's better than a stick",
+        "a post-it. on the tape. for the NEXT person. {you} that's so good. that's better than a stick",
         "what do i write. i have a pen from the post office. it has a little eagle on it"
       ],
       "choices": [
@@ -231,7 +231,7 @@
     "legs": {
       "them": [
         "'the dad fish part is the part. you can cry. patrick did. it's ok.' ...i wrote it. it's the best thing i've ever put on a post-it. it's the only thing i've ever put on a post-it",
-        "but malten. what if i get to the store and my legs do the thing. they do a thing when it's important. it's mostly knees"
+        "but {you}. what if i get to the store and my legs do the thing. they do a thing when it's important. it's mostly knees"
       ],
       "choices": [
         {

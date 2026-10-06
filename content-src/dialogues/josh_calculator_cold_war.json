@@ -2,7 +2,7 @@
   "id": "josh_calculator_cold_war",
   "with": "josh",
   "opener": [
-    "hey malten =] ok i need a favor and also a second opinion and also maybe a snack",
+    "hey {you} =] ok i need a favor and also a second opinion and also maybe a snack",
     "so tim and dave r in a fight. dave copied tim's game BLOCKFALL off a link cable in mr henderson's class and sold it to 3 kids for $1. tim sells it for $2. tim says its stealing. dave says its a 'security demonstration' and the $1 was 'cable wear'",
     "they BOTH messaged me. same minute. same sentence. 'josh whose side r u on.' i have 14 unread. u know i dont take sides. but i also dont wanna lose either of them. what do i do"
   ],
@@ -39,7 +39,7 @@
 
     "c_halo": {
       "them": [
-        "halo?? ok. ok. the youth room has a tv and 2 controllers and pastor dan said yes (he's in a mood, he lost to a 7th grader last week and nobody's allowed to bring it up). but malten tim has never played halo and dave plays on 3 monitors but only 1 controller. i'd have to referee. the only match i ever refereed was ping pong and there was a fight over whether the table was level",
+        "halo?? ok. ok. the youth room has a tv and 2 controllers and pastor dan said yes (he's in a mood, he lost to a 7th grader last week and nobody's allowed to bring it up). but {you} tim has never played halo and dave plays on 3 monitors but only 1 controller. i'd have to referee. the only match i ever refereed was ping pong and there was a fight over whether the table was level",
         "also the loser buys the pizza. thats 4 larges. $9 each. thats a LOT of dimes (tim takes dimes)"
       ],
       "choices": [
@@ -50,7 +50,7 @@
 
     "halo_result": {
       "them": [
-        "ok so dave won on lockout by camping the rocket launcher. tim says 'thats cheating.' dave says 'its a spawn rotation strategy.' tim says 'the result proves nothing about BLOCKFALL.' and malten hes right. the match had nothing to do w the fight",
+        "ok so dave won on lockout by camping the rocket launcher. tim says 'thats cheating.' dave says 'its a spawn rotation strategy.' tim says 'the result proves nothing about BLOCKFALL.' and {you} hes right. the match had nothing to do w the fight",
         "and then 2 weird things. tim said 'ill buy the pizza anyway, its 3 for 1, its on the ledger.' and dave said 'ill pay for ONE slice. my slice.' theyre so close to being friends it makes my teeth hurt"
       ],
       "effects": [
@@ -101,7 +101,7 @@
     "pizza_plan": {
       "them": [
         "ok. wednesday. youth group. pizza. im putting both of them in the same room with a ping pong table in between. its neutral ground. it's been 'neutral' since 4th grade when they split a lunch",
-        "pastor dan is providing 4 large pepperonis (he said 'is it a crisis?' i said 'a small one.' he said 'then 4.'). malten ive never been this nervous about a pizza. what if they eat in silence. what if tim FILES the pizza"
+        "pastor dan is providing 4 large pepperonis (he said 'is it a crisis?' i said 'a small one.' he said 'then 4.'). {you} ive never been this nervous about a pizza. what if they eat in silence. what if tim FILES the pizza"
       ],
       "effects": [
         { "type": "bulletin", "subject": "WEDNESDAY: YOUTH GROUP. PIZZA. CALCULATORS WELCOME.", "text": "hey everybody =] this wednesday, 7pm, the church on maple, there will be 4 large pepperoni pizzas and a ping pong table. if u have a calculator, bring it. if u have a grudge, bring it too, but u have to set it on the table next to the pizza. no pressure. (some pressure.) - josh" }
@@ -162,7 +162,7 @@
 
     "cold_week": {
       "them": [
-        "its been 6 days. im a post office. ive carried 41 messages. 'tell dave BLOCKFALL is a good game.' 'tell tim it crashes on level 9.' 'tell dave i know.' 'tell tim i know u know.' malten theyre not talking and theyre having the best conversation theyve ever had",
+        "its been 6 days. im a post office. ive carried 41 messages. 'tell dave BLOCKFALL is a good game.' 'tell tim it crashes on level 9.' 'tell dave i know.' 'tell tim i know u know.' {you} theyre not talking and theyre having the best conversation theyve ever had",
         "neither of them is gonna say sorry out loud. but dave deleted the $1 copy off his calculator (he sent me a photo of the screen: MEM CLEARED). and tim lowered his price to $1.50 'for people with link cables.' thats the nicest thing either of them has done and neither knows the other one did it. should i tell them"
       ],
       "choices": [
@@ -174,7 +174,7 @@
     "pizza_side": {
       "them": [
         "ok. im doing it. im standing on a chair. 'i take a side. its the pizzas. both of u have to apologize to the pizza.' the whole youth room went quiet. pastor dan was holding a slice halfway to his mouth. he never finished the bite",
-        "tim said 'dear pizza, i apologize for the $2 argument.' dave said 'dear pizza, i apologize for the $1.' then they both looked at me. then at each other. then dave laughed, then tim laughed, and the pizza was never in any danger. malten i just took a side for the first time in my life. it was a pepperoni. i dont feel bad AT ALL"
+        "tim said 'dear pizza, i apologize for the $2 argument.' dave said 'dear pizza, i apologize for the $1.' then they both looked at me. then at each other. then dave laughed, then tim laughed, and the pizza was never in any danger. {you} i just took a side for the first time in my life. it was a pepperoni. i dont feel bad AT ALL"
       ],
       "choices": [
         { "say": "hold the pizza up and make them each take a slice. apology accepted.", "next": "end_pizza" },

@@ -1,0 +1,157 @@
+{
+  "id": "epic",
+  "name": "epic_faic",
+  "tag": "i said numa numa FIRST. i have proof (i dont). lol ur mom.",
+  "avatar": "assets/pfp/pfp_epic.jpg",
+  "gender": "Male",
+  "age": 16,
+  "hometown": "Peoria, Illinois",
+  "loc": "Peoria, Illinois",
+  "zodiac": "Gemini",
+  "status": "Single (lol ur mom)",
+  "hereFor": "Friends, Networking (for comedy purposes)",
+  "mood": "epic =D",
+  "lastLogin": "Sep 5 2026 1:12 AM",
+  "theme": {
+    "bg": "#1a0533",
+    "fg": "#e9d5ff",
+    "accent": "#39ff14"
+  },
+  "bgTile": "assets/tiles/tile_checker.png",
+  "blogTitle": "TOP 10 THINGS RANDY STOLE FROM ME (a list) (its 10) (ok its 7)",
+  "about": "hi im epic. i make the jokes on here. ALL of them. randy? invented by me. numa numa? i showed him that in 6th grade on my dads gateway computer and he laughed so hard he got a nosebleed, thats a witness. PIE? mine. lowercase. he just added caps. i have a ytmnd account w/ 40 sites and one of them has 12 votes and 2 of those r real. if u say anything on my page there is a 100% chance i say 'ur mom' after it. its not a bit its a lifestyle.",
+  "meet": "Who I'd like to meet: weird al, strong bad, the guy who made the ualuealuealeuale ytmnd (hero), and whoever runs the sound at randys house so i can unplug it. also ur mom. (lol)",
+  "interests": {
+    "General": "ytmnd, homestarrunner, newgrounds, strong bad emails, saying 'in bed' after fortune cookies AND regular sentences, all ur base, being funnier then randy (easy), mountain dew code red, the epic face (me)",
+    "Music": "weird al, lemon demon, group x, the lonely island (lazy sunday is the greatest song ever recorded), the numa numa song (MINE), whatever song is playing in the background of a ytmnd at 2am",
+    "Movies": "napoleon dynamite (i quote it more then randy AND better), dodgeball, anchorman, team america, snakes on a plane (havent seen it but i know the joke), shrek 2 (the donkey is basically me)",
+    "Television": "family guy, chappelles show, aqua teen hunger force, robot chicken, whose line is it anyway, the colbert report, invader zim (the pig one)",
+    "Books": "the onion book, calvin and hobbes, the ytmnd forums, ur moms diary lol jk i dont read",
+    "Heroes": "weird al. strong bad. picard (the ytmnd one). the epic face. NOT randy. randy is the opposite of a hero. randy is a villain w/ a bad haircut (his hair is fine)"
+  },
+  "song": {
+    "name": "The Ultimate Showdown of Ultimate Destiny",
+    "artist": "Lemon Demon",
+    "pattern": [
+      0,
+      4,
+      7,
+      4,
+      0,
+      4,
+      7,
+      12
+    ],
+    "bpm": 120
+  },
+  "decor": [
+    "assets/deco_banana_tiny.gif",
+    "assets/badge_8bit.gif"
+  ],
+  "friends": [
+    "randy",
+    "banana",
+    "herp",
+    "dave",
+    "patrick",
+    "josh",
+    "paige",
+    "todd"
+  ],
+  "wall": [
+    {
+      "from": "randy",
+      "text": "dude u did NOT invent pie. PIE IS A FREE COUNTRY. numa numa 4ever. also chuck norris counted 2 infinity twice and he counted u ZERO times. PIE!!!!",
+      "time": "Sep 4 2026 11:03 PM"
+    },
+    {
+      "from": "banana",
+      "text": "EPIC FACE. EPIC FACE. I HAVE BEEN LOOKING AT UR PROFILE PIC FOR 20 MINUTES AND IT LOOKED BACK. IT KNOWS. HOUR 37. BANANA PHONE",
+      "time": "Sep 3 2026 4:41 AM"
+    },
+    {
+      "from": "herp",
+      "text": "herp",
+      "time": "Sep 1 2026 8:15 PM"
+    },
+    {
+      "from": "patrick",
+      "text": "i showed my rock ur ytmnd and it laughed (it didnt say anything but i think it laughed). ur so funny epic. u and randy should be friends u both like pie",
+      "time": "Aug 28 2026 6:22 PM"
+    }
+  ],
+  "replies": [
+    "lol ur mom",
+    "thats what she said",
+    "IN BED",
+    "epic. simply epic. i rate it face/10",
+    "ok but have u seen my ytmnd about this. no? ok. link is on my page. it always is."
+  ],
+  "thanksAdd": "thanks 4 the add. ur mom says hi. (she doesnt. i dont know her. i assume shes great. lol ur mom)",
+  "ambient": [
+    "just made a ytmnd where the epic face says lol ur mom for 9 minutes. it has 3 votes. 2 r mine. the 3rd is a mystery. (its randy voting 1)",
+    "randy posted PIE in a bulletin again. PIE. in a BULLETIN. i did that in 05 on a DIFFERENT website. i have witnesses (patrick) (he wasnt there)",
+    "ualuealuealeuale",
+    "brb my mom said get off the computer cuz my brother needs it 4 homework (he doesnt) (hes playing runescape)"
+  ],
+  "saltyDm": "wow ok. ignore the epic face. see if i care. (i care) (lol ur mom) (that one was weak i'm rattled)",
+  "keywords": {
+    "randy": "RANDY. do not say that name on my page. he took PIE from me. it was MY bit. lowercase. ask anyone from mrs delgados 6th grade class. he cant even spell numa numa he just says it.",
+    "ytmnd": "OK SO. u go 2 my ytmnd. u vote 5. u tell ur friends. thats the whole system. the new one is picard saying lol ur mom 4ever w/ the epic face spinning. its art. i cried (from laughing) (at my own thing)"
+  },
+  "banter": {
+    "randy": [
+      "ok randy 'PIE' is not a punchline. its a food. ur welcome for the numa numa thing btw (2005, my basement, gateway computer, ur nosebleed, UR WELCOME)",
+      "i saw ur chuck norris bulletin. i had that one in APRIL. i have the ytmnd 2 prove it. it has 0 votes but its DATED. dates dont lie. u do."
+    ],
+    "banana": [
+      "BANANA u r the only one on this site funnier then me and its cuz u havent slept since august. respect. go 2 bed tho. seriously. its concerning",
+      "banana phone is a real song and i have it on my ipod and if randy says he found it first hes lying and u know it and i know it and the phone knows it"
+    ],
+    "josh": [
+      "josh ur nice 2 everyone and i respect that but ur mom goes to college",
+      "u beat me at halo 11 times in a row and said 'good game' after every single one. thats the most cursed thing anyone has ever done 2 me. i'm gonna make a ytmnd about it"
+    ],
+    "paige": [
+      "paige u took a pic of me laughing at my own ytmnd and posted it. 'pics or it didnt happen'? IT HAPPENED. UR THE PROOF. delete it (dont)",
+      "tilt the camera less. the epic face is already round it doesnt need help. also it was a good pic. dont tell randy i said that"
+    ],
+    "herp": [
+      "herp u r the best comedian on this site and u only know 1 word. teach me. i'll trade u 'ur mom' 4 it",
+      "herp (this is me doing ur bit) (its harder then it looks) (lol ur mom) (see i cant even do it)"
+    ]
+  },
+  "statuses": [
+    "inventing a bit randy will 'discover' next week",
+    "some ppl on this site copy other ppls jokes. not naming names. it rhymes with 'pandy'",
+    "lol ur mom",
+    "making a ytmnd. its picard. its always picard.",
+    "at the top 8 buffet and everyone got seconds except randy"
+  ],
+  "bulletins": [
+    {
+      "subject": "VOTE 5 ON MY YTMND OR I POST UR YEARBOOK PIC (jk) (not jk)",
+      "body": "ok so i made a new ytmnd. its picard. he says 'lol ur mom' and then the epic face spins for 4 minutes. its art. go vote 5. if u vote 1 i know it was randy. RANDY I KNOW IT WAS U. link is on my page cuz bulletins eat links. repost if ur funny (u wont) (im the only one) (banana maybe)",
+      "time": "Aug 29 2026 11:58 PM"
+    },
+    {
+      "subject": "OFFICIAL LIST OF THINGS I INVENTED (repost or randy wins)",
+      "body": "1. numa numa (showed randy on my gateway. 2005. he was THERE. he laughed. he got a nosebleed. he KNOWS) 2. saying PIE randomly (i said it in lowercase FIRST which is harder) 3. chuck norris facts (ok no but i had the good ones) 4. 'lol ur mom' (mine forever, get ur own mom) 5. the epic face (not really but i have the rights on this site, todd said so) (he didnt) 6. saying 'in bed' after stuff (this one might be everyone's) 7. this bulletin. repost this or randy gets 2 keep them. dont let him keep them.",
+      "time": "Sep 3 2026 10:14 PM"
+    }
+  ],
+  "pcComments": [
+    "epic pic. not as epic as the face but epic",
+    "lol ur mom (this is a compliment) (on ur pic) (ur mom is also in the pic? no? ok)",
+    "is that a ytmnd on the monitor behind u. it is. i see it. good.",
+    "pc4pc? i will leave the word 'lol' on every one of ur pics. every one. all 40.",
+    "rate: 5/5. would ytmnd."
+  ],
+  "dmSeed": [
+    {
+      "from": "epic",
+      "text": "hey {you}. u look like someone who has never seen a ytmnd. i can fix that. also lol ur mom. (no offense 2 ur mom. shes prob great. i dont know her. classic)",
+      "time": "Aug 27 2026 12:04 AM"
+    }
+  ]
+}

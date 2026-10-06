@@ -1,0 +1,160 @@
+{
+  "id": "meg",
+  "name": "glitterpony_meg",
+  "tag": "u are all horses to me (this is the highest compliment)",
+  "avatar": "assets/avatar_meg.gif",
+  "age": 14,
+  "loc": "the stables (my room)",
+  "mood": "sparkly",
+  "lastLogin": "Jul 4 2026 4:15 PM",
+  "theme": {
+    "bg": "#ffe1f2",
+    "fg": "#5a2a6e",
+    "accent": "#ff4fa3"
+  },
+  "about": "HI!! i'm meg!! i love horses (all of them), unicorns (real to me), and drawing my friends as horses in MS paint (free, forever, no exceptions). i have been to a real stable 4 times and each time changed me. current project: drawing everyone on ourspace as a horse. progress: 14 of everyone. if u are reading this, ur next. this is a promise and a warning!!",
+  "interests": {
+    "General": "horses, unicorns (real), pegasi (researching), MS paint (spray can tool), glitter gel pens, the stable (4 visits), drawing my friends as horses (free) (forever), my breyer horses (11) (they have names), horse books, being nice (aggressively)",
+    "Music": "kelly clarkson, the spirit soundtrack (bryan adams) (i cried), hilary duff, the cheetah girls (they're not horses but they're close), any song with 'run' in it (horse song)",
+    "Movies": "spirit: stallion of the cimarron (17 times), black beauty (i had to stop halfway) (i finished it) (i cried), seabiscuit (my dad's pick) (GOOD pick), the last unicorn (REAL)",
+    "Television": "the saddle club!! animal planet (the horse parts) (all of it), that's so raven, the kentucky derby (once a year) (i pick the one with the best mane)",
+    "Books": "every horse book at the library (the librarian started a shelf for me), black beauty, misty of chincoteague, the saddle club (all 100), the breyer catalog (it's a book to me)",
+    "Heroes": "all horses. ms. keller (my art teacher). patrick (he hung my drawing on his REAL wall). rocky (his rock) (a good horse). my mom for driving to the stable (4 times)"
+  },
+  "song": {
+    "name": "Breakaway",
+    "artist": "Kelly Clarkson",
+    "url": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/94/36/fa/9436fa11-f017-4b23-dc42-19094f3a920d/mzaf_15450038107070964198.plus.aac.p.m4a",
+    "pattern": [
+      0,
+      4,
+      7,
+      4,
+      0,
+      4,
+      7,
+      12
+    ],
+    "bpm": 120
+  },
+  "decor": [
+    "assets/deco_sparkle_bunny.gif",
+    "assets/deco_rainbow_bar.gif",
+    "assets/badge_mspaint.gif"
+  ],
+  "friends": [
+    "patrick",
+    "darkangel",
+    "herp",
+    "tina",
+    "chad",
+    "brittany"
+  ],
+  "wall": [
+    {
+      "from": "patrick",
+      "text": "meg!! the drawing of my rock as a tiny horse is on my wall at home. my real wall. i look at it every day. rocky (the rock) loves it too. thank you meg!!",
+      "time": "Jul 3 2026 2:20 PM"
+    },
+    {
+      "from": "darkangel",
+      "text": "the black unicorn u drew me... 'midnight sorrow'... she has one glitter tear... no one has ever understood me like this. keep it between us",
+      "time": "Jul 1 2026 11:11 PM"
+    },
+    {
+      "from": "chad",
+      "text": "MEG the horse version of me is holding a BASEBALL BAT. horses can't even hold bats but he DOES. this is the best day of my LIFE",
+      "time": "Jun 28 2026 5:55 PM"
+    },
+    {
+      "from": "herp",
+      "text": "herp herp!! herp. (herp)",
+      "time": "Jun 24 2026 1:07 PM"
+    }
+  ],
+  "replies": [
+    "AAAA thank u!! ur getting a bonus horse for this. no take-backs!!",
+    "this comment made my whole week. drawing u an extra sparkly one",
+    "!!!! ok ok ok adding a rainbow mane to ur horse RIGHT now",
+    "ur so nice!! in horse terms ur a clydesdale (gentle + strong + great hair)"
+  ],
+  "thanksAdd": "WELCOME NEW FRIEND!! ur horse portrait is already in progress. i gave u a flowing mane bc i believe in u. it will be on ur wall by friday!!",
+  "ambient": [
+    "day 3 of drawing everyone on ourspace as a horse. my wrist is tired but my heart is FULL",
+    "unicorn fact of the day: they're real if u never stop checking",
+    "ms paint update: i discovered the spray can tool. every horse is getting glitter now. EVERY horse"
+  ],
+  "saltyDm": "u said no to my friend request and that's ok!! friendship can't be rushed, like a wild mustang. anyway i already drew ur horse. she's in my saved folder waiting for u. her name is Chance. no pressure!!",
+  "keywords": {
+    "horse": "OK YES let's talk. favorite breed, go. mine is appaloosa (spotted = nature's glitter). i can also do this entire conversation in unicorns",
+    "unicorn": "scientifically they are just horses that kept believing. i will not be elaborating bc it's perfect as is"
+  },
+  "banter": {
+    "darkangel": [
+      "i made midnight sorrow a friend!! her name is dusk regret and she is also sad, but now they stand in the rain TOGETHER. check ur inbox!!",
+      "i read ur new poem and drew what i felt: a horse looking out a window. it's mostly grey but the tear is glitter. it's for u"
+    ],
+    "herp": [
+      "herp i drew u as a horse!! i don't know what u look like so it's a regular horse saying 'herp' in a speech bubble. it felt right. it feels MORE right every day",
+      "update: herp-horse has a tiny hat now. i asked if u wanted one and u said 'herp' which i took as a yes. i think i was right"
+    ],
+    "sephiroth": [
+      "i read ur WHOLE essay about the silver hair guy and his mom!! that all sounds so hard for him. i drew him a pony to cheer him up. her name is Buttercup. no swords allowed",
+      "ok i looked up the big sword. i drew ur guy riding a horse and the horse carries the sword in its teeth bc of physics. u said 'canon-adjacent' and i am taking that as a win"
+    ],
+    "zorp": [
+      "zorp ur horse is done!! u said 4 legs seemed 'inefficient' so she has 6. her name is Octavia and she is the fastest one i have ever drawn",
+      "zorp u asked me if horses 'report to anyone.' no zorp. horses are free. u got very quiet and then said 'good.' anyway ur getting a second horse"
+    ],
+    "kittyxcore": [
+      "kittyxcore!! i drew hello kitty as a HORSE!! she's a little white pony with a bow!! her name is Kitty (obviously) (i tried other names) (they didn't work). she's in ur inbox!! comment my pics!! (my pics are horses)",
+      "ur hello kitty bed is the most beautiful bed i've ever seen and i've seen a STABLE. i'm drawing u ON it as a horse. it's a lot of pink. the spray can tool is tired. worth it!!"
+    ],
+    "mika": [
+      "MIKA. ur OC has GREEN HAIR and a SWORD and i drew her as a horse (green mane) (the sword is in her teeth) (physics) and i need u to know: nobody can trace a horse. it's too many legs. u're safe now",
+      "someone traced her?? that's awful!! ok here's what i know about art from ms. keller: they can copy the lines but they can't copy the 'energy.' ur OC has SO much energy. theirs is a photocopy. urs is a HORSE. (that's a compliment.) (the biggest one.)"
+    ],
+    "raven": [
+      "raven i drew u as a horse!! she's all black with a long mane and she's standing in a graveyard (respectfully) and she's NOT sad, she's just thinking. her name is Nocturne. u said 'that's my last name' and i said 'i know!!' check ur inbox!!",
+      "u said scene kids ruined everything and then u said my horse was 'actually quite good' and i've been floating since. i'm drawing u a second horse. this one has a tiny candle. u can't stop me. u're too nice to stop me"
+    ]
+  },
+  "statuses": [
+    "glitterpony_meg is drawing (horse) (always horse)",
+    "glitterpony_meg found glitter in her cereal and chose to believe it means good luck",
+    "glitterpony_meg is naming today's horses: Biscuit, Thunder, and Todd (the horse) (not todd)",
+    "glitterpony_meg drew 3 horses before breakfast. Biscuit, Storm, and Mr. Todd (again) (not todd) (a horse)",
+    "glitterpony_meg is going to the stable saturday!!! (5th visit!!!) (i'm bringing carrots) (mom said one carrot) (ONE carrot)",
+    "glitterpony_meg is a little sad that SOME people got their horse drawing and didn't say thank u. it's ok!! the horse still loves u!! (her name is Patience) (i named her after this)",
+    "glitterpony_meg found out sagittarius is HALF HORSE and has not stopped thinking about it. it's been 3 days. my mom says 'we know'"
+  ],
+  "bulletins": [
+    {
+      "subject": "FREE HORSE ART!! (everyone) (forever) (i mean it)",
+      "body": "comment on my wall with: 1. ur fav color 2. one word that describes u 3. sparkles yes or no (the answer is yes but i ask out of respect). u will receive: u, as a horse, in MS paint. current wait time: 2 days bc patrick requested one for his rock (worth it)",
+      "time": "Jun 26 2026 3:33 PM"
+    }
+  ],
+  "dmSeed": [
+    {
+      "who": "them",
+      "text": "hi!! welcome to ourspace!! i'm meg. i drew u a welcome horse. u haven't told me anything about urself yet so she's a blank horse, but that means she can become ANYTHING. just like u!! ok bye!!",
+      "time": "Jul 2 2026 4:40 PM"
+    }
+  ],
+  "bgTile": "assets/tiles/tile_flowers.png",
+  "gender": "Female",
+  "hometown": "Chagrin Falls, OH!! (there's a HORSE FARM 10 minutes away) (i have been 4 times)",
+  "zodiac": "Sagittarius!!! HALF HORSE!!! starxgazer told me and i screamed. i'm HALF HORSE. it's official!!",
+  "status": "glitterpony_meg is drawing (horse) (always horse) (today's: 3)",
+  "hereFor": "Friends!! (everyone) (forever) Networking (with horses) (they don't have ourspace yet) (i'm working on it)",
+  "blogTitle": "EVERYONE IS A HORSE: the official drawing log!!",
+  "meet": "a real appaloosa (up close) (i've seen one from the fence). the people who made spirit so i can say thank u and also cry. ms. keller (again) (every day). anyone i haven't drawn as a horse yet!! (ur next!!)",
+  "pcComments": [
+    "ur hair in this is a MANE. that's the best thing i can say about hair. drawing u as a palomino right now",
+    "this is such a good pic!! u have appaloosa energy (spotted = nature's glitter) (it's a compliment) (it's the best one)",
+    "AAAA cute!! i drew a tiny horse in the corner of this in my head. she's waving. hi!!",
+    "u look so happy in this!! like a horse that just got a carrot!! (i've seen it) (4 times) (it's the best face)",
+    "commented!! also drawing u!! also this pic is my new favorite!! also ur horse's name is Sunny!! ok bye!!"
+  ]
+}

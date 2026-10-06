@@ -189,14 +189,14 @@
   ],
   "dmSeed": [
     {
-      "text": "Hello Malten. Thank you for accepting my request. My name is Evan. I'm not sure what the protocol is on this website, so I'm going to say thank you now, in case I forget later. Thank you. I hope you're well. I also hope you'll come to a show. We're short, but we mean every second."
+      "text": "Hello {you}. Thank you for accepting my request. My name is Evan. I'm not sure what the protocol is on this website, so I'm going to say thank you now, in case I forget later. Thank you. I hope you're well. I also hope you'll come to a show. We're short, but we mean every second."
     },
     {
       "text": "Also, I'd like to apologize in advance if I ever answer slowly. I'm usually at the hardware store or in the garage, and I try not to type while two-stepping. It isn't safe. Thank you."
     }
   ],
   "dms": [
-    "Hello Malten. I mailed you a thank-you note. It will arrive in 3 to 5 days. I don't know what it's for yet. I'll think of something before it gets there.",
+    "Hello {you}. I mailed you a thank-you note. It will arrive in 3 to 5 days. I don't know what it's for yet. I'll think of something before it gets there.",
     "A question about etiquette: if someone says 'no problem' after you say 'thank you,' do you say thank you again? I've been doing it. It has created a loop. I was in one for 4 minutes with Mr. Dietz.",
     "A man came into Heidenreich Hardware Saturday looking for 'the thing for the thing.' I knew what he meant. I have no idea how I knew. It was in aisle 9. He said 'you're a genius.' I said 'thank you' and went to sweep. I've been proud since.",
     "Josie asked what 'straight edge' means. I said 'it means I don't.' She said 'don't what.' I said 'that's the whole thing, you don't, and you don't say.' She said 'okay' and went back to Wheel of Fortune. She's nine. She may be the wisest person I know.",

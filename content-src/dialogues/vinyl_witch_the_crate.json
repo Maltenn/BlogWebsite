@@ -2,7 +2,7 @@
   "id": "vinyl_witch_the_crate",
   "with": "vinyl_witch",
   "opener": [
-    "malten. i have a boy at the counter, a crate on the counter, and a cat on the crate. it isn't a crisis yet. it's a sentence with three parts.",
+    "{you}. i have a boy at the counter, a crate on the counter, and a cat on the crate. it isn't a crisis yet. it's a sentence with three parts.",
     "the boy is limewire_larry. he dragged a milk crate of his dad's records out of the garage and he wants twenty dollars for all of it. he said 'i need a bigger hard drive.' i said 'darling, let me look.'",
     "i looked. the pink label. the first pressing of pink moon, original sleeve. it is worth about what his entire computer is worth, and he's standing there rubbing his thumb on my counter like it might offer a better price."
   ],
@@ -184,7 +184,7 @@
         { "type": "bulletin", "subject": "LISTENING NIGHT (tuesday): a new rule, written by a cat", "text": "four chairs. one side. tea. the floor is also a chair, and as of tonight the floor has a regular. tonight's side: pink moon, side a, a first pressing owned by a boy who didn't know what he had until he sat down and heard it. no talking. you may cry. tissues under the third chair. ~vw" },
         { "type": "status", "from": "larry", "delay": 60, "text": "larry just heard a record. a whole side. no skipping. there was no toolbar. i think i learned something. i dont know what. i have a turntable until spring (its on loan) (ive never been trusted w/ a nice thing)" },
         { "type": "wallpost", "from": "gwen", "to": "vinyl_witch", "delay": 120, "text": "you probably haven't heard what happened at the store today, but honestly? you were there. sorry, nervous habit. holly told me. i made larry a mix, hand-lettered, fourteen tracks and a moth in the corner. there's one tractor on it. i couldn't help it." },
-        { "type": "dm", "from": "larry", "delay": 240, "text": "malten. i heard a record. the pink moon one. the sad guy has a really good voice. do u know any1 else like him. also do u know if u can put a turntable thru a virus scan" }
+        { "type": "dm", "from": "larry", "delay": 240, "text": "{you}. i heard a record. the pink moon one. the sad guy has a really good voice. do u know any1 else like him. also do u know if u can put a turntable thru a virus scan" }
       ]
     },
 
@@ -213,7 +213,7 @@
         { "type": "status", "text": "vinyl_witch has a twentieth record in the drawer. the first nineteen are promises to people who haven't come back. the twentieth is a promise to someone who doesn't know yet. she is going to find him. the cat has agreed to help (by sitting on things)." },
         { "type": "status", "from": "larry", "delay": 50, "text": "larry got $24 4 a crate of old records + a new hard drive from a different store. the lady at the record store looked sad when i left. i think shes sad abt something else. i hope. (she gave me a bag of tea) (i dont know what 2 do w/ tea)" },
         { "type": "wallpost", "from": "raven", "to": "vinyl_witch", "delay": 110, "text": "I saw your status. Twenty records. I keep a drawer like that. Mine is called 'letters.' I won't say more. Come by, bring the cat, and I will provide Bauhaus and silence. The hard thing is the real thing. -Raven" },
-        { "type": "dm", "from": "larry", "delay": 300, "text": "malten is it normal 4 a record store lady to give u tea n then stand by the door n look at u like u forgot ur umbrella. just asking. 4 a friend" }
+        { "type": "dm", "from": "larry", "delay": 300, "text": "{you} is it normal 4 a record store lady to give u tea n then stand by the door n look at u like u forgot ur umbrella. just asking. 4 a friend" }
       ]
     },
 

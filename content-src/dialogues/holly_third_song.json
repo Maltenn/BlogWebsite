@@ -88,7 +88,7 @@
 
     "c_one": {
       "them": [
-        "...say that again. 'one song, every word.' malten, do you know how many people say that to me. one in forty. it's the best sentence in the language. i don't tell them. i give them a cd and a nod and then i go in the stockroom and sit very still.",
+        "...say that again. 'one song, every word.' {you}, do you know how many people say that to me. one in forty. it's the best sentence in the language. i don't tell them. i give them a cd and a nod and then i go in the stockroom and sit very still.",
         "that's the kid i'm picking this for. ...which one. you don't have to say. (you don't have to. i'm just holding the door.)"
       ],
       "choices": [
@@ -111,7 +111,7 @@
     "c_danny": {
       "them": [
         "danny. he named the third song in the kitchen, correctly, while holding a spoon. i dropped a plate. the plate's fine. he looked at me like i'd handed him something.",
-        "then he asked what MY one song is. the one i'd play for somebody. i said 'research.' he said 'for what.' malten i'm 18 and an eleven year old asked me for a straight answer and i said 'it's complicated.' that's what adults say right before a dishwasher thing."
+        "then he asked what MY one song is. the one i'd play for somebody. i said 'research.' he said 'for what.' {you} i'm 18 and an eleven year old asked me for a straight answer and i said 'it's complicated.' that's what adults say right before a dishwasher thing."
       ],
       "effects": [
         { "type": "status", "delay": 6, "text": "holly is in the stockroom with a clipboard, a blank line and a brother who named 3 songs correctly. she is being asked a very simple question by a person who owns one misfits shirt" }
@@ -164,7 +164,7 @@
     "sneak_path": {
       "them": [
         "...'sisters of mercy: toxic (rehearsal tape).' that's objectively a lie. it's also kind of a poem. dana will say 'we play sisters of mercy every hour, do we have this one,' and corporate will say 'we have everything,' and it'll play, and it'll have a bridge, and nobody will know.",
-        "i know. i KNOW. it's a bit. a bit is a costume. but a costume is still a person in a thing. malten if this goes wrong i'm in a stockroom for the rest of my natural life selling chain wallets to ghosts."
+        "i know. i KNOW. it's a bit. a bit is a costume. but a costume is still a person in a thing. {you} if this goes wrong i'm in a stockroom for the rest of my natural life selling chain wallets to ghosts."
       ],
       "choices": [
         { "say": "hand it in. straight face. 'rehearsal tape.' you have never been more professional.", "next": "end_sneak" },
@@ -175,7 +175,7 @@
     "end_pop": {
       "them": [
         "UPDATE, 9:19 PM. i said it. 'it's what i play on my twelve minutes in the car with the engine off. it's the one i'd hand a kid who knows no bands. it has a bridge. it's not research.' dana took the pen out of my hand and wrote 'APPROVED' next to slot 3. in red. i've never seen her use red.",
-        "she said 'i've been playing it in the office for a year. the manager's office has a door, holly. doors are thin.' malten. dana's been moving to it too.",
+        "she said 'i've been playing it in the office for a year. the manager's office has a door, holly. doors are thin.' {you}. dana's been moving to it too.",
         "friday at six. the whole mall. i'll be at register 2, folding. there's a boy who stands at the same shelf for 20 minutes every saturday. i hope he's under the speaker."
       ],
       "end": true,
@@ -199,7 +199,7 @@
         { "type": "status", "text": "holly turned in the associate picks sheet. 3 songs. all correct. all perfect. dana put a check mark. holly says she's relieved. holly is looking at a blank disc in her bag" },
         { "type": "wallpost", "from": "raven", "to": "holly", "delay": 45, "text": "Holly. I saw the sheet on the door. It is perfect. It is also the one that does not need you to be there. I am a person who lives in perfect. I know the address. I will say one more thing and then return to saying nothing: the bag is a fine place for the other one. It is a smaller room than the loop. That is all. - R" },
         { "type": "status", "from": "brad", "delay": 100, "text": "brad has put CINEMA PARADISO on the staff shelf with a card. it's about a boy and a projector and a lot of things people cut out and save. the card says 'for someone with something in a bag.' he says it's a coincidence. it's not a coincidence, it's a recommendation" },
-        { "type": "dm", "delay": 240, "text": "malten. it's 11:02. i'm in the car with the engine off. the bag one is burned. START HERE. it's on the dash. it's fine. i just wanted someone to know there's a song on it i'd have to explain. don't say anything. (thanks for staying while i worked out it was a disc and not a slot.)" }
+        { "type": "dm", "delay": 240, "text": "{you}. it's 11:02. i'm in the car with the engine off. the bag one is burned. START HERE. it's on the dash. it's fine. i just wanted someone to know there's a song on it i'd have to explain. don't say anything. (thanks for staying while i worked out it was a disc and not a slot.)" }
       ]
     },
 
@@ -207,7 +207,7 @@
       "them": [
         "UPDATE, FRIDAY, 6:02 PM. it's playing. over the entire store, the upper level and about 40 feet of food court. 'sisters of mercy: toxic (rehearsal tape).' it's the best 3 minutes and 21 seconds of my life and also the worst. i'm at register 2. i'm folding the same 14 shirts. i can't stop my foot.",
         "a boy at the shelf stopped. he's humming it. he doesn't know he's humming it. dennis walked past the door in his mall security vest and he's humming it too. dana's at the stockroom door with her arms crossed. she isn't looking at me. she's looking at the speaker. she is, to the speaker, smiling.",
-        "she came over at 6:04. 'sisters of mercy.' i said 'rare mix.' she said 'holly.' i said 'rare mix.' she said 'it's the best rare mix i've ever heard' and walked away. i've been promoted to 'associate picks coordinator.' it's not a real title. malten i don't know what's happening. it's the most fun i've had in a hot topic."
+        "she came over at 6:04. 'sisters of mercy.' i said 'rare mix.' she said 'holly.' i said 'rare mix.' she said 'it's the best rare mix i've ever heard' and walked away. i've been promoted to 'associate picks coordinator.' it's not a real title. {you} i don't know what's happening. it's the most fun i've had in a hot topic."
       ],
       "end": true,
       "effects": [

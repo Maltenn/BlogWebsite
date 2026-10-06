@@ -6,23 +6,40 @@ One JSON file per item. **Validate every file you write**: `node tools/content.m
 and fix every ERROR before you report back (WARNs are judgement calls).
 
 ```
-content-src/residents/<id>.json     new residents (full profile)
-content-src/depth/<id>.json         extra depth for the 38 EXISTING residents
+content-src/base/residents/<id>.json     the 38 ORIGINAL residents (full profiles; loosely validated — they predate the schema)
+content-src/base/dialogues/<id>_original.json  the 6 original conversation trees (the quality bar)
+content-src/base/storylines.json         the 8 drama arcs (multi-beat, play out over time)
+content-src/base/banks.json              shared line banks
+content-src/residents/<id>.json     the 54 newer residents (full profile, strict schema below)
+content-src/depth/<id>.json         extra depth for the 38 ORIGINAL residents
 content-src/dialogues/<treeId>.json scripted inbox conversations (branching)
 content-src/assets-manifest.json    written by the asset agents (avatars / decor / post gifs)
-content-src/reference/              READ-ONLY: dumps of the existing data, use as style reference
-   existing/<id>.json                 every existing resident, one file each (read 2-3, not all)
-   existing-residents.md              one-line table of all 38
-   dialogues/<id>.json                the 6 existing conversation trees (the quality bar)
-   banks.json, storylines.json        shared line banks and drama arcs
+content-src/reference/existing-residents.md   one-line table of the 38 originals
 ```
+Everything in `base/` used to be JavaScript literals inside `ourspace.js`; it is ordinary content now.
 
 ## The world (read this first)
 
 OurSpace ("a place for friends") is a fake 2006-era social network living inside a Windows-98
-desktop website. The site owner / player character is **malten** (he/him is how residents refer to
-him; id `you` is never used in data — say "malten"). Residents are the NPCs. The comedy is
-affectionate: specific, character-driven, a little absurd, never cruel.
+desktop website. Residents are the NPCs. The comedy is affectionate: specific, character-driven,
+a little absurd, never cruel.
+
+**Who the player is (changed Oct 2026):** the player is **the visitor** — whoever opened the site.
+They pick their own screen name, build their own page, and every DM, wall post, bulletin and
+conversation is addressed to *them*. In data, the player is written as the token **`{you}`**
+(exactly that, lowercase, braces), which the site swaps for the visitor's screen name when it
+renders. Never write a name for the player, never `you` as an id. Examples:
+`"hey {you}!! welcome to my page"` · `"{you}. cease all activity."` · `"{you}-kun!!"`.
+Rules that follow from it:
+- **Never assume facts about the player.** They are not an Aries, do not play Melee, did not
+  build the desktop, have no Spotify server, are not "marc". They are simply *new here*. Lines
+  that need a personal detail should ask for it or guess and be wrong (that is funnier anyway).
+- **malten is a resident now** (id `malten`): the guy who built this desktop and runs the real
+  blog and guestbook. Residents may talk *about* malten in the third person ("malten's site",
+  "malten is such an aries") — that stays as "malten". Only lines that talk *to* the player use
+  `{you}`. The validator warns on every player-facing field that still says "malten".
+- The player's own lines (dialogue `say` choices) are a visitor's, not malten's: no "my site",
+  "my desktop", "my spotify server".
 
 **Voice rules (hard):**
 - It is spiritually 2006. Reference the era's stuff (AIM, away messages, MSN, burned CDs, LimeWire,
@@ -45,14 +62,14 @@ affectionate: specific, character-driven, a little absurd, never cruel.
   his CRT televisions in nearly every sentence. Give each character 4-5 distinct subjects.
 - Typing style is characterisation: all-lowercase kid, ALL CAPS mom, l33t, perfect grammar adult…
   keep it consistent within a character and different between characters.
-- Residents talk to **each other**, not only to malten. Cross-reference other residents by what
+- Residents talk to **each other**, not only to the player. Cross-reference other residents by what
   they're known for (see roster + existing-residents.md).
 - Timestamps: format `Sep 14 2026 11:42 PM`, anywhere from `Jul 5 2026` to `Oct 4 2026`.
 
 ## Existing residents (38) — ids you may reference
 
 See `reference/existing-residents.md` (id, display name, age, tagline, friends) and the full
-dumps in `reference/existing/<id>.json`. One-line reminders:
+profiles in `base/residents/<id>.json`. One-line reminders:
 todd (founder/admin, everyone's first friend, runs the site off a laptop) · darkangel (emo poet,
 "crimson tears" series, glitter-ghost chain letters) · sk8rboi (skater, lost shoe at the mall gap) ·
 vinyl_witch (record-store witch, first pressings) · wes (competitive Melee player, fox main, hosts
@@ -185,16 +202,16 @@ All fields required unless marked optional. Sizes are minimums; go a little over
   "friends": ["…"],                   // 5-9 resident ids (existing or roster)
   "wall": [ { "from": "<id>", "text": "…", "time": "Sep 30 2026 4:15 PM" } ],   // >= 4, from other residents, in THEIR voice
   "replies": ["…"],                   // >= 8 generic replies they'd give to anything said to them
-  "thanksAdd": "…",                   // what they say when malten accepts their request
-  "ambient": ["…"],                   // >= 4 standalone musings (used as bulletins / wall posts on malten's page)
-  "saltyDm": "…",                     // what they DM if malten denies the request (funny, not mean)
-  "keywords": { "runescape": "…" },   // >= 4. lowercase trigger word in malten's message -> their reply
+  "thanksAdd": "…",                   // what they say when the player accepts their request
+  "ambient": ["…"],                   // >= 4 standalone musings (used as bulletins / wall posts on the player's page)
+  "saltyDm": "…",                     // what they DM if the player denies the request (funny, not mean)
+  "keywords": { "runescape": "…" },   // >= 4. lowercase trigger word in the player's message -> their reply
   "banter": { "<otherId>": ["…", "…"] },  // >= 4 targets, >= 2 lines each: wall posts they write ON that resident's page
   "statuses": ["…"],                  // >= 6 status updates; start each with their short name ("ryan is…", "ryan just…")
   "bulletins": [ { "subject": "…", "body": "…" } ],   // >= 2 (surveys, chain letters, announcements…)
   "pcComments": ["…"],                // >= 4 comments they leave on other people's pics
-  "dmSeed": [ { "text": "…" } ],      // 1-2 messages: their cold-open DM to malten
-  "dms": ["…"],                       // >= 6 unsolicited one-off DMs they might send malten later (each stands alone)
+  "dmSeed": [ { "text": "…" } ],      // 1-2 messages: their cold-open DM to the player
+  "dms": ["…"],                       // >= 6 unsolicited one-off DMs they might send the player later (each stands alone)
   "blog": [ { "title": "…", "date": "Sep 21 2026 11:10 PM", "mood": "…", "body": "…" } ],  // >= 2 entries, body 350-900 chars
   "survey": { "title": "…", "qa": [["question", "answer"]] }   // >= 8 pairs, classic copy-paste survey
 }
@@ -202,7 +219,7 @@ All fields required unless marked optional. Sizes are minimums; go a little over
 
 ## Schema 2 — depth pack for an EXISTING resident  `content-src/depth/<id>.json`
 
-Read `reference/existing/<id>.json` first and write **new** material in the same voice — do not
+Read `base/residents/<id>.json` first and write **new** material in the same voice — do not
 repeat jokes that are already there; widen the character (new subjects, a little backstory, a soft spot).
 
 ```jsonc
@@ -211,7 +228,7 @@ repeat jokes that are already there; widen the character (new subjects, a little
   "aboutMore": "…",                   // 250-600 chars, a second "About me" paragraph
   "blog": [ { "title", "date", "mood", "body" } ],   // >= 3 entries, body 400-1000 chars each
   "survey": { "title": "…", "qa": [["q","a"]] },     // >= 10 pairs
-  "dms": ["…"],                       // >= 8 unsolicited one-off DMs to malten (each stands alone, all different subjects)
+  "dms": ["…"],                       // >= 8 unsolicited one-off DMs to the player (each stands alone, all different subjects)
   "repliesExtra": ["…"],              // >= 8 more generic replies
   "statusesExtra": ["…"],             // >= 5
   "wallExtra": [ { "from": "<id>", "text": "…" } ],  // >= 4 comments other residents left on this page (their voice)
@@ -222,15 +239,15 @@ repeat jokes that are already there; widen the character (new subjects, a little
 
 ## Schema 3 — conversation tree  `content-src/dialogues/<treeId>.json`
 
-Emily-is-Away style: the resident DMs malten, malten answers by picking one of 2-3 buttons, the
-resident reacts, and where it ends changes what gets posted around the site. Read two of
-`reference/dialogues/*.json` before writing — that is the quality bar (note how choices have
+Emily-is-Away style: the resident DMs the player, the player answers by picking one of 2-3 buttons,
+the resident reacts, and where it ends changes what gets posted around the site. Read two of
+`base/dialogues/*.json` before writing — that is the quality bar (note how choices have
 personality, how branches rejoin, and how endings differ in tone).
 
 ```jsonc
 {
   "id": "wes_bracket_nerves",        // unique, = filename, start with the resident id
-  "with": "wes",                     // who is messaging malten
+  "with": "wes",                     // who is messaging the player
   "opener": ["…", "…", "…"],         // 2-4 messages that arrive first
   "nodes": {
     "start": { "choices": [ { "say": "…", "next": "a1" }, { "say": "…", "next": "b1" }, { "say": "…", "next": "c1" } ] },
@@ -241,20 +258,20 @@ personality, how branches rejoin, and how endings differ in tone).
 ```
 Rules: 14-26 nodes · every non-end node has 2-3 choices · at least 3 different end nodes · at
 least 4 choices deep before any ending · every `next` must exist and every node must be reachable ·
-`them` is 1-3 messages · malten's `say` lines are short, have attitude, and are never just "ok".
+`them` is 1-3 messages · the player's `say` lines are short, have attitude, and are never just "ok".
 One of the choices at most forks should be the playful/chaotic option.
 
 **Effects** (the point of the system — conversations visibly change the site):
 ```jsonc
 { "type": "status",   "text": "wes is …" }                         // they post a status to the feed
 { "type": "wallpost", "to": "<residentId>", "text": "…" }          // they write on ANOTHER resident's wall (shows in feed)
-{ "type": "wall",     "text": "…" }                                // they write on malten's wall
+{ "type": "wall",     "text": "…" }                                // they write on the player's wall
 { "type": "bulletin", "subject": "…", "text": "…" }                // they post a bulletin
-{ "type": "dm",       "text": "…" }                                // a follow-up DM lands in malten's inbox later
-{ "type": "friend" }                                               // they add malten
+{ "type": "dm",       "text": "…" }                                // a follow-up DM lands in the player's inbox later
+{ "type": "friend" }                                               // they add the player
 ```
 Any effect may add `"from": "<residentId>"` (default = the tree's `with`) so that OTHER residents
-react — e.g. after malten talks tony into being sincere, brittany posts a status about a surprisingly
+react — e.g. after the player talks tony into being sincere, brittany posts a status about a surprisingly
 nice message. Any effect may add `"delay": <seconds, 5-600>`.
 Requirements: every END node has >= 2 effects, at least one of them status/wallpost/bulletin/wall,
 and at least one with a `from` that is a different resident reacting. At least 2 non-end nodes also

@@ -2,7 +2,7 @@
   "id": "nikki_normal_speed",
   "with": "nikki",
   "opener": [
-    "MALTEN. MALTEN. are you there. don't blink, i'm typing at 1.5x.",
+    "{you}. {you}. are you there. don't blink, i'm typing at 1.5x.",
     "vince just offered me a SLOT. at TEEN NITE. a real DJ slot, friday, 8:40 to 9:00, right after xFadingEmberx's band finishes screaming. twenty minutes. two real speakers (one has a crackle).",
     "and my grandma june is visiting and my mom said she can come sit in the snack bar. so the audience will include one (1) grandma. please don't make it weird. it's already weird."
   ],
@@ -199,7 +199,7 @@
       "effects": [
         { "type": "status", "text": "nikki played her whole TEEN NITE set at 1.5x and it was LOUD. there is one song she played earlier, in an empty room, to one person, at normal speed. nobody else is getting it. UNTZ." },
         { "type": "wallpost", "from": "penny", "to": "nikki", "delay": 60, "text": "nikki!!! i got to the rink at 5 for slushie setup and heard a song from the booth and i didn't go in. it didn't feel like mine to go in. PLUR. i held up a glowstick in the doorway. just so you know. nobody saw. that was the point." },
-        { "type": "dm", "from": "vince", "delay": 200, "text": "malten. VINCE. THE KID KEPT THE SLOW SONG FOR HER GRANDMA AND DIDN'T PUT IT ON THE FLYER. I RESPECT THAT. THE FLYER FOR NEXT MONTH SAYS 'THE FASTEST DJ IN THE MIDWEST (AND ONE SECRET).' IT'S GONNA BE HUGE. (DON'T TELL HER I CRIED. THE DISCO BALL WAS OFF. NOBODY SAW.)" }
+        { "type": "dm", "from": "vince", "delay": 200, "text": "{you}. VINCE. THE KID KEPT THE SLOW SONG FOR HER GRANDMA AND DIDN'T PUT IT ON THE FLYER. I RESPECT THAT. THE FLYER FOR NEXT MONTH SAYS 'THE FASTEST DJ IN THE MIDWEST (AND ONE SECRET).' IT'S GONNA BE HUGE. (DON'T TELL HER I CRIED. THE DISCO BALL WAS OFF. NOBODY SAW.)" }
       ]
     },
 

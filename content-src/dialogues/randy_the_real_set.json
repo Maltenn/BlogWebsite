@@ -2,7 +2,7 @@
  "id": "randy_the_real_set",
  "with": "randy",
  "opener": [
-  "lol malten. lol. ok. emergency. (not a lol emergency) (a LITTLE lol emergency)",
+  "lol {you}. lol. ok. emergency. (not a lol emergency) (a LITTLE lol emergency)",
   "ms brandt gave me a 4 minute slot at the improv showcase thursday. SOLO. me, a stool, and the whole auditorium. grandma dot is coming. she's bringing the thermos",
   "i have two sets. set A is PIE. bulletproof. jeremy gave the pie bit a 6 (highest in the notebook's history). set B is called 'hole 7.' it's about the windmill. it's not really jokes. it's just kind of... true? lol. which guy am i. not a lol question. (a little lol)"
  ],
@@ -74,7 +74,7 @@
   "interrogate": {
    "them": [
     "i did. i cornered him at the cereal. i said 'jeremy. hm. in numbers.' he looked at me for a really long time. then he said 'hm is like a 7. but i don't want you to get a big head.'",
-    "A SEVEN. he's never gone above a 6. malten i have a secret 7 in a 9 year old's notebook and i'm not allowed to know. he made me pinky promise not to tell. i just told you. you're a vault right"
+    "A SEVEN. he's never gone above a 6. {you} i have a secret 7 in a 9 year old's notebook and i'm not allowed to know. he made me pinky promise not to tell. i just told you. you're a vault right"
    ],
    "choices": [
     {
@@ -89,7 +89,7 @@
   },
   "windmill_bit": {
    "them": [
-    "14 seconds of NOTHING. on a STAGE. in front of the whole SCHOOL. malten i once said pie into the principal's mic and that was NOTHING compared to this. that's the scariest thing anyone has ever typed at me",
+    "14 seconds of NOTHING. on a STAGE. in front of the whole SCHOOL. {you} i once said pie into the principal's mic and that was NOTHING compared to this. that's the scariest thing anyone has ever typed at me",
     "but... ms brandt says the quiet after a joke is called 'the beat.' it's where the audience leans in. 14 seconds is a LOT of beat. 14 seconds is basically a whole windmill. what if it works. what if it's the best thing i ever do. what if nobody laughs. lol. what if EVERYBODY"
    ],
    "effects": [
@@ -115,7 +115,7 @@
   "commit_beat": {
    "them": [
     "ok. OK. i'm gonna practice it in the bathroom mirror right now. fan on. 14 seconds. i can feel my whole face wanting to say something. it wants to say lol SO badly. i'm biting it",
-    "...that was 9 seconds. i lasted 9. ms brandt says it's not the number, it's the leaning in. but malten my knees are ALSO doing the numa numa arms. it's a lot of a lot"
+    "...that was 9 seconds. i lasted 9. ms brandt says it's not the number, it's the leaning in. but {you} my knees are ALSO doing the numa numa arms. it's a lot of a lot"
    ],
    "choices": [
     {
@@ -186,7 +186,7 @@
   },
   "dot_stakes": {
    "them": [
-    "ok also. grandma dot's birthday is thursday. SAME DAY. i asked what she wants. she said 'something made by hand.' i made 40 waffles. jeremy said 'eh' 11 times. 40 waffles malten. the kitchen is a waffle crime scene",
+    "ok also. grandma dot's birthday is thursday. SAME DAY. i asked what she wants. she said 'something made by hand.' i made 40 waffles. jeremy said 'eh' 11 times. 40 waffles {you}. the kitchen is a waffle crime scene",
     "she's coming to the show. front row. thermos. she's never seen the real show, only the dinner version, 6 minutes between the gravy and the pie. what if set B is the thing made by hand. what if that's the present. a 4 minute present. about a mini golf windmill. lol"
    ],
    "choices": [
@@ -202,7 +202,7 @@
   },
   "epic_threat": {
    "them": [
-    "ALSO. epic. he saw the lineup. he's coming thursday with a SIGN. he says it says PIE. he says it's 'a gift.' malten that's either a gift or a bomb. he's been mad since 6th grade that i got the caps and he got a ytmnd",
+    "ALSO. epic. he saw the lineup. he's coming thursday with a SIGN. he says it says PIE. he says it's 'a gift.' {you} that's either a gift or a bomb. he's been mad since 6th grade that i got the caps and he got a ytmnd",
     "if i do set B and epic's in row 4 holding a PIE sign. i'll look at it. i KNOW i'll look at it. and then i'll lol. and then it's over"
    ],
    "effects": [
@@ -263,7 +263,7 @@
   },
   "end_real": {
    "them": [
-    "malten. i said line one and 112 people stopped breathing. i counted. 6 seconds. my longest beat ever. then i said the 'sir, it's the WINDMILL' part and a man in row 7 made a noise like a tire",
+    "{you}. i said line one and 112 people stopped breathing. i counted. 6 seconds. my longest beat ever. then i said the 'sir, it's the WINDMILL' part and a man in row 7 made a noise like a tire",
     "and then grandma dot said 'oh, honey.' out loud. in the dark. into the room. nobody said lol randy. i said it myself once in the wings after, to check it still worked. it does. ok. i'm gonna sit in the parking lot with the thermos. jeremy gave it a score. he won't tell me. he said it's 'not on the scale'"
    ],
    "end": true,
@@ -294,7 +294,7 @@
     },
     {
      "type": "dm",
-     "text": "malten jeremy just slid the notebook under my door. new page. he wrote one word: 'oh.' that's the whole review. i'm framing the page. not the notebook, it has the pigeon in it",
+     "text": "{you} jeremy just slid the notebook under my door. new page. he wrote one word: 'oh.' that's the whole review. i'm framing the page. not the notebook, it has the pigeon in it",
      "delay": 300
     }
    ]
@@ -325,7 +325,7 @@
     },
     {
      "type": "dm",
-     "text": "malten jeremy found me in the lobby after and said 'the first half was a 6 and the second half was a 7 and i don't know how to average them.' i said you don't. you just put them next to each other. he wrote that down. first advice i've ever given the notebook",
+     "text": "{you} jeremy found me in the lobby after and said 'the first half was a 6 and the second half was a 7 and i don't know how to average them.' i said you don't. you just put them next to each other. he wrote that down. first advice i've ever given the notebook",
      "delay": 240
     }
    ]
@@ -333,7 +333,7 @@
   "end_windmill": {
    "them": [
     "i walked out. i stood there. 1... 2... somebody coughed. 5... 6... a guy in row 4 started counting under his breath. 9... 10... then the WHOLE ROOM was counting. 112 people counting windmill seconds out loud. at 14 i said 'that's the show.' and walked off",
-    "silence. then a sound like a blender full of applause. ms brandt had her eyes closed again but it was a different closed. the vice principal asked if i could do it at assembly. malten i think i invented a thing. i think it's called 'the 14'"
+    "silence. then a sound like a blender full of applause. ms brandt had her eyes closed again but it was a different closed. the vice principal asked if i could do it at assembly. {you} i think i invented a thing. i think it's called 'the 14'"
    ],
    "end": true,
    "effects": [
@@ -364,7 +364,7 @@
     },
     {
      "type": "dm",
-     "text": "malten the vice principal wants the 14 at assembly. i told him it's 14 seconds. he said 'and then?' i said that's the whole windmill. he asked if i have a second act. i have no second act. send help or a hat",
+     "text": "{you} the vice principal wants the 14 at assembly. i told him it's 14 seconds. he said 'and then?' i said that's the whole windmill. he asked if i have a second act. i have no second act. send help or a hat",
      "delay": 300
     }
    ]
@@ -396,7 +396,7 @@
     },
     {
      "type": "dm",
-     "text": "malten it's 11:40 PM. i'm on the bathroom floor with the right card. i read it out loud to the fan. the fan was a good audience. i think i'm doing the next showcase in november. don't tell the cafeteria",
+     "text": "{you} it's 11:40 PM. i'm on the bathroom floor with the right card. i read it out loud to the fan. the fan was a good audience. i think i'm doing the next showcase in november. don't tell the cafeteria",
      "delay": 400
     }
    ]

@@ -1,0 +1,681 @@
+[
+  {
+    "file": "assets/avatars/icon_px_blue_elf.png",
+    "desc": "pixel blue-skin elf",
+    "source": "https://opengameart.org/content/mostly-16x18-characters-and-48x48-portraits-repack",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_blue_headband.png",
+    "desc": "pixel blue-hair headband",
+    "source": "https://opengameart.org/content/mostly-16x18-characters-and-48x48-portraits-repack",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_cyclops.png",
+    "desc": "pixel blue cyclops",
+    "source": "https://opengameart.org/content/rpg-portraits",
+    "license": "CC0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_dwarf.png",
+    "desc": "pixel red-beard dwarf",
+    "source": "https://opengameart.org/content/rpg-portraits",
+    "license": "CC0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_fire_spirit.png",
+    "desc": "pixel fire spirit",
+    "source": "https://opengameart.org/content/mostly-16x18-characters-and-48x48-portraits-repack",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_gas_mask.png",
+    "desc": "pixel gas mask robot",
+    "source": "https://opengameart.org/content/10-pixel-art-portraits",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_glasses_girl.png",
+    "desc": "pixel glasses girl",
+    "source": "https://opengameart.org/content/10-pixel-art-portraits",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_goblin.png",
+    "desc": "pixel green goblin",
+    "source": "https://opengameart.org/content/rpg-portraits",
+    "license": "CC0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_green_cap_kid.png",
+    "desc": "pixel red-hair green cap",
+    "source": "https://opengameart.org/content/mostly-16x18-characters-and-48x48-portraits-repack",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_hood_cyan.png",
+    "desc": "pixel hooded wanderer",
+    "source": "https://opengameart.org/content/rpg-portraits",
+    "license": "CC0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_ice_elf.png",
+    "desc": "pixel ice elf",
+    "source": "https://opengameart.org/content/mostly-16x18-characters-and-48x48-portraits-repack",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_mohawk.png",
+    "desc": "pixel mohawk guy",
+    "source": "https://opengameart.org/content/10-pixel-art-portraits",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_ninja.png",
+    "desc": "pixel ninja",
+    "source": "https://opengameart.org/content/mostly-16x18-characters-and-48x48-portraits-repack",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_pink_buns.png",
+    "desc": "pixel pink buns girl",
+    "source": "https://opengameart.org/content/mostly-16x18-characters-and-48x48-portraits-repack",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_pink_ninja.png",
+    "desc": "pixel pink-hair ninja",
+    "source": "https://opengameart.org/content/mostly-16x18-characters-and-48x48-portraits-repack",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_pirate.png",
+    "desc": "pixel pirate",
+    "source": "https://opengameart.org/content/mostly-16x18-characters-and-48x48-portraits-repack",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_popota_blush.png",
+    "desc": "pixel girl blushing",
+    "source": "https://opengameart.org/content/tricolor-nes-rpg-character-portraits",
+    "license": "CC BY 4.0 (also OGA-BY 3.0)",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_popota_wink.png",
+    "desc": "pixel girl winking",
+    "source": "https://opengameart.org/content/tricolor-nes-rpg-character-portraits",
+    "license": "CC BY 4.0 (also OGA-BY 3.0)",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_red_hoodie.png",
+    "desc": "pixel red-hoodie visor kid",
+    "source": "https://opengameart.org/content/hoodie-guy",
+    "license": "CC BY 4.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_spiky_red.png",
+    "desc": "pixel spiky red hair guy",
+    "source": "https://opengameart.org/content/mostly-16x18-characters-and-48x48-portraits-repack",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_teen_afro.png",
+    "desc": "pixel teen in grey hoodie",
+    "source": "https://opengameart.org/content/college-student-teenager",
+    "license": "CC BY-SA 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_topknot_kid.png",
+    "desc": "pixel topknot kid",
+    "source": "https://opengameart.org/content/10-pixel-art-portraits",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_twintails_girl.png",
+    "desc": "pixel twin-tails girl",
+    "source": "https://opengameart.org/content/mostly-16x18-characters-and-48x48-portraits-repack",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_px_witch_hat.png",
+    "desc": "pixel witch-hat girl",
+    "source": "https://opengameart.org/content/mostly-16x18-characters-and-48x48-portraits-repack",
+    "license": "CC BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_chibi_blue_check.gif",
+    "desc": "pixel chibi girl, blue check dress",
+    "source": "https://blob.gifcities.org/gifcities/42P3S2G4RDNWYJBRX3RP7JXP4W76VBTD.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_chibi_grey_check.gif",
+    "desc": "pixel chibi girl, ponytail",
+    "source": "https://blob.gifcities.org/gifcities/5YNA6V5EZIUBDVD3EPB5YPUS5OWUFPSP.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_chibi_red_bow.gif",
+    "desc": "pixel chibi girl with bow",
+    "source": "https://blob.gifcities.org/gifcities/4NH3UCN3UQZDMPZXMYWYCYKKDFSDWBO4.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_doll_black_dress.gif",
+    "desc": "pixel doll, black dress",
+    "source": "https://blob.gifcities.org/gifcities/3F3Y67GAC63LOVEW6QPHYSRFKFNAVVVR.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_doll_blonde_jeans.gif",
+    "desc": "pixel doll, blonde in jeans",
+    "source": "https://blob.gifcities.org/gifcities/5XWFUFDF64LZON4HERNJFXGBXWDVGYPD.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_doll_blonde_yellow.gif",
+    "desc": "pixel doll, blonde in yellow",
+    "source": "https://blob.gifcities.org/gifcities/6HVRZ3M2A3IT3Z5SWNB4VZ34Y7DZYAPA.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_doll_blue_hair.gif",
+    "desc": "pixel doll, blue hair",
+    "source": "https://blob.gifcities.org/gifcities/3NBKXBITMQOZ6OOTA3PLA7364RCFKGCE.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_doll_brunette_shorts.gif",
+    "desc": "pixel doll, brunette in shorts",
+    "source": "https://blob.gifcities.org/gifcities/2YLCT3FNYOMMBX5JQBGUWCOUYWU6XEOM.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_doll_glasses_boy.png",
+    "desc": "pixel doll, glasses and overalls",
+    "source": "https://blob.gifcities.org/gifcities/3DXBOBBPVI33O7R6HVVUVJREGWJMXVAZ.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_doll_goth_red.gif",
+    "desc": "pixel doll, red-and-black goth",
+    "source": "https://blob.gifcities.org/gifcities/23TBSCLQ7TPZUQEUQM62NQXCN753GKDL.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_doll_green_goth.gif",
+    "desc": "pixel doll, green twin-tails",
+    "source": "https://blob.gifcities.org/gifcities/5UZP7733N4H7W5TKV2QF4K567PXSCMVU.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_doll_orange_hair.gif",
+    "desc": "pixel doll, orange hair",
+    "source": "https://blob.gifcities.org/gifcities/5K25SN24ZAHWVJBPPD34GPLVEZ53GEBM.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_doll_orange_shorts.png",
+    "desc": "pixel doll, orange hair and shorts",
+    "source": "https://blob.gifcities.org/gifcities/2LZFGWKPU62PIA2H64IHCB6UQLAEUXWV.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_doll_pink_top_jeans.gif",
+    "desc": "pixel doll, pink top and jeans",
+    "source": "https://blob.gifcities.org/gifcities/53JD2ISICYZBB2Q4NCX67L5H5RLMLFLO.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_doll_red_hair_jeans.gif",
+    "desc": "pixel doll, red hair",
+    "source": "https://blob.gifcities.org/gifcities/5IV5FCWDH7ZX7EQJMCWG6RQLNMOEBCOY.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_doll_redhead_plaid.gif",
+    "desc": "pixel doll, red hair and plaid",
+    "source": "https://blob.gifcities.org/gifcities/4WHQCFEBMVC7KVIA4Q6DTWDCRAFEM3YC.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_chibi_black_cat_girl.png",
+    "desc": "chibi black-cat girl, grumpy",
+    "source": "https://commons.wikimedia.org/wiki/File:Black_cat.svg",
+    "license": "CC BY-SA 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_chibi_catears_girl.png",
+    "desc": "chibi cat-ears girl",
+    "source": "https://commons.wikimedia.org/wiki/File:Kemonomimi_girl_in_chibi_style.svg",
+    "license": "CC BY-SA 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_chibi_pink_anime_girl.png",
+    "desc": "chibi pink-hair girl",
+    "source": "https://commons.wikimedia.org/wiki/File:Cute_girl.png",
+    "license": "CC0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_chibi_redhead_girl.png",
+    "desc": "chibi red-haired girl",
+    "source": "https://opengameart.org/content/cute-girl-free-sprites",
+    "license": "CC0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_doll_blonde_bows.png",
+    "desc": "paper doll with red bows",
+    "source": "https://opengameart.org/content/doll-svg",
+    "license": "CC0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_doll_brunette_bows.png",
+    "desc": "brunette doll with red bows",
+    "source": "https://opengameart.org/content/doll-svg",
+    "license": "CC0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_kid_backpack.gif",
+    "desc": "pixel kid with backpack",
+    "source": "https://blob.gifcities.org/gifcities/35FOMIVX67MR5O4S4JWQX4ZGUKUYVI5M.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_kid_nerd_cap.gif",
+    "desc": "cartoon nerd in blue cap",
+    "source": "https://blob.gifcities.org/gifcities/36KNX4YTNKHXAYHMQEXXSDFFD2CSXFEW.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_skater_kickflip.gif",
+    "desc": "skater kid kickflip",
+    "source": "https://blob.gifcities.org/gifcities/22WY2WAJN4NIZEQMP6FN3OZTNVBZEOZZ.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_gc_skater_purple.gif",
+    "desc": "cartoon skater kid",
+    "source": "https://blob.gifcities.org/gifcities/2ZAWNTO3XE5UNGB2COQPBHP76DNNUNBZ.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_skater_dude.png",
+    "desc": "bearded skater on a longboard",
+    "source": "https://opengameart.org/content/2d-skater-sprites",
+    "license": "OGA-BY 3.0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_toon_boy_spiky.png",
+    "desc": "cartoon spiky-hair boy",
+    "source": "https://opengameart.org/content/toon-characters-1",
+    "license": "CC0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_toon_dad_moustache.png",
+    "desc": "cartoon moustache guy",
+    "source": "https://opengameart.org/content/toon-characters-1",
+    "license": "CC0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_toon_girl_headband.png",
+    "desc": "cartoon girl with headband",
+    "source": "https://opengameart.org/content/toon-characters-1",
+    "license": "CC0",
+    "group": "people"
+  },
+  {
+    "file": "assets/avatars/icon_toon_robot.png",
+    "desc": "cartoon blue robot",
+    "source": "https://opengameart.org/content/toon-characters-1",
+    "license": "CC0",
+    "group": "space"
+  },
+  {
+    "file": "assets/avatars/icon_toon_zombie.png",
+    "desc": "cartoon green zombie",
+    "source": "https://opengameart.org/content/toon-characters-1",
+    "license": "CC0",
+    "group": "goth"
+  },
+  {
+    "file": "assets/avatars/icon_pixel_cat_anim.gif",
+    "desc": "animated pixel grey cat",
+    "source": "https://opengameart.org/content/animals-and-tea-by-strawheart",
+    "license": "CC BY-SA 3.0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_pixel_dog_anim.gif",
+    "desc": "animated pixel golden pup",
+    "source": "https://opengameart.org/content/animals-and-tea-by-strawheart",
+    "license": "CC BY-SA 3.0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_hamster_happy.png",
+    "desc": "chibi hamster, happy",
+    "source": "https://opengameart.org/content/emoticons",
+    "license": "CC BY 3.0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_hamster_teary.png",
+    "desc": "chibi hamster, teary",
+    "source": "https://opengameart.org/content/emoticons",
+    "license": "CC BY 3.0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_puppy_blue.png",
+    "desc": "blue cartoon puppy",
+    "source": "https://opengameart.org/content/doggy-graphics",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_puppy_brown.png",
+    "desc": "brown cartoon puppy",
+    "source": "https://opengameart.org/content/doggy-graphics",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_pup_orange.png",
+    "desc": "cartoon orange pup",
+    "source": "https://opengameart.org/content/cat-dog-free-sprites",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_cat_tabby.png",
+    "desc": "cartoon grey tabby cat",
+    "source": "https://opengameart.org/content/cat-dog-free-sprites",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_pixel_bat_anim.gif",
+    "desc": "animated pixel bat",
+    "source": "https://opengameart.org/content/chibi-monsters-set-01",
+    "license": "CC BY 3.0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_pixel_ghost_anim.gif",
+    "desc": "animated pixel ghost",
+    "source": "https://opengameart.org/content/chibi-monsters-set-01",
+    "license": "CC BY 3.0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_pixel_frog_shades.png",
+    "desc": "pixel frog in shades",
+    "source": "https://opengameart.org/content/frog-smilies",
+    "license": "CC BY 3.0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_pixel_frog_tongue.png",
+    "desc": "pixel frog sticking tongue out",
+    "source": "https://opengameart.org/content/frog-smilies",
+    "license": "CC BY 3.0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_handheld_cat.png",
+    "desc": "pixel handheld cat",
+    "source": "https://opengameart.org/content/gb-funky-fauna",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_handheld_fox.png",
+    "desc": "pixel handheld fox",
+    "source": "https://opengameart.org/content/gb-funky-fauna",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_gc_frog_dance.gif",
+    "desc": "cartoon green frog",
+    "source": "https://blob.gifcities.org/gifcities/3K5XGHNFY2C5QI32EYLDGVRMIZZKRBGW.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_gc_frog_pixel.gif",
+    "desc": "pixel green frog",
+    "source": "https://blob.gifcities.org/gifcities/2X5LZKYKDJ65KVD4YGZV2C7PZI4VA6FZ.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_gc_hamster_bowtie.gif",
+    "desc": "pixel hamster with bow tie",
+    "source": "https://blob.gifcities.org/gifcities/4FGLPQZB4I44RJKQAQK6FLGOIX3QO4AH.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_gc_hamster_brown.gif",
+    "desc": "pixel brown hamster",
+    "source": "https://blob.gifcities.org/gifcities/44R3VG2TFL4RLWCOKSYLYN7VCQWVE5SJ.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_gc_hamster_grey.gif",
+    "desc": "pixel grey hamster",
+    "source": "https://blob.gifcities.org/gifcities/4GINOOM3XTVDYQPHMKURI72VRHAHTN63.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_gc_hamster_teacup.gif",
+    "desc": "pixel hamster in a teacup",
+    "source": "https://blob.gifcities.org/gifcities/3ZOTXZNL7SYYXJJ4GC53ND6AG4VLTKEA.gif",
+    "license": "GeoCities archive via gifcities.org",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_raccoon.png",
+    "desc": "cartoon raccoon",
+    "source": "https://opengameart.org/content/cute-raccoon-2d-game-sprite-and-animations",
+    "license": "CC BY 4.0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_round_bunny.png",
+    "desc": "round cartoon bunny",
+    "source": "https://opengameart.org/content/animal-pack-redux",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_round_chick.png",
+    "desc": "round cartoon chick",
+    "source": "https://opengameart.org/content/animal-pack-redux",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_round_frog.png",
+    "desc": "round cartoon frog",
+    "source": "https://opengameart.org/content/animal-pack-redux",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_round_narwhal.png",
+    "desc": "round cartoon narwhal",
+    "source": "https://opengameart.org/content/animal-pack-redux",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_round_owl.png",
+    "desc": "round cartoon owl",
+    "source": "https://opengameart.org/content/animal-pack-redux",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_round_panda.png",
+    "desc": "round cartoon panda",
+    "source": "https://opengameart.org/content/animal-pack-redux",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_round_parrot.png",
+    "desc": "round cartoon parrot",
+    "source": "https://opengameart.org/content/animal-pack-redux",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_round_penguin.png",
+    "desc": "round cartoon penguin",
+    "source": "https://opengameart.org/content/animal-pack-redux",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_round_pig.png",
+    "desc": "round cartoon piggy",
+    "source": "https://opengameart.org/content/animal-pack-redux",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_round_sloth.png",
+    "desc": "round cartoon sloth",
+    "source": "https://opengameart.org/content/animal-pack-redux",
+    "license": "CC0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_cartoon_cat.png",
+    "desc": "cartoon grey cat",
+    "source": "https://opengameart.org/content/animals-pack",
+    "license": "CC BY 3.0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_cartoon_dragon.png",
+    "desc": "cartoon green dragon",
+    "source": "https://opengameart.org/content/animals-pack",
+    "license": "CC BY 3.0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_cartoon_fox.png",
+    "desc": "cartoon goofy fox",
+    "source": "https://opengameart.org/content/animals-pack",
+    "license": "CC BY 3.0",
+    "group": "animals"
+  },
+  {
+    "file": "assets/avatars/icon_smiley_cat.png",
+    "desc": "pixel brown cat face",
+    "source": "https://opengameart.org/content/100-smiley-faces",
+    "license": "CC0",
+    "group": "smileys"
+  },
+  {
+    "file": "assets/avatars/icon_smiley_hearts.png",
+    "desc": "pixel heart-eyes smiley",
+    "source": "https://opengameart.org/content/100-smiley-faces",
+    "license": "CC0",
+    "group": "smileys"
+  },
+  {
+    "file": "assets/avatars/icon_smiley_nerd.png",
+    "desc": "pixel nerd smiley",
+    "source": "https://opengameart.org/content/100-smiley-faces",
+    "license": "CC0",
+    "group": "smileys"
+  },
+  {
+    "file": "assets/avatars/icon_smiley_pig.png",
+    "desc": "pixel pink pig face",
+    "source": "https://opengameart.org/content/100-smiley-faces",
+    "license": "CC0",
+    "group": "smileys"
+  },
+  {
+    "file": "assets/avatars/icon_smiley_rainbow.png",
+    "desc": "pixel rainbow smiley",
+    "source": "https://opengameart.org/content/100-smiley-faces",
+    "license": "CC0",
+    "group": "smileys"
+  },
+  {
+    "file": "assets/avatars/icon_smiley_shades.png",
+    "desc": "pixel smiley in shades",
+    "source": "https://opengameart.org/content/100-smiley-faces",
+    "license": "CC0",
+    "group": "smileys"
+  },
+  {
+    "file": "assets/avatars/icon_smiley_tongue.png",
+    "desc": "pixel tongue-out smiley",
+    "source": "https://opengameart.org/content/100-smiley-faces",
+    "license": "CC0",
+    "group": "smileys"
+  }
+]

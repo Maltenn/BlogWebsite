@@ -76,7 +76,7 @@
     "shelter_call": {
       "them": [
         "i called. ms pruitt said 'chester will be fine, hon. dont plan your life around a dog.' then she said 'but hell look at the door.' she says that and then she WAITS. like shes holding a hot dish. shes SO good at it",
-        "she said she can put me on sundays, but sundays are the nobody-comes days, the dogs are bored by 2, and the volunteers are all grandmas who dont walk past tree 1. malten then she said the real thing. 'he doesnt have a lot of saturdays.'"
+        "she said she can put me on sundays, but sundays are the nobody-comes days, the dogs are bored by 2, and the volunteers are all grandmas who dont walk past tree 1. {you} then she said the real thing. 'he doesnt have a lot of saturdays.'"
       ],
       "choices": [
         { "say": "that's the heaviest sentence anyone has said to you. sit with it a second, then decide.", "next": "nate_margin" },
@@ -101,7 +101,7 @@
     "chaos_interview": {
       "them": [
         "OK. i did it. i walked chester into the food court. 3 trees worth of dignity. he did the whole walk like a duke. nobody said anything. the pretzel lady looked at him. she looked at me. she looked at him. she said 'is he allowed.' i said 'no.' she said 'hes very polite.' i said 'hes 13.' she said 'in dog years thats a senior.' she said 'he can sit under the table.'",
-        "SHES CHARMED. but here comes dennis. across the food court. he has the walk. the walk of a man w a radio. and his eyes are on chester. malten HE IS LOOKING AT CHESTER"
+        "SHES CHARMED. but here comes dennis. across the food court. he has the walk. the walk of a man w a radio. and his eyes are on chester. {you} HE IS LOOKING AT CHESTER"
       ],
       "effects": [
         { "type": "status", "from": "kittyxcore", "delay": 20, "text": "kitty made a chart: 'WILL LEXI BRING THE DOG?' columns: yes / yes / yes. (its a color coded chart.) (the colors are all the same.) (its very pink.) =^.^=" }
@@ -115,7 +115,7 @@
     "chaos_day": {
       "them": [
         "dennis is standing over chester. chester is lying down. hes done tree 3. dennis CROUCHED. his knees made a noise. he said 'how old.' i said 13. he said 'whats his name.' i said chester. he said 'my dog was a chester.' he said 'is he on a leash.' i said yes. he said 'then hes an employee.'",
-        "denise heard. she said 'hes a mascot.' i said 'hes not trained.' she said 'neither is the carousel.' malten i think the mall just hired my dog. i dont think i'm the one who got hired. i think im his coworker"
+        "denise heard. she said 'hes a mascot.' i said 'hes not trained.' she said 'neither is the carousel.' {you} i think the mall just hired my dog. i dont think i'm the one who got hired. i think im his coworker"
       ],
       "choices": [
         { "say": "take a picture of chester with dennis. paige would. it's the shot of the year.", "next": "end_chaos" },
@@ -125,7 +125,7 @@
 
     "the_deadline": {
       "them": [
-        "its 5:52 PM. denise's final answer (i asked her out loud, like a person): 'noon to 9 on saturdays or nothing, hon. thats the shift.' she said it nicely, which is worse. and ms pruitt texted: 'chesters fine. he looked at the door once. thats all.' once. malten. ONCE.",
+        "its 5:52 PM. denise's final answer (i asked her out loud, like a person): 'noon to 9 on saturdays or nothing, hon. thats the shift.' she said it nicely, which is worse. and ms pruitt texted: 'chesters fine. he looked at the door once. thats all.' once. {you}. ONCE.",
         "i have 8 minutes to answer denise. ive never had a deadline w a 6 in it. ive been at this window for 40 minutes and a pigeon has joined me. help"
       ],
       "choices": [
@@ -137,7 +137,7 @@
 
     "final_ask": {
       "them": [
-        "ok. calling. its ringing. its ringing. she picked up. 'pretzel stand, this is denise.' i said 'hi its lexi, the leopard corolla' and she said 'hon, i said noon.' i said 'i know.' and then i froze. malten i FROZE. my mouth is a drawer with nothing in it",
+        "ok. calling. its ringing. its ringing. she picked up. 'pretzel stand, this is denise.' i said 'hi its lexi, the leopard corolla' and she said 'hon, i said noon.' i said 'i know.' and then i froze. {you} i FROZE. my mouth is a drawer with nothing in it",
         "shes waiting. she said 'hon?' what do i say. i have like 20 seconds of denise's patience. she has a pretzel in the oven"
       ],
       "choices": [
@@ -171,7 +171,7 @@
     "end_both": {
       "them": [
         "she was quiet for 3 seconds. then: 'hon. my first dog was 14. noon saturday. you open sundays at 7 for prep. you walk your dog in the morning. and you bring the dog to meet me, one time, on a day i'm not busy.' i said 'hes not trained.' she said 'neither is the carousel.'",
-        "malten i got the job AND the dog. ill walk chester at 8, get to the food court at noon, smell like cinnamon till 9, and get leonard's belt in 3 saturdays. my mom's gonna say 'see, work.' shes gonna be right. ill say 'rawr.' thats all ive got. thank u. (nothing about nate this whole time. im so proud of that)"
+        "{you} i got the job AND the dog. ill walk chester at 8, get to the food court at noon, smell like cinnamon till 9, and get leonard's belt in 3 saturdays. my mom's gonna say 'see, work.' shes gonna be right. ill say 'rawr.' thats all ive got. thank u. (nothing about nate this whole time. im so proud of that)"
       ],
       "end": true,
       "effects": [
@@ -197,7 +197,7 @@
 
     "end_chester": {
       "them": [
-        "i went tonight. ms pruitt said 'he was waiting.' he was at the gate. he did 4 trees. FOUR. he stopped at the 4th and lay down and looked at me like 'ok. now we both know.' i sat on the grass and cried and he sniffed my shoe. malten thats the best thing thats ever happened to me and its not about anyone",
+        "i went tonight. ms pruitt said 'he was waiting.' he was at the gate. he did 4 trees. FOUR. he stopped at the 4th and lay down and looked at me like 'ok. now we both know.' i sat on the grass and cried and he sniffed my shoe. {you} thats the best thing thats ever happened to me and its not about anyone",
         "leonard stays broken. im selling cds. $3. i have 14. i need 33 more. im making 33 more tonight. 'songs for old dogs (all proceeds: leonard's belt).' in the leopard case. ill write 'chester approves' on every one. its a lie. he hasnt heard them. he'll hear them"
       ],
       "end": true,
@@ -212,7 +212,7 @@
     "end_chaos": {
       "them": [
         "ok the mall is weird now. dennis took a picture of chester with the carousel. denise gave chester a pretzel (plain, no salt, 'for the dogs heart'). the whole food court clapped when he did the 3rd tree. he lay down. they clapped for THAT too. hes famous. i dont know how to be a coworker to a famous dog",
-        "denise said 'saturdays 10 to 5, dog under the table, and he gets a name tag.' it says CHESTER (MALL MASCOT). he doesnt know. hes asleep. i start saturday. and henry is going to lose his mind. malten, ive never gotten a job by bringing a 13 year old dog to a pretzel stand. it turns out its the only way"
+        "denise said 'saturdays 10 to 5, dog under the table, and he gets a name tag.' it says CHESTER (MALL MASCOT). he doesnt know. hes asleep. i start saturday. and henry is going to lose his mind. {you}, ive never gotten a job by bringing a 13 year old dog to a pretzel stand. it turns out its the only way"
       ],
       "end": true,
       "effects": [

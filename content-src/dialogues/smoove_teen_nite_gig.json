@@ -2,7 +2,7 @@
  "id": "smoove_teen_nite_gig",
  "with": "smoove",
  "opener": [
-  "YO YO YO MALTEN. sit down. are u sitting. VINCE BOOKED ME. promoter_vince. TEEN NITE at the roller rink. FRIDAY. its a REAL GIG. the flyer says DJ SMOOVE (LIVE). LIVE malten. it says LIVE",
+  "YO YO YO {you}. sit down. are u sitting. VINCE BOOKED ME. promoter_vince. TEEN NITE at the roller rink. FRIDAY. its a REAL GIG. the flyer says DJ SMOOVE (LIVE). LIVE {you}. it says LIVE",
   "20 minutes. a real booth. a real mic (NOT radioshack). first 50 ppl in r free. vince says its gonna be HUGE. vince says that about everything but THIS time i think he means it",
   "ok so. small problem. SMALL. i told like 6 ppl they r on the closer. 'feat. everyone.' track 10. and the closer is 3 minutes. and i said yes 2 EVERYBODY. i need help. be honest. i can take it. (i cant)"
  ],
@@ -58,7 +58,7 @@
   "a3_mom": {
    "them": [
     "ok so i played it 4 my mom in the kitchen. she was making tacos. she turned off the stove. she SAT DOWN",
-    "she said 'thats our van.' i said yeah. she said 'i said turn it down last time cuz i didnt want u 2 see my face.' malten. my MOM",
+    "she said 'thats our van.' i said yeah. she said 'i said turn it down last time cuz i didnt want u 2 see my face.' {you}. my MOM",
     "she said shes coming friday. front row. and she's gonna click her tongue like the turn signal. she practiced. in the kitchen. it was PERFECT"
    ],
    "choices": [
@@ -113,7 +113,7 @@
   },
   "a3_flatter": {
    "them": [
-    "a TEN. a 10?!?! no notes?? malten. ok. im printing that. im laminating it",
+    "a TEN. a 10?!?! no notes?? {you}. ok. im printing that. im laminating it",
     "...hm. wait. i have like 3 notes. i HAVE notes. does that mean ur lying or im bad at notes. ur the nicest person on this site and i dont trust a single 10"
    ],
    "choices": [
@@ -257,7 +257,7 @@
   "c2_horn": {
    "them": [
     "AIR HORN BETWEEN EVERY VERSE. like a 6 act play. act 1 horn act 2 horn. i own 2 air horns. 1 is for emergencies. this IS an emergency. a good one",
-    "but malten. what if its too much. like what if its just noise w/ a horn. be honest. is this the best idea ive had or the loudest"
+    "but {you}. what if its too much. like what if its just noise w/ a horn. be honest. is this the best idea ive had or the loudest"
    ],
    "choices": [
     {
@@ -272,7 +272,7 @@
   },
   "m_catch": {
    "them": [
-    "VINCE JUST CALLED. ok. so. 3 things. 1) NO AIR HORNS. rink insurance. a real rule. a REAL one. malten the real rule is no air horns",
+    "VINCE JUST CALLED. ok. so. 3 things. 1) NO AIR HORNS. rink insurance. a real rule. a REAL one. {you} the real rule is no air horns",
     "2) i checked the RSVPs. its 14. fourteen. the first 50 r free and only 14 ppl r coming. vince said 'its gonna be HUGE' and then he said 'its gonna be 14.' he said it like a prayer",
     "3) i go on right after couples skate. like AFTER the part where they turn the lights down and play the slow songs. ok. so. what do i DO. who am i w/o the horn"
    ],
@@ -308,7 +308,7 @@
   "m_rsvp": {
    "them": [
     "ok i texted all 14. results: 4 r my cousins. 1 is vinces mom (she RSVPd 4 him). 1 is chad. 1 is nikki (she said 'UNTZ'). 1 is my mom (she said 'ill be there at 6 im driving'). and 6 r ppl ive never met who just said 'ok.'",
-    "6 ppl i never met said ok. malten thats the most ppl who ever said ok 2 me. thats 6 ppl coming 2 hear me and they dont even know my brand. they dont know about the horn"
+    "6 ppl i never met said ok. {you} thats the most ppl who ever said ok 2 me. thats 6 ppl coming 2 hear me and they dont even know my brand. they dont know about the horn"
    ],
    "choices": [
     {
@@ -324,7 +324,7 @@
   "end_van_beat": {
    "them": [
     "FRIDAY. 14 ppl. well 17, the cousins brought 3 more. i opened w/ van beat. no horn. no features. my mom was in the front row and at the second verse she started doing the turn signal w/ her tongue. i didnt tell her 2. she just KNEW. she was on beat the whole time",
-    "when it ended nobody screamed. they just kinda... clapped. real clapping. chad clapped 4 like 4 minutes. vince said 'HUGE.' it was 17. it was HUGE. malten. i think im a real one. dont tell nikki i said real. she'll nightcore it"
+    "when it ended nobody screamed. they just kinda... clapped. real clapping. chad clapped 4 like 4 minutes. vince said 'HUGE.' it was 17. it was HUGE. {you}. i think im a real one. dont tell nikki i said real. she'll nightcore it"
    ],
    "end": true,
    "effects": [

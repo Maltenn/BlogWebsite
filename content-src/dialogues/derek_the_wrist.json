@@ -2,7 +2,7 @@
  "id": "derek_the_wrist",
  "with": "derek",
  "opener": [
-  "malten. hypothetical. a guy has a rematch against his mortal enemy on saturday. the guy has a wrist the size of a small football. the guy is me. hypothetically",
+  "{you}. hypothetical. a guy has a rematch against his mortal enemy on saturday. the guy has a wrist the size of a small football. the guy is me. hypothetically",
   "tuesday. the safeway. i put my hand out. IN FRONT OF HENRY. lesson 1 of my entire teaching career is never put your hand out. i've said it 9 times. i've DEMONSTRATED it",
   "the peas stopped working. they're just peas now. don't say 'doctor' and don't say 'tell my mom,' she works nights and she'll see it in 4 seconds. i need a third option"
  ],
@@ -250,7 +250,7 @@
   "d_truce": {
    "them": [
     "ok. the real version. no hose, no napkin. 'mike the rematch is my favorite thing about the safeway.' typed. not sent. my thumb is shaking and it's the GOOD hand",
-    "wait. if i'm being honest with mike i have to be honest about the other thing. malten i have his shoe. the one from june. it flew into the planter at the mall gap, i grabbed it, i said i'd give it back, and then i just. didn't. it's on my shelf",
+    "wait. if i'm being honest with mike i have to be honest about the other thing. {you} i have his shoe. the one from june. it flew into the planter at the mall gap, i grabbed it, i said i'd give it back, and then i just. didn't. it's on my shelf",
     "and there's a birthday card in my backpack with a bush on it. it was supposed to be a MEAN card. it came out nice"
    ],
    "choices": [
@@ -355,7 +355,7 @@
   "end_truce": {
    "them": [
     "saturday. i held the camcorder on a milk crate. he did one trick, a small one, and landed it in the bush. i said 'nice one.' out loud. for real. he looked WORRIED, which is the correct response, everybody does. then he said it back",
-    "the card is on his wall now. he said 'it's a good bush.' it IS a good bush. malten. i don't think the reckoning is over. i think it just got a better name"
+    "the card is on his wall now. he said 'it's a good bush.' it IS a good bush. {you}. i don't think the reckoning is over. i think it just got a better name"
    ],
    "end": true,
    "effects": [
@@ -388,7 +388,7 @@
      "type": "dm",
      "from": "sk8rboi",
      "delay": 120,
-     "text": "yo malten. derek just handed me my shoe like it was a normal thing and said 'nice one' and i almost fell off the curb. did u have something to do with this?? what did u SAY to him"
+     "text": "yo {you}. derek just handed me my shoe like it was a normal thing and said 'nice one' and i almost fell off the curb. did u have something to do with this?? what did u SAY to him"
     }
    ]
   },

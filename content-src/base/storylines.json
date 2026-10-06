@@ -1,0 +1,896 @@
+[
+  {
+    "id": "its_complicated",
+    "title": "it's complicated",
+    "cast": [
+      "lexi",
+      "nate",
+      "kittyxcore",
+      "brittany",
+      "greg",
+      "josh",
+      "misery",
+      "tony"
+    ],
+    "beats": [
+      {
+        "from": "lexi",
+        "type": "status",
+        "text": "leopardluvr_lexi [is single. dont ask. srsly dont.]",
+        "wait": 1
+      },
+      {
+        "from": "nate",
+        "type": "status",
+        "text": "n3on_nate [some people say they care n then dont even txt back. whatever. its cool.]",
+        "wait": 1
+      },
+      {
+        "from": "kittyxcore",
+        "type": "comment",
+        "text": "um. she txted u like 6 times nate. i was THERE. i watched her do it on her razr =/",
+        "ref": 1,
+        "wait": 1
+      },
+      {
+        "from": "brittany",
+        "type": "wall",
+        "to": "lexi",
+        "text": "omg lex r u ok?? call me!! also ur SO much better off, he posts 'some people' statuses like its his job. moving u up to my #2 (kayla's #1 u know how it is). xoxo",
+        "wait": 1
+      },
+      {
+        "from": "greg",
+        "type": "comment",
+        "text": "can u guys not do this the week before our show. nate practice is at 7. bring ur amp. bryan is already not txting back i cant have 2 of u",
+        "ref": 1,
+        "wait": 1
+      },
+      {
+        "from": "josh",
+        "type": "wall",
+        "to": "nate",
+        "text": "hey man. no pressure at all but im on aim till like 11 if u wanna talk. or we can just play halo n u can vent between rounds. thats what i do. its chill",
+        "wait": 2
+      },
+      {
+        "from": "lexi",
+        "type": "status",
+        "text": "leopardluvr_lexi [is in a relationship <3 <3 <3]",
+        "wait": 2
+      },
+      {
+        "from": "misery",
+        "type": "comment",
+        "text": "WAIT. it says in a relationship again?? i literally deleted him from my top 8 4 u. like an hour ago. rawr i guess",
+        "ref": 6,
+        "wait": 1
+      },
+      {
+        "from": "nate",
+        "type": "bulletin",
+        "text": "ok everyone can stop. we talked. its complicated but its fine. no more comments plz. also the 'some people' thing was about my mom (she said shed txt when she got off work n forgot). ....and lexi. but mostly my mom. amp is at gregs.",
+        "subject": "read this. everyone.",
+        "wait": 1
+      },
+      {
+        "from": "lexi",
+        "type": "dm",
+        "to": "you",
+        "text": "ok {you} u have to tell me if im crazy. he posted 'some people' n i KNOW it was about me but then he said it was about his mom?? is that a thing ppl do. can it be about 2 people. dont tell britt i asked u",
+        "wait": 1
+      },
+      {
+        "from": "josh",
+        "type": "bulletin",
+        "text": "they r fine. i talked to both of them (separately, on aim, at the same time, which was a lot). also youth group is thurs at 7. u dont have to be religious i swear, theres pizza n a halo setup in the basement. nate said maybe. thats a start",
+        "subject": "everyone chill (also thurs)",
+        "wait": 2
+      },
+      {
+        "from": "lexi",
+        "type": "photo",
+        "text": "me n nate at the beach (we're the 2 on the left. trust me). we're ok. its not complicated anymore its just 'in a relationship' n its staying that way (nate). dont comment anything dumb <3",
+        "src": "assets/posts/photo_sunset.jpg",
+        "wait": 2
+      },
+      {
+        "from": "tony",
+        "type": "comment",
+        "text": "hey ;) jk jk jk. congrats u guys srsly. capri sun toast at lunch 2moro. 0 for 55 btw, lexi's cousin said no",
+        "ref": 11,
+        "wait": 1
+      },
+      {
+        "from": "brittany",
+        "type": "comment",
+        "text": "ok i take back what i said. MOSTLY. ur still my #2 lex. nate ur on thin ice but the pic is cute. xoxo",
+        "ref": 11,
+        "wait": 1
+      }
+    ]
+  },
+  {
+    "id": "top_8_gate",
+    "title": "TOP 8 GATE",
+    "cast": [
+      "kittyxcore",
+      "brittany",
+      "kayla",
+      "paige",
+      "tony",
+      "todd",
+      "misery"
+    ],
+    "beats": [
+      {
+        "from": "kittyxcore",
+        "type": "status",
+        "text": "xXkittyxcoreXx [just changed her top 8. dont read into it =) ]",
+        "wait": 1
+      },
+      {
+        "from": "brittany",
+        "type": "wall",
+        "to": "kittyxcore",
+        "text": "wow. nice top 8. #5 tho?? behind STATIC PROPHECY?? a BAND?? thats not even a person. ok. cool. xoxo",
+        "wait": 1
+      },
+      {
+        "from": "kittyxcore",
+        "type": "comment",
+        "text": "its not a big deal britt i just changed it up!! todd must have done it lol. also greg asked me 2 put them there 4 the show. its promo",
+        "ref": 1,
+        "wait": 1
+      },
+      {
+        "from": "kayla",
+        "type": "wall",
+        "to": "brittany",
+        "text": "saw it. moved her to #7 on mine in solidarity. ur #1 forever. well. #2. bryan. u know. (hes single on his page again btw so maybe #1 by friday)",
+        "wait": 1
+      },
+      {
+        "from": "brittany",
+        "type": "bulletin",
+        "text": "im not doing pc4pc with CERTAIN ppl until certain ppl remember who did their eyeliner for the 8th grade dance. u know who u are. everyone ELSE comment my new pics, all 12, i just put them up <3 xoxo",
+        "subject": "pc4pc is CLOSED",
+        "wait": 1
+      },
+      {
+        "from": "paige",
+        "type": "wall",
+        "to": "brittany",
+        "text": "print screened. saved 2 my desktop. for the record. this is going in the album. pics or it didnt happen n it happened",
+        "wait": 1
+      },
+      {
+        "from": "tony",
+        "type": "wall",
+        "to": "kittyxcore",
+        "text": "hey ;) so i heard u have an opening in ur top 8... jk jk jk. but srsly u should put britt back cuz she cried at lunch. wait was that a secret. dont tell her i said that. ok bye",
+        "wait": 2
+      },
+      {
+        "from": "brittany",
+        "type": "comment",
+        "text": "TONY. I DID NOT CRY. i had something in my eye. its called GLITTER. its from the eyeliner SOMEONE taught me how to do. xoxo",
+        "ref": 6,
+        "wait": 1
+      },
+      {
+        "from": "tony",
+        "type": "wall",
+        "to": "brittany",
+        "text": "ok new plan. i put BOTH of u in my top 8 at #1. tied. u cant be mad at a tie. todd can u make a tie. i have capri suns",
+        "wait": 1
+      },
+      {
+        "from": "todd",
+        "type": "comment",
+        "text": "technically no, the top 8 is an ordered array so two #1s would break the page. BUT i could add a 'tie' flag. gimme a weekend. the server is my laptop so if it goes down thats why",
+        "ref": 8,
+        "wait": 1
+      },
+      {
+        "from": "brittany",
+        "type": "dm",
+        "to": "you",
+        "text": "{you}. i need u to be honest n i need u to be FAST. #5. FIVE. i was there when she got her sidekick. do i just take down my pics so she cant comment them. is that too far. thats too far right. xoxo",
+        "wait": 1
+      },
+      {
+        "from": "kittyxcore",
+        "type": "bulletin",
+        "text": "i moved u cuz u didnt pc my new pics for 4 DAYS and i was mad and i didnt wanna say it so i just. moved u. it was dumb. ur back at #1. todd is #2 (sorry todd). pc4pc? i'll do all 12 of urs. even the blurry ones. even the one w/ the flash =]",
+        "subject": "ok. read this britt. everyone else can read it 2 i guess",
+        "wait": 2
+      },
+      {
+        "from": "brittany",
+        "type": "comment",
+        "text": "...all 12? ok. ok FINE. doing urs now. ur so annoying. ily. xoxo (the flash one is art)",
+        "ref": 11,
+        "wait": 1
+      },
+      {
+        "from": "misery",
+        "type": "wall",
+        "to": "kittyxcore",
+        "text": "can we go back 2 normal now. mall on sat. spongebob hats. paige is bringing the fisheye. dont be late. rawr",
+        "wait": 1
+      }
+    ]
+  },
+  {
+    "id": "pc4pc_debt",
+    "title": "pc4pc debt",
+    "cast": [
+      "paige",
+      "chad",
+      "banana",
+      "wes",
+      "riley",
+      "sk8rboi",
+      "derek",
+      "kittyxcore",
+      "meg"
+    ],
+    "beats": [
+      {
+        "from": "paige",
+        "type": "photo",
+        "text": "NEW PICS. 23 of them. kevin at the arcade, fisheye, hes a blur b/c he wouldnt stop for me. cross processed. pc4pc means ALL 23 not 'the good ones'. i keep a list. u know i keep a list",
+        "src": "assets/posts/photo_arcade.jpg",
+        "wait": 1
+      },
+      {
+        "from": "chad",
+        "type": "comment",
+        "text": "Great shot paige! The LIGHTING is really good and u can Tell kevin is having Fun. Going to do the other 22 now!",
+        "ref": 0,
+        "wait": 1
+      },
+      {
+        "from": "paige",
+        "type": "bulletin",
+        "text": "commented: chad (23/23, in 11 min). owe me: kittyxcore (0/23. 'busy w/ brittany'). riley (1/23 and it just said rawr. doesnt count). sk8rboi (0). derek (0). dave (0 but says he 'hacked' the count. he did not). tony ('hey ;) jk' on all 23. doesnt count). banana (typed BANANA on 4)",
+        "subject": "PC4PC TALLY (updated, documented)",
+        "wait": 1
+      },
+      {
+        "from": "banana",
+        "type": "comment",
+        "text": "I HAVE BEEN AWAKE 41 HOURS AND I COMMENTED EVERY PIC I COULD SEE. THEY ALL SAY BANANA. THATS A COMMENT. THAT IS A WORD. BANANA.",
+        "ref": 2,
+        "wait": 1
+      },
+      {
+        "from": "chad",
+        "type": "status",
+        "text": "chad_baseball [is Commenting paiges pics AGAIN because she posted 6 more. Its fine. I Like them. The angles are Interesting.]",
+        "wait": 2
+      },
+      {
+        "from": "paige",
+        "type": "photo",
+        "text": "6 more. diner. fisheye. the mug is the subject dont ask abt the person. tally is now 29. chad has already commented this one. i posted it 40 seconds ago. i am documenting that too",
+        "src": "assets/posts/photo_coffee.jpg",
+        "wait": 1
+      },
+      {
+        "from": "chad",
+        "type": "comment",
+        "text": "Beautiful. The mug is REALLY in focus and the Blurry part is also good. Keep it up paige!! 29/29",
+        "ref": 5,
+        "wait": 1
+      },
+      {
+        "from": "wes",
+        "type": "comment",
+        "text": "frame data: 29 comments in 4 min 2 sec = 8.3s per comment. thats faster than my wavedash out of shield. chad's got frame-perfect pc4pc. respect.",
+        "ref": 5,
+        "wait": 1
+      },
+      {
+        "from": "riley",
+        "type": "comment",
+        "text": "CHAD IS A MACHINE. RAWR XD. ok ok fine im doing all 29 right now for real... paige why is every single pic sideways. random!! but srsly why",
+        "ref": 5,
+        "wait": 1
+      },
+      {
+        "from": "sk8rboi",
+        "type": "wall",
+        "to": "paige",
+        "text": "did all 29. some of em twice cuz my camcorder tapes all look the same so i get it. u got a good eye. also derek only did 4 n hes telling ppl he did 29",
+        "wait": 1
+      },
+      {
+        "from": "derek",
+        "type": "comment",
+        "text": "i did a bigger comment than sk8rboi. one big one. quality over quantity. thats a bigger gap",
+        "ref": 9,
+        "wait": 1
+      },
+      {
+        "from": "paige",
+        "type": "bulletin",
+        "text": "pc4pc closed. chad wins, 29/29, sincere, no repeats, i checked. new rule: comment ALL my pics n u get a free sideways pic of urself. chad ur first, meet me at the diner. kittyxcore: still 0/29. im just saying. its documented. also meg says chad did all 200 of her horse pics so",
+        "subject": "FINAL TALLY + new rule",
+        "wait": 2
+      },
+      {
+        "from": "kittyxcore",
+        "type": "comment",
+        "text": "I WAS DOING PC4PC W/ BRITTANY. it was a PEACE TREATY. it was in a BULLETIN. omg im doing urs right now. 1/29. 2/29. ok this is a lot",
+        "ref": 11,
+        "wait": 1
+      },
+      {
+        "from": "meg",
+        "type": "comment",
+        "text": "he really did!! all 200!! he said nice things about each horse BY NAME. everyone should be more like chad =) also paige come take a sideways pic of Buttercup",
+        "ref": 11,
+        "wait": 1
+      }
+    ]
+  },
+  {
+    "id": "who_invented_rawr",
+    "title": "who invented rawr",
+    "cast": [
+      "misery",
+      "riley",
+      "kittyxcore",
+      "epic",
+      "randy",
+      "raven",
+      "darkangel",
+      "zorp",
+      "patrick"
+    ],
+    "beats": [
+      {
+        "from": "misery",
+        "type": "status",
+        "text": "xXmisery_sixXx [rawr = i love u in dinosaur. i said it FIRST. 8th grade. ask anyone. its in my first video ever (coming soon)]",
+        "wait": 1
+      },
+      {
+        "from": "riley",
+        "type": "comment",
+        "text": "UM. its literally in my NAME. rawr_xd_riley. i have said rawr XD since like forever (2005). random!! but also srsly. what.",
+        "ref": 0,
+        "wait": 1
+      },
+      {
+        "from": "misery",
+        "type": "wall",
+        "to": "riley",
+        "text": "ur name says rawr. it doesnt say 'in dinosaur'. the DINOSAUR part is mine. i have a shirt. i MADE the shirt. w/ puffy paint. ask kitty",
+        "wait": 1
+      },
+      {
+        "from": "riley",
+        "type": "bulletin",
+        "text": "ok so. rawr means i love u in dinosaur. i said it 2 a guy at the food court in front of like 9 ppl n he said 'what' n i said 'its dinosaur' n that was IT. misery was NOT there she was at claires. thats the origin. repost this or a dinosaur eats ur tacos XD",
+        "subject": "THE TRUTH ABOUT RAWR (repost if u care abt truth)",
+        "wait": 1
+      },
+      {
+        "from": "misery",
+        "type": "bulletin",
+        "text": "i was at claires buying the DINOSAUR EARRINGS. for the RAWR. do the math riley. also my first video ever is up tomorrow n it explains EVERYTHING so maybe wait. rawr (in the original sense)",
+        "subject": "re: 'the truth' lol ok",
+        "wait": 1
+      },
+      {
+        "from": "kittyxcore",
+        "type": "comment",
+        "text": "i am NOT picking a side!! (its misery. shes in my top 8. sorry riley. comment my new pics tho =])",
+        "ref": 4,
+        "wait": 1
+      },
+      {
+        "from": "epic",
+        "type": "comment",
+        "text": "lol neither of u invented it. it was on ytmnd in like 2004. also ur mom invented it. YOU FAIL IT. (randy dont u dare)",
+        "ref": 3,
+        "wait": 1
+      },
+      {
+        "from": "randy",
+        "type": "comment",
+        "text": "chuck norris invented rawr. then he roundhouse kicked a dinosaur. PIE. numa numa. ...ok fine that was epic's bit but i said it BETTER so",
+        "ref": 3,
+        "wait": 1
+      },
+      {
+        "from": "raven",
+        "type": "comment",
+        "text": "Watching two people fight over who coined a dinosaur noise is the most scene thing I have ever witnessed. I want that on the record: I am not one of you. (For the record, it was charming. The first time. Riley, your food court story is actually kind of sweet. Don't tell anyone I said that.)",
+        "ref": 4,
+        "wait": 2
+      },
+      {
+        "from": "darkangel",
+        "type": "comment",
+        "text": "11:11. i wished for this to end. it did not. ~*~ somewhere a dinosaur weeps glitter into the void ~*~ (raven ur poem last night was ok i guess)",
+        "ref": 4,
+        "wait": 1
+      },
+      {
+        "from": "zorp",
+        "type": "bulletin",
+        "text": "Greetings. I have been observing this dispute with typical human interest and a normal amount of eyes. I must disclose: 'rawr' is a very old word where I am from (Ohio). It means 'greetings, normal human.' It does not mean love. It does not involve dinosaurs. The dinosaurs were not consulted. I apologize for any confusion I have caused since 2005 by saying it to all of you. Please resume normal human activities. It is 3:33 AM, which is a normal time.",
+        "subject": "CLARIFICATION FROM A NORMAL HUMAN (3:33 AM)",
+        "wait": 2
+      },
+      {
+        "from": "misery",
+        "type": "comment",
+        "text": "...ok so neither of us. rawr zorp. (greetings normal human) thats so much worse lol. riley mall on sat? bring the shirt, ill bring the earrings, paige can shoot it",
+        "ref": 10,
+        "wait": 1
+      },
+      {
+        "from": "riley",
+        "type": "comment",
+        "text": "RAWR XD ZORP. wait. that means ive been saying 'greetings normal human' 2 everyone since like 2005. thats so random!! im keeping it. misery yes sat. tacos first tho",
+        "ref": 10,
+        "wait": 1
+      },
+      {
+        "from": "patrick",
+        "type": "comment",
+        "text": "i love dinosaurs. and misery. and riley. and zorp. and ohio. and my rock. rawr (greetings normal human)",
+        "ref": 10,
+        "wait": 1
+      }
+    ]
+  },
+  {
+    "id": "static_prophecy_drama",
+    "title": "STATIC PROPHECY drama",
+    "cast": [
+      "bryan",
+      "greg",
+      "kayla",
+      "kevin",
+      "chad",
+      "paige",
+      "josh",
+      "smoove",
+      "lucas"
+    ],
+    "beats": [
+      {
+        "from": "bryan",
+        "type": "status",
+        "text": "idk anymore. some things arent worth it. dont ask.",
+        "wait": 1
+      },
+      {
+        "from": "kayla",
+        "type": "comment",
+        "text": "babe??? whats wrong. i called u twice and txted 3 times. u never txt back. is this about the band or about me bc if its about me my status is STILL in a relationship so. 'i'm not okay (i promise)' is my status now btw. bc of this.",
+        "ref": 0,
+        "wait": 1
+      },
+      {
+        "from": "greg",
+        "type": "bulletin",
+        "text": "Static Prophecy is looking for a drummer. effective now i guess. requirements: own kit (or access 2 one), can play 4/4 AND 7/8 (we have one song in 7/8, its called Fractured Signal, its our best one), can txt back within 24 hrs. practice tues/thurs in my garage. show is FRIDAY so like. soon. do NOT ask if we're screamo. we're post-hardcore w/ synth. thx. -greg",
+        "subject": "SEEKING DRUMMER (serious inquiries only)",
+        "wait": 1
+      },
+      {
+        "from": "kevin",
+        "type": "wall",
+        "to": "greg",
+        "text": "yo saw ur bulletin. i dont have a kit but i have a DDR pad and 2 PERFECT combos on max 300 (heavy). rhythm is rhythm right?? can i audition thurs. ill bring the pad, a ps2, and my sweatband. i can do 7/8 if u count it out loud",
+        "wait": 1
+      },
+      {
+        "from": "chad",
+        "type": "comment",
+        "text": "KEVIN thats actually AWESOME dude. rhythm IS rhythm. greg LET him try. go STATIC PROPHECY. also bryan if ur reading this u were GOOD man, come back, no pressure",
+        "ref": 3,
+        "wait": 1
+      },
+      {
+        "from": "paige",
+        "type": "photo",
+        "text": "static prophecy tryouts, thurs, gregs garage. this is the amp. kevin is out of frame stomping a dance pad on the concrete. shot it tilted on purpose. pics or it didnt happen and it DID happen. fisheye lens ftw",
+        "src": "assets/posts/photo_guitar.jpg",
+        "wait": 2
+      },
+      {
+        "from": "greg",
+        "type": "status",
+        "text": "kevin auditioned on a ddr pad. it was 4/4 the whole time. he did a backflip during the bridge of fractured signal. i dont know what to say. show is still friday. i dont have a drummer. i have a kevin.",
+        "wait": 1
+      },
+      {
+        "from": "greg",
+        "type": "dm",
+        "to": "you",
+        "text": "ok u have to tell me if im crazy. kevin wants 2 be in the band. permanently. on the pad. as a 'percussion element'. and bryan hasnt txted back in 4 days which for bryan is normal but STILL. do i just play friday with a ddr pad. be honest. i can take it",
+        "wait": 1
+      },
+      {
+        "from": "josh",
+        "type": "wall",
+        "to": "bryan",
+        "text": "hey man. not tryna get in the middle of anything. i talked 2 greg and he misses u, he just wont say it in a bulletin. also theres pizza at youth group thurs and nobody will make u talk about the band. u can just eat. also i saw ur 'idk anymore' and wanted 2 say hi. thats it. hi.",
+        "wait": 1
+      },
+      {
+        "from": "bryan",
+        "type": "status",
+        "text": "ok. im back. i was never gone. the drums were in the garage the whole time. dont make it a thing. show friday. (sorry greg) (sorry kayla i will txt u back i swear)",
+        "wait": 1
+      },
+      {
+        "from": "smoove",
+        "type": "bulletin",
+        "text": "YOOOO friday nite. gregs garage. 7pm sharp (8). STATIC PROPHECY is BACK w/ bryan on drums!! kevin is doing a DDR pad solo during the break (greg said 30 seconds MAX). i'll be there w/ my laptop playin a beat b4 they go on. new track on my music page feat. everyone (greg u r on it, u just dont know yet). BRING A FRIEND. BRING 2. tell ur mom. she can come. -dj smoove",
+        "subject": "STATIC PROPHECY LIVE FRIDAY!!! gregs garage 7pm FEAT DJ SMOOVE (on hype)",
+        "wait": 1
+      },
+      {
+        "from": "lucas",
+        "type": "comment",
+        "text": "'in the end it doesnt even matter.' but it does matter. the drums are the heartbeat. u cant have a prophecy w/o a heartbeat. thats not a lyric i just thought of it. welcome back man",
+        "ref": 9,
+        "wait": 1
+      },
+      {
+        "from": "greg",
+        "type": "status",
+        "text": "show happened. 23 ppl in a garage built 4 one car. kevins 30 second solo went 90 seconds and nobody stopped him. found a note taped 2 the garage door this morning from the neighbors. it just says 'please.' thats the whole note. next show is in 2 weeks.",
+        "wait": 2
+      },
+      {
+        "from": "kayla",
+        "type": "comment",
+        "text": "bryan played SO good. also he txted me back after the show 4 the first time in 4 days so music is good 4 him. status is back 2 'in a relationship' btw in case anyone was watching. (u were)",
+        "ref": 12,
+        "wait": 1
+      }
+    ]
+  },
+  {
+    "id": "layout_theft",
+    "title": "layout theft",
+    "cast": [
+      "liz",
+      "kittyxcore",
+      "brittany",
+      "dave",
+      "lexi",
+      "misery",
+      "josh",
+      "paige"
+    ],
+    "beats": [
+      {
+        "from": "kittyxcore",
+        "type": "bulletin",
+        "text": "ok so i have a NEW LAYOUT its pink n black w/ hello kitty skulls and the extended network says 'rawr =^.^=' and my top 8 is in a heart shape now. ALSO 14 new pics from the mall w/ lexi n misery (we had hats on lol). pc4pc!!! comment ALL of them or dont bother. love u guys xoxo -kitty",
+        "subject": "NEW LAYOUT + 14 NEW PICS!!! comment them ALL",
+        "wait": 1
+      },
+      {
+        "from": "kittyxcore",
+        "type": "photo",
+        "text": "me lexi n misery at the mall in the hats from that kiosk by the pretzel place. im spongebob obvi. misery is domo. lexi is patrick (sorry patrick lol not u). pc4pc!! who wants 2 own this pic",
+        "src": "assets/pfp/post_trio_hats.jpg",
+        "wait": 1
+      },
+      {
+        "from": "liz",
+        "type": "status",
+        "text": "hm. interesting. someone has a very familiar layout today. right down 2 the div ids. except the credit line is gone. thats all im gonna say. for now.",
+        "wait": 1
+      },
+      {
+        "from": "brittany",
+        "type": "comment",
+        "text": "cuuuute hats!! but um kitty ur page looks EXACTLY like the one liz made me in june. like exactly. the heart top 8 was MINE. just saying. still commenting all 14 bc pc4pc is pc4pc. xoxo",
+        "ref": 1,
+        "wait": 1
+      },
+      {
+        "from": "liz",
+        "type": "bulletin",
+        "text": "i dont usually do this. but if u take a layout off my page, delete the line that says 'layout by liz (c) 2006', swap the background url 2 a hello kitty, and post it like u made it: i know. the div overlay has my initials in the class names. .lz-top .lz-friends .lz-comments. u didnt even rename them. there was a line in the code that said DO NOT REMOVE CREDITS. in caps. im not mad im just. ok im a little mad. it took me 4 hours in notepad.",
+        "subject": "PSA: read the comments in the code",
+        "wait": 1
+      },
+      {
+        "from": "dave",
+        "type": "wall",
+        "to": "liz",
+        "text": "y0 l1z. i r4n a d1ff 0n ur c0d3 vs h3rs (i c0pied b0th int0 n0t3pad and l00ked r3ally h4rd). 100% m4tch. 3xcept sh3 f0rg0t t0 cl0se a t4bl3 t4g s0 h3r c0mm3nt b0x is br0k3n. th3 c0d3 d0esnt li3. i h4v3 s4v3d th3 3v1d3nc3 t0 a fl0ppy. th1s is wh4t i d0.",
+        "wait": 1
+      },
+      {
+        "from": "kittyxcore",
+        "type": "status",
+        "text": "some ppl need 2 get over it. its just html. anyone can right click view source. not naming names.",
+        "wait": 1
+      },
+      {
+        "from": "lexi",
+        "type": "comment",
+        "text": "kitty i love u but u told me u MADE it. and i copied urs so now my page is weird too. :( also nate said the same thing about the credits but i dont care what nate says rn bc we r off again. as of tues.",
+        "ref": 6,
+        "wait": 1
+      },
+      {
+        "from": "misery",
+        "type": "comment",
+        "text": "rawr (it means i love u) but also just credit her its like ONE line lol. also ur comment box is broken, i tried 2 pc u 3 times and it ate them. so no pc4pc 4 u until its fixed",
+        "ref": 6,
+        "wait": 1
+      },
+      {
+        "from": "liz",
+        "type": "dm",
+        "to": "you",
+        "text": "ok u have to tell me if im crazy. its ONE line. 'layout by liz'. thats all i ask 4 like 4 hours of work. im not gonna cry about it. but do i post the side by side screenshot or is that 2 much. be honest. i have it saved.",
+        "wait": 1
+      },
+      {
+        "from": "josh",
+        "type": "wall",
+        "to": "kittyxcore",
+        "text": "hey! not here 2 pile on. just saying liz is actually really cool and if u ask her nicely she will prob make u something WAY better than the copy. like custom. then ppl ask 'who did ur layout' and u say liz and everyone wins. also youth group thurs if ur bored. its chill. theres pizza.",
+        "wait": 1
+      },
+      {
+        "from": "kittyxcore",
+        "type": "wall",
+        "to": "liz",
+        "text": "ok. fine. im sorry. it was a really good layout and i wanted it and i didnt think ud notice (i know. u MADE it. ur gonna notice). i put the credit line back. ALSO can u plz fix my comment box its been broken 4 3 days and im losing pcs. i'll pc u 4ever. =^.^=",
+        "wait": 1
+      },
+      {
+        "from": "liz",
+        "type": "status",
+        "text": "making xXkittyxcoreXx a CUSTOM layout. hello kitty skulls, pink/black checker, a comment box that actually works. credit line stays. this is how it shd have gone from the start. also she asked nicely which counts 4 a lot.",
+        "wait": 2
+      },
+      {
+        "from": "paige",
+        "type": "comment",
+        "text": "documented the whole thing in screenshots btw. tilted. pics or it didnt happen. it happened. also liz can u do mine next. i want the extended network 2 be a fisheye pic of my shoes.",
+        "ref": 12,
+        "wait": 1
+      }
+    ]
+  },
+  {
+    "id": "real_goth_vs_glitter_goth",
+    "title": "real goth vs glitter goth",
+    "cast": [
+      "raven",
+      "darkangel",
+      "tina",
+      "vinyl_witch",
+      "patrick",
+      "zorp"
+    ],
+    "beats": [
+      {
+        "from": "raven",
+        "type": "photo",
+        "text": "New default. No glitter, no countdown, no layout. Just black. Discovered that 'goth' on this site now means sparkles and a wish at 11:11. Bauhaus is spinning in a grave they have not dug yet. We are not the same.",
+        "src": "assets/posts/photo_kristengoth.jpg",
+        "wait": 1
+      },
+      {
+        "from": "darkangel",
+        "type": "status",
+        "text": "~*~ 11:11 ~*~ some ppl think darkness has 2 be boring. mine sparkles. wrote a poem about it. its called 'glitter is just tiny broken glass' n its on my blog. give kudos. u know who u are.",
+        "wait": 1
+      },
+      {
+        "from": "raven",
+        "type": "bulletin",
+        "text": "'Velvet Hours' / I do not need the clock to tell me when to wish. / I have worn this black since before your bangs were flat. / The candle does not sparkle. It burns. / There is a difference, and it is everything. / — r.n.",
+        "subject": "A poem, since apparently we are doing this.",
+        "wait": 1
+      },
+      {
+        "from": "tina",
+        "type": "comment",
+        "text": "OMG ok. i am going 2 score these bc someone has 2. raven: 8/10 darkness, 4/10 sparkle, +1 for candles (edward doesnt need candles but he respects them). darkangel ur up. also repost my chain bulletin or u get bad luck 4 2 months. team edward 4ever",
+        "ref": 2,
+        "wait": 1
+      },
+      {
+        "from": "darkangel",
+        "type": "bulletin",
+        "text": "'Broken Glass Still Shines' / u say ur candle burns. mine does 2. / but i put glitter in the wax so when it melts / the floor remembers. / i was sad b4 it was a layout. / i just decided sad could be pretty. / ~*~ xX_DarkAngel_Xx ~*~ (11:11 make a wish) (give kudos)",
+        "subject": "a poem (rebuttal) ~*~ 11:11 ~*~",
+        "wait": 1
+      },
+      {
+        "from": "vinyl_witch",
+        "type": "comment",
+        "text": "judging both shelves. raven owns the bauhaus record. darkangel owns the evanescence cd. neither is wrong but only one of u has a turntable, i can tell from here. thats all. (its a good poem. both r. dont tell raven i said that.)",
+        "ref": 4,
+        "wait": 1
+      },
+      {
+        "from": "raven",
+        "type": "bulletin",
+        "text": "'Older' / I was fifteen once too. / I had a notebook and a Cure tape and no one to hand them to. / I said we are not the same and I meant it / the way a locked door means it. / But I remember the hallway. / — r.n. / (tina, do not score this one.)",
+        "subject": "Second poem. Apparently I have feelings about this.",
+        "wait": 1
+      },
+      {
+        "from": "tina",
+        "type": "comment",
+        "text": "im scoring it. 10/10. i cried at 'the hallway.' i was team raven then team darkangel and now i am team BOTH. is that allowed. it is now. i made a bulletin about it. repost it.",
+        "ref": 6,
+        "wait": 1
+      },
+      {
+        "from": "patrick",
+        "type": "comment",
+        "text": "i dont understand the poems but i love both of u and my rock says hi. he is black too. like the poems. can he be in the next one",
+        "ref": 6,
+        "wait": 1
+      },
+      {
+        "from": "darkangel",
+        "type": "dm",
+        "to": "you",
+        "text": "ok u have to tell me if im crazy. ravens second poem was actually really good?? like i read it 3 times. do i say that. is that losing. its 11:09. i have 2 minutes 2 decide.",
+        "wait": 1
+      },
+      {
+        "from": "darkangel",
+        "type": "wall",
+        "to": "raven",
+        "text": "ok. 'older' was good. really good. i read it at 11:11 n wished i wrote the hallway line. i still think glitter counts. but ur candle thing was right 2. do u want 2 write one together. u do the burning i do the sparkle. no scoring. (tina dont.)",
+        "wait": 1
+      },
+      {
+        "from": "raven",
+        "type": "wall",
+        "to": "darkangel",
+        "text": "Yes. I have a draft. Working title: 'we are not the same (but we are).' You may have the last line. I would like the first. Bring the glitter, I suppose. I will bring the candle. Do not tell anyone I said 'I suppose.'",
+        "wait": 1
+      },
+      {
+        "from": "raven",
+        "type": "bulletin",
+        "text": "I burn. / i sparkle. / The candle does not need to be seen to be lit. / but its prettier if u can see it. / We wore the black before the mall sold it. / we wore it after 2. it still counts. / Fifteen has a notebook. Twenty-four has a shelf. / both r full. / We are not the same. / but we r. / ~*~ 11:11 ~*~ / — r.n. & xX_DA_Xx / (kudos are for both of us or neither.) (patrick, the rock is in line 5. look closely.)",
+        "subject": "we are not the same (but we are) — by raven nocturne & xX_DarkAngel_Xx",
+        "wait": 2
+      },
+      {
+        "from": "zorp",
+        "type": "comment",
+        "text": "as a fellow human i also burn and sparkle. this poem is compatible with my physiology. i mean feelings. humans have feelings. 3:33 AM is also a wishing time, ask anyone. i give 2 kudos. that is the maximum. i checked.",
+        "ref": 12,
+        "wait": 1
+      }
+    ]
+  },
+  {
+    "id": "someone_traced_my_oc",
+    "title": "someone TRACED my OC",
+    "cast": [
+      "mika",
+      "usagi",
+      "sephiroth",
+      "randy",
+      "epic",
+      "wes",
+      "riley"
+    ],
+    "beats": [
+      {
+        "from": "mika",
+        "type": "status",
+        "text": "someone on here TRACED my OC. Mika Destruction. green hair, one eye, arm cannon. changed the hair 2 purple and called it 'Mike Destruction'. i drew her in 8th grade in a spiral notebook and scanned her on my aunts scanner. i KNOW MY LINES. not naming names. yet.",
+        "wait": 1
+      },
+      {
+        "from": "usagi",
+        "type": "comment",
+        "text": "mika-chan NO. who. tell me who. anime club meets thurs and this is now the ONLY agenda item. bring the original scan. we will compare line weights. subs not dubs, originals not traces. ganbatte!!",
+        "ref": 0,
+        "wait": 1
+      },
+      {
+        "from": "sephiroth",
+        "type": "bulletin",
+        "text": "Part 1: What Is Tracing. Tracing is when one places a source image beneath a translucent medium and follows its lines. This is distinct from 'referencing,' which is distinct from 'inspiration,' which is distinct from 'homage' (see Part 7). Consider Sephiroth: is he a trace of Cloud? No. He is a reflection. That is Part 4. Mika's OC has a one-eyed silhouette that cannot be arrived at by accident. Part 2 tomorrow: 'The Arm Cannon Problem.' The Masamune is roughly seven feet long (mine is a yardstick). This essay will be longer than both.",
+        "subject": "In Defense of Original Character Art: A 12-Part Essay (Part 1 of 12)",
+        "wait": 1
+      },
+      {
+        "from": "randy",
+        "type": "comment",
+        "text": "12 PARTS?? PIE. numa numa numa yay. chuck norris doesnt trace, the paper traces HIM. lol jk but srsly whoever did this is not random its just stealing and i know the difference bc i INVENTED random. im w/ mika.",
+        "ref": 2,
+        "wait": 1
+      },
+      {
+        "from": "epic",
+        "type": "status",
+        "text": "lol some ppl cant take a joke. ur mom traced ur OC. (thats a joke) (im doing a bit) (randy stole 'im doing a bit' from me btw, i have the ytmnd 2 prove it)",
+        "wait": 1
+      },
+      {
+        "from": "mika",
+        "type": "bulletin",
+        "text": "ok i put them next 2 each other on my deviantART. the hand is the same hand. the SAME hand. i drew that hand wrong on purpose when i was 13, it has 6 fingers, and i kept it bc its HER. 'Mike' also has 6 fingers. explain that. link in my about me. give kudos, then go look at the hand.",
+        "subject": "SIDE BY SIDE (my OC vs 'Mike Destruction')",
+        "wait": 1
+      },
+      {
+        "from": "usagi",
+        "type": "bulletin",
+        "text": "agenda: 1. mika-chan's OC (the hand) 2. club statement, we vote 3. someone bring pocky. epic-kun u r invited 2 explain. u dont have 2 but the hand is in the evidence folder now. sephiroth-kun please limit ur reading 2 THREE parts, we have the room 4 one hour. -usagi, president",
+        "subject": "EMERGENCY ANIME CLUB MEETING (thurs, library room B)",
+        "wait": 1
+      },
+      {
+        "from": "wes",
+        "type": "comment",
+        "text": "ill come but only if the room has an outlet, im bringing a crt. i checked the 6 finger thing frame by frame. its the same hand. thats not a trace thats a copy paste w/ a hue shift. rest in peace mike.",
+        "ref": 6,
+        "wait": 1
+      },
+      {
+        "from": "epic",
+        "type": "dm",
+        "to": "you",
+        "text": "ok u have to tell me if im crazy. it was me. i traced it as a joke bc mika said epic face is 'just a circle' and i wanted 2 make a circle w/ 6 fingers. now theres a MEETING. sephiroth is on part 5. do i just say it. is this a ytmnd moment. do not tell randy first",
+        "wait": 1
+      },
+      {
+        "from": "epic",
+        "type": "bulletin",
+        "text": "it was me. i traced mikas OC as a joke bc she said epic face is just a circle (it is. thats the point). i changed the hair 2 purple and called him mike. i did not think about the hand. i am sorry about the hand. i deleted mike. mika ur OC is really good and thats why it was easy 2 trace which is a compliment if u think about it (dont think about it). randy u can have 'im doing a bit' back. 4 now.",
+        "subject": "ok it was me. (not a bit)",
+        "wait": 1
+      },
+      {
+        "from": "sephiroth",
+        "type": "comment",
+        "text": "Part 12 (abridged, posted early due to confession): Redemption. Even Sephiroth was once a hero of Shinra. The confession is noted and accepted on Mika's behalf pending her word. The essay stands. Parts 6 through 11 will still be posted because they are already written and Part 9 is about Zack and is important.",
+        "ref": 9,
+        "wait": 1
+      },
+      {
+        "from": "riley",
+        "type": "comment",
+        "text": "RAWR that was so random of u epic XD but also not cool. but also u said sorry so. tacos? mika ur OC is HAWT (in a drawing way)(i mean cool)(rawr)(that means i love u in dinosaur)(dont tell misery i said it first)",
+        "ref": 9,
+        "wait": 1
+      },
+      {
+        "from": "mika",
+        "type": "status",
+        "text": "ok. epic said sorry. so i drew him. as an OC. 'Epic Faic: The Sphere Who Traced.' he has 6 fingers on purpose. its on my deviantART, link in about me. this is the ONLY time i will ever draw a circle. usagi u can cancel the meeting or keep it 4 pocky.",
+        "wait": 2
+      },
+      {
+        "from": "epic",
+        "type": "comment",
+        "text": "THIS IS THE BEST THING THATS EVER HAPPENED 2 ME. i made it my default. i have FINGERS now. lol ur mom has fingers. (im doing a bit) (mika drew the bit) (randy cant have this one)",
+        "ref": 12,
+        "wait": 1
+      }
+    ]
+  }
+]

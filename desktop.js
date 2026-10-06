@@ -274,7 +274,19 @@ const WM = {
 // data-open="app" opens that window. data-mstab="tab" opens OurSpace on that tab
 // (data-msarg = the tab's argument, data-msjump = a section to scroll to via MS.jumpTo).
 // `from` is where the window zooms out of.
+// On sub-pages (blog, 404) there are no windows to open, so the same launcher walks back to the
+// desktop with a deep link (index.html?open=paint / ?tab=guestbook&jump=…) that openDeepLink() honours.
 function launch(el, from) {
+  if (!document.getElementById('desktop')) {
+    const q = new URLSearchParams();
+    if (el.dataset.mstab) {
+      q.set('tab', el.dataset.mstab);
+      if (el.dataset.msarg) q.set('arg', el.dataset.msarg);
+      if (el.dataset.msjump) q.set('jump', el.dataset.msjump);
+    } else if (el.dataset.open) q.set('open', el.dataset.open);
+    window.location.href = 'index.html' + (String(q) ? '?' + q : '');
+    return;
+  }
   if (el.dataset.mstab) {
     WM.open('myspace', false, from);
     // ourspace.js declares MS with a top-level const, which is NOT a window property —
@@ -290,6 +302,111 @@ function launch(el, from) {
 function initLaunchers() {
   document.querySelectorAll('.desk-icon[data-open], .desk-icon[data-mstab], a.launcher').forEach(el =>
     el.addEventListener('click', e => { e.preventDefault(); launch(el, el); }));
+}
+
+// index.html?open=<app>  ·  index.html?tab=<ourspace tab>[&arg=…][&jump=<My Page box>]
+// Runs after every script has booted (OurSpace builds itself on DOMContentLoaded too).
+function openDeepLink() {
+  if (!document.getElementById('desktop')) return;
+  const q = new URLSearchParams(window.location.search);
+  const el = { dataset: {} };
+  if (q.get('tab')) Object.assign(el.dataset, { mstab: q.get('tab'), msarg: q.get('arg') || '', msjump: q.get('jump') || '' });
+  else if (q.get('open')) el.dataset.open = q.get('open');
+  else return;
+  launch(el, document.getElementById('start-btn'));
+  // a reload should land on the plain desktop again, not re-run the link
+  if (window.history && history.replaceState) history.replaceState(null, '', window.location.pathname);
+}
+
+// ---------- sub-pages (blog posts, blog hub, 404) ----------
+// They are ordinary scrolling pages, but they get the desktop's taskbar, Start menu, tray and
+// easter eggs so they feel like part of the same machine. index.html ships this markup itself;
+// everywhere else it is injected here — keep the two Start menus in step when you change one.
+function ensureShell() {
+  if (document.getElementById('taskbar')) return false;
+  document.body.classList.add('subpage');
+  document.body.insertAdjacentHTML('beforeend', `
+    <div id="taskbar">
+      <button class="btn98" id="start-btn"><span class="logo">💜</span> Start</button>
+      <div id="task-buttons"></div>
+      <div id="tray">
+        <span class="tray-ico" id="tray-mute" title="mute sounds">🔊</span>
+        <span class="tray-ico" id="tray-sparkle" title="toggle sparkles">✨</span>
+        <span class="tray-ico" id="tray-crt" title="toggle CRT mode">📺</span>
+        <span id="clock"></span>
+      </div>
+    </div>
+    <div id="start-menu" hidden>
+      <div class="side">MALTEN 98</div>
+      <ul>
+        <li data-href="index.html"><span class="mi">🖥️</span> Desktop</li>
+        <li data-href="blog-hub.html"><span class="mi">📁</span> Blog Posts</li>
+        <li data-open="myspace"><span class="mi">👥</span> OurSpace</li>
+        <li data-mstab="guestbook"><span class="mi">📖</span> Guestbook</li>
+        <li data-mstab="profile" data-msarg="malten" data-msjump="spotify"><span class="mi">🎧</span> MaltenAmp — my Spotify top 5</li>
+        <li class="sep"></li>
+        <li data-open="mines"><span class="mi">💣</span> Minesweeper</li>
+        <li data-open="paint"><span class="mi">🎨</span> Paint</li>
+        <li data-open="glitter"><span class="mi">✨</span> Glitter Studio</li>
+        <li data-open="internet"><span class="mi">🌐</span> The Internet</li>
+        <li class="sep"></li>
+        <li data-open="settings"><span class="mi">🎛</span> Control Panel</li>
+        <li data-action="sparkles"><span class="mi">✨</span> Toggle Sparkles</li>
+        <li data-action="crt"><span class="mi">📺</span> Toggle CRT Mode</li>
+        <li data-action="screensaver"><span class="mi">🌌</span> Start Screensaver</li>
+        <li class="sep"></li>
+        <li data-action="shutdown"><span class="mi">🔌</span> Shut Down…</li>
+      </ul>
+    </div>
+    <div id="bsod" hidden>
+      <div>
+        <p><span class="bsod-title">MALTEN.EXE</span></p>
+        <p>A fatal exception 0xC0FFEE has occurred at 0028:C0DE1337.
+        The current application (your visit) will be terminated.</p>
+        <p>*&nbsp; It is now safe to close this tab.<br>
+           *&nbsp; Or press any key to keep hanging out. honestly? preferred.</p>
+        <p class="blink">Press any key to continue _</p>
+      </div>
+    </div>
+    <canvas id="screensaver" hidden></canvas>`);
+  return true;
+}
+
+// The page's one window behaves like a real one: a taskbar button for it (plus one that walks
+// back to the desktop), minimize tucks it into the taskbar, maximize widens the reading column,
+// and close goes home to the desktop.
+function initSubpage() {
+  const win = document.querySelector('.page-window') || document.querySelector('.container .window');
+  const tasks = document.getElementById('task-buttons');
+  if (!win || !tasks) return;
+  const mk = (label, title) => {
+    const b = document.createElement('button');
+    b.className = 'btn98';
+    b.textContent = label;
+    if (title) b.title = title;
+    tasks.appendChild(b);
+    return b;
+  };
+  mk('🖥️ Desktop', 'back to the desktop').addEventListener('click', () => { Sfx.click(); window.location.href = 'index.html'; });
+  const label = win.dataset.task || (win.querySelector('.title-bar-text') || {}).textContent || document.title;
+  const mine = mk(label.trim());
+  const setMin = on => {
+    win.classList.toggle('minimized', on);
+    mine.classList.toggle('pressed', !on);
+    Sfx.click();
+  };
+  mine.classList.add('pressed');
+  mine.addEventListener('click', () => setMin(!win.classList.contains('minimized')));
+  win.querySelectorAll('.title-bar-controls img').forEach(img => {
+    const act = (img.alt || '').toLowerCase();
+    img.addEventListener('click', () => {
+      if (act.includes('min')) setMin(true);
+      else if (act.includes('max')) { document.body.classList.toggle('page-wide'); Sfx.click(); }
+      else if (act.includes('close')) { Sfx.close(); window.location.href = win.dataset.close || 'index.html'; }
+    });
+  });
+  const bar = win.querySelector('.title-bar');
+  if (bar) bar.addEventListener('dblclick', e => { if (!e.target.closest('.title-bar-controls')) document.body.classList.toggle('page-wide'); });
 }
 
 // ---------- start menu ----------
@@ -513,12 +630,14 @@ const Screensaver = {
     const cv = document.getElementById('screensaver');
     if (!cv) return;
     this.armed = true;
+    // someone reading a long blog post sits still for minutes at a time — don't pounce on them
+    if (!document.getElementById('desktop')) this.idleMs = 10 * 60000;
     const reset = () => {
       clearTimeout(this.timer);
       if (!cv.hidden) this.stop();
       this.timer = setTimeout(() => this.start(), this.idleMs);
     };
-    ['mousemove', 'keydown', 'pointerdown', 'touchstart'].forEach(ev =>
+    ['mousemove', 'keydown', 'pointerdown', 'touchstart', 'wheel', 'scroll'].forEach(ev =>
       document.addEventListener(ev, reset, { passive: true }));
     reset();
   },
@@ -809,8 +928,11 @@ Object.assign(window, { Sfx, WM, Toggles, Screensaver });
 
 // ---------- boot ----------
 document.addEventListener('DOMContentLoaded', () => {
+  const subpage = ensureShell();        // blog pages & co. borrow the desktop's taskbar before anything wires it up
   WM.init();
   initLaunchers();
+  if (subpage) initSubpage();
+  window.addEventListener('load', () => setTimeout(openDeepLink, 0));
   initStartMenu();
   Toggles.init();
   initClock();

@@ -2,9 +2,9 @@
   "id": "greg_gus_audition",
   "with": "greg",
   "opener": [
-    "malten. band emergency. not a fire (dad checked, it's a different kind of emergency)",
+    "{you}. band emergency. not a fire (dad checked, it's a different kind of emergency)",
     "guitarhero_gus messaged the band account. he wants to audition for static prophecy. thursday, 4pm, my garage. he said he'd bring 'his axe.'",
-    "i asked what kind. he said 'a gibson.' i asked what model. he said 'it's red.' malten it's the plastic one. it plugs into a PS2. it has FIVE BUTTONS"
+    "i asked what kind. he said 'a gibson.' i asked what model. he said 'it's red.' {you} it's the plastic one. it plugs into a PS2. it has FIVE BUTTONS"
   ],
   "nodes": {
     "start": {
@@ -17,7 +17,7 @@
 
     "a_hear": {
       "them": [
-        "ok. nerve, yes. he sent a video: him in the den, bandanna on, playing at 98%, a beagle in the front row. malten the beagle looked MOVED. i've played to 3 people and a lawn chair. he's got a beagle and a fanbase.",
+        "ok. nerve, yes. he sent a video: him in the den, bandanna on, playing at 98%, a beagle in the front row. {you} the beagle looked MOVED. i've played to 3 people and a lawn chair. he's got a beagle and a fanbase.",
         "but then bryan texted me. bryan. one full sentence: 'we are a 4 piece and 1 of the 4 is a guitar and it is you.' that's 17 words. i counted. bryan has never spent 17 words on anything and he spent them on THIS."
       ],
       "effects": [
@@ -43,7 +43,7 @@
     "b_no": {
       "them": [
         "that's what i said. out loud. to the amp. 'no.' the amp didn't argue.",
-        "then i opened his message again and there's a picture attached: gus, bandanna on, and the beagle (axl) sitting in front of him like a front row. malten the DOG is in the FRONT ROW. how do i say no to that."
+        "then i opened his message again and there's a picture attached: gus, bandanna on, and the beagle (axl) sitting in front of him like a front row. {you} the DOG is in the FRONT ROW. how do i say no to that."
       ],
       "choices": [
         { "say": "a no with a job in it. 'not yet, but we need a roadie.' that's not really a no.", "next": "soft_no" },
@@ -79,7 +79,7 @@
     "the_secret": {
       "them": [
         "ok. before i send ANYTHING. i have to tell you what i saw saturday, because it changes the whole thing.",
-        "the music store at the mall, back wall, past the amps. gus. with a REAL guitar. a used acoustic-electric with an $89 sticker and a crack by the sound hole with tape on it. he was playing the same four notes over and over and wincing, malten. his fingertips had BAND-AIDS on them. eight of ten. the thumbs were free.",
+        "the music store at the mall, back wall, past the amps. gus. with a REAL guitar. a used acoustic-electric with an $89 sticker and a crack by the sound hole with tape on it. he was playing the same four notes over and over and wincing, {you}. his fingertips had BAND-AIDS on them. eight of ten. the thumbs were free.",
         "he didn't see me. i hid behind the pick rack. i've told nobody for three days, including my dad and including gus. and i don't know if it's his secret or if it's the audition."
       ],
       "choices": [
@@ -106,7 +106,7 @@
     "protect": {
       "them": [
         "ok. i'll send: 'thursday 4pm. bring whatever you've got. whatever's in the case.' that's not lying. that's a thing a manager says.",
-        "...he replied in 9 seconds. 'ok.' then 'what do u mean whatever's in the case.' then 'greg what do u mean.' then 'i have to go.' and then, malten, i heard through the PHONE: something wooden hitting a carpet."
+        "...he replied in 9 seconds. 'ok.' then 'what do u mean whatever's in the case.' then 'greg what do u mean.' then 'i have to go.' and then, {you}, i heard through the PHONE: something wooden hitting a carpet."
       ],
       "choices": [
         { "say": "now wait for thursday. don't push. let him decide to open it.", "next": "thursday_case" },
@@ -175,7 +175,7 @@
     "end_book": {
       "them": [
         "so i said: 'great set. you're definitely in the band. but the audition is for the real one and the real one is song 6, and i'm not writing song 6 until fall.' which is a speech and i KNOW it's a speech.",
-        "then i gave him the guitar tab book. page 40 of 200. mine. christmas. i wrote 'for gus (page 41 is the good one)' on the front in sharpie and he held it like a gift from a king. he said 'i'll have it back by song 6.' malten, i'm not taking it back. i have a heart, apparently."
+        "then i gave him the guitar tab book. page 40 of 200. mine. christmas. i wrote 'for gus (page 41 is the good one)' on the front in sharpie and he held it like a gift from a king. he said 'i'll have it back by song 6.' {you}, i'm not taking it back. i have a heart, apparently."
       ],
       "end": true,
       "effects": [
@@ -189,7 +189,7 @@
     "end_duel": {
       "them": [
         "ok. THE GREAT GUITAR DUEL. friday, 7pm, my garage. one song, 'voltage heart.' gus on plastic, me on real. bryan scores it with a cymbal. i've decided the winner 'gets to be right.' about what? we'll know friday.",
-        "dad says it's fine if it's done by 8:15 and nobody touches the extension cord. i'm taking that as a blessing. malten if i lose to a PS2 controller i want you there when i find out."
+        "dad says it's fine if it's done by 8:15 and nobody touches the extension cord. i'm taking that as a blessing. {you} if i lose to a PS2 controller i want you there when i find out."
       ],
       "end": true,
       "effects": [

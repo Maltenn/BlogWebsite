@@ -11,16 +11,28 @@
 </head>
 <body>
     <div class="container">
-        <div class="window" style="margin-top:40px;">
+        <div class="window page-window" data-task="⚠ 404">
             <div class="title-bar">
-                <div class="title-bar-text">⚠ 404 — page not found (it checked everywhere)</div>
+                <div class="title-bar-text">🌐 404 — page not found (it checked everywhere) — Maltenscape Navigator</div>
                 <div class="title-bar-controls">
-                    <img src="Minimize.png" alt="Minimize">
-                    <img src="Fullscreen.png" alt="Maximize">
-                    <img src="Close.png" alt="Close">
+                    <img src="Minimize.png" alt="Minimize" title="minimize">
+                    <img src="Fullscreen.png" alt="Maximize" title="wider / narrower">
+                    <img src="Close.png" alt="Close" title="close (back to the desktop)">
                 </div>
             </div>
-            <div class="window-body" style="text-align:center;">
+            <div class="nav-chrome">
+                <div class="nav-row nav-tools">
+                    <a class="btn98" href="index.html" title="back to the desktop">🖥️ Desktop</a>
+                    <a class="btn98" href="blog-hub.html">📁 Blog Hub</a>
+                    <a class="btn98" href="index.html?open=myspace">👥 OurSpace</a>
+                    <a class="btn98" href="index.html?tab=guestbook">📖 Guestbook</a>
+                </div>
+                <div class="nav-row nav-address">
+                    <span class="wr-label">Address</span>
+                    <span class="wr-url">http://www.malten.exe/??? (the dog is looking into it)</span>
+                </div>
+            </div>
+            <div class="page-doc" style="text-align:center;">
                 <img src="assets/construction_banner.gif" alt="warning: under construction" style="max-width:100%;">
                 <h2 style="color:#4b2d83;">you found a page that doesn't exist yet.</h2>
                 <p>or ever will. probably.</p>
@@ -34,6 +46,7 @@
                 <p style="font-size:11px; color:#666;">auto-rescue in <span id="count">15</span> seconds…</p>
                 <p style="font-size:10px; color:#999;">error code: 404_NO_PAGE_ONLY_DOG</p>
             </div>
+            <div class="status-bar"><span>✖ Document: Not found</span><span>404</span><span>🌐 malten.exe</span></div>
         </div>
     </div>
     <script>

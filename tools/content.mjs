@@ -11,7 +11,8 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const SRC = path.join(ROOT, 'content-src');
 
-const EXISTING = fs.readdirSync(path.join(SRC, 'reference', 'existing')).map(f => f.replace(/\.json$/, ''));
+// the 38 originals live in base/residents (they used to be literals inside ourspace.js)
+const EXISTING = fs.readdirSync(path.join(SRC, 'base', 'residents')).filter(f => f.endsWith('.json')).map(f => f.replace(/\.json$/, ''));
 const ROSTER = ['ryan', 'nat', 'hunter', 'rick', 'min', 'dmitri', 'gus', 'sara', 'gary',
   'larry', 'nick', 'marcus', 'lars', 'miles', 'doug', 'angela', 'trevor', 'fred',
   'faye', 'maddie', 'ben', 'devon', 'andy', 'leo', 'hailey', 'tj', 'luna',
@@ -212,10 +213,99 @@ function lum(hex) {
 }
 function contrast(a, b) { const [x, y] = [lum(a), lum(b)].sort((p, q) => q - p); return (x + 0.05) / (y + 0.05); }
 
-function kindOf(file) {
-  const dir = path.basename(path.dirname(path.resolve(file)));
-  return { residents: 'resident', depth: 'depth', dialogues: 'dialogue' }[dir] || null;
+// ---- the player is the VISITOR now: lines that talk to them say {you}, never "malten" (malten is a resident) ----
+// Fields that are read by / addressed to the player, per kind. Everything else (about, blog, wall comments on a
+// resident's own page…) may mention malten in the third person, which is fine.
+const YOU = /\{you\}/g;
+const MALTEN = /\bmalten\b/i;
+function playerFacing(data, kind) {
+  const out = [];                                   // [label, string]
+  const push = (label, v) => { if (typeof v === 'string') out.push([label, v]); };
+  const list = (label, arr) => (Array.isArray(arr) ? arr : []).forEach((s, i) => push(`${label}[${i}]`, s));
+  if (kind === 'resident' || kind === 'base') {
+    list('dms', data.dms); list('replies', data.replies); list('ambient', data.ambient); list('pcComments', data.pcComments);
+    list('repliesExtra', data.repliesExtra);
+    (Array.isArray(data.dmSeed) ? data.dmSeed : []).forEach((m, i) => push(`dmSeed[${i}].text`, m && m.text));
+    push('saltyDm', data.saltyDm); push('thanksAdd', data.thanksAdd);
+    for (const [k, v] of Object.entries(data.keywords || {})) push(`keywords.${k}`, v);
+    for (const [k, v] of Object.entries(data.keywordsExtra || {})) push(`keywordsExtra.${k}`, v);
+  } else if (kind === 'depth') {
+    list('dms', data.dms); list('repliesExtra', data.repliesExtra);
+    for (const [k, v] of Object.entries(data.keywordsExtra || {})) push(`keywordsExtra.${k}`, v);
+  } else if (kind === 'dialogue' || kind === 'base-dialogue') {
+    list('opener', data.opener);
+    for (const [name, n] of Object.entries(data.nodes || {})) {
+      if (!isObj(n)) continue;
+      list(`${name}.them`, n.them);
+      (n.choices || []).forEach((c, i) => push(`${name}.choices[${i}].say`, c && c.say));
+      (n.effects || (n.effect ? [n.effect] : [])).forEach((e, i) => { if (e && (e.type === 'wall' || e.type === 'dm')) push(`${name}.effects[${i}].text`, e.text); });
+    }
+  } else if (kind === 'storylines') {
+    (Array.isArray(data) ? data : []).forEach(arc => (arc.beats || []).forEach((b, i) => { if (b && (b.to === 'you' || b.type === 'dm')) push(`${arc.id}.beats[${i}]`, b.text); }));
+  } else if (kind === 'banks') {
+    for (const [name, lines] of Object.entries(isObj(data) ? data : {})) list(name, lines);
+  }
+  return out;
 }
+function youCheck(data, kind, R) {
+  for (const [label, s] of playerFacing(data, kind)) {
+    if (MALTEN.test(s)) R.warn(`${label} says "malten" to the player — use {you} if it means the reader: "${s.slice(0, 80)}"`);
+  }
+  for (const s of allStrings(data)) {
+    const m = s.match(/\{[^}]*\}/g);
+    if (m) m.filter(t => t !== '{you}' && t !== '{YOU}').forEach(t => R.err(`unknown placeholder ${t} (only {you} and {YOU} exist): "${s.slice(0, 80)}"`));
+  }
+}
+
+// base/residents: the originals. Loosely checked (they predate the schema) — only what the renderers dereference.
+function checkBase(d, file, R) {
+  if (!EXISTING.includes(d.id)) R.err(`id "${d.id}" is not in base/residents`);
+  if (path.basename(file, '.json') !== d.id) R.err(`filename must be ${d.id}.json`);
+  if (!isStr(d.name)) R.err('name is required');
+  if (!isStr(d.about, 40)) R.err('about is required');
+  if (!isStr(d.avatar) || !fs.existsSync(path.join(ROOT, d.avatar))) R.err(`avatar file does not exist: ${d.avatar}`);
+  if (d.theme !== undefined && (!isObj(d.theme) || !HEX.test(d.theme.bg) || !HEX.test(d.theme.fg) || !HEX.test(d.theme.accent))) R.err('theme: need {bg, fg, accent} as #rrggbb');
+  (d.friends || []).forEach(f => { if (!ALL_IDS.has(f)) R.err(`friends: unknown resident id "${f}"`); });
+  (d.wall || []).forEach((c, i) => { if (!isObj(c) || !isStr(c.text) || !ALL_IDS.has(c.from)) R.err(`wall[${i}]: need {from: <resident id>, text}`); });
+  lint(d, { err: R.warn, warn: R.warn }, { emojiMax: 12 });   // style rules are warnings here: this text predates them
+  youCheck(d, 'base', R);
+}
+function checkBaseDialogue(d, file, R) {
+  if (!isStr(d.id) || path.basename(file, '.json') !== d.id) R.err('id must equal the filename');
+  if (!ALL_IDS.has(d.with)) R.err(`with: unknown resident id "${d.with}"`);
+  if (!isArr(d.opener, 1) || d.opener.some(s => !isStr(s, 2))) R.err('opener: need >= 1 message');
+  const N = d.nodes;
+  if (!isObj(N) || !N.start) return R.err('nodes.start is required');
+  for (const [name, n] of Object.entries(N)) {
+    if (n.effects !== undefined || n.effect !== undefined) checkEffects(n.effects || [n.effect], name, d, R);
+    (n.choices || []).forEach((c, i) => { if (!isStr(c.say, 2)) R.err(`${name}.choices[${i}]: needs "say"`); if (!N[c.next]) R.err(`${name}.choices[${i}]: next "${c.next}" does not exist`); });
+  }
+  lint(d, { err: R.warn, warn: R.warn }, { emojiMax: 6 });
+  youCheck(d, 'base-dialogue', R);
+}
+function checkStorylines(d, file, R) {
+  if (!Array.isArray(d)) return R.err('storylines.json must be an array of arcs');
+  d.forEach((arc, i) => {
+    if (!isObj(arc) || !isStr(arc.id) || !isArr(arc.beats, 1)) return R.err(`[${i}]: need {id, title, cast, beats[]}`);
+    arc.beats.forEach((b, j) => { if (!isObj(b) || !ALL_IDS.has(b.from) || !isStr(b.type)) R.err(`${arc.id}.beats[${j}]: need {from: <resident id>, type, text}`); });
+  });
+  youCheck(d, 'storylines', R);
+}
+function checkBanks(d, file, R) {
+  if (!isObj(d)) return R.err('banks.json must be an object of line lists');
+  for (const [k, v] of Object.entries(d)) if (!isArr(v) || v.some(s => !isStr(s))) R.err(`${k}: must be a list of strings`);
+  youCheck(d, 'banks', R);
+}
+
+function kindOf(file) {
+  const rel = path.relative(SRC, path.resolve(file)).replace(/\\/g, '/');
+  if (rel.startsWith('base/residents/')) return 'base';
+  if (rel.startsWith('base/dialogues/')) return 'base-dialogue';
+  if (rel === 'base/storylines.json') return 'storylines';
+  if (rel === 'base/banks.json') return 'banks';
+  return { residents: 'resident', depth: 'depth', dialogues: 'dialogue' }[rel.split('/')[0]] || null;
+}
+const CHECKERS = { resident: checkResident, depth: checkDepth, dialogue: checkDialogue, base: checkBase, 'base-dialogue': checkBaseDialogue, storylines: checkStorylines, banks: checkBanks };
 function checkFile(file) {
   const errs = [], warns = [];
   const R = { err: m => errs.push(m), warn: m => warns.push(m) };
@@ -223,15 +313,19 @@ function checkFile(file) {
   try { data = JSON.parse(fs.readFileSync(file, 'utf8')); }
   catch (e) { R.err('invalid JSON: ' + e.message); return { file, errs, warns, data: null }; }
   const kind = kindOf(file);
-  if (!kind) R.err('file must live in content-src/residents, /depth or /dialogues');
-  else ({ resident: checkResident, depth: checkDepth, dialogue: checkDialogue })[kind](data, file, R);
+  if (!kind) R.err('file must live in content-src/residents, /depth, /dialogues or /base');
+  else {
+    CHECKERS[kind](data, file, R);
+    if (['resident', 'depth', 'dialogue'].includes(kind)) youCheck(data, kind, R);
+  }
   return { file, kind, errs, warns, data };
 }
 function listAll() {
-  return ['residents', 'depth', 'dialogues'].flatMap(d => {
+  const dirs = ['base/residents', 'base/dialogues', 'residents', 'depth', 'dialogues'].flatMap(d => {
     const dir = path.join(SRC, d);
     return fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => f.endsWith('.json')).sort().map(f => path.join(dir, f)) : [];
   });
+  return [...dirs, ...['storylines', 'banks'].map(n => path.join(SRC, 'base', n + '.json')).filter(f => fs.existsSync(f))];
 }
 function report(results) {
   let bad = 0;
@@ -260,11 +354,19 @@ if (cmd === 'check') {
     for (const [id, m] of Object.entries(JSON.parse(fs.readFileSync(path.join(SRC, f), 'utf8')))) manifest[id] = { ...(manifest[id] || {}), ...m };
   const overridesPath = path.join(SRC, 'avatar-overrides.json');
   const overrides = fs.existsSync(overridesPath) ? JSON.parse(fs.readFileSync(overridesPath, 'utf8')) : {};
-  const pack = { people: {}, depth: {}, dialogues: [], posts: [] };
+  const pack = { people: {}, depth: {}, dialogues: [], posts: [], storylines: [], banks: {} };
   const exists = f => f && fs.existsSync(path.join(ROOT, f));
+  let baseN = 0;
   for (const r of good) {
     const d = r.data;
-    if (r.kind === 'resident') {
+    if (r.kind === 'base') {
+      const { id, ...p } = d;
+      pack.people[id] = { ...p, base: true };                  // base: true → applyPack treats it as an original, not a newcomer
+      baseN++;
+    } else if (r.kind === 'base-dialogue') pack.dialogues.push(d);
+    else if (r.kind === 'storylines') pack.storylines = d;
+    else if (r.kind === 'banks') pack.banks = d;
+    else if (r.kind === 'resident') {
       const { id, ...p } = d;
       const m = manifest[id] || {};
       if (exists(m.avatar)) p.avatar = m.avatar;
@@ -283,12 +385,26 @@ if (cmd === 'check') {
     } else if (r.kind === 'dialogue') pack.dialogues.push(d);
   }
   for (const [id, av] of Object.entries(overrides)) if (EXISTING.includes(id) && exists(av.avatar || av)) (pack.depth[id] = pack.depth[id] || {}).avatar = av.avatar || av;
+  // visitor avatar presets: avatar-presets*.json (one file per hunting pass, [{file, desc, source, license}]) → [{file, desc}]
+  const presets = [], seenPreset = new Set();
+  for (const f of fs.readdirSync(SRC).filter(f => /^avatar-presets.*\.json$/.test(f)).sort()) {
+    let list;
+    try { list = JSON.parse(fs.readFileSync(path.join(SRC, f), 'utf8')); } catch (e) { console.log(`   ERROR ${f}: invalid JSON (${e.message})`); continue; }
+    (Array.isArray(list) ? list : []).forEach(p => {
+      if (!p || !isStr(p.file)) return;
+      if (!exists(p.file)) { console.log(`   warn  ${f}: missing file ${p.file}`); return; }
+      if (seenPreset.has(p.file)) return;
+      seenPreset.add(p.file);
+      presets.push({ file: p.file, desc: isStr(p.desc) ? p.desc : '', group: isStr(p.group) ? p.group : 'icons' });   // group = gallery heading
+    });
+  }
+  pack.avatarPresets = presets;
   const out = '/* GENERATED by `node tools/content.mjs build` from content-src/ — do not edit by hand. */\n' +
     'window.MS_PACK = ' + JSON.stringify(pack) + ';\n' +
     'if (window.MS && MS.applyPack) MS.applyPack(window.MS_PACK);\n';
   const outFile = args[0] ? path.resolve(args[0]) : path.join(ROOT, 'content-pack.js');
   fs.writeFileSync(outFile, out);
-  console.log(`\nwrote content-pack.js: ${Object.keys(pack.people).length} new residents, ${Object.keys(pack.depth).length} depth packs, ${pack.dialogues.length} dialogue trees, ${pack.posts.length} posts (${(out.length / 1024).toFixed(0)} KB)`);
+  console.log(`\nwrote content-pack.js: ${baseN} base + ${Object.keys(pack.people).length - baseN} new residents, ${Object.keys(pack.depth).length} depth packs, ${pack.dialogues.length} dialogue trees, ${pack.posts.length} posts, ${pack.storylines.length} storylines, ${Object.keys(pack.banks).length} banks, ${presets.length} avatar presets (${(out.length / 1024).toFixed(0)} KB)`);
   process.exit(bad ? 1 : 0);
 } else {
   console.log('usage: node tools/content.mjs check [files...] | build');

@@ -20,7 +20,7 @@
  "blogTitle": "Thad's Theatrical Journal (Act I, Scene Whatever)",
  "about": "(The curtain rises. A single spotlight finds THAD at center stage. He holds nothing, but gestures as if it were precious.) Greetings. I am Thaddeus. Thad. Seventeen years old, four seasons in the drama club, veteran of nine productions (one tree, two ensembles, a very convincing butler). I am currently preparing the role of Mayor Shinn in this fall's Music Man. It is a character role. It is the fourth biggest part. I counted. (He has counted.) The lead went to a sophomore. I'm fine. I'd like that noted. Every wall post on this site will be a monologue because I do not know how to write any other kind. You may applaud at the end. You may leave at any time, but not during the second act.",
  "aboutMore": "A few notes for the program. I'm the one who turns on the ghost light each night (a single bulb on a stand, center stage, so the theater is never entirely dark and no one falls into the pit). My nana, Lou, has seen every show I've been in since I was a tree. She sits in row C with a bag of butterscotch candies and applauds the ensemble first. I still have the ticket stub from the first show she took me to. I'd show it to you, but it's in my wallet, and the wallet is in the other pants.",
- "meet": "Who I'd like to meet: whoever wrote Mayor Shinn and whether they meant him to be this funny. Ms. Marchetti's cat, who has never attended a rehearsal and whom I believe to be the real critic. Anyone who has seen a touring Phantom and will describe it to me slowly. The sophomore, offstage, so that I may judge him as a human being (I have. he is decent. I'm furious). And you, malten. Row C. I'll save it.",
+ "meet": "Who I'd like to meet: whoever wrote Mayor Shinn and whether they meant him to be this funny. Ms. Marchetti's cat, who has never attended a rehearsal and whom I believe to be the real critic. Anyone who has seen a touring Phantom and will describe it to me slowly. The sophomore, offstage, so that I may judge him as a human being (I have. he is decent. I'm furious). And you, dear reader. Row C. I'll save it.",
  "interests": {
   "General": "theater (the whole building, the smell of it), the ghost light, everyday monologues, Playhouse Square in Cleveland, my nana's butterscotch candies, warm water with honey, the good socks, stage directions (in real life), being at the auditorium by 6:40 AM, cue-to-cue rehearsals (I'm the only one who likes them), applauding",
   "Music": "Queen (Bohemian Rhapsody is a one act and I will not be taking questions), Broadway cast recordings (in a milk crate, alphabetical), the original cast of Wicked (worn through two copies), Michael Crawford, Frank Sinatra, whatever Ms. Marchetti plays during strike, the pit warming up (best sound in the building)",
@@ -114,7 +114,7 @@
   "Delightful. Truly. (Exit, pursued by a notification.)",
   "I'm touched, and I'm also fine. I mention both because they're unrelated."
  ],
- "thanksAdd": "(The doors open. A single spotlight finds the new friend.) Ah. So you have come. I have waited for an audience my entire life and you arrive on a Tuesday in a hoodie. Perfect. Welcome, malten. I will write you a monologue every week. You may applaud at any time. You may also leave, but not during the second act. (Beat.) I'm very glad you're here.",
+ "thanksAdd": "(The doors open. A single spotlight finds the new friend.) Ah. So you have come. I have waited for an audience my entire life and you arrive on a Tuesday in a hoodie. Perfect. Welcome, {you}. I will write you a monologue every week. You may applaud at any time. You may also leave, but not during the second act. (Beat.) I'm very glad you're here.",
  "ambient": [
   "(He stands at the cafeteria window. Rain. A pudding cup in his hand. The pudding has a skin.) There are those who call it dessert. I call it a Greek tragedy with a spoon.",
   "I will say only this about the cast list. (He says only this.) It was posted at 3:15 on a Friday. By 3:16 I was in the bathroom. By 3:24 I was fine. Entirely. Please stop asking Becca how long it was. She has a watch.",
@@ -194,11 +194,11 @@
  ],
  "dmSeed": [
   {
-   "text": "(The door opens a crack. A spotlight, borrowed from the AV cart, finds you.) Malten. I am told you are the owner and sole proprietor of this establishment. Allow me to introduce myself. Thaddeus. Thad. Actor, stage manager, Mayor of River City (fall only). I took the liberty of adding you. If you ever need a monologue, a witness, or someone to say 'places' before an important phone call, I am available. (He bows. It is a deep one. His back makes a noise.)"
+   "text": "(The door opens a crack. A spotlight, borrowed from the AV cart, finds you.) {you}. I am told you are the newest patron of this establishment. Allow me to introduce myself. Thaddeus. Thad. Actor, stage manager, Mayor of River City (fall only). I took the liberty of adding you. If you ever need a monologue, a witness, or someone to say 'places' before an important phone call, I am available. (He bows. It is a deep one. His back makes a noise.)"
   }
  ],
  "dms": [
-  "(He leans into the frame.) Malten. Tell me honestly. If a man says 'I'm fine' eleven times in one day, at what point does it become a one-man show? I'm asking for a friend. The friend is also me. The friend has notes.",
+  "(He leans into the frame.) {you}. Tell me honestly. If a man says 'I'm fine' eleven times in one day, at what point does it become a one-man show? I'm asking for a friend. The friend is also me. The friend has notes.",
   "A thought, delivered at 2:41 AM from the top of the stairs: nobody has ever applauded the person who turns the lights back on. And yet. (He pauses.) And yet. Goodnight.",
   "My nana called to say she bought her ticket. Row C. She also said the Mayor is the funniest part and I should 'stop sulking and wear the good socks.' I have not been sulking. (He has.) The socks are in the wash.",
   "Rehearsal update: the sophomore forgot his line, looked at me in the wings, and I mouthed it to him. He got it. He mouthed 'thanks.' We have never spoken. It's the most intimate moment I've had with a fellow actor. I'd like to forget it. I never will.",
