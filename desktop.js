@@ -1279,12 +1279,13 @@ const Boot = {
   done: false,
   shownAt: 0,
   files: {},
+  recorded: [],   // names that have an assets/sfx/<name>.mp3; anything else isn't requested at all (no 404s on the live site)
 
-  // Real recordings beat the synth: drop assets/sfx/<name>.mp3 in (post, floppy, disk, startup) and it plays instead
-  // of the synthesized version. A missing file falls back to the synth and is not tried again.
+  // Real recordings beat the synth: drop assets/sfx/<name>.mp3 in (post, floppy, disk, startup), add the name to
+  // `recorded`, and it plays instead of the synthesized version. A file that fails falls back to the synth for good.
   sound(name, synth) {
     if (Sfx.muted) return;
-    if (this.files[name] === false) { synth(); return; }
+    if (!this.recorded.includes(name) || this.files[name] === false) { synth(); return; }
     const a = this.files[name] || (this.files[name] = new Audio('assets/sfx/' + name + '.mp3'));
     const fail = () => { if (this.files[name] !== false) { this.files[name] = false; synth(); } };
     a.onerror = fail;

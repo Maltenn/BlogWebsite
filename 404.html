@@ -5,6 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 — MALTEN.EXE</title>
+    <script>
+        // the host serves this page for ANY missing path, even /a/b/c — pin relative URLs to the site root
+        // (/BlogWebsite/ on github.io, / on a custom domain) so the styles, gifs and links still resolve
+        if (location.protocol.startsWith('http')) {
+            const base = document.createElement('base');
+            base.href = location.hostname.endsWith('.github.io') ? '/' + location.pathname.split('/')[1] + '/' : '/';
+            document.head.appendChild(base);
+        }
+    </script>
     <link rel="icon" href="pfp.png">
     <link rel="stylesheet" href="styles.css">
     <script src="desktop.js" defer></script>
