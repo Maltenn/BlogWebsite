@@ -1517,7 +1517,7 @@ const MS = {
   // the pretend address for the current page (the Address bar in the window chrome; same host as the
   // "OurSpace URL" box on every profile)
   urlFor() {
-    const base = 'http://ourspace.ring/';
+    const base = 'http://ourspace.page/';
     if (!this.state || !this.state.me || this.signupOpen) return base + 'join';
     const { page, arg } = this.view || { page: 'feed' };
     const me = 'you/' + encodeURIComponent(this.myName());
@@ -1859,7 +1859,7 @@ const MS = {
 
     const urlbox = this.el('div', 'ms-urlbox');
     urlbox.appendChild(this.el('div', 'ms-boxtitle', 'OurSpace URL:'));
-    urlbox.appendChild(this.el('div', 'ms-urltext', 'http://ourspace.ring/' + (me ? nm : id)));
+    urlbox.appendChild(this.el('div', 'ms-urltext', 'http://ourspace.page/' + (me ? nm : id)));
     left.appendChild(urlbox);
 
     // music: malten's page leads with his real Spotify top songs (Spotify in apps.js: live / cached / snapshot /
