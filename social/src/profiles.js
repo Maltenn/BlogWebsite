@@ -2,8 +2,11 @@
 import { fail, json, readBody, int } from './http.js';
 import { text, longText } from './text.js';
 import { REF_COLS, ref, refOf, visibleUser, friendship, blockedBy, NOT_BLOCKED, isOnline, profileData } from './db.js';
-import { THEMES, TILES, FONTS, DECOR, BADGES, ZODIAC, STATUSES, HERE_FOR, GENDERS, MOODS, INTEREST_KEYS, REPORT_REASONS } from './options.js';
+import { THEMES, TILES, FONTS, DECOR, BADGES, STATUSES, HERE_FOR, GENDERS, MOODS, INTEREST_KEYS, REPORT_REASONS } from './options.js';
 import { AVATARS } from './generated/avatars.js';
+import { ageOn } from './dates.js';
+import { sunSign } from './astro.js';
+import { profileSpotify } from './spotify.js';
 
 const AVATAR_SET = new Set(AVATARS.map(a => a.file));
 const TILE_SET = new Set(TILES.map(t => t.v));
@@ -17,7 +20,8 @@ export const isAvatar = v => AVATAR_SET.has(v);
 
 export function defaultProfile() {
   return {
-    tag: 'new here. be nice.', mood: 'curious', gender: '', age: '', hometown: '', zodiac: '', status: 'Single', hereFor: 'Friends',
+    tag: 'new here. be nice.', mood: 'curious', gender: '', hometown: '', status: 'Single', hereFor: 'Friends',
+    showAge: true, showSign: true,                 // age and star sign come from the (private) birthday
     about: 'i just got here. still figuring out where all the buttons are. say hi!',
     meet: 'anyone who says hi first.',
     interests: Object.fromEntries(INTEREST_KEYS.map(k => [k, ''])),
@@ -31,30 +35,22 @@ export function defaultProfile() {
 export function options() {
   return json({
     avatars: AVATARS, themes: THEMES, tiles: TILES, fonts: FONTS, decor: DECOR, badges: BADGES,
-    zodiac: ZODIAC, statuses: STATUSES, hereFor: HERE_FOR, genders: GENDERS, moods: MOODS, interestKeys: INTEREST_KEYS,
+    statuses: STATUSES, hereFor: HERE_FOR, genders: GENDERS, moods: MOODS, interestKeys: INTEREST_KEYS,
     reportReasons: REPORT_REASONS,
   }, 200, { 'Cache-Control': 'public, max-age=300' });
 }
 
 // Validate an edit against the current profile. Only fields present in `input` change; anything not on the lists in
 // options.js is refused, so a profile can never carry arbitrary CSS, fonts or image URLs.
-export function applyProfileEdit(current, input, minAge) {
+export function applyProfileEdit(current, input) {
   const p = { ...defaultProfile(), ...current };
+  delete p.age; delete p.zodiac;                   // (free-text fields from before birthdays; both are computed now)
   const has = k => Object.prototype.hasOwnProperty.call(input, k);
-  const short = { tag: 90, mood: 40, gender: 30, hometown: 60, zodiac: 40, status: 50, hereFor: 80, blogTitle: 60 };
+  const short = { tag: 90, mood: 40, gender: 30, hometown: 60, status: 50, hereFor: 80, blogTitle: 60 };
   for (const [k, max] of Object.entries(short)) if (has(k)) p[k] = text(input[k], max);
   if (has('about')) p.about = longText(input.about, 2000);
   if (has('meet')) p.meet = longText(input.meet, 800);
-  if (has('age')) {
-    const raw = String(input.age ?? '').trim();
-    if (raw === '') p.age = '';
-    else {
-      const n = int(raw);
-      if (n == null || String(n) !== raw || n > 120) fail(400, 'age should be a number (or leave it blank).');
-      if (n < minAge) fail(400, `ourspace is for people ${minAge} and up.`);
-      p.age = String(n);
-    }
-  }
+  for (const k of ['showAge', 'showSign']) if (has(k)) p[k] = input[k] !== false;
   if (has('interests')) {
     if (!input.interests || typeof input.interests !== 'object') fail(400, 'bad interests');
     p.interests = Object.fromEntries(INTEREST_KEYS.map(k => [k, longText(input.interests[k], 400)]));
@@ -87,16 +83,11 @@ export function applyProfileEdit(current, input, minAge) {
   return p;
 }
 
-// the profile as the page draws it: theme key → colors (bots carry their own colors)
-export function presentProfile(data, isBot) {
-  const p = { ...data };
-  if (isBot) {
-    p.theme = data.theme || THEMES[0];
-  } else {
-    const t = THEME_BY_KEY.get(data.theme) || THEMES[0];
-    p.themeKey = t.key;
-    p.theme = { bg: t.bg, fg: t.fg, accent: t.accent };
-  }
+// the profile as the page draws it: theme key → colors
+export function presentProfile(data) {
+  const t = THEME_BY_KEY.get(data.theme) || THEMES[0];
+  const p = { ...data, themeKey: t.key, theme: { bg: t.bg, fg: t.fg, accent: t.accent } };
+  delete p.age; delete p.zodiac;
   return p;
 }
 
@@ -104,7 +95,7 @@ export function presentProfile(data, isBot) {
 export async function saveProfile(c) {
   const input = await readBody(c.req);
   const current = await profileData(c.env, c.user.id);
-  const next = applyProfileEdit(current, input, Number(c.env.MIN_AGE || 13));
+  const next = applyProfileEdit(current, input);
   let avatar = c.user.avatar;
   if (Object.prototype.hasOwnProperty.call(input, 'avatar')) {
     if (!isAvatar(input.avatar)) fail(400, 'pick one of the pictures.');
@@ -114,7 +105,7 @@ export async function saveProfile(c) {
     c.env.DB.prepare('UPDATE profiles SET data = ?, updated = ? WHERE user_id = ?').bind(JSON.stringify(next), c.now, c.user.id),
     c.env.DB.prepare('UPDATE users SET avatar = ? WHERE id = ?').bind(avatar, c.user.id),
   ]);
-  return json({ ok: true, avatar, profile: presentProfile(next, false) });
+  return json({ ok: true, avatar, profile: presentProfile(next) });
 }
 
 // PUT /api/me/settings — who may comment on my wall / message me
@@ -169,9 +160,13 @@ export async function profile(c) {
       canMessage: !blockedByMe && (u.dm_policy === 'everyone' || friend === 'friends'),
     };
   }
+  const sign = sunSign(u.birthdate);
   return json({
-    user: { ...refOf(u), online: isOnline(u, c.now), lastSeen: u.is_bot ? null : u.last_seen, joined: u.created, banned: !!u.banned },
-    profile: presentProfile(data, !!u.is_bot),
+    user: { ...refOf(u), online: isOnline(u, c.now), lastSeen: u.last_seen, joined: u.created, banned: !!u.banned },
+    profile: presentProfile(data),
+    age: data.showAge === false ? null : ageOn(u.birthdate, c.now),
+    sign: data.showSign === false ? null : { key: sign.key, name: sign.name, glyph: sign.glyph },
+    spotify: await profileSpotify(c, u.id),
     friendCount: friends.count,
     top8: friends.top8,
     wall: wall.map(w => ({
@@ -186,27 +181,24 @@ export async function profile(c) {
   });
 }
 
-// GET /api/users?kind=all|people|bots&q=&page= — the Browse directory
+// GET /api/users?q=&page= — the Browse directory
 export async function browse(c) {
-  const kind = c.url.searchParams.get('kind') || 'all';
   const q = (c.url.searchParams.get('q') || '').trim().toLowerCase().slice(0, 30);
   const page = Math.max(0, int(c.url.searchParams.get('page'), 0));
   const per = 24;
   const viewer = c.user ? c.user.id : 0;
   const where = ['u.banned = 0', NOT_BLOCKED('u.id')];
   const binds = [viewer];
-  if (kind === 'people') where.push('u.is_bot = 0');
-  else if (kind === 'bots') where.push('u.is_bot = 1');
   if (q) {
     binds.push('%' + q.replace(/[\\%_]/g, m => '\\' + m) + '%');
     where.push(`u.name_key LIKE ?${binds.length} ESCAPE '\\'`);
   }
   binds.push(per + 1, page * per);
   const { results } = await c.env.DB.prepare(`
-    SELECT ${REF_COLS('u', '')}, u.created, u.last_seen, u.is_bot, json_extract(p.data, '$.tag') AS tag
+    SELECT ${REF_COLS('u', '')}, u.created, u.last_seen, json_extract(p.data, '$.tag') AS tag
     FROM users u LEFT JOIN profiles p ON p.user_id = u.id
     WHERE ${where.join(' AND ')}
-    ORDER BY u.is_bot ASC, COALESCE(u.last_seen, u.created) DESC, u.id DESC
+    ORDER BY COALESCE(u.last_seen, u.created) DESC, u.id DESC
     LIMIT ?${binds.length - 1} OFFSET ?${binds.length}`).bind(...binds).all();
   return json({
     users: results.slice(0, per).map(r => ({ ...ref(r), tag: r.tag || '', joined: r.created, online: isOnline(r, c.now) })),
@@ -219,7 +211,7 @@ export async function friendsOf(c) {
   const u = await visibleUser(c, c.params.name);
   const viewer = c.user ? c.user.id : 0;
   const { results } = await c.env.DB.prepare(`
-    SELECT ${REF_COLS('x', '')}, x.last_seen, x.is_bot
+    SELECT ${REF_COLS('x', '')}, x.last_seen
     FROM friendships f JOIN users x ON x.id = CASE WHEN f.a = ?2 THEN f.b ELSE f.a END
     WHERE (f.a = ?2 OR f.b = ?2) AND f.status = 'accepted' AND x.banned = 0 AND ${NOT_BLOCKED('x.id')}
     ORDER BY f.accepted DESC LIMIT 500`).bind(viewer, u.id).all();

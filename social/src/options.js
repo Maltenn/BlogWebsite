@@ -51,11 +51,10 @@ export const DECOR = ['deco_welcome_banner', 'deco_new', 'deco_new_blue', 'deco_
   'deco2_goth_inside', 'deco2_ska_checker', 'deco2_downloadvirus'].map(n => `/assets/${n}.gif`);
 
 export const BADGES = ['badge_best_viewed_with_eyes', 'badge_aim', 'badge_icq', 'badge_netscape', 'badge_ie_anim', 'badge_ie_sucks',
-  'badge_firefoxget', 'badge_anybrowser', 'badge_geocities', 'badge_GuestWorldbutton', 'badge_winamp', 'badge_midi_files_now',
+  'badge_firefoxget', 'badge_anybrowser', 'badge_geocities', 'badge_winamp', 'badge_midi_files_now',
   'badge_mspaint', 'badge_built_with_microsoft_notepad', 'badge_hello_kitty', 'badge_8bit', 'badge_Sega-Elite', 'badge_coffee',
   'badge_blink', 'badge_aol-sucks'].map(n => `/assets/${n}.gif`);
 
-export const ZODIAC = ['Aries', 'Taurus', 'Gemini', 'Cancer', 'Leo', 'Virgo', 'Libra', 'Scorpio', 'Sagittarius', 'Capricorn', 'Aquarius', 'Pisces'];
 export const STATUSES = ['Single', 'In a Relationship', 'It\'s Complicated', 'Married to my Wacom', 'Engaged to my Xbox',
   'Taken (by my homework)', 'Swiss (neutral)', 'Divorced from my Tamagotchi', 'Saving myself for my Top 8', 'Married'];
 export const HERE_FOR = ['Friends', 'Networking', 'Pen pals', 'The bulletins', 'Top 8 drama', 'Free layouts', 'Music', 'Glitter', 'Gossip (respectfully)'];

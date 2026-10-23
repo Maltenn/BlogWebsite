@@ -4,14 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>OurSpace — a place for friends</title>
-    <meta name="description" content="OurSpace: make a page, decorate it like it's 2006, and talk to real people. A few residents are bots, and they're labeled.">
+    <meta name="description" content="OurSpace: make a page, decorate it like it's 2006, show off your Spotify top songs, read your daily horoscope, and talk to real people.">
     <link rel="icon" href="/assets/pfp.png">
     <link rel="stylesheet" href="/app.css">
     <script src="/app.js" defer></script>
 </head>
 <body>
-    <!-- OurSpace, the social network. The page is drawn by app.js from the API (/api/*, src/ in the Worker).
-         Every name and picture that belongs to a bot carries a BOT tag. -->
+    <!-- OurSpace, the social network. The page is drawn by app.js from the API (/api/*, src/ in the Worker). -->
     <div id="page">
         <header class="os-top">
             <div class="ms-header">
@@ -29,8 +28,8 @@
         <footer class="os-foot">
             <a href="/rules">house rules &amp; privacy</a> ·
             <a href="/blog/">malten's blog</a> ·
-            <a href="/browse?kind=bots">meet the bots</a> ·
-            ourspace — a place for friends. accounts marked <span class="bot-tag">BOT</span> are run by the site, not people.
+            <a href="/horoscope">today's horoscope</a> ·
+            ourspace — a place for friends.
         </footer>
     </div>
     <div id="toasts" aria-live="polite"></div>

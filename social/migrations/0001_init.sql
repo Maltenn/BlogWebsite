@@ -1,17 +1,16 @@
 -- ourspace-social storage (Cloudflare D1 / SQLite).
 -- Apply: `npm run db:local` (wrangler's local copy) / `npm run db:remote` (the real database).
--- Times are ms since the epoch. A row whose `created` is in the future has not "happened" yet: bot replies are written
--- with a small delay that way, and every read filters `created <= now`.
+-- Times are ms since the epoch.
 
--- people and bots. name is shown as typed; name_key (lower case) keeps screen names unique.
+-- people. name is shown as typed; name_key (lower case) keeps screen names unique. email and birthdate are private.
 CREATE TABLE users (
   id          INTEGER PRIMARY KEY AUTOINCREMENT,
   name        TEXT    NOT NULL,
   name_key    TEXT    NOT NULL UNIQUE,
+  email       TEXT    UNIQUE,                    -- lower case. NULL when the account came from a sign-in provider without one
   avatar      TEXT    NOT NULL,                  -- a preset picture path (copied from the profile for cheap joins)
-  pass_hash   TEXT,                              -- pbkdf2-sha256$<iterations>$<salt>$<hash>; NULL for bots
-  is_bot      INTEGER NOT NULL DEFAULT 0,
-  bot_key     TEXT    UNIQUE,                    -- content id of a bot (todd, wes, …); NULL for people
+  pass_hash   TEXT,                              -- pbkdf2-sha256$<iterations>$<salt>$<hash>; NULL = signs in with Google/Apple/… only
+  birthdate   TEXT    NOT NULL,                  -- YYYY-MM-DD: the age check and the star sign come from it
   is_admin    INTEGER NOT NULL DEFAULT 0,
   banned      INTEGER NOT NULL DEFAULT 0,
   wall_policy TEXT    NOT NULL DEFAULT 'everyone', -- who may comment on my wall: everyone | friends
@@ -19,7 +18,7 @@ CREATE TABLE users (
   created     INTEGER NOT NULL,
   last_seen   INTEGER
 );
-CREATE INDEX users_seen ON users (is_bot, last_seen DESC);
+CREATE INDEX users_seen ON users (last_seen DESC);
 
 -- everything on a profile page (about me, interests, look, top 8 …) as one validated JSON object
 CREATE TABLE profiles (
@@ -36,6 +35,65 @@ CREATE TABLE sessions (
   expires    INTEGER NOT NULL
 );
 CREATE INDEX sessions_user ON sessions (user_id);
+
+-- "Sign in with Google / Apple / Microsoft / Discord / GitHub": which outside account belongs to which person
+CREATE TABLE identities (
+  provider TEXT    NOT NULL,
+  subject  TEXT    NOT NULL,                     -- the provider's id for the person (never changes)
+  user_id  INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  email    TEXT,                                 -- what the provider said, for the Settings page only
+  created  INTEGER NOT NULL,
+  PRIMARY KEY (provider, subject)
+);
+CREATE INDEX identities_user ON identities (user_id);
+
+-- a sign-in (or Spotify connection) in progress: the random `state` sent to the provider, hashed, plus the PKCE
+-- verifier. Single use, ten minutes.
+CREATE TABLE oauth_states (
+  state_hash TEXT    PRIMARY KEY,
+  provider   TEXT    NOT NULL,
+  mode       TEXT    NOT NULL,                   -- login | link | spotify
+  user_id    INTEGER,                            -- link / spotify: who started it
+  verifier   TEXT,
+  next       TEXT,
+  created    INTEGER NOT NULL,
+  expires    INTEGER NOT NULL
+);
+
+-- someone new came back from a provider: they still have to pick a screen name and give their birthday
+CREATE TABLE oauth_signups (
+  ticket_hash TEXT    PRIMARY KEY,
+  provider    TEXT    NOT NULL,
+  subject     TEXT    NOT NULL,
+  email       TEXT,                              -- only when the provider says it's verified
+  name_hint   TEXT,
+  created     INTEGER NOT NULL,
+  expires     INTEGER NOT NULL
+);
+
+-- "forgot my password" links (hashed, one hour, single use)
+CREATE TABLE password_resets (
+  token_hash TEXT    PRIMARY KEY,
+  user_id    INTEGER NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  created    INTEGER NOT NULL,
+  expires    INTEGER NOT NULL
+);
+
+-- a person's Spotify connection. Tokens are encrypted with the TOKEN_KEY secret (AES-GCM).
+CREATE TABLE spotify (
+  user_id        INTEGER PRIMARY KEY REFERENCES users(id) ON DELETE CASCADE,
+  spotify_id     TEXT    NOT NULL,
+  display_name   TEXT,
+  refresh_enc    TEXT    NOT NULL,
+  access_enc     TEXT,
+  access_expires INTEGER,
+  time_range     TEXT    NOT NULL DEFAULT 'short_term',   -- short_term (4 weeks) | medium_term (6 months) | long_term (all time)
+  show           INTEGER NOT NULL DEFAULT 1,
+  tracks         TEXT,                           -- JSON: the top tracks last fetched
+  fetched        INTEGER,
+  error          TEXT,                           -- why the last refresh failed (revoked, not_allowlisted …)
+  created        INTEGER NOT NULL
+);
 
 -- one row per pair of people (a < b): a pending request or an accepted friendship
 CREATE TABLE friendships (
@@ -124,10 +182,3 @@ CREATE TABLE attempts (
   created INTEGER NOT NULL
 );
 CREATE INDEX attempts_k ON attempts (k, created);
-
--- small key/value store (bot bookkeeping)
-CREATE TABLE kv (
-  k       TEXT PRIMARY KEY,
-  v       TEXT NOT NULL,
-  expires INTEGER
-);

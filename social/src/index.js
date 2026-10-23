@@ -1,15 +1,18 @@
 // ourspace-social — one Worker for the whole site:
-//   /api/*          the JSON API below (accounts, profiles, friends, posts, messages, blocks, reports, moderation)
+//   /api/*          the JSON API below (accounts, sign-in providers, profiles, friends, posts, messages, Spotify,
+//                   astrology, blocks, reports, moderation)
 //   everything else the static pages in public/ (wrangler.jsonc → assets), with /u/<name> etc. falling back to
 //                   index.html so the page's own router can draw them
-// The cron (every 30 min) lets the bots post a little and clears out expired sessions and old rate-limit rows.
+// The cron (every 30 min) clears out expired sessions, sign-in tickets, reset links and old rate-limit rows.
 import { HttpError, json } from './http.js';
-import { currentUser, me, signup, login, logout, changePassword, deleteAccount } from './auth.js';
+import { currentUser, me, signup, login, logout, changePassword, deleteAccount, forgotPassword, resetPassword } from './auth.js';
+import { oauthStart, oauthCallback, signupPending, signupFinish, providers, account, unlink } from './oauth.js';
 import { options, profile, browse, friendsOf, saveProfile, saveSettings } from './profiles.js';
 import { addFriend, removeFriend, requests, postWall, postStatus, postBulletin, postBlog, deletePost, feed, bulletins, blogOf, statusesOf } from './social.js';
 import { inbox, thread, sendMessage } from './messages.js';
+import { getSpotify, putSpotify, refreshSpotify, deleteSpotify } from './spotify.js';
+import { astroSky, astroSign, astroMe } from './horoscope.js';
 import { listBlocks, block, unblock, report, adminReports, resolveReport, adminUser, adminContent, adminLog } from './safety.js';
-import { ensureBots, botTick } from './bots.js';
 
 const OPEN = 0, AUTH = 1, ADMIN = 2;
 
@@ -19,10 +22,29 @@ const ROUTES = [
   ['POST', '/api/signup', signup, OPEN],
   ['POST', '/api/login', login, OPEN],
   ['POST', '/api/logout', logout, OPEN],
+  ['POST', '/api/password/forgot', forgotPassword, OPEN],
+  ['POST', '/api/password/reset', resetPassword, OPEN],
+  ['GET', '/api/auth/providers', providers, OPEN],
+  ['GET', '/api/oauth/:provider/start', oauthStart, OPEN],
+  ['GET', '/api/oauth/:provider/callback', oauthCallback, OPEN],
+  ['POST', '/api/oauth/:provider/callback', oauthCallback, OPEN, { crossSite: true }],   // Apple answers with a form POST
+  ['GET', '/api/signup/pending', signupPending, OPEN],
+  ['POST', '/api/signup/finish', signupFinish, OPEN],
+
+  ['GET', '/api/me/account', account, AUTH],
+  ['DELETE', '/api/me/identities/:provider', unlink, AUTH],
   ['PUT', '/api/me/profile', saveProfile, AUTH],
   ['PUT', '/api/me/settings', saveSettings, AUTH],
   ['POST', '/api/me/password', changePassword, AUTH],
   ['DELETE', '/api/me', deleteAccount, AUTH],
+  ['GET', '/api/me/spotify', getSpotify, AUTH],
+  ['PUT', '/api/me/spotify', putSpotify, AUTH],
+  ['POST', '/api/me/spotify/refresh', refreshSpotify, AUTH],
+  ['DELETE', '/api/me/spotify', deleteSpotify, AUTH],
+
+  ['GET', '/api/astro/sky', astroSky, OPEN],
+  ['GET', '/api/astro/sign/:sign', astroSign, OPEN],
+  ['GET', '/api/astro/me', astroMe, AUTH],
 
   ['GET', '/api/users', browse, OPEN],
   ['GET', '/api/users/:name', profile, OPEN],
@@ -56,8 +78,8 @@ const ROUTES = [
   ['POST', '/api/admin/users/:name', adminUser, ADMIN],
   ['POST', '/api/admin/content', adminContent, ADMIN],
   ['GET', '/api/admin/log', adminLog, ADMIN],
-].map(([method, path, handler, access]) => ({
-  method, handler, access,
+].map(([method, path, handler, access, opts = {}]) => ({
+  method, handler, access, ...opts,
   keys: [...path.matchAll(/:(\w+)/g)].map(m => m[1]),
   re: new RegExp('^' + path.replace(/:(\w+)/g, '([^/]+)') + '$'),
 }));
@@ -80,16 +102,16 @@ async function api(request, env, ctx, url) {
   const found = match(request.method, url.pathname);
   if (!found.route) return json({ error: found.status === 405 ? 'method not allowed' : found.status === 400 ? 'bad address' : 'not found' }, found.status);
 
-  // Changes only from our own pages: a browser always sends Origin on these requests, and another site's
-  // would not match. (SameSite=Lax cookies and JSON-only bodies are the other two locks on that door.)
-  if (request.method !== 'GET') {
+  // Changes only from our own pages: a browser always sends Origin on these requests, and another site's would not
+  // match. (SameSite=Lax cookies and JSON-only bodies are the other two locks on that door.) The one exception is the
+  // sign-in provider posting back to us, which is protected by its single-use state instead.
+  if (request.method !== 'GET' && !found.route.crossSite) {
     const origin = request.headers.get('Origin');
     const site = request.headers.get('Sec-Fetch-Site');
     if ((origin && origin !== url.origin) || site === 'cross-site') return json({ error: 'cross-site request refused' }, 403);
   }
 
   c.params = found.params;
-  await ensureBots(c);
   c.user = await currentUser(c);
   if (found.route.access >= AUTH && !c.user) return json({ error: 'log in first.' }, 401);
   if (found.route.access === ADMIN && !c.user.is_admin) return json({ error: 'moderators only.' }, 403);
@@ -103,7 +125,7 @@ export default {
     try {
       return await api(request, env, ctx, url);
     } catch (e) {
-      if (e instanceof HttpError) return json({ error: e.message }, e.status);
+      if (e instanceof HttpError) return json({ error: e.message }, e.status, e.cookie ? { 'Set-Cookie': e.cookie } : {});
       console.error((e && e.stack) || e);
       return json({ error: 'something broke on our end. try again in a minute.' }, 500);
     }
@@ -111,18 +133,12 @@ export default {
 
   async scheduled(event, env, ctx) {
     const now = Date.now();
-    ctx.waitUntil((async () => {
-      try {
-        await ensureBots({ env, now });
-        const posted = await botTick(env, now);
-        await env.DB.batch([
-          env.DB.prepare('DELETE FROM sessions WHERE expires < ?').bind(now),
-          env.DB.prepare('DELETE FROM attempts WHERE created < ?').bind(now - 2 * 86400000),
-        ]);
-        if (posted) console.log(`bots posted ${posted}`);
-      } catch (e) {
-        console.error('cron failed:', (e && e.stack) || e);
-      }
-    })());
+    ctx.waitUntil(env.DB.batch([
+      env.DB.prepare('DELETE FROM sessions WHERE expires < ?').bind(now),
+      env.DB.prepare('DELETE FROM oauth_states WHERE expires < ?').bind(now),
+      env.DB.prepare('DELETE FROM oauth_signups WHERE expires < ?').bind(now),
+      env.DB.prepare('DELETE FROM password_resets WHERE expires < ?').bind(now),
+      env.DB.prepare('DELETE FROM attempts WHERE created < ?').bind(now - 2 * 86400000),
+    ]).catch(e => console.error('cron failed:', (e && e.stack) || e)));
   },
 };

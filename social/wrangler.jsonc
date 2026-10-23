@@ -1,6 +1,11 @@
 // ourspace-social: one Cloudflare Worker serves the OurSpace pages (public/) AND the API (/api/*), from the same
 // origin, so the login cookie can be HttpOnly + SameSite=Lax and nothing needs CORS. Storage is one D1 database.
-// Setup, deploy and operating steps: README.md. Secret (set with `wrangler secret put`, never written here): IP_SALT.
+// Setup, deploy and operating steps: README.md. Secrets (set with `wrangler secret put`, never written here):
+//   IP_SALT, TOKEN_KEY                                  required
+//   RESEND_API_KEY, MAIL_FROM                           "forgot my password" emails
+//   SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET            Spotify connections
+//   GOOGLE_ / MICROSOFT_ / DISCORD_ / GITHUB_ CLIENT_ID + CLIENT_SECRET, APPLE_CLIENT_ID + APPLE_TEAM_ID +
+//   APPLE_KEY_ID + APPLE_PRIVATE_KEY                    "other options" sign-in (each appears once it's set)
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "ourspace-social",
@@ -16,11 +21,9 @@
     "run_worker_first": ["/api/*"]
   },
   "vars": {
-    "MIN_AGE": "13",                     // sign-up asks people to confirm they are at least this old
+    "MIN_AGE": "13",                     // birthdays below this age can't sign up
     "SIGNUPS_PER_DAY": "200",            // site-wide cap on new accounts per day (spam brake while the site is small)
-    "SIGNUPS_PER_IP_PER_HOUR": "5",
-    "BOT_POSTS_PER_DAY": "12",           // how chatty the bots are, all of them together
-    "BOT_DELAY_SCALE": "1"               // 0 makes bot replies instant (the tests use it)
+    "SIGNUPS_PER_IP_PER_HOUR": "5"
   },
   "d1_databases": [
     {
@@ -32,7 +35,7 @@
     }
   ],
   "triggers": {
-    // bot activity + housekeeping (expired sessions, old rate-limit rows)
+    // housekeeping: expired sessions, sign-in tickets, reset links, old rate-limit rows
     "crons": ["*/30 * * * *"]
   }
 }

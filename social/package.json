@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "OurSpace as a real social network: accounts, public profiles, a few labeled bots, block and report. One Cloudflare Worker serves the pages and the API.",
+  "description": "OurSpace as a real social network: email or provider sign-in, public profiles, Spotify top songs, daily horoscopes, block and report. One Cloudflare Worker serves the pages and the API.",
   "scripts": {
     "build": "node tools/build.mjs",
     "db:local": "wrangler d1 migrations apply ourspace-social-db --local",
@@ -14,5 +14,8 @@
   },
   "devDependencies": {
     "wrangler": "^4.152.0"
+  },
+  "dependencies": {
+    "astronomy-engine": "^2.1.19"
   }
 }

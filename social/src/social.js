@@ -1,8 +1,8 @@
 // The social part: friend requests, wall comments, statuses, bulletins, blog entries, and the feed that shows them.
+// Everyone here is a real person: there are no bots.
 import { fail, json, readBody, int } from './http.js';
 import { text, longText } from './text.js';
 import { REF_COLS, ref, refOf, visibleUser, friendship, areFriends, blockedEither, pair, limit, NOT_BLOCKED } from './db.js';
-import { botAcceptsFriend, botAnswersWall } from './bots.js';
 
 // how much one person may post (statuses, wall comments, bulletins and blog entries together)
 const POST_LIMITS = [[6, 60000], [300, 86400000]];
@@ -31,10 +31,6 @@ export async function addFriend(c) {
   const [a, b] = pair(me, u.id);
   await c.env.DB.prepare('INSERT INTO friendships (a, b, status, requested_by, created) VALUES (?, ?, \'pending\', ?, ?)')
     .bind(a, b, me, c.now).run();
-  if (u.is_bot) {
-    await botAcceptsFriend(c, u);
-    return json({ status: 'friends' });
-  }
   return json({ status: 'requested' });
 }
 
@@ -76,7 +72,6 @@ export async function postWall(c) {
   await limit(c, 'post:' + me, POST_LIMITS);
   const row = await c.env.DB.prepare('INSERT INTO posts (kind, author_id, target_id, body, created) VALUES (\'wall\', ?, ?, ?, ?) RETURNING id')
     .bind(me, u.id, body, c.now).first();
-  if (u.is_bot && u.id !== me) await botAnswersWall(c, u, body);
   return json({ id: row.id, body }, 201);
 }
 
@@ -155,7 +150,7 @@ function cursor(c) {
   return t && id ? [t, id] : [c.now + 1, Number.MAX_SAFE_INTEGER];
 }
 
-// Posts the viewer may see: not hidden, not "in the future" (a bot reply still on its way), nobody banned, nobody
+// Posts the viewer may see: not hidden, not dated in the future, nobody banned, nobody
 // blocked in either direction. Binds: ?1 viewer, ?2 now, ?3/?4 cursor.
 const VISIBLE = `p.hidden = 0 AND p.created <= ?2 AND a.banned = 0 AND (t.id IS NULL OR t.banned = 0)
   AND (p.created < ?3 OR (p.created = ?3 AND p.id < ?4))
@@ -163,14 +158,13 @@ const VISIBLE = `p.hidden = 0 AND p.created <= ?2 AND a.banned = 0 AND (t.id IS 
 
 const MY_FRIENDS = `SELECT CASE WHEN f.a = ?1 THEN f.b ELSE f.a END FROM friendships f WHERE (f.a = ?1 OR f.b = ?1) AND f.status = 'accepted'`;
 
-// GET /api/feed?scope=all|friends|people&before= — what everyone is up to
+// GET /api/feed?scope=all|friends&before= — what everyone is up to
 export async function feed(c) {
   const scope = c.url.searchParams.get('scope');
   const [bt, bi] = cursor(c);
   const viewer = c.user ? c.user.id : 0;
   let extra = '';
   if (scope === 'friends' && c.user) extra = `AND (p.author_id = ?1 OR p.author_id IN (${MY_FRIENDS}))`;
-  else if (scope === 'people') extra = 'AND a.is_bot = 0';
   const per = 30;
   const { results } = await c.env.DB.prepare(`
     SELECT ${POST_COLS} FROM posts p JOIN users a ON a.id = p.author_id LEFT JOIN users t ON t.id = p.target_id

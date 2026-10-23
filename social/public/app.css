@@ -3,7 +3,8 @@
    The look is the original site's OurSpace window, ported from
    its styles.css: Win98 buttons, the blue OurSpace header and
    tabs, MySpace-1.0 profile anatomy. New here: the page frame,
-   BOT tags, dialogs, settings and the moderation queue.
+   sign-in, settings, Spotify, horoscopes, dialogs and the
+   moderation queue.
    ============================================================ */
 
 * { box-sizing: border-box; }
@@ -145,27 +146,10 @@ img { image-rendering: pixelated; }
 .ms-note { padding: 8px 10px; font-size: 12px; background: #fff8e0; border-bottom: 1px solid #f0d68a; }
 .ms-error { padding: 8px 10px; font-size: 12px; background: #ffe8ea; color: #8a0018; border: 1px solid #f3b8c0; margin: 8px; }
 
-/* ---------- BOT labels: on every name and picture a bot has ---------- */
-.bot-tag {
-    display: inline-block; vertical-align: 1px; margin-left: 4px; padding: 0 4px;
-    font: bold 9px/13px Tahoma, Arial, sans-serif; letter-spacing: .5px; text-transform: uppercase;
-    color: #fff; background: #7a5cc4; border: 1px solid #4b2d83; border-radius: 2px;
-    white-space: nowrap; text-decoration: none; text-shadow: none;
-}
+/* ---------- avatars ---------- */
 .av-wrap { position: relative; display: inline-block; flex-shrink: 0; line-height: 0; }
-.av-wrap.is-bot::after {
-    content: 'BOT'; position: absolute; right: -2px; bottom: -2px; padding: 0 3px;
-    font: bold 8px/11px Tahoma, Arial, sans-serif; letter-spacing: .5px;
-    color: #fff; background: #7a5cc4; border: 1px solid #4b2d83;
-}
-.bot-banner {
-    display: flex; align-items: center; gap: 8px; padding: 7px 10px; font-size: 12px;
-    background: #ece5fb; border-bottom: 2px solid #7a5cc4; color: #2b1a4d;
-}
-.bot-banner b { color: #4b2d83; }
-.bot-banner .bot-tag { font-size: 11px; line-height: 16px; padding: 0 6px; }
 
-/* ---------- avatars + names ---------- */
+/* ---------- names ---------- */
 .ms-avatar {
     width: 44px; height: 44px; object-fit: contain; background: #f4f0fa;
     border: 1px solid #999; cursor: pointer; flex-shrink: 0;
@@ -204,8 +188,6 @@ img { image-rendering: pixelated; }
 .ms-section, .ms-contactbox, .ms-urlbox, .ms-decor { background: var(--ms-panel, transparent); }
 .ms-name { font-size: 15px; font-weight: bold; word-break: break-all; }
 .ms-bigavatar { width: 100%; max-height: 170px; object-fit: contain; border: 1px solid currentColor; background: #fff; display: block; }
-.ms-left .av-wrap { display: block; }
-.ms-left .av-wrap.is-bot::after { font-size: 11px; line-height: 15px; padding: 0 6px; right: 4px; bottom: 4px; }
 .ms-idstack { font-size: 11px; line-height: 1.45; margin: 4px 0; }
 .ms-lastlogin { opacity: .7; }
 .ms-viewmy { font-size: 11px; margin: 3px 0; }
@@ -267,7 +249,6 @@ img { image-rendering: pixelated; }
 .ms-comment-who .av-wrap { margin: 0 auto 2px; display: block; width: 52px; }
 .ms-comment-who .ms-avatar { width: 50px; height: 50px; display: block; }
 .ms-comment-who .ms-name-link { display: block; word-break: break-all; color: inherit; }
-.ms-comment-who .bot-tag { margin: 2px 0 0; }
 .ms-comment-col { flex-grow: 1; min-width: 0; }
 .ms-comment-body { padding: 2px 0 0; font-size: 12px; white-space: pre-wrap; word-wrap: break-word; }
 .ms-commentbox textarea { min-height: 50px; }
@@ -280,7 +261,6 @@ img { image-rendering: pixelated; }
 .ms-feedbar .btn98.on, .ms-filterbar .btn98.on { background: #cbbfe4; box-shadow: inset 1px 1px #0a0a0a, inset -1px -1px #fff; }
 .ms-feeditem { display: flex; align-items: flex-start; gap: 8px; padding: 8px; border-bottom: 1px solid #ddd; font-size: 12px; }
 .ms-feeditem:nth-child(odd) { background: #f7f9ff; }
-.ms-feeditem.by-bot { background: #faf8ff; }
 .ms-feedmid { flex-grow: 1; min-width: 0; }
 .ms-feedtext { margin: 3px 0; word-wrap: break-word; white-space: pre-wrap; }
 .ms-feedsubject { font-weight: bold; color: #cc5500; }
@@ -297,7 +277,6 @@ img { image-rendering: pixelated; }
 .ms-browsegrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; padding: 8px; }
 .ms-browsecard { border: 1px solid #6699cc; padding: 6px; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 11px; cursor: pointer; }
 .ms-browsecard:hover { background: #eef4ff; }
-.ms-browsecard.is-bot { border-color: #7a5cc4; background: #faf8ff; }
 .ms-browsecard .ms-avatar { width: 80px; height: 80px; }
 .ms-browsecard .ms-tagline { font-size: 10px; max-height: 2.6em; overflow: hidden; }
 .ms-reqrow { display: flex; align-items: center; gap: 8px; padding: 8px; border-bottom: 1px solid #ddd; font-size: 12px; }
@@ -314,12 +293,9 @@ img { image-rendering: pixelated; }
 .ms-dm.them { background: #eef4ff; align-self: flex-start; }
 .ms-dm.me { background: #f3eefb; align-self: flex-end; }
 .ms-dm .ms-time { display: block; }
-.ms-typing { align-self: flex-start; font-size: 11px; font-style: italic; color: #556; }
 
 .ms-bulletin { border: 1px solid #6699cc; margin: 8px; }
-.ms-bulletin.by-bot { border-color: #7a5cc4; }
 .ms-bulletin-head { display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: #eef4ff; font-size: 11px; }
-.ms-bulletin.by-bot .ms-bulletin-head { background: #f1ecfc; }
 .ms-bulletin-subj { font-weight: bold; padding: 6px 8px 0; color: #cc5500; font-size: 13px; }
 .ms-bulletin-body { padding: 4px 8px 8px; font-size: 12px; white-space: pre-wrap; word-wrap: break-word; }
 
@@ -463,5 +439,85 @@ img { image-rendering: pixelated; }
     .post-body { font-size: 15px; line-height: 1.7; }
 }
 
-/* the password boxes on the sign-up / log-in forms stack full width */
-.su-body > .su-name { display: block; width: 100%; margin-bottom: 4px; }
+
+/* ---------- sign-up / log-in: Email | Other options ---------- */
+.su-body > .su-name, .su-form > .su-name, .su-body > form > .su-name { display: block; width: 100%; margin-bottom: 4px; }
+.su-date { max-width: 220px; }
+.su-err.ok { color: #0a7d0a; }
+.os-tabs2 { display: flex; gap: 2px; margin: 4px 0 10px; border-bottom: 2px solid #6699cc; }
+.os-tabs2 button {
+    font: inherit; font-size: 12px; font-weight: bold; padding: 5px 14px; cursor: pointer;
+    background: #d8cfe8; color: #003366; border: 1px solid #8a7ba8; border-bottom: none; margin-bottom: -2px;
+}
+.os-tabs2 button.on { background: #fff; border-color: #6699cc; border-bottom: 2px solid #fff; }
+.su-other { padding: 2px 0 6px; }
+.oauth-list { display: flex; flex-direction: column; gap: 6px; max-width: 320px; margin: 6px 0; }
+.oauth-btn { display: flex; align-items: center; gap: 10px; padding: 7px 12px; font-size: 13px; font-weight: bold; background: #fff; text-align: left; }
+.oauth-mark { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 3px; color: #fff; font-size: 13px; background: #555; }
+.oauth-google .oauth-mark { background: #4285f4; }
+.oauth-apple .oauth-mark { background: #000; }
+.oauth-microsoft .oauth-mark { background: #2f6fd6; }
+.oauth-discord .oauth-mark { background: #5865f2; }
+.oauth-github .oauth-mark { background: #24292f; }
+.os-sub { display: flex; flex-direction: column; gap: 6px; padding-bottom: 8px; border-bottom: 1px dotted #c7d2e8; }
+.os-sub label { font-weight: bold; color: #003366; display: flex; flex-direction: column; gap: 3px; max-width: 360px; }
+.cz-checks { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-bottom: 4px; }
+.cz-check { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; cursor: pointer; }
+.cz-note { font-size: 12px; margin: 0; }
+.ms-signlink { color: inherit; font-weight: bold; }
+
+/* ---------- Spotify top songs ---------- */
+.sp-list { list-style: none; margin: 0; padding: 4px 8px; counter-reset: sp; }
+.sp-row { display: flex; align-items: center; gap: 8px; padding: 4px 0; border-bottom: 1px dotted rgba(128,128,128,.4); counter-increment: sp; }
+.sp-row::before { content: counter(sp); width: 16px; text-align: right; font-size: 11px; font-weight: bold; opacity: .7; }
+.sp-art { width: 40px; height: 40px; object-fit: cover; flex-shrink: 0; background: #ccc; border: 1px solid rgba(0,0,0,.25); image-rendering: auto; }
+.sp-mid { flex-grow: 1; min-width: 0; display: flex; flex-direction: column; }
+.sp-name { font-weight: bold; font-size: 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sp-artist { font-size: 11px; opacity: .8; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.sp-play { padding: 1px 7px; font-size: 11px; }
+.sp-play.on { background: #1db954; color: #fff; }
+.sp-open { color: inherit; text-decoration: none; font-weight: bold; padding: 0 4px; }
+.sp-empty { padding: 8px 10px; font-size: 12px; }
+.sp-empty p { margin: 0 0 8px; }
+.sp-box .ms-songnote { padding: 2px 8px 6px; font-size: 10px; }
+
+/* ---------- horoscope ---------- */
+.horo-teaser {
+    display: flex; align-items: center; gap: 10px; padding: 8px 12px; color: #2b1a4d; text-decoration: none;
+    background: linear-gradient(90deg, #2b1a4d, #4b2d83 40%, #9370DB); color: #fff; font-size: 12px; border-bottom: 1px solid #4b2d83;
+}
+.horo-teaser:hover { filter: brightness(1.1); }
+.horo-teaser-glyph { font-size: 26px; line-height: 1; }
+.horo-page { padding: 8px; display: flex; flex-direction: column; gap: 10px; }
+.horo-picker { display: grid; grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); gap: 4px; }
+.horo-pick { display: flex; align-items: center; gap: 6px; padding: 4px 6px; font-size: 12px; color: #2b1a4d; text-decoration: none; background: #f3eefb; border: 1px solid #c8bde0; }
+.horo-pick:hover { background: #e6dcf5; }
+.horo-pick.on { background: #4b2d83; color: #fff; border-color: #2b1a4d; }
+.horo-pick-glyph { font-size: 16px; }
+.horo-card { border: 1px solid #9370DB; background: #fbf9ff; padding: 10px 12px; font-size: 13px; line-height: 1.55; }
+.horo-card p { margin: 6px 0; }
+.horo-head { display: flex; gap: 12px; align-items: center; margin-bottom: 6px; }
+.horo-glyph { font-size: 44px; line-height: 1; color: #4b2d83; width: 54px; text-align: center; }
+.horo-sign { font-size: 18px; font-weight: bold; color: #2b1a4d; }
+.horo-sub { font-size: 11px; color: #666; }
+.horo-headline { font-size: 13px; font-style: italic; color: #4b2d83; margin-top: 2px; }
+.horo-subhead { font-weight: bold; color: #4b2d83; margin: 10px 0 4px; }
+.horo-transits { margin: 0; padding-left: 20px; }
+.horo-transits li { margin-bottom: 3px; }
+.horo-transits li.soft::marker { color: #0a7d0a; }
+.horo-transits li.hard::marker { color: #c3002f; }
+.horo-ratings { border-collapse: collapse; margin: 8px 0; font-size: 12px; }
+.horo-ratings td { padding: 1px 10px 1px 0; }
+.horo-stars { color: #d4a000; letter-spacing: 1px; }
+.horo-dos { font-size: 12px; display: flex; flex-direction: column; gap: 2px; }
+.horo-lucky { font-size: 11px; color: #666; margin-top: 6px; }
+.horo-summary { margin: 0; padding-left: 18px; }
+.horo-summary li { margin-bottom: 4px; }
+.horo-planets { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 12px; }
+.horo-planets th { text-align: left; font-size: 11px; color: #666; border-bottom: 1px solid #c8bde0; padding: 2px 4px; }
+.horo-planets td { padding: 3px 4px; border-bottom: 1px dotted #e0d8ee; }
+.horo-pglyph { display: inline-block; width: 16px; text-align: center; color: #4b2d83; font-weight: bold; }
+.horo-flag { font-size: 11px; color: #8a4b00; }
+.horo-chartrow { display: flex; flex-wrap: wrap; gap: 6px; }
+.horo-chip { padding: 3px 8px; background: #fff; border: 1px solid #c8bde0; font-size: 12px; }
+.horo-alt { color: #888; }

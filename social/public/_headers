@@ -1,7 +1,7 @@
 # Security headers for every page and file the Worker serves from public/ (Workers static assets read this file).
 # The API sets its own headers in src/http.js.
 /*
-  Content-Security-Policy: default-src 'self'; img-src 'self' data:; media-src 'self' https://*.itunes.apple.com https://*.apple.com https://*.mzstatic.com; style-src 'self'; script-src 'self'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: https://i.scdn.co https://*.spotifycdn.com; media-src 'self' https://*.itunes.apple.com https://*.apple.com https://*.mzstatic.com; style-src 'self'; script-src 'self'; connect-src 'self'; font-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
   X-Content-Type-Options: nosniff
   X-Frame-Options: DENY
   Referrer-Policy: strict-origin-when-cross-origin

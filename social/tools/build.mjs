@@ -1,12 +1,10 @@
 // node tools/build.mjs — regenerate everything in social/ that comes from the original site (the repo root):
-//   src/generated/bots.js     the bot cast: profiles + lines, merged from content-src/base, depth/ (BOT_IDS only)
 //   src/generated/avatars.js  the picture presets people choose from (basics + content-src/avatar-presets*.json + decor)
 //   public/assets/…           every image the new site uses, copied (the original assets/ folder is never touched)
 //   public/blog/<post>.html   malten's essays: the <article> lifted verbatim, new page chrome around it
 // Run it after editing content-src/ or adding a post. It only writes inside social/.
 import fs from 'node:fs';
 import path from 'node:path';
-import crypto from 'node:crypto';
 import { fileURLToPath } from 'node:url';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -15,10 +13,6 @@ const ROOT = path.resolve(SOCIAL, '..');                 // the original site
 const CONTENT = path.join(ROOT, 'content-src');
 const PUBLIC = path.join(SOCIAL, 'public');
 const GEN = path.join(SOCIAL, 'src', 'generated');
-
-// The bots. Deliberately few: the ten original residents (all adults in the fiction). Each one is clearly labeled as a
-// bot everywhere it appears. Add or remove ids here and rebuild; the Worker re-syncs bot profiles on its next request.
-const BOT_IDS = ['todd', 'darkangel', 'sk8rboi', 'vinyl_witch', 'wes', 'herp', 'banana', 'patrick', 'starxgazer', 'zorp'];
 
 // Essays to republish (file name in the repo root → same name under public/blog/). Newest first.
 const POSTS = [
@@ -34,16 +28,17 @@ const UI_ASSETS = ['pfp.png', 'stars.png', 'assets/deco_new.gif', 'assets/deco_h
   'assets/deco_welcome_banner.gif', 'assets/deco_email_bear.gif'];
 
 const readJson = f => JSON.parse(fs.readFileSync(f, 'utf8'));
+const uniq = a => [...new Set(a)];
 const exists = f => fs.existsSync(f);
 const copied = new Set();
 
-// a path from the original site ("assets/x.gif" or a root file like "herp.gif") → the new site's URL, copying the file
+// a path from the original site ("assets/x.gif" or a root file like "pfp.png") → the new site's URL, copying the file
 function asset(rel) {
   if (typeof rel !== 'string' || !rel) return '';
   rel = rel.replace(/^\.?\//, '');
   const src = path.join(ROOT, rel);
   if (!exists(src)) throw new Error(`missing asset: ${rel}`);
-  const out = rel.startsWith('assets/') ? rel : `assets/${rel}`;   // root files (herp.gif, stars.png…) land in assets/
+  const out = rel.startsWith('assets/') ? rel : `assets/${rel}`;   // root files (pfp.png, stars.png) land in assets/
   if (!copied.has(out)) {
     const dest = path.join(PUBLIC, out);
     fs.mkdirSync(path.dirname(dest), { recursive: true });
@@ -51,61 +46,6 @@ function asset(rel) {
     copied.add(out);
   }
   return '/' + out;
-}
-
-/* ------------------------------------------------------------------ bots */
-const strings = a => (Array.isArray(a) ? a : []).filter(s => typeof s === 'string' && s.trim());
-const uniq = a => [...new Set(a)];
-const addressesPlayer = s => /\{you\}/i.test(s);           // lines written TO the single-player visitor
-
-function buildBot(id) {
-  const base = readJson(path.join(CONTENT, 'base', 'residents', `${id}.json`));
-  const depthFile = path.join(CONTENT, 'depth', `${id}.json`);
-  const depth = exists(depthFile) ? readJson(depthFile) : {};
-  const set = new Set(BOT_IDS);
-
-  const keywords = {};
-  for (const [k, v] of Object.entries({ ...(base.keywords || {}), ...(depth.keywordsExtra || {}) })) {
-    if (typeof v === 'string' && v.trim()) keywords[k.toLowerCase()] = v;
-  }
-  // wall comments other bots left on this bot's page (the rest of the old cast doesn't live here any more)
-  const wallSeeds = [...(base.wall || []), ...(depth.wallExtra || [])]
-    .filter(w => w && set.has(w.from) && w.from !== id && typeof w.text === 'string' && !addressesPlayer(w.text))
-    .map(w => ({ from: w.from, text: w.text }));
-  const bulletins = (base.bulletins || [])
-    .filter(b => b && typeof b.body === 'string' && !addressesPlayer(b.body + (b.subject || '')))
-    .map(b => ({ subject: b.subject || '', body: b.body }));
-  const blog = (Array.isArray(depth.blog) ? depth.blog : [])
-    .filter(b => b && b.title && b.body && !addressesPlayer(b.title + b.body))
-    .map(b => ({ title: b.title, mood: b.mood || '', body: b.body }));
-  const song = base.song && base.song.name ? { name: base.song.name, artist: base.song.artist || '', url: base.song.url || '' } : null;
-
-  return {
-    key: id,
-    name: base.name,
-    avatar: asset(depth.avatar || base.avatar),
-    friends: strings(base.friends).filter(f => set.has(f) && f !== id),
-    profile: {
-      tag: base.tag || '', mood: base.mood || '', age: String(base.age ?? ''), gender: base.gender || '',
-      hometown: base.hometown || base.loc || '', zodiac: base.zodiac || '', status: base.status || '', hereFor: base.hereFor || '',
-      about: base.about || '', aboutMore: depth.aboutMore || base.aboutMore || '', meet: base.meet || '',
-      interests: base.interests || {}, blogTitle: base.blogTitle || '',
-      theme: base.theme || null, bgTile: base.bgTile ? asset(base.bgTile) : '', font: '',
-      decor: strings(base.decor).map(asset), badges: [], song,
-      survey: depth.survey && Array.isArray(depth.survey.qa) ? { title: depth.survey.title || 'survey', qa: depth.survey.qa } : null,
-    },
-    lines: {
-      statuses: uniq(strings([...(base.statuses || []), ...(base.statusesExtra || []), ...(depth.statusesExtra || [])])).filter(s => !addressesPlayer(s)),
-      replies: uniq(strings([...(base.replies || []), ...(depth.repliesExtra || [])])),
-      dms: uniq(strings(depth.dms)),
-      ambient: uniq(strings(base.ambient)).filter(s => !addressesPlayer(s)),
-      keywords,
-      thanksAdd: base.thanksAdd || 'thanks for the add!!',
-      bulletins,
-    },
-    wallSeeds,
-    blog,
-  };
 }
 
 /* --------------------------------------------------------- avatar presets */
@@ -221,20 +161,14 @@ UI_ASSETS.forEach(asset);
 const { OPTION_ASSETS } = await import(path.join(SOCIAL, 'src', 'options.js'));   // every editor choice (tiles, decor, badges)
 OPTION_ASSETS.forEach(u => asset(u.replace(/^\//, '')));
 
-const bots = BOT_IDS.map(buildBot);
 const avatars = buildAvatars();
-const botsJson = JSON.stringify(bots);
-const version = crypto.createHash('sha256').update(botsJson).digest('hex').slice(0, 12);
 const header = '// GENERATED by `node tools/build.mjs` from the original site\'s content-src/ — do not edit by hand.\n';
-fs.writeFileSync(path.join(GEN, 'bots.js'), `${header}export const BOTS_VERSION = '${version}';\nexport const BOTS = ${JSON.stringify(bots, null, 1)};\n`);
 fs.writeFileSync(path.join(GEN, 'avatars.js'), `${header}export const AVATARS = ${JSON.stringify(avatars, null, 1)};\n`);
 
 POSTS.forEach(buildPost);
 buildHub();
 
 const bytes = [...copied].reduce((n, f) => n + fs.statSync(path.join(PUBLIC, f)).size, 0);
-console.log(`bots: ${bots.length} (${bots.map(b => b.name).join(', ')}) · version ${version}`);
-console.log(`lines: ${bots.reduce((n, b) => n + b.lines.statuses.length + b.lines.replies.length + b.lines.dms.length, 0)} statuses/replies/dms, ${bots.reduce((n, b) => n + b.wallSeeds.length, 0)} bot-to-bot wall comments, ${bots.reduce((n, b) => n + b.blog.length, 0)} blog entries`);
 console.log(`avatars: ${avatars.length} presets`);
 console.log(`assets: ${copied.size} files, ${(bytes / 1024 / 1024).toFixed(2)} MB → public/assets`);
 console.log(`blog: ${POSTS.length} posts + index → public/blog`);

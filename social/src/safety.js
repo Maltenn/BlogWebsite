@@ -56,7 +56,7 @@ export async function report(c) {
     if (u.id === c.user.id) fail(400, 'you can\'t report yourself.');
     const p = await profileData(c.env, u.id);
     targetId = u.id; targetUser = u.id;
-    snapshot = { name: u.name, avatar: u.avatar, isBot: !!u.is_bot, tag: p.tag, mood: p.mood, about: p.about, meet: p.meet, interests: p.interests };
+    snapshot = { name: u.name, avatar: u.avatar, tag: p.tag, mood: p.mood, about: p.about, meet: p.meet, interests: p.interests };
   } else if (type === 'post') {
     const p = await c.env.DB.prepare(`SELECT p.id, p.kind, p.subject, p.body, p.author_id, p.target_id, p.created, a.name AS author
       FROM posts p JOIN users a ON a.id = p.author_id WHERE p.id = ?`).bind(int(b.id, 0)).first();

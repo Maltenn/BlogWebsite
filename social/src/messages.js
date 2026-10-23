@@ -1,8 +1,7 @@
-// Private messages between two people (or a person and a bot).
+// Private messages between two people.
 import { fail, json, readBody } from './http.js';
 import { longText } from './text.js';
 import { REF_COLS, ref, refOf, visibleUser, areFriends, blockedEither, blockedBy, limit } from './db.js';
-import { botAnswersMessage } from './bots.js';
 
 // GET /api/inbox — one row per conversation, newest first
 export async function inbox(c) {
@@ -47,15 +46,11 @@ export async function thread(c) {
     ORDER BY created DESC, id DESC LIMIT 200`).bind(me, u.id, c.now).all();
   await c.env.DB.prepare('UPDATE messages SET read_at = ?3 WHERE from_id = ?2 AND to_id = ?1 AND read_at IS NULL AND created <= ?3')
     .bind(me, u.id, c.now).run();
-  // a bot reply that is still "being typed" — the page shows "… is typing" until it lands
-  const pending = u.is_bot ? await c.env.DB.prepare('SELECT MIN(created) AS at FROM messages WHERE from_id = ? AND to_id = ? AND created > ?')
-    .bind(u.id, me, c.now).first() : null;
   const problem = await messageProblem(c, u);
   return json({
     with: refOf(u),
     messages: results.reverse().map(m => ({ id: m.id, mine: m.from_id === me, body: m.body, created: m.created })),
     canMessage: !problem, reason: problem,
-    typingUntil: pending && pending.at ? pending.at : null,
   });
 }
 
@@ -70,6 +65,5 @@ export async function sendMessage(c) {
   await limit(c, 'dm:' + c.user.id, [[15, 60000], [400, 86400000]]);
   const row = await c.env.DB.prepare('INSERT INTO messages (from_id, to_id, body, created) VALUES (?, ?, ?, ?) RETURNING id')
     .bind(c.user.id, u.id, body, c.now).first();
-  if (u.is_bot) await botAnswersMessage(c, u, body);
   return json({ id: row.id, body, created: c.now }, 201);
 }

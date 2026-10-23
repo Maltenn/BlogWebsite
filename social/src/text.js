@@ -50,7 +50,7 @@ export const longText = (s, max) => filter(para(s, max));
 const RESERVED = ['admin', 'administrator', 'mod', 'moderator', 'ourspace', 'staff', 'support', 'system', 'official',
   'you', 'guest', 'null', 'undefined', 'anonymous', 'root', 'api', 'help', 'rules', 'settings'];
 
-export function nameProblem(name, taken = []) {
+export function nameProblem(name) {
   const n = String(name ?? '').trim();
   if (n.length < 3) return 'screen names need at least 3 characters.';
   if (n.length > 20) return 'max 20 characters. this isn\'t a novel.';
@@ -59,7 +59,6 @@ export function nameProblem(name, taken = []) {
   const key = n.toLowerCase();
   const bare = key.replace(/[^a-z0-9]/g, '');
   if (RESERVED.includes(key) || RESERVED.includes(bare)) return 'that one\'s reserved. pick something with more personality.';
-  if (taken.some(t => t === key || t.replace(/[^a-z0-9]/g, '') === bare)) return 'that name belongs to one of the site\'s bots. try adding some xX\'s.';
   if (HAS_WORD.test(n.replace(/[_~*.\-]+/g, ' '))) return 'pick a different name.';
   return '';
 }
