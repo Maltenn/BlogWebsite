@@ -1094,7 +1094,11 @@ const ControlPanel = {
         ${radio('cp-saver', 'toasters', '🍞 flying toast', curSaver === 'toasters')}
         ${radio('cp-saver', 'matrix', '🟩 the matrix', curSaver === 'matrix')}
       </div>
-      <button class="btn98" id="cp-preview">▶ preview screensaver</button></div>`;
+      <button class="btn98" id="cp-preview">▶ preview screensaver</button></div>
+      <div class="cz-sec"><b>📺 CRT mode</b><div class="cp-row cp-crt">
+        <label class="cp-opt"><input type="checkbox" id="cp-crt-on" ${Toggles.crtOn ? 'checked' : ''}> on</label>
+        <label class="cp-opt cp-slider">intensity <input type="range" id="cp-crt-level" min="10" max="100" step="5" value="${Toggles.crtLevel}"> <span id="cp-crt-val">${Toggles.crtLevel}%</span></label>
+      </div><p style="font-size:10px;color:#666;margin:2px 0 0;">(scanlines, glow and flicker. drag the slider and it switches itself on)</p></div>`;
 
     body.querySelectorAll('input[name="cp-cursor"]').forEach(r =>
       r.addEventListener('change', () => { setCursor(r.value); Sfx.click(); }));
@@ -1103,6 +1107,13 @@ const ControlPanel = {
     body.querySelectorAll('input[name="cp-saver"]').forEach(r =>
       r.addEventListener('change', () => { Screensaver.setMode(r.value); Sfx.click(); }));
     body.querySelector('#cp-preview').addEventListener('click', () => Screensaver.start());
+    const crtOn = body.querySelector('#cp-crt-on'), crtLvl = body.querySelector('#cp-crt-level'), crtVal = body.querySelector('#cp-crt-val');
+    crtOn.addEventListener('change', () => { if (crtOn.checked !== Toggles.crtOn) Toggles.crt(); });
+    crtLvl.addEventListener('input', () => {
+      Toggles.setCrtLevel(+crtLvl.value, true);
+      crtVal.textContent = Toggles.crtLevel + '%';
+    });
+    document.addEventListener('crt-change', () => { crtOn.checked = Toggles.crtOn; });   // the tray / Start menu toggles too
   },
 };
 

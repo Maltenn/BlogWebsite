@@ -7,6 +7,12 @@
       "runtimeArgs": ["-y", "http-server", "-c-1", "."],
       "port": 8123,
       "autoPort": true
+    },
+    {
+      "name": "static-site-8124",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "http-server", "-c-1", "-p", "8124", "."],
+      "port": 8124
     }
   ]
 }

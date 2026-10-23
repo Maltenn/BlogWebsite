@@ -23,6 +23,8 @@
         // collapsed marquee bars are restored before first paint (the rest is Toggles in desktop.js)
         if (localStorage.getItem('malten_ticker') === '0') document.body.classList.add('ticker-off');
         if (localStorage.getItem('malten_badges') === '0') document.body.classList.add('badges-off');
+        // every load boots like a real machine first (Boot in desktop.js); ?boot=0 goes straight to the desktop
+        if (!/[?&]boot=0/.test(location.search)) document.body.classList.add('booting');
     </script>
 
     <!-- news ticker -->
@@ -62,6 +64,13 @@
                 </div>
             </div>
             <div class="window-body">
+                <div class="blog-preview" style="margin-bottom:10px;">
+                    <img src="pfp.png" alt="">
+                    <div>
+                        <a href="what-does-it-mean-to-have-changed.html">What does it mean to have changed?</a>
+                        <div class="desc">post #002. the ship of theseus, my grandparents, and whether you can be someone if you never stay someone.</div>
+                    </div>
+                </div>
                 <div class="blog-preview" style="margin-bottom:10px;">
                     <img src="pfp.png" alt="">
                     <div>
@@ -201,14 +210,24 @@
         </div>
 
         <!-- ===================== OURSPACE ===================== -->
-        <!-- data-start-maximized: WM opens it already maximized (first open, screens wider than 820px) -->
-        <div class="window open-on-load" data-app="myspace" data-title="OurSpace" data-x="300" data-y="40" data-w="620" data-start-maximized>
+        <!-- data-start-fill: WM opens it covering 80% of the desktop, centred (first open, screens wider than 820px),
+             so the desktop shows around it. The Address bar is the same chrome the blog pages have; ourspace.js
+             keeps the URL in step with the page you're on (MS.paintUrl). -->
+        <div class="window open-on-load" data-app="myspace" data-title="OurSpace" data-x="300" data-y="40" data-w="620" data-start-fill="0.8">
             <div class="title-bar">
-                <div class="title-bar-text">👥 OurSpace — a place for friends</div>
+                <div class="title-bar-text">🌐 OurSpace — Maltenscape Navigator</div>
                 <div class="title-bar-controls">
                     <img src="Minimize.png" alt="Minimize">
                     <img src="Fullscreen.png" alt="Maximize">
                     <img src="Close.png" alt="Close">
+                </div>
+            </div>
+            <div class="nav-chrome ms-chrome">
+                <div class="nav-row nav-address">
+                    <button class="btn98 ms-navbtn" id="ms-nav-back" title="back to the previous page">◀ Back</button>
+                    <button class="btn98 ms-navbtn" id="ms-nav-home" title="home: the feed">🏠</button>
+                    <span class="wr-label">Address</span>
+                    <span class="wr-url" id="ms-url">http://ourspace.ring/</span>
                 </div>
             </div>
             <div class="window-body" style="padding:0;"></div>

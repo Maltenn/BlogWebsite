@@ -163,9 +163,10 @@ body.desktop .window.maximized {
     left: 0 !important;
     top: 0 !important;
     width: 100% !important;
-    height: 100%;
+    height: 100% !important;
 }
-body.desktop .window.maximized > .window-body { max-height: none; flex-grow: 1; }
+body.desktop .window.maximized > .window-body,
+body.desktop .window.sized > .window-body { max-height: none; flex-grow: 1; min-height: 0; }
 
 /* windows stay hidden until WM.init has placed them (no flash of unpositioned windows on load) */
 body.desktop:not(.wm-ready) .window[data-app] { visibility: hidden; }
@@ -627,17 +628,19 @@ html.imgview-open, html.imgview-open body { overflow: hidden; }
     90% { transform: translate(-3px, 1px); }
 }
 
+/* --crt is the Control Panel's intensity (0.1–1, default .25); it scales everything at once */
 body.crt::after {
     content: '';
     position: fixed;
     inset: 0;
     z-index: 9000;
     pointer-events: none;
-    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.14) 0 1px, transparent 1px 3px);
-    box-shadow: inset 0 0 120px rgba(20, 0, 60, 0.55);
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,0.24) 0 1px, transparent 1px 3px);
+    box-shadow: inset 0 0 160px rgba(20, 0, 60, 0.8);
+    opacity: var(--crt, .25);
     animation: crt-flicker 0.12s infinite;
 }
-@keyframes crt-flicker { 50% { opacity: 0.92; } }
+@keyframes crt-flicker { 50% { opacity: calc(var(--crt, .25) * 0.88); } }
 
 #bsod {
     position: fixed; inset: 0; z-index: 20000;
@@ -655,6 +658,121 @@ body.crt::after {
     background: #000; cursor: none;
 }
 #screensaver[hidden] { display: none; }
+
+/* ---------- first boot (Boot in desktop.js): power → POST → splash → logon ---------- */
+
+body.booting > :not(#boot):not(#shutdown) { visibility: hidden; }
+#boot {
+    position: fixed; inset: 0; z-index: 30000;
+    background: #000; color: #c8c8c8;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+    transition: opacity .6s;
+}
+#boot.boot-out { opacity: 0; pointer-events: none; }
+.boot-stage { position: absolute; inset: 0; }
+.boot-stage[hidden] { display: none; }
+/* power: a beige tower with one button on it */
+.boot-power { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 18px; }
+.boot-tower { text-align: center; }
+.boot-tower-face {
+    width: 150px; height: 300px; margin: 0 auto; position: relative;
+    background: #d9d2c0; border: 3px solid #8f8a7a; border-radius: 6px;
+    box-shadow: inset -6px -6px 0 #b9b2a0, inset 6px 6px 0 #f0ebdc, 10px 14px 0 rgba(0,0,0,.6);
+}
+.boot-bay { position: absolute; left: 14px; right: 14px; height: 22px; background: #cfc8b5; border: 2px solid #9f9887; border-radius: 2px; }
+.boot-bay:nth-child(1) { top: 20px; }
+.boot-bay:nth-child(2) { top: 50px; }
+.boot-floppy { position: absolute; left: 24px; right: 24px; top: 92px; height: 10px; background: #2d2d2d; border-radius: 2px; }
+.boot-powerbtn {
+    position: absolute; left: 50%; top: 200px; transform: translateX(-50%);
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 3px solid #7a7466; background: #e9e3d2; color: #333;
+    font-size: 20px; cursor: pointer; box-shadow: 2px 3px 0 rgba(0,0,0,.35);
+}
+.boot-powerbtn:hover { background: #fff8e6; }
+.boot-powerbtn.on { transform: translateX(-50%) translateY(2px); box-shadow: none; }
+.boot-led { position: absolute; left: 50%; top: 258px; transform: translateX(-50%); width: 10px; height: 10px; border-radius: 50%; background: #3a3a3a; }
+.boot-led.on { background: #3fff5a; box-shadow: 0 0 10px #3fff5a; }
+.boot-tower-label { margin-top: 10px; font-size: 12px; letter-spacing: 3px; color: #888; }
+.boot-hint { font-size: 13px; color: #aaa; animation: blinker 1.4s step-start infinite; }
+/* POST (the BIOS screen) */
+.boot-text { margin: 0; padding: 24px 28px; font-size: 15px; line-height: 1.35; white-space: pre-wrap; color: #d0d0d0; }
+.boot-text::after { content: '_'; animation: blinker .8s step-start infinite; }
+.boot-estar {
+    position: absolute; right: 28px; top: 24px; width: 96px; padding: 8px 4px;
+    border: 2px solid #9ad; color: #9ad; font-size: 9px; line-height: 1.5; text-align: center; letter-spacing: 1px;
+}
+/* splash */
+.boot-splash {
+    background:
+        radial-gradient(ellipse at 28% 22%, #fff 0, #dbe8ff 16%, transparent 30%),
+        radial-gradient(ellipse at 72% 68%, #fff 0, #d6e4ff 20%, transparent 34%),
+        linear-gradient(180deg, #0a1a5c, #2b57c7 60%, #7ab2ff);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px;
+}
+.boot-flag { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; width: 96px; transform: skewY(-8deg); filter: drop-shadow(3px 4px 0 rgba(0,0,0,.35)); }
+.boot-flag i { display: block; height: 42px; }
+.boot-flag i:nth-child(1) { background: #f35325; }
+.boot-flag i:nth-child(2) { background: #81bc06; }
+.boot-flag i:nth-child(3) { background: #05a6f0; }
+.boot-flag i:nth-child(4) { background: #ffba08; }
+.boot-brand { font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; font-size: 58px; color: #fff; text-shadow: 2px 3px 0 rgba(0,0,0,.5); letter-spacing: -1px; }
+.boot-brand b { font-weight: normal; margin-left: 10px; }
+.boot-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 16px; background: #000; overflow: hidden; }
+.boot-bar span { display: block; width: 140px; height: 100%; background: linear-gradient(90deg, transparent, #2a5bd7 30%, #6fa0ff 50%, #2a5bd7 70%, transparent); animation: boot-bar 1.4s linear infinite; }
+@keyframes boot-bar { from { transform: translateX(-140px); } to { transform: translateX(100vw); } }
+/* logon */
+.boot-logon { background: #008080; }
+.boot-dialog { position: absolute !important; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(420px, 92vw) !important; }
+.boot-dialog .title-bar { cursor: default; }
+.boot-dialog > .window-body { font-family: 'MS Sans Serif', Tahoma, 'Segoe UI', Arial, sans-serif; font-size: 12px; color: #000; padding: 12px 14px; }
+.boot-logon-row { display: flex; gap: 12px; align-items: center; margin-bottom: 14px; }
+.boot-keys { font-size: 34px; }
+.boot-dialog label { display: grid; grid-template-columns: 90px 1fr; align-items: center; gap: 8px; margin: 6px 0; }
+.boot-dialog input { border: 2px inset #fff; padding: 2px 4px; font-family: inherit; font-size: 12px; background: #fff; }
+.boot-btns { display: flex; justify-content: flex-end; gap: 6px; margin-top: 12px; }
+.boot-btns .btn98 { min-width: 76px; padding: 4px 10px; }
+.boot-skip { position: absolute; right: 14px; bottom: 14px; background: none; border: 1px solid #555; color: #888; font-family: inherit; font-size: 11px; padding: 3px 8px; cursor: pointer; }
+.boot-skip:hover { color: #ddd; border-color: #aaa; }
+
+/* ---------- shut down (Shutdown in desktop.js): the dialog, "shutting down", the CRT going off, standby ---------- */
+
+#shutdown {
+    position: fixed; inset: 0; z-index: 30001;
+    background: #000; color: #c8c8c8;
+    font-family: 'Courier New', monospace;
+    overflow: hidden;
+}
+#shutdown.sd-asking { background: transparent; }       /* the dialog sits on the live desktop */
+.sd-stage { position: absolute; inset: 0; }
+.sd-stage[hidden] { display: none; }
+.sd-dialog { position: absolute !important; left: 50%; top: 50%; transform: translate(-50%, -50%); width: min(380px, 92vw) !important; }
+.sd-dialog .title-bar { cursor: default; }
+.sd-dialog > .window-body { font-family: 'MS Sans Serif', Tahoma, 'Segoe UI', Arial, sans-serif; font-size: 12px; color: #000; padding: 12px 14px; }
+.sd-row { display: flex; gap: 14px; align-items: flex-start; }
+.sd-icon { font-size: 34px; }
+.sd-q { margin-bottom: 8px; }
+.sd-dialog label { display: block; margin: 3px 0; cursor: pointer; }
+.sd-note { position: absolute; left: 0; right: 0; bottom: 40px; text-align: center; color: #fff; font-family: Tahoma, Arial, sans-serif; font-size: 14px; text-shadow: 1px 1px 0 rgba(0,0,0,.5); }
+.sd-safe { background: #000; display: flex; align-items: center; justify-content: center; }
+.sd-safe-text { color: #ffb000; font-size: 28px; text-align: center; line-height: 1.4; text-shadow: 0 0 8px rgba(255,176,0,.55); }
+.sd-safe.sd-off { animation: crt-off .7s ease-in forwards; }
+.sd-safe.sd-off .sd-safe-text { opacity: 0; }
+@keyframes crt-off {                                   /* the picture collapses to a bright line, then a dot */
+    0%   { transform: scale(1, 1); background: #000; }
+    35%  { transform: scale(1, 0.012); background: #e8eeff; box-shadow: 0 0 24px 6px #fff; }
+    70%  { transform: scale(0.5, 0.006); background: #fff; box-shadow: 0 0 20px 4px #fff; }
+    100% { transform: scale(0.004, 0.004); background: #fff; box-shadow: 0 0 30px 10px #fff; opacity: 0; }
+}
+.sd-breathe { background: #000; cursor: none; }
+.sd-breathe::after {                                   /* a monitor on standby: the faint glow breathing */
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, #2e2e2e 0%, #161616 55%, #000 100%);
+    animation: crt-breathe 5s ease-in-out infinite;
+}
+@keyframes crt-breathe { 0%, 100% { opacity: .12; } 50% { opacity: 1; } }
+.sd-dos-text { color: #c8c8c8; }
 
 /* ---------- buddy ---------- */
 
@@ -772,7 +890,7 @@ body.page-wide .container { width: auto; max-width: 1180px; }
     gap: 12px;
 }
 .blog-preview img {
-    width: 110px; height: 80px; object-fit: contain;
+    width: auto; height: 80px; max-width: 120px; object-fit: contain;   /* the frame takes the picture's own shape */
     border: 2px inset #fff; background: #fff;
     image-rendering: pixelated;
 }
@@ -1445,6 +1563,20 @@ body.page-wide .container { width: auto; max-width: 1180px; }
 .ms-idstack { font-size: 11px; line-height: 1.45; margin: 4px 0; }
 .ms-viewmy { font-size: 11px; margin: 3px 0; }
 .ms-viewmy a { color: var(--ms-accent, #6699cc); font-weight: bold; text-decoration: none; }
+.ms-viewblog { font-size: 12px; font-weight: bold; padding: 4px 18px; margin: 2px 0; }           /* malten's page: the one View My button */
+.ms-editbig {                                                                                    /* My Page: the button under your picture */
+    display: block; width: 100%; margin: 6px 0 2px; padding: 8px 6px;
+    font-size: 14px; font-weight: bold; background: #ffe066;
+    box-shadow: inset -1px -1px #0a0a0a, inset 1px 1px #fff, inset -2px -2px #b8860b, inset 2px 2px #fff6c2;
+}
+.ms-editbig:hover { background: #ffd43b; }
+.ms-feedlink { cursor: pointer; }                                                                /* feed lines that lead to a bulletin / wall comment */
+.ms-feedlink:hover { text-decoration: underline dotted; color: #003366; }
+.ms-chrome { flex-shrink: 0; }                                                                   /* the OurSpace window's Address bar (index.html) */
+.ms-chrome .nav-address { gap: 6px; }
+.ms-chrome .ms-navbtn { font-size: 11px; padding: 2px 8px; }
+.ms-chrome .wr-url { flex-grow: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.cp-slider input[type="range"] { width: 130px; vertical-align: middle; margin: 0 4px; }         /* Control Panel: CRT intensity */
 .ms-moodline { font-size: 11px; margin: 2px 0 4px; font-weight: bold; }
 .ms-contactgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 6px; padding: 4px 6px 2px; }
 .ms-clink { font-size: 11px; color: inherit; text-decoration: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
@@ -1780,7 +1912,8 @@ a.sp-via:hover { text-decoration: underline; }
         width: auto !important;
         margin: 10px;
     }
-    body.desktop .window.maximized { width: auto !important; height: auto; }   /* maximize means nothing when stacked */
+    body.desktop .window.maximized,
+    body.desktop .window.sized { width: auto !important; height: auto !important; }   /* maximize / fill mean nothing when stacked */
     body.desktop .window > .window-body { max-height: none; }
     #taskbar { position: sticky; bottom: 0; }
     #buddy, .desk-deco { display: none; }

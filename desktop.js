@@ -40,6 +40,330 @@ const Sfx = {
   doorSlam()  { this.beep(95, .14, 'square', .09); this.beep(62, .2, 'sawtooth', .07, .03); },
   // MSN-style nudge buzz
   buzz() { for (let i = 0; i < 7; i++) this.beep(i % 2 ? 68 : 92, .05, 'sawtooth', .06, i * .05); },
+
+  // The dialogue typer's keyboard (Emily-is-Away style): a short burst of band-passed noise (the key cap) over a
+  // quick low thunk (the switch bottoming out). `space` = the deeper, duller space-bar version.
+  noiseBuf: null,
+  noise(ctx) {
+    if (!this.noiseBuf) {
+      const n = Math.round(ctx.sampleRate * 0.1), buf = ctx.createBuffer(1, n, ctx.sampleRate), d = buf.getChannelData(0);
+      for (let i = 0; i < n; i++) d[i] = Math.random() * 2 - 1;
+      this.noiseBuf = buf;
+    }
+    return this.noiseBuf;
+  },
+  key(space) {
+    if (this.muted) return;
+    const ctx = this.ensure();
+    if (!ctx) return;
+    const t = ctx.currentTime, vol = space ? 0.11 : 0.09;
+    const src = ctx.createBufferSource();
+    src.buffer = this.noise(ctx);
+    const bp = ctx.createBiquadFilter();
+    bp.type = 'bandpass';
+    bp.frequency.value = space ? 900 + Math.random() * 300 : 2200 + Math.random() * 1600;
+    bp.Q.value = space ? 0.7 : 1.1;
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(vol, t);
+    g.gain.exponentialRampToValueAtTime(0.0005, t + (space ? 0.06 : 0.04));
+    src.connect(bp).connect(g).connect(ctx.destination);
+    src.start(t);
+    src.stop(t + 0.08);
+    const o = ctx.createOscillator(), og = ctx.createGain();
+    o.type = 'triangle';
+    o.frequency.setValueAtTime(space ? 120 + Math.random() * 30 : 170 + Math.random() * 70, t);
+    o.frequency.exponentialRampToValueAtTime(60, t + 0.035);
+    og.gain.setValueAtTime(vol * 0.8, t);
+    og.gain.exponentialRampToValueAtTime(0.0005, t + 0.04);
+    o.connect(og).connect(ctx.destination);
+    o.start(t);
+    o.stop(t + 0.06);
+  },
+
+  // ---- the first boot (Boot) — all synthesized, each modelled on the part that made the noise ----
+  // The PC speaker was a piezo driven by a timer chip's square wave: one short ~900 Hz beep means POST passed.
+  post() {
+    if (this.muted) return;
+    const ctx = this.ensure();
+    if (!ctx) return;
+    const t = ctx.currentTime;
+    const o = ctx.createOscillator(), hp = ctx.createBiquadFilter(), g = ctx.createGain();
+    o.type = 'square';
+    o.frequency.value = 880;
+    hp.type = 'highpass';
+    hp.frequency.value = 600;                     // a piezo has no bass: thin and tinny
+    g.gain.setValueAtTime(0.0001, t);
+    g.gain.linearRampToValueAtTime(0.07, t + 0.005);
+    g.gain.setValueAtTime(0.07, t + 0.22);
+    g.gain.linearRampToValueAtTime(0.0001, t + 0.235);
+    o.connect(hp).connect(g).connect(ctx.destination);
+    o.start(t);
+    o.stop(t + 0.25);
+  },
+  // A CRT monitor coming on: the power relay clicks, then the degauss coil thumps and buzzes for half a second.
+  degauss() {
+    if (this.muted) return;
+    const ctx = this.ensure();
+    if (!ctx) return;
+    const t = ctx.currentTime;
+    this.beep(3200, .012, 'square', .05);
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(70, t + 0.05);
+    o.frequency.exponentialRampToValueAtTime(45, t + 0.6);
+    g.gain.setValueAtTime(0.0001, t + 0.05);
+    g.gain.exponentialRampToValueAtTime(0.5, t + 0.08);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.7);
+    o.connect(g).connect(ctx.destination);
+    o.start(t + 0.05);
+    o.stop(t + 0.75);
+    const n = ctx.createBufferSource(), bp = ctx.createBiquadFilter(), ng = ctx.createGain();
+    n.buffer = this.noise(ctx);
+    n.loop = true;
+    bp.type = 'bandpass';
+    bp.frequency.value = 120;
+    bp.Q.value = 2;
+    ng.gain.setValueAtTime(0.0001, t + 0.05);
+    ng.gain.exponentialRampToValueAtTime(0.25, t + 0.09);
+    ng.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
+    n.connect(bp).connect(ng).connect(ctx.destination);
+    n.start(t + 0.05);
+    n.stop(t + 0.55);
+  },
+  // Fans and the hard drive's spindle under the whole boot: low fan rumble, the platters whining up to speed over
+  // a couple of seconds, bearing hiss settling in. Returns a function that fades it out.
+  hum() {
+    if (this.muted) return () => {};
+    const ctx = this.ensure();
+    if (!ctx) return () => {};
+    const t = ctx.currentTime;
+    const out = ctx.createGain();
+    out.gain.setValueAtTime(0.0001, t);
+    out.gain.exponentialRampToValueAtTime(1, t + 1.5);
+    out.connect(ctx.destination);
+    const fan = ctx.createBufferSource(), lp = ctx.createBiquadFilter(), fg = ctx.createGain();
+    fan.buffer = this.noise(ctx);
+    fan.loop = true;
+    lp.type = 'lowpass';
+    lp.frequency.value = 380;
+    lp.Q.value = 0.5;
+    fg.gain.value = 0.05;
+    fan.connect(lp).connect(fg).connect(out);
+    fan.start(t);
+    const spin = ctx.createOscillator(), slp = ctx.createBiquadFilter(), sg = ctx.createGain();
+    spin.type = 'sawtooth';
+    spin.frequency.setValueAtTime(40, t);
+    spin.frequency.exponentialRampToValueAtTime(120, t + 2.5);
+    slp.type = 'lowpass';
+    slp.frequency.value = 900;
+    sg.gain.value = 0.012;
+    spin.connect(slp).connect(sg).connect(out);
+    spin.start(t);
+    const hiss = ctx.createBufferSource(), hb = ctx.createBiquadFilter(), hg = ctx.createGain();
+    hiss.buffer = this.noise(ctx);
+    hiss.loop = true;
+    hb.type = 'bandpass';
+    hb.frequency.value = 2600;
+    hb.Q.value = 1.5;
+    hg.gain.setValueAtTime(0.0001, t);
+    hg.gain.exponentialRampToValueAtTime(0.012, t + 2.5);
+    hiss.connect(hb).connect(hg).connect(out);
+    hiss.start(t);
+    return () => {
+      const now = ctx.currentTime;
+      out.gain.setValueAtTime(out.gain.value, now);
+      out.gain.exponentialRampToValueAtTime(0.0001, now + 0.8);
+      [fan, spin, hiss].forEach(s => s.stop(now + 0.85));
+    };
+  },
+  // The hard drive's head actuator: a burst of sharp ticks, each with a dull knock under it, mostly rapid with the
+  // odd pause — the "chatter" a booting drive makes.
+  disk(n = 8) {
+    if (this.muted) return;
+    const ctx = this.ensure();
+    if (!ctx) return;
+    let at = ctx.currentTime;
+    for (let i = 0; i < n; i++) {
+      const src = ctx.createBufferSource(), bp = ctx.createBiquadFilter(), g = ctx.createGain();
+      src.buffer = this.noise(ctx);
+      bp.type = 'bandpass';
+      bp.frequency.value = 2800 + Math.random() * 2500;
+      bp.Q.value = 1.4;
+      g.gain.setValueAtTime(0.06 + Math.random() * 0.04, at);
+      g.gain.exponentialRampToValueAtTime(0.0005, at + 0.012);
+      src.connect(bp).connect(g).connect(ctx.destination);
+      src.start(at);
+      src.stop(at + 0.03);
+      const o = ctx.createOscillator(), og = ctx.createGain();
+      o.type = 'triangle';
+      o.frequency.setValueAtTime(140 + Math.random() * 80, at);
+      o.frequency.exponentialRampToValueAtTime(60, at + 0.02);
+      og.gain.setValueAtTime(0.05, at);
+      og.gain.exponentialRampToValueAtTime(0.0005, at + 0.025);
+      o.connect(og).connect(ctx.destination);
+      o.start(at);
+      o.stop(at + 0.04);
+      at += 0.025 + Math.random() * (Math.random() < 0.25 ? 0.16 : 0.05);
+    }
+  },
+  // The floppy drive's POST seek: the stepper motor rattles the head to track 0 and back (about 3 ms a track, so a
+  // ~300 Hz buzz), the carriage grinding along, and a pop as the head hits the stop.
+  floppy() {
+    if (this.muted) return;
+    const ctx = this.ensure();
+    if (!ctx) return;
+    const t0 = ctx.currentTime;
+    const rattle = (at, dur) => {
+      const o = ctx.createOscillator(), bp = ctx.createBiquadFilter(), g = ctx.createGain();
+      o.type = 'square';
+      o.frequency.setValueAtTime(290, at);
+      o.frequency.linearRampToValueAtTime(320, at + dur);
+      bp.type = 'bandpass';
+      bp.frequency.value = 1400;
+      bp.Q.value = 0.6;
+      g.gain.setValueAtTime(0.0001, at);
+      g.gain.linearRampToValueAtTime(0.07, at + 0.02);
+      g.gain.setValueAtTime(0.07, at + dur - 0.02);
+      g.gain.linearRampToValueAtTime(0.0001, at + dur);
+      o.connect(bp).connect(g).connect(ctx.destination);
+      o.start(at);
+      o.stop(at + dur + 0.01);
+      const n = ctx.createBufferSource(), nb = ctx.createBiquadFilter(), ng = ctx.createGain();
+      n.buffer = this.noise(ctx);
+      n.loop = true;
+      nb.type = 'bandpass';
+      nb.frequency.value = 2200;
+      nb.Q.value = 1;
+      ng.gain.setValueAtTime(0.0001, at);
+      ng.gain.linearRampToValueAtTime(0.03, at + 0.02);
+      ng.gain.setValueAtTime(0.03, at + dur - 0.02);
+      ng.gain.linearRampToValueAtTime(0.0001, at + dur);
+      n.connect(nb).connect(ng).connect(ctx.destination);
+      n.start(at);
+      n.stop(at + dur + 0.01);
+      this.beep(90, .03, 'triangle', .08, at - t0 + dur);
+    };
+    rattle(t0, 0.28);
+    rattle(t0 + 0.42, 0.22);
+  },
+  // The startup chime, in the Windows 98 mould (our own notes, not Redmond's): a warm detuned pad swells in with its
+  // filter opening, a quick run of bright notes climbs the chord, a bell lands on top and is left ringing, and a
+  // sprinkle of sparkle fades out with the pad. About four and a half seconds.
+  startup() {
+    if (this.muted) return;
+    const ctx = this.ensure();
+    if (!ctx) return;
+    const t0 = ctx.currentTime;
+    const master = ctx.createGain();
+    master.gain.value = 0.9;
+    master.connect(ctx.destination);
+    const lp = ctx.createBiquadFilter(), pg = ctx.createGain();
+    lp.type = 'lowpass';
+    lp.Q.value = 0.7;
+    lp.frequency.setValueAtTime(300, t0);
+    lp.frequency.exponentialRampToValueAtTime(2600, t0 + 1.2);
+    lp.frequency.exponentialRampToValueAtTime(700, t0 + 4.2);
+    pg.gain.setValueAtTime(0.0001, t0);
+    pg.gain.exponentialRampToValueAtTime(0.045, t0 + 0.5);
+    pg.gain.setValueAtTime(0.045, t0 + 2.2);
+    pg.gain.exponentialRampToValueAtTime(0.0001, t0 + 4.4);
+    lp.connect(pg).connect(master);
+    [155.56, 196, 233.08, 311.13].forEach(f => [-5, 5].forEach(det => {   // Eb3 G3 Bb3 Eb4, two voices each
+      const o = ctx.createOscillator();
+      o.type = 'sawtooth';
+      o.frequency.value = f;
+      o.detune.value = det;
+      o.connect(lp);
+      o.start(t0);
+      o.stop(t0 + 4.5);
+    }));
+    const ping = (f, at, dur, vol) => {
+      const o = ctx.createOscillator(), o2 = ctx.createOscillator(), g = ctx.createGain();
+      o.type = 'sine';
+      o.frequency.value = f;
+      o2.type = 'triangle';
+      o2.frequency.value = f * 2;
+      g.gain.setValueAtTime(0.0001, t0 + at);
+      g.gain.exponentialRampToValueAtTime(vol, t0 + at + 0.015);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + at + dur);
+      o.connect(g);
+      o2.connect(g);
+      g.connect(master);
+      o.start(t0 + at);
+      o2.start(t0 + at);
+      o.stop(t0 + at + dur + 0.05);
+      o2.stop(t0 + at + dur + 0.05);
+    };
+    [311.13, 392, 466.16, 622.25, 783.99, 932.33, 1244.5].forEach((f, i) => ping(f, 0.25 + i * 0.075, 0.5 + i * 0.1, 0.035));   // Eb4 … Eb6
+    const bell = (f, at, vol, dur) => {
+      [[1, 1], [2.76, 0.35], [5.4, 0.12]].forEach(([m, a]) => {   // inharmonic partials: a struck bell, not a flute
+        const o = ctx.createOscillator(), g = ctx.createGain();
+        o.type = 'sine';
+        o.frequency.value = f * m;
+        g.gain.setValueAtTime(0.0001, t0 + at);
+        g.gain.exponentialRampToValueAtTime(vol * a, t0 + at + 0.01);
+        g.gain.exponentialRampToValueAtTime(0.0001, t0 + at + dur / (m > 2 ? 2.5 : 1));
+        o.connect(g).connect(master);
+        o.start(t0 + at);
+        o.stop(t0 + at + dur + 0.1);
+      });
+    };
+    bell(1244.5, 0.78, 0.07, 3.2);                // Eb6
+    bell(1864.7, 0.86, 0.035, 2.6);               // Bb6
+    [2489, 3135.9, 3729.3, 4978].forEach((f, i) => ping(f, 1.2 + i * 0.22, 1.4, 0.008));
+  },
+  // The shutdown chime: the startup's chord, but a short run DOWN it over a soft pad (the Win98 one is a brief
+  // descending phrase too). About two seconds.
+  shutdown() {
+    if (this.muted) return;
+    const ctx = this.ensure();
+    if (!ctx) return;
+    const t0 = ctx.currentTime;
+    const tone = (f, at, dur, vol, type = 'sine') => {
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = type;
+      o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, t0 + at);
+      g.gain.exponentialRampToValueAtTime(vol, t0 + at + 0.03);
+      g.gain.exponentialRampToValueAtTime(0.0001, t0 + at + dur);
+      o.connect(g).connect(ctx.destination);
+      o.start(t0 + at);
+      o.stop(t0 + at + dur + 0.05);
+    };
+    [932.33, 783.99, 622.25, 466.16].forEach((f, i) => {   // Bb5 G5 Eb5 Bb4
+      tone(f, i * 0.22, 1.5 - i * 0.15, 0.06);
+      tone(f * 2, i * 0.22, 0.5, 0.012, 'triangle');
+    });
+    [155.56, 233.08, 311.13].forEach(f => tone(f, 0, 2.3, 0.03, 'triangle'));
+  },
+  // A CRT switching off: the switch clicks, the high whine drops away, and the tube thumps.
+  crtOff() {
+    if (this.muted) return;
+    const ctx = this.ensure();
+    if (!ctx) return;
+    const t = ctx.currentTime;
+    this.beep(3200, .012, 'square', .05);
+    const o = ctx.createOscillator(), g = ctx.createGain();
+    o.type = 'sine';
+    o.frequency.setValueAtTime(9000, t + 0.02);
+    o.frequency.exponentialRampToValueAtTime(1500, t + 0.25);
+    g.gain.setValueAtTime(0.0001, t + 0.02);
+    g.gain.exponentialRampToValueAtTime(0.06, t + 0.03);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
+    o.connect(g).connect(ctx.destination);
+    o.start(t + 0.02);
+    o.stop(t + 0.35);
+    const th = ctx.createOscillator(), tg = ctx.createGain();
+    th.type = 'sine';
+    th.frequency.setValueAtTime(90, t + 0.05);
+    th.frequency.exponentialRampToValueAtTime(35, t + 0.4);
+    tg.gain.setValueAtTime(0.0001, t + 0.05);
+    tg.gain.exponentialRampToValueAtTime(0.4, t + 0.07);
+    tg.gain.exponentialRampToValueAtTime(0.0001, t + 0.5);
+    th.connect(tg).connect(ctx.destination);
+    th.start(t + 0.05);
+    th.stop(t + 0.55);
+  },
 };
 
 // ---------- window manager (desktop pages only) ----------
@@ -69,10 +393,42 @@ const WM = {
       else el.classList.add('closed');
     });
     document.body.classList.add('wm-ready');   // styles.css keeps windows hidden until they are placed
-    // only the front window (the last open-on-load one) zooms up from the Start button
-    onLoad.forEach((id, i) => this.open(id, true, i === onLoad.length - 1 ? null : false));
+    // on the very first visit the machine is still booting (Boot): the windows open once the visitor has logged on
+    this.onLoad = onLoad;
+    if (!document.body.classList.contains('booting')) this.openOnLoad();
 
     window.addEventListener('resize', () => this.reflow());
+  },
+
+  // the open-on-load windows; only the front one (the last) zooms up from the Start button. Every boot calls
+  // this (a restart's desktop starts the same way the first one did).
+  openOnLoad() {
+    const ids = this.onLoad || [];
+    ids.forEach((id, i) => this.open(id, true, i === ids.length - 1 ? null : false));
+  },
+
+  // shutting down: every window goes away, silently (the next boot brings the on-load ones back)
+  closeAll() {
+    this.wins.forEach((w, id) => {
+      if (w.el.classList.contains('closed')) return;
+      this.endZoom(w);
+      w.el.classList.add('closed');
+      w.el.classList.remove('focused', 'minimized');
+      if (w.taskBtn) { w.taskBtn.remove(); w.taskBtn = null; }
+      document.dispatchEvent(new CustomEvent('app-close', { detail: id }));
+    });
+  },
+
+  // size a window to a fraction of the desktop and centre it (data-start-fill). The explicit height makes the
+  // body scroll inside it (.sized), the same way a maximized window's does.
+  fill(el, f) {
+    const desk = document.getElementById('desktop');
+    const W = Math.round(desk.clientWidth * f), H = Math.round(desk.clientHeight * f);
+    el.style.width = W + 'px';
+    el.style.height = H + 'px';
+    el.style.left = Math.round((desk.clientWidth - W) / 2) + 'px';
+    el.style.top = Math.round((desk.clientHeight - H) / 2) + 'px';
+    el.classList.add('sized');
   },
 
   wireTitleBar(id, el) {
@@ -151,9 +507,11 @@ const WM = {
     const wasHidden = !w.opened || !this.shown(w.el);
     w.el.classList.remove('closed', 'minimized');
     if (!w.opened) {
-      // data-start-maximized: born maximized on the first open, no small frame first
       w.opened = true;
+      // data-start-maximized: born maximized on the first open, no small frame first.
+      // data-start-fill="0.8": born covering that much of the desktop, centred, with the desktop showing around it.
       if (w.el.hasAttribute('data-start-maximized') && window.innerWidth > 820) w.el.classList.add('maximized');
+      else if (w.el.dataset.startFill && window.innerWidth > 820) this.fill(w.el, parseFloat(w.el.dataset.startFill) || 0.8);
     }
     if (!w.taskBtn) {
       const btn = document.createElement('button');
@@ -308,6 +666,7 @@ function initLaunchers() {
 // Runs after every script has booted (OurSpace builds itself on DOMContentLoaded too).
 function openDeepLink() {
   if (!document.getElementById('desktop')) return;
+  if (document.body.classList.contains('booting')) return;   // Boot.finish() calls again once the desktop is up
   const q = new URLSearchParams(window.location.search);
   const el = { dataset: {} };
   if (q.get('tab')) Object.assign(el.dataset, { mstab: q.get('tab'), msarg: q.get('arg') || '', msjump: q.get('jump') || '' });
@@ -437,7 +796,7 @@ function initStartMenu() {
       btn.classList.remove('pressed');
       const act = li.dataset.action;
       if (act === 'screensaver') Screensaver.start();
-      if (act === 'shutdown') showBsod();
+      if (act === 'shutdown') Shutdown.ask();
       if (act === 'crt') Toggles.crt();
       if (act === 'sparkles') Toggles.sparkles();
     }));
@@ -447,6 +806,7 @@ function initStartMenu() {
 const Toggles = {
   sparklesOn: localStorage.getItem('malten_sparkles') !== '0',
   crtOn: localStorage.getItem('malten_crt') === '1',
+  crtLevel: Math.min(100, Math.max(10, parseInt(localStorage.getItem('malten_crt_level'), 10) || 25)),   // the Control Panel slider, %
   tickerOn: localStorage.getItem('malten_ticker') !== '0',
   badgesOn: localStorage.getItem('malten_badges') !== '0',
   // the two marquee bars fold down to a slim strip; the desktop takes the freed space
@@ -480,7 +840,16 @@ const Toggles = {
     document.body.classList.toggle('crt', this.crtOn);
     localStorage.setItem('malten_crt', this.crtOn ? '1' : '0');
     this.paintTray();
+    document.dispatchEvent(new CustomEvent('crt-change'));   // the Control Panel's checkbox follows the tray
     Sfx.click();
+  },
+  // how hard the CRT effect lays it on: 10–100%, the --crt custom property styles.css scales scanlines, glow and
+  // flicker by. `on` switches the effect on as well (dragging the slider should show something).
+  setCrtLevel(n, on) {
+    this.crtLevel = Math.min(100, Math.max(10, Math.round(n) || 25));
+    localStorage.setItem('malten_crt_level', String(this.crtLevel));
+    document.documentElement.style.setProperty('--crt', String(this.crtLevel / 100));
+    if (on && !this.crtOn) this.crt();
   },
   sparkles() {
     this.sparklesOn = !this.sparklesOn;
@@ -502,6 +871,7 @@ const Toggles = {
     if (m) m.textContent = Sfx.muted ? '🔇' : '🔊';
   },
   init() {
+    document.documentElement.style.setProperty('--crt', String(this.crtLevel / 100));
     document.body.classList.toggle('crt', this.crtOn);
     const s = document.getElementById('tray-sparkle');
     const c = document.getElementById('tray-crt');
@@ -648,6 +1018,7 @@ const Screensaver = {
   start(forceMode) {
     const cv = document.getElementById('screensaver');
     if (!cv || !cv.hidden) return;
+    if (document.body.classList.contains('booting')) return;   // the machine is booting, shutting down or on standby
     cv.hidden = false;
     cv.width = innerWidth;
     cv.height = innerHeight;
@@ -686,19 +1057,20 @@ const Screensaver = {
     };
   },
 
-  // 3D Pipes on a flat canvas: pipes wander a 3D lattice drawn in oblique projection (the
-  // depth axis runs diagonally), never re-enter a used cell, and get a ball joint at every
-  // turn. One run draws for about five minutes (or until the lattice is half full), then
-  // fades to black and starts over on a fresh lattice.
+  // 3D Pipes on a flat canvas: fat pipes wander a 3D lattice drawn in oblique projection (the depth axis runs
+  // diagonally) and never re-enter a used cell. Every straight run is one round-capped stroke, so a bend is just
+  // two runs meeting — a smooth elbow with nothing drawn on it. They're quick: the picture covers most of the
+  // screen within a minute. A full lattice is then forgotten rather than erased, and new pipes run straight over
+  // the old ones; every few fills the whole thing fades to black and starts clean.
   scenePipes(cv, ctx) {
     const W = cv.width, H = cv.height;
-    const G = Math.max(22, Math.min(44, Math.round(Math.min(W, H) / 28)));   // lattice pitch, px
+    const G = Math.max(48, Math.min(90, Math.round(Math.min(W, H) / 12)));   // lattice pitch, px
     const ZX = 0.37 * G, ZY = -0.29 * G;            // one step "into" the screen, as drawn
-    const NZ = 12, X0 = -6, Y0 = -1;                // 12 layers deep; X0/Y0 pad the lattice so every layer covers the screen
-    const NX = Math.ceil(W / G) + 8, NY = Math.ceil(H / G) + 7;
-    const R = G * 0.16;                             // pipe radius
-    const SPEED = 9;                                // cells per second, per pipe
-    const COUNT = Math.max(3, Math.min(6, Math.round(W * H / 700000)));
+    const NZ = 8, X0 = -5, Y0 = -1;                 // 8 layers deep; X0/Y0 pad the lattice so every layer covers the screen
+    const NX = Math.ceil(W / G) + 7, NY = Math.ceil(H / G) + 6;
+    const R = G * 0.3;                              // pipe radius: three fifths of the pitch across
+    const SPEED = 20;                               // cells per second, per pipe
+    const COUNT = Math.max(4, Math.min(9, Math.round(W * H / 350000)));
     const DIRS = [[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, -1, 0], [0, 0, 1], [0, 0, -1]];
     const used = new Uint8Array(NX * NY * NZ);      // fixed-size occupancy map: nothing grows while it runs
     const at = (i, j, k) => i + NX * (j + NY * k);
@@ -717,17 +1089,6 @@ const Screensaver = {
     const palette = ['#9370DB', '#05ffa1', '#ff71ce', '#01cdfe', '#fffb96', '#ff9933', '#ff5c5c', '#d8cfe8']
       .map(c => ({ dark: tint(c, -0.55), base: c, light: tint(c, 0.6) }));
 
-    const ball = (x, y, c) => {
-      const r = R * 1.5;
-      const g = ctx.createRadialGradient(x - r * 0.35, y - r * 0.4, r * 0.08, x, y, r);
-      g.addColorStop(0, c.light);
-      g.addColorStop(0.45, c.base);
-      g.addColorStop(1, c.dark);
-      ctx.fillStyle = g;
-      ctx.beginPath();
-      ctx.arc(x, y, r, 0, Math.PI * 2);
-      ctx.fill();
-    };
     const tube = (x1, y1, x2, y2, c) => {
       const len = Math.hypot(x2 - x1, y2 - y1);
       if (len < 0.5) return;
@@ -753,7 +1114,10 @@ const Screensaver = {
       for (let d = 0; d < 6; d++) if (free(p.i + DIRS[d][0], p.j + DIRS[d][1], p.k + DIRS[d][2])) open.push(d);
       if (!open.length || p.len >= p.max) return false;
       const d = open.includes(p.d) && Math.random() < 0.6 ? p.d : open[rand(open.length)];
-      if (p.d >= 0 && d !== p.d) ball(sx(p.i, p.k), sy(p.j, p.k), p.c);
+      if (p.d < 0 || d !== p.d) {                   // a new straight run starts here
+        p.rx = sx(p.i, p.k);
+        p.ry = sy(p.j, p.k);
+      }
       p.d = d;
       p.ni = p.i + DIRS[d][0]; p.nj = p.j + DIRS[d][1]; p.nk = p.k + DIRS[d][2];
       used[at(p.ni, p.nj, p.nk)] = 1;
@@ -766,7 +1130,6 @@ const Screensaver = {
         Object.assign(p, { i, j, k, d: -1, t: 0, len: 0, max: 40 + rand(160), c: palette[rand(palette.length)] });
         if (!advance(p)) continue;
         used[at(i, j, k)] = 1;
-        ball(sx(i, k), sy(j, k), p.c);
         return (p.alive = true);
       }
       return false;                                 // no room left anywhere
@@ -774,15 +1137,23 @@ const Screensaver = {
 
     let cells = 0;
     for (let k = 0; k < NZ; k++) for (let j = 0; j < NY; j++) for (let i = 0; i < NX; i++) if (onScreen(i, j, k)) cells++;
-    const budget = Math.min(cells * 0.5, COUNT * SPEED * 300);   // segments per run
-    const FADE = 2.5;                               // seconds to dissolve a finished run
-    let pipes, drawn, fade = 0, snap = null, last = performance.now();
+    const budget = cells * 0.6;                     // segments per fill: the screen is good and covered by then
+    const FILLS = 4;                                // fills drawn over each other before the picture is wiped
+    const FADE = 2;                                 // seconds to dissolve it
+    let pipes, drawn, fills, fade = 0, snap = null, last = performance.now();
     const reset = () => {
       used.fill(0);
       ctx.fillStyle = '#000';
       ctx.fillRect(0, 0, W, H);
       drawn = 0;
-      pipes = Array.from({ length: COUNT }, (_, n) => ({ alive: false, wait: n * 0.7 }));
+      fills = 0;
+      pipes = Array.from({ length: COUNT }, (_, n) => ({ alive: false, wait: n * 0.35 }));
+    };
+    // the lattice is full: forget it (the picture stays) so the next pipes paint right over the old ones
+    const forget = () => {
+      used.fill(0);
+      drawn = 0;
+      pipes.forEach(p => { if (p.alive) { used[at(p.i, p.j, p.k)] = 1; used[at(p.ni, p.nj, p.nk)] = 1; } });
     };
     reset();
 
@@ -804,7 +1175,7 @@ const Screensaver = {
         }
         return;
       }
-      ctx.lineCap = 'butt';
+      ctx.lineCap = 'round';                        // round ends: a capped moving tip, and two runs meet in a smooth elbow
       let jammed = false;
       pipes.forEach(p => {
         if (!p.alive) {
@@ -815,17 +1186,18 @@ const Screensaver = {
         p.t += dt * SPEED;
         const x1 = sx(p.i, p.k), y1 = sy(p.j, p.k), x2 = sx(p.ni, p.nk), y2 = sy(p.nj, p.nk);
         const t = Math.min(1, p.t);
-        tube(x1, y1, x1 + (x2 - x1) * t, y1 + (y2 - y1) * t, p.c);
+        // the whole straight run, from where it began to the moving tip, as ONE stroke: no seams between cells
+        tube(p.rx, p.ry, x1 + (x2 - x1) * t, y1 + (y2 - y1) * t, p.c);
         if (p.t < 1) return;
         p.i = p.ni; p.j = p.nj; p.k = p.nk;
         p.t -= 1; p.len++; drawn++;
-        if (!advance(p)) {                          // dead end: cap it, a new pipe starts elsewhere shortly
-          ball(x2, y2, p.c);
+        if (!advance(p)) {                          // dead end (the round cap closes it): a new pipe starts elsewhere shortly
           p.alive = false;
           p.wait = 0.5 + Math.random();
         }
       });
       if (jammed || drawn >= budget) {
+        if (++fills < FILLS) { forget(); return; }
         snap = document.createElement('canvas');    // one screen-sized copy, only for the fade
         snap.width = W;
         snap.height = H;
@@ -895,6 +1267,390 @@ const Screensaver = {
   },
 };
 
+// ---------- boot: power → POST → splash → logon ----------
+// Every load of the desktop (index.html adds body.booting before first paint; ?boot=0 skips it), and again after
+// Shutdown. styles.css hides everything but the overlays under body.booting; WM.init and openDeepLink hold their
+// windows until finish() lets them go. Browsers only let audio start after a click or key, so a fresh load waits
+// at the power button; after a shutdown the sequence runs on its own (show({auto: true})).
+const Boot = {
+  el: null,
+  started: false,
+  skipped: false,
+  done: false,
+  shownAt: 0,
+  files: {},
+
+  // Real recordings beat the synth: drop assets/sfx/<name>.mp3 in (post, floppy, disk, startup) and it plays instead
+  // of the synthesized version. A missing file falls back to the synth and is not tried again.
+  sound(name, synth) {
+    if (Sfx.muted) return;
+    if (this.files[name] === false) { synth(); return; }
+    const a = this.files[name] || (this.files[name] = new Audio('assets/sfx/' + name + '.mp3'));
+    const fail = () => { if (this.files[name] !== false) { this.files[name] = false; synth(); } };
+    a.onerror = fail;
+    a.volume = 0.6;
+    a.currentTime = 0;
+    const p = a.play();
+    if (p && p.catch) p.catch(fail);
+  },
+
+  init() {
+    if (!document.getElementById('desktop')) return;
+    const el = this.el = document.createElement('div');
+    el.id = 'boot';
+    el.innerHTML = `
+      <div class="boot-stage boot-power">
+        <div class="boot-tower">
+          <div class="boot-tower-face">
+            <div class="boot-bay"></div><div class="boot-bay"></div>
+            <div class="boot-floppy"></div>
+            <button class="boot-powerbtn" id="boot-power" title="power on">⏻</button>
+            <div class="boot-led"></div>
+          </div>
+          <div class="boot-tower-label">MALTEN.EXE</div>
+        </div>
+        <p class="boot-hint">press the power button (or any key)</p>
+      </div>
+      <div class="boot-stage boot-post" hidden><pre class="boot-text"></pre><div class="boot-estar">ENERGY<br>★<br>POLLUTION PREVENTER</div></div>
+      <div class="boot-stage boot-splash" hidden>
+        <div class="boot-flag"><i></i><i></i><i></i><i></i></div>
+        <div class="boot-brand">Malten<b>98</b></div>
+        <div class="boot-bar"><span></span></div>
+      </div>
+      <div class="boot-stage boot-logon" hidden>
+        <div class="window focused boot-dialog">
+          <div class="title-bar"><div class="title-bar-text">Welcome to Malten 98</div></div>
+          <div class="window-body">
+            <div class="boot-logon-row">
+              <div class="boot-keys">🔑</div>
+              <div>Type a user name and password to log on to Malten 98.</div>
+            </div>
+            <label>User name: <input id="boot-user" value="guest" maxlength="20" spellcheck="false" autocomplete="off"></label>
+            <label>Password: <input id="boot-pass" type="password" value="password123" readonly title="it's fine. nobody checks."></label>
+            <div class="boot-btns"><button class="btn98" id="boot-ok">OK</button><button class="btn98" id="boot-cancel">Cancel</button></div>
+          </div>
+        </div>
+      </div>
+      <button class="boot-skip" id="boot-skip" title="straight to the desktop">skip ▸</button>`;
+    document.body.appendChild(el);
+    el.querySelector('.boot-power').addEventListener('click', () => this.power());   // the button, or anywhere near it
+    el.querySelector('#boot-skip').addEventListener('click', () => this.skip());
+    el.querySelector('#boot-ok').addEventListener('click', () => this.logon());
+    el.querySelector('#boot-cancel').addEventListener('click', () => this.logon());
+    el.querySelector('#boot-user').addEventListener('keydown', e => { if (e.key === 'Enter') this.logon(); });
+    document.addEventListener('keydown', e => {
+      if (!this.el || this.el.hidden || Date.now() - this.shownAt < 400) return;   // not the key that woke the machine
+      if (e.key === 'Escape') this.skip();
+      else if (!this.started && e.key !== 'Shift' && e.key !== 'Control' && e.key !== 'Alt' && e.key !== 'Meta') this.power();
+    });
+    if (document.body.classList.contains('booting')) this.show();
+    else el.hidden = true;
+  },
+
+  // the machine comes up (again): every stage reset, the tower on screen. auto = the power button presses itself
+  // (waking from standby, a restart); skipPost = Windows is already loaded (MS-DOS mode's WIN) → straight to the splash
+  show(opts = {}) {
+    this.started = this.skipped = this.done = false;
+    this.shownAt = Date.now();
+    this.el.hidden = false;
+    this.el.classList.remove('boot-out');
+    this.el.querySelector('#boot-power').classList.remove('on');
+    this.el.querySelector('.boot-led').classList.remove('on');
+    this.el.querySelector('.boot-text').textContent = '';
+    document.body.classList.add('booting');
+    this.stage('power');
+    if (opts.auto) setTimeout(() => this.power(opts), opts.skipPost ? 0 : 700);
+  },
+
+  stage(name) {
+    this.el.querySelectorAll('.boot-stage').forEach(s => { s.hidden = !s.classList.contains('boot-' + name); });
+  },
+  sleep(ms) { return new Promise(r => setTimeout(r, ms)); },
+
+  async power(opts = {}) {
+    if (this.started) return;
+    this.started = true;
+    Sfx.ensure();                                   // the click unlocks audio for the rest of the boot
+    this.el.querySelector('#boot-power').classList.add('on');
+    this.el.querySelector('.boot-led').classList.add('on');
+    if (opts.skipPost) {                            // back from MS-DOS mode: the machine never went off
+      this.stopHum = Sfx.hum();
+      await this.splash();
+      if (!this.skipped) this.showLogon();
+      return;
+    }
+    Sfx.click();                                    // the switch
+    Sfx.degauss();                                  // the monitor thumping awake
+    this.stopHum = Sfx.hum();                       // fans + the drive spinning up, under everything that follows
+    await this.sleep(900);
+    if (this.skipped) return;
+    await this.post();
+    if (this.skipped) return;
+    await this.splash();
+    if (this.skipped) return;
+    this.showLogon();
+  },
+
+  // the BIOS screen, one line at a time; the memory test counts up, the drives chatter as they're found
+  async post() {
+    const pre = this.el.querySelector('.boot-text');
+    this.stage('post');
+    this.sound('post', () => Sfx.post());
+    const lines = [
+      ['Malten Modular BIOS v4.51PG, An Energy Star Ally', 80],
+      ['Copyright (C) 1984-98, Malten Software, Inc.', 500],
+      ['', 0],
+      ['PENTIUM II-MMX CPU at 300MHz', 450],
+      ['Memory Test :  ', 0, 'mem'],
+      ['', 700, 'floppy'],                            // the drive seeks to track 0 and back, as they all did
+      ['Award Plug and Play BIOS Extension v1.0A', 300],
+      ['Detecting IDE Primary Master   ... MALTEN HDD 6.4GB', 650, 'disk'],
+      ['Detecting IDE Primary Slave    ... CD-ROM 24X', 450, 'disk'],
+      ['Detecting IDE Secondary Master ... None', 300],
+      ['Detecting IDE Secondary Slave  ... None', 300],
+      ['', 0],
+      ['Loading GIFS.SYS ........... OK', 220, 'disk'],
+      ['Loading SPARKLE.DRV ........ OK', 220],
+      ['Loading MIDI.386 ........... OK', 220, 'disk'],
+      ['Loading 4 hours of sleep ... SKIPPED', 450],
+      ['', 0],
+      ['Verifying DMI Pool Data ............', 800, 'disk'],
+      ['Boot from ATAPI CD-ROM : Failure ...', 450],
+      ['Starting Malten 98...', 900, 'disk'],
+    ];
+    let text = '';
+    for (const [line, wait, fx] of lines) {
+      if (this.skipped) return;
+      if (fx === 'mem') {
+        const head = text + line;
+        for (let k = 0; k <= 65536; k += 2048) {      // 32 steps, about a second and a half
+          pre.textContent = head + k + 'K';
+          if (k % 8192 === 0) Sfx.beep(1800, .01, 'square', .012);
+          await this.sleep(38);
+          if (this.skipped) return;
+        }
+        text = head + '65536K OK\n';
+        pre.textContent = text;
+        await this.sleep(350);
+        continue;
+      }
+      text += line + '\n';
+      pre.textContent = text;
+      if (fx === 'disk') this.sound('disk', () => Sfx.disk(5 + Math.floor(Math.random() * 6)));
+      if (fx === 'floppy') this.sound('floppy', () => Sfx.floppy());
+      await this.sleep(wait);
+    }
+  },
+
+  async splash() {
+    this.stage('splash');
+    this.sound('disk', () => Sfx.disk(14));         // loading the system: the drive working hard
+    await this.sleep(1600);
+    if (this.skipped) return;
+    this.sound('disk', () => Sfx.disk(10));
+    await this.sleep(1600);
+  },
+
+  // the logon dialog itself was silent on a real machine — the startup sound came with the desktop, after OK
+  showLogon() {
+    this.stage('logon');
+    this.sound('disk', () => Sfx.disk(3));
+    const u = this.el.querySelector('#boot-user');
+    u.focus();
+    u.select();
+  },
+
+  logon() {
+    if (this.done) return;
+    Sfx.click();
+    this.finish();
+  },
+
+  skip() {
+    if (this.done) return;
+    this.skipped = true;
+    this.finish();
+  },
+
+  // the desktop comes up: the startup chime (a real logon only), the held windows open (OurSpace zooms up from
+  // the Start button), deep links run, and the machine's hum fades under it all
+  finish() {
+    this.done = true;
+    document.body.classList.remove('booting');
+    this.el.classList.add('boot-out');
+    setTimeout(() => { if (this.done) this.el.hidden = true; }, 700);   // unless a new boot has begun meanwhile
+    if (this.stopHum) this.stopHum();
+    if (!this.skipped) {
+      this.sound('startup', () => Sfx.startup());
+      setTimeout(() => this.sound('disk', () => Sfx.disk(6)), 400);
+    }
+    WM.openOnLoad();
+    if (!this.deepLinked) { this.deepLinked = true; setTimeout(openDeepLink, 0); }
+  },
+};
+
+// ---------- shut down: the dialog, "shutting down", the monitor switching off, standby ----------
+// Start → Shut Down… asks what to do. Shut down: the splash → "It's now safe to turn off your computer" → the
+// picture collapses to a line and a dot → a dark screen breathing until a key or the mouse wakes it → Boot runs
+// again. Restart: splash → Boot (POST and all). MS-DOS mode: splash → a C:\> prompt that types WIN → Boot from the
+// splash. Stand by: the breathing screen; a key or the mouse brings the desktop straight back. Help crashes it.
+// Blog pages have no desktop to boot: waking there walks back to index.html, which boots on its own.
+const Shutdown = {
+  el: null,
+  asking: false,
+  active: false,
+
+  init() {
+    const el = this.el = document.createElement('div');
+    el.id = 'shutdown';
+    el.hidden = true;
+    el.innerHTML = `
+      <div class="sd-stage sd-ask" hidden>
+        <div class="window focused sd-dialog">
+          <div class="title-bar"><div class="title-bar-text">Shut Down Malten 98</div></div>
+          <div class="window-body">
+            <div class="sd-row">
+              <div class="sd-icon">🖥️</div>
+              <div>
+                <div class="sd-q">What do you want the computer to do?</div>
+                <label><input type="radio" name="sd-mode" value="standby"> Stand by</label>
+                <label><input type="radio" name="sd-mode" value="shutdown" checked> Shut down</label>
+                <label><input type="radio" name="sd-mode" value="restart"> Restart</label>
+                <label><input type="radio" name="sd-mode" value="dos"> Restart in MS-DOS mode</label>
+              </div>
+            </div>
+            <div class="boot-btns"><button class="btn98" id="sd-ok">OK</button><button class="btn98" id="sd-cancel">Cancel</button><button class="btn98" id="sd-help">Help</button></div>
+          </div>
+        </div>
+      </div>
+      <div class="sd-stage sd-closing boot-splash" hidden>
+        <div class="boot-flag"><i></i><i></i><i></i><i></i></div>
+        <div class="boot-brand">Malten<b>98</b></div>
+        <div class="sd-note">Malten 98 is shutting down…</div>
+      </div>
+      <div class="sd-stage sd-safe" hidden><div class="sd-safe-text">It's now safe to turn off<br>your computer.</div></div>
+      <div class="sd-stage sd-dos" hidden><pre class="boot-text sd-dos-text"></pre></div>
+      <div class="sd-stage sd-breathe" hidden></div>`;
+    document.body.appendChild(el);
+    el.querySelector('#sd-ok').addEventListener('click', () => this.go());
+    el.querySelector('#sd-cancel').addEventListener('click', () => this.cancel());
+    el.querySelector('#sd-help').addEventListener('click', () => { this.cancel(); showBsod(); });
+    document.addEventListener('keydown', e => {
+      if (!this.asking) return;
+      if (e.key === 'Escape') this.cancel();
+      else if (e.key === 'Enter') this.go();
+    });
+  },
+
+  stage(name) {
+    this.el.querySelectorAll('.sd-stage').forEach(s => { s.hidden = !s.classList.contains('sd-' + name); });
+  },
+  sleep(ms) { return new Promise(r => setTimeout(r, ms)); },
+
+  ask() {
+    if (this.active || this.asking) return;
+    this.asking = true;
+    this.el.hidden = false;
+    this.el.classList.add('sd-asking');
+    this.stage('ask');
+    Sfx.open();
+    this.el.querySelector('#sd-ok').focus();
+  },
+
+  cancel() {
+    if (!this.asking) return;
+    this.asking = false;
+    this.el.hidden = true;
+    this.el.classList.remove('sd-asking');
+    Sfx.click();
+  },
+
+  async go() {
+    if (!this.asking) return;
+    const mode = (this.el.querySelector('input[name="sd-mode"]:checked') || {}).value || 'shutdown';
+    this.asking = false;
+    this.active = true;
+    this.el.classList.remove('sd-asking');
+    Sfx.click();
+    document.body.classList.add('booting');         // the desktop hides under the overlay (styles.css)
+    if (window.Screensaver) Screensaver.stop();
+    if (mode === 'standby') { this.breathe(true); return; }
+    this.stage('closing');
+    Sfx.shutdown();
+    Sfx.disk(8);
+    if (window.WM) WM.closeAll();                   // the desktop comes back clean
+    await this.sleep(2600);
+    if (mode === 'restart') { this.boot({ auto: true }); return; }
+    if (mode === 'dos') { await this.dos(); return; }
+    this.stage('safe');
+    await this.sleep(2200);
+    await this.crtOff();
+    this.breathe(false);
+  },
+
+  // the picture collapses to a bright line, then a dot
+  async crtOff() {
+    const safe = this.el.querySelector('.sd-safe');
+    Sfx.crtOff();
+    safe.classList.add('sd-off');
+    await this.sleep(750);
+    safe.classList.remove('sd-off');
+  },
+
+  // the dark screen with the faint pulse of a monitor on standby, until a key or the mouse
+  breathe(standby) {
+    this.stage('breathe');
+    let origin = null;
+    const evs = ['keydown', 'pointerdown', 'mousemove', 'touchstart'];
+    const off = () => evs.forEach(ev => document.removeEventListener(ev, wake, true));
+    const wake = e => {
+      if (e.type === 'mousemove') {                   // a real move, not the cursor settling after the click
+        if (!origin) { origin = [e.clientX, e.clientY]; return; }
+        if (Math.hypot(e.clientX - origin[0], e.clientY - origin[1]) < 12) return;
+      }
+      off();
+      this.wake(standby);
+    };
+    setTimeout(() => evs.forEach(ev => document.addEventListener(ev, wake, true)), 1200);
+  },
+
+  wake(standby) {
+    if (standby) {                                    // straight back to the desktop
+      this.el.hidden = true;
+      this.active = false;
+      document.body.classList.remove('booting');
+      Sfx.click();
+      return;
+    }
+    this.boot({ auto: true });
+  },
+
+  // MS-DOS mode: a prompt, then WIN is typed for you and Windows comes back from its splash
+  async dos() {
+    const pre = this.el.querySelector('.sd-dos-text');
+    this.stage('dos');
+    pre.textContent = 'Malten 98 is now running in MS-DOS mode.\n\nType WIN to return to Malten 98.\n(EXIT does the same thing. There is no escape.)\n\nC:\\MALTEN>';
+    await this.sleep(1800);
+    for (const ch of 'win') {
+      pre.textContent += ch;
+      Sfx.key(false);
+      await this.sleep(160 + Math.random() * 120);
+    }
+    await this.sleep(500);
+    Sfx.key(true);
+    pre.textContent += '\n';
+    await this.sleep(400);
+    this.boot({ auto: true, skipPost: true });
+  },
+
+  boot(opts) {
+    this.el.hidden = true;
+    this.active = false;
+    if (window.Boot && Boot.el) Boot.show(opts);
+    else window.location.href = 'index.html';        // a blog page: the desktop boots on its own page
+  },
+};
+
 // ---------- desktop buddy ----------
 function initBuddy() {
   const buddy = document.getElementById('buddy');
@@ -924,7 +1680,7 @@ function initBuddy() {
 }
 
 // top-level const doesn't attach to window — export for the other modules' guards
-Object.assign(window, { Sfx, WM, Toggles, Screensaver });
+Object.assign(window, { Sfx, WM, Toggles, Screensaver, Boot, Shutdown });
 
 // ---------- boot ----------
 document.addEventListener('DOMContentLoaded', () => {
@@ -941,6 +1697,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initHitCounter();
   initBuddy();
   Screensaver.init();
+  Boot.init();
+  Shutdown.init();
 
   // for the 3 people who open the console. you are the real ones.
   console.log('%c★ hey. you opened the console. you are officially one of the 3.', 'color:#9370DB;font-size:14px;font-weight:bold;');
@@ -951,8 +1709,8 @@ document.addEventListener('DOMContentLoaded', () => {
     return '🏆 achievement unlocked: curiosity (worth 0 points)';
   };
 
-  // browsers block audio until first interaction — greet with a chime then
-  if (document.body.classList.contains('desktop')) {
+  // browsers block audio until first interaction — greet with a chime then (the first boot has its own chime)
+  if (document.body.classList.contains('desktop') && !document.body.classList.contains('booting')) {
     const greet = () => Sfx.tada();
     document.addEventListener('pointerdown', greet, { once: true });
   }

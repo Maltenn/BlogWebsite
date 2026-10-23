@@ -313,6 +313,8 @@ const MS = {
   /* ---------- malten's real blog posts (the Blog tab + My Page's "Latest Blog Entry") ---------- */
   // Newest first. A new post = one new line here (plus blog-hub.html, see blog-post-template.html).
   blogPosts: [
+    { title: 'What does it mean to have changed?', href: 'what-does-it-mean-to-have-changed.html', date: 'post #002 · October 22, 2026', img: 'pfp.png',
+      blurb: 'the ship of theseus, a $400 computer, and a dinner with my grandparents. on leaving georgia, and whether you can be someone if you never stay someone.' },
     { title: 'Why do I create?', href: 'why-do-i-create.html', date: 'post #001 · October 5, 2026', img: 'pfp.png',
       blurb: 'why i spent two years on a website nobody asked for. losing my faith, finding poetry, and what making things gives back.' },
   ],
@@ -1147,8 +1149,8 @@ const MS = {
       for (let i = 1; i <= text.length; i++) {
         c.you = text.slice(0, i);
         this.paintTyper(pid);
-        if (text[i - 1] !== ' ') Sfx.beep(1500 + Math.random() * 900, .014, 'square', .02);
-        await sleep(26 + Math.random() * 38);
+        Sfx.key(text[i - 1] === ' ');              // old-school keyboard clack (the space bar thunks lower)
+        await sleep(34 + Math.random() * 40);
       }
       await sleep(250);
       Sfx.beep(520, .06, 'sine', .05); Sfx.beep(784, .1, 'sine', .05, .07); // sent!
@@ -1402,6 +1404,11 @@ const MS = {
       if (tries < 8) setTimeout(() => this.jumpTo(anchor, tries + 1), 150);   // My Page may still be painting
       return;
     }
+    this.reveal(el);
+  },
+
+  // scroll an element into view inside the window and flash it (jumpTo, and the feed's click-throughs)
+  reveal(el) {
     const box = this.scrollBox();
     const align = behavior => {
       if (!el.isConnected) return;
@@ -1417,6 +1424,30 @@ const MS = {
     void el.offsetWidth;                                                      // restart the animation if it's mid-flash
     el.classList.add('ms-flash');
     setTimeout(() => el.classList.remove('ms-flash'), 2600);
+  },
+
+  // A feed line about a bulletin / a wall comment is only a summary: open the page it lives on and flash the thing
+  // itself. Bulletins (data-bkey) and wall comments (data-wkey) are tagged from + time, the same pair the feed item
+  // was pushed with.
+  goToFeedItem(item) {
+    const key = item.from + '|' + item.time;
+    if (item.type === 'bulletin') {
+      // the board is paged: make sure it shows far enough down to include this one
+      const rest = this.state.bulletins.filter(b => !b.pinned).reverse();
+      const pos = rest.findIndex(b => b.from === item.from && b.time === item.time);
+      if (pos >= 0) { this.shown = this.shown || {}; this.shown.bulletins = Math.max(this.shown.bulletins || 0, pos + 1); }
+      this.show('bulletins');
+      this.flashKeyed('bkey', key);
+    } else if (item.type === 'wall') {
+      if (item.to === 'you') this.show('home'); else this.show('profile', item.to);
+      this.flashKeyed('wkey', key);
+    }
+  },
+  flashKeyed(attr, key, tries = 0) {
+    const el = [...document.querySelectorAll(`#ms-content [data-${attr}]`)].find(e => e.dataset[attr] === key);
+    if (el) { this.reveal(el); return; }
+    if (tries < 8) setTimeout(() => this.flashKeyed(attr, key, tries + 1), 150);   // the page may still be painting
+    else this.toast(attr === 'bkey' ? 'that bulletin has scrolled off the board' : 'that comment isn\'t on the wall anymore');
   },
 
   render() {
@@ -1475,10 +1506,33 @@ const MS = {
     badge('feed', this.state.unreadFeed || 0);
     document.querySelectorAll('.ms-tab').forEach(t =>
       t.classList.toggle('on', t.dataset.page === this.view.page &&
-        !(t.dataset.page === 'blog' && this.view.arg)));      // a resident's blog isn't malten's Blog tab
+        (t.dataset.arg ? this.view.arg === t.dataset.arg       // Malten's Page = profile + arg malten
+          : !(t.dataset.page === 'blog' && this.view.arg))));  // a resident's blog isn't malten's Blog tab
+    this.paintUrl();
     // NEW! marker on the Guestbook tab until this visitor has opened it (or already signed)
     const gb = document.querySelector('.ms-tab[data-page="guestbook"]');
     if (gb) gb.classList.toggle('ms-tab-new', !localStorage.getItem('malten_gb_seen') && !(window.Guestbook && Guestbook.hasSigned()));
+  },
+
+  // the pretend address for the current page (the Address bar in the window chrome; same host as the
+  // "OurSpace URL" box on every profile)
+  urlFor() {
+    const base = 'http://ourspace.ring/';
+    if (!this.state || !this.state.me || this.signupOpen) return base + 'join';
+    const { page, arg } = this.view || { page: 'feed' };
+    const me = 'you/' + encodeURIComponent(this.myName());
+    const who = arg == null || arg === 'you' || arg === 'me' ? me : encodeURIComponent(arg);
+    const paths = {
+      feed: 'feed', home: me, profile: who, blog: arg ? who + '/blog' : 'malten/blog',
+      guestbook: 'malten/guestbook', browse: 'browse' + (this.browseQuery ? '?q=' + encodeURIComponent(this.browseQuery) : ''),
+      chat: 'chat/%23ourspace', requests: 'friends/requests', inbox: 'inbox' + (arg ? '/' + encodeURIComponent(arg) : ''),
+      bulletins: 'bulletins', pics: who + '/pics', videos: who + '/videos', post: 'post/' + (arg == null ? '' : arg),
+    };
+    return base + (paths[page] !== undefined ? paths[page] : page);
+  },
+  paintUrl() {
+    const u = document.getElementById('ms-url');
+    if (u) u.textContent = this.urlFor();
   },
 
   // one gentle, one-time toast pointing visitors who haven't found the guestbook at it
@@ -1694,6 +1748,13 @@ const MS = {
       av.addEventListener('click', () => WM.open('customize'));
     }
     idcard.appendChild(av);
+    if (me) {
+      // the button first-timers hunt for: big, right under the picture, impossible to miss
+      const edit = this.el('button', 'btn98 ms-editbig', '🎨 Edit My Page');
+      edit.title = 'picture, name, about me, colours, top 5, top 8 — all of it';
+      edit.addEventListener('click', () => { Sfx.click(); WM.open('customize'); });
+      idcard.appendChild(edit);
+    }
 
     // gender / age / hometown / last login stack (the classic under-photo block)
     const stack = this.el('div', 'ms-idstack');
@@ -1711,24 +1772,31 @@ const MS = {
     }
 
     const viewMy = this.el('div', 'ms-viewmy');
-    viewMy.appendChild(document.createTextNode('View My: '));
-    // residents: their own media posts / blog pages. you + malten: My Pictures, the feed's media, the blog.
-    const pics = this.el('a', null, 'Pics'); pics.href = '#';
-    pics.addEventListener('click', e => {
-      e.preventDefault();
-      if (!me && !owner) this.show('pics', id);
-      else if (window.WM && WM.wins.has('pics')) WM.open('pics');
-      else { this.feedFilter = 'media'; this.show('feed'); }
-    });
-    const vids = this.el('a', null, 'Videos'); vids.href = '#';
-    vids.addEventListener('click', e => {
-      e.preventDefault();
-      if (!me && !owner) this.show('videos', id);
-      else { this.feedFilter = 'media'; this.show('feed'); }
-    });
-    const blog = this.el('a', null, 'Blog'); blog.href = '#';
-    blog.addEventListener('click', e => { e.preventDefault(); if (me) this.show('blog', 'me'); else if (owner) this.show('blog'); else this.show('blog', id); });
-    viewMy.append(pics, document.createTextNode(' | '), vids, document.createTextNode(' | '), blog);
+    if (owner) {
+      // malten's page: no pics/videos links, just one button straight to the real blog
+      const b = this.el('button', 'btn98 ms-viewblog', '📁 Blog');
+      b.addEventListener('click', () => { Sfx.click(); this.show('blog'); });
+      viewMy.appendChild(b);
+    } else {
+      viewMy.appendChild(document.createTextNode('View My: '));
+      // residents: their own media posts / blog pages. you: My Pictures, the feed's media, your blog.
+      const pics = this.el('a', null, 'Pics'); pics.href = '#';
+      pics.addEventListener('click', e => {
+        e.preventDefault();
+        if (!me) this.show('pics', id);
+        else if (window.WM && WM.wins.has('pics')) WM.open('pics');
+        else { this.feedFilter = 'media'; this.show('feed'); }
+      });
+      const vids = this.el('a', null, 'Videos'); vids.href = '#';
+      vids.addEventListener('click', e => {
+        e.preventDefault();
+        if (!me) this.show('videos', id);
+        else { this.feedFilter = 'media'; this.show('feed'); }
+      });
+      const blog = this.el('a', null, 'Blog'); blog.href = '#';
+      blog.addEventListener('click', e => { e.preventDefault(); this.show('blog', me ? 'me' : id); });
+      viewMy.append(pics, document.createTextNode(' | '), vids, document.createTextNode(' | '), blog);
+    }
     idcard.appendChild(viewMy);
     idcard.appendChild(this.el('div', 'ms-moodline', 'Mood: ' + (p.mood || '')));
     idcard.appendChild(this.el('div', 'ms-tagline', '"' + (p.tag || '') + '"'));
@@ -2101,6 +2169,7 @@ const MS = {
     wallBox.appendChild(disp);
     all.slice().reverse().forEach(c => {
       const row = this.el('div', 'ms-comment');
+      row.dataset.wkey = c.from + '|' + c.time;
       const who = this.el('div', 'ms-comment-who');
       const mine = c.from === 'you';
       who.appendChild(this.avatarEl(mine ? null : c.from, 50));
@@ -2393,8 +2462,9 @@ const MS = {
     if (!pool.length) return;
     const r = pool[Math.floor(Math.random() * pool.length)];
     setTimeout(() => {
-      this.state.myWall.push({ from: r.from, text: r.text, time: this.now() });
-      this.pushFeed({ type: 'wall', from: r.from, to: 'you', text: r.text, time: this.now() });
+      const when = this.now();
+      this.state.myWall.push({ from: r.from, text: r.text, time: when });
+      this.pushFeed({ type: 'wall', from: r.from, to: 'you', text: r.text, time: when });
       this.toast(this.people[r.from].name + ' read your blog!', 'home');
       if (this.view.page === 'home') this.render();
     }, 6000 + Math.random() * 9000);
@@ -2575,7 +2645,14 @@ const MS = {
       else if (item.type === 'friends') head.appendChild(document.createTextNode(' made a new friend'));
       else if (item.type === 'song') head.appendChild(document.createTextNode(' changed their profile song'));
       mid.appendChild(head);
-      mid.appendChild(this.el('div', 'ms-feedtext', item.text));
+      const txt = this.el('div', 'ms-feedtext', item.text);
+      if (item.type === 'bulletin' || item.type === 'wall') {
+        // the feed line is a summary: click through to the bulletin itself / the comment on the wall it landed on
+        txt.classList.add('ms-feedlink');
+        txt.title = item.type === 'bulletin' ? 'read it on the bulletin board' : 'see it on the wall';
+        txt.addEventListener('click', () => { Sfx.click(); this.goToFeedItem(item); });
+      }
+      mid.appendChild(txt);
       const g = item.from !== 'you' ? this.decoFor(item.text, item.from) : null;
       if (g) { const im = this.el('img', 'ms-glitter'); im.src = g; im.alt = ''; mid.appendChild(im); }
       mid.appendChild(this.el('div', 'ms-time', item.time));
@@ -3438,6 +3515,7 @@ const MS = {
     root.appendChild(list);
     pinned.forEach(({ b }) => {
       const card = this.el('div', 'ms-bulletin ms-pinned');
+      card.dataset.bkey = b.from + '|' + b.time;
       const head = this.el('div', 'ms-comment-head');
       head.appendChild(this.avatarEl(b.from, 34));
       head.appendChild(this.el('b', null, this.people[b.from].name));
@@ -3456,6 +3534,7 @@ const MS = {
     });
     this.paged(list, 'bulletins', rest, 15, ({ b, idx }) => {
       const card = this.el('div', 'ms-bulletin');
+      card.dataset.bkey = b.from + '|' + b.time;
       const head = this.el('div', 'ms-comment-head');
       head.appendChild(this.avatarEl(b.from, 34));
       head.appendChild(this.el('b', null, (this.people[b.from] ? this.people[b.from].name : b.from)));
@@ -3542,8 +3621,9 @@ const MS = {
       }
       const pick = rnd(pool);
       st.usedBanter[pick.key] = 1;
-      this.pushWall(pick.t, { from: pick.a, text: pick.line, time: this.now() });
-      this.pushFeed({ type: 'wall', from: pick.a, to: pick.t, text: pick.line, time: this.now() });
+      const when = this.now();                      // the wall entry and its feed line share a time: the feed links back by it
+      this.pushWall(pick.t, { from: pick.a, text: pick.line, time: when });
+      this.pushFeed({ type: 'wall', from: pick.a, to: pick.t, text: pick.line, time: when });
       if (this.view.page === 'profile' && this.view.arg === pick.t) this.render();
       return true;
     };
@@ -3590,10 +3670,11 @@ const MS = {
         if (!authored && !musings.length) continue;
         const subject = (authored && authored.subject) || 'bulletin from ' + P[id].name;
         const body = authored ? authored.body : rnd(musings);
-        st.bulletins.push({ from: id, subject, body, time: this.now(), reposts: 0 });
+        const when = this.now();
+        st.bulletins.push({ from: id, subject, body, time: when, reposts: 0 });
         this.trimBulletins();
         const brief = body.length > 220 ? this.cut(body, 220).trimEnd() + '…' : body;
-        this.pushFeed({ type: 'bulletin', from: id, text: authored ? subject + ' — ' + brief : brief, time: this.now() });
+        this.pushFeed({ type: 'bulletin', from: id, text: authored ? subject + ' — ' + brief : brief, time: when });
         if (this.view.page === 'bulletins') this.render();
         return true;
       }
@@ -3624,8 +3705,9 @@ const MS = {
         const pool = (P[id].ambient || []).filter(l => !taken.has(l) && !this.dmUsed(id, l));
         if (!pool.length) continue;
         const text = rnd(pool);
-        st.myWall.push({ from: id, text, time: this.now() });
-        this.pushFeed({ type: 'wall', from: id, to: 'you', text, time: this.now() });
+        const when = this.now();
+        st.myWall.push({ from: id, text, time: when });
+        this.pushFeed({ type: 'wall', from: id, to: 'you', text, time: when });
         this.toast(P[id].name + ' commented on your wall!', 'home');
         if (this.view.page === 'home') this.render();
         return true;
@@ -3711,6 +3793,7 @@ const MS = {
       <div class="ms-tabs">
         <button class="ms-tab" data-page="feed" data-label="Feed">Feed</button>
         <button class="ms-tab" data-page="home" data-label="My Page">My Page</button>
+        <button class="ms-tab" data-page="profile" data-arg="malten" data-label="Malten's Page">Malten's Page</button>
         <button class="ms-tab" data-page="blog" data-label="Blog">Blog</button>
         <button class="ms-tab" data-page="guestbook" data-label="Guestbook">Guestbook</button>
         <button class="ms-tab" data-page="browse" data-label="Browse">Browse</button>
@@ -3729,7 +3812,7 @@ const MS = {
       </div>`;
 
     body.querySelectorAll('.ms-tab').forEach(t =>
-      t.addEventListener('click', () => { Sfx.click(); this.show(t.dataset.page); }));
+      t.addEventListener('click', () => { Sfx.click(); this.show(t.dataset.page, t.dataset.arg || undefined); }));
     const search = body.querySelector('#ms-search');
     search.addEventListener('keypress', e => {
       if (e.key !== 'Enter') return;
@@ -3737,12 +3820,16 @@ const MS = {
       this.show('browse');
     });
 
-    // collapse the sidebar when the window is narrow (opening maximized is the window's own
-    // data-start-maximized attribute now, handled by WM)
+    // collapse the sidebar when the window is narrow (the window's opening size is its own
+    // data-start-fill attribute, handled by WM)
     const win = document.querySelector('.window[data-app="myspace"]');
     if (win && window.ResizeObserver) {
       new ResizeObserver(() => body.classList.toggle('ms-narrow', win.offsetWidth < 720)).observe(win);
     }
+    // the Navigator-style Address bar above the page (index.html): ◀ Back, 🏠 the feed, and a URL that follows you
+    const navBtn = (id, fn) => { const b = win && win.querySelector(id); if (b) b.addEventListener('click', () => { Sfx.click(); fn(); }); };
+    navBtn('#ms-nav-back', () => this.back());
+    navBtn('#ms-nav-home', () => this.show('feed'));
 
     this.paintSidebar();
     this.show('feed');
