@@ -5,19 +5,19 @@ Personal blog / homepage for **Marc** ("Malten"), rebuilt (July 2026) as a full 
 ## Big picture
 
 ```
-Static HTML/CSS/JS (works fully standalone — backends are optional enhancements)
-  ├── msgserver/     (Express + lowdb)  → http://localhost:3001  guestbook goes "live" if running
-  └── spotifyserver/ (Express + Spotify API) → http://localhost:8080  My Page shows the owner's real top songs if running
+Static HTML/CSS/JS on GitHub Pages (works fully standalone — the API is an optional enhancement)
+  └── worker/  (Cloudflare Worker + D1, free plan) → https://ourspace-api.ourspace-api.workers.dev
+        GET/POST /messages = the live guestbook · GET /top-tracks = malten's real Spotify top songs (10-min cache, cron-warmed)
 ```
 
-Both backends degrade gracefully: guestbook falls back to localStorage; the Spotify list falls back to the last result cached in localStorage, then to a snapshot baked into `apps.js`.
+The page degrades gracefully when the API is unreachable: guestbook falls back to localStorage; the Spotify list falls back to the last result cached in localStorage, then to a snapshot baked into `apps.js`. `msgserver/` and `spotifyserver/` are the OLD localhost backends the Worker replaced (Oct 23, 2026) — `spotifyserver/` is still the way to mint a new Spotify refresh token (`/login`), see `worker/README.md`.
 
 ## Hosting (live since October 23, 2026)
 
 - **Repo:** https://github.com/Maltenn/BlogWebsite (public; only `main` is pushed — `old-master-DO-NOT-PUSH` stays local, see Gotchas).
 - **Live site:** https://maltenn.github.io/BlogWebsite/ — GitHub Pages, deployed from branch `main`, folder `/` (root), classic (legacy) build. There is no build step of our own: every push to `main` redeploys in about a minute (`gh api repos/Maltenn/BlogWebsite/pages/builds/latest` shows the status). Everything uses relative paths, so the `/BlogWebsite/` prefix doesn't matter; `404.html` handles nested missing paths itself (see its row below).
 - **Custom domain: `ourspace.page`** (bought at Porkbun, Oct 23 2026). Set in repo Settings → Pages; GitHub committed the root `CNAME` file (`ourspace.page`) itself — leave that file alone. `.page` is on the browser HSTS preload list, so it only ever loads over HTTPS: the site is unreachable until GitHub's DNS check passes and it issues the certificate. DNS at Porkbun (first delete the parking A records and the `www` CNAME to `pixie.porkbun.com`): apex A `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` + AAAA `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153` (or one ALIAS → `maltenn.github.io`); `www` CNAME → `maltenn.github.io`. Remaining step once `gh api repos/Maltenn/BlogWebsite/pages` shows the DNS check passed: Enforce HTTPS (`gh api -X PUT repos/Maltenn/BlogWebsite/pages -F https_enforced=true`). The github.io URL now redirects to the domain.
-- **Backends are not hosted.** `msgserver/` and `spotifyserver/` only run on localhost, and `localBackendOk()` (apps.js) never calls them from a public host. On the live site the **guestbook is per-visitor localStorage** (each visitor sees only their own entries) and **Top Songs shows the snapshot baked into `apps.js`** (`Spotify.SNAPSHOT`). Hosting either backend for real means deploying it somewhere public and pointing `Guestbook.API` / `Spotify.API` at it.
+- **API: `worker/`** — a Cloudflare Worker (`ourspace-api`) + D1 database (`ourspace-db`) on the free plan at `https://ourspace-api.ourspace-api.workers.dev`, deployed with `npm run deploy` from `worker/` (needs `npx wrangler login` once; secrets via `wrangler secret put`, all in `worker/README.md`). `Spotify.API` and `Guestbook.API` in `apps.js` point at it; `ALLOWED_ORIGINS` in `worker/wrangler.jsonc` lists the pages allowed to call it (live site, github.io, localhost:8123/8124). The guestbook is live and shared; Top Songs is malten's real list refreshed every 10 minutes by a cron.
 
 ## October 22, 2026 — revision pass (read with the October update below)
 
@@ -137,21 +137,22 @@ A 20-item bug/QOL pass plus a large content expansion. What changed:
 - `assets/avatar_*.gif` — 19 OurSpace avatars from **gifcities.org** (GeoCities archive; scrape `https://gifcities.org/search?q=X` for `blob.gifcities.org` URLs): originals (`avatar_todd/sk8r/witch/alien.gif`) + 15 hunted by workflow agents for the new residents (`avatar_sephiroth/nikki/riley/usagi/kevin/tony/brittany/randy/lucas/chad/dave/tina/derek/meg/greg.gif`).
 - `assets/deco_*.gif` + `bg_stars_tile.gif` — 21 decor GIFs from gifcities: welcome banner, rainbow/hearts/flames bars (`.bar-gif`), dancing baby (framed as `baby_dance.avi` mini-player on the desktop — its black bg is intentional), NEW! starbursts, guestbook sign, skull, moon, fairy, dragon, hamster, DJ record, sparkle bunny, Invader Zim blinkie, email bear/roses, tiny banana, smiley. Desktop placements use `.desk-deco` (hidden on mobile); OurSpace residents have `decor: []` strips + optional `bgTile` tiled backgrounds.
 
-## Backends (unchanged)
+## Backends
 
-- `msgserver/msgboard.js` — Express + lowdb (`db.json`), port 3001. GET/POST `/messages`.
-- `spotifyserver/server.js` — Express + Spotify OAuth (`user-top-read`), port 8080. `/login` → `/callback` → `/top-tracks`. Config via `.env` (gitignored). Has its own `.gitignore`, `Dockerfile`, `README.md` (originally Cloud Run–oriented; README references a DEPLOYMENT.md that doesn't exist).
+- `worker/src/index.js` — **the live API** (Cloudflare Worker, D1 binding `DB`, schema in `worker/schema.sql`): `GET /messages` (newest 50, `hidden = 0`), `POST /messages` (trim, 20/200 caps, link + word filter mirroring `Guestbook.filter`, 3 posts/min per salted-IP hash), `GET /top-tracks?limit=N` (Spotify `short_term` top tracks → same objects as the old server, iTunes previews filled in, cached 10 min in the `kv` table, stale served while Spotify is down; a `*/10` cron refreshes `limit=10`). Rotated Spotify refresh tokens are kept in `kv` (`spotify:refresh`) and beat the secret. Moderate with `wrangler d1 execute ourspace-db --remote --command "UPDATE messages SET hidden = 1 WHERE created = <id>"`.
+- `msgserver/msgboard.js` — the OLD local guestbook (Express + lowdb `db.json`, port 3001). Superseded by the Worker; kept for reference only.
+- `spotifyserver/server.js` — the OLD local Spotify server (Express + Spotify OAuth `user-top-read`, port 8080). Superseded by the Worker for serving tracks, but still the tool for a new refresh token: `npm start`, open `/login`, then `wrangler secret put SPOTIFY_REFRESH_TOKEN` from `spotify_tokens.json`. Config via `.env` (gitignored).
 
 ## How to run
 
 - Just open `index.html` — everything works offline (guestbook local, chiptune demos). **Except YouTube posts:** since 2025 YouTube refuses embeds from pages with no Referer (error 153), so `file://` can't play them — use the dev server (`npx http-server`) or a real host. YouTube also sometimes answers error 150 ("not available here") for a whole network when it suspects bots; it clears on its own, and the player card offers "try again" / "watch on youtube.com".
-- Optional live mode: `node msgserver/msgboard.js` and `cd spotifyserver && npm start`.
+- Live mode needs nothing: `apps.js` talks to the deployed Worker from localhost too (its origin is allow-listed). To hack on the Worker itself: `cd worker && npm run db:local && npm run dev` (http://127.0.0.1:8787, secrets in the gitignored `worker/.dev.vars`) and point the two `API` constants at it temporarily.
 - Dev preview: `.claude/launch.json` defines `static-site` (`npx http-server -c-1 .`, port 8123 with `autoPort` — when something else holds 8123, e.g. Unreal Editor, the app picks the next free port and tells you which) and `static-site-8124` (the same server pinned to port 8124).
 
 ## Gotchas
 
 - **Git (Oct 2026 reset)**: history restarted on an orphan branch **`main`** with a root `.gitignore` (node_modules, `.env*`, `*tokens.json`, `db.json`, `*.db`). The pre-rebuild history lives in the local-only branch **`old-master-DO-NOT-PUSH`** — it contains the Spotify client secret, tokens and messages.db, so never push it (`origin` is the public GitHub repo — push only `main`; delete the branch once it's not needed). The Spotify client secret that was in it should be rotated. Root `.env` is a stale leftover from the old root server.js; `spotifyserver/.env` is the live one.
-- API URLs hardcoded to localhost in `apps.js` (`Amp.loadTracks`, `Guestbook.API`).
+- The API base URL is hardcoded twice in `apps.js` (`Spotify.API`, `Guestbook.API`); `localBackendOk()` only matters for localhost URLs, so a real host is always tried.
 - Spotify `preview_url` is often null nowadays (Spotify deprecated previews); Amp shows "no preview" per-track.
 - App builder code must use `.window[data-app=…]` selectors — the window divs have no ids.
 - Sounds only start after first user interaction (browser autoplay policy).

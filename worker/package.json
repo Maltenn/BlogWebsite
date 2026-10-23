@@ -1,0 +1,15 @@
+{
+  "name": "ourspace-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Cloudflare Worker that backs the OurSpace guestbook and malten's Spotify top tracks",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "db:local": "wrangler d1 execute ourspace-db --local --file schema.sql",
+    "db:remote": "wrangler d1 execute ourspace-db --remote --file schema.sql"
+  },
+  "devDependencies": {
+    "wrangler": "^4.152.0"
+  }
+}

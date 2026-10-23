@@ -1,0 +1,21 @@
+// ourspace-api — the one Cloudflare Worker behind the live site (guestbook + malten's Spotify top tracks).
+// Deploy: see README.md. Secrets (SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, SPOTIFY_REFRESH_TOKEN, IP_SALT)
+// are set with `wrangler secret put`, never written here.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ourspace-api",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "observability": { "enabled": true },
+  "vars": {
+    // browsers may call the API from these pages only (the live site, the github.io mirror, the local dev server)
+    "ALLOWED_ORIGINS": "https://ourspace.page,https://www.ourspace.page,https://maltenn.github.io,http://localhost:8123,http://localhost:8124,http://127.0.0.1:8123,http://127.0.0.1:8124"
+  },
+  "d1_databases": [
+    { "binding": "DB", "database_name": "ourspace-db", "database_id": "418bd332-428e-49e6-b6d9-68f49adf7f36" }
+  ],
+  "triggers": {
+    // keep the top-tracks cache warm so visitors never wait on Spotify (144 runs/day, free)
+    "crons": ["*/10 * * * *"]
+  }
+}

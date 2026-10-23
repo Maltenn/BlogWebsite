@@ -449,17 +449,17 @@ const SongKit = {
   },
 };
 
-// malten's real top tracks, from the optional spotifyserver/ (GET /top-tracks). Visitors almost
-// never have that server, so the list degrades: live → last good result (localStorage) →
+// malten's real top tracks, from the Cloudflare Worker in worker/ (GET /top-tracks: a 10-minute
+// cache of Spotify). When it can't be reached the list degrades: live → last good result (localStorage) →
 // baked-in snapshot → "the server is napping". It never sits on "loading…".
 const Spotify = {
-  API: 'http://localhost:8080',                 // <-- the Spotify server's base URL lives here and only here
+  API: 'https://ourspace-api.ourspace-api.workers.dev',   // <-- the API's base URL (worker/ on Cloudflare) lives here and in Guestbook.API only
   PROFILE: 'https://open.spotify.com/user/moltennebula',
   CACHE_KEY: 'malten_spotify_top',
   LIMIT: 10,                                    // tracks to ask the server for
   SHOW: 5,                                      // rows shown before "show all"
   // Last-resort fallback: the real top 5, captured from the server on the date below.
-  // To refresh it, paste the first 5 objects of http://localhost:8080/top-tracks in here.
+  // To refresh it, paste the first 5 objects of https://ourspace-api.ourspace-api.workers.dev/top-tracks?limit=5 in here.
   SNAPSHOT: {
     at: '2026-10-05T12:00:00',
     tracks: [
@@ -535,7 +535,7 @@ const Spotify = {
     this.checking = true;
     this.paint();
     const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 2500);
+    const timer = setTimeout(() => ctrl.abort(), 5000);
     try {
       const res = await fetch(`${this.API}/top-tracks?limit=${this.LIMIT}`, { signal: ctrl.signal });
       if (!res.ok) throw new Error('server said no');
@@ -1143,7 +1143,7 @@ const TopSongs = {
 // Lives inside OurSpace now (the Guestbook tab + a teaser box on My Page): it renders into
 // whatever container it's handed instead of owning a desktop window.
 const Guestbook = {
-  API: 'http://localhost:3001',
+  API: 'https://ourspace-api.ourspace-api.workers.dev',   // the same Worker serves the guestbook (worker/)
   online: false,
   onlineCheck: null,     // promise of the one-time "is the API up?" probe
   probed: false,         // …and whether it has finished
@@ -1177,7 +1177,7 @@ const Guestbook = {
     box.scrollTop = box.scrollHeight;
     this.load();
     if (!this.pollTimer) {
-      this.pollTimer = setInterval(() => { if (this.online && this.rootEl.isConnected) this.load(); }, 5000);
+      this.pollTimer = setInterval(() => { if (this.online && this.rootEl.isConnected) this.load(); }, 15000);
     }
   },
 
@@ -1234,7 +1234,7 @@ const Guestbook = {
         if (localBackendOk(this.API)) {
           try {
             const ctrl = new AbortController();
-            setTimeout(() => ctrl.abort(), 1500);
+            setTimeout(() => ctrl.abort(), 4000);      // the API is a remote Worker now: give a cold start a chance
             const res = await fetch(`${this.API}/messages`, { signal: ctrl.signal });
             this.online = res.ok;
           } catch { this.online = false; }
@@ -1251,7 +1251,7 @@ const Guestbook = {
     if (!st || !this.probed) return;
     st.textContent = this.online
       ? '● connected — messages are live'
-      : '○ offline mode — messages saved in your browser (start msgserver for live mode)';
+      : '○ offline mode — messages saved in your browser (the guestbook server is napping)';
     st.classList.toggle('online', this.online);
   },
 

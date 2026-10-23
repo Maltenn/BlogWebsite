@@ -19,3 +19,7 @@ db.json
 Thumbs.db
 desktop.ini
 *.log
+
+# Cloudflare Worker (worker/): local secrets + wrangler state
+.dev.vars
+.wrangler/
