@@ -9,6 +9,7 @@
     "db:local": "wrangler d1 migrations apply ourspace-social-db --local",
     "db:remote": "wrangler d1 migrations apply ourspace-social-db --remote",
     "dev": "wrangler dev",
+    "demo": "node tools/demo.mjs",
     "deploy": "wrangler deploy",
     "test": "node --test test/*.test.mjs"
   },

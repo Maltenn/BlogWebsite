@@ -15,6 +15,41 @@ A reformed copy of the site: just OurSpace and the blog, no Windows 98 desktop, 
 
 The original site is untouched: the repo root, live at ourspace.page on GitHub Pages, along with `worker/` and its `ourspace-db`. That includes its guestbook, which this copy never had. This folder is self-contained, with its own Worker, its own database and its own copies of the images it uses.
 
+## Try it on your computer (the demo)
+
+One command starts the whole site on your own computer, already filled with sample people, posts, friend requests and messages. Nothing in it is real or online, and it can't touch the live site.
+
+You need [Node.js](https://nodejs.org) 22 or newer and [git](https://git-scm.com). Then, in a terminal:
+
+```bash
+git clone https://github.com/Maltenn/BlogWebsite.git      # (skip if you already have it)
+cd BlogWebsite
+git fetch origin
+git checkout claude/intelligent-fermat-keh09f
+git pull
+cd social
+npm install
+npm run demo
+```
+
+When it says **ourspace demo is running**, open **http://127.0.0.1:8787** in your browser.
+
+| Log in as | Email | Password | Who |
+|---|---|---|---|
+| you | `you@example.com` | `ourspace-demo` | `the_reviewer`, a regular member with friend requests and messages waiting |
+| the moderator | `malten@example.com` | `ourspace-demo` | `malten`, sees the **Moderation** tab with a sample report |
+| anyone else | `kat@`, `jules@`, `drew@`, `pete@`, `mia@` or `banana@example.com` | `ourspace-demo` | the sample members, to see the site from their side |
+
+How the demo differs from the real site:
+
+- **Sign-in and Spotify go to pretend pages.** "Continue with Google" (or Apple, Microsoft, Discord, GitHub) and "connect Spotify" open a page labeled *local demo: not the real Google*. Type any name to continue; the same name brings back the same pretend account. Cancel works too. On Spotify's pretend page you can tick a box to see what people outside the 5-person allowlist are told.
+- **Pretend Spotify has no album covers** (grey squares). The 30-second previews are real ones from Apple when your computer can reach the iTunes Search API.
+- **"Forgot my password" emails** appear in the terminal window running the demo. Copy the link from there.
+- **Your changes stick** between runs: the data lives in `social/.demo/`. `npm run demo -- --fresh` starts over with just the sample content.
+- **Editing works live.** Change a file in `public/` or `src/` and refresh the browser.
+
+Stop it with **Ctrl+C**. If port 8787 is already taken, it picks the next free one and prints the address.
+
 ## How it works
 
 ```
@@ -49,7 +84,8 @@ one Cloudflare Worker "ourspace-social" (same origin for pages and API, so the l
 | `public/_headers` | Content-Security-Policy and other security headers for the pages. |
 | `test/api.test.mjs` | 26 end-to-end API tests against a throwaway local Worker. |
 | `test/astro.test.mjs` | 4 tests of the astronomy against known ephemeris dates. |
-| `test/mock-providers.mjs` | A stand-in for every sign-in provider, Spotify and iTunes, used by the tests. |
+| `test/mock-providers.mjs` | A stand-in for every sign-in provider, Spotify and iTunes, used by the tests and the demo. |
+| `tools/demo.mjs` | `npm run demo`: the site on your computer with sample content and pretend sign-in pages. |
 
 ## Run it locally
 
@@ -65,17 +101,7 @@ If you ran the earlier version of this folder (the one with bots): the schema wa
 
 Locally you don't need any secrets to sign up with email. **Forgot my password** prints the reset link in the `npm run dev` terminal instead of sending an email.
 
-**Trying the sign-in buttons and Spotify without real apps.** Run the stand-in providers, and point a dev server at them with dummy IDs:
-
-```bash
-node test/mock-providers.mjs 8899        # in one terminal
-npx wrangler dev --var TEST_PROVIDER_BASE:http://127.0.0.1:8899 \
-  --var TOKEN_KEY:$(openssl rand -base64 32) \
-  --var GOOGLE_CLIENT_ID:x --var GOOGLE_CLIENT_SECRET:x \
-  --var SPOTIFY_CLIENT_ID:x --var SPOTIFY_CLIENT_SECRET:x     # add any other provider the same way
-```
-
-Every sign-in is then approved at once as a made-up person, and Spotify returns three fixed songs. **Never set `TEST_PROVIDER_BASE` on a real deployment.** It sends every sign-in to whatever server it names.
+To try the sign-in buttons and Spotify without real apps, use `npm run demo` (above). It runs the stand-in providers from `test/mock-providers.mjs` and points the site at them through `TEST_PROVIDER_BASE`. **Never set `TEST_PROVIDER_BASE` on a real deployment.** It sends every sign-in to whatever server it names.
 
 Re-run `npm run build` (from `social/`) after editing the original site's `content-src/` or adding a picture to `src/options.js`.
 

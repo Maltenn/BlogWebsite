@@ -460,8 +460,9 @@ function topSongs(sp) {
       S.audio.addEventListener('ended', stopSong);
       S.audio.play().then(() => { play.classList.add('on'); play.textContent = '⏹'; }).catch(() => { toast('that preview won\'t play right now.', true); stopSong(); });
     });
-    list.append(h('li', { class: 'sp-row' },
-      t.image ? h('img', { class: 'sp-art', src: t.image, alt: '', loading: 'lazy' }) : h('span', { class: 'sp-art' }),
+    const art = t.image ? h('img', { class: 'sp-art', src: t.image, alt: '', loading: 'lazy' }) : h('span', { class: 'sp-art' });
+    if (t.image) art.addEventListener('error', () => art.replaceWith(h('span', { class: 'sp-art' })), { once: true });
+    list.append(h('li', { class: 'sp-row' }, art,
       h('span', { class: 'sp-mid' }, h('span', { class: 'sp-name', text: t.name }), h('span', { class: 'sp-artist', text: t.artist })),
       play,
       t.url ? h('a', { class: 'sp-open', href: t.url, target: '_blank', rel: 'noopener', title: 'open in Spotify', text: '↗' }) : null));
