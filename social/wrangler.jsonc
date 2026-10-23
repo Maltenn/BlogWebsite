@@ -1,0 +1,38 @@
+// ourspace-social: one Cloudflare Worker serves the OurSpace pages (public/) AND the API (/api/*), from the same
+// origin, so the login cookie can be HttpOnly + SameSite=Lax and nothing needs CORS. Storage is one D1 database.
+// Setup, deploy and operating steps: README.md. Secret (set with `wrangler secret put`, never written here): IP_SALT.
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ourspace-social",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    // /u/<name>, /inbox, /edit … are client-side routes: any page that isn't a file gets index.html
+    "not_found_handling": "single-page-application",
+    // the API always reaches the Worker, even if a file with the same path ever existed
+    "run_worker_first": ["/api/*"]
+  },
+  "vars": {
+    "MIN_AGE": "13",                     // sign-up asks people to confirm they are at least this old
+    "SIGNUPS_PER_DAY": "200",            // site-wide cap on new accounts per day (spam brake while the site is small)
+    "SIGNUPS_PER_IP_PER_HOUR": "5",
+    "BOT_POSTS_PER_DAY": "12",           // how chatty the bots are, all of them together
+    "BOT_DELAY_SCALE": "1"               // 0 makes bot replies instant (the tests use it)
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "ourspace-social-db",
+      // a NEW database, separate from the live site's ourspace-db. `npx wrangler d1 create ourspace-social-db`, paste the id here
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "triggers": {
+    // bot activity + housekeeping (expired sessions, old rate-limit rows)
+    "crons": ["*/30 * * * *"]
+  }
+}
