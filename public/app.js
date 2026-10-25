@@ -1,0 +1,81 @@
+/* ============================================================
+   app.js — OurSpace, the social network: the entry module.
+   Talks to the API (/api/*, the Worker in src/). Everyone here
+   is a real person. Everything people wrote is put on the page
+   with textContent (never innerHTML).
+   The rest lives in js/: core/ (helpers, state, router, header),
+   widgets/ (bits several pages share) and pages/ (one per page).
+   This file holds the route table and starts everything up.
+   ============================================================ */
+
+import { $, enc } from './js/core/dom.js';
+import { api } from './js/core/api.js';
+import { toast } from './js/core/ui.js';
+import { S, onMeChange, loadMe } from './js/core/state.js';
+import { go, route, start } from './js/core/router.js';
+import { paintChrome } from './js/core/chrome.js';
+import { renderAdmin } from './js/pages/admin.js';
+import { renderJoin, renderFinish, renderLogin, renderForgot, renderReset } from './js/pages/auth.js';
+import { renderBrowse } from './js/pages/browse.js';
+import { renderBulletins } from './js/pages/bulletins.js';
+import { renderEdit } from './js/pages/edit.js';
+import { renderHome } from './js/pages/home.js';
+import { renderHoroscope } from './js/pages/horoscope.js';
+import { renderInbox, renderThread } from './js/pages/inbox.js';
+import { renderProfile, renderFriends, renderUserBlog } from './js/pages/profile.js';
+import { renderRequests } from './js/pages/requests.js';
+import { renderRules } from './js/pages/rules.js';
+import { renderSettings } from './js/pages/settings.js';
+
+/* ------------------------------------------------------------ router */
+
+const ROUTES = [
+  [/^\/$/, renderHome],
+  [/^\/join$/, renderJoin],
+  [/^\/join\/finish$/, renderFinish],
+  [/^\/login$/, renderLogin],
+  [/^\/forgot$/, renderForgot],
+  [/^\/reset$/, renderReset],
+  [/^\/u\/([^/]+)$/, renderProfile],
+  [/^\/u\/([^/]+)\/friends$/, renderFriends],
+  [/^\/u\/([^/]+)\/blog$/, renderUserBlog],
+  [/^\/browse$/, renderBrowse],
+  [/^\/requests$/, renderRequests, true],
+  [/^\/inbox$/, renderInbox, true],
+  [/^\/inbox\/([^/]+)$/, renderThread, true],
+  [/^\/bulletins$/, renderBulletins],
+  [/^\/horoscope$/, renderHoroscope],
+  [/^\/horoscope\/([a-z]+)$/, renderHoroscope],
+  [/^\/edit$/, renderEdit, true],
+  [/^\/settings$/, renderSettings, true],
+  [/^\/admin$/, renderAdmin, true],
+  [/^\/rules$/, renderRules],
+];
+
+onMeChange(paintChrome);                       // every loadMe() repaints the header and tabs
+start(ROUTES, { beforeEach: paintChrome });    // in-app links + back/forward; every page change repaints them too
+
+/* ----------------------------------------------------------- startup */
+
+$('#search').addEventListener('submit', e => {
+  e.preventDefault();
+  const q = e.target.q.value.trim();
+  go('/browse' + (q ? '?q=' + enc(q) : ''));
+});
+
+async function poll() {
+  if (!S.me || document.hidden) return;
+  try {
+    const before = await loadMe();
+    if (S.counts.unread > before && !location.pathname.startsWith('/inbox')) toast('✉ you have a new message!', false, () => go('/inbox'));
+  } catch { /* offline for a moment */ }
+}
+
+(async () => {
+  try {
+    const [, prov] = await Promise.all([loadMe(), api.get('/auth/providers').catch(() => null)]);
+    if (prov) S.providers = prov;
+  } catch (e) { toast('ourspace can\'t reach its server right now. try again in a minute.', true); }
+  await route();
+  setInterval(poll, 30000);
+})();

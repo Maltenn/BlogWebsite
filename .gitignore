@@ -1,14 +1,15 @@
 # Dependencies
 node_modules/
 
-# Secrets — never commit these
+# Secrets — never commit these (Worker secrets go in with `wrangler secret put`; local ones in .dev.vars)
+.dev.vars*
 .env
 .env.*
-*tokens.json
+*.p8
 
-# Local data (guestbook store, old sqlite files)
-db.json
-*.db
+# Local state: wrangler's local database and the `npm run demo` database
+.wrangler/
+.demo/
 
 # Local Claude settings (launch.json is shared on purpose)
 .claude/settings.local.json
@@ -19,7 +20,3 @@ db.json
 Thumbs.db
 desktop.ini
 *.log
-
-# Cloudflare Worker (worker/): local secrets + wrangler state
-.dev.vars
-.wrangler/
