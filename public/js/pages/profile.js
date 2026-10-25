@@ -1,5 +1,6 @@
-/* pages/profile.js — someone's page: the card on the left, the boxes on the right, and under them three tabs, each its
-   own address: Statuses (/u/name), Blog (/u/name/blog) and Friends' Comments (/u/name/comments). */
+/* pages/profile.js — someone's page: the card on the left, the boxes on the right, and under them four tabs, each its
+   own address: Posts (/u/name: statuses, quotes and reposts), Replies (/u/name/replies), Blog (/u/name/blog) and
+   Friends' Comments (/u/name/comments). */
 
 import { h, $, enc, userPath, poss } from '../core/dom.js';
 import { api } from '../core/api.js';
@@ -13,7 +14,9 @@ import { topSongs } from '../widgets/songs.js';
 import { followButton } from '../widgets/followbutton.js';
 import { privateCard } from '../widgets/privatecard.js';
 import { composer } from '../widgets/composer.js';
-import { postCard, blogPath } from '../widgets/postcard.js';
+import { postCard } from '../widgets/postcard.js';
+import { blogPath } from '../widgets/postlinks.js';
+import { rich } from '../widgets/richtext.js';
 import { blogIndex } from '../widgets/blogindex.js';
 
 /* The page's data is kept for 30 seconds so that clicking between the tabs doesn't fetch it again. Only a click on a
@@ -33,9 +36,11 @@ async function loadProfile(name) {
   return d;
 }
 
-const TABS = [['statuses', '', 'Statuses'], ['blog', '/blog', 'Blog'], ['comments', '/comments', 'Friends\' Comments']];
+// [key (also the name of its count in the profile's counts), path after /u/name, label]
+const TABS = [['statuses', '', 'Posts'], ['replies', '/replies', 'Replies'], ['blog', '/blog', 'Blog'], ['comments', '/comments', 'Friends\' Comments']];
 
 export const renderProfile = (root, name) => drawProfile(root, name, 'statuses');
+export const renderProfileReplies = (root, name) => drawProfile(root, name, 'replies');
 export const renderProfileBlog = (root, name) => drawProfile(root, name, 'blog');
 export const renderProfileComments = (root, name) => drawProfile(root, name, 'comments');
 
@@ -102,6 +107,7 @@ async function drawProfile(root, name, tab) {
     link('🎨', 'Edit My Page', () => go('/edit'));
     link('✏', 'Update Status', () => go('/'));
     link('📁', 'My Blog', () => go(userPath(u.name) + '/blog'));
+    link('🔖', 'My Bookmarks', () => go('/bookmarks'));
     link('⚙', 'Settings', () => go('/settings'));
   } else if (!S.me) {
     [['✉', 'Send Message'], ['💬', 'Add Comment'], ['🚫', 'Block User'], ['⚑', 'Report User']].forEach(([icon, label]) => link(icon, label, needLogin));
@@ -179,7 +185,8 @@ async function drawProfile(root, name, tab) {
     stream.append(h('nav', { class: 'os-tabs2 ms-ptabs', 'aria-label': 'sections of this page' }, links));
     const body = h('div', { class: 'ms-streambody' });
     stream.append(body);
-    if (tab === 'statuses') await statusesTab(body, d, deleted('statuses'));
+    if (tab === 'statuses') await postsTab(body, d, deleted('statuses'));
+    else if (tab === 'replies') await repliesTab(body, d, deleted('replies'));
     else if (tab === 'blog') await blogIndex(body, u, { self: d.self, onPosted: id => { forget(); go(blogPath(u.name, id)); }, onDeleted: deleted('blog') });
     else await commentsTab(body, d, changed, n => recount('comments', n));
   }
@@ -194,14 +201,23 @@ async function drawProfile(root, name, tab) {
   root.append(prof);
 }
 
-/* ---- Statuses ---- */
-async function statusesTab(body, d, onDeleted) {
+/* ---- Posts: statuses, quotes and reposts ---- */
+async function postsTab(body, d, onDeleted) {
   const u = d.user;
   if (d.self) body.append(composer({ onPosted: () => { forget(); route(); } }));
   const list = h('div');
   body.append(list);
   await paged(list, cur => api.get(`/users/${enc(u.name)}/statuses${cur ? '?before=' + enc(cur) : ''}`),
-    item => postCard(item, { onDeleted }), d.self ? 'nothing here yet. what\'s on your mind?' : `${u.name} hasn't posted a status yet.`);
+    item => postCard(item, { onDeleted }), d.self ? 'nothing here yet. what\'s on your mind?' : `${u.name} hasn't posted yet.`);
+}
+
+/* ---- Replies ---- */
+async function repliesTab(body, d, onDeleted) {
+  const u = d.user;
+  const list = h('div');
+  body.append(list);
+  await paged(list, cur => api.get(`/users/${enc(u.name)}/replies${cur ? '?before=' + enc(cur) : ''}`),
+    item => postCard(item, { onDeleted }), d.self ? 'no replies yet. answer someone from their post.' : `${u.name} hasn't replied to anyone yet.`);
 }
 
 /* ---- Friends' Comments ---- */
@@ -254,7 +270,7 @@ async function commentsTab(body, d, changed, recount) {
       list.append(h('div', { class: 'ms-comment' },
         h('div', { class: 'ms-comment-who' }, avatar(c.author, 50), h('a', { class: 'ms-name-link', href: userPath(c.author.name), text: c.author.name })),
         h('div', { class: 'ms-comment-col' }, h('span', { class: 'ms-time', text: when(c.created) }), postActions(item, () => { forget(); load(page); }),
-          h('div', { class: 'ms-comment-body', text: c.body }))));
+          h('div', { class: 'ms-comment-body' }, rich(c.body, c.mentions, { tags: false })))));   // (comments' #tags aren't kept, so they don't link)
     });
     // « 1 2 3 »; a long run keeps the first, the last and two either side of this page
     pager.replaceChildren();

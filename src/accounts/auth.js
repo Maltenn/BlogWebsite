@@ -4,12 +4,13 @@
 // is a random token in an HttpOnly, SameSite=Lax cookie; the database only keeps its SHA-256.
 import { HttpError, fail, json, readBody, getCookie, sessionCookie, sha256Hex } from '../shared/http.js';
 import { nameProblem } from '../shared/text.js';
-import { limit } from '../shared/db.js';
+import { limit, CLEAR_TOMBSTONES } from '../shared/db.js';
 import { defaultProfile, isAvatar, DEFAULT_AVATAR } from '../profiles/profiles.js';
 import { checkBirthday } from '../shared/dates.js';
 import { sunSign } from '../shared/astro.js';
 import { randomToken } from '../shared/seal.js';
 import { sendMail, mailReady } from '../shared/mail.js';
+import { SHOWN, UNREAD } from '../shared/notify.js';
 
 const ITERATIONS = 100000;
 const SESSION_DAYS = 30;
@@ -139,7 +140,7 @@ export async function currentUser(c) {
   return { ...u, tokenHash };
 }
 
-// GET /api/me — who am I, plus the numbers the tabs show
+// GET /api/me — who am I, plus the numbers the tabs show (notifications: unread ones, up to 99)
 export async function me(c) {
   if (!c.user) return json({ user: null, minAge: Number(c.env.MIN_AGE || 13) });
   const id = c.user.id;
@@ -150,10 +151,11 @@ export async function me(c) {
       (SELECT COUNT(*) FROM messages m JOIN users x ON x.id = m.from_id
          WHERE m.to_id = ?1 AND m.read_at IS NULL AND m.hidden = 0 AND m.created <= ?2 AND x.banned = 0
          AND NOT EXISTS (SELECT 1 FROM blocks bl WHERE (bl.blocker_id = ?1 AND bl.blocked_id = m.from_id) OR (bl.blocked_id = ?1 AND bl.blocker_id = m.from_id))) AS unread,
+      (SELECT COUNT(*) FROM (SELECT 1 FROM ${SHOWN} AND ${UNREAD} LIMIT 99)) AS notifications,
       (SELECT COUNT(*) FROM reports WHERE status = 'open') AS reports`).bind(id, c.now).first();
   return json({
     user: userOut(c.user),
-    counts: { requests: counts.requests, unread: counts.unread, reports: c.user.is_admin ? counts.reports : 0 },
+    counts: { requests: counts.requests, unread: counts.unread, notifications: counts.notifications, reports: c.user.is_admin ? counts.reports : 0 },
     settings: { followPolicy: c.user.follow_policy, dmPolicy: c.user.dm_policy },
     minAge: Number(c.env.MIN_AGE || 13),
   });
@@ -267,7 +269,10 @@ export async function changePassword(c) {
 }
 
 // DELETE /api/me { password } (or { confirm: <screen name> } for accounts without a password)
-// The account and everything it wrote. Reports about it keep their snapshot.
+// The account and everything it wrote, liked, reposted and bookmarked; the counts on other people's posts come down to
+// match, and other people's tombstones that only its replies or quotes held go too. Other people's replies to and
+// quotes of its posts stay: a reply keeps pointing at the post it answered (so it says "replying to a deleted account"
+// and stays in its conversation), a quote shows its original as unavailable. Reports about it keep their snapshot.
 export async function deleteAccount(c) {
   const b = await readBody(c.req);
   await limit(c, 'delete:' + c.user.id, [[5, 15 * 60000]]);
@@ -278,8 +283,23 @@ export async function deleteAccount(c) {
   }
   const id = c.user.id;
   const DB = c.env.DB;
+  // the posts its replies answer and its quotes quote: tombstones among them may be held by nothing else
+  const { results: above } = await DB.prepare(`SELECT reply_to AS id FROM posts WHERE author_id = ?1 AND kind = 'reply' AND reply_to IS NOT NULL
+    UNION SELECT quote_of FROM posts WHERE author_id = ?1 AND kind = 'quote' AND quote_of IS NOT NULL`).bind(id).all();
   await DB.batch([
+    DB.prepare('UPDATE posts SET like_count = like_count - 1 WHERE id IN (SELECT post_id FROM likes WHERE user_id = ?)').bind(id),
+    DB.prepare(`UPDATE posts SET
+        reply_count = reply_count - (SELECT COUNT(*) FROM posts x WHERE x.reply_to = posts.id AND x.author_id = ?1 AND x.kind = 'reply' AND x.deleted = 0),
+        quote_count = quote_count - (SELECT COUNT(*) FROM posts x WHERE x.quote_of = posts.id AND x.author_id = ?1 AND x.kind = 'quote' AND x.deleted = 0),
+        repost_count = repost_count - (SELECT COUNT(*) FROM posts x WHERE x.quote_of = posts.id AND x.author_id = ?1 AND x.kind = 'repost')
+      WHERE id IN (SELECT reply_to FROM posts WHERE author_id = ?1 UNION SELECT quote_of FROM posts WHERE author_id = ?1)`).bind(id),
+    DB.prepare('DELETE FROM posts WHERE kind = \'repost\' AND quote_of IN (SELECT id FROM posts WHERE author_id = ?)').bind(id),
     DB.prepare('DELETE FROM posts WHERE author_id = ?1 OR target_id = ?1').bind(id),
+    DB.prepare(CLEAR_TOMBSTONES).bind(JSON.stringify(above.map(r => r.id))),
+    DB.prepare('DELETE FROM likes WHERE user_id = ?').bind(id),
+    DB.prepare('DELETE FROM bookmarks WHERE user_id = ?').bind(id),
+    DB.prepare('DELETE FROM mentions WHERE user_id = ?').bind(id),
+    DB.prepare('DELETE FROM notifications WHERE user_id = ?1 OR actor_id = ?1').bind(id),
     DB.prepare('DELETE FROM messages WHERE from_id = ?1 OR to_id = ?1').bind(id),
     DB.prepare('DELETE FROM follows WHERE follower_id = ?1 OR followee_id = ?1').bind(id),
     DB.prepare('DELETE FROM markers WHERE user_id = ?').bind(id),

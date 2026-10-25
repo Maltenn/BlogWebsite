@@ -1,7 +1,7 @@
 // Profiles: what a page holds, how edits are validated, and the profile answer anybody can read.
 import { fail, json, readBody, int } from '../shared/http.js';
 import { text, longText } from '../shared/text.js';
-import { REF_COLS, ref, refOf, visibleUser, canSeePosts, relationTo, NOT_BLOCKED, VISIBLE, LISTS, isOnline, profileData } from '../shared/db.js';
+import { REF_COLS, ref, refOf, visibleUser, canSeePosts, relationTo, NOT_BLOCKED, VISIBLE, REPOSTED, REPOST_OK, LISTS, isOnline, profileData } from '../shared/db.js';
 import { THEMES, TILES, FONTS, DECOR, BADGES, STATUSES, HERE_FOR, GENDERS, MOODS, INTEREST_KEYS, REPORT_REASONS } from '../catalog/options.js';
 import { AVATARS } from '../catalog/avatars.js';
 import { ageOn } from '../shared/dates.js';
@@ -144,8 +144,9 @@ async function topFriends(c, owner, chosen, seePosts) {
 }
 
 // GET /api/users/:name — a profile page. Anybody can read the page itself (logged in or not); a private profile's
-// statuses, blog and Friends' Comments are only for its accepted followers, the owner and moderators (canSeePosts), and
-// so are their totals in `counts`. The comments themselves come from GET /api/users/:name/comments.
+// posts (statuses, quotes and reposts), replies, blog and Friends' Comments are only for its accepted followers, the
+// owner and moderators (canSeePosts), and so are their totals in `counts`. The comments themselves come from
+// GET /api/users/:name/comments.
 export async function profile(c) {
   const u = await visibleUser(c, c.params.name);
   const viewer = c.user ? c.user.id : 0;
@@ -159,14 +160,15 @@ export async function profile(c) {
       (SELECT COUNT(*) FROM ${LISTS.friends.from}) AS friends`).bind(viewer, u.id).first();
   let totals = {}, status = null, blog = [];
   if (seePosts) {
-    totals = await DB.prepare(`SELECT COALESCE(SUM(p.kind = 'status'), 0) AS statuses, COALESCE(SUM(p.kind = 'blog'), 0) AS blog,
-        COALESCE(SUM(p.kind = 'wall'), 0) AS comments
-      FROM posts p JOIN users a ON a.id = p.author_id
-      WHERE ${VISIBLE} AND ((p.kind IN ('status', 'blog') AND p.author_id = ?3) OR (p.kind = 'wall' AND p.target_id = ?3))`).bind(viewer, c.now, u.id).first();
-    status = await DB.prepare(`SELECT id, body, created FROM posts WHERE author_id = ?1 AND kind = 'status' AND hidden = 0 AND created <= ?2
+    totals = await DB.prepare(`SELECT COALESCE(SUM(p.kind IN ('status', 'quote', 'repost')), 0) AS statuses, COALESCE(SUM(p.kind = 'reply'), 0) AS replies,
+        COALESCE(SUM(p.kind = 'blog'), 0) AS blog, COALESCE(SUM(p.kind = 'wall'), 0) AS comments
+      FROM posts p JOIN users a ON a.id = p.author_id ${REPOSTED}
+      WHERE ${VISIBLE} AND ${REPOST_OK}
+        AND ((p.kind IN ('status', 'quote', 'repost', 'reply', 'blog') AND p.author_id = ?3) OR (p.kind = 'wall' AND p.target_id = ?3))`).bind(viewer, c.now, u.id).first();
+    status = await DB.prepare(`SELECT id, body, created FROM posts WHERE author_id = ?1 AND kind = 'status' AND hidden = 0 AND deleted = 0 AND created <= ?2
       ORDER BY created DESC, id DESC LIMIT 1`).bind(u.id, c.now).first();
     ({ results: blog } = await DB.prepare(`SELECT id, subject AS title, subtitle, created FROM posts
-      WHERE author_id = ?1 AND kind = 'blog' AND hidden = 0 AND created <= ?2 ORDER BY created DESC, id DESC LIMIT 3`).bind(u.id, c.now).all());
+      WHERE author_id = ?1 AND kind = 'blog' AND hidden = 0 AND deleted = 0 AND created <= ?2 ORDER BY created DESC, id DESC LIMIT 3`).bind(u.id, c.now).all());
   }
   const sign = sunSign(u.birthdate);
   return json({

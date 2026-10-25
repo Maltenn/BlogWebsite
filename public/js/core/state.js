@@ -6,7 +6,7 @@ import { api } from './api.js';
 
 export const S = {
   me: null,                       // { id, name, avatar, isAdmin, sign } or null
-  counts: { requests: 0, unread: 0, reports: 0 },
+  counts: { requests: 0, unread: 0, notifications: 0, reports: 0 },
   settings: null,
   minAge: 13,
   options: null,                  // GET /api/options (lazy)
@@ -22,7 +22,7 @@ export async function loadMe() {
   const before = S.counts.unread;
   S.me = r.user;
   S.minAge = r.minAge || 13;
-  S.counts = r.counts || { requests: 0, unread: 0, reports: 0 };
+  S.counts = r.counts || { requests: 0, unread: 0, notifications: 0, reports: 0 };
   S.settings = r.settings || null;
   meListeners.forEach(fn => fn());   // the entry repaints the header and tabs
   return before;

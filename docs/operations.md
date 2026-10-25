@@ -42,10 +42,11 @@ They are counted per person unless noted, in the `attempts` table, and old rows 
 
 | What | Limit |
 |---|---|
-| Posts (statuses, Friends' Comments, bulletins and blog posts together) | 6 a minute and 300 a day |
+| Posts (statuses, replies, quotes, Friends' Comments, bulletins and blog posts together) | 6 a minute and 300 a day |
+| Likes · reposts · bookmarks (undoing one is free) | 300 · 60 · 300 an hour |
 | Messages | 15 a minute and 400 a day |
 | Follows (new ones; unfollowing is free) | 20 an hour and 100 a day |
-| Feed read position (`PUT /api/me/markers/feed`) | 120 a minute |
+| Read positions (`PUT /api/me/markers/feed` and `/notifications`) | 120 a minute |
 | Bulletins (also count as posts) | 3 an hour and 10 a day |
 | Blog entries (also count as posts) | 10 a day |
 | Reports | 10 an hour and 40 a day |

@@ -1,16 +1,15 @@
-// The posting part: statuses, blog posts, Friends' Comments, bulletins, and the feed (statuses and blog posts from the
-// people you follow). Everyone here is a real person: there are no bots.
+// The posting part: statuses, blog posts, Friends' Comments, bulletins, deleting, conversations, the feed (statuses,
+// blog posts, quotes and reposts from the people you follow) and #tag pages. Replies, likes, reposts, quotes and
+// bookmarks are interactions.js; the item every list shows is items.js. Everyone here is a real person: there are no bots.
 import { fail, json, readBody, int } from '../shared/http.js';
-import { text, longText } from '../shared/text.js';
-import { REF_COLS, ref, refOf, visibleUser, areFriends, canSeePosts, blockedEither, limit, VISIBLE } from '../shared/db.js';
-
-// how much one person may post (statuses, Friends' Comments, bulletins and blog posts together)
-const POST_LIMITS = [[6, 60000], [300, 86400000]];
+import { text, longText, tagKey } from '../shared/text.js';
+import { REF_COLS, ref, refOf, visibleUser, areFriends, canSeePosts, blockedEither, limit, VISIBLE, IN_THREAD, SEES, REPOST_OK, CLEAR_TOMBSTONES } from '../shared/db.js';
+import { POST_LIMITS, THREADED_SQL, POST_COLS, POSTS, EXCERPT, cursor, NEWEST, BEFORE, AFTER, hydrate, item, page, mentionsOf, writePost, dropRepost } from './items.js';
 
 /* ------------------------------------------------------------ posts */
 
 // POST /api/users/:name/comments { body } — a Friends' Comment on somebody's page. Only their friends write here
-// (and the owner, replying).
+// (and the owner, replying). The owner hears about it, and so does anyone it @mentions who may see it.
 export async function postComment(c) {
   const u = await visibleUser(c, c.params.name);
   const b = await readBody(c.req);
@@ -22,9 +21,8 @@ export async function postComment(c) {
     if (!await areFriends(c.env, me, u.id)) fail(403, `${u.name} only takes comments from friends.`);
   }
   await limit(c, 'post:' + me, POST_LIMITS);
-  const row = await c.env.DB.prepare('INSERT INTO posts (kind, author_id, target_id, body, created) VALUES (\'wall\', ?, ?, ?, ?) RETURNING id')
-    .bind(me, u.id, body, c.now).first();
-  return json({ id: row.id, body }, 201);
+  const id = await writePost(c, { kind: 'wall', target_id: u.id, body }, { mentionIn: body, tell: [['comment', u.id]] });
+  return json({ id, body }, 201);
 }
 
 // POST /api/status { body } — on my page and in my followers' feeds
@@ -33,9 +31,8 @@ export async function postStatus(c) {
   const body = text(b.body, 500);
   if (!body) fail(400, 'what\'s on your mind? (you have to type it)');
   await limit(c, 'post:' + c.user.id, POST_LIMITS);
-  const row = await c.env.DB.prepare('INSERT INTO posts (kind, author_id, body, created) VALUES (\'status\', ?, ?, ?) RETURNING id')
-    .bind(c.user.id, body, c.now).first();
-  return json({ id: row.id, body }, 201);
+  const id = await writePost(c, { kind: 'status', body }, { mentionIn: body, tagIn: body });
+  return json({ id, body }, 201);
 }
 
 // POST /api/bulletins { subject, body } — a post to the bulletin board
@@ -52,7 +49,7 @@ export async function postBulletin(c) {
 }
 
 // POST /api/blog { title, subtitle, mood, body } — a long post on my page (with a page of its own) and in my
-// followers' feeds
+// followers' feeds. @mentions and #tags count in the title and the body.
 export async function postBlog(c) {
   const b = await readBody(c.req, 100000);
   const title = text(b.title, 100);
@@ -62,66 +59,50 @@ export async function postBlog(c) {
   if (!title || !body) fail(400, 'a blog post needs a title and some words.');
   await limit(c, 'blog:' + c.user.id, [[10, 86400000]], 'that\'s a lot of blogging for one day.');
   await limit(c, 'post:' + c.user.id, POST_LIMITS);
-  const row = await c.env.DB.prepare('INSERT INTO posts (kind, author_id, subject, subtitle, mood, body, created) VALUES (\'blog\', ?, ?, ?, ?, ?, ?) RETURNING id')
-    .bind(c.user.id, title, subtitle, mood, body, c.now).first();
-  return json({ id: row.id }, 201);
+  const words = `${title}\n${body}`;
+  const id = await writePost(c, { kind: 'blog', subject: title, subtitle, mood, body }, { mentionIn: words, tagIn: words });
+  return json({ id }, 201);
 }
 
-// DELETE /api/posts/:id — your own post, a comment on your own page, or anything (moderators)
+// DELETE /api/posts/:id — your own post, a comment on your own page, or anything (moderators). A post that has replies
+// or quotes stays as a tombstone ("this post was deleted") so its conversation and the quotes keep their shape;
+// otherwise it goes. Either way its likes, bookmarks, reposts, mentions, tags and notifications go, and the counts of
+// the post it answered or quoted come down; if that one is a tombstone nothing holds any more, it goes too (and so on up
+// the conversation). Deleting a repost undoes it. Answers { ok, tombstone }: whether it stayed as a tombstone.
 export async function deletePost(c) {
   const id = int(c.params.id);
-  const p = id && await c.env.DB.prepare('SELECT id, kind, author_id, target_id FROM posts WHERE id = ?').bind(id).first();
+  const DB = c.env.DB;
+  const p = id && await DB.prepare('SELECT id, kind, author_id, target_id, reply_to, quote_of FROM posts WHERE id = ? AND deleted = 0').bind(id).first();
   if (!p) fail(404, 'that post is already gone.');
   const me = c.user.id;
   const mine = p.author_id === me || (p.kind === 'wall' && p.target_id === me);
   if (!(mine || c.user.is_admin)) fail(403, 'that isn\'t yours to delete.');
-  await c.env.DB.prepare('DELETE FROM posts WHERE id = ?').bind(id).run();
+  // (the counts only come down while the post is still there, so two deletes at once change them once)
+  const live = 'EXISTS (SELECT 1 FROM posts WHERE id = ?1 AND deleted = 0)';
+  const above = p.kind === 'reply' ? p.reply_to : p.kind === 'quote' ? p.quote_of : null;   // the post it answered or quoted
+  const res = await DB.batch(p.kind === 'repost' ? dropRepost(DB, p.author_id, p.quote_of) : [
+    p.kind === 'reply' && DB.prepare(`UPDATE posts SET reply_count = reply_count - 1 WHERE id = ?2 AND ${live}`).bind(id, p.reply_to),
+    p.kind === 'quote' && DB.prepare(`UPDATE posts SET quote_count = quote_count - 1 WHERE id = ?2 AND ${live}`).bind(id, p.quote_of),
+    DB.prepare('DELETE FROM posts WHERE kind = \'repost\' AND quote_of = ?').bind(id),
+    ...['likes', 'bookmarks', 'mentions', 'post_tags', 'notifications'].map(t => DB.prepare(`DELETE FROM ${t} WHERE post_id = ?`).bind(id)),
+    DB.prepare(`UPDATE posts SET deleted = 1, subject = NULL, subtitle = NULL, body = '', mood = NULL, quote_of = NULL, like_count = 0, repost_count = 0
+      WHERE id = ?1 AND (EXISTS (SELECT 1 FROM posts WHERE reply_to = ?1) OR EXISTS (SELECT 1 FROM posts WHERE quote_of = ?1 AND kind = 'quote' AND deleted = 0))`).bind(id),
+    DB.prepare('DELETE FROM posts WHERE id = ? AND deleted = 0').bind(id),
+    above && DB.prepare(CLEAR_TOMBSTONES).bind(JSON.stringify([above])),
+    DB.prepare('SELECT 1 AS x FROM posts WHERE id = ?').bind(id),
+  ].filter(Boolean));
   if (c.user.is_admin && !mine) {
-    await c.env.DB.prepare('INSERT INTO mod_log (actor_id, action, target_type, target_id, created) VALUES (?, \'delete\', \'post\', ?, ?)')
+    await DB.prepare('INSERT INTO mod_log (actor_id, action, target_type, target_id, created) VALUES (?, \'delete\', \'post\', ?, ?)')
       .bind(me, id, c.now).run();
   }
-  return json({ ok: true });
+  return json({ ok: true, tombstone: p.kind !== 'repost' && res.at(-1).results.length > 0 });
 }
 
 /* ------------------------------------------------------- reading them */
 
-const POST_COLS = `p.id, p.kind, p.subject, p.subtitle, p.body, p.mood, p.created, ${REF_COLS('a', 'a_')}`;
-const EXCERPT = 400;                             // blog bodies in the feed and the blog index are cut at this many characters
-
-// One post as the pages show it. A blog body longer than `cut` characters comes as an excerpt (excerpt: true); the
-// post's own page (GET /api/posts/:id) has all of it.
-function item(c, r, cut = 0) {
-  const chars = cut && r.kind === 'blog' ? Array.from(r.body) : [];
-  const excerpt = chars.length > cut;
-  return {
-    id: r.id, kind: r.kind, created: r.created, subject: r.subject || null, subtitle: r.subtitle || null,
-    body: excerpt ? chars.slice(0, cut).join('').trimEnd() + '…' : r.body, excerpt, mood: r.mood || null,
-    author: ref(r, 'a_'),
-    canDelete: !!(c.user && (r.a_id === c.user.id || c.user.is_admin)),
-  };
-}
-
-// a "<created>:<id>" cursor (the last item already shown) from ?before= or ?after=, else `fallback`
-function cursor(c, key, fallback) {
-  const [t, id] = String(c.url.searchParams.get(key) || '').split(':').map(x => int(x));
-  return t && id ? [t, id] : fallback;
-}
-const NEWEST = c => cursor(c, 'before', [c.now + 1, Number.MAX_SAFE_INTEGER]);
-
-// one page of items from `rows` (fetched with one extra), and the cursor for the next page if there is one
-function page(c, rows, per, cut) {
-  const items = rows.slice(0, per).map(r => item(c, r, cut));
-  const last = items[items.length - 1];
-  return { items, next: rows.length > per && last ? `${last.created}:${last.id}` : null };
-}
-
-// A post older / newer than the cursor ?3/?4 (VISIBLE, from db.js, takes ?1 viewer and ?2 now).
-const BEFORE = '(p.created < ?3 OR (p.created = ?3 AND p.id < ?4))';
-const AFTER = '(p.created > ?3 OR (p.created = ?3 AND p.id > ?4))';
-
-// Whose statuses and blog posts each feed has. following: the people I follow (accepted) and me. everyone: every open
-// profile. "Pick up where I left off" (and the unseen count) leaves out my own posts and anything written before I
-// followed its author, so following somebody new doesn't fill the queue with their whole history.
+// Whose posts each feed has. following: the people I follow (accepted) and me. everyone: every open profile. "Pick up
+// where I left off" (and the unseen count) leaves out my own posts and anything written before I followed its author,
+// so following somebody new doesn't fill the queue with their whole history.
 const SCOPES = {
   following: {
     latest: '(p.author_id = ?1 OR p.author_id IN (SELECT followee_id FROM follows WHERE follower_id = ?1 AND status = \'accepted\'))',
@@ -132,10 +113,11 @@ const SCOPES = {
 const FEED_PER = 30;
 const RESUME_BACK = 3 * 86400000;                // with no marker yet, "pick up where I left off" starts three days back
 
-// GET /api/feed?scope=following|everyone&mode=latest|resume&before=|after= — statuses and blog posts. latest: newest
-// first, paged with before=. resume ("pick up where I left off"): oldest first from just after my feed marker, paged
-// with after=. Logged out, the scope is always everyone. Every answer also says where my marker is and how many posts
-// in this scope are waiting after it in resume mode (up to 999).
+// GET /api/feed?scope=following|everyone&mode=latest|resume&before=|after= — statuses, blog posts, quotes and reposts
+// (never replies; a repost of something the viewer may not see is left out). latest: newest first, paged with before=.
+// resume ("pick up where I left off"): oldest first from just after my feed marker, paged with after=. Logged out, the
+// scope is always everyone. Every answer also says where my marker is and how many posts in this scope are waiting
+// after it in resume mode (up to 999).
 export async function feed(c) {
   const q = c.url.searchParams;
   const scope = c.user && q.get('scope') !== 'everyone' ? 'following' : 'everyone';
@@ -144,29 +126,29 @@ export async function feed(c) {
   const m = c.user && await c.env.DB.prepare('SELECT last_created, last_id FROM markers WHERE user_id = ? AND name = \'feed\'').bind(viewer).first();
   const marker = m ? { created: m.last_created, id: m.last_id } : null;
   const from = marker ? [marker.created, marker.id] : [c.now - RESUME_BACK, 0];
-  const base = `p.kind IN ('status', 'blog') AND ${VISIBLE}`;
+  const base = `p.kind IN ('status', 'blog', 'quote', 'repost') AND ${VISIBLE} AND ${REPOST_OK}`;
   const unseen = `${base} AND ${SCOPES[scope].resume} AND ${AFTER}`;
   const order = resume ? 'ASC' : 'DESC';
   const DB = c.env.DB;
   const [rows, count] = await DB.batch([
-    DB.prepare(`SELECT ${POST_COLS} FROM posts p JOIN users a ON a.id = p.author_id
+    DB.prepare(`SELECT ${POST_COLS} FROM ${POSTS}
       WHERE ${resume ? unseen : `${base} AND ${SCOPES[scope].latest} AND ${BEFORE}`}
       ORDER BY p.created ${order}, p.id ${order} LIMIT ${FEED_PER + 1}`).bind(viewer, c.now, ...(resume ? cursor(c, 'after', from) : NEWEST(c))),
-    DB.prepare(`SELECT COUNT(*) AS n FROM (SELECT 1 FROM posts p JOIN users a ON a.id = p.author_id WHERE ${unseen} LIMIT 999)`)
-      .bind(viewer, c.now, ...from),
+    DB.prepare(`SELECT COUNT(*) AS n FROM (SELECT 1 FROM ${POSTS} WHERE ${unseen} LIMIT 999)`).bind(viewer, c.now, ...from),
   ]);
-  return json({ ...page(c, rows.results, FEED_PER, EXCERPT), marker, unseen: count.results[0].n });
+  return json({ ...await page(c, rows.results, FEED_PER, EXCERPT), marker, unseen: count.results[0].n });
 }
 
-const MARKERS = ['feed'];
+const MARKERS = ['feed', 'notifications'];
 
-// PUT /api/me/markers/:name { created, id } — how far I've read: the last post I've seen. It only moves forward (an
-// older position than the stored one is ignored). Answers with the marker as it now stands.
+// PUT /api/me/markers/:name { created, id } — how far I've read: the last post (feed) or notification (notifications)
+// I've seen. It only moves forward (an older position than the stored one is ignored). Answers with the marker as it
+// now stands.
 export async function saveMarker(c) {
   if (!MARKERS.includes(c.params.name)) fail(404, 'no such marker.');
   const b = await readBody(c.req);
   const created = int(b.created), id = int(b.id);
-  if (!(created > 0 && id > 0 && created <= c.now)) fail(400, 'send the created time and id of the last post you saw.');
+  if (!(created > 0 && id > 0 && created <= c.now)) fail(400, 'send the created time and id of the last one you saw.');
   await limit(c, 'marker:' + c.user.id, [[120, 60000]]);
   const DB = c.env.DB;
   const [, now] = await DB.batch([
@@ -184,10 +166,10 @@ export async function saveMarker(c) {
 export async function bulletins(c) {
   const per = 20;
   const { results } = await c.env.DB.prepare(`
-    SELECT ${POST_COLS} FROM posts p JOIN users a ON a.id = p.author_id
+    SELECT ${POST_COLS} FROM ${POSTS}
     WHERE p.kind = 'bulletin' AND ${VISIBLE} AND ${BEFORE}
     ORDER BY p.created DESC, p.id DESC LIMIT ${per + 1}`).bind(c.user ? c.user.id : 0, c.now, ...NEWEST(c)).all();
-  return json(page(c, results, per));
+  return json(await page(c, results, per));
 }
 
 // GET /api/users/:name/blog — the blog's index: every post on somebody's page, newest first, long ones cut short
@@ -195,23 +177,29 @@ export async function blogOf(c) {
   const u = await visibleUser(c, c.params.name);
   if (!await canSeePosts(c, u)) fail(403, 'this profile is private.');
   const { results } = await c.env.DB.prepare(`
-    SELECT ${POST_COLS} FROM posts p JOIN users a ON a.id = p.author_id
+    SELECT ${POST_COLS} FROM ${POSTS}
     WHERE p.kind = 'blog' AND p.author_id = ?3 AND ${VISIBLE}
     ORDER BY p.created DESC, p.id DESC LIMIT 100`).bind(c.user ? c.user.id : 0, c.now, u.id).all();
-  return json({ user: refOf(u), entries: results.map(r => item(c, r, EXCERPT)) });
+  const h = await hydrate(c, results);
+  return json({ user: refOf(u), entries: results.map(r => item(c, r, h, EXCERPT)) });
 }
 
-// GET /api/users/:name/statuses?before= — somebody's statuses, newest first, 30 a page
-export async function statusesOf(c) {
+// somebody's posts of these kinds, newest first, 30 a page (a repost of something the viewer may not see left out)
+async function streamOf(c, kinds) {
   const u = await visibleUser(c, c.params.name);
   if (!await canSeePosts(c, u)) fail(403, 'this profile is private.');
   const per = 30;
   const { results } = await c.env.DB.prepare(`
-    SELECT ${POST_COLS} FROM posts p JOIN users a ON a.id = p.author_id
-    WHERE p.kind = 'status' AND p.author_id = ?5 AND ${VISIBLE} AND ${BEFORE}
+    SELECT ${POST_COLS} FROM ${POSTS}
+    WHERE p.kind IN (${kinds}) AND p.author_id = ?5 AND ${VISIBLE} AND ${REPOST_OK} AND ${BEFORE}
     ORDER BY p.created DESC, p.id DESC LIMIT ${per + 1}`).bind(c.user ? c.user.id : 0, c.now, ...NEWEST(c), u.id).all();
-  return json(page(c, results, per));
+  return json(await page(c, results, per));
 }
+
+// GET /api/users/:name/statuses?before= — the Posts tab: somebody's statuses, quotes and reposts
+export const statusesOf = c => streamOf(c, '\'status\', \'quote\', \'repost\'');
+// GET /api/users/:name/replies?before= — the Replies tab: somebody's replies
+export const repliesOf = c => streamOf(c, '\'reply\'');
 
 const COMMENTS_PER_PAGE = 10;
 
@@ -228,22 +216,63 @@ export async function commentsOf(c) {
   const page = Math.min(Math.max(1, int(c.url.searchParams.get('page'), 1)), Math.max(1, pages));
   const { results } = await DB.prepare(`SELECT p.id, p.body, p.created, ${REF_COLS('a', 'a_')} ${from}
     ORDER BY p.created DESC, p.id DESC LIMIT ${COMMENTS_PER_PAGE} OFFSET ${(page - 1) * COMMENTS_PER_PAGE}`).bind(viewer, c.now, u.id).all();
+  const said = results.length ? await mentionsOf(c, results.map(w => w.id)) : new Map();
   return json({
     comments: results.map(w => ({
-      id: w.id, body: w.body, created: w.created, author: ref(w, 'a_'),
+      id: w.id, body: w.body, created: w.created, author: ref(w, 'a_'), mentions: said.get(w.id) || [],
       canDelete: !!(c.user && (c.user.id === u.id || c.user.id === w.a_id || c.user.is_admin)),
     })),
     total, page, pages,
   });
 }
 
-// GET /api/posts/:id — one status or blog post in full: a blog post's own page, or a permalink. A post the viewer may
-// not see (a private profile's) answers exactly like a missing one, so the answer doesn't say the post exists.
+const THREAD_PER = 50;
+const ANCESTORS = 20;
+// the replies under the post ?5, however deep (for a reply; the first post of a conversation uses root_id instead)
+const SUBTREE = `p.id IN (WITH RECURSIVE sub(id) AS (SELECT id FROM posts WHERE reply_to = ?5
+  UNION ALL SELECT x.id FROM posts x JOIN sub ON x.reply_to = sub.id) SELECT id FROM sub)`;
+
+// GET /api/posts/:id?after= — a status, blog post, quote or reply in full, with its conversation: `ancestors`, the
+// posts it answers up to the conversation's first (the nearest 20, oldest first), and `replies`, everything under it
+// however deep, oldest first, 50 a page (`next` is the cursor for after=). Tombstones of deleted posts keep their place.
+// A repost's id opens its original. A post the viewer may not see (a private profile's) answers exactly like a missing
+// one, so the answer doesn't say the post exists.
 export async function onePost(c) {
   const id = int(c.params.id);
-  const r = id && await c.env.DB.prepare(`
-    SELECT ${POST_COLS}, a.follow_policy FROM posts p JOIN users a ON a.id = p.author_id
-    WHERE p.id = ?3 AND p.kind IN ('status', 'blog') AND ${VISIBLE}`).bind(c.user ? c.user.id : 0, c.now, id).first();
+  const viewer = c.user ? c.user.id : 0;
+  const DB = c.env.DB;
+  const r = id && await DB.prepare(`
+    SELECT ${POST_COLS}, a.follow_policy FROM ${POSTS}
+    WHERE p.id = (SELECT CASE WHEN kind = 'repost' THEN quote_of ELSE id END FROM posts WHERE id = ?3)
+      AND p.kind IN (${THREADED_SQL}) AND ${IN_THREAD}`).bind(viewer, c.now, id).first();
   if (!r || !await canSeePosts(c, { id: r.a_id, follow_policy: r.follow_policy })) fail(404, 'that post is gone.');
-  return json({ post: item(c, r) });
+  const shown = `${IN_THREAD} AND ${SEES('a')}`;
+  const [up, down] = await DB.batch([
+    DB.prepare(`WITH RECURSIVE up(id, depth) AS (SELECT reply_to, 1 FROM posts WHERE id = ?3 AND reply_to IS NOT NULL
+        UNION ALL SELECT x.reply_to, up.depth + 1 FROM posts x JOIN up ON x.id = up.id WHERE x.reply_to IS NOT NULL AND up.depth < ${ANCESTORS})
+      SELECT ${POST_COLS} FROM up CROSS JOIN ${POSTS} WHERE p.id = up.id AND ${shown} ORDER BY up.depth DESC`).bind(viewer, c.now, r.id),
+    DB.prepare(`SELECT ${POST_COLS} FROM ${POSTS} WHERE ${r.kind === 'reply' ? SUBTREE : 'p.root_id = ?5'} AND ${shown} AND ${AFTER}
+      ORDER BY p.created, p.id LIMIT ${THREAD_PER + 1}`).bind(viewer, c.now, ...cursor(c, 'after', [0, 0]), r.id),
+  ]);
+  const replies = down.results.slice(0, THREAD_PER);
+  const h = await hydrate(c, [r, ...up.results, ...replies]);
+  const last = replies[replies.length - 1];
+  return json({
+    post: item(c, r, h),
+    ancestors: up.results.map(x => item(c, x, h, EXCERPT)),
+    replies: replies.map(x => item(c, x, h)),
+    next: down.results.length > THREAD_PER ? `${last.created}:${last.id}` : null,
+  });
+}
+
+// GET /api/tags/:tag?before= — the posts with this #tag that the viewer may see, newest first, 30 a page
+export async function tagged(c) {
+  const tag = tagKey(String(c.params.tag).replace(/^#/, ''));
+  if (!tag) fail(404, 'that isn\'t a tag.');
+  const per = 30;
+  const { results } = await c.env.DB.prepare(`
+    SELECT ${POST_COLS} FROM post_tags t CROSS JOIN ${POSTS}
+    WHERE t.tag = ?5 AND p.id = t.post_id AND ${VISIBLE} AND ${SEES('a')} AND (t.created < ?3 OR (t.created = ?3 AND t.post_id < ?4))
+    ORDER BY t.created DESC, t.post_id DESC LIMIT ${per + 1}`).bind(c.user ? c.user.id : 0, c.now, ...NEWEST(c), tag).all();
+  return json({ tag, ...await page(c, results, per, EXCERPT) });
 }

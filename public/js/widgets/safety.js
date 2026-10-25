@@ -6,17 +6,21 @@ import { toast, oops, dialog } from '../core/ui.js';
 import { S, options } from '../core/state.js';
 import { needLogin } from '../core/router.js';
 
-// "⚑ report" (and "delete" when it's yours) under a post
+// "⚑ report" (and "delete" when it's yours) under a post. onDeleted(answer) after a delete: the server's { ok, tombstone }
+// (tombstone: it stays as "this post was deleted", because it has replies or quotes).
 export function postActions(item, onDeleted) {
   const box = h('span', { class: 'ms-actions' });
   if (item.canDelete) {
     box.append(h('a', { href: '#', text: 'delete', onclick: async e => {
       e.preventDefault();
       if (!await dialog({ title: 'Delete', text: 'Delete this for good?', icon: '🗑', ok: 'Delete', danger: true })) return;
-      try { await api.del('/posts/' + item.id); toast('deleted.'); onDeleted && onDeleted(); } catch (err) { oops(err); }
+      let r;
+      try { r = await api.del('/posts/' + item.id); } catch (err) { oops(err); return; }
+      toast('deleted.');
+      if (onDeleted) onDeleted(r);
     } }));
   }
-  if (S.me && item.author && item.author.id !== S.me.id && ['status', 'wall', 'bulletin', 'blog'].includes(item.kind)) {
+  if (S.me && item.author && item.author.id !== S.me.id && ['status', 'wall', 'bulletin', 'blog', 'reply', 'quote'].includes(item.kind)) {
     box.append(h('a', { href: '#', text: '⚑ report', title: 'report this to the moderators', onclick: e => { e.preventDefault(); reportDialog({ type: 'post', id: item.id, what: 'this post' }); } }));
   }
   return box;

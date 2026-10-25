@@ -58,3 +58,4 @@ See [docs/roadmap.md](docs/roadmap.md) for the placement of each unbuilt feature
 - Email verification: `src/accounts/verify.js`.
 - Terms of service: `public/legal/` (static) and `src/accounts/terms.js`.
 - Invite codes: `src/accounts/invites.js`. Ban-evasion signals: `src/safety/`.
+- Boards (phase 3, forum threads replacing the bulletin board): `src/boards/`.

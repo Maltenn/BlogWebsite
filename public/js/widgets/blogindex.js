@@ -7,7 +7,7 @@ import { monthLabel, shortDate } from '../core/format.js';
 import { toast, oops } from '../core/ui.js';
 import { postActions } from './safety.js';
 import { blogBody, teaser } from './blogtext.js';
-import { blogPath } from './postcard.js';
+import { blogPath } from './postlinks.js';
 
 const BODY_MAX = 20000;
 
@@ -22,7 +22,7 @@ function writer(opts) {
   const publish = h('button', { class: 'btn98 go', type: 'submit', text: 'Publish' });
   const peek = h('button', { class: 'btn98', type: 'button', text: '👁 Preview' });
   body.addEventListener('input', () => { count.textContent = `${body.value.length}/${BODY_MAX}`; if (!preview.hidden) paint(); });
-  const paint = () => preview.replaceChildren(h('div', { class: 'ms-previewlabel', text: 'preview' }), title.value ? h('h3', { class: 'ms-previewtitle', text: title.value }) : null, blogBody(body.value));
+  const paint = () => preview.replaceChildren(h('div', { class: 'ms-previewlabel', text: 'preview' }), title.value ? h('h3', { class: 'ms-previewtitle', text: title.value }) : null, blogBody(body.value, [], { links: false }));
   peek.addEventListener('click', () => {
     preview.hidden = !preview.hidden;
     peek.textContent = preview.hidden ? '👁 Preview' : '✎ Keep writing';
@@ -62,6 +62,7 @@ export async function blogIndex(box, user, opts = {}) {
       b.subtitle ? h('div', { class: 'ms-blogrow-sub', text: b.subtitle }) : null,
       h('div', { class: 'ms-blogrow-tease', text: teaser(b.body, 160) }),
       h('div', { class: 'ms-blogrow-meta' }, shortDate(b.created), b.mood ? ` · feeling ${b.mood}` : '',
+        b.counts && b.counts.replies ? ` · 💬 ${b.counts.replies}` : '', b.counts && b.counts.likes ? ` · ♥ ${b.counts.likes}` : '',
         postActions(b, () => { row.remove(); if (opts.onDeleted) opts.onDeleted(); })));
     box.append(row);
   });

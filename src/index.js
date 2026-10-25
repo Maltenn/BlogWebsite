@@ -1,6 +1,7 @@
 // ourspace-social — one Worker for the whole site:
-//   /api/*          the JSON API below (accounts, sign-in providers, profiles, follows, posts and the feed, messages,
-//                   Spotify, astrology, blocks, reports, moderation)
+//   /api/*          the JSON API below (accounts, sign-in providers, profiles, follows, posts and the feed, replies,
+//                   likes, reposts, quotes, bookmarks, tags, notifications, messages, Spotify, astrology, blocks,
+//                   reports, moderation)
 //   everything else the static pages in public/ (wrangler.jsonc → assets), with /u/<name> etc. falling back to
 //                   index.html so the page's own router can draw them
 // The cron (every 30 min) clears out expired sessions, sign-in tickets, reset links and old rate-limit rows.
@@ -9,7 +10,9 @@ import { currentUser, me, signup, login, logout, changePassword, deleteAccount, 
 import { oauthStart, oauthCallback, signupPending, signupFinish, providers, account, unlink } from './accounts/oauth.js';
 import { options, profile, browse, saveProfile, saveSettings } from './profiles/profiles.js';
 import { followUser, unfollowUser, acceptFollower, removeFollower, requests, followersOf, followingOf, friendsOf } from './follows/follows.js';
-import { postComment, postStatus, postBulletin, postBlog, deletePost, feed, saveMarker, bulletins, blogOf, statusesOf, commentsOf, onePost } from './social/social.js';
+import { postComment, postStatus, postBulletin, postBlog, deletePost, feed, saveMarker, bulletins, blogOf, statusesOf, repliesOf, commentsOf, onePost, tagged } from './social/social.js';
+import { postReply, postQuote, likePost, unlikePost, repostPost, unrepostPost, bookmarkPost, unbookmarkPost, bookmarks } from './social/interactions.js';
+import { notifications } from './notifications/notifications.js';
 import { inbox, thread, sendMessage } from './messages/messages.js';
 import { getSpotify, putSpotify, refreshSpotify, deleteSpotify } from './music/spotify.js';
 import { astroSky, astroSign, astroMe } from './horoscope/horoscope.js';
@@ -37,6 +40,7 @@ const ROUTES = [
   ['PUT', '/api/me/profile', saveProfile, AUTH],
   ['PUT', '/api/me/settings', saveSettings, AUTH],
   ['PUT', '/api/me/markers/:name', saveMarker, AUTH],
+  ['GET', '/api/me/bookmarks', bookmarks, AUTH],
   ['POST', '/api/me/password', changePassword, AUTH],
   ['DELETE', '/api/me', deleteAccount, AUTH],
   ['GET', '/api/me/spotify', getSpotify, AUTH],
@@ -55,6 +59,7 @@ const ROUTES = [
   ['GET', '/api/users/:name/friends', friendsOf, OPEN],
   ['GET', '/api/users/:name/blog', blogOf, OPEN],
   ['GET', '/api/users/:name/statuses', statusesOf, OPEN],
+  ['GET', '/api/users/:name/replies', repliesOf, OPEN],
   ['GET', '/api/users/:name/comments', commentsOf, OPEN],
   ['POST', '/api/users/:name/comments', postComment, AUTH],
 
@@ -65,6 +70,16 @@ const ROUTES = [
   ['POST', '/api/blog', postBlog, AUTH],
   ['GET', '/api/posts/:id', onePost, OPEN],
   ['DELETE', '/api/posts/:id', deletePost, AUTH],
+  ['POST', '/api/posts/:id/replies', postReply, AUTH],
+  ['POST', '/api/posts/:id/quote', postQuote, AUTH],
+  ['POST', '/api/posts/:id/like', likePost, AUTH],
+  ['DELETE', '/api/posts/:id/like', unlikePost, AUTH],
+  ['POST', '/api/posts/:id/repost', repostPost, AUTH],
+  ['DELETE', '/api/posts/:id/repost', unrepostPost, AUTH],
+  ['POST', '/api/posts/:id/bookmark', bookmarkPost, AUTH],
+  ['DELETE', '/api/posts/:id/bookmark', unbookmarkPost, AUTH],
+  ['GET', '/api/tags/:tag', tagged, OPEN],
+  ['GET', '/api/notifications', notifications, AUTH],
 
   ['GET', '/api/requests', requests, AUTH],
   ['POST', '/api/follows/:name', followUser, AUTH],

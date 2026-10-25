@@ -1,6 +1,7 @@
 // Database helpers shared by the routes: user lookups, the shape a user takes in every answer, follows (and the
-// friends and privacy that come from them), blocks and rate limits.
+// friends and privacy that come from them), blocks, which posts the viewer may see, and rate limits.
 import { fail } from './http.js';
+import { clip } from './text.js';
 
 export const ONLINE_MS = 5 * 60 * 1000;          // "Online Now!" = seen in the last five minutes
 
@@ -90,13 +91,56 @@ export async function blockedEither(env, x, y) {
   return !!r;
 }
 
-// SQL: "this person is not hidden from the viewer by a block in either direction". The viewer is bound as ?1.
-export const NOT_BLOCKED = col =>
-  `NOT EXISTS (SELECT 1 FROM blocks bl WHERE (bl.blocker_id = ?1 AND bl.blocked_id = ${col}) OR (bl.blocked_id = ?1 AND bl.blocker_id = ${col}))`;
+// SQL: "this person is not hidden from the viewer by a block in either direction". The viewer is bound as ?1 (or is the
+// SQL in `viewer`).
+export const NOT_BLOCKED = (col, viewer = '?1') =>
+  `NOT EXISTS (SELECT 1 FROM blocks bl WHERE (bl.blocker_id = ${viewer} AND bl.blocked_id = ${col}) OR (bl.blocked_id = ${viewer} AND bl.blocker_id = ${col}))`;
 
-// SQL: the posts `p` (joined to their author as users `a`) the viewer may see: not hidden, not dated in the future,
-// author not banned and not blocked in either direction. Binds: ?1 viewer, ?2 now.
-export const VISIBLE = `p.hidden = 0 AND p.created <= ?2 AND a.banned = 0 AND ${NOT_BLOCKED('p.author_id')}`;
+// SQL: may the viewer (?1, or the SQL in `viewer`) see the posts of user `u`? canSeePosts for whole lists: an open
+// profile, their own, or one they follow (accepted). Moderators get no pass here.
+export const SEES = (u, viewer = '?1') => `(${u}.follow_policy != 'approve' OR ${u}.id = ${viewer}
+  OR EXISTS (SELECT 1 FROM follows sf WHERE sf.follower_id = ${viewer} AND sf.followee_id = ${u}.id AND sf.status = 'accepted'))`;
+
+// SQL: the posts `p` (joined to their author as users `a`) the viewer may see: not hidden, not dated in the future, not
+// deleted, author not banned and not blocked in either direction. Binds: ?1 viewer, ?2 now. IN_THREAD also keeps the
+// tombstones of deleted posts, which hold a conversation together.
+export const IN_THREAD = `p.hidden = 0 AND p.created <= ?2 AND a.banned = 0 AND ${NOT_BLOCKED('p.author_id')}`;
+export const VISIBLE = `${IN_THREAD} AND p.deleted = 0`;
+
+// SQL: a repost `p` shows only while the viewer may see its original. REPOSTED joins the original as posts `o` (by users
+// `oa`), REPOST_OK is the test (privacy included: a profile can go private after it was reposted).
+export const REPOSTED = 'LEFT JOIN posts o ON o.id = p.quote_of AND p.kind = \'repost\' LEFT JOIN users oa ON oa.id = o.author_id';
+export const REPOST_OK = `(p.kind != 'repost' OR (o.hidden = 0 AND o.deleted = 0 AND oa.banned = 0 AND ${NOT_BLOCKED('o.author_id')} AND ${SEES('oa')}))`;
+
+// SQL: the id of the post of `kind` (SQL) that the logged-in user ?1 wrote at ?2 earlier in the same batch, for the rows
+// that point at it (its mentions, tags, notifications). A batch runs on its own, so their newest such post is that one.
+export const JUST_WRITTEN = kind => `(SELECT MAX(id) FROM posts WHERE author_id = ?1 AND kind = ${kind} AND created = ?2)`;
+
+// SQL: tombstone `x` is held by nothing but `replies` replies (the ones going with it) and no quote that isn't deleted
+const UNHELD = replies => `x.deleted = 1 AND (SELECT COUNT(*) FROM posts r WHERE r.reply_to = x.id) = ${replies}
+  AND NOT EXISTS (SELECT 1 FROM posts q WHERE q.quote_of = x.id AND q.kind = 'quote' AND q.deleted = 0)`;
+
+// SQL: removes the tombstones in the JSON list ?1 that nothing holds any more (no replies left, no quotes that aren't
+// deleted), then the tombstones above them in their conversations that only those held, all the way up. For the end of
+// a batch that removed a reply or a quote, with the post it answered or quoted. No count changes: a tombstone is already
+// out of its parent's counts and has none of its own left.
+export const CLEAR_TOMBSTONES = `WITH RECURSIVE gone(id, up) AS (
+    SELECT x.id, x.reply_to FROM posts x WHERE x.id IN (SELECT value FROM json_each(?1)) AND ${UNHELD(0)}
+    UNION ALL
+    SELECT x.id, x.reply_to FROM gone g JOIN posts x ON x.id = g.up WHERE ${UNHELD(1)})
+  DELETE FROM posts WHERE id IN (SELECT id FROM gone)`;
+
+// A post in brief, as a quote's box or a notification shows it, with its words cut at 280 characters. The row has
+// `prefix` + id, kind, created, subject, subtitle, body and deleted, and the author's REF_COLS under `prefix` + 'a_'.
+// deleted: true is a tombstone (no words).
+export function lite(r, prefix = '') {
+  const body = r[prefix + 'body'];
+  return {
+    id: r[prefix + 'id'], kind: r[prefix + 'kind'], created: r[prefix + 'created'],
+    subject: r[prefix + 'subject'] || null, subtitle: r[prefix + 'subtitle'] || null,
+    body: clip(body, 280) ?? body, author: ref(r, prefix + 'a_'), deleted: !!r[prefix + 'deleted'],
+  };
+}
 
 // SQL: the people on user ?2's followers / following / friends list, as users `x`: accepted follows only, nobody
 // banned or hidden from the viewer ?1 by a block. `from` is everything after FROM (it ends inside the WHERE, so more

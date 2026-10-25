@@ -1,6 +1,6 @@
 // Migration tests: `npm test`. Builds a database the way 0001_init.sql left it (friend requests, blocks, "became friends"
-// and "joined" lines in the feed), applies 0002_follows.sql on top, and checks what became of everything. Uses wrangler's
-// local D1 (run through node, like the API tests) on a throwaway folder.
+// and "joined" lines in the feed), applies 0002_follows.sql on top, and checks what became of everything; then adds posts
+// and applies 0003_interactions.sql. Uses wrangler's local D1 (run through node, like the API tests) on a throwaway folder.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
@@ -87,4 +87,53 @@ test('0002 turns friendships into follows (not between people who block each oth
     'SELECT COUNT(*) AS n FROM markers');
   assert.equal(follows1[0].n, 0, 'an account\'s follows go with it');
   assert.equal(markers[0].n, 0, 'and its markers');
+});
+
+// (continues with the database the test above left: ann is gone, ben, cat, dan and the rest are still there)
+test('0003 adds replies, quotes, reposts, likes, bookmarks, mentions, tags and notifications to the posts already there', () => {
+  sql(`INSERT INTO posts (id, kind, author_id, target_id, subject, body, created) VALUES
+    (10, 'status', 2, NULL, NULL, 'from before 0003', 9000), (11, 'blog', 3, NULL, 'a title', 'a blog post', 9100), (12, 'wall', 3, 2, NULL, 'hi ben', 9200)`);
+
+  apply('0003_interactions.sql');
+
+  const [posts, tables] = sql(
+    'SELECT id, kind, body, reply_to, root_id, quote_of, like_count, reply_count, repost_count, quote_count, deleted FROM posts ORDER BY id',
+    'SELECT name FROM sqlite_master WHERE type = \'table\' AND name IN (\'likes\', \'bookmarks\', \'mentions\', \'post_tags\', \'notifications\') ORDER BY name');
+  const fresh = { reply_to: null, root_id: null, quote_of: null, like_count: 0, reply_count: 0, repost_count: 0, quote_count: 0, deleted: 0 };
+  assert.deepEqual(posts, [
+    { id: 10, kind: 'status', body: 'from before 0003', ...fresh },
+    { id: 11, kind: 'blog', body: 'a blog post', ...fresh },
+    { id: 12, kind: 'wall', body: 'hi ben', ...fresh },
+  ], 'every post stays, with nothing counted yet');
+  assert.deepEqual(tables.map(t => t.name), ['bookmarks', 'likes', 'mentions', 'notifications', 'post_tags']);
+
+  sql(`INSERT INTO posts (id, kind, author_id, body, reply_to, root_id, quote_of, created) VALUES
+      (20, 'reply', 3, 'a reply', 10, 10, NULL, 9500), (21, 'reply', 4, 'a reply to the reply', 20, 10, NULL, 9600),
+      (22, 'repost', 3, '', NULL, NULL, 10, 9700), (23, 'quote', 4, 'look', NULL, NULL, 10, 9800)`,
+    'INSERT INTO likes (user_id, post_id, created) VALUES (3, 10, 9900), (4, 10, 9900)',
+    'INSERT INTO bookmarks (user_id, post_id, created) VALUES (3, 10, 9900)',
+    'INSERT INTO mentions (post_id, user_id) VALUES (10, 3), (20, 2)',
+    'INSERT INTO post_tags (tag, post_id, created) VALUES (\'y2k\', 10, 9000)',
+    'INSERT INTO notifications (user_id, kind, actor_id, post_id, created) VALUES (2, \'like\', 3, 10, 9900), (2, \'follow\', 4, NULL, 9900)');
+  assert.throws(() => sql('INSERT INTO posts (kind, author_id, quote_of, created) VALUES (\'repost\', 3, 10, 9950)'), 'one repost per person per post');
+  assert.throws(() => sql('INSERT INTO likes (user_id, post_id, created) VALUES (3, 10, 9950)'), 'and one like');
+
+  // deleting a post outright (as deleting its writer's account does; the API's delete keeps a tombstone while it has
+  // replies) takes everything about it along, and its quotes and reposts let go of it; its replies keep pointing at it
+  // (reply_to and root_id aren't foreign keys), so they stay in their conversation. Deleting an account takes its likes,
+  // bookmarks and mentions
+  const [, after, gone, , , left] = sql(
+    'DELETE FROM posts WHERE id = 10',
+    'SELECT id, reply_to, root_id, quote_of FROM posts WHERE id >= 20 ORDER BY id',
+    `SELECT (SELECT COUNT(*) FROM likes) + (SELECT COUNT(*) FROM bookmarks) + (SELECT COUNT(*) FROM post_tags)
+      + (SELECT COUNT(*) FROM notifications WHERE post_id IS NOT NULL) + (SELECT COUNT(*) FROM mentions WHERE post_id = 10) AS n`,
+    'DELETE FROM posts WHERE author_id = 4',
+    'DELETE FROM users WHERE id = 4',
+    'SELECT COUNT(*) AS n FROM notifications');
+  assert.deepEqual(after, [
+    { id: 20, reply_to: 10, root_id: 10, quote_of: null }, { id: 21, reply_to: 20, root_id: 10, quote_of: null },
+    { id: 22, reply_to: null, root_id: null, quote_of: null }, { id: 23, reply_to: null, root_id: null, quote_of: null },
+  ]);
+  assert.equal(gone[0].n, 0);
+  assert.equal(left[0].n, 0, 'the follow notification from the account went with it');
 });

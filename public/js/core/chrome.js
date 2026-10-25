@@ -20,14 +20,15 @@ export function paintChrome() {
   }
   const path = location.pathname;
   const tab = (label, href, badge, on) => h('a', { class: 'ms-tab' + (on ? ' on' : ''), href },
-    label, badge ? h('span', { class: 'ms-badge', text: String(badge) }) : null);
+    label, badge ? h('span', { class: 'ms-badge', text: badge >= 99 ? '99+' : String(badge) }) : null);   // the server stops counting at 99
   const mine = S.me && (path === userPath(S.me.name) || path.toLowerCase().startsWith(userPath(S.me.name).toLowerCase() + '/'));
   const tabs = [
     tab(S.me ? 'Feed' : 'Home', '/', 0, path === '/'),
     S.me ? tab('My Page', userPath(S.me.name), 0, mine) : null,
     tab('Browse', '/browse', 0, path === '/browse'),
-    S.me ? tab('Requests', '/requests', S.counts.requests, path === '/requests') : null,
+    S.me ? tab('Notifications', '/notifications', S.counts.notifications, path === '/notifications' || path === '/requests') : null,
     S.me ? tab('Inbox', '/inbox', S.counts.unread, path.startsWith('/inbox')) : null,
+    S.me ? tab('🔖 Bookmarks', '/bookmarks', 0, path === '/bookmarks') : null,
     tab('Bulletins', '/bulletins', 0, path === '/bulletins'),
     tab('🔮 Horoscope', '/horoscope', 0, path.startsWith('/horoscope')),
     h('a', { class: 'ms-tab', href: '/blog/', text: 'Blog' }),
@@ -40,7 +41,7 @@ export function paintChrome() {
 export async function logout() {
   try { await api.post('/logout'); } catch { /* logged out either way */ }
   S.me = null;
-  S.counts = { requests: 0, unread: 0, reports: 0 };
+  S.counts = { requests: 0, unread: 0, notifications: 0, reports: 0 };
   toast('logged out. come back soon!');
   go('/');
 }

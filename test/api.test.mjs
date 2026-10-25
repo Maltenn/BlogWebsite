@@ -28,7 +28,7 @@ before(async () => {
   mock = await startMock();
   const appleKey = generateKeyPairSync('ec', { namedCurve: 'P-256' }).privateKey.export({ type: 'pkcs8', format: 'der' }).toString('base64');
   const vars = {
-    SIGNUPS_PER_IP_PER_HOUR: '1000', TEST_PROVIDER_BASE: mock.base, TOKEN_KEY: Buffer.alloc(32, 7).toString('base64'),
+    SIGNUPS_PER_IP_PER_HOUR: '1000', SIGNUPS_PER_DAY: '1000', TEST_PROVIDER_BASE: mock.base, TOKEN_KEY: Buffer.alloc(32, 7).toString('base64'),
     GOOGLE_CLIENT_ID: 'g-id', GOOGLE_CLIENT_SECRET: 'g-secret', MICROSOFT_CLIENT_ID: 'm-id', MICROSOFT_CLIENT_SECRET: 'm-secret',
     DISCORD_CLIENT_ID: 'd-id', DISCORD_CLIENT_SECRET: 'd-secret', GITHUB_CLIENT_ID: 'gh-id', GITHUB_CLIENT_SECRET: 'gh-secret',
     APPLE_CLIENT_ID: 'page.ourspace.web', APPLE_TEAM_ID: 'TEAM123', APPLE_KEY_ID: 'KEY123', APPLE_PRIVATE_KEY: appleKey,
@@ -253,7 +253,7 @@ test('following: an open profile takes a follow at once, and two follows make fr
   assert.equal(r.data.relation.friends, true);
   assert.equal(r.data.relation.canComment, true);
   const page = await client().get('/api/users/' + a.name);
-  assert.deepEqual(page.data.counts, { followers: 1, following: 1, friends: 1, statuses: 0, blog: 0, comments: 0 });
+  assert.deepEqual(page.data.counts, { followers: 1, following: 1, friends: 1, statuses: 0, replies: 0, blog: 0, comments: 0 });
   assert.equal(page.data.relation, null, 'logged out');
   assert.equal(page.data.private, false);
   assert.equal(page.data.canSeePosts, true);
@@ -267,7 +267,7 @@ test('following: an open profile takes a follow at once, and two follows make fr
   assert.deepEqual([r.data.relation.following, r.data.relation.followsMe, r.data.relation.friends], ['none', true, false], 'unfollowing ends the friendship');
   r = await a.del('/api/followers/' + b.name);
   assert.equal(r.data.relation.followsMe, false, 'removed a follower');
-  assert.deepEqual((await client().get('/api/users/' + a.name)).data.counts, { followers: 0, following: 0, friends: 0, statuses: 0, blog: 0, comments: 0 });
+  assert.deepEqual((await client().get('/api/users/' + a.name)).data.counts, { followers: 0, following: 0, friends: 0, statuses: 0, replies: 0, blog: 0, comments: 0 });
 });
 
 test('private profiles: follows become requests, and only followers see the posts', async () => {
@@ -307,7 +307,7 @@ test('private profiles: follows become requests, and only followers see the post
   assert.deepEqual(oldView.data.blog.map(b => b.title), ['secret diary']);
   assert.equal((await old.get(`/api/users/${p.name}/statuses`)).data.items[0].body, 'for followers only');
   assert.equal((await old.get('/api/posts/' + diary.data.id)).data.post.body, 'shh');
-  assert.deepEqual(oldView.data.counts, { followers: 1, following: 0, friends: 0, statuses: 1, blog: 1, comments: 0 });
+  assert.deepEqual(oldView.data.counts, { followers: 1, following: 0, friends: 0, statuses: 1, replies: 0, blog: 1, comments: 0 });
   assert.equal((await old.get(`/api/users/${p.name}/comments`)).data.total, 0);
   assert.equal((await p.get(`/api/users/${p.name}/comments`)).status, 200, 'the owner sees their own');
   assert.equal((await p.get(`/api/users/${p.name}/blog`)).data.entries.length, 1, 'the owner sees their own');
@@ -390,7 +390,7 @@ test('Friends\' Comments come ten to a page, newest first, and the profile count
   let r = await list(client());
   assert.deepEqual([r.status, r.data.total, r.data.page, r.data.pages], [200, 23, 1, 3]);
   assert.deepEqual(bodies(r), said(23, 14), 'page 1 is the newest ten');
-  assert.deepEqual(Object.keys(r.data.comments[0]).sort(), ['author', 'body', 'canDelete', 'created', 'id']);
+  assert.deepEqual(Object.keys(r.data.comments[0]).sort(), ['author', 'body', 'canDelete', 'created', 'id', 'mentions']);
   assert.equal(r.data.comments[0].author.name, pals[3].name);
   r = await list(client(), '?page=2');
   assert.deepEqual([r.data.page, r.data.comments.length], [2, 10]);
@@ -410,7 +410,7 @@ test('Friends\' Comments come ten to a page, newest first, and the profile count
   assert.deepEqual(flags(await list(mod)), [true, true, true, true]);
 
   // the profile's totals are what the lists will show
-  assert.deepEqual((await client().get('/api/users/' + owner.name)).data.counts, { followers: 4, following: 4, friends: 4, statuses: 2, blog: 1, comments: 23 });
+  assert.deepEqual((await client().get('/api/users/' + owner.name)).data.counts, { followers: 4, following: 4, friends: 4, statuses: 2, replies: 0, blog: 1, comments: 23 });
   sql(`UPDATE posts SET hidden = 1 WHERE id = ${ids[23]}`);
   assert.equal((await list(client())).data.total, 22, 'a hidden comment is not counted or listed');
   assert.equal((await client().get('/api/users/' + owner.name)).data.counts.comments, 22);
@@ -598,6 +598,579 @@ test('pick up where I left off: from my marker, which only moves forward, and on
   assert.deepEqual([r.data.items.map(i => i.body), r.data.unseen], [['fresh'], 1]);
 });
 
+/* ------------------- replies, likes, reposts, quotes, bookmarks, @mentions, #tags and notifications */
+
+const kinds = items => items.map(i => i.kind);
+const notes = async (who, q = '') => (await who.get('/api/notifications' + q)).data;
+const NO_FLAGS = { liked: false, reposted: false, bookmarked: false };
+
+test('replies: a conversation, oldest first, with the posts above it, in nobody\'s feed', async () => {
+  const a = await newUser('conv_a'); const b = await newUser('conv_b'); const z = await newUser('conv_z');
+  const root = (await a.post('/api/status', { body: 'what should i eat' })).data.id;
+  const reply = (who, to, body) => who.post(`/api/posts/${to}/replies`, { body });
+  const r1 = await reply(b, root, 'pizza');
+  assert.equal(r1.status, 201, JSON.stringify(r1.data));
+  const p1 = r1.data.post;
+  assert.deepEqual([p1.kind, p1.body, p1.rootId, p1.replyTo.id, p1.replyTo.author.name, p1.canDelete], ['reply', 'pizza', root, root, a.name, true]);
+  assert.deepEqual([p1.counts, p1.viewer, p1.quoted, p1.deleted, p1.mentions, p1.tags], [{ likes: 0, replies: 0, reposts: 0, quotes: 0 }, NO_FLAGS, null, false, [], []]);
+  const p2 = (await reply(a, p1.id, 'pizza AGAIN?')).data.post;                // root ← p1 ← p2, a chain
+  const p3 = (await reply(z, p1.id, 'tacos')).data.post;
+  const p4 = (await reply(z, root, 'soup')).data.post;
+  assert.deepEqual([p2.rootId, p2.replyTo.id, p2.replyTo.author.name], [root, p1.id, b.name], 'a reply to a reply stays in the conversation');
+
+  let conv = (await client().get('/api/posts/' + root)).data;
+  assert.deepEqual(Object.keys(conv).sort(), ['ancestors', 'next', 'post', 'replies']);
+  assert.deepEqual([conv.post.id, conv.post.rootId, conv.post.replyTo, conv.ancestors, conv.next], [root, null, null, [], null]);
+  assert.deepEqual(conv.replies.map(r => r.body), ['pizza', 'pizza AGAIN?', 'tacos', 'soup'], 'everything in the conversation, oldest first');
+  assert.equal(conv.post.counts.replies, 2, 'direct replies');
+  conv = (await client().get('/api/posts/' + p2.id)).data;
+  assert.deepEqual([conv.ancestors.map(r => r.id), conv.replies], [[root, p1.id], []], 'the posts above it, oldest first');
+  conv = (await client().get('/api/posts/' + p1.id)).data;
+  assert.deepEqual([conv.post.counts.replies, conv.replies.map(r => r.id)], [2, [p2.id, p3.id]], 'and everything under it');
+
+  // replies are never in a feed or on the Posts tab: they have their own tab and total
+  assert.ok(!(await a.get('/api/feed')).data.items.some(i => i.kind === 'reply'));
+  assert.deepEqual((await client().get(`/api/users/${z.name}/replies`)).data.items.map(r => r.id), [p4.id, p3.id]);
+  assert.deepEqual((await client().get(`/api/users/${z.name}/statuses`)).data.items, []);
+  assert.equal((await client().get('/api/users/' + z.name)).data.counts.replies, 2);
+
+  assert.equal((await reply(b, root, '   ')).status, 400);
+  assert.equal((await reply(b, 99999999, 'hello?')).status, 404);
+  assert.equal((await client().post(`/api/posts/${root}/replies`, { body: 'hi' })).status, 401);
+  const bulletin = (await a.post('/api/bulletins', { subject: 'hi', body: 'a bulletin' })).data.id;
+  assert.equal((await reply(b, bulletin, 'nope')).status, 404, 'bulletins take no replies');
+
+  // a reply from a private profile is for its followers
+  const shy = await newUser('conv_shy'); const pal = await newUser('conv_pal');
+  await pal.post('/api/follows/' + shy.name);
+  await shy.put('/api/me/settings', { followPolicy: 'approve' });
+  await reply(shy, p3.id, 'psst');
+  for (const [who, want] of [[client(), []], [a, []], [pal, ['psst']], [shy, ['psst']]]) {
+    assert.deepEqual((await who.get('/api/posts/' + p3.id)).data.replies.map(r => r.body), want);
+  }
+
+  // a long conversation comes 50 replies at a time
+  const t = Date.now() - 60000;
+  sql(`INSERT INTO posts (kind, author_id, body, reply_to, root_id, created) VALUES ${Array.from({ length: 52 }, (_, i) => `('reply', ${z.id}, 'r${i}', ${p4.id}, ${root}, ${t + i})`).join(', ')};
+    UPDATE posts SET reply_count = reply_count + 52 WHERE id = ${p4.id}`);
+  const c1 = (await client().get('/api/posts/' + p4.id)).data;
+  assert.deepEqual([c1.post.counts.replies, c1.replies.length, c1.replies[0].body, c1.replies[49].body], [52, 50, 'r0', 'r49']);
+  const c2 = (await client().get(`/api/posts/${p4.id}?after=${encodeURIComponent(c1.next)}`)).data;
+  assert.deepEqual([c2.replies.map(r => r.body), c2.next, c2.post.id], [['r50', 'r51'], null, p4.id]);
+  const whole = (await client().get('/api/posts/' + root)).data;
+  const rest = (await client().get(`/api/posts/${root}?after=${encodeURIComponent(whole.next)}`)).data;
+  assert.deepEqual(rest.replies.map(r => r.body), ['r50', 'r51', 'pizza', 'pizza AGAIN?', 'tacos', 'soup']);
+});
+
+test('likes: one per person, counted exactly, only on posts you can see, and taking one back always works', async () => {
+  const author = await newUser('likee'); const fan = await newUser('liker'); const fan2 = await newUser('liker');
+  await befriend(author, fan);
+  const id = (await author.post('/api/status', { body: 'like me' })).data.id;
+  const like = (who, method = 'post') => who[method](`/api/posts/${id}/like`);
+  assert.deepEqual((await like(fan)).data, { liked: true, likes: 1 });
+  assert.deepEqual((await like(fan)).data, { liked: true, likes: 1 }, 'liking twice is liking once');
+  assert.deepEqual((await like(fan2)).data, { liked: true, likes: 2 });
+  assert.deepEqual((await like(author)).data, { liked: true, likes: 3 }, 'you may like your own');
+  const post = (await fan.get('/api/posts/' + id)).data.post;
+  assert.deepEqual([post.counts.likes, post.viewer], [3, { liked: true, reposted: false, bookmarked: false }]);
+  assert.deepEqual((await client().get('/api/posts/' + id)).data.post.viewer, NO_FLAGS, 'logged out');
+  assert.equal((await fan.get('/api/feed')).data.items.find(i => i.id === id).viewer.liked, true, 'the flags are on every list');
+  assert.deepEqual((await like(fan, 'del')).data, { liked: false, likes: 2 });
+  assert.deepEqual((await like(fan, 'del')).data, { liked: false, likes: 2 }, 'unliking twice changes nothing');
+  assert.equal((await client().post(`/api/posts/${id}/like`)).status, 401);
+  assert.equal((await fan.post('/api/posts/99999999/like')).status, 404);
+  const comment = (await fan.post(`/api/users/${author.name}/comments`, { body: 'hi!' })).data.id;
+  assert.equal((await fan.post(`/api/posts/${comment}/like`)).status, 404, 'Friends\' Comments take no likes');
+  await author.put('/api/me/settings', { followPolicy: 'approve' });
+  assert.equal((await like(await newUser('liker'))).status, 404, 'a private profile\'s posts are for its followers');
+  assert.equal((await like(fan)).status, 200, 'who may like them');
+  // a like can be taken back by someone who can no longer see the post, but the answer doesn't say how the post is doing
+  const gone = await fan2.del('/api/posts/99999999/like');
+  assert.deepEqual([(await like(fan2, 'del')).status, (await like(fan2, 'del')).data], [gone.status, gone.data], 'the same as for a post that isn\'t there');
+  assert.deepEqual(gone, { status: 200, data: { liked: false } });
+  assert.deepEqual((await like(fan, 'del')).data, { liked: false, likes: 1 }, 'fan2\'s like went');
+});
+
+test('undoing a like, repost or bookmark of a post you can\'t see answers exactly as for a missing post, and still undoes it', async () => {
+  const shy = await newUser('undo_shy'); const fan = await newUser('undo_fan'); const nosy = await newUser('undo_nosy');
+  const id = (await shy.post('/api/status', { body: 'for my followers' })).data.id;
+  const open = (await shy.post('/api/status', { body: 'for everyone' })).data.id;
+  for (const what of ['like', 'repost', 'bookmark']) assert.equal((await fan.post(`/api/posts/${open}/${what}`)).status, 200, what);
+  assert.equal((await fan.post(`/api/posts/${id}/like`)).status, 200);
+  await nosy.post(`/api/posts/${open}/like`);
+  await fan.post('/api/follows/' + shy.name);
+  await shy.put('/api/me/settings', { followPolicy: 'approve' });           // fan follows (accepted before); nosy doesn't
+  const answers = async (who, post) => Promise.all(['like', 'repost', 'bookmark'].map(async what => {
+    const r = await who.del(`/api/posts/${post}/${what}`);
+    return [r.status, r.data];
+  }));
+  const missing = await answers(nosy, 99999999);
+  assert.deepEqual(missing, [[200, { liked: false }], [200, { reposted: false }], [200, { bookmarked: false }]]);
+  assert.deepEqual(await answers(nosy, id), missing, 'a private post nosy never touched: no counts');
+  // fan is removed from shy's followers, then takes everything back: it all goes, and the answers give nothing away
+  await shy.del('/api/followers/' + fan.name);
+  assert.deepEqual(await answers(fan, open), missing);
+  assert.deepEqual(await answers(fan, id), missing);
+  const seen = (await shy.get('/api/posts/' + open)).data.post.counts;
+  assert.deepEqual([seen.likes, seen.reposts, (await shy.get('/api/posts/' + id)).data.post.counts.likes], [1, 0, 0], 'only nosy\'s like is left');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM bookmarks WHERE user_id = ${fan.id}`)[0].n, 0);
+  const t = (await shy.post('/api/status', { body: 'soon a tombstone' })).data.id;
+  await shy.post(`/api/posts/${t}/replies`, { body: 'keeps it' });
+  await shy.del('/api/posts/' + t);
+  assert.deepEqual(await answers(shy, t), missing, 'a tombstone');
+  // a post you can see still says how it's doing; a hidden one doesn't
+  await shy.put('/api/me/settings', { followPolicy: 'open' });
+  await nosy.post(`/api/posts/${open}/repost`);
+  assert.deepEqual(await answers(nosy, open), [[200, { liked: false, likes: 0 }], [200, { reposted: false, reposts: 0 }], [200, { bookmarked: false }]]);
+  await nosy.post(`/api/posts/${open}/like`);
+  sql(`UPDATE posts SET hidden = 1 WHERE id = ${open}`);
+  assert.deepEqual(await answers(nosy, open), missing, 'a hidden post');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM likes WHERE user_id = ${nosy.id}`)[0].n, 0, 'nosy\'s like went anyway');
+  sql(`UPDATE posts SET hidden = 0 WHERE id = ${open}`);
+});
+
+test('reposts and quotes: one repost each, a repost stands for its original, and private profiles can\'t be shared', async () => {
+  const op = await newUser('op'); const fan = await newUser('reposter'); const reader = await newUser('reader');
+  await reader.post('/api/follows/' + fan.name);
+  const id = (await op.post('/api/status', { body: 'original thought ' + 'x'.repeat(400) })).data.id;
+  const repost = (who, which = id, method = 'post') => who[method](`/api/posts/${which}/repost`);
+  assert.deepEqual((await repost(fan)).data, { reposted: true, reposts: 1 });
+  assert.deepEqual((await repost(fan)).data, { reposted: true, reposts: 1 }, 'one repost per person');
+
+  // a repost is by whoever reposted it, with the whole original inside, and the original's counts and flags
+  const rp = (await reader.get('/api/feed')).data.items.find(i => i.kind === 'repost');
+  assert.deepEqual([rp.author.name, rp.body, rp.quoted.id, rp.quoted.author.name, rp.quoted.kind], [fan.name, '', id, op.name, 'status']);
+  assert.equal(rp.quoted.body.length, 417, 'not cut short');
+  assert.deepEqual([rp.counts, rp.quoted.counts], [{ likes: 0, replies: 0, reposts: 1, quotes: 0 }, { likes: 0, replies: 0, reposts: 1, quotes: 0 }]);
+  const posts = (await fan.get(`/api/users/${fan.name}/statuses`)).data.items;
+  assert.deepEqual([kinds(posts), posts[0].viewer.reposted, posts[0].quoted.viewer.reposted, posts[0].canDelete], [['repost'], true, true, true], 'on the Posts tab');
+
+  // acting on a repost acts on its original
+  assert.deepEqual((await repost(reader, rp.id)).data, { reposted: true, reposts: 2 }, 'reposting a repost reposts the original');
+  assert.deepEqual((await reader.post(`/api/posts/${rp.id}/like`)).data, { liked: true, likes: 1 });
+  assert.equal((await client().get('/api/posts/' + rp.id)).data.post.id, id, 'a repost\'s address opens the original');
+  assert.deepEqual((await repost(op)).data, { reposted: true, reposts: 3 }, 'your own posts too');
+  assert.deepEqual((await repost(op, id, 'del')).data, { reposted: false, reposts: 2 });
+  assert.deepEqual((await repost(op, id, 'del')).data, { reposted: false, reposts: 2 }, 'undoing twice changes nothing');
+
+  // a quote: my words, with the original in brief under them
+  const q = await reader.post(`/api/posts/${id}/quote`, { body: 'so true' });
+  assert.equal(q.status, 201, JSON.stringify(q.data));
+  const quote = q.data.post;
+  assert.deepEqual(Object.keys(quote.quoted).sort(), ['author', 'body', 'created', 'deleted', 'id', 'kind', 'subject', 'subtitle']);
+  assert.deepEqual([quote.kind, quote.body, quote.quoted.id, quote.quoted.author.name, quote.quoted.body.length], ['quote', 'so true', id, op.name, 281], 'cut at 280 (and a …)');
+  assert.equal((await reader.post(`/api/posts/${id}/quote`, { body: ' ' })).status, 400);
+  const qq = (await fan.post(`/api/posts/${quote.id}/quote`, { body: 'quoting the quote' })).data.post;
+  assert.deepEqual([qq.quoted.kind, qq.quoted.body], ['quote', 'so true']);
+  assert.deepEqual((await client().get('/api/posts/' + id)).data.post.counts, { likes: 1, replies: 0, reposts: 2, quotes: 1 });
+  assert.deepEqual((await client().get('/api/posts/' + quote.id)).data.post.counts.quotes, 1);
+
+  // the feed has reposts and quotes, and "pick up where I left off" counts them
+  const feed = (await reader.get('/api/feed')).data;
+  assert.deepEqual(feed.items.map(i => [i.kind, i.author.name]), [['quote', fan.name], ['quote', reader.name], ['repost', reader.name], ['repost', fan.name]]);
+  assert.equal(feed.unseen, 2, 'fan\'s repost and quote (my own never count)');
+  assert.equal((await client().get('/api/users/' + fan.name)).data.counts.statuses, 2, 'the Posts total counts both');
+
+  // private profiles: their followers may like the posts, but nobody may repost or quote them
+  const shy = await newUser('shy');
+  await reader.post('/api/follows/' + shy.name);
+  await shy.put('/api/me/settings', { followPolicy: 'approve' });
+  const hush = (await shy.post('/api/status', { body: 'followers only' })).data.id;
+  assert.deepEqual([(await repost(reader, hush)).status, (await reader.post(`/api/posts/${hush}/quote`, { body: 'look' })).status], [403, 403]);
+  assert.equal((await repost(shy, hush)).status, 403, 'not even its owner');
+  assert.equal((await reader.post(`/api/posts/${hush}/like`)).status, 200);
+  assert.equal((await repost(fan, hush)).status, 404, 'and to everyone else it isn\'t there');
+
+  // a profile that goes private after being reposted: reposts of it are left out for whoever can't see it, quotes say
+  // it's unavailable
+  await op.put('/api/me/settings', { followPolicy: 'approve' });
+  assert.deepEqual(kinds((await reader.get('/api/feed')).data.items), ['status', 'quote', 'quote'], 'shy\'s status and the quotes, no reposts');
+  assert.deepEqual((await reader.get('/api/posts/' + quote.id)).data.post.quoted, { unavailable: true });
+  assert.deepEqual(kinds((await client().get(`/api/users/${fan.name}/statuses`)).data.items), ['quote']);
+  assert.equal((await client().get('/api/users/' + fan.name)).data.counts.statuses, 1);
+  assert.equal((await op.get('/api/posts/' + quote.id)).data.post.quoted.id, id, 'its owner still sees it');
+});
+
+test('deleting: a post with replies or quotes leaves a tombstone, and every count comes down', async () => {
+  const a = await newUser('del_a'); const b = await newUser('del_b');
+  const tag = 'gone' + uniq();
+  const id = (await a.post('/api/status', { body: `hot take #${tag}` })).data.id;
+  const reply = (await b.post(`/api/posts/${id}/replies`, { body: 'hmm' })).data.post.id;
+  for (const what of ['like', 'bookmark', 'repost']) assert.equal((await b.post(`/api/posts/${id}/${what}`)).status, 200);
+  const quote = (await b.post(`/api/posts/${id}/quote`, { body: 'see this' })).data.post.id;
+  assert.deepEqual(kinds((await notes(a)).items), ['quote', 'repost', 'like', 'reply']);
+  assert.deepEqual((await a.del('/api/posts/' + id)).data, { ok: true, tombstone: true }, 'it says it stayed as a tombstone');
+
+  let conv = (await b.get('/api/posts/' + id)).data;
+  assert.deepEqual([conv.post.deleted, conv.post.body, conv.post.canDelete, conv.post.tags, conv.post.viewer], [true, '', false, [], NO_FLAGS]);
+  assert.deepEqual(conv.post.counts, { likes: 0, replies: 1, reposts: 0, quotes: 1 }, 'its likes and reposts went; the reply and the quote stay');
+  assert.deepEqual(conv.replies.map(r => [r.id, r.replyTo.id]), [[reply, id]], 'the conversation keeps its shape');
+  const q = (await b.get('/api/posts/' + quote)).data.post.quoted;
+  assert.deepEqual(q, { id, kind: 'status', created: q.created, subject: null, subtitle: null, body: '', author: { id: a.id, name: a.name, avatar: q.author.avatar }, deleted: true },
+    'a quote says its original was deleted (not just unavailable)');
+  assert.deepEqual(kinds((await b.get(`/api/users/${b.name}/statuses`)).data.items), ['quote'], 'the repost went');
+  assert.deepEqual((await b.get('/api/me/bookmarks')).data.items, [], 'and the bookmark');
+  assert.deepEqual((await client().get('/api/tags/' + tag)).data.items, [], 'and its tags');
+  assert.deepEqual(kinds((await notes(a)).items), ['quote', 'reply'], 'and the notifications about it');
+  assert.deepEqual((await client().get(`/api/users/${a.name}/statuses`)).data.items, [], 'a tombstone only shows in its conversation');
+  assert.equal((await a.del('/api/posts/' + id)).status, 404, 'already gone');
+  for (const what of ['like', 'replies', 'repost', 'quote', 'bookmark']) assert.equal((await b.post(`/api/posts/${id}/${what}`, { body: 'hi' })).status, 404, what);
+
+  // deleting the reply brings the tombstone's counts down; once the quote goes too, nothing holds it and it goes as well
+  assert.deepEqual((await b.del('/api/posts/' + reply)).data, { ok: true, tombstone: false });
+  assert.deepEqual((await client().get('/api/posts/' + id)).data.post.counts, { likes: 0, replies: 0, reposts: 0, quotes: 1 });
+  assert.deepEqual((await b.del('/api/posts/' + quote)).data, { ok: true, tombstone: false });
+  assert.equal((await client().get('/api/posts/' + id)).status, 404, 'no empty tombstone is left behind');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM posts WHERE id = ${id}`)[0].n, 0);
+  // a post with nothing under it simply goes, with everything about it
+  const oops = (await a.post('/api/status', { body: 'oops' })).data.id;
+  await b.post(`/api/posts/${oops}/like`);
+  assert.deepEqual((await a.del('/api/posts/' + oops)).data, { ok: true, tombstone: false });
+  assert.equal((await client().get('/api/posts/' + oops)).status, 404);
+  assert.equal(sql(`SELECT (SELECT COUNT(*) FROM likes WHERE post_id = ${oops}) + (SELECT COUNT(*) FROM notifications WHERE post_id = ${oops}) AS n`)[0].n, 0);
+  // a reply in the middle of a chain stays as a tombstone, and the chain holds
+  const x = (await a.post('/api/status', { body: 'x' })).data.id;
+  const y = (await b.post(`/api/posts/${x}/replies`, { body: 'y' })).data.post.id;
+  const z = (await a.post(`/api/posts/${y}/replies`, { body: 'z' })).data.post.id;
+  await b.del('/api/posts/' + y);
+  conv = (await client().get('/api/posts/' + z)).data;
+  assert.deepEqual(conv.ancestors.map(p => [p.id, p.deleted]), [[x, false], [y, true]]);
+  assert.equal(conv.ancestors[0].counts.replies, 0, 'a deleted reply no longer counts');
+  assert.deepEqual((await client().get('/api/posts/' + x)).data.replies.map(p => [p.id, p.deleted]), [[y, true], [z, false]]);
+  await a.del('/api/posts/' + z);
+  assert.deepEqual((await client().get('/api/posts/' + x)).data.replies, [], 'the last reply under the tombstone takes it along');
+  assert.equal((await client().get('/api/posts/' + y)).status, 404);
+});
+
+test('tombstones go once nothing holds them: up a chain of them, through quotes, and when an account goes', async () => {
+  const a = await newUser('tomb_a'); const b = await newUser('tomb_b');
+  const there = (...ids) => sql(`SELECT id, deleted FROM posts WHERE id IN (${ids.join(', ')}) ORDER BY id`).map(r => [r.id, r.deleted]);
+  // root ← r1 ← r2 ← r3: the three above r3 deleted (tombstones), then r3, and every one of them goes
+  const r0 = (await a.post('/api/status', { body: 'root' })).data.id;
+  const r1 = (await b.post(`/api/posts/${r0}/replies`, { body: 'r1' })).data.post.id;
+  const r2 = (await a.post(`/api/posts/${r1}/replies`, { body: 'r2' })).data.post.id;
+  const r3 = (await b.post(`/api/posts/${r2}/replies`, { body: 'r3' })).data.post.id;
+  const side = (await a.post(`/api/posts/${r0}/replies`, { body: 'another branch' })).data.post.id;
+  for (const [who, p] of [[a, r2], [b, r1], [a, r0]]) assert.deepEqual((await who.del('/api/posts/' + p)).data, { ok: true, tombstone: true });
+  assert.deepEqual((await b.del('/api/posts/' + r3)).data, { ok: true, tombstone: false });
+  assert.deepEqual(there(r0, r1, r2, r3, side), [[r0, 1], [side, 0]], 'r2 and r1 went; the root is still held by the other branch');
+  assert.deepEqual((await client().get('/api/posts/' + r0)).data.post.counts.replies, 1);
+  await a.del('/api/posts/' + side);
+  assert.deepEqual(there(r0, side), [], 'and then the root');
+
+  // a quote holds the post it quotes; a deleted quote with replies holds nothing
+  const q0 = (await a.post('/api/status', { body: 'q0' })).data.id;
+  const q1 = (await b.post(`/api/posts/${q0}/quote`, { body: 'q1' })).data.post.id;
+  const q1r = (await a.post(`/api/posts/${q1}/replies`, { body: 'a reply to the quote' })).data.post.id;
+  assert.deepEqual((await a.del('/api/posts/' + q0)).data, { ok: true, tombstone: true }, 'held by the quote');
+  assert.deepEqual((await b.del('/api/posts/' + q1)).data, { ok: true, tombstone: true }, 'held by its reply');
+  assert.deepEqual(there(q0, q1, q1r), [[q1, 1], [q1r, 0]], 'q0 went: the quote that held it is deleted');
+
+  // an account's replies were all that held someone else's tombstone
+  const v = await newUser('tomb_v');
+  const t0 = (await a.post('/api/status', { body: 't0' })).data.id;
+  const vr = (await v.post(`/api/posts/${t0}/replies`, { body: 'from v' })).data.post.id;
+  await a.del('/api/posts/' + t0);
+  assert.deepEqual(there(t0, vr), [[t0, 1], [vr, 0]]);
+  assert.equal((await v.del('/api/me', { password: PW })).status, 200);
+  assert.deepEqual(there(t0, vr), [], 'the tombstone went with the account\'s reply');
+});
+
+test('@mentions: resolved when written, ignoring case and punctuation, up to 10, and only people who may see the post hear of it', async () => {
+  const me = await newUser('mention'); const kat = await newUser('m_kat'); const mia = await newUser('m_mia');
+  const banned = await newUser('m_ban'); const blocker = await newUser('m_blk');
+  // more people, straight into the database: one whose name ends in a dot, one with the same name without it, and eleven
+  const k = uniq();
+  sql(`INSERT INTO users (name, name_key, email, avatar, birthdate, created) VALUES ('Dot${k}.', 'dot${k}.', NULL, '/a.png', '1990-01-01', 1),
+      ('dot${k}', 'dot${k}', NULL, '/a.png', '1990-01-01', 1),
+      ${Array.from({ length: 11 }, (_, i) => `('ten${k}_${i}', 'ten${k}_${i}', NULL, '/a.png', '1990-01-01', 1)`).join(', ')};
+    UPDATE users SET banned = 1 WHERE id = ${banned.id}`);
+  await blocker.post('/api/blocks/' + me.name);
+  const names = post => post.mentions.map(m => m.name).sort();
+  const s = (await me.post('/api/status', { body: `hi @${kat.name.toUpperCase()}, @${mia.name}! @${me.name} @${banned.name} @${blocker.name} @nobody_${k} @dot${k}.. and @dot${k}` })).data.id;
+  const post = (await client().get('/api/posts/' + s)).data.post;
+  assert.deepEqual(names(post), [`Dot${k}.`, `dot${k}`, kat.name, mia.name].sort(), 'never yourself, the banned, anyone with a block, or nobody');
+  assert.deepEqual(Object.keys(post.mentions[0]).sort(), ['id', 'name']);
+  const ten = (await me.post('/api/status', { body: Array.from({ length: 11 }, (_, i) => `@ten${k}_${i}`).join(' ') })).data.id;
+  assert.deepEqual(names((await client().get('/api/posts/' + ten)).data.post), Array.from({ length: 10 }, (_, i) => `ten${k}_${i}`).sort(), 'the first ten');
+  assert.deepEqual((await notes(kat)).items.map(n => [n.kind, n.actor.name, n.post.id, n.post.body.slice(0, 3)]), [['mention', me.name, s, 'hi ']]);
+  assert.deepEqual((await notes(blocker)).items, []);
+
+  // a private profile mentioning someone who doesn't follow it tells them nothing
+  const shy = await newUser('m_shy');
+  await kat.post('/api/follows/' + shy.name);
+  await shy.put('/api/me/settings', { followPolicy: 'approve' });
+  const hush = (await shy.post('/api/status', { body: `@${kat.name} @${mia.name} secret` })).data.id;
+  assert.equal((await notes(kat)).items[0].post.id, hush, 'kat follows shy');
+  assert.ok(!(await notes(mia)).items.some(n => n.post && n.post.id === hush), 'mia doesn\'t');
+  assert.deepEqual(names((await kat.get('/api/posts/' + hush)).data.post), [kat.name, mia.name].sort(), 'both are still mentioned');
+
+  // Friends' Comments: the page's owner hears about the comment, the person mentioned about the mention
+  await befriend(me, kat);
+  const wall = (await me.post(`/api/users/${kat.name}/comments`, { body: `@${mia.name} look at this page` })).data.id;
+  const m = (await notes(mia)).items[0];
+  assert.deepEqual([m.kind, m.post.id, m.post.kind, m.post.page.name], ['mention', wall, 'wall', kat.name]);
+  assert.deepEqual((await notes(kat)).items.slice(0, 2).map(n => [n.kind, n.post && n.post.id]), [['comment', wall], ['follow', null]]);
+  assert.deepEqual((await client().get(`/api/users/${kat.name}/comments`)).data.comments[0].mentions, [{ id: mia.id, name: mia.name }]);
+  // someone told about a reply (or a quote) isn't told again that it mentions them
+  const r = (await kat.post(`/api/posts/${s}/replies`, { body: `@${me.name} hi back` })).data.post;
+  assert.deepEqual((await notes(me)).items.filter(n => n.post && n.post.id === r.id).map(n => n.kind), ['reply']);
+  assert.deepEqual(r.mentions, [{ id: me.id, name: me.name }]);
+});
+
+test('#tags: lower case, up to 10, titles count, and a page for each tag', async () => {
+  const a = await newUser('tagger'); const b = await newUser('tagger'); const fan = await newUser('tagfan'); const shy = await newUser('tagshy');
+  const t = 'glitz' + uniq();
+  const s = (await a.post('/api/status', { body: `loving the #${t.toUpperCase()} vibes #y2k` })).data.id;
+  const blog = (await a.post('/api/blog', { title: `my #${t} journey`, body: 'and more #Layouts' })).data.id;
+  const r = (await b.post(`/api/posts/${s}/replies`, { body: `same #${t}` })).data.post;
+  assert.deepEqual(r.tags, [t]);
+  assert.deepEqual((await client().get('/api/posts/' + s)).data.post.tags, [t, 'y2k']);
+  assert.deepEqual((await client().get('/api/posts/' + blog)).data.post.tags, [t, 'layouts'], 'the title counts');
+  const page = (await client().get('/api/tags/' + t)).data;
+  assert.deepEqual([page.tag, page.items.map(i => i.id), page.next], [t, [r.id, blog, s], null], 'newest first, replies included');
+  assert.equal(page.items[1].excerpt, false);
+  assert.equal((await client().get('/api/tags/' + encodeURIComponent('#' + t.toUpperCase()))).data.items.length, 3, 'any case, with or without the #');
+  assert.equal((await client().get('/api/tags/123')).status, 404);
+  const many = (await b.post('/api/status', { body: Array.from({ length: 12 }, (_, i) => `#many${i}`).join(' ') })).data.id;
+  assert.equal((await client().get('/api/posts/' + many)).data.post.tags.length, 10);
+
+  // a private profile's posts are only on the page for its followers
+  await fan.post('/api/follows/' + shy.name);
+  await shy.put('/api/me/settings', { followPolicy: 'approve' });
+  const hush = (await shy.post('/api/status', { body: `#${t} for followers` })).data.id;
+  assert.ok(!(await client().get('/api/tags/' + t)).data.items.some(i => i.id === hush));
+  assert.equal((await fan.get('/api/tags/' + t)).data.items[0].id, hush);
+
+  // a deleted post leaves the page; it comes 30 at a time
+  await b.del('/api/posts/' + r.id);
+  assert.deepEqual((await client().get('/api/tags/' + t)).data.items.map(i => i.id), [blog, s]);
+  const u = 'paged' + uniq(), at = Date.now() - 60000;
+  sql(`INSERT INTO posts (kind, author_id, body, created) VALUES ${Array.from({ length: 32 }, (_, i) => `('status', ${a.id}, '#${u} ${i}', ${at + i})`).join(', ')};
+    INSERT INTO post_tags (tag, post_id, created) SELECT '${u}', id, created FROM posts WHERE author_id = ${a.id} AND body LIKE '#${u} %'`);
+  const p1 = (await client().get('/api/tags/' + u)).data;
+  const p2 = (await client().get(`/api/tags/${u}?before=${encodeURIComponent(p1.next)}`)).data;
+  assert.deepEqual([p1.items.length, p2.items.length, p2.next], [30, 2, null]);
+  assert.deepEqual([...p1.items, ...p2.items].map(i => i.body), Array.from({ length: 32 }, (_, i) => `#${u} ${31 - i}`));
+});
+
+test('bookmarks: private, newest bookmark first, only posts you may still see', async () => {
+  const me = await newUser('saver'); const other = await newUser('saved');
+  const ids = [];
+  for (const body of ['one', 'two', 'three']) ids.push((await other.post('/api/status', { body })).data.id);
+  for (const id of [ids[0], ids[2], ids[1], ids[0]]) assert.deepEqual((await me.post(`/api/posts/${id}/bookmark`)).data, { bookmarked: true });
+  const saved = (await me.get('/api/me/bookmarks')).data;
+  assert.deepEqual([saved.items.map(i => i.body), saved.next], [['two', 'three', 'one'], null], 'newest bookmark first, each once');
+  assert.ok(saved.items.every(i => i.viewer.bookmarked));
+  assert.deepEqual((await other.get('/api/me/bookmarks')).data.items, [], 'nobody else sees them');
+  assert.equal((await other.get('/api/posts/' + ids[0])).data.post.viewer.bookmarked, false);
+  assert.deepEqual((await notes(other)).items, [], 'or is told');
+  assert.equal((await client().get('/api/me/bookmarks')).status, 401);
+  assert.deepEqual((await me.del(`/api/posts/${ids[2]}/bookmark`)).data, { bookmarked: false });
+  assert.deepEqual((await me.get('/api/me/bookmarks')).data.items.map(i => i.body), ['two', 'one']);
+  await other.post('/api/blocks/' + me.name);
+  assert.deepEqual((await me.get('/api/me/bookmarks')).data.items, [], 'a post you may no longer see drops out');
+  await other.del('/api/blocks/' + me.name);
+
+  const at = Date.now() - 60000;
+  sql(`INSERT INTO posts (kind, author_id, body, created) VALUES ${Array.from({ length: 31 }, (_, i) => `('status', ${other.id}, 'bm ${i}', ${at + i})`).join(', ')};
+    INSERT INTO bookmarks (user_id, post_id, created) SELECT ${me.id}, id, created FROM posts WHERE author_id = ${other.id} AND body LIKE 'bm %'`);
+  const b1 = (await me.get('/api/me/bookmarks')).data;
+  const b2 = (await me.get('/api/me/bookmarks?before=' + encodeURIComponent(b1.next))).data;
+  assert.deepEqual([b1.items.length, b2.items.length, b2.next], [30, 3, null]);
+  assert.deepEqual([...b1.items, ...b2.items].map(i => i.body), ['two', 'one', ...Array.from({ length: 31 }, (_, i) => `bm ${30 - i}`)]);
+});
+
+test('notifications: each kind, never your own doings, nothing about what you can\'t see or across a block, undoing takes them back', async () => {
+  const me = await newUser('noted'); const kat = await newUser('n_kat'); const mia = await newUser('n_mia');
+  const shy = await newUser('n_shy'); const hidden = await newUser('n_hid');
+  await shy.put('/api/me/settings', { followPolicy: 'approve' });
+  await hidden.put('/api/me/settings', { followPolicy: 'approve' });
+  const mine = (await me.post('/api/status', { body: 'notify me' })).data.id;
+  await me.post(`/api/posts/${mine}/like`);                                    // my own doings: nothing
+  await me.post(`/api/posts/${mine}/replies`, { body: 'talking to myself' });
+  await kat.post('/api/follows/' + me.name);                                   // follow
+  await me.post('/api/follows/' + shy.name);                                   // follow_request, to shy
+  await shy.post('/api/followers/' + me.name);                                 // follow_accepted
+  await kat.post(`/api/posts/${mine}/like`);
+  const reply = (await kat.post(`/api/posts/${mine}/replies`, { body: 'nice' })).data.post.id;
+  await kat.post(`/api/posts/${mine}/repost`);
+  const quote = (await kat.post(`/api/posts/${mine}/quote`, { body: `@${me.name} look` })).data.post.id;
+  const mention = (await mia.post('/api/status', { body: `hey @${me.name}` })).data.id;
+  await befriend(me, mia);
+  const comment = (await mia.post(`/api/users/${me.name}/comments`, { body: 'hi friend' })).data.id;
+  await hidden.post(`/api/posts/${mine}/replies`, { body: 'you can\'t see this' });   // private, and I don't follow: nothing
+
+  let n = await notes(me);
+  assert.deepEqual(n.items.map(x => [x.kind, x.actor.name, x.post && x.post.id]), [
+    ['comment', mia.name, comment], ['follow', mia.name, null], ['mention', mia.name, mention], ['quote', kat.name, quote],
+    ['repost', kat.name, mine], ['reply', kat.name, reply], ['like', kat.name, mine], ['follow_accepted', shy.name, null], ['follow', kat.name, null]]);
+  assert.deepEqual(Object.keys(n.items[0]).sort(), ['actor', 'created', 'id', 'kind', 'post', 'unread']);
+  assert.deepEqual(n.items[6].post, { id: mine, kind: 'status', created: n.items[6].post.created, subject: null, subtitle: null, body: 'notify me', author: { id: me.id, name: me.name, avatar: n.items[6].post.author.avatar }, deleted: false });
+  assert.deepEqual([n.unread, n.next, n.items.every(x => x.unread)], [9, null, true]);
+  assert.equal((await me.get('/api/me')).data.counts.notifications, 9);
+  assert.deepEqual((await notes(shy)).items.map(x => [x.kind, x.actor.name]), [['follow_request', me.name]]);
+  assert.equal((await client().get('/api/notifications')).status, 401);
+
+  // undoing a like, a repost or a follow takes its notification back
+  await kat.del(`/api/posts/${mine}/like`);
+  await kat.del(`/api/posts/${mine}/repost`);
+  await mia.del('/api/follows/' + me.name);
+  n = await notes(me);
+  assert.deepEqual(kinds(n.items), ['comment', 'mention', 'quote', 'reply', 'follow_accepted', 'follow']);
+  assert.equal(n.unread, 6);
+
+  // reading up to the newest clears the badge; new ones are unread again
+  assert.deepEqual((await me.put('/api/me/markers/notifications', { created: n.items[0].created, id: n.items[0].id })).data.marker, { created: n.items[0].created, id: n.items[0].id });
+  n = await notes(me);
+  assert.deepEqual([n.unread, n.items.some(x => x.unread), (await me.get('/api/me')).data.counts.notifications], [0, false, 0]);
+  await kat.post(`/api/posts/${mine}/like`);
+  n = await notes(me);
+  assert.deepEqual([n.unread, n.items[0].kind, n.items[0].unread, n.items[1].unread], [1, 'like', true, false]);
+
+  // a block hides everything from that person
+  await me.post('/api/blocks/' + kat.name);
+  n = await notes(me);
+  assert.deepEqual([n.items.some(x => x.actor.name === kat.name), n.unread], [false, 0]);
+
+  // the badge stops at 99; 30 a page
+  sql(`INSERT INTO notifications (user_id, kind, actor_id, created) SELECT ${mia.id}, 'follow', ${hidden.id}, ${Date.now() - 1000}
+    FROM (WITH RECURSIVE k(i) AS (SELECT 1 UNION ALL SELECT i + 1 FROM k WHERE i < 120) SELECT i FROM k)`);
+  const p1 = await notes(mia);
+  assert.deepEqual([p1.unread, p1.items.length, (await mia.get('/api/me')).data.counts.notifications], [99, 30, 99]);
+  const p2 = await notes(mia, '?before=' + encodeURIComponent(p1.next));
+  assert.ok(p2.items.length === 30 && p2.items[0].id < p1.items[29].id);
+});
+
+test('a Friends\' Comment that @mentions someone with a block against the page\'s owner tells them nothing', async () => {
+  const bob = await newUser('fc_bob'); const carol = await newUser('fc_carol'); const alice = await newUser('fc_alice');
+  await befriend(bob, carol);
+  const comment = body => carol.post(`/api/users/${bob.name}/comments`, { body: `@${alice.name} ${body}` });
+  await bob.post('/api/blocks/' + alice.name);
+  assert.equal((await comment('look what bob said about you')).status, 201);
+  assert.deepEqual((await notes(alice)).items, [], 'bob blocked alice: nothing about his page reaches her');
+  await bob.del('/api/blocks/' + alice.name);
+  await alice.post('/api/blocks/' + bob.name);
+  await comment('again');
+  assert.deepEqual((await notes(alice)).items, [], 'nor when she blocked him');
+  await alice.del('/api/blocks/' + bob.name);
+  // told before a block: it stops showing once there is one (either way), with the page's owner or the comment's writer
+  const hi = (await comment('hi')).data.id;
+  assert.deepEqual((await notes(alice)).items.map(n => [n.kind, n.post.id, n.post.page.name]), [['mention', hi, bob.name]]);
+  for (const [blocker, blocked] of [[bob, alice], [alice, bob], [alice, carol]]) {
+    await blocker.post('/api/blocks/' + blocked.name);
+    const n = await notes(alice);
+    assert.deepEqual([n.items, n.unread], [[], 0], `${blocker.name} blocked ${blocked.name}`);
+    await blocker.del('/api/blocks/' + blocked.name);
+  }
+  assert.equal((await notes(alice)).items.length, 1, 'and it\'s back once nobody blocks anybody');
+});
+
+test('"replying to" names the post answered only for people who may see it', async () => {
+  const open = await newUser('rt_open'); const shy = await newUser('rt_shy'); const pal = await newUser('rt_pal'); const nosy = await newUser('rt_nosy');
+  await pal.post('/api/follows/' + shy.name);
+  await shy.put('/api/me/settings', { followPolicy: 'approve' });
+  const root = (await open.post('/api/status', { body: 'public root' })).data.id;
+  const hush = (await shy.post(`/api/posts/${root}/replies`, { body: 'my secret opinion' })).data.post.id;
+  const ans = (await pal.post(`/api/posts/${hush}/replies`, { body: 'public answer to it' })).data.post;
+  assert.deepEqual(ans.replyTo, { id: hush, author: { id: shy.id, name: shy.name, avatar: ans.replyTo.author.avatar } }, 'pal follows shy');
+  const inConv = async who => (await who.get('/api/posts/' + root)).data.replies.find(r => r.id === ans.id).replyTo;
+  assert.deepEqual(await inConv(nosy), { id: null, author: null }, 'nosy doesn\'t: not even its id');
+  assert.deepEqual(await inConv(client()), { id: null, author: null }, 'nor does anyone logged out');
+  assert.equal((await inConv(pal)).author.name, shy.name);
+  const onTab = async (who, id) => (await who.get(`/api/users/${pal.name}/replies`)).data.items.find(r => r.id === id).replyTo;
+  assert.deepEqual(await onTab(nosy, ans.id), { id: null, author: null }, 'on the Replies tab too');
+  // a block either way, or a ban, hides it too
+  const r2 = (await pal.post(`/api/posts/${root}/replies`, { body: 'to open' })).data.post.id;
+  assert.equal((await onTab(nosy, r2)).author.name, open.name);
+  for (const [blocker, blocked] of [[open, nosy], [nosy, open]]) {
+    await blocker.post('/api/blocks/' + blocked.name);
+    assert.deepEqual(await onTab(nosy, r2), { id: null, author: null }, `${blocker.name} blocked ${blocked.name}`);
+    await blocker.del('/api/blocks/' + blocked.name);
+  }
+  sql(`UPDATE users SET banned = 1 WHERE id = ${open.id}`);
+  assert.deepEqual(await onTab(client(), r2), { id: null, author: null }, 'a banned writer');
+  sql(`UPDATE users SET banned = 0 WHERE id = ${open.id}`);
+  assert.equal((await onTab(client(), r2)).id, root);
+});
+
+test('a deleted status or blog post that stays as a tombstone isn\'t on the profile, and its page is a tombstone', async () => {
+  const me = await newUser('tp_me'); const pal = await newUser('tp_pal');
+  const older = (await me.post('/api/status', { body: 'older status' })).data.id;
+  const st = (await me.post('/api/status', { body: 'my latest status' })).data.id;
+  const b1 = (await me.post('/api/blog', { title: 'first post', body: 'one' })).data.id;
+  const b2 = (await me.post('/api/blog', { title: 'second post', body: 'two' })).data.id;
+  await pal.post(`/api/posts/${st}/replies`, { body: 'a reply' });
+  await pal.post(`/api/posts/${b2}/replies`, { body: 'a blog reply' });
+  for (const id of [st, b2]) assert.deepEqual((await me.del('/api/posts/' + id)).data, { ok: true, tombstone: true });
+  const prof = (await pal.get('/api/users/' + me.name)).data;
+  assert.deepEqual([prof.latestStatus.id, prof.latestStatus.body], [older, 'older status'], 'the latest status that isn\'t deleted');
+  assert.deepEqual(prof.blog.map(b => [b.id, b.title]), [[b1, 'first post']]);
+  assert.deepEqual([prof.counts.statuses, prof.counts.blog], [1, 1]);
+  const page = (await pal.get('/api/posts/' + b2)).data;
+  assert.deepEqual([page.post.kind, page.post.deleted, page.post.subject, page.post.body, page.post.canDelete, page.replies.length], ['blog', true, null, '', false, 1]);
+});
+
+test('likes, reposts, bookmarks and replies racing a delete land on nothing, and every count stays exact', async () => {
+  const others = await Promise.all(Array.from({ length: 6 }, () => newUser('race_o')));
+  const authors = [], statuses = {};
+  for (let round = 0; round < 4; round++) {
+    const author = await newUser('race_a');
+    authors.push(author.id);
+    const x = (await author.post('/api/status', { body: 'race ' + round })).data.id;
+    await others[0].post(`/api/posts/${x}/replies`, { body: 'keep me' });       // so deleting x leaves a tombstone
+    const y = (await author.post('/api/status', { body: 'race y ' + round })).data.id;   // and y goes outright (unless a reply wins)
+    const all = await Promise.all([author.del('/api/posts/' + x), author.del('/api/posts/' + y),
+      ...others.slice(1).flatMap(u => [...['like', 'repost', 'bookmark'].map(w => u.post(`/api/posts/${x}/${w}`)),
+        u.post(`/api/posts/${y}/like`), u.post(`/api/posts/${y}/replies`, { body: 'late' })])]);
+    for (const r of all) statuses[r.status] = (statuses[r.status] || 0) + 1;
+  }
+  assert.ok(Object.keys(statuses).every(s => [200, 201, 404].includes(Number(s))), JSON.stringify(statuses));
+  assert.deepEqual(sql(`SELECT p.id FROM posts p WHERE p.deleted = 1 AND p.author_id IN (${authors}) AND (p.like_count + p.repost_count > 0
+    OR EXISTS (SELECT 1 FROM likes WHERE post_id = p.id) OR EXISTS (SELECT 1 FROM bookmarks WHERE post_id = p.id)
+    OR EXISTS (SELECT 1 FROM posts r WHERE r.kind = 'repost' AND r.quote_of = p.id) OR EXISTS (SELECT 1 FROM notifications WHERE post_id = p.id))`), [],
+  'nothing landed on a tombstone');
+  assert.deepEqual(sql(`SELECT r.id FROM posts r WHERE r.kind = 'reply' AND r.author_id IN (${others.map(o => o.id)})
+    AND NOT EXISTS (SELECT 1 FROM posts p WHERE p.id = r.reply_to)`), [], 'and no reply answers a post that\'s gone');
+});
+
+test('replies to a deleted account\'s posts stay in their conversation and say what they answered', async () => {
+  const v = await newUser('gone_v'); const o = await newUser('gone_o');
+  const root = (await o.post('/api/status', { body: 'root by o' })).data.id;
+  const vr = (await v.post(`/api/posts/${root}/replies`, { body: 'reply by v' })).data.post.id;
+  const or1 = (await o.post(`/api/posts/${vr}/replies`, { body: 'answer to v' })).data.post.id;
+  const vs = (await v.post('/api/status', { body: 'status by v' })).data.id;
+  const or2 = (await o.post(`/api/posts/${vs}/replies`, { body: 'answer to v\'s status' })).data.post.id;
+  const or3 = (await o.post(`/api/posts/${or2}/replies`, { body: 'and more' })).data.post.id;
+  assert.equal((await v.del('/api/me', { password: PW })).status, 200);
+  const one = async id => (await o.get('/api/posts/' + id)).data;
+  const gone = id => ({ id, author: null });
+  assert.deepEqual([(await one(or1)).post.replyTo, (await one(or1)).post.rootId], [gone(vr), root], 'replying to a deleted account, still in the conversation');
+  assert.deepEqual((await one(root)).replies.map(r => [r.id, r.replyTo]), [[or1, gone(vr)]], 'which still shows it');
+  const d = await one(or3);
+  assert.deepEqual([d.post.rootId, d.ancestors.map(a => [a.id, a.replyTo])], [vs, [[or2, gone(vs)]]]);
+  assert.deepEqual((await one(or2)).replies.map(r => r.id), [or3]);
+  assert.equal((await o.post(`/api/posts/${or3}/replies`, { body: 'still here' })).data.post.rootId, vs, 'a new reply joins the same conversation');
+  assert.deepEqual((await client().get(`/api/users/${o.name}/replies`)).data.items.find(r => r.id === or2).replyTo, gone(vs));
+});
+
+test('likes, reposts and bookmarks have hourly limits of their own; replies and quotes count as posts', async () => {
+  const u = await newUser('ratey'); const op = await newUser('rated');
+  const id = (await op.post('/api/status', { body: 'popular' })).data.id;
+  const now = Date.now();
+  const fill = (key, count) => `INSERT INTO attempts (k, created) SELECT '${key}:${u.id}', ${now}
+    FROM (WITH RECURSIVE k(i) AS (SELECT 1 UNION ALL SELECT i + 1 FROM k WHERE i < ${count}) SELECT i FROM k)`;
+  sql([fill('like', 299), fill('repost', 59), fill('bookmark', 299)].join(';\n'));
+  for (const what of ['like', 'repost', 'bookmark']) {
+    assert.equal((await u.post(`/api/posts/${id}/${what}`)).status, 200, what);
+    assert.equal((await u.post(`/api/posts/${id}/${what}`)).status, 429, what);
+  }
+  assert.equal((await u.del(`/api/posts/${id}/like`)).status, 200, 'undoing is free');
+  for (let i = 0; i < 5; i++) await u.post('/api/status', { body: 'post ' + i });
+  assert.equal((await u.post(`/api/posts/${id}/replies`, { body: 'the sixth' })).status, 201);
+  assert.equal((await u.post(`/api/posts/${id}/quote`, { body: 'the seventh' })).status, 429);
+});
+
 /* ------------------------------------------------------- other sign-in options */
 
 test('sign up with Google: provider, then screen name + birthday, then straight in next time', async () => {
@@ -749,6 +1322,11 @@ test('astrology: the sky today, a sign\'s horoscope, and a personal reading', as
 test('deleting an account removes it and frees the name and email', async () => {
   const c = await newUser('leaving'); const pal = await newUser('stayer');
   await befriend(c, pal);
+  const hers = (await pal.post('/api/status', { body: 'stay a while' })).data.id;
+  for (const what of ['like', 'repost', 'bookmark']) await c.post(`/api/posts/${hers}/${what}`);
+  await c.post(`/api/posts/${hers}/replies`, { body: 'can\'t, sorry' });
+  await c.post(`/api/posts/${hers}/quote`, { body: 'one last quote' });
+  assert.deepEqual((await pal.get('/api/posts/' + hers)).data.post.counts, { likes: 1, replies: 1, reposts: 1, quotes: 1 });
   const bye = await c.post('/api/status', { body: 'goodbye world' });
   const status = (await c.get('/api/posts/' + bye.data.id)).data.post;
   await c.put('/api/me/markers/feed', { created: status.created, id: status.id });
@@ -758,6 +1336,19 @@ test('deleting an account removes it and frees the name and email', async () => 
   assert.ok(!(await client().get('/api/feed')).data.items.some(i => i.body === 'goodbye world'));
   assert.equal(sql(`SELECT (SELECT COUNT(*) FROM follows WHERE ${c.id} IN (follower_id, followee_id)) + (SELECT COUNT(*) FROM markers WHERE user_id = ${c.id}) AS n`)[0].n, 0,
     'its follows and markers are gone');
-  assert.deepEqual((await client().get('/api/users/' + pal.name)).data.counts, { followers: 0, following: 0, friends: 0, statuses: 0, blog: 0, comments: 0 });
+  assert.deepEqual((await client().get('/api/users/' + pal.name)).data.counts, { followers: 0, following: 0, friends: 0, statuses: 1, replies: 0, blog: 0, comments: 0 });
+  const conv = (await pal.get('/api/posts/' + hers)).data;
+  assert.deepEqual([conv.post.counts, conv.replies], [{ likes: 0, replies: 0, reposts: 0, quotes: 0 }, []], 'the counts on other people\'s posts come down');
+  assert.deepEqual((await notes(pal)).items, [], 'and what they were told about it goes');
+  assert.equal(sql(`SELECT (SELECT COUNT(*) FROM likes WHERE user_id = ${c.id}) + (SELECT COUNT(*) FROM bookmarks WHERE user_id = ${c.id})
+    + (SELECT COUNT(*) FROM notifications WHERE ${c.id} IN (user_id, actor_id)) AS n`)[0].n, 0);
   assert.equal((await client().post('/api/signup',{ email: c.email, password: PW, name: c.name, birthday: '1995-08-15', rulesOk: true })).status, 201);
+});
+
+test('every count in the database matches the rows behind it, after everything the tests above did', () => {
+  assert.deepEqual(sql(`SELECT id, kind, like_count, reply_count, repost_count, quote_count FROM posts p WHERE
+    like_count != (SELECT COUNT(*) FROM likes WHERE post_id = p.id)
+    OR reply_count != (SELECT COUNT(*) FROM posts x WHERE x.reply_to = p.id AND x.kind = 'reply' AND x.deleted = 0)
+    OR repost_count != (SELECT COUNT(*) FROM posts x WHERE x.quote_of = p.id AND x.kind = 'repost')
+    OR quote_count != (SELECT COUNT(*) FROM posts x WHERE x.quote_of = p.id AND x.kind = 'quote' AND x.deleted = 0)`), []);
 });

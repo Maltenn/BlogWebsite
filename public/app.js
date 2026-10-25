@@ -16,6 +16,7 @@ import { go, route, start } from './js/core/router.js';
 import { paintChrome } from './js/core/chrome.js';
 import { renderAdmin } from './js/pages/admin.js';
 import { renderJoin, renderFinish, renderLogin, renderForgot, renderReset } from './js/pages/auth.js';
+import { renderBookmarks } from './js/pages/bookmarks.js';
 import { renderBrowse } from './js/pages/browse.js';
 import { renderBulletins } from './js/pages/bulletins.js';
 import { renderEdit } from './js/pages/edit.js';
@@ -24,10 +25,13 @@ import { renderHoroscope } from './js/pages/horoscope.js';
 import { renderInbox, renderThread } from './js/pages/inbox.js';
 import { renderBlogPost } from './js/pages/blog.js';
 import { renderFollowers, renderFollowing, renderFriends } from './js/pages/lists.js';
-import { renderProfile, renderProfileBlog, renderProfileComments } from './js/pages/profile.js';
+import { renderNotifications } from './js/pages/notifications.js';
+import { renderPost } from './js/pages/post.js';
+import { renderProfile, renderProfileReplies, renderProfileBlog, renderProfileComments } from './js/pages/profile.js';
 import { renderRequests } from './js/pages/requests.js';
 import { renderRules } from './js/pages/rules.js';
 import { renderSettings } from './js/pages/settings.js';
+import { renderTag } from './js/pages/tags.js';
 
 /* ------------------------------------------------------------ router */
 
@@ -39,13 +43,18 @@ const ROUTES = [
   [/^\/forgot$/, renderForgot],
   [/^\/reset$/, renderReset],
   [/^\/u\/([^/]+)$/, renderProfile],
+  [/^\/u\/([^/]+)\/replies$/, renderProfileReplies],
   [/^\/u\/([^/]+)\/blog$/, renderProfileBlog],
   [/^\/u\/([^/]+)\/blog\/(\d+)$/, renderBlogPost],
+  [/^\/u\/([^/]+)\/post\/(\d+)$/, renderPost],
   [/^\/u\/([^/]+)\/comments$/, renderProfileComments],
   [/^\/u\/([^/]+)\/followers$/, renderFollowers],
   [/^\/u\/([^/]+)\/following$/, renderFollowing],
   [/^\/u\/([^/]+)\/friends$/, renderFriends],
   [/^\/browse$/, renderBrowse],
+  [/^\/notifications$/, renderNotifications, true],
+  [/^\/bookmarks$/, renderBookmarks, true],
+  [/^\/tags\/([^/]+)$/, renderTag],
   [/^\/requests$/, renderRequests, true],
   [/^\/inbox$/, renderInbox, true],
   [/^\/inbox\/([^/]+)$/, renderThread, true],

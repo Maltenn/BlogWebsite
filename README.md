@@ -7,7 +7,10 @@ A social network for real people, in the spirit of early-2000s MySpace: decorate
 - **Birthdays keep it 13+** and give everyone their **star sign**. The birthday itself stays private. People choose whether their page shows their age and their sign.
 - **Profiles** at `/u/<name>` that anyone can view, with statuses (up to 500 characters), a blog (titles, subtitles, a page for each post), Friends' Comments, a Top 8, Spotify and private messages.
 - **Follow people.** Following is one-way; two people who follow each other are **friends**, and only friends write in each other's Friends' Comments. Profiles are open by default, or **private**: then new followers need approving, and only followers see the statuses, blog and comments.
-- **A feed** of statuses and blog posts from the people you follow, newest first, or **pick up where you left off**: oldest unseen first, remembering how far you read. Logged out, it shows the latest from every open profile. Bulletins have their own board.
+- **A feed** of statuses, blog posts, quotes and reposts from the people you follow, newest first, or **pick up where you left off**: oldest unseen first, remembering how far you read. Logged out, it shows the latest from every open profile. Bulletins have their own board.
+- **Replies, likes, reposts, quotes and bookmarks** on statuses and blog posts, the way Twitter does them (likes only, no dislikes). Every post opens as a conversation; a deleted post with replies stays as "this post was deleted" so the conversation keeps its shape. Posts from private profiles can be liked by their followers but not reposted or quoted. Bookmarks are private.
+- **@mentions and #tags.** `@name` in a post or a Friends' Comment links to that person (and tells them, if they may see the post); every `#tag` has a page of its posts.
+- **Notifications** for likes, replies, reposts, quotes, mentions, Friends' Comments on your page and follows, in the app only (no email, no push), with an unread count.
 - **Everyone can connect their own Spotify.** Their page then shows their top songs, with previews (see the Spotify limit in [docs/deploy.md](docs/deploy.md) before relying on it).
 - **Daily horoscopes, written from the real sky.** There's a reading of today's sky for everybody, a horoscope for each sign, and a personal reading for each member that also compares today's planets with the sky on the day they were born.
 - **Pages are decorated** with the Edit My Page choices: 231 preset pictures, 10 color themes, 14 background tiles (or a plain color), fonts, decor gifs and 88x31 buttons.
@@ -33,7 +36,7 @@ When it says **ourspace demo is running**, open **http://127.0.0.1:8787** in you
 
 | Log in as | Email | Password | Who |
 |---|---|---|---|
-| you | `you@example.com` | `ourspace-demo` | `the_reviewer`, a regular member with friends, two new followers, a follow request waiting on a private profile (`emo_drew`) and messages |
+| you | `you@example.com` | `ourspace-demo` | `the_reviewer`, a regular member with friends, two new followers, a follow request waiting on a private profile (`emo_drew`), messages, a bookmark, and a few unread notifications (a like, a reply, a repost, a quote, a mention and Friends' Comments) |
 | the moderator | `malten@example.com` | `ourspace-demo` | `malten`, sees the **Moderation** tab with a sample report |
 | anyone else | `kat@`, `jules@`, `drew@`, `pete@`, `mia@` or `banana@example.com` | `ourspace-demo` | the sample members, to see the site from their side |
 

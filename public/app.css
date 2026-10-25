@@ -681,3 +681,123 @@ img { image-rendering: pixelated; }
     .ms-ptabs a { padding: 5px 9px; }
     .ms-privatecard { flex-direction: column; text-align: center; }
 }
+
+
+/* ============================================================
+   Replies, likes, reposts, quotes, bookmarks, @mentions, #tags
+   and Notifications (phase 2)
+   ============================================================ */
+
+/* ---------- a post card: [repost line] + avatar | words | time | 💬 ↻ ♥ 🔖 ---------- */
+.ms-feeditem { display: block; }
+.ms-feedrow { display: flex; align-items: flex-start; gap: 8px; }
+.ms-repostline { margin: 0 0 4px 2px; font-size: 11px; font-weight: bold; color: #0a7d0a; }
+.ms-repostline .ms-time { color: inherit; font-weight: normal; }
+.ms-profile .ms-repostline { color: inherit; opacity: .85; }
+.ms-gone { color: #777; font-style: italic; }
+.ms-profile .ms-gone { color: inherit; opacity: .7; }
+.post-head h1.ms-gone { color: #777; font-size: 22px; }
+.ms-feedmeta { display: flex; align-items: center; flex-wrap: wrap; margin-top: 2px; }
+.ms-feedtext.is-link { cursor: pointer; }
+.ms-replyto { margin: 1px 0 0; font-size: 11px; opacity: .8; }
+a.ms-time { color: inherit; text-decoration: none; }
+a.ms-time:hover { text-decoration: underline; opacity: 1; }
+.ms-mention, .ms-hashtag { color: #cc5500; text-decoration: none; }
+.ms-mention { font-weight: bold; }
+.ms-mention:hover, .ms-hashtag:hover { text-decoration: underline; }
+.ms-pagesub { font-weight: normal; font-size: 11px; opacity: .8; }
+.ms-pagetitle .ms-pagesub { margin-left: 4px; }
+
+/* the row under a post */
+.ms-acts { display: flex; flex-wrap: wrap; gap: 2px 14px; margin: 5px 0 0 -4px; font-size: 12px; }
+.ms-act {
+    display: inline-flex; align-items: center; gap: 4px; min-height: 22px; padding: 1px 6px 1px 4px; font: inherit; cursor: pointer;
+    background: none; color: inherit; opacity: .7; border: 1px solid transparent;
+}
+.ms-act:hover, .ms-act:focus-visible { opacity: 1; background: rgba(128, 128, 128, .18); border-color: rgba(255, 255, 255, .8) rgba(0, 0, 0, .35) rgba(0, 0, 0, .35) rgba(255, 255, 255, .8); }
+.ms-act:active { border-color: rgba(0, 0, 0, .35) rgba(255, 255, 255, .8) rgba(255, 255, 255, .8) rgba(0, 0, 0, .35); }
+.ms-actglyph { font-size: 14px; line-height: 1; }
+.ms-actn { font-size: 11px; font-weight: bold; }
+.ms-actn:empty { display: none; }
+.ms-act.like.on { opacity: 1; color: #d6246e; }
+.ms-act.repost.on { opacity: 1; color: #0a7d0a; }
+.ms-profile .ms-act.like.on { color: #ff5fa2; }
+.ms-profile .ms-act.repost.on { color: #3fd13f; }
+.ms-act.bookmark { filter: grayscale(1); }
+.ms-act.bookmark.on { opacity: 1; filter: none; background: rgba(255, 224, 102, .55); }
+.ms-actwrap { position: relative; display: inline-flex; }
+.ms-menu { position: absolute; top: 100%; left: 0; z-index: 40; min-width: 150px; display: flex; flex-direction: column; font-size: 12px; color: #000; }
+.ms-menuitem { padding: 5px 14px 5px 8px; background: none; border: 0; font: inherit; color: #000; text-align: left; white-space: nowrap; cursor: pointer; }
+.ms-menuitem:hover, .ms-menuitem:focus { background: #1c3f94; color: #fff; outline: none; }
+
+/* a quote's box */
+.ms-quotebox { margin: 6px 0 2px; padding: 6px 8px; background: #fff; color: #000; border: 1px solid #99aacc; font-size: 12px; overflow-wrap: anywhere; }
+.ms-quotebox.is-link { cursor: pointer; }
+.ms-quotebox.is-link:hover { background: #eef4ff; }
+.ms-quotebox.gone { color: #777; font-style: italic; }
+.ms-quotehead { display: flex; align-items: center; gap: 6px; font-size: 11px; }
+.ms-quotehead .ms-avatar { width: 20px; height: 20px; }
+.ms-quotebox:not(.is-link) .ms-avatar { cursor: default; }
+.ms-quotetitle { margin: 3px 0 1px; font: bold 15px/1.25 Georgia, 'Times New Roman', serif; color: #4b2d83; }
+.ms-quotebox .ms-feedsub { opacity: .75; }
+.ms-quotetext { margin-top: 3px; white-space: pre-wrap; overflow-wrap: anywhere; }
+
+/* the Reply and Quote windows */
+.ms-postdialog { width: min(520px, 100%); }
+.ms-postdialog-body { display: flex; flex-direction: column; gap: 6px; padding: 10px; }
+.ms-postdialog-body .ms-compose-text { width: 100%; min-height: 92px; }
+.ms-postdialog-count { text-align: right; color: #444; }
+.ms-postdialog-count .ms-compose-count.hot { color: #c3002f; font-weight: bold; }
+.ms-postdialog-context .os-hint { margin-bottom: 3px; }
+
+/* ---------- a conversation, and the replies under a blog post ---------- */
+.os-shell.os-solo { grid-template-columns: minmax(0, 680px); justify-content: center; }
+.ms-thread-page { border: 1px solid #c7d2e8; min-width: 0; }
+.ms-ancestors .ms-feeditem { position: relative; background: #f4f6fb; border-bottom: 0; }
+.ms-ancestors .ms-feeditem::before { content: ''; position: absolute; left: 27px; top: 50px; bottom: -2px; width: 2px; background: #c7d2e8; }
+.ms-feeditem.is-compact { padding: 6px 8px 8px; }
+.ms-feeditem.is-compact .ms-feedtext { font-size: 12px; }
+.ms-feeditem.is-big { padding: 14px 12px 8px; border-bottom: 2px solid #99aacc; background: #fff; }
+.ms-feeditem.is-big .ms-feedtext { font-size: 16px; line-height: 1.4; }
+.ms-feeditem.is-big .ms-feedmeta { margin-top: 8px; font-size: 12px; }
+.ms-feeditem.is-big .ms-acts { margin: 8px 0 0; padding: 4px 0 0; border-top: 1px solid rgba(128, 128, 128, .35); gap: 2px 24px; }
+.ms-replies .ms-compose { margin: 8px; }
+.ms-compose-hint { padding: 0 8px 5px; }
+.ms-replies > .ms-note { margin: 8px; border: 1px solid #f0d68a; }
+.ms-replylist .ms-feeditem { border-bottom: 1px solid #ddd; }
+.post-reactions { display: flex; justify-content: center; margin-top: 18px; padding: 3px 0; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+.post-reactions .ms-acts { margin: 0; gap: 2px 26px; }
+.ms-discussion { margin-top: 26px; padding-top: 8px; border-top: 3px double #9370DB; }
+.ms-discussion > h2 { margin: 6px 0 4px; font: bold 22px/1.25 Georgia, 'Times New Roman', serif; color: #4b2d83; }
+.ms-discussion .ms-compose { margin: 8px 0; }
+.ms-discussion .ms-feeditem { padding-left: 2px; padding-right: 2px; }
+
+/* ---------- Notifications ---------- */
+.ms-reqbox { margin: 8px; }
+.ms-reqbox .ms-boxtitle .ms-boxsub a { color: #fff; }
+.ms-notes { border-top: 1px solid #ddd; }
+.ms-note-row { display: flex; align-items: flex-start; gap: 10px; padding: 8px 10px; border-bottom: 1px solid #ddd; font-size: 12px; }
+.ms-note-row.unread { background: #fff8e0; border-left: 4px solid #ff6600; padding-left: 6px; }
+.ms-note-av { display: flex; flex: 0 0 auto; min-width: 40px; }
+.ms-note-av .av-wrap + .av-wrap { margin-left: -10px; }
+.ms-note-mid { flex-grow: 1; min-width: 0; }
+.ms-note-text { overflow-wrap: anywhere; line-height: 1.4; }
+.ms-note-text > a:not(.ms-name-link) { color: #003366; text-decoration: none; }
+.ms-note-text > a:not(.ms-name-link):hover { text-decoration: underline; }
+.ms-note-snippet { margin-top: 2px; white-space: normal; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; overflow-wrap: anywhere; }
+.ms-newchip { margin-left: 6px; background: #ff6600; color: #fff; border-color: #cc5500; }
+.ms-note-row > .ms-time { flex: 0 0 auto; white-space: nowrap; }
+
+@media (max-width: 760px) {
+    .ms-feeditem { padding: 8px 6px; }
+    .ms-feeditem.is-big { padding: 12px 8px 8px; }
+    .ms-feeditem.is-big .ms-feedtext { font-size: 15px; }
+    .ms-acts { gap: 2px 10px; }
+    .ms-act { min-height: 30px; padding: 2px 8px 2px 6px; }
+    .ms-postdialog-body .ms-compose-text { min-height: 110px; }
+    .ms-note-row { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 10px; }
+    .ms-note-row > .ms-note-av { grid-row: 1 / span 2; }
+    .ms-note-row > .ms-note-mid, .ms-note-row > .ms-time { grid-column: 2; }
+    .ms-note-av .av-wrap + .av-wrap { margin-left: -12px; }
+    .ms-discussion .ms-feeditem { padding-left: 0; padding-right: 0; }
+}

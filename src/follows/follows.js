@@ -1,8 +1,10 @@
 // Following. It's one-way: I follow you, you may follow me back, and two people who follow each other are friends.
 // An open profile takes a follow at once; a private one (follow_policy "approve") gets a request to accept or decline.
-// Every write answers with the new { relation } (the same shape as the profile's).
+// Every write answers with the new { relation } (the same shape as the profile's). The person followed hears about it
+// (follow, or follow_request), and so does somebody whose request is accepted (follow_accepted).
 import { fail, json } from '../shared/http.js';
 import { REF_COLS, ref, refOf, visibleUser, followOf, canSeePosts, relationTo, blockedEither, limit, isOnline, NOT_BLOCKED, LISTS } from '../shared/db.js';
+import { notify } from '../shared/notify.js';
 
 // the person named in the URL, who has to be somebody else
 async function other(c, message = 'that\'s you!') {
@@ -19,24 +21,33 @@ export async function followUser(c) {
   if (!await followOf(c.env, c.user.id, u.id)) {
     await limit(c, 'follow:' + c.user.id, [[20, 3600000], [100, 86400000]], 'that\'s a lot of following. take a breather.');
     const open = u.follow_policy !== 'approve';
-    await c.env.DB.prepare('INSERT OR IGNORE INTO follows (follower_id, followee_id, status, created, accepted) VALUES (?, ?, ?, ?, ?)')
-      .bind(c.user.id, u.id, open ? 'accepted' : 'pending', c.now, open ? c.now : null).run();
+    await c.env.DB.batch([
+      notify(c, open ? 'follow' : 'follow_request', [u.id], null, 'NOT EXISTS (SELECT 1 FROM follows WHERE follower_id = ?1 AND followee_id = t.value)'),
+      c.env.DB.prepare('INSERT OR IGNORE INTO follows (follower_id, followee_id, status, created, accepted) VALUES (?, ?, ?, ?, ?)')
+        .bind(c.user.id, u.id, open ? 'accepted' : 'pending', c.now, open ? c.now : null),
+    ]);
   }
   return json({ relation: await relationTo(c, u) });
 }
 
-// DELETE /api/follows/:name — unfollow, or take back my request
+// DELETE /api/follows/:name — unfollow, or take back my request (and the notification about it)
 export async function unfollowUser(c) {
   const u = await other(c);
-  await c.env.DB.prepare('DELETE FROM follows WHERE follower_id = ? AND followee_id = ?').bind(c.user.id, u.id).run();
+  await c.env.DB.batch([
+    c.env.DB.prepare('DELETE FROM follows WHERE follower_id = ? AND followee_id = ?').bind(c.user.id, u.id),
+    c.env.DB.prepare('DELETE FROM notifications WHERE actor_id = ? AND user_id = ? AND kind IN (\'follow\', \'follow_request\')').bind(c.user.id, u.id),
+  ]);
   return json({ relation: await relationTo(c, u) });
 }
 
 // POST /api/followers/:name — accept their request to follow me
 export async function acceptFollower(c) {
   const u = await other(c);
-  const r = await c.env.DB.prepare('UPDATE follows SET status = \'accepted\', accepted = ? WHERE follower_id = ? AND followee_id = ? AND status = \'pending\'')
-    .bind(c.now, u.id, c.user.id).run();
+  const [, r] = await c.env.DB.batch([
+    notify(c, 'follow_accepted', [u.id], null, 'EXISTS (SELECT 1 FROM follows WHERE follower_id = t.value AND followee_id = ?1 AND status = \'pending\')'),
+    c.env.DB.prepare('UPDATE follows SET status = \'accepted\', accepted = ? WHERE follower_id = ? AND followee_id = ? AND status = \'pending\'')
+      .bind(c.now, u.id, c.user.id),
+  ]);
   if (!r.meta.changes && !await followOf(c.env, u.id, c.user.id)) fail(404, `${u.name} hasn't asked to follow you.`);
   return json({ relation: await relationTo(c, u) });
 }

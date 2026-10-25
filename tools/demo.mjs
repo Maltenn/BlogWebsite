@@ -154,33 +154,55 @@ async function seed() {
   for (const p of PEOPLE) await P[p.key].put('/api/me/profile', p.key === 'kat' ? { ...p.profile, top8: [mia.id, jules.id, drew.id, pete.id, you.id] } : p.profile);
   for (const p of PEOPLE) if (p.spotify) await connectSpotify(P[p.key], p.spotify);
 
-  const status = (c, body) => c.post('/api/status', { body });
+  const status = async (c, body) => (await c.post('/api/status', { body })).id;
   const comment = (from, to, body) => from.post(`/api/users/${encodeURIComponent(to.name)}/comments`, { body });
   const dm = (from, to, body) => from.post('/api/inbox/' + encodeURIComponent(to.name), { body });
+  const reply = async (c, to, body) => (await c.post(`/api/posts/${to}/replies`, { body })).post.id;
+  const act = (c, what, id) => c.post(`/api/posts/${id}/${what}`);              // like, repost or bookmark
 
-  await status(pete, 'debugging my layout at 2am. the marquee won\'t stop. send help');
+  // the follows so far count as read on your Notifications tab; everything about posts below arrives as new
+  const readUpTo = (await you.get('/api/notifications')).items[0].id;
+
+  const marquee = await status(pete, 'debugging my layout at 2am. the marquee won\'t stop. send help #layouts');
+  const offOn = await reply(jules, marquee, 'have u tried turning the marquee off and on again');
+  await act(mia, 'like', marquee);
   await comment(jules, kat, 'ur layout is blinding me (compliment)');
+  const offButton = await reply(pete, offOn, '@sk8r_jules the marquee IS the off button');
   await kat.post('/api/bulletins', { subject: 'TAKE THIS SURVEY!!! ♥', body: 'copy, paste, repost!!\n\n1. name: kat\n2. fave color: glitter\n3. last song you heard: misery business\n4. top 8 drama level (1-10): 11\n5. would you rather never use the internet again, or only listen to one song forever?\n\nrepost with ur answers!!' });
-  await status(jules, 'landed it!!! (once) (nobody filmed it)');
+  const landed = await status(jules, 'landed it!!! (once) (nobody filmed it) #sk8');
+  await act(kat, 'like', landed);
+  await reply(jules, offButton, 'respect. leave it on then');
+  await act(kat, 'repost', landed);
   await drew.post('/api/blog', { title: 'rain, again', subtitle: 'a poem from the back of the bus', mood: 'melancholy', body: 'the bus window is a painting\nthat only knows one color\n\ni count the drops\nthe way other people count sheep\n\nsomeone in the back is playing\nthe same song as my headphones\nand for one stop\nwe are a band' });
   const peteComment = await comment(pete, kat, 'nice layout. the sparkle cursor is a choice');
-  await status(mia, 'the moon is in my sign today and i can FEEL it');
+  const moon = await status(mia, 'the moon is in my sign today and i can FEEL it #fullmoon');
+  await reply(kat, marquee, 'leave it. marquees are a lifestyle');
   await comment(drew, mia, 'thanks for the tarot reading. the tower card was rude though');
   await pete.post('/api/bulletins', { subject: 'free layouts!!', body: 'taking layout requests this weekend. tell me your colors and your favorite band. no promises on the marquee.' });
   await comment(banana, pete, 'ur playlist is decent. jk it\'s elite');
-  await mia.post('/api/blog', { title: 'full moon notes', subtitle: 'what i\'m keeping and what i\'m letting go', mood: 'dreamy', body: 'the moon was so bright tonight that i could read without a lamp. i made a list of everything i want to let go of this month and then fell asleep before i finished it, which honestly feels like the point.\n\nthings i\'m keeping: my friends, my playlists, the glow-in-the-dark stars on my ceiling.\n\nthings i\'m letting go of: checking if someone read my message. it\'s a full moon, not a read receipt.' });
+  const fullMoon = (await mia.post('/api/blog', { title: 'full moon notes', subtitle: 'what i\'m keeping and what i\'m letting go', mood: 'dreamy', body: 'the moon was so bright tonight that i could read without a lamp. i made a list of everything i want to let go of this month and then fell asleep before i finished it, which honestly feels like the point.\n\nthings i\'m keeping: my friends, my playlists, the glow-in-the-dark stars on my ceiling.\n\nthings i\'m letting go of: checking if someone read my message. it\'s a full moon, not a read receipt. #fullmoon' })).id;
+  await act(banana, 'like', fullMoon);
+  await act(banana, 'like', moon);
   await comment(mia, banana, 'your banana bread mix cured my mercury retrograde');
   await banana.post('/api/bulletins', { subject: 'new mix out', body: '"songs to clean your room to" vol. 2 is done. 14 tracks, zero skips. message me for the tracklist.' });
   await comment(kat, jules, 'film me next time, i wanna be in the documentary');
   await status(drew, 'new poem on my blog. it\'s about rain. it\'s always about rain');
   await dm(drew, mia, 'did you mean it about the tower card');
   await dm(mia, drew, 'it means change!! good change. probably');
-  await status(banana, 'new mix: songs to clean your room to. link in my bulletin');
+  await status(banana, 'new mix: songs to clean your room to. link in my bulletin #mixtape');
+  const hello = await status(you, 'just joined!! still figuring out where all the buttons are #newhere');
+  await act(kat, 'like', hello);
+  await reply(pete, hello, 'welcome!! the buttons are mostly decorative');
   await comment(kat, you, 'hiii welcome to ourspace!!! ur page needs more glitter tho ♥ add me to ur top 8 or else (jk) (unless?)');
+  await act(mia, 'repost', hello);
   await dm(pete, you, 'hey, saw you joined. want a layout? i have a green one with a marquee');
   await dm(you, pete, 'maybe! what colors do you have?');
+  await jules.post(`/api/posts/${hello}/quote`, { body: 'everyone say hi to @the_reviewer!! #newhere' });
   await comment(mia, you, 'what\'s your sign?? wait never mind, it\'s on your page. ARIES. that explains the confidence ✩');
-  await status(kat, 'new layout!!! tell me what u think ♥');
+  await status(banana, 'making a welcome mix for @the_reviewer. requests?? #mixtape');
+  const layout = await status(kat, 'new layout!!! tell me what u think ♥ #layouts');
+  for (const c of [jules, pete, mia]) await act(c, 'like', layout);
+  await act(you, 'bookmark', fullMoon);
   await dm(pete, you, 'green. also green. (i can do purple too)');
   await dm(kat, you, 'omg hi!! welcome!! did u see my survey bulletin?? take it!!!');
   await kat.post('/api/reports', { type: 'post', id: peteComment.id, reason: 'harassment', details: 'he\'s being mean about my sparkle cursor (jk, i\'m testing the report button)' });
@@ -191,6 +213,18 @@ async function seed() {
   sql(`UPDATE messages SET created = ${now} - ((SELECT MAX(id) FROM messages) - id) * 1200000 - 120000`);
   // the follows came first (or "pick up where I left off", which skips posts from before a follow, would be empty)
   sql(`UPDATE follows SET created = ${now} - 86400000, accepted = CASE WHEN status = 'accepted' THEN ${now} - 86400000 END`);
+  // what hangs off a post follows it: a tag has its post's time, a like or bookmark comes two minutes later, a
+  // notification when what it's about happened (follows: a day back). Then your Notifications tab is read up to the follows.
+  sql([
+    'UPDATE post_tags SET created = (SELECT created FROM posts WHERE id = post_id)',
+    'UPDATE likes SET created = (SELECT created FROM posts WHERE id = post_id) + 120000',
+    'UPDATE bookmarks SET created = (SELECT created FROM posts WHERE id = post_id) + 120000',
+    `UPDATE notifications SET created = CASE kind
+      WHEN 'like' THEN (SELECT created FROM posts WHERE id = post_id) + 120000
+      WHEN 'repost' THEN (SELECT created FROM posts WHERE kind = 'repost' AND author_id = actor_id AND quote_of = post_id)
+      ELSE COALESCE((SELECT created FROM posts WHERE id = post_id), ${now} - 86400000) END`,
+    `INSERT INTO markers (user_id, name, last_created, last_id, updated) SELECT user_id, 'notifications', created, id, ${now} FROM notifications WHERE id = ${readUpTo}`,
+  ].join(';\n'));
   sql(`UPDATE users SET created = ${now} - ((SELECT MAX(id) FROM users) - id + 2) * 86400000`);   // they joined over the past week or so
   sql(`UPDATE users SET is_admin = 1 WHERE name_key = 'malten'`);
 }

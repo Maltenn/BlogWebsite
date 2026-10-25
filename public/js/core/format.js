@@ -14,12 +14,14 @@ export function clock(ms) {
   return `${hr}:${String(d.getMinutes()).padStart(2, '0')} ${ap}`;
 }
 export const dayName = ms => new Date(ms).toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
+// "just now", "5 minutes ago", "1 hour ago", "2 days ago", then the date
 export function ago(ms) {
   const s = Math.max(0, (Date.now() - ms) / 1000);
+  const n = (count, unit) => `${count} ${unit}${count === 1 ? '' : 's'} ago`;
   if (s < 90) return 'just now';
-  if (s < 3600) return Math.round(s / 60) + ' minutes ago';
-  if (s < 86400) return Math.round(s / 3600) + ' hours ago';
-  if (s < 86400 * 30) return Math.round(s / 86400) + ' days ago';
+  if (s < 3600) return n(Math.round(s / 60), 'minute');
+  if (s < 86400) return n(Math.round(s / 3600), 'hour');
+  if (s < 86400 * 30) return n(Math.round(s / 86400), 'day');
   return when(ms);
 }
 // the reader's own calendar day, for the astrology endpoints
