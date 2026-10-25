@@ -99,7 +99,7 @@ export async function renderEdit(root) {
 
   const top8 = h('div', { class: 'cz-top8' });
   const paintTop8 = () => {
-    top8.replaceChildren(...fr.friends.map(f => {
+    top8.replaceChildren(...fr.people.map(f => {
       const pos = draft.top8.indexOf(f.id);
       const cb = h('input', { type: 'checkbox', checked: pos >= 0 });
       cb.addEventListener('change', () => {
@@ -113,8 +113,8 @@ export async function renderEdit(root) {
     }));
   };
   paintTop8();
-  const friendsSec = sec('⭐ top 8', 'tick them in the order you want them shown',
-    fr.friends.length ? top8 : h('div', { class: 'ms-empty', text: 'add some friends first!' }));
+  const friendsSec = sec('⭐ top 8', 'friends only: tick them in the order you want them shown',
+    fr.people.length ? top8 : h('div', { class: 'ms-empty', text: 'no friends yet. friends are people who follow each other: follow some people!' }));
 
   const save = h('button', { class: 'btn98 go', type: 'button', text: '💾 save my page' });
   save.addEventListener('click', async () => {

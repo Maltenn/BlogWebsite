@@ -1,5 +1,6 @@
 # 006 — Twitter shape, OurSpace look
 Status: proposed (2026-10-25)
+Implemented in phase 1 with relation.following = none|pending|accepted plus followsMe/friends (not rel.follow), and a markers table keyed by (user_id, name) holding the last seen post as (last_created, last_id).
 
 ## Question
 OurSpace is being reshaped like Twitter: one-way follows (mutual = friends), statuses, a Substack-style blog section, a separate Friends' Comments tab, a feed with a "pick up where I left off" mode, and later replies, boards and chat. How does that sit on the existing blue-header / Win98 / MySpace-1.0 skin, and what exactly is the reading marker?

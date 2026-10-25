@@ -55,8 +55,20 @@ export function cleanEmail(raw) {
   return e;
 }
 
+// The network an address belongs to, for rate limits: IPv4 as is; IPv6 by its /64, because one home or phone line
+// is handed a whole /64 and could otherwise rotate through 2^64 addresses to dodge every per-IP limit.
+export function ipGroup(ip) {
+  ip = String(ip || '').trim().toLowerCase().split('%')[0];
+  if (!ip.includes(':')) return ip || '0.0.0.0';
+  if (ip.includes('.')) return ip.slice(ip.lastIndexOf(':') + 1);   // IPv4-mapped (::ffff:1.2.3.4) is really IPv4
+  const [head, tail = ''] = ip.split('::');
+  const h = head ? head.split(':') : [], t = tail ? tail.split(':') : [];
+  const groups = [...h, ...Array(Math.max(0, 8 - h.length - t.length)).fill('0'), ...t];
+  return groups.slice(0, 4).map(g => g.replace(/^0+(?=.)/, '')).join(':') + '::/64';
+}
+
 export async function ipKey(c) {
-  const ip = c.req.headers.get('CF-Connecting-IP') || '0.0.0.0';
+  const ip = ipGroup(c.req.headers.get('CF-Connecting-IP'));
   return (await sha256Hex(`${c.env.IP_SALT || 'ourspace-social'}|${ip}`)).slice(0, 32);
 }
 
@@ -82,7 +94,7 @@ export function ageGate(c, birthday) {
   return b.birthdate;
 }
 
-// shared by every way of signing up: checks the screen name, makes the account, its page and its "joined" line
+// shared by every way of signing up: checks the screen name, makes the account and its page
 export async function createUser(c, { name, email, passHash, birthdate, avatar }) {
   const nameErr = nameProblem(name);
   if (nameErr) fail(400, nameErr);
@@ -103,10 +115,7 @@ export async function createUser(c, { name, email, passHash, birthdate, avatar }
     if (/UNIQUE/i.test(String(e && e.message))) fail(409, 'that screen name or email was just taken. try again.');
     throw e;
   }
-  await c.env.DB.batch([
-    c.env.DB.prepare('INSERT INTO profiles (user_id, data, updated) VALUES (?, ?, ?)').bind(user.id, JSON.stringify(defaultProfile()), c.now),
-    c.env.DB.prepare('INSERT INTO posts (kind, author_id, body, created) VALUES (\'joined\', ?, \'\', ?)').bind(user.id, c.now),
-  ]);
+  await c.env.DB.prepare('INSERT INTO profiles (user_id, data, updated) VALUES (?, ?, ?)').bind(user.id, JSON.stringify(defaultProfile()), c.now).run();
   return user;
 }
 
@@ -121,7 +130,7 @@ export async function currentUser(c) {
   if (!token || token.length > 100) return null;
   const tokenHash = await sha256Hex(token);
   const u = await c.env.DB.prepare(`
-    SELECT u.id, u.name, u.email, u.avatar, u.birthdate, u.is_admin, u.banned, u.wall_policy, u.dm_policy, u.last_seen, u.pass_hash, s.expires
+    SELECT u.id, u.name, u.email, u.avatar, u.birthdate, u.is_admin, u.banned, u.follow_policy, u.dm_policy, u.last_seen, u.pass_hash, s.expires
     FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token_hash = ?`).bind(tokenHash).first();
   if (!u || u.expires < c.now || u.banned) return null;
   if (!u.last_seen || u.last_seen < c.now - 60000) {
@@ -136,8 +145,8 @@ export async function me(c) {
   const id = c.user.id;
   const counts = await c.env.DB.prepare(`
     SELECT
-      (SELECT COUNT(*) FROM friendships f WHERE (f.a = ?1 OR f.b = ?1) AND f.status = 'pending' AND f.requested_by != ?1
-         AND NOT EXISTS (SELECT 1 FROM users x WHERE x.id = f.requested_by AND x.banned = 1)) AS requests,
+      (SELECT COUNT(*) FROM follows f JOIN users x ON x.id = f.follower_id
+         WHERE f.followee_id = ?1 AND f.status = 'pending' AND x.banned = 0) AS requests,
       (SELECT COUNT(*) FROM messages m JOIN users x ON x.id = m.from_id
          WHERE m.to_id = ?1 AND m.read_at IS NULL AND m.hidden = 0 AND m.created <= ?2 AND x.banned = 0
          AND NOT EXISTS (SELECT 1 FROM blocks bl WHERE (bl.blocker_id = ?1 AND bl.blocked_id = m.from_id) OR (bl.blocked_id = ?1 AND bl.blocker_id = m.from_id))) AS unread,
@@ -145,7 +154,7 @@ export async function me(c) {
   return json({
     user: userOut(c.user),
     counts: { requests: counts.requests, unread: counts.unread, reports: c.user.is_admin ? counts.reports : 0 },
-    settings: { wallPolicy: c.user.wall_policy, dmPolicy: c.user.dm_policy },
+    settings: { followPolicy: c.user.follow_policy, dmPolicy: c.user.dm_policy },
     minAge: Number(c.env.MIN_AGE || 13),
   });
 }
@@ -272,7 +281,8 @@ export async function deleteAccount(c) {
   await DB.batch([
     DB.prepare('DELETE FROM posts WHERE author_id = ?1 OR target_id = ?1').bind(id),
     DB.prepare('DELETE FROM messages WHERE from_id = ?1 OR to_id = ?1').bind(id),
-    DB.prepare('DELETE FROM friendships WHERE a = ?1 OR b = ?1').bind(id),
+    DB.prepare('DELETE FROM follows WHERE follower_id = ?1 OR followee_id = ?1').bind(id),
+    DB.prepare('DELETE FROM markers WHERE user_id = ?').bind(id),
     DB.prepare('DELETE FROM blocks WHERE blocker_id = ?1 OR blocked_id = ?1').bind(id),
     DB.prepare('DELETE FROM sessions WHERE user_id = ?').bind(id),
     DB.prepare('DELETE FROM identities WHERE user_id = ?').bind(id),

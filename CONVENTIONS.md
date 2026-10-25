@@ -5,8 +5,8 @@ Rules for changing this repo. Setup and architecture are in [README.md](README.m
 ## Route
 
 - One line in the route table at the top of `src/index.js`: method, path, handler, and `OPEN`, `AUTH` or `ADMIN`.
-- Handlers take the request context `c`, return `json()` and report errors with `fail()`. Name write handlers verbNoun (`postWall`, `addFriend`); read handlers may be plain nouns (`profile`, `feed`).
-- Every new route gets an end-to-end test in `test/api.test.mjs`. (Five older routes have none yet: `POST /api/me/spotify/refresh`, `GET /api/users/:name/friends`, `GET /api/users/:name/statuses`, `POST /api/admin/content`, `GET /api/admin/log`.)
+- Handlers take the request context `c`, return `json()` and report errors with `fail()`. Name write handlers verbNoun (`postComment`, `followUser`); read handlers may be plain nouns (`profile`, `feed`).
+- Every new route gets an end-to-end test in `test/api.test.mjs`. (Three older routes have none yet: `POST /api/me/spotify/refresh`, `POST /api/admin/content`, `GET /api/admin/log`.)
 
 ## Feature
 
@@ -21,7 +21,7 @@ Rules for changing this repo. Setup and architecture are in [README.md](README.m
 ## Page
 
 - `public/js/pages/<page>.js` exports `renderX(root, arg)` and is registered in the `ROUTES` table in `public/app.js`.
-- Code used by two or more pages goes in `public/js/widgets/`.
+- Code used by two or more pages, or a self-contained piece of one page big enough for its own file, goes in `public/js/widgets/` (pages stay thin).
 - `public/js/core/` imports nothing above it.
 - A new static folder under `public/` must be added to the router's `STATIC_PREFIXES`.
 
@@ -39,6 +39,7 @@ Rules for changing this repo. Setup and architecture are in [README.md](README.m
 ## Tests
 
 - `npm test` runs `test/*.test.mjs`.
+- A migration that changes existing rows gets a case in `test/migrations.test.mjs`: build the database as the earlier files left it, apply the new one, check the result.
 - Helpers live in `test/helpers/`.
 
 ## Invariants

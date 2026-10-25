@@ -1,11 +1,13 @@
 # OurSpace
 
-A social network for real people, in the spirit of early-2000s MySpace: decorated pages, a Top 8, a wall, bulletins and private messages, and no bots. One Cloudflare Worker serves the pages and the API, and the data lives in one D1 database. This repo used to hold a Windows 98 desktop site as well; see [docs/history.md](docs/history.md).
+A social network for real people, in the spirit of early-2000s MySpace: decorated pages, a Top 8, Friends' Comments, bulletins and private messages, and no bots. One Cloudflare Worker serves the pages and the API, and the data lives in one D1 database. This repo used to hold a Windows 98 desktop site as well; see [docs/history.md](docs/history.md).
 
 - **Real people only.** There are no bot accounts, and nothing posts on anyone's behalf. Requests and Inbox only ever hold things from people.
 - **Sign up with an email and a password** (the default tab), or under **Other options** with Google, Apple, Microsoft, Discord or GitHub. Every way in asks for a screen name and a **birthday**.
 - **Birthdays keep it 13+** and give everyone their **star sign**. The birthday itself stays private. People choose whether their page shows their age and their sign.
-- **Public profiles** at `/u/<name>` that anyone can view, with statuses, wall comments, bulletins, blog entries, friend requests, Top 8, private messages and a shared feed.
+- **Profiles** at `/u/<name>` that anyone can view, with statuses (up to 500 characters), a blog (titles, subtitles, a page for each post), Friends' Comments, a Top 8, Spotify and private messages.
+- **Follow people.** Following is one-way; two people who follow each other are **friends**, and only friends write in each other's Friends' Comments. Profiles are open by default, or **private**: then new followers need approving, and only followers see the statuses, blog and comments.
+- **A feed** of statuses and blog posts from the people you follow, newest first, or **pick up where you left off**: oldest unseen first, remembering how far you read. Logged out, it shows the latest from every open profile. Bulletins have their own board.
 - **Everyone can connect their own Spotify.** Their page then shows their top songs, with previews (see the Spotify limit in [docs/deploy.md](docs/deploy.md) before relying on it).
 - **Daily horoscopes, written from the real sky.** There's a reading of today's sky for everybody, a horoscope for each sign, and a personal reading for each member that also compares today's planets with the sky on the day they were born.
 - **Pages are decorated** with the Edit My Page choices: 231 preset pictures, 10 color themes, 14 background tiles (or a plain color), fonts, decor gifs and 88x31 buttons.
@@ -15,7 +17,7 @@ A social network for real people, in the spirit of early-2000s MySpace: decorate
 
 ## Try it on your computer (the demo)
 
-One command starts the whole site on your own computer, already filled with sample people, posts, friend requests and messages. Nothing in it is real or online.
+One command starts the whole site on your own computer, already filled with sample people, follows, posts and messages. Nothing in it is real or online.
 
 You need [Node.js](https://nodejs.org) 22 or newer and [git](https://git-scm.com). Then, in a terminal:
 
@@ -31,7 +33,7 @@ When it says **ourspace demo is running**, open **http://127.0.0.1:8787** in you
 
 | Log in as | Email | Password | Who |
 |---|---|---|---|
-| you | `you@example.com` | `ourspace-demo` | `the_reviewer`, a regular member with friend requests and messages waiting |
+| you | `you@example.com` | `ourspace-demo` | `the_reviewer`, a regular member with friends, two new followers, a follow request waiting on a private profile (`emo_drew`) and messages |
 | the moderator | `malten@example.com` | `ourspace-demo` | `malten`, sees the **Moderation** tab with a sample report |
 | anyone else | `kat@`, `jules@`, `drew@`, `pete@`, `mia@` or `banana@example.com` | `ourspace-demo` | the sample members, to see the site from their side |
 

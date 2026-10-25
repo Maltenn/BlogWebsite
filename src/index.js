@@ -1,14 +1,15 @@
 // ourspace-social — one Worker for the whole site:
-//   /api/*          the JSON API below (accounts, sign-in providers, profiles, friends, posts, messages, Spotify,
-//                   astrology, blocks, reports, moderation)
+//   /api/*          the JSON API below (accounts, sign-in providers, profiles, follows, posts and the feed, messages,
+//                   Spotify, astrology, blocks, reports, moderation)
 //   everything else the static pages in public/ (wrangler.jsonc → assets), with /u/<name> etc. falling back to
 //                   index.html so the page's own router can draw them
 // The cron (every 30 min) clears out expired sessions, sign-in tickets, reset links and old rate-limit rows.
 import { HttpError, json } from './shared/http.js';
 import { currentUser, me, signup, login, logout, changePassword, deleteAccount, forgotPassword, resetPassword } from './accounts/auth.js';
 import { oauthStart, oauthCallback, signupPending, signupFinish, providers, account, unlink } from './accounts/oauth.js';
-import { options, profile, browse, friendsOf, saveProfile, saveSettings } from './profiles/profiles.js';
-import { addFriend, removeFriend, requests, postWall, postStatus, postBulletin, postBlog, deletePost, feed, bulletins, blogOf, statusesOf } from './social/social.js';
+import { options, profile, browse, saveProfile, saveSettings } from './profiles/profiles.js';
+import { followUser, unfollowUser, acceptFollower, removeFollower, requests, followersOf, followingOf, friendsOf } from './follows/follows.js';
+import { postComment, postStatus, postBulletin, postBlog, deletePost, feed, saveMarker, bulletins, blogOf, statusesOf, commentsOf, onePost } from './social/social.js';
 import { inbox, thread, sendMessage } from './messages/messages.js';
 import { getSpotify, putSpotify, refreshSpotify, deleteSpotify } from './music/spotify.js';
 import { astroSky, astroSign, astroMe } from './horoscope/horoscope.js';
@@ -35,6 +36,7 @@ const ROUTES = [
   ['DELETE', '/api/me/identities/:provider', unlink, AUTH],
   ['PUT', '/api/me/profile', saveProfile, AUTH],
   ['PUT', '/api/me/settings', saveSettings, AUTH],
+  ['PUT', '/api/me/markers/:name', saveMarker, AUTH],
   ['POST', '/api/me/password', changePassword, AUTH],
   ['DELETE', '/api/me', deleteAccount, AUTH],
   ['GET', '/api/me/spotify', getSpotify, AUTH],
@@ -48,21 +50,27 @@ const ROUTES = [
 
   ['GET', '/api/users', browse, OPEN],
   ['GET', '/api/users/:name', profile, OPEN],
+  ['GET', '/api/users/:name/followers', followersOf, OPEN],
+  ['GET', '/api/users/:name/following', followingOf, OPEN],
   ['GET', '/api/users/:name/friends', friendsOf, OPEN],
   ['GET', '/api/users/:name/blog', blogOf, OPEN],
   ['GET', '/api/users/:name/statuses', statusesOf, OPEN],
-  ['POST', '/api/users/:name/wall', postWall, AUTH],
+  ['GET', '/api/users/:name/comments', commentsOf, OPEN],
+  ['POST', '/api/users/:name/comments', postComment, AUTH],
 
   ['GET', '/api/feed', feed, OPEN],
   ['POST', '/api/status', postStatus, AUTH],
   ['GET', '/api/bulletins', bulletins, OPEN],
   ['POST', '/api/bulletins', postBulletin, AUTH],
   ['POST', '/api/blog', postBlog, AUTH],
+  ['GET', '/api/posts/:id', onePost, OPEN],
   ['DELETE', '/api/posts/:id', deletePost, AUTH],
 
   ['GET', '/api/requests', requests, AUTH],
-  ['POST', '/api/friends/:name', addFriend, AUTH],
-  ['DELETE', '/api/friends/:name', removeFriend, AUTH],
+  ['POST', '/api/follows/:name', followUser, AUTH],
+  ['DELETE', '/api/follows/:name', unfollowUser, AUTH],
+  ['POST', '/api/followers/:name', acceptFollower, AUTH],
+  ['DELETE', '/api/followers/:name', removeFollower, AUTH],
 
   ['GET', '/api/inbox', inbox, AUTH],
   ['GET', '/api/inbox/:name', thread, AUTH],

@@ -23,7 +23,7 @@ export function paintChrome() {
     label, badge ? h('span', { class: 'ms-badge', text: String(badge) }) : null);
   const mine = S.me && (path === userPath(S.me.name) || path.toLowerCase().startsWith(userPath(S.me.name).toLowerCase() + '/'));
   const tabs = [
-    tab('Home', '/', 0, path === '/'),
+    tab(S.me ? 'Feed' : 'Home', '/', 0, path === '/'),
     S.me ? tab('My Page', userPath(S.me.name), 0, mine) : null,
     tab('Browse', '/browse', 0, path === '/browse'),
     S.me ? tab('Requests', '/requests', S.counts.requests, path === '/requests') : null,

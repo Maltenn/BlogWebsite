@@ -28,3 +28,20 @@ export function today() {
   const date = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
   return `date=${date}&tz=${d.getTimezoneOffset()}`;
 }
+
+/* ---- feed and blog ---- */
+// "Tue 14 Oct" — the heading between days in the feed
+export const dayLabel = ms => new Date(ms).toLocaleDateString(undefined, { weekday: 'short', day: 'numeric', month: 'short' });
+// "October 2026" — the headings in a blog's index
+export const monthLabel = ms => new Date(ms).toLocaleDateString(undefined, { month: 'long', year: 'numeric' });
+// "Oct 25" (with the year when it isn't this year)
+export function shortDate(ms) {
+  const d = new Date(ms);
+  return `${MONTHS[d.getMonth()]} ${d.getDate()}` + (d.getFullYear() === new Date().getFullYear() ? '' : ' ' + d.getFullYear());
+}
+export const sameDay = (a, b) => new Date(a).toDateString() === new Date(b).toDateString();
+// "6 min read" (about 220 words a minute)
+export function readTime(text) {
+  const words = String(text).trim().split(/\s+/).filter(Boolean).length;
+  return Math.max(1, Math.ceil(words / 220)) + ' min read';
+}

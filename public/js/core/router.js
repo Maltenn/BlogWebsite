@@ -1,7 +1,8 @@
 /* core/router.js — the page router. In-app links and back/forward go through
    route(), which looks the path up in the table the entry hands to start().
    A page that starts something (an interval, a song preview) registers its
-   cleanup with onLeave(); it runs once, when the next page starts. */
+   cleanup with onLeave(); it runs once, when the next page starts.
+   A page gets render(root, arg, arg2…): one argument per (…) in its pattern. */
 
 import { h, content, enc } from './dom.js';
 import { toast, pageTitle, errorCard } from './ui.js';
@@ -35,9 +36,8 @@ export async function route() {
   if (found.auth && !S.me) { needLogin(); return; }
   const page = h('div');
   try {
-    let arg = found.m[1];
-    if (arg) { try { arg = decodeURIComponent(arg); } catch { /* use as is */ } }
-    await found.fn(page, arg);
+    const args = found.m.slice(1).map(a => { try { return a && decodeURIComponent(a); } catch { return a; } });
+    await found.fn(page, ...args);
   } catch (e) {
     if (e.status === 401) { S.me = null; needLogin(); return; }
     page.append(errorCard(e));

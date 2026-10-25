@@ -1,7 +1,7 @@
-// Profiles: what a page holds, how edits are validated, and the public profile answer anybody can read.
+// Profiles: what a page holds, how edits are validated, and the profile answer anybody can read.
 import { fail, json, readBody, int } from '../shared/http.js';
 import { text, longText } from '../shared/text.js';
-import { REF_COLS, ref, refOf, visibleUser, friendship, blockedBy, NOT_BLOCKED, isOnline, profileData } from '../shared/db.js';
+import { REF_COLS, ref, refOf, visibleUser, canSeePosts, relationTo, NOT_BLOCKED, VISIBLE, LISTS, isOnline, profileData } from '../shared/db.js';
 import { THEMES, TILES, FONTS, DECOR, BADGES, STATUSES, HERE_FOR, GENDERS, MOODS, INTEREST_KEYS, REPORT_REASONS } from '../catalog/options.js';
 import { AVATARS } from '../catalog/avatars.js';
 import { ageOn } from '../shared/dates.js';
@@ -96,6 +96,13 @@ export async function saveProfile(c) {
   const input = await readBody(c.req);
   const current = await profileData(c.env, c.user.id);
   const next = applyProfileEdit(current, input);
+  if (next.top8.length && Object.prototype.hasOwnProperty.call(input, 'top8')) {
+    // the Top 8 holds friends only
+    const { results } = await c.env.DB.prepare(`SELECT x.id FROM ${LISTS.friends.from} AND x.id IN (SELECT value FROM json_each(?3))`)
+      .bind(c.user.id, c.user.id, JSON.stringify(next.top8)).all();
+    const friends = new Set(results.map(r => r.id));
+    next.top8 = next.top8.filter(id => friends.has(id));
+  }
   let avatar = c.user.avatar;
   if (Object.prototype.hasOwnProperty.call(input, 'avatar')) {
     if (!isAvatar(input.avatar)) fail(400, 'pick one of the pictures.');
@@ -108,57 +115,58 @@ export async function saveProfile(c) {
   return json({ ok: true, avatar, profile: presentProfile(next) });
 }
 
-// PUT /api/me/settings — who may comment on my wall / message me
+// PUT /api/me/settings — who may follow me (anyone at once, or only people I approve) and who may message me
 export async function saveSettings(c) {
   const input = await readBody(c.req);
-  const ok = v => v === 'everyone' || v === 'friends';
-  const wall = input.wallPolicy ?? c.user.wall_policy;
+  const follow = input.followPolicy ?? c.user.follow_policy;
   const dm = input.dmPolicy ?? c.user.dm_policy;
-  if (!ok(wall) || !ok(dm)) fail(400, 'choose everyone or friends.');
-  await c.env.DB.prepare('UPDATE users SET wall_policy = ?, dm_policy = ? WHERE id = ?').bind(wall, dm, c.user.id).run();
-  return json({ ok: true, settings: { wallPolicy: wall, dmPolicy: dm } });
+  if (follow !== 'open' && follow !== 'approve') fail(400, 'choose open or approve.');
+  if (dm !== 'everyone' && dm !== 'friends') fail(400, 'choose everyone or friends.');
+  const DB = c.env.DB;
+  const stmts = [DB.prepare('UPDATE users SET follow_policy = ?, dm_policy = ? WHERE id = ?').bind(follow, dm, c.user.id)];
+  // an open profile takes follows at once, so going open lets in everyone still waiting
+  if (follow === 'open') {
+    stmts.push(DB.prepare('UPDATE follows SET status = \'accepted\', accepted = ? WHERE followee_id = ? AND status = \'pending\'').bind(c.now, c.user.id));
+  }
+  await DB.batch(stmts);
+  return json({ ok: true, settings: { followPolicy: follow, dmPolicy: dm } });
 }
 
-// The top 8 as shown: the owner's chosen order first, then their newest friends, up to 8
-async function topFriends(c, owner, chosen) {
-  const viewer = c.user ? c.user.id : 0;
-  const { results } = await c.env.DB.prepare(`
-    SELECT ${REF_COLS('u', '')}, f.accepted
-    FROM friendships f JOIN users u ON u.id = CASE WHEN f.a = ?2 THEN f.b ELSE f.a END
-    WHERE (f.a = ?2 OR f.b = ?2) AND f.status = 'accepted' AND u.banned = 0 AND ${NOT_BLOCKED('u.id')}
-    ORDER BY f.accepted DESC LIMIT 200`).bind(viewer, owner.id).all();
+// The top 8 as shown: the owner's chosen friends in order first, then their newest friends, up to 8. Somebody who may
+// not see the owner's posts (seePosts false) gets only the friends the owner chose, never the newest-friends fill, so a
+// private profile's friends aren't given away.
+async function topFriends(c, owner, chosen, seePosts) {
+  const { results } = await c.env.DB.prepare(`SELECT ${REF_COLS('x', '')} FROM ${LISTS.friends.from} ORDER BY ${LISTS.friends.since} DESC LIMIT 200`)
+    .bind(c.user ? c.user.id : 0, owner.id).all();
   const byId = new Map(results.map(r => [r.id, r]));
-  const order = [...(chosen || []).filter(id => byId.has(id)), ...results.map(r => r.id)];
-  return { count: results.length, top8: [...new Set(order)].slice(0, 8).map(id => ref(byId.get(id))) };
+  const order = [...(chosen || []).filter(id => byId.has(id)), ...(seePosts ? results.map(r => r.id) : [])];
+  return [...new Set(order)].slice(0, 8).map(id => ref(byId.get(id)));
 }
 
-// GET /api/users/:name — a public profile page. Anybody can read it, logged in or not.
+// GET /api/users/:name — a profile page. Anybody can read the page itself (logged in or not); a private profile's
+// statuses, blog and Friends' Comments are only for its accepted followers, the owner and moderators (canSeePosts), and
+// so are their totals in `counts`. The comments themselves come from GET /api/users/:name/comments.
 export async function profile(c) {
   const u = await visibleUser(c, c.params.name);
   const viewer = c.user ? c.user.id : 0;
-  const data = await profileData(c.env, u.id);
-  const friends = await topFriends(c, u, data.top8);
-  const { results: wall } = await c.env.DB.prepare(`
-    SELECT p.id, p.body, p.created, ${REF_COLS('a', 'a_')}
-    FROM posts p JOIN users a ON a.id = p.author_id
-    WHERE p.target_id = ?2 AND p.kind = 'wall' AND p.hidden = 0 AND p.created <= ?3 AND a.banned = 0 AND ${NOT_BLOCKED('a.id')}
-    ORDER BY p.created DESC, p.id DESC LIMIT 50`).bind(viewer, u.id, c.now).all();
-  const blog = await c.env.DB.prepare(`
-    SELECT id, subject AS title, mood, body, created, (SELECT COUNT(*) FROM posts WHERE author_id = ?1 AND kind = 'blog' AND hidden = 0 AND created <= ?2) AS n
-    FROM posts WHERE author_id = ?1 AND kind = 'blog' AND hidden = 0 AND created <= ?2 ORDER BY created DESC LIMIT 1`).bind(u.id, c.now).first();
   const self = viewer === u.id;
-  const admin = !!(c.user && c.user.is_admin);
-
-  let relation = null;
-  if (c.user && !self) {
-    const f = await friendship(c.env, viewer, u.id);
-    const friend = !f ? 'none' : f.status === 'accepted' ? 'friends' : f.requested_by === viewer ? 'requested' : 'incoming';
-    const blockedByMe = await blockedBy(c.env, viewer, u.id);
-    relation = {
-      friend, blockedByMe,
-      canComment: !blockedByMe && (u.wall_policy === 'everyone' || friend === 'friends'),
-      canMessage: !blockedByMe && (u.dm_policy === 'everyone' || friend === 'friends'),
-    };
+  const DB = c.env.DB;
+  const data = await profileData(c.env, u.id);
+  const seePosts = await canSeePosts(c, u);
+  const counts = await DB.prepare(`SELECT
+      (SELECT COUNT(*) FROM ${LISTS.followers.from}) AS followers,
+      (SELECT COUNT(*) FROM ${LISTS.following.from}) AS following,
+      (SELECT COUNT(*) FROM ${LISTS.friends.from}) AS friends`).bind(viewer, u.id).first();
+  let totals = {}, status = null, blog = [];
+  if (seePosts) {
+    totals = await DB.prepare(`SELECT COALESCE(SUM(p.kind = 'status'), 0) AS statuses, COALESCE(SUM(p.kind = 'blog'), 0) AS blog,
+        COALESCE(SUM(p.kind = 'wall'), 0) AS comments
+      FROM posts p JOIN users a ON a.id = p.author_id
+      WHERE ${VISIBLE} AND ((p.kind IN ('status', 'blog') AND p.author_id = ?3) OR (p.kind = 'wall' AND p.target_id = ?3))`).bind(viewer, c.now, u.id).first();
+    status = await DB.prepare(`SELECT id, body, created FROM posts WHERE author_id = ?1 AND kind = 'status' AND hidden = 0 AND created <= ?2
+      ORDER BY created DESC, id DESC LIMIT 1`).bind(u.id, c.now).first();
+    ({ results: blog } = await DB.prepare(`SELECT id, subject AS title, subtitle, created FROM posts
+      WHERE author_id = ?1 AND kind = 'blog' AND hidden = 0 AND created <= ?2 ORDER BY created DESC, id DESC LIMIT 3`).bind(u.id, c.now).all());
   }
   const sign = sunSign(u.birthdate);
   return json({
@@ -167,17 +175,15 @@ export async function profile(c) {
     age: data.showAge === false ? null : ageOn(u.birthdate, c.now),
     sign: data.showSign === false ? null : { key: sign.key, name: sign.name, glyph: sign.glyph },
     spotify: await profileSpotify(c, u.id),
-    friendCount: friends.count,
-    top8: friends.top8,
-    wall: wall.map(w => ({
-      id: w.id, body: w.body, created: w.created, author: ref(w, 'a_'),
-      canDelete: self || admin || (c.user && w.a_id === viewer),
-    })),
-    latestBlog: blog ? { id: blog.id, title: blog.title, mood: blog.mood, body: blog.body.slice(0, 400), created: blog.created } : null,
-    blogCount: blog ? blog.n : 0,
+    counts: { followers: counts.followers, following: counts.following, friends: counts.friends, ...totals },
+    top8: await topFriends(c, u, data.top8, seePosts),
+    private: u.follow_policy === 'approve',
+    canSeePosts: seePosts,
+    latestStatus: status ? { id: status.id, body: status.body, created: status.created } : null,
+    blog: blog.map(b => ({ id: b.id, title: b.title, subtitle: b.subtitle || null, created: b.created })),
     self,
-    relation,
-    policies: { wall: u.wall_policy, dm: u.dm_policy },
+    relation: await relationTo(c, u),
+    policies: { follow: u.follow_policy, dm: u.dm_policy },
   });
 }
 
@@ -204,16 +210,4 @@ export async function browse(c) {
     users: results.slice(0, per).map(r => ({ ...ref(r), tag: r.tag || '', joined: r.created, online: isOnline(r, c.now) })),
     more: results.length > per,
   });
-}
-
-// GET /api/users/:name/friends — everyone on their friend list
-export async function friendsOf(c) {
-  const u = await visibleUser(c, c.params.name);
-  const viewer = c.user ? c.user.id : 0;
-  const { results } = await c.env.DB.prepare(`
-    SELECT ${REF_COLS('x', '')}, x.last_seen
-    FROM friendships f JOIN users x ON x.id = CASE WHEN f.a = ?2 THEN f.b ELSE f.a END
-    WHERE (f.a = ?2 OR f.b = ?2) AND f.status = 'accepted' AND x.banned = 0 AND ${NOT_BLOCKED('x.id')}
-    ORDER BY f.accepted DESC LIMIT 500`).bind(viewer, u.id).all();
-  return json({ user: refOf(u), friends: results.map(r => ({ ...ref(r), online: isOnline(r, c.now) })) });
 }

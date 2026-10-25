@@ -47,7 +47,7 @@ export async function reportDialog({ type, id, name, what }) {
 export async function blockUser(name) {
   const ok = await dialog({
     title: 'Block ' + name, icon: '🚫', ok: 'Block', danger: true,
-    text: `${name} won't be able to message you, comment on your wall, friend you or see your page, and you'll stop seeing each other's posts. They won't be told. You can unblock them later in Settings.`,
+    text: `${name} won't be able to message you, follow you, comment on your page or see it, and you'll stop seeing each other's posts. Any follows between you end. They won't be told. You can unblock them later in Settings.`,
   });
   if (!ok) return false;
   try { await api.post('/blocks/' + enc(name)); toast(name + ' is blocked.'); return true; } catch (e) { oops(e); return false; }

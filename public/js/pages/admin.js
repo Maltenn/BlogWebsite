@@ -8,6 +8,8 @@ import { S, loadMe } from '../core/state.js';
 import { route } from '../core/router.js';
 import { nameLink } from '../widgets/people.js';
 
+const KIND_LABEL = { wall: 'Friends\' Comment', status: 'status', blog: 'blog post', bulletin: 'bulletin' };   // what a report's post is called
+
 let modView = 'open';
 export async function renderAdmin(root) {
   if (!S.me.isAdmin) { root.append(pageTitle('Moderation'), h('div', { class: 'ms-empty', text: 'moderators only.' })); return; }
@@ -23,7 +25,7 @@ export async function renderAdmin(root) {
   };
   d.reports.forEach(r => {
     const s = r.snapshot || {};
-    const what = r.type === 'user' ? `profile of ${s.name || '?'}` : r.type === 'message' ? `private message from ${s.author || '?'}` : `${s.kind || 'post'} by ${s.author || '?'}`;
+    const what = r.type === 'user' ? `profile of ${s.name || '?'}` : r.type === 'message' ? `private message from ${s.author || '?'}` : `${KIND_LABEL[s.kind] || s.kind || 'post'} by ${s.author || '?'}`;
     const snapText = r.type === 'user' ? [s.tag, s.mood, s.about, s.meet].filter(Boolean).join('\n—\n') : [s.subject, s.body].filter(Boolean).join('\n');
     const state = r.type === 'user' ? '' : r.targetHidden == null ? ' (deleted by its author)' : r.targetHidden ? ' (hidden)' : '';
     root.append(h('div', { class: 'mod-report' + (r.status === 'open' ? '' : ' closed') },

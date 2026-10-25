@@ -22,7 +22,9 @@ import { renderEdit } from './js/pages/edit.js';
 import { renderHome } from './js/pages/home.js';
 import { renderHoroscope } from './js/pages/horoscope.js';
 import { renderInbox, renderThread } from './js/pages/inbox.js';
-import { renderProfile, renderFriends, renderUserBlog } from './js/pages/profile.js';
+import { renderBlogPost } from './js/pages/blog.js';
+import { renderFollowers, renderFollowing, renderFriends } from './js/pages/lists.js';
+import { renderProfile, renderProfileBlog, renderProfileComments } from './js/pages/profile.js';
 import { renderRequests } from './js/pages/requests.js';
 import { renderRules } from './js/pages/rules.js';
 import { renderSettings } from './js/pages/settings.js';
@@ -37,8 +39,12 @@ const ROUTES = [
   [/^\/forgot$/, renderForgot],
   [/^\/reset$/, renderReset],
   [/^\/u\/([^/]+)$/, renderProfile],
+  [/^\/u\/([^/]+)\/blog$/, renderProfileBlog],
+  [/^\/u\/([^/]+)\/blog\/(\d+)$/, renderBlogPost],
+  [/^\/u\/([^/]+)\/comments$/, renderProfileComments],
+  [/^\/u\/([^/]+)\/followers$/, renderFollowers],
+  [/^\/u\/([^/]+)\/following$/, renderFollowing],
   [/^\/u\/([^/]+)\/friends$/, renderFriends],
-  [/^\/u\/([^/]+)\/blog$/, renderUserBlog],
   [/^\/browse$/, renderBrowse],
   [/^\/requests$/, renderRequests, true],
   [/^\/inbox$/, renderInbox, true],

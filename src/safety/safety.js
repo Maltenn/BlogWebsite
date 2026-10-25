@@ -1,7 +1,7 @@
 // Safety: blocking, reporting, and the moderator tools that act on reports.
 import { fail, json, readBody, int } from '../shared/http.js';
 import { text, longText } from '../shared/text.js';
-import { REF_COLS, ref, refOf, userByName, visibleUser, pair, limit, profileData } from '../shared/db.js';
+import { REF_COLS, ref, refOf, userByName, visibleUser, limit, profileData } from '../shared/db.js';
 import { REPORT_REASONS } from '../catalog/options.js';
 
 const REASONS = new Set(REPORT_REASONS.map(r => r.v));
@@ -16,17 +16,16 @@ export async function listBlocks(c) {
   return json({ blocked: results.map(r => ({ user: ref(r), created: r.created })) });
 }
 
-// POST /api/blocks/:name — they can't message me, comment on my wall or friend me, and we stop seeing each other's
-// posts. Any friendship or pending request between us ends.
+// POST /api/blocks/:name — they can't message me, comment on my page or follow me, and we stop seeing each other's
+// posts. Every follow (or request) between us, either way, ends.
 export async function block(c) {
   const u = await userByName(c.env, c.params.name);
   if (!u) fail(404, 'nobody by that name lives here.');
   if (u.id === c.user.id) fail(400, 'you can\'t block yourself. (tempting, we know.)');
   await limit(c, 'block:' + c.user.id, [[30, 3600000]]);
-  const [a, b] = pair(c.user.id, u.id);
   await c.env.DB.batch([
     c.env.DB.prepare('INSERT OR IGNORE INTO blocks (blocker_id, blocked_id, created) VALUES (?, ?, ?)').bind(c.user.id, u.id, c.now),
-    c.env.DB.prepare('DELETE FROM friendships WHERE a = ? AND b = ?').bind(a, b),
+    c.env.DB.prepare('DELETE FROM follows WHERE (follower_id = ?1 AND followee_id = ?2) OR (follower_id = ?2 AND followee_id = ?1)').bind(c.user.id, u.id),
   ]);
   return json({ ok: true, blocked: refOf(u) });
 }
@@ -60,7 +59,7 @@ export async function report(c) {
   } else if (type === 'post') {
     const p = await c.env.DB.prepare(`SELECT p.id, p.kind, p.subject, p.body, p.author_id, p.target_id, p.created, a.name AS author
       FROM posts p JOIN users a ON a.id = p.author_id WHERE p.id = ?`).bind(int(b.id, 0)).first();
-    if (!p || !['status', 'wall', 'bulletin', 'blog'].includes(p.kind)) fail(404, 'that post is gone.');
+    if (!p) fail(404, 'that post is gone.');
     if (p.author_id === c.user.id) fail(400, 'that\'s your own post — you can delete it instead.');
     targetId = p.id; targetUser = p.author_id;
     snapshot = { kind: p.kind, author: p.author, subject: p.subject, body: p.body, created: p.created };

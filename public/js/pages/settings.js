@@ -94,15 +94,17 @@ export async function renderSettings(root) {
   root.append(panel('♫ Spotify', spBox));
 
   // privacy
-  const radio = (name, value, current) => h('label', null, h('input', { type: 'radio', name, value, checked: value === current }), value === 'everyone' ? 'everyone' : 'friends only');
+  const radio = (name, value, current, label) => h('label', null, h('input', { type: 'radio', name, value, checked: value === current }), label);
   root.append(panel('🔒 privacy', h('form', { class: 'os-form', onsubmit: async e => {
     e.preventDefault();
     const fd = new FormData(e.target);
-    try { const r = await api.put('/me/settings', { wallPolicy: fd.get('wall'), dmPolicy: fd.get('dm') }); S.settings = r.settings; toast('saved.'); } catch (err) { oops(err); }
+    try { const r = await api.put('/me/settings', { followPolicy: fd.get('follow'), dmPolicy: fd.get('dm') }); S.settings = r.settings; toast('saved.'); } catch (err) { oops(err); }
   } },
-  h('label', null, 'who can comment on my wall', h('div', { class: 'os-radio' }, radio('wall', 'everyone', S.settings.wallPolicy), radio('wall', 'friends', S.settings.wallPolicy))),
-  h('label', null, 'who can send me messages', h('div', { class: 'os-radio' }, radio('dm', 'everyone', S.settings.dmPolicy), radio('dm', 'friends', S.settings.dmPolicy))),
-  h('p', { class: 'os-hint', text: 'your page itself is always public: anyone with the link can see it. blocked people can\'t. your age and star sign can be hidden in Edit My Page.' }),
+  h('label', null, 'who can follow me', h('div', { class: 'os-radio' },
+    radio('follow', 'open', S.settings.followPolicy, 'anyone (they follow right away)'), radio('follow', 'approve', S.settings.followPolicy, 'I approve each follower (private page)'))),
+  h('p', { class: 'os-hint', text: 'a private page shows its statuses, blog and comments only to the people who follow you. your picture, name, details, Top 8 and counts stay visible. people who already follow you keep following. when you go back to anyone, everyone waiting is let in. comments you write on other people\'s pages, and your bulletins, are seen by whoever can see those pages.' }),
+  h('label', null, 'who can send me messages', h('div', { class: 'os-radio' }, radio('dm', 'everyone', S.settings.dmPolicy, 'everyone'), radio('dm', 'friends', S.settings.dmPolicy, 'friends only'))),
+  h('p', { class: 'os-hint', text: 'friends are people who follow each other. only your friends can write on your Friends\' Comments. blocked people can\'t see your page at all. your age and star sign can be hidden in Edit My Page.' }),
   h('div', null, h('button', { class: 'btn98', type: 'submit', text: 'Save' })))));
 
   // blocked
@@ -122,12 +124,12 @@ export async function renderSettings(root) {
     h('form', { class: 'os-form', onsubmit: async e => {
       e.preventDefault();
       if (!await dialog({ title: 'Delete account', icon: '⚠', danger: true, ok: 'Delete everything',
-        text: 'This deletes your page, everything you posted, your messages, your friends list and your Spotify connection. It can\'t be undone.' })) return;
+        text: 'This deletes your page, everything you posted, your messages, your followers and the people you follow, and your Spotify connection. It can\'t be undone.' })) return;
       try {
         await api.del('/me', acct.hasPassword ? { password: confirmBox.value } : { confirm: confirmBox.value });
         S.me = null; toast('your account is gone. take care out there.'); go('/');
       } catch (err) { oops(err); }
-    } }, h('p', { class: 'os-hint', text: 'everything you wrote, your messages and your friendships are deleted for good.' }),
+    } }, h('p', { class: 'os-hint', text: 'everything you wrote, your messages and your follows are deleted for good.' }),
     h('label', null, acct.hasPassword ? 'type your password to confirm' : 'type your screen name to confirm', confirmBox),
     h('div', null, h('button', { class: 'btn98 danger', type: 'submit', text: 'Delete my account' })))));
 
