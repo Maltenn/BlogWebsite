@@ -7,7 +7,7 @@ import { canSeePosts, limit, VISIBLE, SEES } from '../shared/db.js';
 import { notify } from '../shared/notify.js';
 import { claimMedia } from '../shared/media.js';
 import { bump, W } from '../shared/affinity.js';
-import { POST_LIMITS, THREADED_SQL, POST_COLS, POSTS, EXCERPT, NEWEST, LIVE, page, itemById, writePost, dropRepost } from './items.js';
+import { POST_LIMITS, THREADED_SQL, POST_COLS, POSTS, EXCERPT, NEWEST, LIVE, page, itemById, writePost, dropRepost, heldOut } from './items.js';
 
 // SQL: the post :id (bound as ?3) stands for: itself, or a repost's original
 const STANDS_FOR = '(SELECT CASE WHEN kind = \'repost\' THEN quote_of ELSE id END FROM posts WHERE id = ?3)';
@@ -66,7 +66,7 @@ export async function postReply(c) {
     mentionIn: body, tagIn: body, tell: [['reply', parent.author_id]], on: parent.id, media,
     more: [c.env.DB.prepare(`UPDATE posts SET reply_count = reply_count + 1 WHERE id = ? AND deleted = 0 AND hidden = 0`).bind(parent.id)],
   });
-  return json({ post: await itemById(c, id) }, 201);
+  return json({ post: await itemById(c, id), ...heldOut(c) }, 201);
 }
 
 // POST /api/posts/:id/quote { body, media? } — a post of my own (up to 500 characters, up to 4 photos: with a photo
@@ -83,7 +83,7 @@ export async function postQuote(c) {
     mentionIn: body, tagIn: body, tell: [['quote', p.author_id]], on: p.id, media,
     more: [c.env.DB.prepare(`UPDATE posts SET quote_count = quote_count + 1 WHERE id = ? AND deleted = 0 AND hidden = 0`).bind(p.id)],
   });
-  return json({ post: await itemById(c, id) }, 201);
+  return json({ post: await itemById(c, id), ...heldOut(c) }, 201);
 }
 
 /* ------------------------------------------------------------- likes */

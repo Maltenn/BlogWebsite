@@ -3,7 +3,8 @@
 //   · its database (and the photos people upload) live in .demo/ and are kept between runs (`npm run demo -- --fresh`
 //     starts over)
 //   · "Continue with Google" etc. and "connect Spotify" open labeled pretend pages (test/helpers/mock-providers.mjs)
-//   · "forgot my password" emails are printed in this window instead of being sent
+//   · "forgot my password" and "confirm your email" emails are printed in this window instead of being sent
+//   · the human checks run against stand-ins: Turnstile's test keys, a pretend DNS for the email check, the mock AI detector
 // Edit files in public/ or src/ while it runs and the server reloads; refresh the browser to see the change.
 import { spawn, execFileSync } from 'node:child_process';
 import { generateKeyPairSync, randomBytes } from 'node:crypto';
@@ -30,6 +31,7 @@ if (Number(process.versions.node.split('.')[0]) < 22) die(`the demo needs Node.j
 if (!fs.existsSync(WRANGLER)) die('run `npm install` first.');
 const { startMock } = await import('../test/helpers/mock-providers.mjs');
 const { png } = await import('../test/helpers/images.mjs');
+const { fillForm, BROWSER } = await import('../test/helpers/human.mjs');
 
 if (process.argv.includes('--fresh')) fs.rmSync(DEMO, { recursive: true, force: true });
 fs.mkdirSync(DEMO, { recursive: true });
@@ -59,8 +61,8 @@ const sql = command => wrangler(['d1', 'execute', 'ourspace-social-db', '--local
 // a tiny browser: a cookie jar, JSON in and out, redirects left for the caller
 function client() {
   const jar = new Map();
-  const raw = async (method, url, body) => {
-    const headers = {};
+  const raw = async (method, url, body, extra = {}) => {
+    const headers = { ...extra };
     if (jar.size) headers.Cookie = [...jar].map(([k, v]) => `${k}=${v}`).join('; ');
     const bytes = body instanceof Uint8Array;                            // a photo upload (always a PNG here)
     if (body !== undefined) headers['Content-Type'] = bytes ? 'image/png' : 'application/json';
@@ -72,13 +74,21 @@ function client() {
     }
     return res;
   };
-  const call = async (method, url, body) => {
-    const res = await raw(method, url, body);
+  const call = async (method, url, body, extra) => {
+    const res = await raw(method, url, body, extra);
     const data = await res.json().catch(() => null);
     if (res.status >= 400) throw new Error(`${method} ${url} → ${res.status} ${data && data.error}`);
     return data;
   };
-  return { raw, get: u => call('GET', u), post: (u, b) => call('POST', u, b ?? {}), put: (u, b) => call('PUT', u, b) };
+  return { raw, get: u => call('GET', u), post: (u, b, h) => call('POST', u, b ?? {}, h), put: (u, b) => call('PUT', u, b) };
+}
+
+// Signing up as the page does (phase 7): a fresh form, its proof of work, the Turnstile test token, the form's minimum
+// time; `headers` say which network it comes from (TEST_SIGNALS is on in the demo).
+async function signUp(c, fields, headers) {
+  const form = await c.get('/api/form/signup');
+  const at = Date.now();
+  return c.post('/api/signup', await fillForm(form, fields, { fetchedAt: at, extraMs: 4500 }), { ...BROWSER, ...headers });
 }
 
 const pic = file => '/assets/avatars/' + file;
@@ -194,12 +204,15 @@ async function connectSpotify(c, range) {
 
 async function seed() {
   const P = {};
-  for (const p of PEOPLE) {
+  // everyone signs up at once (each from a home network of their own), then their emails count as confirmed (and
+  // nobody among them waits for a moderator, whatever twelve sign-ups in a few seconds look like)
+  await Promise.all(PEOPLE.map(async (p, i) => {
     const c = client();
-    const r = await c.post('/api/signup', { email: p.email, password: PASSWORD, name: p.name, birthday: p.birthday, avatar: p.avatar, rulesOk: true });
+    const r = await signUp(c, { email: p.email, password: PASSWORD, name: p.name, birthday: p.birthday, avatar: p.avatar, rulesOk: true }, { 'X-Test-Ip': `10.20.${i}.7` });
     Object.assign(c, { id: r.user.id, name: p.name });
     P[p.key] = c;
-  }
+  }));
+  sql(`UPDATE users SET email_verified_at = ${Date.now()}, held = 0, held_reason = NULL; DELETE FROM mod_alerts; DELETE FROM signup_signals`);
   const { you, malten, kat, jules, drew, pete, mia, banana, rae, cam, lou, sam } = P;
   const follow = (a, b) => a.post('/api/follows/' + encodeURIComponent(b.name));
   // friends follow each other
@@ -399,6 +412,22 @@ async function seed() {
     `INSERT INTO markers (user_id, name, last_created, last_id, updated) SELECT user_id, 'notifications', created, id, ${now} FROM notifications WHERE id = ${readUpTo}`,
   ].join(';\n'));
   sql(`UPDATE users SET created = ${now} - ((SELECT MAX(id) FROM users) - id + 2) * 86400000`);   // they joined over the past week or so
+  sql('UPDATE users SET email_verified_at = created');
+
+  // phase 7, for the moderator: three bot-looking sign-ups from one cloud network (held for review, with their alerts)
+  // and the nightly cluster check run once; and two long posts the mock AI detector scored (shadow mode: no strikes)
+  const cloud = { 'X-Test-Ip': '2001:db8:dead:beef::1', 'X-Test-Cf': JSON.stringify({ asn: 14061, asOrganization: 'DigitalOcean, LLC', country: 'NL', httpProtocol: 'HTTP/1.1' }) };
+  for (const n of [1, 2, 3]) {
+    await signUp(client(), { email: `followers${n}@growfast.example`, password: PASSWORD, name: `free_followers_${n}`, birthday: '2000-01-01', rulesOk: true, avatar: pic('pic_cd_rainbow.gif') }, cloud);
+  }
+  for (let i = 0; i < 10; i++) {                      // (the local explorer can answer 502 while the server settles)
+    const nightly = await fetch(`${BASE}/cdn-cgi/local/explorer/api/local/scheduled?worker=ourspace-social-demo`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ cron: '17 3 * * *' }) });
+    if (nightly.ok) break;
+    await new Promise(r => setTimeout(r, 1000));
+  }
+  sql('DELETE FROM attempts');
+  await thread(cam, 'games', 'an honest look at the tony hawk remaster', 'The long-awaited remaster delivers a vibrant and nostalgic experience that resonates with longtime fans while welcoming a new generation of players. Furthermore, the updated visuals showcase intricate attention to detail, and the soundtrack serves as a testament to the era. It is important to note that the controls feel seamless and robust, fostering a sense of mastery from the very first session. Moreover, the career mode offers a multifaceted journey through iconic levels, each one meticulously reimagined. Additionally, the online features unlock new ways to connect with friends and elevate the competitive landscape. While some may find the difficulty curve steep, it ultimately underscores the game\'s commitment to rewarding practice. In conclusion, this remaster is a pivotal moment for the series and a must-play for anyone who has ever dreamed of landing a perfect combo.');
+  await thread(lou, 'cooking', 'my nan\'s scone recipe (it\'s not really a recipe)', 'ok so my nan never measured anything in her life and she would be horrified that i wrote this down. you rub cold butter into self raising flour until it looks like sand, roughly a fist of butter to two big mugs of flour. pinch of salt, spoon of sugar. then milk, but not all at once, she always said the dough should feel like a baby\'s cheek which is honestly a weird thing to say about dough. pat it out thick, don\'t roll it, don\'t twist the cutter. hot oven, like as hot as it goes, twelve minutes. they never come out the same twice and that\'s fine. eat them warm with too much jam. if anyone tries this tell me how badly it went');
 }
 
 /* ---------------------------------------------------------------- start */
@@ -420,6 +449,12 @@ const vars = {
   APPLE_CLIENT_ID: 'page.ourspace.demo', APPLE_TEAM_ID: 'DEMO', APPLE_KEY_ID: 'DEMO',
   APPLE_PRIVATE_KEY: generateKeyPairSync('ec', { namedCurve: 'P-256' }).privateKey.export({ type: 'pkcs8', format: 'der' }).toString('base64'),
   SPOTIFY_CLIENT_ID: 'demo', SPOTIFY_CLIENT_SECRET: 'demo', SHOW_ROWS_READ: '1',
+  // phase 7: Cloudflare's Turnstile test keys (the widget itself still loads from challenges.cloudflare.com in your
+  // browser; the check is answered by the pretend siteverify), MX lookups from the pretend DNS, the sign-up signals
+  // the seeding sends (TEST_SIGNALS), and the mock AI detector in shadow mode
+  TURNSTILE_SITE_KEY: '1x00000000000000000000AA', TURNSTILE_SECRET_KEY: '1x0000000000000000000000000000000AA',
+  TURNSTILE_VERIFY_URL: mock.base + '/turnstile/v0/siteverify', DOH_URL: mock.base + '/dns-query', TEST_SIGNALS: '1',
+  AI_DETECTOR: 'mock', AI_ENFORCEMENT: 'shadow',
 };
 
 say('starting the site…');
@@ -502,7 +537,11 @@ console.log(`
   · Everything is fake and stays on this computer. Sign up as many new people as you like.
   · "Other options" (Google, Apple…) and "connect Spotify" open pretend pages.
     Type any name there; the same name brings back the same pretend account.
-  · "forgot my password" emails show up in this window instead of being sent.
+  · "forgot my password" and "confirm your email" emails show up in this window instead of being sent
+    (a new account confirms its email before it can post: open the /verify#token=… link printed here).
+  · Sign-up runs the real checks: the "verify you are human" box (Cloudflare's always-pass test key) and a
+    second or two of "checking…" in your browser. As malten, the Moderation tab has three held bot sign-ups,
+    the alerts they raised, and two posts the pretend AI detector scored (shadow mode: nobody gets a strike).
   · Edit files in public/ or src/ and refresh the page to see the change.
   · Start over with:  npm run demo -- --fresh        Stop with:  Ctrl+C
 `);

@@ -1,6 +1,6 @@
 # Credits
 
-Every image in public/assets is listed below. Most are from the GeoCities archive (gifcities.org, the Internet Archive) or OpenGameArt; the license is given per file as the source states it, with the author where one is known (GeoCities authors are anonymous). The 12 basic avatar silhouettes and the background pattern tiles were generated for this project, and pfp.png is the site owner's own picture. A path containing * stands for a group of files that share one identical credit.
+Every image in public/assets is listed below. Most are from the GeoCities archive (gifcities.org, the Internet Archive) or OpenGameArt; the license is given per file as the source states it, with the author where one is known (GeoCities authors are anonymous). The 12 basic avatar silhouettes and the background pattern tiles were created for this project. A path containing * stands for a group of files that share one identical credit.
 
 ## Avatar presets — people
 

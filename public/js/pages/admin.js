@@ -10,6 +10,7 @@ import { route } from '../core/router.js';
 import { nameLink } from '../widgets/people.js';
 import { boardRequests } from '../widgets/boardrequests.js';
 import { photoQueue } from '../widgets/photoqueue.js';
+import { modQueues } from '../widgets/modqueues.js';
 
 const KIND_LABEL = { wall: 'Friends\' Comment', status: 'status', blog: 'blog post', bulletin: 'bulletin', thread: 'board thread', comment: 'board comment' };   // what a report's post is called
 
@@ -53,6 +54,7 @@ export async function renderAdmin(root) {
     h('button', { class: 'btn98' + (modView === 'closed' ? ' pressed' : ''), type: 'button', text: 'closed', onclick: () => { modView = 'closed'; route(); } })));
   root.append(h('div', { class: 'ms-note', text: 'hide = nobody sees the post or message any more (it stays in the database as evidence). ban = the account is logged out, can\'t log in, and everything it wrote disappears from the site. both can be undone.' }));
   root.append(boardRequests(asked.requests, () => route()));
+  root.append(modQueues());                                   // held sign-ups, alerts, strike appeals, AI scans (phase 7)
   if (!d.reports.length) root.append(h('div', { class: 'ms-empty', text: modView === 'open' ? 'no open reports. ✨' : 'nothing closed yet.' }));
   const act = async (r, action) => {
     const note = action === 'dismiss' ? '' : (prompt('note for the log (optional):') || '');

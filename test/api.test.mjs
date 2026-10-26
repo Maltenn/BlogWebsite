@@ -13,6 +13,8 @@ import { fileURLToPath } from 'node:url';
 import { startMock } from './helpers/mock-providers.mjs';
 import { hot, wilson, RESORT } from '../src/shared/ranking.js';
 import { jpeg, png, gif, webp } from './helpers/images.mjs';
+import { fillForm, randomIp, verifyTokenIn, TURNSTILE_TEST_TOKEN, BROWSER } from './helpers/human.mjs';
+import { runBotSim } from '../tools/bot-sim.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 // run wrangler.js through node itself: node_modules/.bin/wrangler is a shell script, which Windows can't spawn
@@ -36,6 +38,11 @@ before(async () => {
     DISCORD_CLIENT_ID: 'd-id', DISCORD_CLIENT_SECRET: 'd-secret', GITHUB_CLIENT_ID: 'gh-id', GITHUB_CLIENT_SECRET: 'gh-secret',
     APPLE_CLIENT_ID: 'page.ourspace.web', APPLE_TEAM_ID: 'TEAM123', APPLE_KEY_ID: 'KEY123', APPLE_PRIVATE_KEY: appleKey,
     SPOTIFY_CLIENT_ID: 's-id', SPOTIFY_CLIENT_SECRET: 's-secret', SHOW_ROWS_READ: '1',
+    // phase 7: Cloudflare's Turnstile test keys against the stand-in siteverify, MX lookups from the stand-in DoH, an
+    // easy proof of work and short form times, request.cf from X-Test-Cf, the mock AI detector in shadow mode
+    TURNSTILE_SITE_KEY: '1x00000000000000000000AA', TURNSTILE_SECRET_KEY: '1x0000000000000000000000000000000AA',
+    TURNSTILE_VERIFY_URL: mock.base + '/turnstile/v0/siteverify', DOH_URL: mock.base + '/dns-query',
+    POW_BITS: '8', SIGNUP_MIN_MS: '100', SIGNUP_SOFT_MS: '200', TEST_SIGNALS: '1', AI_DETECTOR: 'mock', AI_ENFORCEMENT: 'shadow',
   };
   execFileSync(process.execPath, [WRANGLER, 'd1', 'migrations', 'apply', 'ourspace-social-db', '--local', '--persist-to', STATE], { cwd: ROOT, stdio: 'pipe' });
   // a unique name: the local explorer is shared by every running `wrangler dev`
@@ -68,7 +75,13 @@ after(async () => {
   }
 });
 
-// a tiny browser: a cookie jar, JSON in and out, redirects left for the test to look at
+// the sign-up routes, which take a filled-in form (GET /api/form/:purpose), and the routes with the Turnstile check
+const FORMS = { '/api/signup': 'signup', '/api/signup/finish': 'finish' };
+const TURNSTILE = new Set(['/api/login', '/api/password/forgot']);
+
+// a tiny browser: a cookie jar, JSON in and out, redirects left for the test to look at. Like the page, it fills in the
+// sign-up form's token, proof of work and Turnstile token, and the log-in and reset Turnstile token, unless the test
+// passes its own (any `form` or `turnstile` key, even undefined). Each one signs up from a network of its own.
 function client() {
   const jar = new Map();
   const raw = async (method, url, { body, headers = {}, form } = {}) => {
@@ -88,12 +101,22 @@ function client() {
     }
     return res;
   };
+  const ip = randomIp();
   const call = async (method, url, body, headers) => {
+    if (method === 'POST' && body && typeof body === 'object' && !(body instanceof Uint8Array) && !(body instanceof FormData)) {
+      if (FORMS[url] && !('form' in body)) {
+        const form = await (await raw('GET', '/api/form/' + FORMS[url], { headers: { 'X-Test-Ip': ip } })).json();
+        const at = Date.now();                       // (counted from when the form arrived, as the server counts)
+        // (past SIGNUP_SOFT_MS too, as a person is: a quicker form adds a risk point)
+        body = await fillForm(form, body, { fetchedAt: at, extraMs: 120, turnstile: 'turnstile' in body ? body.turnstile : TURNSTILE_TEST_TOKEN });
+        headers = { ...BROWSER, 'X-Test-Ip': ip, ...headers };
+      } else if (TURNSTILE.has(url) && !('turnstile' in body)) body = { ...body, turnstile: TURNSTILE_TEST_TOKEN };
+    }
     const res = await raw(method, url, { body, headers });
     return { status: res.status, data: await res.json().catch(() => null) };
   };
   return {
-    raw, jar,
+    raw, jar, ip,
     get: u => call('GET', u), post: (u, b, h) => call('POST', u, b ?? {}, h), put: (u, b) => call('PUT', u, b), del: (u, b) => call('DELETE', u, b),
   };
 }
@@ -101,14 +124,28 @@ function client() {
 let n = 0;
 const uniq = () => `${Date.now().toString(36).slice(-4)}${n++}`;
 const PW = 'correct-horse-9';
-async function newUser(prefix = 'user', extra = {}) {
+// the confirmation link the server printed for `email` (waits for the log to catch up)
+async function verifyToken(email) {
+  for (let i = 0; i < 100; i++) {
+    const t = verifyTokenIn(serverLog, email);
+    if (t) return t;
+    await new Promise(r => setTimeout(r, 30));
+  }
+  throw new Error('no confirmation email for ' + email);
+}
+
+// a member: signed up (through the form, the proof of work and Turnstile) and, unless { verify: false }, with the
+// email confirmed, as a new member does before posting
+async function newUser(prefix = 'user', extra = {}, { verify = true } = {}) {
   const c = client();
   const id = uniq();
   const name = `${prefix}_${id}`;
   const email = `${prefix}.${id}@example.com`;
   const r = await c.post('/api/signup', { email, password: PW, name, birthday: '1995-08-15', rulesOk: true, ...extra });
   assert.equal(r.status, 201, JSON.stringify(r.data));
+  assert.equal(r.data.held, false, 'an ordinary sign-up is not held');
   Object.assign(c, { name, email, id: r.data.user.id });
+  if (verify) assert.equal((await c.post('/api/verify', { token: await verifyToken(email) })).status, 200);
   return c;
 }
 
@@ -3533,4 +3570,599 @@ test('every DM has its two members, no group holds over 50, and every read posit
   assert.deepEqual(sql(`SELECT conversation_id, user_id FROM conversation_members m
     WHERE last_read_id > COALESCE((SELECT MAX(id) FROM chat_messages c WHERE c.conversation_id = m.conversation_id), 0)`), []);
   assert.deepEqual(sql(`SELECT id FROM chat_messages WHERE (conversation_id IS NULL) = (room IS NULL)`), []);
+});
+
+/* ------------------------------------------------------------------ */
+/* phase 7: verifying humans, anti-spam, AI-writing strikes            */
+
+// a sign-up the test builds by hand: the form fetched and filled by `opts` (fillForm's), sent with `headers`
+async function signupWith(c, fields, opts = {}, headers = {}) {
+  const form = await (await c.raw('GET', '/api/form/signup', { headers: { 'X-Test-Ip': c.ip } })).json();
+  const at = Date.now();
+  const body = await fillForm(form, fields, { fetchedAt: at, extraMs: 120, ...opts });
+  return { ...(await c.post('/api/signup', body, { ...BROWSER, 'X-Test-Ip': c.ip, ...headers })), body, form };
+}
+const person = tag => { const id = uniq(); return { email: `${tag}.${id}@example.com`, password: PW, name: `${tag}_${id}`, birthday: '1999-09-09', rulesOk: true }; };
+const runCronAs = async (cron, done) => {
+  const res = await fetch(`${BASE}/cdn-cgi/local/explorer/api/local/scheduled?worker=${WORKER}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ cron }) });
+  assert.equal(res.status, 200, await res.text());
+  for (let i = 0; i < 40 && !(await done()); i++) await new Promise(r => setTimeout(r, 250));
+};
+
+test('sign-up needs the form, its proof of work and Turnstile; a used, filled-in or rushed form is refused', async () => {
+  const form = await client().get('/api/form/signup');
+  assert.equal(form.status, 200);
+  assert.deepEqual(Object.keys(form.data).sort(), ['expiresIn', 'honeypot', 'minMs', 'pow', 'token', 'turnstile']);
+  assert.deepEqual(form.data.turnstile, { siteKey: '1x00000000000000000000AA', action: 'signup' });
+  assert.deepEqual([form.data.pow.algorithm, form.data.pow.bits], ['SHA-256', 8]);
+  assert.equal((await client().get('/api/form/login')).data.turnstile.action, 'login');
+  assert.equal((await client().get('/api/form/nope')).status, 404);
+  assert.equal((await client().get('/api/me')).data.turnstile.siteKey, '1x00000000000000000000AA');
+
+  const c = client();
+  const bare = await c.post('/api/signup', { ...person('bare'), form: undefined, turnstile: TURNSTILE_TEST_TOKEN }, BROWSER);
+  assert.deepEqual([bare.status, bare.data.code], [400, 'form'], 'no form at all');
+  assert.equal((await signupWith(c, person('nopow'), { pow: false })).data.code, 'pow');
+  const noTs = await signupWith(c, person('nots'), { turnstile: null });
+  assert.deepEqual([noTs.status, noTs.data.code], [400, 'turnstile']);
+  mock.turnstile({ success: false, 'error-codes': ['invalid-input-response'] });          // what the 2x… secret answers
+  const failed = await signupWith(c, person('tsfail'));
+  assert.deepEqual([failed.status, failed.data.code], [403, 'turnstile']);
+  mock.turnstile({ success: false, 'error-codes': ['timeout-or-duplicate'] });             // the 3x… "already spent" secret
+  assert.equal((await signupWith(c, person('tsspent'))).status, 403);
+  mock.turnstile('down');
+  const down = await signupWith(c, person('tsdown'));
+  assert.deepEqual([down.status, down.data.code], [503, 'turnstile_unavailable'], 'sign-up fails closed');
+  const pot = await signupWith(c, person('pot'), { honeypot: 'http://buy.example' });
+  assert.deepEqual([pot.status, pot.data.code], [400, 'form']);
+  const rushed = await signupWith(c, person('rush'), { wait: false });
+  assert.deepEqual([rushed.status, rushed.data.code], [400, 'too_fast']);
+  const bot = await signupWith(client(), person('bot'), {}, { 'User-Agent': 'python-requests/2.32' });
+  assert.deepEqual([bot.status, bot.data.code], [403, 'automation']);
+  assert.equal((await signupWith(client(), person('agent'), {}, { 'Signature-Agent': '"https://agent.example"' })).data.code, 'automation');
+  assert.ok(mock.turnstileLog.some(x => x.secret === '1x0000000000000000000000000000000AA' && x.response === TURNSTILE_TEST_TOKEN), 'our secret and the widget\'s token went to siteverify');
+
+  const ok = await signupWith(client(), person('good'));
+  assert.equal(ok.status, 201, JSON.stringify(ok.data));
+  assert.deepEqual([ok.data.verification, ok.data.held], ['sent', false]);
+  const again = await client().post('/api/signup', { ...ok.body, ...person('replay') }, { ...BROWSER, 'X-Test-Ip': randomIp() });
+  assert.deepEqual([again.status, again.data.code], [400, 'form_used'], 'a form and its proof of work work once');
+  const wrongPurpose = await client().post('/api/signup/finish', { ...ok.body, name: 'nope_' + uniq() });
+  assert.equal(wrongPurpose.status, 404, 'finish needs a provider sign-in first');
+});
+
+test('sign-up refuses throwaway inboxes and domains that can\'t take mail; real providers pass', async () => {
+  for (const [email, code] of [['x@mailinator.com', 'disposable_email'], ['x@inbox.YOPMAIL.com', 'disposable_email'], ['x@nxdomain-nowhere.example', 'email_domain'], ['x@nullmx.example', 'email_domain']]) {
+    const r = await signupWith(client(), { ...person('dom'), email: email.replace('x@', `x${uniq()}@`) });
+    assert.deepEqual([r.status, r.data.code], [400, code], email);
+  }
+  assert.equal((await signupWith(client(), { ...person('gm'), email: `gm.${uniq()}@gmail.com` })).status, 201);
+});
+
+test('log in and "forgot my password" need the human check; log in still works if Cloudflare is down', async () => {
+  const u = await newUser('tslogin');
+  const c = client();
+  const none = await c.post('/api/login', { login: u.email, password: PW, turnstile: undefined });
+  assert.deepEqual([none.status, none.data.code], [400, 'turnstile']);
+  mock.turnstile({ success: false, 'error-codes': ['invalid-input-response'] });
+  assert.equal((await c.post('/api/login', { login: u.email, password: PW })).status, 403);
+  mock.turnstile('down');
+  assert.equal((await c.post('/api/login', { login: u.email, password: PW })).status, 200, 'fails open, under the usual limits');
+  assert.equal((await c.post('/api/password/forgot', { email: u.email, turnstile: undefined })).status, 400);
+  mock.turnstile('down');
+  assert.equal((await c.post('/api/password/forgot', { email: u.email })).status, 503, 'the email-sending step fails closed');
+  assert.equal((await c.post('/api/password/forgot', { email: u.email })).status, 200);
+});
+
+test('email verification: unverified members can set up their page but not post; the link works once; resend', async () => {
+  const u = await newUser('unver', {}, { verify: false });
+  const me = await u.get('/api/me');
+  assert.deepEqual(me.data.account, { verified: false, held: false, timeoutUntil: null, strikes: 0 });
+  const blocked = await u.post('/api/status', { body: 'hello?' });
+  assert.deepEqual([blocked.status, blocked.data.code], [403, 'unverified']);
+  assert.equal((await u.put('/api/me/profile', { mood: 'curious' })).status, 200, 'page set-up is free');
+  const first = await verifyToken(u.email);
+  assert.equal((await u.post('/api/me/verify/resend')).status, 200);
+  await new Promise(r => setTimeout(r, 300));
+  const second = await verifyToken(u.email);
+  assert.notEqual(first, second);
+  assert.equal((await client().post('/api/verify', { token: 'not-a-token' })).status, 400);
+  const v = await client().post('/api/verify', { token: first });                 // on another device, logged out
+  assert.deepEqual([v.status, v.data.verified], [200, true]);
+  assert.equal((await client().post('/api/verify', { token: second })).status, 400, 'every link goes once one works');
+  assert.equal((await u.get('/api/me')).data.account.verified, true);
+  assert.equal((await u.post('/api/status', { body: 'verified now' })).status, 201);
+  assert.equal((await u.post('/api/me/verify/resend')).status, 409);
+  // an address changed after the link was sent: the old link no longer verifies
+  const w = await newUser('moved', {}, { verify: false });
+  const t = await verifyToken(w.email);
+  sql(`UPDATE users SET email = 'moved.${uniq()}@example.com' WHERE id = ${w.id}`);
+  assert.equal((await client().post('/api/verify', { token: t })).status, 400);
+  // a provider vouches for its accounts
+  const g = client();
+  const gname = 'gpal_' + uniq();
+  assert.equal((await viaProvider(g, 'google', { sub: 'g-' + gname, email: `${gname}@gmail.com`, verified: true, name: 'G' })).location, '/join/finish');
+  const fin = await g.post('/api/signup/finish', { name: gname, birthday: '1990-01-01', rulesOk: true });
+  assert.deepEqual([fin.status, fin.data.held], [201, false]);
+  assert.equal((await g.get('/api/me')).data.account.verified, true);
+});
+
+// The route table in src/index.js, read as text: every route with its method, path, access and options.
+function routeTable() {
+  const src = fs.readFileSync(path.join(ROOT, 'src', 'index.js'), 'utf8');
+  const body = src.slice(src.indexOf('const ROUTES = ['), src.indexOf('].map(([method'));
+  const lines = body.split(/\r?\n/).filter(l => /^\s*\['(GET|POST|PUT|DELETE)'/.test(l));
+  const routes = lines.map(l => {
+    const m = /^\s*\['(GET|POST|PUT|DELETE)', '([^']+)', (\w+), (OPEN|AUTH|ADMIN)(?:, \{(.*)\})?\],/.exec(l);
+    assert.ok(m, 'a route line the test can read: ' + l);
+    const opts = m[5] || '';
+    return { method: m[1], path: m[2], handler: m[3], access: m[4], free: /free:/.test(opts), freeWhen: /freeWhen:/.test(opts), gate: /gate: 'post'/.test(opts) ? 'post' : 'write' };
+  });
+  return routes;
+}
+const fill = p => p.replace(/:(\w+)/g, (_, k) => ({ name: 'nobody_here', id: '999999', provider: 'google', kind: 'person', ref: '1', slug: 'random', commentId: '1' }[k] || '1'));
+
+test('the gate covers every member write route: unverified and held members are refused, timeouts stop public posting only', async () => {
+  const routes = routeTable();
+  assert.ok(routes.length > 100);
+  const writes = routes.filter(r => r.access === 'AUTH' && r.method !== 'GET');
+  const gated = writes.filter(r => !r.free || r.freeWhen);
+  const free = writes.filter(r => r.free && !r.freeWhen);
+  assert.ok(gated.length >= 20, `${gated.length} gated`);
+  // the posting routes are exactly the public posting and commenting ones
+  assert.deepEqual(writes.filter(r => r.gate === 'post').map(r => r.handler).sort(),
+    ['postBlog', 'postComment', 'postQuote', 'postReply', 'postStatus', 'postThread', 'postThreadComment']);
+  // every other gated write: likes, reposts, votes, follows, chats, messages, #ourspace, board requests, uploads
+  for (const h of ['likePost', 'repostPost', 'votePost', 'followUser', 'acceptFollower', 'createChat', 'sendChatMessage', 'postOurspace', 'requestBoard', 'uploadMedia', 'answerInvite', 'addMembers', 'renameChat'])
+    assert.ok(gated.some(r => r.handler === h), h + ' is gated');
+  for (const h of ['block', 'unblock', 'report', 'deleteAccount', 'saveProfile', 'resendVerification', 'appealStrike', 'deletePost'])
+    assert.ok(free.some(r => r.handler === h), h + ' is free');
+
+  const unverified = await newUser('gateu', {}, { verify: false });
+  const held = await newUser('gateh');
+  const timed = await newUser('gatet');
+  sql(`UPDATE users SET held = 1 WHERE id = ${held.id};
+    INSERT INTO ai_strikes (user_id, level, text, score, label, model, created, expires) VALUES (${timed.id}, 2, 'x', 0.99, 'AI', 'mock', ${Date.now()}, ${Date.now() + 90 * 86400000});
+    INSERT INTO posting_timeouts (user_id, strike_id, until) VALUES (${timed.id}, (SELECT MAX(id) FROM ai_strikes WHERE user_id = ${timed.id}), ${Date.now() + 86400000});`);
+  const send = (c, r) => c.raw(r.method, fill(r.path) + (r.handler === 'uploadMedia' ? '?purpose=post' : ''), { body: r.handler === 'uploadMedia' ? png({ width: 4, height: 4 }) : {}, headers: r.handler === 'uploadMedia' ? { 'Content-Type': 'image/png' } : {} })
+    .then(async res => ({ status: res.status, data: await res.json().catch(() => null) }));
+  for (const r of gated) {
+    const a = await send(unverified, r);
+    assert.deepEqual([a.status, a.data && a.data.code], [403, 'unverified'], `${r.method} ${r.path} as an unverified member`);
+    const b = await send(held, r);
+    assert.deepEqual([b.status, b.data && b.data.code], [403, 'held'], `${r.method} ${r.path} as a held member`);
+    const t = await send(timed, r);
+    if (r.gate === 'post') {
+      assert.deepEqual([t.status, t.data.code], [403, 'timeout'], `${r.method} ${r.path} while timed out`);
+      assert.ok(t.data.until > Date.now());
+    } else assert.notEqual(t.data && t.data.code, 'timeout', `${r.method} ${r.path} isn't stopped by a timeout`);
+  }
+  for (const r of free.filter(r => !['deleteAccount', 'changePassword', 'unlink', 'resendVerification'].includes(r.handler))) {
+    const a = await send(unverified, r);
+    assert.ok(!['unverified', 'held'].includes(a.data && a.data.code), `${r.method} ${r.path} is free (${a.status})`);
+  }
+  // an unverified member may still upload their own picture
+  const pic = await unverified.raw('POST', '/api/media?purpose=avatar', { body: png({ width: 64, height: 64 }), headers: { 'Content-Type': 'image/png' } });
+  assert.equal(pic.status, 201);
+  // a timed-out member still messages, chats, likes and reads
+  const pal = await newUser('gatepal');
+  const dm = await timed.post('/api/chats', { dm: pal.name });
+  assert.equal((await timed.post(`/api/chats/${dm.data.chat.id}/messages`, { body: 'still here' })).status, 201);
+  assert.equal((await timed.post('/api/ourspace/messages', { body: 'hi room' })).status, 201);
+  const st = await pal.post('/api/status', { body: 'like me' });
+  assert.equal((await timed.post(`/api/posts/${st.data.id}/like`)).status, 200);
+  const acct = (await timed.get('/api/me')).data.account;
+  assert.ok(acct.timeoutUntil > Date.now() && acct.strikes === 1);
+});
+
+test('held sign-ups: a datacenter network signing up twice is held; the account sets up its page; a moderator approves or refuses', async () => {
+  const net = randomIp(true);
+  const dc = { 'X-Test-Cf': JSON.stringify({ asn: 14061, asOrganization: 'DigitalOcean, LLC', country: 'NL', httpProtocol: 'HTTP/2' }) };
+  const first = client(), second = client(), third = client();
+  for (const c of [first, second, third]) c.ip = net;
+  const gmail = () => ({ ...person('cloudy'), email: `cloudy.${uniq()}@gmail.com` });     // (a big provider: no domain point)
+  const a = await signupWith(first, gmail(), {}, dc);
+  assert.deepEqual([a.status, a.data.held], [201, false], 'a datacenter alone (+2) holds nobody');
+  const b = await signupWith(second, gmail(), {}, dc);
+  assert.deepEqual([b.status, b.data.held], [201, true], 'datacenter + the same network again');
+  const c3 = await signupWith(third, gmail(), {}, dc);
+  assert.equal(c3.data.held, true);
+  const bName = b.body.name, cName = c3.body.name;
+  assert.equal((await second.post('/api/verify', { token: await verifyToken(b.body.email) })).status, 200);
+  assert.deepEqual((await second.get('/api/me')).data.account, { verified: true, held: true, timeoutUntil: null, strikes: 0 });
+  assert.equal((await second.put('/api/me/profile', { mood: 'waiting' })).status, 200, 'held accounts set up their page');
+  const f = await second.post('/api/follows/' + a.body.name);
+  assert.deepEqual([f.status, f.data.code], [403, 'held']);
+  assert.equal((await second.post('/api/login', { login: b.body.email, password: PW })).status, 200, 'and log in');
+
+  const mod = await moderator();
+  assert.equal((await second.get('/api/admin/held')).status, 403);
+  const list = await mod.get('/api/admin/held');
+  const row = list.data.accounts.find(x => x.user.name === bName);
+  assert.ok(row, 'in the queue');
+  assert.deepEqual(row.network, { asn: 14061, asOrg: 'DigitalOcean, LLC', country: 'NL' });
+  assert.ok(row.reasons.includes('hosting_network') && row.reasons.includes('same_network_24h') && row.risk >= 4);
+  assert.equal(row.emailDomain, 'gmail.com');
+  assert.ok(!JSON.stringify(list.data).includes(net), 'no addresses');
+  const alerts = await mod.get('/api/admin/alerts');
+  assert.ok(alerts.data.alerts.some(x => x.kind === 'held_signup' && x.users.some(u => u.name === bName)));
+  assert.equal((await mod.post('/api/admin/held/' + bName, { action: 'approve' })).status, 200);
+  assert.equal((await mod.post('/api/admin/held/' + bName, { action: 'approve' })).status, 409);
+  assert.equal((await second.post('/api/follows/' + a.body.name)).status, 200, 'approved: works like any account');
+  assert.equal((await mod.post('/api/admin/held/' + cName, { action: 'refuse' })).status, 400, 'a refusal needs a reason');
+  assert.equal((await mod.post('/api/admin/held/' + cName, { action: 'refuse', reason: 'one of a batch of bot sign-ups' })).status, 200);
+  assert.equal((await third.get('/api/me')).data.user, null, 'refused: signed out');
+  assert.equal((await client().post('/api/login', { login: c3.body.email, password: PW })).status, 403);
+  const closed = await mod.get('/api/admin/alerts?status=closed');
+  assert.ok(closed.data.alerts.some(x => x.kind === 'held_signup' && x.resolution === 'approved' && x.users[0].name === bName));
+  assert.ok((await mod.get('/api/admin/log')).data.log.some(l => l.action === 'refuse_signup' && /batch/.test(l.note)));
+});
+
+test('the nightly check opens cluster alerts for moderators (never a ban): one network, one hosting provider, one email domain', async () => {
+  const net = randomIp();
+  const made = [];
+  for (let i = 0; i < 3; i++) {
+    const c = client();
+    c.ip = net;
+    const r = await signupWith(c, { ...person('clus'), email: `clus${uniq()}@clusterco-${net.replace(/\./g, '-')}.example` }, {},
+      { 'X-Test-Cf': JSON.stringify({ asn: 16276, asOrganization: 'OVH SAS', country: 'FR' }) });
+    assert.equal(r.status, 201);
+    made.push(r.data.user.id);
+  }
+  const mod = await moderator();
+  const find = async rule => (await mod.get('/api/admin/alerts')).data.alerts.find(a => a.kind === 'cluster' && a.rule === rule && made.every(id => a.users.some(u => u.id === id)));
+  await runCronAs('17 3 * * *', async () => !!(await find('email_domain')));
+  for (const rule of ['same_network', 'hosting_burst', 'same_moment', 'email_domain']) assert.ok(await find(rule), rule);
+  const alert = await find('hosting_burst');
+  assert.deepEqual([alert.details.asn, alert.details.asOrg, alert.details.count], [16276, 'OVH SAS', 3]);
+  assert.ok(alert.users.every(u => !u.banned), 'nobody is banned by an alert');
+  // running it again doesn't open the same alerts twice
+  const before = (await mod.get('/api/admin/alerts')).data.alerts.length;
+  await runCronAs('17 3 * * *', async () => true);
+  await new Promise(r => setTimeout(r, 1500));
+  assert.equal((await mod.get('/api/admin/alerts')).data.alerts.length, before);
+  assert.equal((await mod.post(`/api/admin/alerts/${alert.id}`, { action: 'ban' })).status, 400, 'bans aren\'t made from a cluster');
+  assert.equal((await mod.post(`/api/admin/alerts/${alert.id}`, { action: 'dismiss', note: 'a school' })).status, 200);
+  assert.equal((await mod.post(`/api/admin/alerts/${alert.id}`, { action: 'dismiss' })).status, 409);
+});
+
+test('the same text from several new accounts: an alert, the copy that crosses the line is held (never the earlier ones) until a moderator releases it; older accounts aren\'t held', async () => {
+  const text = i => `Check out my page for ${i % 2 ? 'FREE' : 'free'} followers and likes, the best deal anywhere online, limited time only!!! ${'🔥'.repeat(i)}`;
+  const [a, b, c, d] = [await newUser('dupa'), await newUser('dupb'), await newUser('dupc'), await newUser('dupd')];
+  const p1 = await a.post('/api/status', { body: text(0) });
+  const p2 = await b.post('/api/status', { body: text(1) });
+  assert.deepEqual([p1.data.held, p2.data.held], [undefined, undefined], 'two accounts is a coincidence');
+  const p3 = await c.post('/api/status', { body: text(2) });
+  assert.deepEqual([p3.status, p3.data.held], [201, true], 'the third brand-new account is held');
+  const anon = client();
+  assert.equal((await anon.get('/api/posts/' + p3.data.id)).status, 404, 'the copy that crossed the line waits');
+  for (const id of [p1.data.id, p2.data.id]) assert.equal((await anon.get('/api/posts/' + id)).status, 200, 'copies written before it never wait');
+  assert.equal((await d.post(`/api/posts/${p3.data.id}/replies`, { body: 'hi' })).status, 404, 'nothing to reply to while held');
+  const p4 = await d.post('/api/status', { body: text(3) });
+  assert.equal(p4.data.held, true, 'later copies are held too');
+  const mod = await moderator();
+  const alert = (await mod.get('/api/admin/alerts')).data.alerts.find(x => x.kind === 'duplicate' && x.posts.some(p => p.id === p1.data.id));
+  assert.ok(alert, 'one alert');
+  const byId = (x, y) => x - y;
+  assert.deepEqual(alert.posts.map(p => p.id).sort(byId), [p1.data.id, p2.data.id, p3.data.id, p4.data.id].sort(byId), 'one alert grows');
+  const state = Object.fromEntries(alert.posts.map(p => [p.id, [p.held, p.hidden]]));
+  assert.deepEqual([p1, p2, p3, p4].map(p => state[p.data.id]), [[false, false], [false, false], [true, false], [true, false]]);
+  assert.deepEqual(alert.details.held.sort(byId), [p3.data.id, p4.data.id].sort(byId), 'it records exactly what it held');
+  assert.equal(sql(`SELECT hidden FROM posts WHERE id = ${p3.data.id}`)[0].hidden, 2, 'a hold is its own state, not a moderator\'s hide');
+  // a moderator takes one held copy down for good before releasing the alert: the release leaves it down
+  assert.equal((await mod.post('/api/admin/content', { type: 'post', id: p4.data.id, hidden: true, note: 'spam' })).status, 200);
+  assert.equal((await mod.post(`/api/admin/alerts/${alert.id}`, { action: 'release' })).status, 200);
+  assert.equal((await anon.get('/api/posts/' + p3.data.id)).status, 200, 'released');
+  assert.equal((await anon.get('/api/posts/' + p4.data.id)).status, 404, 'a moderator\'s hide outlives a release');
+  // members of more than 30 days can post the same meme together
+  const olds = [await newUser('olda'), await newUser('oldb'), await newUser('oldc')];
+  sql(`UPDATE users SET created = created - 40 * 86400000 WHERE id IN (${olds.map(o => o.id)})`);
+  const meme = 'when the teacher says the test will be easy and then question one is written in a language nobody has ever seen';
+  for (const o of olds) assert.equal((await o.post('/api/status', { body: meme })).data.held, undefined);
+});
+
+test('a duplicate alert never un-hides a moderator\'s takedown, and a taken-down post isn\'t counted as a copy', async () => {
+  const text = `buy cheap followers now at the best prices click my profile link for amazing deals ${uniq()}`;
+  const mod = await moderator();
+  const anon = client();
+  const abuser = await newUser('takedown');
+  const bad = await abuser.post('/api/status', { body: text });
+  assert.equal((await mod.post('/api/admin/content', { type: 'post', id: bad.data.id, hidden: true, note: 'takedown' })).status, 200);
+  const [x, y, z] = [await newUser('tdx'), await newUser('tdy'), await newUser('tdz')];
+  const px = await x.post('/api/status', { body: text });
+  const py = await y.post('/api/status', { body: text });
+  assert.equal(py.data.held, undefined, 'the hidden post isn\'t a copy: only two accounts so far');
+  const pz = await z.post('/api/status', { body: text });
+  assert.equal(pz.data.held, true);
+  const alert = (await mod.get('/api/admin/alerts')).data.alerts.find(a => a.kind === 'duplicate' && a.posts.some(p => p.id === pz.data.id));
+  assert.ok(!alert.posts.some(p => p.id === bad.data.id), 'the takedown isn\'t in the alert');
+  // even an alert that lists it as held (as the red team's did) can't bring it back: a release only shows held posts
+  sql(`UPDATE mod_alerts SET payload = json_set(payload, '$.held', json('[${pz.data.id}, ${bad.data.id}]')) WHERE id = ${alert.id}`);
+  assert.equal((await mod.post(`/api/admin/alerts/${alert.id}`, { action: 'release' })).status, 200);
+  assert.equal((await anon.get('/api/posts/' + bad.data.id)).status, 404, 'still taken down');
+  assert.equal((await anon.get('/api/posts/' + pz.data.id)).status, 200);
+  assert.equal((await anon.get('/api/posts/' + px.data.id)).status, 200);
+});
+
+test('copying a stranger\'s post can\'t get it held: unrelated accounts only raise an alert; related ones (one network) are held', async () => {
+  const anon = client();
+  const mod = await moderator();
+  // a member of ten days posts first; two brand-new accounts from other networks copy it word for word
+  const text = `just finished my first pottery class today and the bowl came out lopsided but i love it ${uniq()}`;
+  const victim = await newUser('potter');
+  sql(`UPDATE users SET created = created - 10 * 86400000 WHERE id = ${victim.id}`);
+  const v = await victim.post('/api/status', { body: text });
+  const s1 = await newUser('socka'), s2 = await newUser('sockb');
+  assert.equal((await s1.post('/api/status', { body: text })).data.held, undefined);
+  const c2 = await s2.post('/api/status', { body: text });
+  assert.equal(c2.data.held, undefined, 'not related (other networks, not all brand new): nothing held');
+  assert.equal((await anon.get('/api/posts/' + v.data.id)).status, 200, 'the original stays up');
+  assert.equal((await anon.get('/api/posts/' + c2.data.id)).status, 200);
+  const alert = (await mod.get('/api/admin/alerts')).data.alerts.find(a => a.kind === 'duplicate' && a.posts.some(p => p.id === c2.data.id));
+  assert.ok(alert, 'a moderator is still told');
+  assert.deepEqual([alert.details.held, alert.posts.some(p => p.held || p.hidden)], [[], false]);
+  // the same from accounts of ten days that signed up on one network: related, so the third copy is held
+  const net = randomIp();
+  const ring = [];
+  for (let i = 0; i < 3; i++) {
+    const c = client();
+    c.ip = net;
+    const r = await signupWith(c, person('ring'));
+    assert.equal(r.status, 201, JSON.stringify(r.data));
+    assert.equal((await c.post('/api/verify', { token: await verifyToken(r.body.email) })).status, 200);
+    ring.push(Object.assign(c, { id: r.data.user.id }));
+  }
+  sql(`UPDATE users SET held = 0, created = created - 10 * 86400000 WHERE id IN (${ring.map(r => r.id)})`);
+  const spam = `the best crypto signals group is open again, message me for the invite link today ${uniq()}`;
+  const outs = [];
+  for (const r of ring) outs.push(await r.post('/api/status', { body: spam }));
+  assert.deepEqual(outs.map(o => o.data.held), [undefined, undefined, true]);
+});
+
+test('sign-up refusals: before the proof of work nothing is written; after it every outcome spends the form; no refusal shrinks a network\'s allowance', async () => {
+  const net = randomIp();
+  const bully = client();
+  bully.ip = net;
+  const H = { ...BROWSER, 'X-Test-Ip': net, 'CF-Connecting-IP': net };
+  const rows = () => sql('SELECT (SELECT COUNT(*) FROM attempts WHERE k LIKE \'signup:ip:%\') AS a, (SELECT COUNT(*) FROM spent_nonces) AS s')[0];
+  const start = rows();
+  // one form, reused; no proof of work, no Turnstile, no waiting, the honeypot filled (the red team's lockout)
+  const form = await (await bully.raw('GET', '/api/form/signup', { headers: { 'X-Test-Ip': net } })).json();
+  for (let i = 0; i < 4; i++) {
+    const r = await bully.post('/api/signup', { ...person('bully'), form: form.token, [form.honeypot]: 'x' }, H);
+    assert.deepEqual([r.status, r.data.code], [400, 'pow'], 'refused for the missing proof of work, before anything else is read');
+  }
+  assert.deepEqual(rows(), start, 'no rate-limit rows, no spent forms');
+  // with the proof of work done, a filled honeypot or a rushed form is refused and the form is used up
+  const pot = await signupWith(bully, person('pot'), { honeypot: 'http://buy.example' }, H);
+  assert.deepEqual([pot.status, pot.data.code], [400, 'form']);
+  const again = await bully.post('/api/signup', { ...pot.body, [pot.form.honeypot]: '' }, H);
+  assert.deepEqual([again.status, again.data.code], [400, 'form_used'], 'a refused form can\'t be tried again');
+  const rushed = await signupWith(bully, person('rush'), { wait: false }, H);
+  assert.deepEqual([rushed.status, rushed.data.code], [400, 'too_fast']);
+  const agent = await signupWith(bully, person('agent'), {}, { ...H, 'User-Agent': 'python-requests/2.32' });
+  assert.deepEqual([agent.status, agent.data.code], [403, 'automation']);
+  const now = rows();
+  assert.deepEqual([now.a, now.s], [start.a, start.s + 3], 'three forms spent, still no rate-limit rows');
+  // a real person on the same network gets in, and only that sign-up counts
+  const student = client();
+  student.ip = net;
+  const ok = await signupWith(student, person('student'), {}, H);
+  assert.equal(ok.status, 201, JSON.stringify(ok.data));
+  assert.equal(rows().a, start.a + 1);
+});
+
+test('a flood of sign-up traffic from one network is braked without writing a row; other networks carry on', async () => {
+  const net = randomIp();
+  const c = client();
+  const count = () => sql('SELECT (SELECT COUNT(*) FROM attempts) + (SELECT COUNT(*) FROM spent_nonces) AS n')[0].n;
+  const start = count();
+  let busy = null, sent = 0;
+  while (!busy && sent < 80) {
+    const r = await c.raw('GET', '/api/form/signup', { headers: { 'X-Test-Ip': net } });
+    sent++;
+    if (r.status === 429) busy = await r.json();
+    else assert.equal(r.status, 200);
+  }
+  assert.ok(busy && sent > 60, `braked after the allowance (${sent} requests)`);
+  assert.equal(busy.code, 'busy');
+  const post = await c.post('/api/signup', { ...person('flood'), form: 'x' }, { ...BROWSER, 'X-Test-Ip': net });
+  assert.deepEqual([post.status, post.data.code], [429, 'busy'], 'posting the form too');
+  assert.equal((await c.raw('GET', '/api/form/signup', { headers: { 'X-Test-Ip': randomIp() } })).status, 200, 'another network');
+  assert.equal(count(), start, 'nothing written');
+});
+
+test('finishing a sign-up through a provider: its email passes the throwaway list and feeds the domain signals; no verified email is held until a moderator approves', async () => {
+  const g = client();
+  const sub = 'g-' + uniq();
+  await viaProvider(g, 'google', { sub, email: `${sub}@mailinator.com`, verified: true });
+  const thrown = await g.post('/api/signup/finish', { name: 'thrw_' + uniq(), birthday: '1990-01-01', rulesOk: true });
+  assert.deepEqual([thrown.status, thrown.data.code], [400, 'disposable_email']);
+  // three sign-ups from one small domain (the provider vouched for each address, so no mail check)
+  const dom = `smallco-${uniq()}.example`;
+  const ids = [];
+  for (let i = 0; i < 3; i++) {
+    const c = client();
+    await viaProvider(c, 'google', { sub: `g-${uniq()}`, email: `p${i}@${dom}`, verified: true });
+    const r = await c.post('/api/signup/finish', { name: 'small_' + uniq(), birthday: '1990-01-01', rulesOk: true });
+    assert.equal(r.status, 201, JSON.stringify(r.data));
+    ids.push(r.data.user.id);
+  }
+  const sig = sql(`SELECT email_domain, reasons FROM signup_signals WHERE user_id IN (${ids}) ORDER BY user_id`);
+  assert.deepEqual(sig.map(s => s.email_domain), [dom, dom, dom]);
+  assert.ok(JSON.parse(sig[2].reasons).includes('domain_burst'));
+  // Microsoft never promises a verified address: allowed, but held, and nothing to confirm by email
+  const ms = client();
+  await viaProvider(ms, 'microsoft', { sub: 'm-' + uniq(), email: `ms.${uniq()}@outlook.com`, verified: true });
+  const name = 'msft_' + uniq();
+  const fin = await ms.post('/api/signup/finish', { name, birthday: '1990-01-01', rulesOk: true });
+  assert.deepEqual([fin.status, fin.data.held], [201, true]);
+  assert.deepEqual((await ms.get('/api/me')).data.account, { verified: true, held: true, timeoutUntil: null, strikes: 0 });
+  assert.equal(sql(`SELECT email_verified_at FROM users WHERE id = ${fin.data.user.id}`)[0].email_verified_at, null);
+  const blocked = await ms.post('/api/status', { body: 'hello from microsoft' });
+  assert.deepEqual([blocked.status, blocked.data.code], [403, 'held'], 'the held message, not "confirm your email"');
+  const mod = await moderator();
+  const row = (await mod.get('/api/admin/held')).data.accounts.find(a => a.user.name === name);
+  assert.ok(row.reasons.includes('no_verified_email'));
+  assert.equal((await mod.post('/api/admin/held/' + name, { action: 'approve' })).status, 200);
+  assert.equal((await ms.post('/api/status', { body: 'hello from microsoft' })).status, 201, 'the approval stands in for the link');
+});
+
+test('a held account is unlisted: a 404 to everyone but itself and moderators, and left out of search, follows and messages until approved', async () => {
+  const net = randomIp(true);
+  const dc = { 'X-Test-Cf': JSON.stringify({ asn: 14061, asOrganization: 'DigitalOcean, LLC', country: 'NL', httpProtocol: 'HTTP/2' }) };
+  const first = client(), second = client();
+  first.ip = second.ip = net;
+  await signupWith(first, { ...person('unl'), email: `unl.${uniq()}@gmail.com` }, {}, dc);
+  const r = await signupWith(second, { ...person('unl'), email: `unl.${uniq()}@gmail.com` }, {}, dc);
+  assert.equal(r.data.held, true);
+  const name = r.body.name;
+  const member = await newUser('looker');
+  const mod = await moderator();
+  assert.equal((await client().get('/api/users/' + name)).status, 404, 'logged out');
+  assert.equal((await member.get('/api/users/' + name)).status, 404, 'another member');
+  assert.equal((await member.get(`/api/users/${name}/statuses`)).status, 404);
+  assert.equal((await second.get('/api/users/' + name)).status, 200, 'their own page works');
+  assert.equal((await mod.get('/api/users/' + name)).status, 200, 'moderators see it');
+  assert.ok(!(await client().get('/api/users?q=' + name)).data.users.length, 'not in Browse search');
+  assert.equal((await member.post('/api/follows/' + name)).status, 404);
+  assert.equal((await member.post('/api/chats', { dm: name })).status, 404);
+  const people = (await member.get('/api/browse/people?limit=10')).data.people;
+  assert.ok(!people.some(p => p.user.name === name), 'not suggested');
+  assert.equal((await mod.post('/api/admin/held/' + name, { action: 'approve' })).status, 200);
+  assert.equal((await client().get('/api/users/' + name)).status, 200, 'approved: listed like anybody');
+  assert.deepEqual((await client().get('/api/users?q=' + name)).data.users.map(u => u.name), [name]);
+});
+
+// a comment long enough to be judged (100+ words), with the mock detector's score in it
+const judged = (score, n = 0) => `post number ${n} ` + Array.from({ length: 110 }, (_, i) => ['the', 'garden', 'was', 'quiet', 'after', 'rain', 'and', 'we', 'walked', 'home'][i % 10]).join(' ') + ` mock-ai-score: ${score}`;
+async function scanOf(postId) {
+  for (let i = 0; i < 60; i++) {
+    const r = sql(`SELECT decision, score, label, model FROM ai_scans WHERE post_id = ${postId}`)[0];
+    if (r) return r;
+    await new Promise(r => setTimeout(r, 200));
+  }
+  return null;
+}
+
+test('AI scans: shadow mode only records scores for moderators; short posts and DMs are never scanned', async () => {
+  const u = await newUser('shadow');
+  const board = (await u.post('/api/boards/random/threads', { subject: 'long thoughts', body: judged(0.99) })).data.thread.id;
+  const scan = await scanOf(board);
+  assert.deepEqual(scan, { decision: 'would_strike', score: 0.99, label: 'AI', model: 'mock:marker' });
+  assert.equal((await u.get('/api/me/strikes')).data.strikes.length, 0, 'shadow mode: no strike');
+  const plain = await u.post(`/api/threads/${board}/comments`, { body: judged(0.2, 1) });
+  assert.equal((await scanOf(plain.data.comment.id)).decision, 'clear');
+  const short = await u.post('/api/status', { body: 'short and mock-ai-score: 0.99' });
+  const pal = await newUser('shadowpal');
+  const dm = await u.post('/api/chats', { dm: pal.name });
+  await u.post(`/api/chats/${dm.data.chat.id}/messages`, { body: judged(0.99, 2).slice(0, 1900) });
+  await new Promise(r => setTimeout(r, 1500));
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM ai_scans WHERE post_id = ${short.data.id}`)[0].n, 0, 'under 100 words');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM ai_scans WHERE user_id = ${u.id}`)[0].n, 2, 'DMs never');
+  const mod = await moderator();
+  const list = await mod.get('/api/admin/ai-scans');
+  assert.deepEqual([list.data.detector, list.data.enforcement], ['mock', 'shadow']);
+  const row = list.data.scans.find(s => s.post && s.post.id === board);
+  assert.deepEqual([row.decision, row.score, row.user.name, row.kind], ['would_strike', 0.99, u.name, 'thread']);
+  assert.ok((await mod.get('/api/admin/ai-scans?decision=would_strike')).data.scans.every(s => s.decision === 'would_strike'));
+  assert.equal((await u.get('/api/admin/ai-scans')).status, 403);
+});
+
+test('AI strikes in enforce mode: a warning, then a day\'s timeout (posting only); an appeal removes it and lifts the timeout', async () => {
+  const u = await newUser('strike');
+  const enforce = { 'X-Test-Enforcement': 'enforce' };
+  const thread = (await u.post('/api/boards/random/threads', { subject: 'mine', body: 'a thread to comment in' })).data.thread.id;
+  const say = async (score, n) => (await u.post(`/api/threads/${thread}/comments`, { body: judged(score, n) }, enforce)).data.comment.id;
+  const c1 = await say(0.97, 1);
+  assert.equal((await scanOf(c1)).decision, 'strike');
+  let mine = (await u.get('/api/me/strikes')).data;
+  assert.equal(mine.strikes.length, 1);
+  const s1 = mine.strikes[0];
+  assert.deepEqual([s1.level, s1.step, s1.status, s1.score, s1.label, s1.timeout, s1.canAppeal, s1.post.id], [1, 'warning', 'active', 0.97, 'AI', null, true, c1]);
+  assert.match(s1.text, /garden was quiet/);
+  assert.ok(Math.abs(s1.expires - s1.created - 90 * 86400000) < 1000);
+  const note = (await u.get('/api/notifications')).data.items.find(n => n.kind === 'ai_strike');
+  assert.deepEqual(note.strike, { id: s1.id, level: 1, status: 'active', result: null });
+  assert.equal((await u.post('/api/status', { body: 'still allowed after a warning' })).status, 201);
+  assert.equal((await scanOf(await say(0.99, 2))).decision, 'same_incident', 'one strike per 24 hours');
+  assert.equal((await scanOf(await say(0.94, 3))).decision, 'clear', 'under 0.95 never strikes');
+
+  sql(`UPDATE ai_strikes SET created = created - 25 * 3600000 WHERE user_id = ${u.id}`);
+  const c4 = await say(0.99, 4);
+  assert.equal((await scanOf(c4)).decision, 'strike');
+  mine = (await u.get('/api/me/strikes')).data;
+  const s2 = mine.strikes[0];
+  assert.deepEqual([s2.level, s2.step], [2, 'timeout']);
+  assert.ok(Math.abs(s2.timeout.until - s2.created - 86400000) < 1000, 'a day');
+  assert.equal(mine.timeoutUntil, s2.timeout.until);
+  const blocked = await u.post('/api/status', { body: 'can I post?' });
+  assert.deepEqual([blocked.status, blocked.data.code, blocked.data.until], [403, 'timeout', s2.timeout.until]);
+  assert.equal((await u.post(`/api/threads/${thread}/comments`, { body: 'or comment?' })).status, 403);
+  assert.equal((await u.post('/api/ourspace/messages', { body: 'chat still works' })).status, 201);
+
+  // the appeal: the timeout stands until a moderator decides
+  assert.equal((await u.post(`/api/me/strikes/${s2.id}/appeal`, { note: '' })).status, 400);
+  const ap = await u.post(`/api/me/strikes/${s2.id}/appeal`, { note: 'I wrote every word of that myself, about my garden.' });
+  assert.deepEqual([ap.status, ap.data.strike.status, ap.data.strike.canAppeal], [200, 'appealed', false]);
+  assert.equal((await u.post(`/api/me/strikes/${s2.id}/appeal`, { note: 'again' })).status, 409);
+  assert.equal((await u.post('/api/status', { body: 'still timed out' })).status, 403);
+  const mod = await moderator();
+  const queue = (await mod.get('/api/admin/appeals')).data.strikes;
+  const mine2 = queue.find(s => s.id === s2.id);
+  assert.deepEqual([mine2.user.name, mine2.appeal.note, mine2.level], [u.name, 'I wrote every word of that myself, about my garden.', 2]);
+  assert.equal((await mod.post(`/api/admin/strikes/${s1.id}`, { action: 'uphold' })).status, 409, 'only an appealed strike is upheld');
+  sql(`DELETE FROM attempts WHERE k = 'post:${u.id}'`);                      // (it posted a lot this minute)
+  const dec = await mod.post(`/api/admin/strikes/${s2.id}`, { action: 'remove', note: 'reads like a person' });
+  assert.deepEqual([dec.status, dec.data.strike.status, dec.data.strike.appeal.result, dec.data.strike.timeout], [200, 'removed', 'removed', null]);
+  assert.equal((await u.post('/api/status', { body: 'free again' })).status, 201, 'removing it lifts the timeout');
+  assert.ok((await u.get('/api/notifications')).data.items.some(n => n.kind === 'ai_appeal' && n.strike.id === s2.id && n.strike.result === 'removed'));
+  assert.ok((await mod.get('/api/admin/log')).data.log.some(l => l.action === 'remove_strike' && l.targetId === s2.id));
+  assert.equal((await scanOf(await say(0.99, 5))).decision, 'exempt', '180 days without automatic strikes after a removal');
+});
+
+test('AI strikes: the 5th goes to a moderator, who decides on a ban; nothing bans by itself', async () => {
+  const u = await newUser('fifth');
+  const now = Date.now();
+  sql(`INSERT INTO ai_strikes (user_id, level, text, score, label, model, created, expires) VALUES ${[1, 2, 3, 4].map(l => `(${u.id}, ${l}, 'old', 0.99, 'AI', 'mock', ${now - (6 - l) * 3 * 86400000}, ${now + 80 * 86400000})`).join(', ')}`);
+  const t = (await u.post('/api/boards/random/threads', { subject: 'fifth', body: judged(0.99, 9) }, { 'X-Test-Enforcement': 'enforce' })).data.thread.id;
+  assert.equal((await scanOf(t)).decision, 'strike');
+  const s5 = (await u.get('/api/me/strikes')).data.strikes[0];
+  assert.deepEqual([s5.level, s5.step, s5.timeout], [5, 'review', null]);
+  assert.equal((await u.get('/api/me')).data.user.name, u.name, 'not banned by the ladder');
+  const mod = await moderator();
+  const alert = (await mod.get('/api/admin/alerts')).data.alerts.find(a => a.kind === 'ban_review' && a.users[0].id === u.id);
+  assert.deepEqual([alert.details.level, alert.details.strike], [5, s5.id]);
+  assert.equal((await mod.post(`/api/admin/alerts/${alert.id}`, { action: 'ban', note: 'five strikes, appeals denied' })).status, 200);
+  assert.equal((await u.get('/api/me')).data.user, null, 'the moderator\'s ban signs them out');
+});
+
+test('the cron: sign-up signals and AI scores go after 90 days, fingerprints after 7, strikes expire after 90 clean days', async () => {
+  const u = await newUser('retain');
+  await u.post('/api/status', { body: 'enough words here to get a fingerprint for the duplicate check today' });
+  const old = Date.now() - 91 * 86400000;
+  sql(`UPDATE signup_signals SET created = ${old} WHERE user_id = ${u.id};
+    UPDATE post_fingerprints SET created = ${Date.now() - 8 * 86400000} WHERE user_id = ${u.id};
+    INSERT INTO ai_scans (user_id, kind, words, decision, created) VALUES (${u.id}, 'status', 120, 'clear', ${old});
+    INSERT INTO ai_strikes (user_id, level, text, score, label, model, created, expires) VALUES (${u.id}, 1, 'flagged words', 0.99, 'AI', 'mock', ${old}, ${old + 90 * 86400000 - 1});
+    INSERT INTO spent_nonces (nonce, expires) VALUES ('old-${u.id}', ${Date.now() - 1000});`);
+  const left = () => sql(`SELECT (SELECT COUNT(*) FROM signup_signals WHERE user_id = ${u.id}) + (SELECT COUNT(*) FROM post_fingerprints WHERE user_id = ${u.id})
+    + (SELECT COUNT(*) FROM ai_scans WHERE user_id = ${u.id}) + (SELECT COUNT(*) FROM spent_nonces WHERE nonce = 'old-${u.id}') AS n`)[0].n;
+  assert.equal(left(), 4);
+  await runCronAs('*/30 * * * *', async () => left() === 0);
+  assert.equal(left(), 0);
+  const s = (await u.get('/api/me/strikes')).data.strikes[0];
+  assert.deepEqual([s.status, s.counting, s.canAppeal], ['expired', false, false]);
+});
+
+test('the bot simulator: floods without the checks are refused, a datacenter flood is held, spam copies past the second are held; a real person gets in', async () => {
+  const lines = [];
+  const res = await runBotSim({ base: BASE, n: 4, readLog: () => serverLog, log: s => lines.push(s) });
+  console.log(lines.map(l => '  # ' + l).join('\n'));
+  for (const k of ['no_form', 'no_pow', 'no_turnstile', 'replayed_form', 'honeypot', 'too_fast', 'declared_agent', 'throwaway_email'])
+    assert.equal(res[k].refused, res[k].attempts, k + ': every attempt refused');
+  assert.ok(res.datacenter.held + res.datacenter.refused >= res.datacenter.attempts - 1, 'a datacenter flood: all but the first held');
+  // the first two copies stay up (nobody's earlier post is ever held: a moderator has the alert); every later one waits
+  assert.deepEqual([res.duplicate_spam.public, res.duplicate_spam.held, res.duplicate_spam.stillPublic], [2, 3, 2]);
+  assert.deepEqual(res.real_person, { signedUp: true, held: false, verified: true, posted: true, pass: true });
 });

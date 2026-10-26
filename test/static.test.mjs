@@ -139,7 +139,9 @@ test('names imported from our own modules are exported by them', () => {
 // What each part of the code may import (besides packages). See CONVENTIONS.md.
 const SRC = path.join(ROOT, 'src');
 const CROSS_FEATURE = ['accounts/oauth.js → music/spotify.js', 'profiles/profiles.js → music/spotify.js', 'accounts/auth.js → profiles/profiles.js',
-  'boards/boards.js → social/items.js', 'browse/browse.js → social/items.js'];
+  'boards/boards.js → social/items.js', 'browse/browse.js → social/items.js',
+  'accounts/auth.js → trust/signup.js', 'accounts/auth.js → trust/turnstile.js', 'accounts/oauth.js → trust/signup.js',
+  'social/items.js → trust/duplicates.js', 'social/items.js → ai/scan.js'];
 const srcRel = f => path.relative(SRC, f).split(path.sep).join('/');
 function srcArea(f) {
   const parts = path.relative(SRC, f).split(path.sep);
@@ -171,10 +173,14 @@ test('front end layering: js/core/ imports only core; js/widgets/ never imports 
   assert.deepEqual(bad, []);
 });
 
-test('the CSP lets the live chat\'s socket reach the site (wss:, and ws: to the local machine for wrangler dev) and nothing else loosens', () => {
+test('the CSP lets the live chat\'s socket reach the site (wss:, and ws: to the local machine for wrangler dev), and Turnstile\'s script and frame load from Cloudflare, and nothing else loosens', () => {
   const csp = read(path.join(PUBLIC, '_headers')).match(/Content-Security-Policy: (.*)/)[1].trim();
   const directives = Object.fromEntries(csp.split(';').map(d => d.trim().split(/\s+/)).map(([k, ...v]) => [k, v]));
   // older WebKit never matched ws:/wss: against 'self' (WebKit bug 235873), and a static header can't name the host
   assert.deepEqual(directives['connect-src'], ["'self'", 'wss:', 'ws://localhost:*', 'ws://127.0.0.1:*']);
-  assert.deepEqual([directives['script-src'], directives['default-src']], [["'self'"], ["'self'"]]);
+  // Turnstile (the human check on sign-up, log in and password reset): its script, and the frame it draws, from Cloudflare only
+  assert.deepEqual(directives['script-src'], ["'self'", 'https://challenges.cloudflare.com']);
+  assert.deepEqual(directives['frame-src'], ['https://challenges.cloudflare.com']);
+  assert.deepEqual(directives['default-src'], ["'self'"]);
+  assert.deepEqual(directives['style-src'], ["'self'"], 'no inline styles');
 });

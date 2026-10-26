@@ -1,15 +1,17 @@
 // Small HTTP helpers shared by every route.
 
 export class HttpError extends Error {
-  constructor(status, message) {
+  constructor(status, message, extra = null) {
     super(message);
     this.status = status;
+    this.extra = extra;
   }
 }
 
-// throw an error the router turns into { error } with this status
-export function fail(status, message) {
-  throw new HttpError(status, message);
+// throw an error the router turns into { error } with this status. `extra` (optional) rides along in the answer, for
+// the page to act on: { code: 'unverified' | 'held' | 'timeout' | 'turnstile' | …, until, … }
+export function fail(status, message, extra = null) {
+  throw new HttpError(status, message, extra);
 }
 
 export function json(body, status = 200, headers = {}) {
@@ -72,6 +74,23 @@ export function ipGroup(ip) {
 export async function ipKey(c) {
   const ip = ipGroup(c.req.headers.get('CF-Connecting-IP'));
   return (await sha256Hex(`${c.env.IP_SALT || 'ourspace-social'}|${ip}`)).slice(0, 32);
+}
+
+// The brake on unauthenticated sign-up traffic per network (the routes marked `net` in src/index.js: the sign-up and
+// finish forms and posting them), checked before anything reads or writes the database. It is Cloudflare's Rate
+// Limiting binding (wrangler.jsonc → ratelimits, SIGNUP_LIMITER: 60 a minute per network), counted in Cloudflare's
+// memory, never in D1: a flood from one network writes no rows, so nobody can cheaply grow a count that locks the
+// network out for an hour. The worst a flood can do is keep its own network (and whoever shares it) waiting while it
+// lasts, plus one minute. Without the binding (it isn't configured) there is no brake; an error lets the request by.
+// With TEST_SIGNALS=1 (tests, demo, bot simulator) the network comes from X-Test-Ip, as in trust/risk.js.
+export async function netLimit(c) {
+  const rl = c.env.SIGNUP_LIMITER;
+  if (!rl) return;
+  const ip = (c.env.TEST_SIGNALS === '1' && c.req.headers.get('X-Test-Ip')) || c.req.headers.get('CF-Connecting-IP');
+  const key = (await sha256Hex(`${c.env.IP_SALT || 'ourspace-social'}|net|${ipGroup(ip)}`)).slice(0, 32);
+  let ok = true;
+  try { ok = (await rl.limit({ key })).success; } catch (e) { console.error('rate limiter:', e && e.message); }
+  if (!ok) fail(429, 'lots of sign-up traffic from your connection right now. wait a minute, then try again.', { code: 'busy' });
 }
 
 export function int(v, def = null) {

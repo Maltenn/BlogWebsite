@@ -21,6 +21,22 @@
 - **Profiles:** every look setting must come from the lists in `src/catalog/options.js`, so nobody can inject CSS or image URLs.
 - **Text:** invisible and direction-flipping characters stripped, links removed, blocked words starred.
 - **Blocks and reports:** a block hides both people from each other and stops all contact. Reports keep a snapshot, so the evidence survives a delete.
+- **Verifying humans** (phase 7, [architecture.md](architecture.md#verifying-humans-anti-spam-and-ai-writing-strikes)): Cloudflare Turnstile on sign-up, log in and "forgot my password" (checked on our side for `success`, `action` and `hostname`); a signed, single-use sign-up form with a honeypot and a minimum time; a proof of work on every sign-up; throwaway email domains refused; an emailed confirmation link (POST from a page, single use, 24 hours, kept in the URL fragment) before posting, commenting, messaging or following; suspicious sign-ups held for a moderator. Nothing bans anybody automatically: clusters and duplicates raise alerts, a 5th AI-writing strike goes to a moderator.
+- **The write gate:** every member write in the route table passes `src/shared/gate.js` (email confirmed, not held; public posting also no posting timeout) unless the table marks it `free` with the reason (account, page set-up, privacy, undoing, blocks and reports). `test/api.test.mjs` reads the table and tries every gated route, so a new route can't skip it by accident.
+
+### What the anti-bot checks keep, and for how long
+
+| Data | Why | Kept |
+|---|---|---|
+| `signup_signals`: the salted hash of the network (IPv4 address, IPv6 /64), the provider's ASN, name and country from `request.cf`, a salted hash of the User-Agent, the email domain, how long the form was open, the risk score and its reason codes | reviewing held sign-ups, the nightly cluster check | **90 days**, then deleted by the cron |
+| `ai_scans`: post, writer, score, label, model, a hash of the scanned text, the decision | moderators' shadow-mode review, appeals | **90 days** |
+| `ai_strikes.text`: the flagged words of a strike | the member and moderators see what was flagged | while the strike counts, then 30 more days |
+| `post_fingerprints`: a MinHash signature and a hash of each public post's normalised words (no text) | the duplicate check | **7 days** |
+| `spent_nonces`, `email_tokens` (hashes only) | single-use forms and links | until they'd have expired (2 hours, 24 hours) |
+| `mod_alerts` (user and post ids, counts, a provider's name, a domain; never addresses) | moderators | resolved ones 90 days |
+| Never stored | raw IP addresses, full User-Agents, Turnstile tokens, device fingerprints, mouse or keyboard data | — |
+
+The privacy summary on `/rules` should say: Cloudflare runs the "verify you are human" check (it sees the IP address and browser signals, as Cloudflare's processor terms describe); we keep a salted hash of your network, your network provider's name, your email's domain and how long the form took for 90 days to spot bot sign-ups; public posts of 100+ words (150 for blog posts) may be scored for AI writing (when switched on), and a scored text that earns a strike is kept so you can appeal it. (The page itself is the front end's to update.)
 
 ### External origins
 
@@ -32,6 +48,10 @@ The Content-Security-Policy in `public/_headers` allows exactly these outside or
 | Audio previews | `*.itunes.apple.com`, `*.apple.com`, `*.mzstatic.com` (Apple's 30-second previews) |
 
 Scripts, styles, fonts and fetches are the site's own only. Adding a new outside origin means changing the CSP in `public/_headers` and this table together.
+
+**Phase 7 adds one origin for the pages: `https://challenges.cloudflare.com`** in `script-src` (Turnstile's `api.js`) and `frame-src` (its widget's iframe), nothing else ([Cloudflare's CSP note](https://developers.cloudflare.com/turnstile/reference/content-security-policy/)). The front end makes that change in `public/_headers`, this table and the CSP assertion in `test/static.test.mjs` together. The proof of work runs in the page itself (Web Crypto SHA-256, yielding to the page every few milliseconds), from the site's own `/js/…` files, so `script-src 'self'` covers it (no `blob:`, no `'wasm-unsafe-eval'`).
+
+The Worker itself (not the pages) calls out to: `challenges.cloudflare.com/turnstile/v0/siteverify` (each Turnstile check), `cloudflare-dns.com/dns-query` (the MX check of a new sign-up's email domain, no address sent, just the domain), `api.resend.com` (emails), and, only if `AI_DETECTOR` names one, `text.api.pangram.com` / `api.gptzero.me` (the words of a public post of 100+ words, without the writer's name) or Workers AI (inside Cloudflare).
 
 **WebSockets (`connect-src 'self' wss: ws://localhost:* ws://127.0.0.1:*`).** The live chat's socket goes to the site itself (`wss://<this host>/api/live/…`). CSP Level 3 lets `'self'` cover that, but older WebKit (older Safari, iOS browsers included; WebKit bug 235873) never matched `ws:`/`wss:` against `'self'` and refused the socket, leaving those visitors on the polling fallback. A static `_headers` file can't name "this request's host" (the site answers on its workers.dev name and its own domain alike), so the policy allows `wss:` to any host, plus plain `ws:` to the local machine for `wrangler dev`. The trade-off: a script running on our pages could open a socket to another server. Scripts only come from the site itself (`script-src 'self'`, no inline scripts) and nothing people type is ever inserted as HTML, so that takes a script injection we don't have; fetches and images stay as locked down as before. Once those old Safaris are gone, `connect-src 'self'` alone is enough again.
 

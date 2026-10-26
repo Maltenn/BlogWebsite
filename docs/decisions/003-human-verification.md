@@ -1,6 +1,6 @@
 # 003 — Verifying humans: anti-bot measures
 
-Status: proposed (2026-10-25). Nothing here is built. The owner approves the list first; "on by default" below means "on once the owner approves this list".
+Status: accepted with the owner's changes, built in phase 7 (2026-10-26): Turnstile on sign-up, log in and password reset; email verification before posting or messaging; throwaway domains refused (bundled list + MX / null-MX over DoH, failing open; relay aliases allowed); **proof of work on every sign-up** (18 bits, not attack-mode only); the signed form token, honeypot and minimum time; suspicious sign-ups **held** (score 3+) and refused only on hard signals; **no graduated trust or probation**; signals kept **90 days** (not 30); nightly cluster alerts and held near-duplicate text, never auto-bans. Changes from the text below: near-duplicates use MinHash over word 3-shingles instead of simhash (simhash was too twitchy on post-sized texts); no `ANTIBOT_MODE` log-only phase (the owner asked for the checks on); not built: adaptive PoW, step-up Turnstile and the mention/DM caps for held accounts, canonical email keys, the owner's daily summary line, the /48 cap. See [architecture.md](../architecture.md#verifying-humans-anti-spam-and-ai-writing-strikes). The original proposal follows.
 
 ## Question
 

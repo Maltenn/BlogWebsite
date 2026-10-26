@@ -37,6 +37,11 @@ export async function renderSettings(root) {
     h('div', null, h('b', { text: 'email: ' }), acct.email || `(none: you signed up with ${acct.identities[0] ? acct.identities[0].label : 'another site'})`),
     h('div', null, h('b', { text: 'birthday: ' }), `${bday} · ${acct.sign.glyph} ${acct.sign.name}`, h('span', { class: 'os-hint', text: ' (private. if it\'s wrong, ask a moderator.)' })))));
 
+  // AI-writing strikes
+  if (S.account.strikes || S.account.timeoutUntil) root.append(panel('⚠ strikes', h('div', { class: 'os-form' },
+    h('div', null, `you have ${S.account.strikes} AI-writing strike${S.account.strikes === 1 ? '' : 's'} that still count.`, ' ', h('a', { href: '/me/strikes', text: 'see them (and appeal)' })))));
+  else root.append(h('div', { class: 'os-hint os-strikelink' }, h('a', { href: '/me/strikes', text: 'my AI-writing strikes' }), ' (none right now)'));
+
   // how you sign in
   const methods = h('div', { class: 'os-form' });
   const cur = h('input', { class: 'os-input', type: 'password', autocomplete: 'current-password', maxLength: 200 });

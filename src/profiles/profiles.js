@@ -209,7 +209,7 @@ export async function browse(c) {
   const page = Math.max(0, int(c.url.searchParams.get('page'), 0));
   const per = 24;
   const viewer = c.user ? c.user.id : 0;
-  const where = ['u.banned = 0', NOT_BLOCKED('u.id')];
+  const where = ['u.banned = 0', 'u.held = 0', NOT_BLOCKED('u.id')];     // (held: a new account waiting for a moderator)
   const binds = [viewer];
   if (q) {
     binds.push('%' + q.replace(/[\\%_]/g, m => '\\' + m) + '%');

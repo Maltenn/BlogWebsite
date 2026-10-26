@@ -1,5 +1,6 @@
-// A stand-in for Google, Apple, Microsoft, Discord, GitHub, Spotify and iTunes Search, for the tests (the Worker talks
-// to it when TEST_PROVIDER_BASE points here). It approves every sign-in at once. Who signs in is decided by the test:
+// A stand-in for Google, Apple, Microsoft, Discord, GitHub, Spotify and iTunes Search, and for Cloudflare Turnstile's
+// siteverify and DNS-over-HTTPS (MX lookups), for the tests and the demo (the Worker talks to it when
+// TEST_PROVIDER_BASE, TURNSTILE_VERIFY_URL and DOH_URL point here), so nothing reaches the internet. It approves every sign-in at once. Who signs in is decided by the test:
 // mock.next(provider, { sub, email, verified, name, notAllowlisted }) sets the identity the next authorize returns.
 import http from 'node:http';
 import { pathToFileURL } from 'node:url';
@@ -12,6 +13,7 @@ const unb64url = s => Buffer.from(s, 'base64url').toString();
 export async function startMock(port = 0, { pretend = false } = {}) {
   const queue = {};                                     // provider → identities to hand out, in order
   const log = [];                                       // every token request, for assertions
+  const turnstileQueue = [], turnstileLog = [];         // Turnstile answers queued by a test, and every siteverify call
   const fallback = p => ({ sub: `${p}-${Math.random().toString(36).slice(2, 8)}`, email: null, verified: false, name: 'Mock Person' });
   const typed = (p, q) => {
     const name = String(q.get('demo_name') || '').trim().slice(0, 40) || 'Demo Person';
@@ -115,6 +117,33 @@ export async function startMock(port = 0, { pretend = false } = {}) {
       return send(res, 200, { results: [{ previewUrl: 'https://audio-ssl.itunes.apple.com/itunes-assets/mock.m4a' }] });
     }
 
+    // Cloudflare Turnstile's siteverify (TURNSTILE_VERIFY_URL = <base>/turnstile/v0/siteverify), answering the way the
+    // published test secret keys do: 1x… always passes, 2x… always fails, 3x… "already spent". A test can queue the
+    // next answer instead (mock.turnstile({ success: false, … }) or mock.turnstile('down') for a 503).
+    if (url.pathname === '/turnstile/v0/siteverify' && req.method === 'POST') {
+      const form = new URLSearchParams(await body(req));
+      turnstileLog.push(Object.fromEntries(form));
+      const next = turnstileQueue.shift();
+      if (next === 'down') return send(res, 503, { error: 'mock: unavailable' });
+      if (next) return send(res, 200, next);
+      const secret = form.get('secret') || '', token = form.get('response') || '';
+      const at = new Date().toISOString();
+      if (!token) return send(res, 200, { success: false, 'error-codes': ['missing-input-response'] });
+      if (secret.startsWith('2x')) return send(res, 200, { success: false, 'error-codes': ['invalid-input-response'] });
+      if (secret.startsWith('3x')) return send(res, 200, { success: false, 'error-codes': ['timeout-or-duplicate'] });
+      if (secret.startsWith('1x')) return send(res, 200, { success: true, challenge_ts: at, hostname: 'example.com', 'error-codes': [], action: '', cdata: '' });
+      return send(res, 200, { success: false, 'error-codes': ['invalid-input-secret'] });
+    }
+
+    // DNS over HTTPS (DOH_URL = <base>/dns-query), MX records only: a domain with "nxdomain" in it doesn't exist, one with
+    // "nullmx" says it takes no mail (RFC 7505), every other domain has a mail server
+    if (url.pathname === '/dns-query') {
+      const name = String(url.searchParams.get('name') || '').toLowerCase();
+      if (name.includes('nxdomain')) return send(res, 200, { Status: 3, Question: [{ name, type: 15 }] });
+      if (name.includes('nullmx')) return send(res, 200, { Status: 0, Answer: [{ name, type: 15, TTL: 300, data: '0 .' }] });
+      return send(res, 200, { Status: 0, Answer: [{ name, type: 15, TTL: 300, data: `10 mx.${name}.` }] });
+    }
+
     send(res, 404, { error: 'mock: no such endpoint ' + url.pathname });
   });
 
@@ -124,6 +153,8 @@ export async function startMock(port = 0, { pretend = false } = {}) {
     base: `http://127.0.0.1:${actual}`,
     port: actual,
     next(provider, identity) { (queue[provider] = queue[provider] || []).push(identity); },
+    turnstile(answer) { turnstileQueue.push(answer); },
+    turnstileLog,
     log,
     close: () => new Promise(r => server.close(r)),
   };

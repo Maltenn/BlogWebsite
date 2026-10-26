@@ -3,7 +3,10 @@
 // one R2 bucket for members' photos. Live chat goes through one Durable Object per room, which only carries events.
 // Setup and deploy steps: docs/deploy.md; operating it: docs/operations.md. Secrets (set with `wrangler secret put`, never written here):
 //   IP_SALT, TOKEN_KEY                                  required
-//   RESEND_API_KEY, MAIL_FROM                           "forgot my password" emails
+//   RESEND_API_KEY, MAIL_FROM                           emails: confirming a new account's address, "forgot my password"
+//   TURNSTILE_SECRET_KEY                                the human check on sign-up, log in and password reset (with the
+//                                                       public TURNSTILE_SITE_KEY below); sign-ups are refused until set
+//   PANGRAM_API_KEY or GPTZERO_API_KEY                  an AI-writing detector, if AI_DETECTOR names one (see below)
 //   SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET            Spotify connections
 //   GOOGLE_ / MICROSOFT_ / DISCORD_ / GITHUB_ CLIENT_ID + CLIENT_SECRET, APPLE_CLIENT_ID + APPLE_TEAM_ID +
 //   APPLE_KEY_ID + APPLE_PRIVATE_KEY                    "other options" sign-in (each appears once it's set)
@@ -24,8 +27,20 @@
   "vars": {
     "MIN_AGE": "13",                     // birthdays below this age can't sign up
     "SIGNUPS_PER_DAY": "200",            // site-wide cap on new accounts per day (spam brake while the site is small)
-    "SIGNUPS_PER_IP_PER_HOUR": "5"
+    "SIGNUPS_PER_IP_PER_HOUR": "5",
+    // Cloudflare Turnstile's public site key (dashboard → Turnstile → add the site); empty = sign-ups refused on a real
+    // server. Its secret is TURNSTILE_SECRET_KEY. docs/deploy.md.
+    "TURNSTILE_SITE_KEY": "",
+    "POW_BITS": "18",                    // sign-up proof of work: ~260k SHA-256s, 1–2 s in a normal browser (src/trust/form.js)
+    // AI-writing detection (docs/decisions/002, src/ai/): off | workersai | pangram | gptzero (mock: tests and the demo only)
+    "AI_DETECTOR": "off",
+    // shadow: scores go to the moderators, nobody gets a strike. enforce: the strike ladder. Switch only after
+    // tools/eval-detector.mjs measured ≤ 1% false positives on human text (95% upper bound): docs/deploy.md.
+    "AI_ENFORCEMENT": "shadow"
   },
+  // Workers AI, for AI_DETECTOR=workersai only. Left out on purpose: the binding needs a Cloudflare login even for
+  // `wrangler dev`, which would stop the tests and the demo from running offline. Uncomment to try it.
+  // "ai": { "binding": "AI" },
   "d1_databases": [
     {
       "binding": "DB",
@@ -43,6 +58,11 @@
       "bucket_name": "ourspace-social-media"
     }
   ],
+  // the brake on sign-up traffic per network (src/shared/http.js, netLimit): the sign-up forms and posting them, 60 a
+  // minute per network, counted by Cloudflare (no database rows). namespace_id: any number unique in the account.
+  "ratelimits": [
+    { "name": "SIGNUP_LIMITER", "namespace_id": "7001", "simple": { "limit": 60, "period": 60 } }
+  ],
   "durable_objects": {
     // one object per chat room (#ourspace, each group chat and DM): src/live/room.js, exported from src/index.js. It
     // owns no data (D1 does) and uses the WebSocket Hibernation API, so idle rooms cost nothing. SQLite-backed, which
@@ -54,7 +74,8 @@
   ],
   "triggers": {
     // housekeeping: expired sessions, sign-in tickets, reset links, old rate-limit rows, loose photo uploads, #ourspace's
-    // rolling window, expired mutes, faded interaction scores
-    "crons": ["*/30 * * * *"]
+    // rolling window, expired mutes, faded interaction scores, trust data past its time (sign-up signals and AI scores:
+    // 90 days); and nightly, the check for clusters of accounts (src/trust/clusters.js; alerts for moderators only)
+    "crons": ["*/30 * * * *", "17 3 * * *"]
   }
 }

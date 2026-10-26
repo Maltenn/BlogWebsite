@@ -5,7 +5,7 @@
 ```
 one Cloudflare Worker "ourspace-social" (same origin for pages and API, so the login cookie is HttpOnly + SameSite=Lax)
  ├── public/      the pages: index.html + app.js (single-page app, ES modules), app.css, blog/, assets/   (Workers static assets)
- ├── /api/*       src/index.js → accounts, profiles, follows, social, boards, browse, notifications, chats, media, safety, music, horoscope
+ ├── /api/*       src/index.js → accounts, profiles, follows, social, boards, browse, notifications, chats, media, safety, trust, ai, music, horoscope
  ├── /api/live/:room   a chat room's WebSocket: checked by the Worker (src/chats/live.js), then handed to the room's
  │                     Durable Object
  ├── /media/*     uploaded photos, through the Worker (src/media/media.js) to whoever may see them
@@ -13,12 +13,15 @@ one Cloudflare Worker "ourspace-social" (same origin for pages and API, so the l
  │                             password_resets, spotify, follows, posts, likes, bookmarks, mentions, post_tags,
  │                             notifications, markers, boards, board_requests, votes, media, conversations,
  │                             conversation_members, chat_messages, chat_mutes, affinity, board_terms, browse_hidden,
- │                             blocks, reports, mod_log, attempts)
+ │                             blocks, reports, mod_log, attempts, signup_signals, email_tokens, spent_nonces,
+ │                             post_fingerprints, ai_scans, ai_strikes, posting_timeouts, mod_alerts)
  ├── R2 "ourspace-social-media" (binding MEDIA)   the photo files, under random keys
  ├── Durable Objects "Room" (binding ROOMS)   one per chat room (#ourspace, each group, each DM): carries live events to
  │                             the connected sockets, owns no data (src/live/room.js)
  └── cron */30    housekeeping: expired sessions, sign-in tickets, reset links, old rate-limit rows, loose photo uploads,
-                  #ourspace's rolling window, expired mutes, faded interaction scores
+                  #ourspace's rolling window, expired mutes, faded interaction scores, trust data past its time (sign-up
+                  signals and AI scores after 90 days), strikes past their 90 clean days
+     cron 17 3 * * *   the nightly cluster check (src/trust/clusters.js): alerts for moderators, never a ban
 ```
 
 `wrangler.jsonc` sends only `/api/*` and `/media/*` to the Worker first. Every other path is served from `public/`, and a path that isn't a file gets `index.html`, so `/u/<name>`, `/messages`, `/edit` and the rest are drawn by the page's own router.
@@ -30,7 +33,7 @@ src/
   index.js     Worker entry
   shared/      infrastructure; never imports a feature
   catalog/     the choices people have when decorating a page
-  accounts/  profiles/  follows/  social/  boards/  browse/  notifications/  chats/  media/  safety/  music/  horoscope/     features
+  accounts/  profiles/  follows/  social/  boards/  browse/  notifications/  chats/  media/  safety/  trust/  ai/  music/  horoscope/     features
   live/        the Durable Object behind every chat room (carries events, owns no data)
 ```
 
@@ -48,11 +51,13 @@ src/
 | `src/shared/text.js` | Text cleaning: invisible characters, links removed, the blocked-word list (whole words). Reading the `@mentions` and `#tags` out of a post. |
 | `src/shared/dates.js` | Birthdays: parsing, the age check, age on a given day. |
 | `src/shared/seal.js` | AES-GCM encryption for the tokens we have to keep (`TOKEN_KEY`), and random tokens. |
-| `src/shared/mail.js` | Email through Resend (password resets only). |
+| `src/shared/mail.js` | Email through Resend (confirming new accounts, password resets). |
+| `src/shared/gate.js` | The gate on members' writes: email confirmed, not held, and for public posting no posting timeout (`checkGate`, `TIMEOUT_UNTIL`). |
 | `src/shared/astro.js` | The astronomy: where the Sun, Moon and planets are on a given day (`astronomy-engine`), sign changes, retrogrades, Moon phases, aspects, star signs from birthdays, birth placements. Numbers only. |
 | `src/catalog/options.js` | Every choice Edit My Page offers. The page and the server read the same list. |
 | `src/catalog/avatars.js` | The picture presets. Maintained by hand. |
 | `src/accounts/auth.js` | Email sign-up (birthday age check, name rules, per-IP and daily caps), log in by email or screen name (throttled), sessions, forgot/reset password, password change, account deletion. PBKDF2-SHA256 passwords. |
+| `src/accounts/verify.js` | Email verification: sending the link, confirming it (`POST /api/verify`), resending. |
 | `src/accounts/oauth.js` | "Other options" sign-in (Google, Apple, Microsoft, Discord, GitHub), linking and unlinking them in Settings, and the Spotify connection. Authorization code flow with PKCE (Apple uses a signed client secret instead). |
 | `src/profiles/profiles.js` | Profiles (counts, a Top 8 of friends, the latest status and blog posts, Friends' Comments), Browse, Edit My Page validation (only values from `src/catalog/options.js` are accepted), the follow and message settings, show age / show sign. |
 | `src/follows/follows.js` | Following, unfollowing, accepting and removing followers, the Requests tab, the followers / following / friends lists. |
@@ -76,6 +81,16 @@ src/
 | `src/media/sniff.js` | What an upload really is, from its bytes: JPEG, PNG, GIF or WebP, its size in pixels, whether it moves, and whether it's whole (each format walked from end to end). |
 | `src/media/strip.js` | The same walks, rebuilding the file without its metadata (EXIF and GPS, XMP, ICC, IPTC, comments, text chunks) or anything after the picture's end. |
 | `src/safety/safety.js` | Blocks, reports (with a snapshot of the reported text), the moderation actions and log. |
+| `src/trust/form.js` | The sign-up form's signed token: the honeypot's name, the minimum time, the proof of work; `GET /api/form/:purpose`. |
+| `src/trust/turnstile.js` | Cloudflare Turnstile checked on our side (success, action, hostname), failing closed or open. |
+| `src/trust/email.js`, `disposable.js` | Throwaway email domains (the bundled list, an allow list, the big providers) and the MX check over DNS-over-HTTPS. |
+| `src/trust/risk.js` | The sign-up risk score and its signals (hashed network, provider, User-Agent), announced bots, the hosting networks. |
+| `src/trust/signup.js` | Every sign-up's checks in order (`screenSignup`) and its signals kept (`recordSignup`). |
+| `src/trust/minhash.js`, `duplicates.js` | Near-duplicate text: normalising, MinHash signatures, holding copies from several new accounts. |
+| `src/trust/clusters.js` | The nightly cluster check and the retention sweep of the trust data. |
+| `src/trust/moderation.js` | The moderators' held sign-ups and alerts. |
+| `src/ai/clean.js`, `detect.js` | What the AI-writing detector judges, and the detector adapter (off, mock, Workers AI, Pangram, GPTZero). |
+| `src/ai/ladder.js`, `scan.js`, `strikes.js` | The strike ladder (pure), scanning a post and giving strikes, strikes for members and moderators (appeals, the scans list). |
 | `src/music/spotify.js` | Each person's Spotify: tokens (stored encrypted), their top songs (cached for 6 hours), and previews from iTunes when Spotify has none. |
 | `src/horoscope/horoscope.js` | The words: today's sky, each sign's horoscope, personal readings. |
 | `public/_headers` | Content-Security-Policy and other security headers for the pages. |
@@ -83,7 +98,9 @@ src/
 | `public/assets/` | Every image the pages and `src/catalog/` use. Credits are in [CREDITS.md](../public/assets/CREDITS.md), served at `/assets/CREDITS.md`. |
 | `migrations/` | D1 schema, one numbered file per change. |
 | `tools/demo.mjs` | `npm run demo`: the site on your computer with sample content and pretend sign-in pages. |
-| `test/` | `api.test.mjs` (end-to-end, against a throwaway local Worker), `migrations.test.mjs` (a migration applied to a database the earlier ones left), `astro.test.mjs` (the astronomy against known dates), `text.test.mjs` (the `@mention` and `#tag` readers), `media.test.mjs` (the photo sniffers and metadata strippers, on byte-built files with GPS blocks, comments and text chunks, and on the real images in `public/assets`), `ranking.test.mjs` (the board sort keys against worked-out values, and the comment tree), `browse.test.mjs` (Browse's scoring on fixed fixtures), `affinity.test.mjs` (the interaction score's decay and closeness), the WebSocket tests inside `api.test.mjs` (Node's own `WebSocket` against the test `wrangler dev`, with its Durable Objects), `frontend.test.mjs` (page code from `public/js` on a pretend browser, `helpers/fake-dom.mjs`, with the API answered by the test), `static.test.mjs` (assets and imports), `helpers/mock-providers.mjs` (a stand-in for every sign-in provider, Spotify and iTunes, used by the tests and the demo), `helpers/images.mjs` (small JPEG, PNG, GIF and WebP files built byte by byte, for the photo tests and the demo's sample photos). |
+| `tools/eval-detector.mjs` | The AI detector's evaluation harness over `eval/human` and `eval/ai`: confusion matrix, FPR / TPR with Wilson intervals, PASS / FAIL against the 1% bar. |
+| `tools/bot-sim.mjs` | The bot simulator: sign-up floods and spam against a local server, and one real person's journey. |
+| `test/` | `api.test.mjs` (end-to-end, against a throwaway local Worker), `migrations.test.mjs` (a migration applied to a database the earlier ones left), `astro.test.mjs` (the astronomy against known dates), `text.test.mjs` (the `@mention` and `#tag` readers), `media.test.mjs` (the photo sniffers and metadata strippers, on byte-built files with GPS blocks, comments and text chunks, and on the real images in `public/assets`), `ranking.test.mjs` (the board sort keys against worked-out values, and the comment tree), `browse.test.mjs` (Browse's scoring on fixed fixtures), `affinity.test.mjs` (the interaction score's decay and closeness), the WebSocket tests inside `api.test.mjs` (Node's own `WebSocket` against the test `wrangler dev`, with its Durable Objects), `frontend.test.mjs` (page code from `public/js` on a pretend browser, `helpers/fake-dom.mjs`, with the API answered by the test), `static.test.mjs` (assets and imports), `trust.test.mjs` (the sign-up form and proof of work, the risk score, email domains, Turnstile's verdict, near-duplicates, the detector adapter, the strike ladder on a fake clock, the harness's intervals), `helpers/human.mjs` (filling the sign-up form from Node: the proof of work, the honeypot, the wait), `helpers/mock-providers.mjs` (a stand-in for every sign-in provider, Spotify and iTunes, used by the tests and the demo), `helpers/images.mjs` (small JPEG, PNG, GIF and WebP files built byte by byte, for the photo tests and the demo's sample photos). |
 
 Features import only `shared/` and `catalog/`. The few exceptions are listed in [CONVENTIONS.md](../CONVENTIONS.md).
 
@@ -101,8 +118,9 @@ Features import only `shared/` and `catalog/`. The few exceptions are listed in 
    | `AUTH` | a logged-in member | 401 "log in first." |
    | `ADMIN` | a moderator (`users.is_admin`) | 403 "moderators only." |
 
-6. **The handler** (`verbNoun(c)`) gets one context, `c` (`req`, `env`, `ctx`, `url`, `now`, `params`, `user`), and returns `json(...)`. Problems are thrown with `fail(status, message)`. An `HttpError` becomes a JSON `{ "error": ... }` answer with that status. Anything else is logged and answered with a plain 500, so no internals leak.
-7. **Cron**, every 30 minutes (`*/30 * * * *`): deletes expired sessions, sign-in tickets (`oauth_states`, `oauth_signups`) and reset links, rate-limit rows (`attempts`) older than two days, photo uploads never attached to anything within a day or left without their post or owner (with their files in R2; never photos held as evidence), #ourspace messages outside its rolling window (never reported ones), expired mutes, and interaction scores faded below 0.05.
+6. **The gate** (`src/shared/gate.js`): a member's write (not `GET`) needs a confirmed email and an account not held for review, and public posting no posting timeout, unless the route is marked `free` ([the write gate](#the-write-gate)).
+7. **The handler** (`verbNoun(c)`) gets one context, `c` (`req`, `env`, `ctx`, `url`, `now`, `params`, `user`), and returns `json(...)`. Problems are thrown with `fail(status, message)`. An `HttpError` becomes a JSON `{ "error": ... }` answer with that status. Anything else is logged and answered with a plain 500, so no internals leak.
+8. **Cron**, every 30 minutes (`*/30 * * * *`): deletes expired sessions, sign-in tickets (`oauth_states`, `oauth_signups`) and reset links, rate-limit rows (`attempts`) older than two days, photo uploads never attached to anything within a day or left without their post or owner (with their files in R2; never photos held as evidence), #ourspace messages outside its rolling window (never reported ones), expired mutes, interaction scores faded below 0.05, sign-up signals and AI scores older than 90 days, post fingerprints older than 7, used form nonces and confirmation links past their time, resolved alerts after 90 days; marks strikes past their 90 clean days expired and clears their text 30 days later. Nightly (`17 3 * * *`): the cluster check ([Verifying humans](#verifying-humans-anti-spam-and-ai-writing-strikes)).
 
 ## Following, friends and the feed
 
@@ -481,6 +499,97 @@ Every read is cut to a fixed size **before** it is filtered (a `LIMIT` on an ind
 
 "Flooded": the demo plus 10,000 replies this week by somebody the_reviewer follows, 10,000 statuses by a private profile, 10,000 people a friend of theirs follows one way who then all follow back, and 300 statuses in a day by one account. The tests read every answer's `X-Rows-Read` (set when the Worker runs with `SHOW_ROWS_READ=1`, as the tests and the demo do; `meter()` in `src/shared/db.js`) and hold every route to 2,000 rows, before and after the same floods (`test/api.test.mjs`, "the row budget under floods"). The price of the caps: Mutuals sees 25 friends' newest 20 follows each, so on a big site a friend of a friend you share through an older friendship can be missed; 001's 6-hour per-member cache isn't built (see the roadmap).
 
+## Verifying humans, anti-spam and AI-writing strikes
+
+Phase 7, from [decisions/003](decisions/003-human-verification.md) and [decisions/002](decisions/002-ai-writing-detection.md) with the owner's decisions: Turnstile on sign-up, log in and password reset; email verification before posting or messaging; throwaway email domains refused; proof of work on every sign-up; suspicious sign-ups held for a moderator; no graduated trust or probation (a verified account can do everything, under the usual rate limits); signals kept 90 days; nightly cluster alerts and held duplicate text, never auto-bans; AI-writing detection behind an adapter, off by default, in shadow mode until the evaluation harness passes.
+
+### Signing up
+
+1. **The form**: `GET /api/form/signup` (or `/finish` for Google & co.) answers a signed, stateless token (`src/trust/form.js`) carrying a nonce, the time and the proof-of-work difficulty, plus the honeypot's name (`f` + 6 hex digits of an HMAC of the nonce: different on every load) and the Turnstile settings.
+2. **The page** draws the honeypot (one text input with that name, in a wrapper with `aria-hidden="true"`, the input `tabindex="-1"` and `autocomplete="off"`, moved off-screen by a class, never `display: none`), runs the proof of work in the background (Web Crypto in short slices that hand the page back every few milliseconds, cancelled when the page is left) with a visible "checking…" line (find a decimal `counter` with SHA-256(`token + ":" + counter`) starting with `pow.bits` zero bits; 18 bits ≈ 260,000 hashes ≈ 1–2 s), and shows the Turnstile widget (`action` signup).
+3. **The server** (`src/trust/signup.js`), in this order: the per-network brake (below); the field checks, the age check and "name/email taken" (so those mistakes never cost a form); the form (signature, purpose, 2 hours' life) and its proof of work, which write nothing when they fail; the form is spent (not used before), so every outcome from here on uses it up; then the cheap-to-fake refusals: an announced bot (`Signature-Agent` / `Signature-Input`, or a User-Agent naming automation: `HeadlessChrome`, `python-requests`, `curl`, `GPTBot` …), the honeypot filled, under `SIGNUP_MIN_MS` open, the email domain (not on the throwaway list or under a domain on it; has mail: no NXDOMAIN or null MX over DNS-over-HTTPS, failing open), Turnstile (`success`, `action`, `hostname`; fails closed); the risk score (`src/trust/risk.js`): 3+ holds the account. No refusal writes a rate-limit row: the connection's 5 sign-ups an hour (`SIGNUPS_PER_IP_PER_HOUR`, in `attempts`) count only sign-ups that passed all of this, so nobody on a shared network (a school, a library, a phone network) can use it up for the others without doing the proof of work and getting accounts made.
+   - **The per-network brake**: `GET /api/form/*`, `POST /api/signup` and `/api/signup/finish` (`net` in the route table) pass `netLimit` (`src/shared/http.js`) before anything touches the database: Cloudflare's Rate Limiting binding (`SIGNUP_LIMITER` in `wrangler.jsonc`), 60 requests a minute per network (IPv4 address, IPv6 /64), counted in Cloudflare's memory, so a flood writes no rows. Over it: `429 { code: 'busy' }`. The worst a flood can do is keep its own network waiting while it lasts, plus a minute (any per-network limit can be used up by whoever shares the network; this one costs the flooder its requests and costs nobody an hour). A missing binding means no brake; an error lets the request by.
+4. **The account** starts unverified (email sign-ups) and maybe held; its signals go in `signup_signals`; a confirmation link goes out. Through Google & co. the same form, proof of work, Turnstile and score apply, and the provider's email (we only keep one the provider says it verified) passes the throwaway list (not the mail check: the provider delivered to it) and is recorded (`email_domain`, for `domain_burst` and the nightly `email_domain` cluster); the account starts verified. **No verified email** (Microsoft, which never promises one, or a Discord / GitHub account without one): the sign-up goes ahead but is held (`no_verified_email`), `email_verified_at` stays NULL, `GET /api/me` says `verified: true` (there is nothing to confirm) and the gate answers `held`; a moderator's approval sets `email_verified_at` (it stands in for the link). The simplest rule that keeps one free account per throwaway provider login from posting unseen.
+
+| Risk point | When |
+|---|---|
+| +2 `hosting_network` | the provider (ASN from `request.cf`) is a hosting or datacenter network (`HOSTING_ASNS`) |
+| +2 `same_network_24h` | the same network (IPv4 address, IPv6 /64; a salted hash) signed up in the last 24 hours |
+| +2 `provider_burst` | the provider had 4+ sign-ups in the last hour, over 3× its usual hourly rate |
+| +2 `domain_burst` | an email domain that isn't a big provider had 2+ sign-ups in 24 hours |
+| +1 `fast_form` | the form was open less than `SIGNUP_SOFT_MS` (6 s) |
+| +1 `old_protocol_browser` | HTTP/1.1 from a browser User-Agent |
+| +1 `no_accept_language` | no `Accept-Language` header |
+
+A score never refuses anybody; refusals come only from the hard signals above. **Held** accounts log in and set up their page (profile, settings, picture, Spotify) but can't post, comment, message, follow, like or vote until a moderator approves them. They are also unlisted (the owner's decision): their page (and its tabs) answers `404` like a missing user to everyone but themselves and moderators, and they are left out of Browse search, suggestions (Mutuals, Who to follow), follows, messages and `@mentions`.
+
+### The write gate
+
+Every route in the table that is `AUTH` and not `GET` passes `checkGate` (`src/shared/gate.js`) before its handler, unless the table marks it `free` with the reason:
+
+- `write` (the default): the email is confirmed (`403 { code: 'unverified' }`) and the account isn't held (`403 { code: 'held' }`). Likes, reposts, votes, follows (and accepting one), chats and their messages, group invites, #ourspace, board requests, photo uploads.
+- `gate: 'post'`: that, and no posting timeout (`403 { code: 'timeout', until }`). Statuses, blog posts, replies, quotes, Friends' Comments, board threads and comments: public posting and commenting only. DMs, chat, likes and reading go on during a timeout.
+- `free`: account (password, deleting it, sign-in providers, resending the confirmation), page set-up (profile, settings, Spotify, a profile picture upload: `freeWhen` purpose is `avatar`), private things (bookmarks, read positions, "not interested"), undoing and leaving (unlike, unfollow, remove a follower, leave a chat, take back an upload, delete your own post or message), safety (blocks, reports) and appealing a strike.
+
+Moderators pass. `test/api.test.mjs` reads the table from `src/index.js` and sends every gated route as an unverified, a held and a timed-out member.
+
+### Duplicate text
+
+Every public post of 8+ words gets a fingerprint (`src/trust/minhash.js`: its normalised words' 3-word runs MinHashed with 16 seeds, and a hash of the normalised text; no text kept). When an account under 30 days old writes something that 2+ other accounts under 30 days old wrote in the last 24 hours (the same normalised text, or 60%+ of the signature in common; deleted copies and posts a moderator hid don't count), a `duplicate` alert lists them all; later copies join it. The post that crossed that line, and every later copy, is written held (`posts.hidden = 2`, the answer says `held: true`) only when the accounts look related: the writer signed up from the same network or provider (ASN) as 2+ of the others, or every one of them signed up in the last 3 days. Copies written before the line was crossed are never held, so copying a stranger's post twice can't take theirs down; unrelated accounts only raise the alert. A hold isn't a moderator's hide (`hidden = 1`): the alert records the ids it held (`held` in its payload), and **release** shows only those that are still held, never a post a moderator hid (a report, CSAM, intimate images) before or since. A moderator releases or leaves them. (Decision 003 named a simhash; on post-sized texts it was too twitchy: one changed word kept a 26-word post within 3 bits only 5% of the time, against 98% similarity hits for MinHash.)
+
+### AI-writing strikes
+
+- **What's scanned**: public posts (statuses, replies, quotes, blog posts, board threads and comments, Friends' Comments) of 100+ words (blog posts 150+), after cleaning (`src/ai/clean.js`: quotes, code, links, @mentions, emoji, markdown out; look-alike letters mapped back). Never DMs or chat. The post is published first; `writePost` queues the scan in `waitUntil` (`src/ai/scan.js`), which fails open.
+- **The detector** (`src/ai/detect.js`): `detect(env, text) → { score, label, model, raw }`, provider from `AI_DETECTOR` (`off` by default; `mock`, `workersai`, `pangram`, `gptzero`). Every score is recorded in `ai_scans` with what it led to.
+- **Shadow mode** (`AI_ENFORCEMENT=shadow`, the default): decisions are `clear` or `would_strike`; moderators read them in the AI scans list. Nobody is struck.
+- **Enforce mode**: label `AI` with a score of 0.95+ is a strike, at most one per 24 hours (`same_incident`). The ladder (`src/ai/ladder.js`): 1 a warning, 2 a day's posting timeout, 3 a week, 4 a month, 5+ a `ban_review` alert for a moderator (no automatic ban). The post stays up. Every new strike moves the expiry of those still counting to 90 days later ("90 clean days"). The member gets an `ai_strike` notification and sees the strike at `/me/strikes` with the flagged text, the score, its date and expiry.
+- **Appeals**: one per strike, with a note; the timeout stands until a moderator decides. Upheld: it stays. Removed: its timeout ends at once, the member is exempt from automatic strikes for 180 days (scores still recorded: `exempt`), and they get an `ai_appeal` notification. Everything is logged in `mod_log`.
+- **The gate before enforcing**: `tools/eval-detector.mjs` over `eval/` ([deploy.md](deploy.md#ai-writing-detection-off-by-default-and-the-evaluation-gate)).
+
+### The data
+
+`migrations/0009_trust.sql`:
+
+| Table / column | What |
+|---|---|
+| `users.email_verified_at` | When the email was confirmed (NULL: not yet). Everyone who had an account before 0009 counts as confirmed. |
+| `users.held`, `held_reason` | Waiting for a moderator (1), and the risk reason codes (moderators only). |
+| `users.ai_exempt_until` | No automatic strikes until then (a strike removed on appeal). |
+| `signup_signals` | `(user_id, ip_group_hash, asn, as_org, country, ua_hash, email_domain, form_ms, risk, reasons, created)`: hashes and a provider, never an address. 90 days. |
+| `email_tokens` | `(token_hash, user_id, email, created, expires)`: confirmation links, single use, 24 hours. |
+| `spent_nonces` | `(nonce, expires)`: sign-up forms already used. |
+| `post_fingerprints` | `(post_id, user_id, simhash, b0..b3, text_hash, words, created)`: `simhash` holds the MinHash signature (the column kept its first draft's name), `b0..b3` its first four values for lookups. 7 days. |
+| `ai_scans` | `(id, post_id, user_id, kind, words, score, label, model, text_hash, decision, created)`. 90 days. |
+| `ai_strikes` | `(id, user_id, post_id, scan_id, level, text, score, label, model, created, expires, status active \| appealed \| removed \| expired, appeal_note, appealed_at, appeal_result upheld \| removed, decided_by, decided_at, decision_note)`. |
+| `posting_timeouts` | `(user_id, strike_id, until)`: a strike's timeout; it holds while its strike counts. |
+| `mod_alerts` | `(id, kind cluster \| duplicate \| held_signup \| ban_review, key, payload, created, resolved_by, resolved_at, resolution)`: one open alert per `(kind, key)`. A duplicate alert's payload has `held`: the post ids it held. |
+| `posts.hidden` | Gains a third value: `2`, held as duplicate text (`1` stays hidden by a moderator). Everything that shows posts asks for `0`. |
+| `notifications.strike_id` | For the kinds `ai_strike` and `ai_appeal`. |
+
+### The routes
+
+| Route | Access | Answer |
+|---|---|---|
+| `GET /api/form/:purpose` | anyone | `signup` \| `finish`: `{ token, honeypot, minMs, expiresIn, pow: { algorithm: 'SHA-256', bits, input: '<token>:<counter>' }, turnstile: { siteKey, action } \| null }`. `login` \| `reset`: `{ token: null, honeypot: null, pow: null, minMs: 0, turnstile }`. |
+| `POST /api/signup` | anyone | `{ email, password, name, birthday, avatar?, rulesOk, form, pow, turnstile, [honeypot]: '' }` → 201 `{ user, verification: 'sent' \| 'failed', held }` (and the session cookie). Refusals: 400/403/503 `{ error, code }` with `code` one of `form`, `form_expired`, `form_used`, `too_fast`, `pow`, `turnstile`, `turnstile_unavailable`, `automation`, `disposable_email`, `email_domain` (after any of them, fetch a fresh form and reset the widget). 409 name or email taken; 503 email not set up; 429 `busy` (the per-network brake). |
+| `POST /api/signup/finish` | anyone (with the provider ticket) | `{ name, birthday, avatar?, rulesOk, form, pow, turnstile, [honeypot]: '' }` (form from `/api/form/finish`) → 201 `{ user, held }`. Same refusals except `email_domain` (`disposable_email` applies to the provider's address). |
+| `POST /api/login` | anyone | adds `turnstile` (action `login`); missing → 400 `{ code: 'turnstile' }`, failed → 403. If Cloudflare is unreachable it goes ahead. |
+| `POST /api/password/forgot` | anyone | adds `turnstile` (action `reset`); fails closed (503 `turnstile_unavailable`). `POST /api/password/reset` is unchanged (its emailed token is the check). |
+| `POST /api/verify` | anyone | `{ token }` (from `/verify#token=…`) → `{ ok, verified: true, name }`; 400 `{ code: 'verify_link' }` expired, used or for an old address. |
+| `POST /api/me/verify/resend` | member | → `{ ok, sent: true }`; 409 `{ code: 'verified' }` when already confirmed; 429. |
+| `GET /api/me` | anyone | adds `account: { verified, held, timeoutUntil, strikes }`; logged out, `turnstile: { siteKey } \| null`. |
+| writes of others' content | member | `held: true` added to the answer of `POST /api/status`, `/api/blog`, `/api/users/:name/comments`, `/api/posts/:id/replies`, `/api/posts/:id/quote`, `/api/boards/:slug/threads`, `/api/threads/:id/comments` when the post was held as duplicate text. Gate refusals: 403 `{ error, code: 'unverified' \| 'held' \| 'timeout', until? }`. |
+| `GET /api/me/strikes` | member | `{ strikes: [strike], timeoutUntil, enforcement: 'shadow' \| 'enforce', detector: 'on' \| 'off' }`. A strike: `{ id, level, step: 'warning' \| 'timeout' \| 'review', created, expires, status, counting, text, score, label, model, post: { id, kind, deleted, hidden } \| null, timeout: { until } \| null, appeal: { note, at, result, decidedAt } \| null, canAppeal }`. |
+| `POST /api/me/strikes/:id/appeal` | member | `{ note (1,000) }` → `{ strike }`; 409 already appealed or no longer counting. |
+| `GET /api/notifications` | member | `ai_strike` and `ai_appeal` items carry `strike: { id, level, status, result }` and `post: null`. |
+| `GET /api/admin/held` | moderator | `{ accounts: [{ user, created, verified, emailDomain, risk, reasons, network: { asn, asOrg, country }, formMs }] }`, oldest first. |
+| `POST /api/admin/held/:name` | moderator | `{ action: 'approve' \| 'refuse', reason }` (reason required to refuse) → `{ ok, user: { id, name, held, banned } }`; 409 not held. |
+| `GET /api/admin/alerts?status=open\|closed` | moderator | `{ alerts: [{ id, kind, created, rule, users: [{ id, name, avatar, created, held, banned }], posts: [{ id, kind, excerpt, hidden, held, deleted, author }], details, resolvedAt, resolvedBy, resolution }] }`. A post's `hidden`: a moderator hid it; `held`: it waits as duplicate text. `rule` (clusters): `same_network`, `hosting_burst`, `same_moment`, `email_domain`, `same_text`. |
+| `POST /api/admin/alerts/:id` | moderator | `{ action: 'dismiss' \| 'release' (duplicate: shows again the posts it held, nothing else) \| 'ban' (ban_review), note }` → `{ ok }`. |
+| `GET /api/admin/appeals` | moderator | `{ strikes: [strike + user: { id, name, avatar, created }] }`, oldest appeal first. |
+| `POST /api/admin/strikes/:id` | moderator | `{ action: 'uphold' \| 'remove', note }` → `{ strike }`. |
+| `GET /api/admin/ai-scans?before=&decision=` | moderator | `{ scans: [{ id, created, score, label, model, decision, words, kind, user, post: { id, kind, excerpt, hidden, deleted } \| null }], next, detector, enforcement }`, 50 a page. |
+
 ## Front end
 
 `public/index.html` loads `public/app.js` as an ES module. There is no build step: the files in `public/` are what the browser gets.
@@ -490,24 +599,29 @@ public/
   app.js                entry: the ROUTES table (address pattern → page) and boot
   js/core/              basics every page uses
     dom.js              h() builds elements, with text going in through textContent; $, enc, userPath, poss
-    api.js              the JSON API (/api/*); a failed call throws with the server's message and .status
+    api.js              the JSON API (/api/*); a failed call throws with the server's message, .status and .code (.until for a posting timeout); a gate refusal (403 `unverified` / `held` / `timeout`) carries a plain-words message any page shows as a toast; an answer with `held: true` (a post held as duplicate text) toasts "held for a quick review"
     format.js           dates and times, printed the 2006 way
     ui.js               toasts, the Win98 message box, page titles, error cards, "show more" paging, profile skins
-    state.js            who's logged in and what the server told us (S, loadMe)
+    state.js            who's logged in and what the server told us (S, loadMe): `S.account` is `{ verified, held, timeoutUntil, strikes }` from GET /api/me
     router.js           the page router, the link interceptor, and STATIC_PREFIXES
-    chrome.js           the header (who's logged in) and the tabs with their badges (Notifications, Messages)
+    chrome.js           the header (who's logged in), the tabs with their badges (Notifications, Messages), and the bars under them (`#banners`): "confirm your email" with "send it again" until verified, the moderator note on a held account; `resendVerification()`
     live.js             a live room: one WebSocket to /api/live/:room with reconnect (1 s doubling to 30 s), a ping every 25 s, `sync()` after every reconnect and a poll of the history every 4 s once it has failed three times in a row; closed on route leave; `dropSockets()` knocks every open one over for trying it out
   js/widgets/           code two or more pages share, or a piece of one page big enough for its own file
     people.js           a person's picture, name link and Browse card
     safety.js           report and block, under posts, on pages and in messages
     songs.js            someone's Spotify top songs, with 30-second previews
     auth-forms.js       what join, finish-sign-up and log-in share, the picture gallery, the sign-in error texts
+    humancheck.js       the human check on sign-up, finish, log in and reset: fetches GET /api/form/:purpose, draws the honeypot (a text input named by the form, in an aria-hidden wrapper moved off-screen by `.hc-hp`, tabindex -1, autocomplete off), starts the proof of work at once with a "checking you're a person… 40%" line, loads Turnstile's script from challenges.cloudflare.com and draws its widget; `payload()` waits for both (and the form's minimum time) and gives `{ form, pow, [honeypot], turnstile }`; `refused(err)` gives the friendly words per refusal code and fetches a fresh form / resets the widget; `destroy()` (called on route leave) aborts the work and removes the widget
+    pow.js              the proof of work: SHA-256(`token:counter`) with the asked zero bits, Web Crypto in batches, handing the page back every 8 ms; cancellable
+    checkemail.js       the "check your email" screen after an email sign-up, with Send it again and the held-account note
+    postingblock.js     what the status box and the comment box show instead of themselves during a posting timeout: the time it ends and a link to /me/strikes
+    modqueues.js        the phase 7 sections of the Moderation page: held sign-ups (approve / refuse with a reason), alerts (dismiss, release held duplicates — each post marked "held" or "hidden by a moderator", the release button only when something is held — ban a 5th strike after a confirmation), strike appeals (uphold / remove), the AI scans list (score, label, decision, link; paged, filtered by decision)
     followbutton.js     the Follow button (Follow / Requested / Following / Friends)
     discovery.js        a card in Browse > For you: the post or thread with a line saying why it is shown, Follow, View board and ✕
     suggestions.js      suggested people (Mutuals rows with the friends in common; the Feed sidebar's "Who to follow") and suggested boards (Boards for you rows, the matched words marked)
     hide.js             the ✕ "not interested" button: hides the card, with a click-to-undo toast (POST / DELETE /api/browse/hidden)
     privatecard.js      what shows instead of a private page's posts
-    composer.js         the "What's on your mind?" status box with its live counter and 📷 button (up to 4 photos); with a URL it is the reply box
+    composer.js         the "What's on your mind?" status box with its live counter and 📷 button (up to 4 photos); with a URL it is the reply box; during a posting timeout it is the `postingblock` notice
     photos.js           putting photos on a post: prepareImage (the browser half of the pipeline: shrink to 1600 px, JPEG / WebP / PNG, a small GIF as it is, a 300 px square for a picture) and photoPicker (the 📷 button, thumbnails with description, ✕ and progress, the ids for the create call; previews are data: URLs)
     photoqueue.js       the Photos section of the Moderation page: thumbnails newest first (unreviewed by default), uploader and account age, where each is, Mark reviewed / Hide / Remove, "show older photos"
     photogrid.js        a post's photos as a 1–4 grid with the room reserved from width and height, lazy loading; a blog cover is the same as a wide single photo
@@ -524,7 +638,7 @@ public/
     readmarker.js       "pick up where I left off": which cards you've seen and how far you've read
     votes.js            ▲n ▼n under a thread or comment: both counts, your vote pressed; changes at once and puts only the vote back if refused
     comments.js         a thread's nested comments: 14px indent under a rail, [−] / [+n] fold, depth cap 6 (3 on a phone) then "Continue this thread →", "Load more replies (n)", [deleted] tombstones
-    commentbox.js       the comment box (a Win98 window at the top of a thread, a small reply box under a comment), 10,000 characters and one photo
+    commentbox.js       the comment box (a Win98 window at the top of a thread, a small reply box under a comment), 10,000 characters and one photo; the `postingblock` notice during a posting timeout
     threaddialog.js     the New Thread window (title 120, words 10,000, up to 4 photos)
     boardlinks.js       where boards and threads live: /boards/cooking, /boards/cooking/42
     boardrequests.js    the board requests on the Moderation page: approve (address, icon, description) or decline
@@ -537,7 +651,7 @@ public/
     profile.js          someone's page, with the Posts, Replies, Blog and Friends' Comments tabs
     blog.js             one blog post on its own page, with its Discussion
     post.js             a conversation: the posts above, the post enlarged, the reply box, the replies
-    notifications.js    the Notifications tab: follow requests waiting (Accept / Decline) and what happened, grouped, with unread ones highlighted (a group invite answers in place; a #ourspace mention leads to the room)
+    notifications.js    the Notifications tab: follow requests waiting (Accept / Decline) and what happened, grouped, with unread ones highlighted (a group invite answers in place; a #ourspace mention leads to the room; an AI-writing strike or the answer to an appeal is a line from the site leading to /me/strikes)
     bookmarks.js        your bookmarks
     tags.js             a #tag's page
     lists.js            who follows someone, who they follow, and their friends
@@ -549,10 +663,12 @@ public/
     boards.js           the boards: the index (a phpBB-style table, "request a board") and one board's thread list (Hot / New / Top / Best, paged)
     thread.js           a thread: the post, ▲n ▼n, the comment box and the nested comments (?c= opens one comment's replies), Pin and Lock for moderators
     horoscope.js        the daily horoscope, your birth chart and today's sky
-    auth.js             sign up, finish a provider sign-up, log in, forgot / reset password
+    auth.js             sign up (then the "check your email" screen), finish a provider sign-up, log in, forgot / reset password; each form carries `humancheck`, and a refusal refetches the form
+    verify.js           /verify#token=…: confirms the email from the link (the token is dropped from the address bar); an expired link offers a new one
+    strikes.js          /me/strikes: each AI-writing strike with the flagged text, score, date, expiry, step and what it led to, an appeal form (one per strike, with a note) or the appeal's status; a note when the detector is in shadow mode (nobody is struck) or off
     edit.js             Edit My Page (with "Upload my own picture": cropped to a 300 px square before it goes up)
-    settings.js         Settings
-    admin.js            Moderation (moderators only): board requests, reports (CSAM ones first, with the 48-hour clock, and the reported post's photos: Remove photo, Hide photo), the Photos review queue, the log
+    settings.js         Settings (with the link to /me/strikes)
+    admin.js            Moderation (moderators only): board requests, the phase 7 queues (`modqueues`), reports (CSAM ones first, with the 48-hour clock, and the reported post's photos: Remove photo, Hide photo), the Photos review queue, the log
     rules.js            House Rules & Privacy
   app.css  _headers  assets/  blog/
 ```
@@ -561,6 +677,7 @@ public/
 - Code that two or more pages use, or a self-contained piece of one page big enough for its own file, lives in `js/widgets/` (pages stay thin). `js/core/` imports nothing above it: no widgets, no pages, no entry.
 - The router leaves some addresses to the server, so links into them are real page loads instead of in-app navigation. They are listed in `STATIC_PREFIXES` in `js/core/router.js` (the blog, the assets, the API). A new static folder under `public/` has to be added there.
 - User text only ever reaches the page through `textContent`, never as HTML.
+- The page's one outside origin is `https://challenges.cloudflare.com` (Turnstile): `script-src` and `frame-src` in `public/_headers` name it and nothing else, `test/static.test.mjs` pins both, and `js/widgets/humancheck.js` is the only code that loads it. Everything else stays `'self'`, with no inline `style` attributes or scripts.
 
 ## Horoscopes: how they work
 

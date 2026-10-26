@@ -8,7 +8,7 @@ import { text, longText, clip } from '../shared/text.js';
 import { REF_COLS, ref, limit, NOT_BLOCKED, VISIBLE, IN_THREAD, REACHABLE } from '../shared/db.js';
 import { hot, RESORT } from '../shared/ranking.js';
 import { claimMedia, MEDIA_OF, mediaByPost } from '../shared/media.js';
-import { POST_LIMITS, POST_COLS, POSTS, hydrate, item, itemById, writePost } from '../social/items.js';
+import { POST_LIMITS, POST_COLS, POSTS, hydrate, item, itemById, writePost, heldOut } from '../social/items.js';
 import { growTree, readCursor } from './tree.js';
 
 const PER = 25;                                  // threads on a page of a board
@@ -127,7 +127,7 @@ export async function postThread(c) {
   const id = await writePost(c, { kind: 'thread', board_id: b.id, subject, body, hot: hot(0, 0, 0, c.now) }, {
     mentionIn: words, tagIn: words, guard: `EXISTS (SELECT 1 FROM boards WHERE id = ${b.id} AND archived = 0)`, media,
   });
-  return json({ thread: await itemById(c, id) }, 201);
+  return json({ thread: await itemById(c, id), ...heldOut(c) }, 201);
 }
 
 // the thread :id as the viewer may see it (a tombstone too), with whether its board is archived; else 404
@@ -215,7 +215,7 @@ export async function postThreadComment(c) {
       DB.prepare(`UPDATE posts SET ${RESORT} WHERE id = ?`).bind(t.id),
     ],
   });
-  return json({ comment: await itemById(c, id) }, 201);
+  return json({ comment: await itemById(c, id), ...heldOut(c) }, 201);
 }
 
 /* -------------------------------------------------------- moderators */

@@ -27,12 +27,13 @@ export function notify(c, kind, to, post = null, when = '1') {
 // under it). A group invite shows while its member is invited or joined (not after declining or being removed), a
 // #ourspace mention while its message is there (not deleted or taken down). Also joined: the post's board `pb`, for a
 // board request's answer the request `q` and the board it made `qb`, for a group invite the conversation `cv`, for a
-// mention in #ourspace the message `cmm`. Everything after FROM; it ends inside the WHERE, so more conditions can follow.
+// mention in #ourspace the message `cmm`, for an AI-writing strike or an appeal's answer the strike `sk`. Everything after FROM; it ends inside the WHERE, so more conditions can follow.
 export const SHOWN = `notifications n JOIN users x ON x.id = n.actor_id
   LEFT JOIN posts p ON p.id = n.post_id LEFT JOIN users a ON a.id = p.author_id
   LEFT JOIN users o ON o.id = COALESCE(p.target_id, p.author_id) LEFT JOIN boards pb ON pb.id = p.board_id
   LEFT JOIN board_requests q ON q.id = n.request_id LEFT JOIN boards qb ON qb.id = q.board_id
   LEFT JOIN conversations cv ON cv.id = n.conversation_id LEFT JOIN chat_messages cmm ON cmm.id = n.message_id
+  LEFT JOIN ai_strikes sk ON sk.id = n.strike_id
   WHERE n.user_id = ?1 AND x.banned = 0 AND ${NOT_BLOCKED('n.actor_id')}
     AND (n.conversation_id IS NULL OR EXISTS (SELECT 1 FROM conversation_members ncm WHERE ncm.conversation_id = n.conversation_id
       AND ncm.user_id = ?1 AND ncm.status IN ('invited', 'joined')))

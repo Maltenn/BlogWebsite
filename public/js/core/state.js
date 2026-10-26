@@ -8,6 +8,7 @@ export const S = {
   me: null,                       // { id, name, avatar, isAdmin, sign } or null
   counts: { requests: 0, unread: 0, notifications: 0, reports: 0 },
   settings: null,
+  account: { verified: true, held: false, timeoutUntil: null, strikes: 0 },   // where the account stands (email confirmed, held, posting timeout)
   minAge: 13,
   options: null,                  // GET /api/options (lazy)
   providers: { signIn: [], spotify: false },
@@ -24,6 +25,7 @@ export async function loadMe() {
   S.minAge = r.minAge || 13;
   S.counts = r.counts || { requests: 0, unread: 0, notifications: 0, reports: 0 };
   S.settings = r.settings || null;
+  S.account = r.account || { verified: true, held: false, timeoutUntil: null, strikes: 0 };
   meListeners.forEach(fn => fn());   // the entry repaints the header and tabs
   return before;
 }

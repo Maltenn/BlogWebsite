@@ -1,5 +1,5 @@
 # 002 — AI-writing detection
-Status: proposed (2026-10-25)
+Status: accepted with the owner's changes, built in phase 7 (2026-10-26). Free detectors only for now: the adapter takes `off` (the default) | `workersai` | `pangram` | `gptzero` (+ `mock` for tests), chosen by `AI_DETECTOR`; `AI_ENFORCEMENT` is `shadow` by default and goes to `enforce` only after `tools/eval-detector.mjs` measures the human false-positive rate at ≤ 1% (95% upper bound). Scope: public posts of 100+ words (blogs 150+), Friends' Comments included, never DMs or chat. The owner's ladder: 1 warning, 2 a day's posting timeout, 3 a week, 4 a month, 5 a moderator decides on a ban; one strike per 24-hour incident; label AI with score ≥ 0.95 only; the post stays up; strikes expire after 90 clean days; every strike appealable (removal lifts its timeout; a 180-day exemption follows, as recommended below). Workers AI has no AI-text classifier or log-probabilities, so its option is an LLM judge, expected to fail the bar. Not built yet: the scan queue with retries, the budget guard, sampling, caching, language detection. See [architecture.md](../architecture.md#ai-writing-strikes).
 
 V = vendor claim. I = independent evaluation. S = secondary/aggregator, unverified. Prices are list prices, USD, checked 2026-10-25.
 

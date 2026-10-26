@@ -5,12 +5,15 @@ import { h } from '../core/dom.js';
 import { api } from '../core/api.js';
 import { oops } from '../core/ui.js';
 import { photoPicker } from './photos.js';
+import { postingBlock } from './postingblock.js';
 
 export const COMMENT_MAX = 10000;
 
 // opts: threadId, parent (a comment id; none = top level), onPosted(comment), onCancel() (a reply box has Cancel),
 // title (a window title: the top-level box), placeholder, label, button
 export function commentBox(opts) {
+  const paused = postingBlock();                  // a posting timeout: its end time instead of the box
+  if (paused) return paused;
   const ta = h('textarea', { class: 'ms-compose-text', maxLength: COMMENT_MAX, rows: opts.parent ? 3 : 4, placeholder: opts.placeholder || 'what do you think?', 'aria-label': opts.label || 'your comment' });
   const count = h('span', { class: 'ms-compose-count', text: `0/${COMMENT_MAX}` });
   const send = h('button', { class: 'btn98 go', type: 'submit', text: opts.button || 'Comment', disabled: true });

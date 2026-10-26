@@ -33,6 +33,8 @@ import { renderProfile, renderProfileReplies, renderProfileBlog, renderProfileCo
 import { renderRequests } from './js/pages/requests.js';
 import { renderRules } from './js/pages/rules.js';
 import { renderSettings } from './js/pages/settings.js';
+import { renderStrikes } from './js/pages/strikes.js';
+import { renderVerify } from './js/pages/verify.js';
 import { renderTag } from './js/pages/tags.js';
 import { renderBoardThread } from './js/pages/thread.js';
 
@@ -72,6 +74,8 @@ const ROUTES = [
   [/^\/horoscope\/([a-z]+)$/, renderHoroscope],
   [/^\/edit$/, renderEdit, true],
   [/^\/settings$/, renderSettings, true],
+  [/^\/me\/strikes$/, renderStrikes, true],
+  [/^\/verify$/, renderVerify],                            // the link in the confirmation email: /verify#token=…
   [/^\/admin$/, renderAdmin, true],
   [/^\/rules$/, renderRules],
 ];

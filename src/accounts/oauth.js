@@ -13,7 +13,8 @@
 import { fail, json, readBody, getCookie, sha256Hex } from '../shared/http.js';
 import { randomToken } from '../shared/seal.js';
 import { limit } from '../shared/db.js';
-import { createUser, startSession, ageGate, userOut, ipKey } from './auth.js';
+import { createUser, startSession, ageGate, userOut, ipKey, nameAndEmailFree } from './auth.js';
+import { screenSignup, recordSignup } from '../trust/signup.js';
 import { connectSpotify, spotifyReady, getSpotify } from '../music/spotify.js';
 import { sunSign } from '../shared/astro.js';
 
@@ -248,7 +249,9 @@ export async function signupPending(c) {
   return json({ provider: row.provider, label: label(row.provider), email: row.email, nameHint: hint.length >= 3 ? hint : '' });
 }
 
-// POST /api/signup/finish { name, birthday, avatar, rulesOk }
+// POST /api/signup/finish { name, birthday, avatar, rulesOk, form, pow, turnstile, <honeypot>: '' } — the same human
+// checks as an email sign-up (form from GET /api/form/finish); the provider's verified email skips our mail check and
+// link (the account starts verified) but not the throwaway list. Without one the account is held. → 201 { user, held }
 export async function signupFinish(c) {
   const row = await pending(c);
   if (!row) fail(404, 'that sign-in has expired. start again.');
@@ -257,15 +260,24 @@ export async function signupFinish(c) {
   const birthdate = ageGate(c, b.birthday);
   const already = await c.env.DB.prepare('SELECT 1 AS x FROM identities WHERE provider = ? AND subject = ?').bind(row.provider, row.subject).first();
   if (already) fail(409, `that ${label(row.provider)} account already has a page. log in instead.`);
-  const user = await createUser(c, { name: String(b.name ?? '').trim(), email: row.email, passHash: null, birthdate, avatar: b.avatar });
+  const name = String(b.name ?? '').trim();
+  await nameAndEmailFree(c, name, row.email);
+  // row.email is only ever an address the provider says it verified (see the callback). It passes the throwaway list
+  // and counts toward the email-domain signals like any sign-up's. No verified address (Microsoft, which never promises
+  // one; a GitHub or Discord account without one): the sign-up goes ahead, but held for a moderator
+  // (no_verified_email), and the moderator's approval stands in for the confirmation link (trust/moderation.js).
+  const screened = await screenSignup(c, b, { purpose: 'finish', email: row.email, vouched: true });
+  const screen = row.email ? screened : { ...screened, hold: true, reasons: [...screened.reasons, 'no_verified_email'] };
+  const user = await createUser(c, { name, email: row.email, passHash: null, birthdate, avatar: b.avatar, verified: !!row.email, held: screen.hold ? screen.reasons : null });
   await c.env.DB.batch([
+    ...recordSignup(c.env, user.id, screen, c.now),
     c.env.DB.prepare('INSERT INTO identities (provider, subject, user_id, email, created) VALUES (?, ?, ?, ?, ?)').bind(row.provider, row.subject, user.id, row.email, c.now),
     c.env.DB.prepare('DELETE FROM oauth_signups WHERE ticket_hash = ?').bind(row.ticket_hash),
   ]);
   const h = new Headers({ 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
   h.append('Set-Cookie', await startSession(c, user.id));
   h.append('Set-Cookie', `os_signup=; Path=/api/signup; HttpOnly; SameSite=Lax; Max-Age=0${secure(c)}`);
-  return new Response(JSON.stringify({ user: userOut(user) }), { status: 201, headers: h });
+  return new Response(JSON.stringify({ user: userOut(user), held: screen.hold }), { status: 201, headers: h });
 }
 
 /* ------------------------------------------------ account settings */

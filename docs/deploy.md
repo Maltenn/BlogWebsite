@@ -34,7 +34,7 @@ Cloudflare's [CSAM Scanning Tool](https://developers.cloudflare.com/cache/refere
 
 Whatever is chosen, the duties stay the site owner's: report apparent CSAM to NCMEC once you know of it, keep the report for a year, and act on Take It Down requests within 48 hours ([operations.md](operations.md#photos)). Neither the tool nor a vendor files the NCMEC report for you unless their terms say so.
 
-## Password reset emails
+## Emails: confirming new accounts, password resets
 
 Make a free [Resend](https://resend.com) account, verify a sending domain (for example `ourspace.page`), and then:
 
@@ -43,7 +43,36 @@ npx wrangler secret put RESEND_API_KEY     # re_…
 npx wrangler secret put MAIL_FROM          # OurSpace <no-reply@ourspace.page>
 ```
 
-Without these, the forgot-password page says email isn't set up. It never pretends a message went out.
+Every new email account gets a "confirm your OurSpace email" link and can't post, comment, message or follow until it's confirmed, so **email sign-ups are refused (503) until these are set**; sign-ups through Google & co. still work (the provider vouched for the address; one that vouches for none, like Microsoft, is held for a moderator). Without them the forgot-password page also says email isn't set up. It never pretends a message went out. Resend's free tier (100 emails a day, 3,000 a month at the time of writing) covers the 200-a-day sign-up cap only if a good share of sign-ups use the providers; check the current limits.
+
+## The human check: Cloudflare Turnstile
+
+Sign-up, log in and "forgot my password" show Cloudflare's "verify you are human" widget (free). In the dashboard: **Turnstile → Add widget**, the site's hostname(s), mode **Managed**. Then:
+
+- put the **site key** (public) in `wrangler.jsonc` → `vars.TURNSTILE_SITE_KEY`;
+- `npx wrangler secret put TURNSTILE_SECRET_KEY` with the **secret key**;
+- if the site answers on more than one hostname (workers.dev and the domain), set `TURNSTILE_HOSTNAMES` (comma-separated) so the hostname check accepts each.
+
+Until both are set, **email and provider sign-ups and password resets are refused** on a real server ("the human check isn't set up"); log in still works. Turnstile's widget needs `https://challenges.cloudflare.com` in the pages' CSP (`script-src`, `frame-src`; [security.md](security.md#external-origins)). The tests and the demo use Cloudflare's published test keys (site `1x00000000000000000000AA`, secret `1x0000000000000000000000000000000AA`) against a stand-in for siteverify, so they never reach Cloudflare.
+
+## AI-writing detection (off by default) and the evaluation gate
+
+`AI_DETECTOR` (a var) picks the detector ([decisions/002](decisions/002-ai-writing-detection.md), `src/ai/detect.js`): `off` (the default), `workersai` (Cloudflare Workers AI's free allocation), `pangram` (`PANGRAM_API_KEY` secret) or `gptzero` (`GPTZERO_API_KEY` secret). It scores public posts of 100+ words (blog posts 150+) after they're published; never DMs or chat. `AI_ENFORCEMENT` says what happens: `shadow` (the default: scores go to the moderators' list, nobody is struck) or `enforce` (the strike ladder: [architecture.md](architecture.md#ai-writing-strikes)).
+
+- **Workers AI** has no AI-text classifier and no documented token log-probabilities, so what it can do is ask an instruction model to judge (`AI_DETECTOR_MODEL`, default `@cf/meta/llama-3.1-8b-instruct`). Research finds that unreliable; expect it to fail the gate below and keep it in shadow mode. It needs the `ai` binding (commented out in `wrangler.jsonc`, because the binding needs a Cloudflare login even for `wrangler dev`, which would stop the tests and the demo running offline).
+- **Pangram / GPTZero**: the adapters follow the field names decision 002 read in their docs and haven't been checked against a live key. Run the harness first; it shows every answer.
+
+**Before switching `AI_ENFORCEMENT` to `enforce`, run the evaluation harness and get a PASS:**
+
+```bash
+AI_DETECTOR=pangram PANGRAM_API_KEY=… node tools/eval-detector.mjs
+```
+
+It runs the detector over `eval/human/*.txt` (people's writing) and `eval/ai/*.txt` (AI writing) through the same cleaning and length rule as the site, and prints the confusion matrix, the false-positive rate on human text and the AI catch rate with Wilson 95% intervals. **PASS means the upper end of the false-positive interval is at or under 1%**, which takes 300+ human texts with no false positives (the starter corpus has about 30, so it always fails: [eval/README.md](../eval/README.md) says how to grow it). Then run 2–4 weeks in shadow mode and read the moderators' AI scans list before enforcing, as decision 002 plans.
+
+## Proof of work and the sign-up form
+
+`POW_BITS` (default 18) is how hard the sign-up's proof of work is: about 2^18 SHA-256 hashes, 1–2 seconds in a normal browser. Every 2 more bits is 4× the work. `SIGNUP_MIN_MS` (2000) and `SIGNUP_SOFT_MS` (6000): a form sent sooner than the first is refused, sooner than the second adds a risk point. The form token is signed with `TOKEN_KEY`.
 
 ## Other sign-in options
 
@@ -92,17 +121,26 @@ Vars are plain settings in `wrangler.jsonc`:
 | `MIN_AGE` | `13` | Birthdays younger than this can't sign up. The browser is then refused for 24 hours, so changing the date doesn't get around it. |
 | `SIGNUPS_PER_DAY` | `200` | Site-wide cap on new accounts per day. |
 | `SIGNUPS_PER_IP_PER_HOUR` | `5` | Per connection. |
+| `TURNSTILE_SITE_KEY` | empty | Turnstile's public site key. Empty: sign-ups and password resets are refused on a real server. |
+| `TURNSTILE_HOSTNAMES` | the request's host | The hostnames a Turnstile answer may name (comma-separated). |
+| `POW_BITS` | `18` | The sign-up proof of work's difficulty. |
+| `SIGNUP_MIN_MS`, `SIGNUP_SOFT_MS` | `2000`, `6000` | A sign-up form sent sooner is refused / gets a risk point. |
+| `AI_DETECTOR` | `off` | `off`, `workersai`, `pangram` or `gptzero` (`mock` is for the tests and the demo). |
+| `AI_DETECTOR_MODEL` | `@cf/meta/llama-3.1-8b-instruct` | The Workers AI model asked to judge. |
+| `AI_ENFORCEMENT` | `shadow` | `shadow` or `enforce` (only after the evaluation harness passes). |
 
 Secrets are set with `npx wrangler secret put NAME`, never written to a file in the repo:
 
 | Secret | Needed for |
 |---|---|
 | `IP_SALT`, `TOKEN_KEY` | Always. |
-| `RESEND_API_KEY`, `MAIL_FROM` | Password reset emails. |
+| `RESEND_API_KEY`, `MAIL_FROM` | Emails: confirming new accounts (email sign-ups are refused without them), password resets. |
+| `TURNSTILE_SECRET_KEY` | The human check (sign-ups and resets are refused without it). |
+| `PANGRAM_API_KEY` or `GPTZERO_API_KEY` | An AI-writing detector, if `AI_DETECTOR` names it. |
 | `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` | Spotify. |
 | `GOOGLE_*`, `MICROSOFT_*`, `DISCORD_*`, `GITHUB_*` (`CLIENT_ID`, `CLIENT_SECRET`), `APPLE_CLIENT_ID`, `APPLE_TEAM_ID`, `APPLE_KEY_ID`, `APPLE_PRIVATE_KEY` | Other sign-in options. |
 
-The same list is in the comment at the top of `wrangler.jsonc`; when a feature that needs new secrets is added, update both. `TEST_PROVIDER_BASE` is not a setting: it is for the tests and the demo, and must never be set on a real deployment ([development.md](development.md)).
+The same list is in the comment at the top of `wrangler.jsonc`; when a feature that needs new secrets is added, update both. `TEST_PROVIDER_BASE` is not a setting: it is for the tests and the demo, and must never be set on a real deployment ([development.md](development.md)). The same goes for `TEST_SIGNALS` (it lets a request claim its own address and network with `X-Test-Ip` / `X-Test-Cf`, and its AI enforcement mode with `X-Test-Enforcement`), `TURNSTILE_VERIFY_URL` and `DOH_URL`.
 
 ## Cutover from the desktop site
 

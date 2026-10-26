@@ -75,9 +75,9 @@ export function ages(user, now) {
 }
 const SAME_AGE_GROUP = '((u.birthdate <= ?2) = ?3)';
 
-// SQL: a person the viewer ?1 could be suggested: not them, not banned, not somebody they follow or asked to, no block
+// SQL: a person the viewer ?1 could be suggested: not them, not banned, not held for a moderator, not somebody they follow or asked to, no block
 // either way, not hidden, the same age group (?2, ?3)
-const SUGGESTABLE = col => `${col} != ?1 AND u.banned = 0 AND ${SAME_AGE_GROUP}
+const SUGGESTABLE = col => `${col} != ?1 AND u.banned = 0 AND u.held = 0 AND ${SAME_AGE_GROUP}
   AND NOT EXISTS (SELECT 1 FROM follows xf WHERE xf.follower_id = ?1 AND xf.followee_id = ${col})
   AND ${NOT_BLOCKED(col)} AND NOT ${HIDDEN('person', col)}`;
 
@@ -162,7 +162,7 @@ async function popular(c) {
       (SELECT COUNT(*) FROM (SELECT 1 FROM follows fc WHERE fc.followee_id = u.id AND fc.status = 'accepted' LIMIT ${POPULAR_CAP})) AS followers,
       EXISTS (SELECT 1 FROM follows b WHERE b.follower_id = u.id AND b.followee_id = ?1 AND b.status = 'accepted') AS follows_me
     FROM (SELECT id FROM users INDEXED BY users_seen WHERE last_seen > ?4 ORDER BY last_seen DESC LIMIT ${POPULAR_POOL}) s CROSS JOIN users u ON u.id = s.id
-    WHERE u.follow_policy = 'open' AND ${viewer ? SUGGESTABLE('u.id') : `u.banned = 0 AND ${SAME_AGE_GROUP}`}
+    WHERE u.follow_policy = 'open' AND ${viewer ? SUGGESTABLE('u.id') : `u.banned = 0 AND u.held = 0 AND ${SAME_AGE_GROUP}`}
     ORDER BY u.last_seen DESC LIMIT ${POPULAR_KEEP}`).bind(viewer, cut, adult, c.now - ACTIVE).all();
   return results.sort((x, y) => y.followers - x.followers || y.last_seen - x.last_seen || x.id - y.id);
 }

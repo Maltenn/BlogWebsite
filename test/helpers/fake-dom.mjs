@@ -74,6 +74,10 @@ class Element extends Node {
       this.childNodes.push(n);
     }
   }
+  prepend(...kids) {
+    const rest = this.childNodes.slice();
+    this.replaceChildren(...kids, ...rest);
+  }
   replaceChildren(...kids) {
     for (const n of this.childNodes) n.parentNode = null;
     this.childNodes = [];
@@ -155,10 +159,11 @@ export const answer = (status, data) => ({ ok: status >= 200 && status < 300, st
 // toast's five seconds don't keep the test run alive.
 export function installDom(onFetch = () => answer(404, { error: 'not here' })) {
   doc.body = new Element('body');
+  doc.head = new Element('head');
   const toasts = new Element('div');
   toasts.setAttribute('id', 'toasts');
   doc.body.append(toasts);
-  const location = { pathname: '/', search: '', origin: 'http://localhost', href: 'http://localhost/', protocol: 'http:', host: 'localhost' };
+  const location = { pathname: '/', search: '', origin: 'http://localhost', hash: '', href: 'http://localhost/', protocol: 'http:', host: 'localhost' };
   const timer = globalThis.setTimeout;
   const every = globalThis.setInterval;
   Object.assign(globalThis, {

@@ -5,6 +5,7 @@ import { h } from '../core/dom.js';
 import { api } from '../core/api.js';
 import { toast, oops } from '../core/ui.js';
 import { photoPicker } from './photos.js';
+import { postingBlock } from './postingblock.js';
 
 export const STATUS_MAX = 500;
 
@@ -12,6 +13,8 @@ export const STATUS_MAX = 500;
 // opts.url ('/posts/12/replies', answer { post }), opts.title, opts.placeholder, opts.label, opts.button, opts.done
 // (the toast), opts.id (the form's id) and opts.hint (a line under the box). A post may be photos alone.
 export function composer(opts = {}) {
+  const paused = postingBlock();                  // a posting timeout: its end time instead of the box
+  if (paused) return paused;
   const ta = h('textarea', { class: 'ms-compose-text', maxLength: STATUS_MAX, rows: 2, placeholder: opts.placeholder || 'update your status…', 'aria-label': opts.label || 'status' });
   const count = h('span', { class: 'ms-compose-count', text: `0/${STATUS_MAX}` });
   const post = h('button', { class: 'btn98 go', type: 'submit', text: opts.button || 'Post', disabled: true });
@@ -31,7 +34,7 @@ export function composer(opts = {}) {
       ta.value = '';
       pick.reset();
       sync();
-      toast(opts.done || 'posted!');
+      if (!r.held) toast(opts.done || 'posted!');   // (a post held for review said so already)
       if (opts.onPosted) opts.onPosted(r);
     } catch (e) { oops(e); sync(); }
   };

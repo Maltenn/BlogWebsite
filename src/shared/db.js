@@ -17,7 +17,7 @@ export function ref(row, prefix = '') {
 export const refOf = u => (u ? { id: u.id, name: u.name, avatar: u.avatar } : null);
 
 // (never sent to anybody as-is: email and birthdate are private)
-const USER_COLS = 'id, name, name_key, email, avatar, birthdate, is_admin, banned, follow_policy, dm_policy, created, last_seen';
+const USER_COLS = 'id, name, name_key, email, avatar, birthdate, is_admin, banned, held, follow_policy, dm_policy, created, last_seen';
 
 export async function userByName(env, name) {
   const key = String(name || '').trim().toLowerCase();
@@ -25,11 +25,13 @@ export async function userByName(env, name) {
   return env.DB.prepare(`SELECT ${USER_COLS} FROM users WHERE name_key = ?`).bind(key).first();
 }
 
-// the person named in the URL, as the viewer may see them: missing, banned, or hidden by a block → 404
+// the person named in the URL, as the viewer may see them: missing, banned, hidden by a block, or held for a moderator
+// (a new account waiting for review shows only to itself and moderators) → 404
 export async function visibleUser(c, name) {
   const u = await userByName(c.env, name);
   const admin = c.user && c.user.is_admin;
-  if (!u || (u.banned && !admin)) fail(404, 'nobody by that name lives here.');
+  const self = c.user && u && u.id === c.user.id;
+  if (!u || ((u.banned || (u.held && !self)) && !admin)) fail(404, 'nobody by that name lives here.');
   if (c.user && u.id !== c.user.id && !admin && await blockedBy(c.env, u.id, c.user.id)) fail(404, 'nobody by that name lives here.');
   return u;
 }
@@ -145,7 +147,7 @@ export const CLEAR_TOMBSTONES = `WITH RECURSIVE gone(id, up, n) AS (
 export const REACHABLE = (x, viewer = '?1', now = '?2') => `NOT EXISTS (WITH RECURSIVE up(id) AS (
     SELECT ${x} UNION ALL SELECT ux.reply_to FROM up JOIN posts ux ON ux.id = up.id WHERE ux.kind = 'comment')
   SELECT 1 FROM up JOIN posts ux ON ux.id = up.id JOIN users ua ON ua.id = ux.author_id
-  WHERE ux.hidden = 1 OR ${now ? `ux.created > ${now} OR ` : ''}ua.banned = 1 OR NOT ${NOT_BLOCKED('ux.author_id', viewer)})`;
+  WHERE ux.hidden != 0 OR ${now ? `ux.created > ${now} OR ` : ''}ua.banned = 1 OR NOT ${NOT_BLOCKED('ux.author_id', viewer)})`;
 
 // A post in brief, as a quote's box or a notification shows it, with its words cut at 280 characters. The row has
 // `prefix` + id, kind, created, subject, subtitle, body and deleted, and the author's REF_COLS under `prefix` + 'a_'.

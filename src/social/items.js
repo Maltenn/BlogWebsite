@@ -9,6 +9,8 @@ import { REF_COLS, ref, lite, NOT_BLOCKED, SEES, SEES_POST, IN_THREAD, REPOSTED,
 import { notify } from '../shared/notify.js';
 import { MEDIA_OF, mediaByPost, attachTo, attachFailed } from '../shared/media.js';
 import { bump, W } from '../shared/affinity.js';
+import { screenPost, fingerprintStatement, holdCopies, HELD } from '../trust/duplicates.js';
+import { scanLater } from '../ai/scan.js';
 
 // how much one person may post (statuses, replies, quotes, Friends' Comments, blog posts, threads and comments together)
 export const POST_LIMITS = [[6, 60000], [300, 86400000]];
@@ -165,7 +167,7 @@ export async function itemById(c, id) {
 async function mentioned(c, s) {
   const found = mentionsIn(s);
   if (!found.length) return [];
-  const { results } = await c.env.DB.prepare(`SELECT u.id, u.name_key, (u.banned = 0 AND u.id != ?1 AND ${NOT_BLOCKED('u.id')}) AS ok
+  const { results } = await c.env.DB.prepare(`SELECT u.id, u.name_key, (u.banned = 0 AND u.held = 0 AND u.id != ?1 AND ${NOT_BLOCKED('u.id')}) AS ok
     FROM users u WHERE u.name_key IN (SELECT value FROM json_each(?2))`).bind(c.user.id, JSON.stringify(found.flat())).all();
   const byKey = new Map(results.map(u => [u.name_key, u]));
   const ids = [];
@@ -190,12 +192,19 @@ export const LIVE = id => `EXISTS (SELECT 1 FROM posts lv WHERE lv.id = ${id} AN
 // `media`: the writer's uploads to attach, from claimMedia (shared/media.js); if one of them went on another post in the
 // meantime, nothing at all is written and it's a 409. The interaction scores (shared/affinity.js) toward the people told
 // (by the kind they're told: a reply, a quote, a comment) and mentioned move in the same batch. Answers the new post's id.
+// Phase 7: `mentionIn` is also the post's words for the anti-spam checks. Its fingerprint goes in the same batch
+// (trust/duplicates.js); when the same text came from 2+ other new accounts in the last day, the moderators get an
+// alert, and if the accounts look related the post is written held (hidden = 2, waiting for a moderator: c.heldPost is
+// set, and the routes answer held: true). Earlier copies are never held. Once
+// it's written, a long enough post is queued for the AI-writing scan (ai/scan.js), which never holds it up.
 export async function writePost(c, cols, { mentionIn = '', tagIn = '', tell = [], more = [], on = null, guard = null, media = [] } = {}) {
   const DB = c.env.DB;
   const people = await mentioned(c, mentionIn);
   const tags = tagsIn(tagIn);
   const fresh = JUST_WRITTEN(`'${cols.kind}'`);
   const still = guard || (on ? LIVE(Number(on)) : '1');   // (`on` is a post id read from the database: a plain number)
+  const fp = await screenPost(c, mentionIn);
+  if (fp && fp.hold) cols = { ...cols, hidden: HELD };
   const keys = Object.keys(cols);
   const [made] = await DB.batch([
     DB.prepare(`INSERT INTO posts (${keys.join(', ')}, author_id, created) SELECT ${keys.map(() => '?').join(', ')}, ?, ? WHERE ${still} RETURNING id`)
@@ -207,13 +216,22 @@ export async function writePost(c, cols, { mentionIn = '', tagIn = '', tell = []
     notify(c, 'mention', people.filter(id => !tell.some(t => t[1] === id)), fresh, still),
     ...attachTo(DB, c.user.id, c.now, media, fresh, still),
     bump(c, [...tell.map(([kind, id]) => [id, W[kind] || 0]), ...people.filter(id => !tell.some(t => t[1] === id)).map(id => [id, W.mention])], still),
+    fp && fingerprintStatement(c, fp, fresh, still),
   ].filter(Boolean)).catch(e => {
     if (attachFailed(e)) fail(409, 'one of those photos just went on another post. upload it again.');
     throw e;
   });
   if (!made.results.length) fail(404, 'that post is gone.');
-  return made.results[0].id;
+  const id = made.results[0].id;
+  if (fp && fp.hold) c.heldPost = true;
+  if (fp && fp.alert) await holdCopies(c, id, fp);
+  scanLater(c, { id, kind: cols.kind, text: mentionIn });
+  return id;
 }
+
+// what a write answers besides the post: { held: true } when it's waiting for a moderator (the same text from several
+// new accounts), else nothing
+export const heldOut = c => (c.heldPost ? { held: true } : {});
 
 // The statements that undo `author`'s repost of post `id`: its count, its notification and the repost itself. (The
 // count only comes down if the repost is really there, so undoing twice changes nothing.)

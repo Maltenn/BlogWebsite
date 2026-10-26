@@ -16,7 +16,7 @@ async function other(c, message = 'that\'s you!') {
 // POST /api/follows/:name — follow them, or ask to if they approve their followers
 export async function followUser(c) {
   const u = await other(c, 'you can\'t follow yourself. (we checked.)');
-  if (u.banned) fail(404, 'nobody by that name lives here.');
+  if (u.banned || u.held) fail(404, 'nobody by that name lives here.');      // (held: waiting for a moderator, unlisted)
   if (await blockedEither(c.env, c.user.id, u.id)) fail(403, 'you can\'t follow this person.');
   if (!await followOf(c.env, c.user.id, u.id)) {
     await limit(c, 'follow:' + c.user.id, [[20, 3600000], [100, 86400000]], 'that\'s a lot of following. take a breather.');

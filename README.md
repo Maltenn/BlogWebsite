@@ -3,6 +3,8 @@
 A social network for real people, in the spirit of early-2000s MySpace: decorated pages, a Top 8, Friends' Comments, topic boards, photos, live chat, and no bots. One Cloudflare Worker serves the pages and the API, the data lives in one D1 database, the photos in one R2 bucket, and live chat runs through Durable Objects. This repo used to hold a Windows 98 desktop site as well; see [docs/history.md](docs/history.md).
 
 - **Real people only.** There are no bot accounts, and nothing posts on anyone's behalf. Requests and Messages only ever hold things from people.
+- **Verifying humans.** Sign-up, log in and password resets show Cloudflare's "verify you are human" check; every sign-up does a second or two of proof of work in the browser and fills in a form with a hidden trap for bots; throwaway email addresses are refused and every new account confirms its email before it can post, comment, message or follow. Sign-ups that look like bots wait for a moderator; accounts that came together, and the same text pushed by several new accounts, raise alerts for the moderators. Nothing bans anybody automatically.
+- **AI-written posts** can be scored by a detector (off until the owner picks one and it passes the evaluation in `tools/eval-detector.mjs`); in enforce mode the strikes go warning, a day, a week, a month without posting, then a moderator, each appealable and gone after 90 clean days.
 - **Sign up with an email and a password** (the default tab), or under **Other options** with Google, Apple, Microsoft, Discord or GitHub. Every way in asks for a screen name and a **birthday**.
 - **Birthdays keep it 13+** and give everyone their **star sign**. The birthday itself stays private. People choose whether their page shows their age and their sign.
 - **Profiles** at `/u/<name>` that anyone can view, with statuses (up to 500 characters), a blog (titles, subtitles, a page for each post), Friends' Comments, a Top 8, Spotify and private messages.
@@ -48,7 +50,8 @@ How the demo differs from the real site:
 
 - **Sign-in and Spotify go to pretend pages.** "Continue with Google" (or Apple, Microsoft, Discord, GitHub) and "connect Spotify" open a page labeled *local demo: not the real Google*. Type any name to continue; the same name brings back the same pretend account. Cancel works too. On Spotify's pretend page you can tick a box to see what people outside the 5-person allowlist are told.
 - **Pretend Spotify has no album covers** (grey squares). The 30-second previews are real ones from Apple when your computer can reach the iTunes Search API.
-- **"Forgot my password" emails** appear in the terminal window running the demo. Copy the link from there.
+- **"Forgot my password" and "confirm your email" emails** appear in the terminal window running the demo. Copy the link from there. The sample people are already confirmed.
+- **The human checks use Cloudflare's test keys**: the "verify you are human" box always passes, and the email check asks a pretend DNS. The proof of work is the real one. As `malten`, the Moderation tab shows three held bot sign-ups, the alerts they raised and two posts the pretend AI detector scored.
 - **Your changes stick** between runs: the data (and any photos you upload) lives in `.demo/`. `npm run demo -- --fresh` starts over with just the sample content. (A demo made before the boards keeps its data, with its bulletins moved into Random, and one made before chat keeps its messages as DMs; `--fresh` brings the sample threads, group chats and #ourspace.)
 - **Editing works live.** Change a file in `public/` or `src/` and refresh the browser.
 
@@ -60,7 +63,7 @@ Stop it with **Ctrl+C**. If port 8787 is already taken, it picks the next free o
 npm test      # all of test/*.test.mjs
 ```
 
-The API tests start their own Worker on a fresh throwaway database, plus stand-ins for every sign-in provider, Spotify and iTunes. The astronomy tests check the horoscope numbers against known ephemeris dates. The photo tests feed the server's file checks and metadata stripper photos built byte by byte, with GPS positions and comments hidden in them. A static test fails if an image is missing, unreferenced or uncredited, or if an import doesn't resolve. No secrets or setup are needed.
+The API tests start their own Worker on a fresh throwaway database, plus stand-ins for every sign-in provider, Spotify, iTunes, Turnstile's siteverify and DNS-over-HTTPS, so nothing reaches the internet. They try every member write route as an unverified, a held and a timed-out member, and run the bot simulator (`tools/bot-sim.mjs`) against the server. The astronomy tests check the horoscope numbers against known ephemeris dates. The photo tests feed the server's file checks and metadata stripper photos built byte by byte, with GPS positions and comments hidden in them. A static test fails if an image is missing, unreferenced or uncredited, or if an import doesn't resolve. No secrets or setup are needed.
 
 ## Docs
 

@@ -1,10 +1,38 @@
-/* core/chrome.js — the header (who's logged in) and the tabs with their badges. */
+/* core/chrome.js — the header (who's logged in), the tabs with their badges, and the bars under them: "confirm your
+   email" until the address is confirmed, and the note on an account a moderator hasn't looked at yet. */
 
 import { h, $, userPath } from './dom.js';
 import { api } from './api.js';
-import { toast } from './ui.js';
-import { S } from './state.js';
+import { toast, oops } from './ui.js';
+import { S, loadMe } from './state.js';
 import { go } from './router.js';
+
+// "send it again": the confirmation email (POST /api/me/verify/resend). Resolves true when one went out.
+export async function resendVerification() {
+  try {
+    await api.post('/me/verify/resend');
+    toast('sent! it can take a minute. check your spam folder too.');
+    return true;
+  } catch (e) {
+    if (e.code === 'verified') { toast('your email is already confirmed.'); loadMe().catch(() => {}); } else oops(e);
+    return false;
+  }
+}
+
+function paintBanners() {
+  const box = $('#banners');
+  if (!box) return;
+  box.replaceChildren();
+  if (!S.me) return;
+  const a = S.account;
+  if (!a.verified) {
+    const send = h('button', { class: 'btn98', type: 'button', text: 'send it again', onclick: async () => { send.disabled = true; await resendVerification(); send.disabled = false; } });
+    box.append(h('div', { class: 'os-banner', role: 'status', dataset: { kind: 'unverified' } },
+      h('span', { text: '✉ confirm your email to post, comment and message. we sent you a link when you signed up. ' }), send));
+  }
+  if (a.held) box.append(h('div', { class: 'os-banner', role: 'status', dataset: { kind: 'held' } },
+    h('span', { text: '⏳ a moderator will take a quick look at your new account, usually within a day. until then you can set up your page and look around.' })));
+}
 
 export function paintChrome() {
   const who = $('#who');
@@ -37,6 +65,7 @@ export function paintChrome() {
     !S.me ? tab('Join', '/join', 0, path.startsWith('/join')) : null,
   ];
   $('#tabs').replaceChildren(...tabs.filter(Boolean));
+  paintBanners();
 }
 
 export async function logout() {

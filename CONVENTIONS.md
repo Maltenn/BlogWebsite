@@ -6,6 +6,7 @@ Rules for changing this repo. Setup and architecture are in [README.md](README.m
 
 - One line in the route table at the top of `src/index.js`: method, path, handler, and `OPEN`, `AUTH` or `ADMIN`.
 - Handlers take the request context `c`, return `json()` and report errors with `fail()`. Name write handlers verbNoun (`postComment`, `followUser`); read handlers may be plain nouns (`profile`, `feed`).
+- A member's write (`AUTH`, not `GET`) passes the gate (`src/shared/gate.js`: email confirmed, not held; `gate: 'post'` adds no posting timeout) unless the table marks it `free` with the reason. Public posting and commenting routes are `gate: 'post'`. `test/api.test.mjs` tries every gated route.
 - Every new route gets an end-to-end test in `test/api.test.mjs`. (Three older routes have none yet: `POST /api/me/spotify/refresh`, `POST /api/admin/content`, `GET /api/admin/log`.)
 
 ## Feature
@@ -17,6 +18,8 @@ Rules for changing this repo. Setup and architecture are in [README.md](README.m
   - `accounts/auth` → `profiles` (`defaultProfile`, `isAvatar`, `DEFAULT_AVATAR`)
   - `boards/boards` → `social/items` (the item, `hydrate`, `writePost`: board threads and comments are posts)
   - `browse/browse` → `social/items` (the item and `hydrate`: discovery shows posts and threads as every list does)
+  - `accounts/auth`, `accounts/oauth` → `trust/signup` (`screenSignup`, `recordSignup`: every sign-up passes the human checks), and `accounts/auth` → `trust/turnstile` (`checkTurnstile` on log in and password reset)
+  - `social/items` → `trust/duplicates` (`screenPost`, `fingerprintStatement`, `holdCopies`) and `ai/scan` (`scanLater`): `writePost` is the one door every public post goes through
 - `shared/` never imports a feature.
 - A feature that switches on with secrets exposes `xReady(env)` (like `spotifyReady`, `mailReady`). Its secrets go in [docs/deploy.md](docs/deploy.md) and in the comment at the top of `wrangler.jsonc`.
 
@@ -57,7 +60,7 @@ See [docs/roadmap.md](docs/roadmap.md) for the placement of each unbuilt feature
 - Changing screen names: `src/accounts/names.js`.
 - Photos (built): `src/media/` (uploads, `/media/*`, the byte-level sniffer and stripper), with what the other features share in `src/shared/media.js`. A new kind of post that carries photos gets a line in `MEDIA_LIMITS` there and passes `media` to `writePost`; anything that deletes posts or `media` rows deletes their files with `dropObjects`, and leaves photos held as evidence (hidden by a moderator, or on a post a moderator hid) to a moderator's remove (`releaseMedia`).
 - Real-time chat and presence (built, phase 5): `src/live/room.js` (the Durable Object `Room`, which carries events and owns no data), `src/chats/` (#ourspace, group chats, DMs: the data and the routes), and what other features need from them in `src/shared/` (`live.js` to reach a room, `chat.js` for the chat SQL, `affinity.js` for the interaction score that every interaction writes); on the page, `public/js/core/live.js`, replacing polling. A new kind of live event gets its line in the comment at the top of `src/live/room.js`.
-- Email verification: `src/accounts/verify.js`.
+- Email verification (built): `src/accounts/verify.js`. Verifying humans (built, phase 7): `src/trust/` (the sign-up checks, the risk score, duplicates, clusters, the moderators' queues), and the write gate in `src/shared/gate.js`. AI-writing detection and strikes (built): `src/ai/`; a new detector is a provider in `src/ai/detect.js` and must pass `tools/eval-detector.mjs` before enforcement.
 - Terms of service: `public/legal/` (static) and `src/accounts/terms.js`.
 - Invite codes: `src/accounts/invites.js`. Ban-evasion signals: `src/safety/`.
 - Unread threads on the boards (`thread_reads`): `src/boards/reads.js`.

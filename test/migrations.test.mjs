@@ -2,7 +2,7 @@
 // and "joined" lines in the feed), applies 0002_follows.sql on top, and checks what became of everything; then adds posts
 // and applies 0003_interactions.sql, then adds bulletins and applies 0004_boards.sql, then 0005_media.sql (photos: the
 // attach-once trigger and what happens to photos when their post or owner goes), then 0006 and 0007_chat.sql (the 1:1
-// messages become DMs; the 50-member cap of a group), then 0008_browse.sql (the launch boards' interest terms). Uses wrangler's local D1 (run through
+// messages become DMs; the 50-member cap of a group), then 0008_browse.sql (the launch boards' interest terms), then 0009_trust.sql (everyone there counts as verified). Uses wrangler's local D1 (run through
 // node, like the API tests) on a throwaway folder.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
@@ -294,4 +294,20 @@ test('0008 gives each launch board its interest terms (each a term moderators co
   assert.throws(() => sql("INSERT INTO browse_hidden (user_id, kind, ref_id, created) VALUES (2, 'thing', 1, 1)"), 'person, board or post');
   sql('DELETE FROM users WHERE id = 2');
   assert.deepEqual(sql('SELECT user_id, kind, ref_id FROM browse_hidden')[0], [{ user_id: 5, kind: 'post', ref_id: 3 }]);
+});
+
+test('0009 counts everyone already there as verified and not held, and its tables go with their member', () => {
+  apply('0009_trust.sql');
+  const [users] = sql('SELECT id, created, email_verified_at, held, held_reason, ai_exempt_until FROM users ORDER BY id');
+  assert.ok(users.length >= 5);
+  assert.ok(users.every(u => u.email_verified_at === u.created && u.held === 0 && u.held_reason === null && u.ai_exempt_until === null), JSON.stringify(users));
+  sql(`INSERT INTO signup_signals (user_id, ip_group_hash, asn, risk, reasons, created) VALUES (5, 'h', 16509, 4, '["hosting_network"]', 1)`,
+    `INSERT INTO ai_strikes (user_id, level, text, score, created, expires) VALUES (5, 1, 'x', 0.99, 1, 2)`,
+    'INSERT INTO posting_timeouts (user_id, strike_id, until) VALUES (5, 1, 3)',
+    `INSERT INTO mod_alerts (kind, key, payload, created) VALUES ('held_signup', 'user:5', '{}', 1)`);
+  assert.throws(() => sql(`INSERT INTO mod_alerts (kind, key, payload, created) VALUES ('held_signup', 'user:5', '{}', 2)`), 'one open alert per key');
+  assert.throws(() => sql(`INSERT INTO ai_strikes (user_id, level, text, score, created, expires, status) VALUES (5, 1, 'x', 0.9, 1, 2, 'maybe')`));
+  sql('DELETE FROM users WHERE id = 5');
+  const [signals, strikes, timeouts] = sql('SELECT COUNT(*) AS n FROM signup_signals', 'SELECT COUNT(*) AS n FROM ai_strikes', 'SELECT COUNT(*) AS n FROM posting_timeouts');
+  assert.deepEqual([signals[0].n, strikes[0].n, timeouts[0].n], [0, 0, 0]);
 });

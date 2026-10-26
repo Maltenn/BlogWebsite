@@ -191,7 +191,7 @@ async function resolvePeople(c, names) {
   const keys = [...new Set(names.map(n => String(n ?? '').trim().toLowerCase()).filter(k => k && k !== mine))];
   if (keys.length >= MAX_MEMBERS) fail(400, `a group holds ${MAX_MEMBERS} people at most.`);
   if (!keys.length) return [];
-  const { results } = await c.env.DB.prepare(`SELECT u.id, u.name, u.name_key, u.avatar, u.banned, u.dm_policy,
+  const { results } = await c.env.DB.prepare(`SELECT u.id, u.name, u.name_key, u.avatar, u.banned, u.held, u.dm_policy,
       EXISTS (SELECT 1 FROM blocks WHERE blocker_id = u.id AND blocked_id = ?1) AS blocks_me,
       EXISTS (SELECT 1 FROM blocks WHERE blocker_id = ?1 AND blocked_id = u.id) AS blocked,
       (SELECT COUNT(*) FROM follows f WHERE ((f.follower_id = ?1 AND f.followee_id = u.id) OR (f.follower_id = u.id AND f.followee_id = ?1))
@@ -200,7 +200,7 @@ async function resolvePeople(c, names) {
   const byKey = new Map(results.map(u => [u.name_key, u]));
   return keys.map(k => {
     const u = byKey.get(k);
-    if (!u || u.banned || u.blocks_me) fail(404, `nobody called "${k}" lives here.`);
+    if (!u || u.banned || u.held || u.blocks_me) fail(404, `nobody called "${k}" lives here.`);
     if (u.blocked) fail(403, `you blocked ${u.name}. unblock them first.`);
     if (!u.friend && u.dm_policy === 'friends') fail(403, `${u.name} only takes messages from friends.`);
     return { id: u.id, name: u.name, avatar: u.avatar, friend: !!u.friend };
@@ -393,7 +393,7 @@ export async function chatSuggestions(c) {
           ${CLOSENESS('COALESCE(o.eff, 0)', `COALESCE(${DECAYED('y.eff', 'y.updated', '?2')}, 0)`)} AS closeness,
           MAX(COALESCE(o.updated, 0), COALESCE(y.updated, 0)) AS recent
         FROM cand JOIN users u ON u.id = cand.id LEFT JOIN given o ON o.id = u.id LEFT JOIN affinity y ON y.from_id = u.id AND y.to_id = ?1
-        WHERE u.id != ?1 AND u.banned = 0 AND ${NOT_BLOCKED('u.id')} AND (?3 = '' OR instr(u.name_key, ?3) > 0))
+        WHERE u.id != ?1 AND u.banned = 0 AND u.held = 0 AND ${NOT_BLOCKED('u.id')} AND (?3 = '' OR instr(u.name_key, ?3) > 0))
     SELECT * FROM scored WHERE friend OR (closeness > 0 AND dm_policy = 'everyone')
     ORDER BY friend DESC, closeness DESC, recent DESC, name_key LIMIT ${SUGGESTED}`).bind(c.user.id, c.now, q).all();
   return json({ people: results.map(r => ({ ...ref(r), friend: !!r.friend, online: isOnline(r, c.now) })) });

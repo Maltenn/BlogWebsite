@@ -29,6 +29,7 @@ const snippet = (p, max = 140) => {
 function target(n) {
   const p = n.post;
   if (n.kind === 'follow_request') return '/requests';
+  if (n.kind === 'ai_strike' || n.kind === 'ai_appeal') return '/me/strikes';
   if (n.kind === 'group_invite') return n.chat ? chatPath(n.chat.id) : '/messages';
   if (n.kind === 'chat_mention') return '/ourspace';
   if (n.kind === 'board_approved') return n.request && n.request.board ? boardPath(n.request.board.slug) : '/boards';
@@ -82,9 +83,26 @@ function inviteButtons(chat) {
   return box;
 }
 
+// a strike, or the answer to an appeal: from the site, not a person, and it leads to /me/strikes
+const STRIKE_STEP = { 1: 'a warning', 2: 'a one-day posting timeout', 3: 'a one-week posting timeout', 4: 'a one-month posting timeout' };
+function strikeText(n) {
+  const s = n.strike || {};
+  if (n.kind === 'ai_appeal') return s.result === 'removed' ? 'a moderator removed your strike: they agreed it was your own writing.' : 'a moderator looked at your appeal and the strike stands.';
+  return `one of your posts was flagged as likely written by an AI. that's strike ${s.level || '?'}: ${STRIKE_STEP[s.level] || 'a moderator will look at your account'}.`;
+}
+function strikeLine(n) {
+  return h('div', { class: 'ms-note-row ms-clickable' + (n.unread ? ' unread' : ''), dataset: { kind: n.kind }, onclick: e => { if (!e.target.closest('a, button')) go('/me/strikes'); } },
+    h('div', { class: 'ms-note-av' }, h('span', { class: 'ms-sysicon', text: n.kind === 'ai_appeal' ? '✋' : '⚠' })),
+    h('div', { class: 'ms-note-mid' },
+      h('div', { class: 'ms-note-text' }, h('a', { href: '/me/strikes', text: strikeText(n) }), n.unread ? h('span', { class: 'ms-chip ms-newchip', text: 'new' }) : null),
+      h('div', { class: 'ms-preview ms-note-snippet' }, h('a', { href: '/me/strikes', text: n.kind === 'ai_appeal' ? 'see your strikes' : 'see the text, and appeal' }))),
+    h('span', { class: 'ms-time', title: when(n.created), text: ago(n.created) }));
+}
+
 // one line (a group of one or more notifications)
 function line(g) {
   const newest = g.items[0];
+  if (newest.kind === 'ai_strike' || newest.kind === 'ai_appeal') return strikeLine(newest);
   const actors = [];
   for (const n of g.items) if (!actors.some(a => a.id === n.actor.id)) actors.push(n.actor);
   const unread = g.items.some(n => n.unread);

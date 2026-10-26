@@ -24,9 +24,19 @@ To start `npm run dev` over with an empty database, delete `.wrangler/state` and
 2. starts the stand-in providers from `test/helpers/mock-providers.mjs` in "pretend" mode, where "Continue with Google" and "connect Spotify" show a labeled page that asks for a name instead of approving at once;
 3. starts `wrangler dev` with `TEST_PROVIDER_BASE` pointing at the stand-ins, made-up client IDs for every provider (so every sign-in button appears), and a `TOKEN_KEY` it generates once and keeps in `.demo/token-key`;
 4. on the first run, fills the site with sample people, follows, posts, DMs, a group chat (and a group invite waiting for `the_reviewer`), some #ourspace chatter and one report by calling the real API (with a few photos it draws as PNGs and uploads: on statuses, a board thread, a blog cover and `starlight_mia`'s own picture), then makes `malten` a moderator. It writes `.demo/seeded` when it's done. The photos live in the local R2 bucket in `.demo/state` too;
-5. prints password-reset emails in its own window.
+5. prints password-reset and "confirm your email" emails in its own window;
+6. (phase 7) runs with Cloudflare's Turnstile test keys and the stand-ins' siteverify and DNS-over-HTTPS, `TEST_SIGNALS=1` (so the seeding can sign people up from different networks at once), and the mock AI detector in shadow mode. The sample people sign up through the real form and proof of work and are then marked confirmed; three bot-looking sign-ups from one cloud network wait in the held queue, the nightly cluster check runs once, and two long threads get scored.
 
 The sample people are the `PEOPLE` list in `tools/demo.mjs`; change them there and start over with `npm run demo -- --fresh`. Set the `PORT` environment variable to start the search for a free port somewhere other than 8787, and `DEMO_DIR` to keep a throwaway demo somewhere other than `.demo/`.
+
+### TEST_SIGNALS, TURNSTILE_VERIFY_URL, DOH_URL
+
+Test-only settings, like `TEST_PROVIDER_BASE` below. **Never set them on a real deployment.** `TEST_SIGNALS=1` lets a request say where it comes from (`X-Test-Ip`, and `request.cf`'s fields as JSON in `X-Test-Cf`) and which AI enforcement mode its post is scanned in (`X-Test-Enforcement`), so the tests can be a datacenter or a shared network; it also makes the Worker ignore the real `request.cf` (wrangler fills it with your own network's, which would make test results depend on where you run them). `TURNSTILE_VERIFY_URL` and `DOH_URL` send Turnstile's checks and the email domain's MX lookups to the stand-ins.
+
+### The bot simulator and the detector's evaluation
+
+- `node tools/bot-sim.mjs --base http://127.0.0.1:8787 --log <the server's output>` floods a local server (one running with the test keys and `TEST_SIGNALS=1`, like the demo) with scripted bad sign-ups and spam and reports how many were refused, held or got in, then walks one real person through. `test/api.test.mjs` runs it against the test server. Never point it at a site you don't run.
+- `AI_DETECTOR=mock node tools/eval-detector.mjs` runs the evaluation harness over `eval/` ([eval/README.md](../eval/README.md)).
 
 ### TEST_PROVIDER_BASE
 

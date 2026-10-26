@@ -15,6 +15,10 @@ import { SHOWN, UNREAD } from '../shared/notify.js';
 import { UNREAD_CHATS, HANDOVER } from '../shared/chat.js';
 import { dropObjects, keysIn, releaseMedia } from '../shared/media.js';
 import { signOut, roomsOf } from '../shared/live.js';
+import { TIMEOUT_UNTIL } from '../shared/gate.js';
+import { screenSignup, recordSignup } from '../trust/signup.js';
+import { checkTurnstile } from '../trust/turnstile.js';
+import { sendVerification } from './verify.js';
 
 const ITERATIONS = 100000;
 const SESSION_DAYS = 30;
@@ -85,23 +89,32 @@ export function ageGate(c, birthday) {
   return b.birthdate;
 }
 
-// shared by every way of signing up: checks the screen name, makes the account and its page
-export async function createUser(c, { name, email, passHash, birthdate, avatar }) {
-  const nameErr = nameProblem(name);
-  if (nameErr) fail(400, nameErr);
+// the screen name and email are free (409 if not). Checked before the human checks too, so a taken name doesn't cost
+// a sign-up form and its proof of work.
+export async function nameAndEmailFree(c, name, email) {
   const taken = await c.env.DB.prepare('SELECT name_key = ?1 AS n, email = ?2 AS e FROM users WHERE name_key = ?1 OR (?2 IS NOT NULL AND email = ?2) LIMIT 2')
     .bind(name.toLowerCase(), email).all();
   if (taken.results.some(r => r.n)) fail(409, `"${name}" is taken. try adding some xX's.`);
   if (taken.results.some(r => r.e)) fail(409, 'there\'s already an account with that email. log in instead (or reset your password).');
+}
+
+// shared by every way of signing up: checks the screen name, makes the account and its page. verified: the email is
+// confirmed already (a sign-in provider vouched for it). held: the risk reason codes when a moderator should look at
+// the account first (trust/signup.js), else null.
+export async function createUser(c, { name, email, passHash, birthdate, avatar, verified = false, held = null }) {
+  const nameErr = nameProblem(name);
+  if (nameErr) fail(400, nameErr);
+  await nameAndEmailFree(c, name, email);
   await limit(c, 'signup:ip:' + await ipKey(c), [[Number(c.env.SIGNUPS_PER_IP_PER_HOUR || 5), 3600000]],
     'too many new accounts from your connection. try again in an hour.');
   await limit(c, 'signup:all', [[Number(c.env.SIGNUPS_PER_DAY || 200), 86400000]],
     'ourspace is full for today (we\'re small!). try again tomorrow.');
   let user;
   try {
-    user = await c.env.DB.prepare(`INSERT INTO users (name, name_key, email, avatar, pass_hash, birthdate, created, last_seen)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?) RETURNING id, name, avatar, birthdate`)
-      .bind(name, name.toLowerCase(), email, isAvatar(avatar) ? avatar : DEFAULT_AVATAR, passHash, birthdate, c.now, c.now).first();
+    user = await c.env.DB.prepare(`INSERT INTO users (name, name_key, email, avatar, pass_hash, birthdate, created, last_seen, email_verified_at, held, held_reason)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) RETURNING id, name, email, avatar, birthdate, email_verified_at, held`)
+      .bind(name, name.toLowerCase(), email, isAvatar(avatar) ? avatar : DEFAULT_AVATAR, passHash, birthdate, c.now, c.now,
+        verified ? c.now : null, held ? 1 : 0, held ? JSON.stringify(held) : null).first();
   } catch (e) {
     if (/UNIQUE/i.test(String(e && e.message))) fail(409, 'that screen name or email was just taken. try again.');
     throw e;
@@ -121,7 +134,8 @@ export async function currentUser(c) {
   if (!token || token.length > 100) return null;
   const tokenHash = await sha256Hex(token);
   const u = await c.env.DB.prepare(`
-    SELECT u.id, u.name, u.email, u.avatar, u.birthdate, u.is_admin, u.banned, u.follow_policy, u.dm_policy, u.last_seen, u.pass_hash, s.expires
+    SELECT u.id, u.name, u.email, u.avatar, u.birthdate, u.is_admin, u.banned, u.follow_policy, u.dm_policy, u.last_seen, u.pass_hash,
+      u.created, u.email_verified_at, u.held, u.ai_exempt_until, s.expires
     FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token_hash = ?`).bind(tokenHash).first();
   if (!u || u.expires < c.now || u.banned) return null;
   if (!u.last_seen || u.last_seen < c.now - 60000) {
@@ -131,9 +145,11 @@ export async function currentUser(c) {
 }
 
 // GET /api/me — who am I, plus the numbers the tabs show (notifications: unread ones, up to 99; unread: conversations
-// with unread messages, up to 99)
+// with unread messages, up to 99), and where the account stands: account { verified (email confirmed, or no email to confirm), held (waiting
+// for a moderator), timeoutUntil (a posting timeout from an AI-writing strike, or null), strikes (the ones that
+// count) }. Logged out it says whether the human check is on: turnstile { siteKey } or null.
 export async function me(c) {
-  if (!c.user) return json({ user: null, minAge: Number(c.env.MIN_AGE || 13) });
+  if (!c.user) return json({ user: null, minAge: Number(c.env.MIN_AGE || 13), turnstile: c.env.TURNSTILE_SITE_KEY ? { siteKey: c.env.TURNSTILE_SITE_KEY } : null });
   const id = c.user.id;
   const counts = await c.env.DB.prepare(`
     SELECT
@@ -141,16 +157,23 @@ export async function me(c) {
          WHERE f.followee_id = ?1 AND f.status = 'pending' AND x.banned = 0) AS requests,
       ${UNREAD_CHATS} AS unread,
       (SELECT COUNT(*) FROM (SELECT 1 FROM ${SHOWN} AND ${UNREAD} LIMIT 99)) AS notifications,
-      (SELECT COUNT(*) FROM reports WHERE status = 'open') AS reports`).bind(id).first();
+      (SELECT COUNT(*) FROM reports WHERE status = 'open') AS reports,
+      ${TIMEOUT_UNTIL} AS timeout_until,
+      (SELECT COUNT(*) FROM ai_strikes WHERE user_id = ?1 AND status IN ('active', 'appealed') AND expires > ?2) AS strikes`).bind(id, c.now).first();
   return json({
     user: userOut(c.user),
     counts: { requests: counts.requests, unread: counts.unread, notifications: counts.notifications, reports: c.user.is_admin ? counts.reports : 0 },
     settings: { followPolicy: c.user.follow_policy, dmPolicy: c.user.dm_policy },
+    account: { verified: !!c.user.email_verified_at || !c.user.email, held: !!c.user.held, timeoutUntil: counts.timeout_until || null, strikes: counts.strikes },
     minAge: Number(c.env.MIN_AGE || 13),
   });
 }
 
-// POST /api/signup { email, password, name, birthday, avatar, rulesOk }
+// POST /api/signup { email, password, name, birthday, avatar, rulesOk, form, pow, turnstile, <honeypot>: '' }
+// form, pow and the honeypot's name come from GET /api/form/signup (src/trust/form.js); turnstile is the widget's
+// token. The checks (trust/signup.js) refuse a bot outright or hold a suspicious sign-up for a moderator; either way a
+// person gets a clear message. The account starts unverified: we email a link (/verify#token=…).
+// → 201 { user, verification: 'sent' | 'failed', held }
 export async function signup(c) {
   const b = await readBody(c.req);
   if (b.rulesOk !== true) fail(400, 'please read and agree to the house rules.');
@@ -162,11 +185,17 @@ export async function signup(c) {
   const pwErr = passwordProblem(b.password, name, email);
   if (pwErr) fail(400, pwErr);
   const birthdate = ageGate(c, b.birthday);
-  const user = await createUser(c, { name, email, passHash: await hashPassword(b.password), birthdate, avatar: b.avatar });
-  return json({ user: userOut(user) }, 201, { 'Set-Cookie': await startSession(c, user.id) });
+  await nameAndEmailFree(c, name, email);
+  if (!mailReady(c.env, c.url)) fail(503, 'email isn\'t set up on this server yet, so new accounts can\'t confirm their address. try "other options", or ask a moderator.');
+  const screen = await screenSignup(c, b, { purpose: 'signup', email });
+  const user = await createUser(c, { name, email, passHash: await hashPassword(b.password), birthdate, avatar: b.avatar, held: screen.hold ? screen.reasons : null });
+  await c.env.DB.batch(recordSignup(c.env, user.id, screen, c.now));
+  const verification = await sendVerification(c, user);
+  return json({ user: userOut(user), verification, held: screen.hold }, 201, { 'Set-Cookie': await startSession(c, user.id) });
 }
 
-// POST /api/login { login (email or screen name), password }
+// POST /api/login { login (email or screen name), password, turnstile } — turnstile: the widget's token (action login).
+// If Cloudflare can't be reached the login goes ahead under the usual limits.
 export async function login(c) {
   const b = await readBody(c.req);
   const raw = String(b.login ?? b.email ?? b.name ?? '').trim().toLowerCase().slice(0, 254);
@@ -178,6 +207,7 @@ export async function login(c) {
            (SELECT COUNT(*) FROM attempts WHERE k = ?2 AND created > ?3) AS by_ip`)
     .bind('loginfail:' + raw, 'loginfail:ip:' + ip, c.now - 15 * 60000).first();
   if (recent.by_login >= 10 || recent.by_ip >= 30) fail(429, 'too many wrong passwords. wait 15 minutes and try again.');
+  await checkTurnstile(c, b.turnstile, 'login', { failOpen: true });
 
   const u = await c.env.DB.prepare(`SELECT id, name, avatar, birthdate, is_admin, banned, pass_hash,
       (SELECT GROUP_CONCAT(provider) FROM identities WHERE user_id = users.id) AS providers
@@ -205,12 +235,14 @@ export async function logout(c) {
   return json({ ok: true }, 200, { 'Set-Cookie': sessionCookie(c.url, '', 0) });
 }
 
-// POST /api/password/forgot { email } — always says "if that's an account, check your email" (no account fishing)
+// POST /api/password/forgot { email, turnstile } — always says "if that's an account, check your email" (no account
+// fishing). turnstile: the widget's token (action reset); this is the step that sends email, so it's the one checked.
 export async function forgotPassword(c) {
   const b = await readBody(c.req);
   const email = cleanEmail(b.email);
   if (!email) fail(400, 'that email address doesn\'t look right.');
   if (!mailReady(c.env, c.url)) fail(503, 'email isn\'t set up on this server yet, so password resets don\'t work. ask a moderator for help.');
+  await checkTurnstile(c, b.turnstile, 'reset');
   await limit(c, 'forgot:ip:' + await ipKey(c), [[5, 3600000]], 'that\'s a lot of reset emails. try again in an hour.');
   await limit(c, 'forgot:' + email, [[3, 3600000]], 'we already sent a few reset emails to that address. check your spam folder.');
   const u = await c.env.DB.prepare('SELECT id, name, banned FROM users WHERE email = ?').bind(email).first();
@@ -348,6 +380,15 @@ export async function deleteAccount(c) {
     DB.prepare('DELETE FROM identities WHERE user_id = ?').bind(id),
     DB.prepare('DELETE FROM spotify WHERE user_id = ?').bind(id),
     DB.prepare('DELETE FROM password_resets WHERE user_id = ?').bind(id),
+    // phase 7: its sign-up signals, links, fingerprints, scans, strikes and timeouts (all would cascade anyway)
+    DB.prepare('DELETE FROM email_tokens WHERE user_id = ?').bind(id),
+    DB.prepare('DELETE FROM signup_signals WHERE user_id = ?').bind(id),
+    DB.prepare('DELETE FROM post_fingerprints WHERE user_id = ?').bind(id),
+    DB.prepare('DELETE FROM posting_timeouts WHERE user_id = ?').bind(id),
+    DB.prepare('DELETE FROM ai_strikes WHERE user_id = ?').bind(id),
+    DB.prepare('DELETE FROM ai_scans WHERE user_id = ?').bind(id),
+    DB.prepare('UPDATE ai_strikes SET decided_by = NULL WHERE decided_by = ?').bind(id),
+    DB.prepare('UPDATE mod_alerts SET resolved_by = NULL WHERE resolved_by = ?').bind(id),
     DB.prepare('DELETE FROM profiles WHERE user_id = ?').bind(id),
     DB.prepare('UPDATE reports SET reporter_id = NULL WHERE reporter_id = ?').bind(id),
     DB.prepare('UPDATE reports SET target_user_id = NULL WHERE target_user_id = ?').bind(id),

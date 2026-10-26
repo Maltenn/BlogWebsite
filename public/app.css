@@ -1165,3 +1165,31 @@ mark.ms-hl { background: #ffe066; color: #000; padding: 0 2px; }
     .ms-suggestbtns { flex-basis: 100%; padding-left: 56px; }
     .ms-browsetabs .btn98 { flex: 1 1 auto; text-align: center; }
 }
+
+
+/* ---------- phase 7: verifying humans, strikes ---------- */
+.os-banner { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; padding: 6px 12px; font-size: 12px; background: #fff3c4; border-bottom: 1px solid #e0c060; color: #4a3a00; }
+.os-banner .btn98 { font-size: 11px; padding: 2px 8px; }
+.hc { margin: 6px 0; position: relative; }
+.hc-hp { position: absolute; left: -10000px; top: auto; width: 1px; height: 1px; overflow: hidden; }
+.hc-widget { max-width: 100%; overflow: hidden; }
+.hc-status { font-size: 11px; color: #555; min-height: 14px; margin-top: 2px; }
+.hc-status.ok { color: #0a7d0a; }
+.hc-status.bad { color: #c3002f; font-weight: bold; }
+.su-check .su-lead b { overflow-wrap: anywhere; }
+.ms-timeout { margin: 8px; border: 1px solid #f0d68a; }
+.ms-sysicon { display: inline-block; width: 40px; text-align: center; font-size: 24px; }
+.st-strike .st-form { padding: 0 8px 8px; max-width: none; }
+.st-strike .st-form textarea { width: 100%; box-sizing: border-box; }
+.st-appeal { margin: 6px 8px; border: 1px solid #f0d68a; }
+.st-note { white-space: pre-wrap; overflow-wrap: anywhere; }
+.st-mode, .st-timeout { margin: 8px; }
+.mod-q-hint { padding: 4px 8px; }
+.mod-q .mod-report { overflow-wrap: anywhere; }
+.mod-scan { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; padding: 4px 8px; border-bottom: 1px dotted #ccc; font-size: 12px; }
+.mod-scan-score { font-weight: bold; min-width: 36px; }
+.mod-scan[data-decision="would_strike"] .mod-scan-decision, .mod-scan[data-decision="strike"] .mod-scan-decision { background: #ffd0d6; border-color: #c3002f; color: #8a0018; }
+@media (max-width: 760px) {
+    .os-banner { padding: 6px 10px; }
+    .mod-scan { gap: 4px; }
+}

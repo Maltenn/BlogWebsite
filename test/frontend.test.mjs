@@ -964,3 +964,327 @@ test('Browse: the four tabs, For you pages on with "show more", and Mutuals logg
   assert.equal(s.querySelector('.ms-browsetabs a.on').textContent, 'Search people', '?q= lands on Search people');
   location.search = '';
 });
+
+/* ------------------------------------------------------------ phase 7: verifying humans, strikes */
+
+const toasts = () => document.querySelector('#toasts').textContent;
+const noToasts = () => document.querySelector('#toasts').replaceChildren();
+const NOACCOUNT = { verified: true, held: false, timeoutUntil: null, strikes: 0 };
+// a form as GET /api/form/:purpose answers it (the proof of work kept easy: 6 bits)
+const formAnswer = (n, more = {}) => ({ token: `form${n}.sig`, honeypot: `fabc12${n}`, minMs: 0, expiresIn: 7200000, pow: { algorithm: 'SHA-256', bits: 6, input: '' }, turnstile: { siteKey: 'K', action: 'signup' }, ...more });
+// a stand-in for Cloudflare's script: draws "widgets" that answer with a token a moment later
+const fakeTurnstile = () => {
+  const t = { rendered: [], removed: [], resets: 0,
+    render(slot, o) { t.rendered.push(o); setTimeout(() => o.callback('ts-token-' + t.rendered.length), 0); return 'w' + t.rendered.length; },
+    remove(id) { t.removed.push(id); }, reset() { t.resets++; } };
+  globalThis.window.turnstile = t;
+  return t;
+};
+
+test('proof of work: SHA-256(token:counter) starts with the asked zero bits; a cancelled search stops', async () => {
+  const { solvePow, zeroBits } = await import('../public/js/widgets/pow.js');
+  const counter = await solvePow('tok.sig', 10);
+  assert.match(counter, /^\d+$/);
+  const digest = new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(`tok.sig:${counter}`)));
+  assert.ok(zeroBits(digest) >= 10);
+  assert.equal(zeroBits(Uint8Array.of(0, 0b00010000)), 11);
+  const stop = new AbortController();
+  const hopeless = solvePow('x', 40, { signal: stop.signal });
+  setTimeout(() => stop.abort(), 20);
+  await assert.rejects(hopeless, e => e.aborted === true);
+});
+
+test('the human check: a hidden honeypot with the form\'s name, the proof of work and Turnstile token go in the body, a refusal gets a fresh form', async () => {
+  const { humanCheck } = await import('../public/js/widgets/humancheck.js');
+  const ts = fakeTurnstile();
+  let forms = 0;
+  dom.onFetch = (m, p) => (p === '/form/signup' ? answer(200, formAnswer(++forms)) : answer(404, {}));
+  const hc = humanCheck('signup');
+  await hc.ready();
+  await dom.settle();
+  const hp = hc.el.querySelector('input');
+  assert.deepEqual([hp.getAttribute('name'), hp.getAttribute('tabindex'), hp.getAttribute('autocomplete'), hp.getAttribute('style')], ['fabc121', '-1', 'off', null]);
+  assert.deepEqual([hp.parentNode.getAttribute('aria-hidden'), hp.parentNode.className], ['true', 'hc-hp']);
+  assert.deepEqual([ts.rendered[0].sitekey, ts.rendered[0].action], ['K', 'signup']);
+  const body = await hc.payload();
+  assert.deepEqual([body.form, body.fabc121, body.turnstile], ['form1.sig', '', 'ts-token-1']);
+  assert.match(body.pow, /^\d+$/);
+  assert.match(hc.el.querySelector('.hc-status').textContent, /checked/);
+  hp.value = 'i am a bot';
+  assert.equal((await hc.payload()).fabc121, 'i am a bot', 'whatever is in the honeypot is sent as it is');
+  // refused: friendly words, and the form and the widget are made again
+  const said = code => hc.refused(Object.assign(new Error('the server\'s words'), { code, status: 400 }));
+  assert.match(said('disposable_email'), /regular email address/);
+  await dom.settle(); await dom.settle();
+  assert.equal(forms, 2, 'a fresh form');
+  assert.deepEqual([ts.removed, ts.rendered.length], [['w1'], 2], 'the old widget is gone, a new one is drawn');
+  assert.equal(hc.el.querySelector('input').getAttribute('name'), 'fabc122', 'with its own honeypot name');
+  assert.match(said('too_fast'), /that was fast/);
+  assert.match(said('turnstile'), /check didn't go through/);
+  assert.equal(hc.refused(Object.assign(new Error('name taken'), { status: 409 })), 'name taken', 'other errors keep the server\'s words (and the form)');
+  await dom.settle();
+  assert.equal(forms, 4, 'too_fast and turnstile refetched, a taken name did not');
+  hc.destroy();
+  assert.ok(ts.removed.length >= 2, 'leaving the page removes the widget');
+  delete globalThis.window.turnstile;
+});
+
+test('the human check on log in: only the Turnstile token, no honeypot or proof of work; every failure resets the widget; none set up sends nothing', async () => {
+  const { humanCheck } = await import('../public/js/widgets/humancheck.js');
+  const ts = fakeTurnstile();
+  dom.onFetch = (m, p) => (p === '/form/login' ? answer(200, { token: null, honeypot: null, pow: null, minMs: 0, turnstile: { siteKey: 'K', action: 'login' } }) : p === '/form/reset' ? answer(200, { token: null, honeypot: null, pow: null, minMs: 0, turnstile: null }) : answer(404, {}));
+  const hc = humanCheck('login');
+  await hc.ready();
+  await dom.settle();
+  assert.equal(hc.el.querySelector('input'), null);
+  assert.deepEqual(await hc.payload(), { turnstile: 'ts-token-1' });
+  hc.refused(new Error('wrong email, screen name or password.'));
+  assert.equal(ts.resets, 1, 'a spent token needs a new check');
+  await dom.settle();
+  hc.destroy();
+  const none = humanCheck('reset');
+  await none.ready();
+  assert.deepEqual(await none.payload(), {}, 'no Turnstile here: nothing to send');
+  none.destroy();
+  delete globalThis.window.turnstile;
+});
+
+test('a write the gate refuses says why in plain words; a post held for review says so; a held sign-up is the sign-up page\'s to announce', async () => {
+  const { api } = await import('../public/js/core/api.js');
+  const refused = (code, extra) => { dom.onFetch = () => answer(403, { error: 'the server\'s words', code, ...extra }); return api.post('/status', { body: 'hi' }).then(() => assert.fail('should refuse'), e => e); };
+  let e = await refused('unverified');
+  assert.deepEqual([e.status, e.code], [403, 'unverified']);
+  assert.match(e.message, /confirm your email first/);
+  assert.match((await refused('held')).message, /moderator will take a quick look/);
+  const until = new Date(2030, 0, 2, 15, 30).getTime();
+  e = await refused('timeout', { until });
+  assert.equal(e.until, until);
+  assert.match(e.message, /can't post or comment until Jan 2 2030 3:30 PM/);
+  assert.equal((await refused(undefined)).message, 'the server\'s words', 'any other refusal keeps the server\'s words');
+  noToasts();
+  dom.onFetch = () => answer(201, { post: { id: 1 }, held: true });
+  await api.post('/status', { body: 'copy' });
+  assert.match(toasts(), /held for a quick review/);
+  noToasts();
+  dom.onFetch = () => answer(201, { user: ME, held: true });
+  await api.post('/signup', {});
+  assert.equal(toasts(), '');
+});
+
+test('the bars under the header: "send it again" until the email is confirmed, the moderator note on a held account, nothing otherwise', async () => {
+  const { paintChrome } = await import('../public/js/core/chrome.js');
+  for (const id of ['who', 'tabs', 'banners']) { const el = document.createElement('div'); el.setAttribute('id', id); document.body.append(el); }
+  const bars = () => document.querySelectorAll('#banners .os-banner').map(b => b.dataset.kind);
+  S.me = ME;
+  S.account = { ...NOACCOUNT, verified: false, held: true };
+  paintChrome();
+  assert.deepEqual(bars(), ['unverified', 'held']);
+  assert.match(document.querySelector('#banners').textContent, /a moderator will take a quick look at your new account, usually within a day/);
+  const calls = [];
+  dom.onFetch = (m, p) => { calls.push(`${m} ${p}`); return answer(200, { ok: true, sent: true }); };
+  noToasts();
+  document.querySelector('#banners button').click();
+  await dom.settle();
+  assert.deepEqual(calls, ['POST /me/verify/resend']);
+  assert.match(toasts(), /sent!/);
+  S.account = NOACCOUNT;
+  paintChrome();
+  assert.deepEqual(bars(), []);
+  S.me = null;
+  S.account = { ...NOACCOUNT, verified: false };
+  paintChrome();
+  assert.deepEqual(bars(), [], 'logged out: no bars');
+  S.account = NOACCOUNT;
+  for (const id of ['who', 'tabs', 'banners']) document.querySelector('#' + id).remove();
+});
+
+test('while a posting timeout runs, the status box and the comment box show when it ends; held duplicate text says so instead of "posted!"', async () => {
+  const { composer } = await import('../public/js/widgets/composer.js');
+  const { commentBox } = await import('../public/js/widgets/commentbox.js');
+  S.me = ME;
+  S.account = { ...NOACCOUNT, strikes: 2, timeoutUntil: Date.now() + 3600000 };
+  for (const box of [composer({}), commentBox({ threadId: 1 })]) {
+    assert.equal(box.querySelector('textarea'), null, 'no box');
+    assert.match(box.textContent, /posting is paused until [A-Z][a-z]{2} \d+ \d{4}/);
+    assert.equal(box.querySelector('a').getAttribute('href'), '/me/strikes');
+  }
+  S.account = { ...NOACCOUNT, timeoutUntil: Date.now() - 1000 };
+  assert.ok(composer({}).querySelector('textarea'), 'over: the box is back');
+  S.account = NOACCOUNT;
+  const form = composer({});
+  dom.onFetch = () => answer(201, { id: 5, held: true });
+  noToasts();
+  form.querySelector('textarea').value = 'the same words as two other new accounts';
+  form.querySelector('textarea').dispatch('input');
+  form.dispatch('submit');
+  await dom.settle(); await dom.settle();
+  assert.match(toasts(), /held for a quick review/);
+  assert.doesNotMatch(toasts(), /posted!/);
+});
+
+test('/verify#token=…: confirms the email and drops the token; an expired link says so', async () => {
+  const { renderVerify } = await import('../public/js/pages/verify.js');
+  S.me = ME;
+  const sent = [];
+  location.hash = '#token=abc123';
+  dom.onFetch = (m, p, b) => { if (p === '/verify') { sent.push(b); return answer(200, { ok: true, verified: true, name: 'me' }); } return answer(200, { user: ME, account: NOACCOUNT, counts: {} }); };
+  let root = document.createElement('main');
+  await renderVerify(root);
+  assert.deepEqual(sent, [{ token: 'abc123' }]);
+  assert.match(root.textContent, /your email is confirmed/);
+  dom.onFetch = () => answer(400, { error: 'x', code: 'verify_link' });
+  root = document.createElement('main');
+  await renderVerify(root);
+  assert.match(root.textContent, /expired, was already used/);
+  location.hash = '';
+  root = document.createElement('main');
+  await renderVerify(root);
+  assert.match(root.textContent, /link is incomplete/);
+});
+
+test('after sign-up: "check your email" says where the link went, offers Send it again, and mentions a held account', async () => {
+  const { checkEmail } = await import('../public/js/widgets/checkemail.js');
+  S.me = ME;
+  const screen = checkEmail({ r: { user: ME, verification: 'sent', held: true }, email: 'me@example.com' });
+  assert.match(screen.textContent, /we sent a link to me@example\.com/);
+  assert.match(screen.textContent, /a moderator will take a quick look/);
+  const failed = checkEmail({ r: { user: ME, verification: 'failed', held: false }, email: 'me@example.com' });
+  assert.match(failed.textContent, /couldn't send the email just now/);
+  assert.doesNotMatch(failed.textContent, /a moderator will take a quick look/);
+  dom.onFetch = () => answer(200, { ok: true, sent: true });
+  noToasts();
+  screen.querySelectorAll('button').find(b => b.textContent === 'send it again').click();
+  await dom.settle();
+  assert.match(screen.querySelector('.su-err').textContent, /sent again/);
+});
+
+const STRIKE = more => ({
+  id: 5, level: 2, step: 'timeout', created: Date.now() - 86400000, expires: Date.now() + 80 * 86400000, status: 'active', counting: true,
+  text: 'Furthermore, it is important to note that the remaster is a testament to the era.', score: 0.97, label: 'AI', model: 'mock',
+  post: { id: 9, kind: 'status', deleted: false, hidden: false }, timeout: { until: Date.now() + 3600000 }, appeal: null, canAppeal: true, ...more,
+});
+
+test('/me/strikes: each strike with its text, score, step and dates; shadow mode says nobody is struck; Appeal sends the note and shows its status', async () => {
+  const { renderStrikes } = await import('../public/js/pages/strikes.js');
+  S.me = ME;
+  const removed = STRIKE({ id: 4, level: 1, step: 'warning', status: 'removed', counting: false, timeout: null, canAppeal: false,
+    appeal: { note: 'mine, all mine', at: Date.now() - 5 * 86400000, result: 'removed', decidedAt: Date.now() - 4 * 86400000 } });
+  const sent = [];
+  dom.onFetch = (m, p, b) => {
+    if (m === 'GET' && p === '/me/strikes') return answer(200, { strikes: [STRIKE(), removed], timeoutUntil: Date.now() + 3600000, enforcement: 'shadow', detector: 'on' });
+    if (p === '/me/strikes/5/appeal') { sent.push(b); return answer(200, { strike: STRIKE({ status: 'appealed', canAppeal: false, appeal: { note: b.note, at: Date.now(), result: null, decidedAt: null } }) }); }
+    return answer(200, { user: ME, account: NOACCOUNT, counts: {} });
+  };
+  const root = document.createElement('main');
+  await renderStrikes(root);
+  assert.match(root.querySelector('.st-mode').textContent, /test mode.*nobody is struck/);
+  assert.match(root.querySelector('.st-timeout').textContent, /posting and commenting are paused until/);
+  const [one, two] = root.querySelectorAll('.st-strike');
+  assert.match(one.textContent, /strike 2: a posting timeout/);
+  assert.match(one.textContent, /it is important to note/);
+  assert.match(one.textContent, /97% likely AI-written/);
+  assert.match(one.textContent, /counts until/);
+  assert.equal(one.querySelectorAll('a').find(a => a.textContent === 'see the post').getAttribute('href'), '/u/me/post/9');
+  assert.match(two.textContent, /a moderator agreed: this strike was removed/);
+  assert.equal(two.querySelector('button'), null, 'an answered appeal has nothing to press');
+  const form = one.querySelector('form');
+  assert.equal(form.hidden, true, 'the form opens with the button');
+  one.querySelectorAll('button').find(b => b.textContent === 'Appeal this strike').click();
+  assert.equal(form.hidden, false);
+  one.querySelector('textarea').value = 'I wrote this in my own words.';
+  form.dispatch('submit');
+  await dom.settle(); await dom.settle();
+  assert.deepEqual(sent, [{ note: 'I wrote this in my own words.' }]);
+  const now = root.querySelectorAll('.st-strike')[0];
+  assert.match(now.querySelector('.st-appeal').textContent, /a moderator will decide soon.*I wrote this in my own words/);
+  assert.equal(now.querySelector('form'), null);
+  assert.equal(now.dataset.status, 'appealed');
+});
+
+test('an AI-writing strike or the answer to an appeal in Notifications is a line from the site that leads to /me/strikes', async () => {
+  const { renderNotifications } = await import('../public/js/pages/notifications.js');
+  S.me = ME;
+  dom.onFetch = (m, p) => {
+    if (m === 'GET' && p === '/notifications') return answer(200, { unread: 2, next: null, items: [
+      { id: 2, kind: 'ai_appeal', created: Date.now(), unread: true, actor: ME, post: null, strike: { id: 5, level: 2, status: 'removed', result: 'removed' } },
+      { id: 1, kind: 'ai_strike', created: Date.now() - 1000, unread: true, actor: ME, post: null, strike: { id: 5, level: 2, status: 'active', result: null } }] });
+    if (p === '/requests') return answer(200, { incoming: [] });
+    return answer(200, { ok: true, user: ME, account: NOACCOUNT, counts: {} });
+  };
+  const root = document.createElement('main');
+  await renderNotifications(root);
+  const [appeal, strike] = root.querySelectorAll('.ms-note-row');
+  assert.match(appeal.textContent, /a moderator removed your strike/);
+  assert.match(strike.textContent, /flagged as likely written by an AI.*strike 2: a one-day posting timeout/);
+  for (const row of [appeal, strike]) assert.equal(row.querySelector('a').getAttribute('href'), '/me/strikes');
+});
+
+test('Moderation: held sign-ups (approve; refuse needs a reason), alerts, strike appeals (remove), AI scans in shadow mode', async () => {
+  S.me = { ...ME, isAdmin: true };
+  const { modQueues } = await import('../public/js/widgets/modqueues.js');
+  const posted = [];
+  const scan = (id, decision, more) => ({ id, created: Date.now() - id * 60000, score: 0.97, label: 'AI', model: 'mock', decision, words: 180, kind: 'thread', user: kat, post: null, ...more });
+  dom.onFetch = (m, p, b) => {
+    if (m !== 'GET') { posted.push(`${m} ${p} ${JSON.stringify(b)}`); return answer(200, { ok: true }); }
+    if (p === '/admin/held') return answer(200, { accounts: [{ user: pal, created: Date.now() - 120000, verified: false, emailDomain: 'growfast.example', risk: 5, reasons: ['hosting_network', 'same_network_24h'], network: { asn: 14061, asOrg: 'DigitalOcean, LLC', country: 'NL' }, formMs: 6500 }] });
+    if (p === '/admin/alerts?status=open') return answer(200, { alerts: [
+      { id: 3, kind: 'duplicate', created: Date.now() - 1000, rule: null, users: [kat, pal], posts: [{ id: 8, kind: 'status', excerpt: 'buy my stuff', hidden: false, held: true, deleted: false, author: pal },
+        { id: 9, kind: 'status', excerpt: 'taken down', hidden: true, held: false, deleted: false, author: kat }], details: { count: 2 } },
+      { id: 4, kind: 'ban_review', created: Date.now() - 2000, rule: null, users: [kat], posts: [], details: {} }] });
+    if (p === '/admin/appeals') return answer(200, { strikes: [{ ...STRIKE({ id: 7 }), user: kat, appeal: { note: 'it was me', at: Date.now() - 1000, result: null, decidedAt: null } }] });
+    if (p === '/admin/ai-scans') return answer(200, { scans: [scan(2, 'would_strike', { post: { id: 11, kind: 'status', excerpt: 'x', hidden: false, deleted: false } }), scan(1, 'clear', { score: 0.1, label: 'human' })], next: null, detector: 'on', enforcement: 'shadow' });
+    return answer(200, { user: ME, account: NOACCOUNT, counts: {} });
+  };
+  const el = modQueues();
+  for (let i = 0; i < 4; i++) await dom.settle();
+  assert.deepEqual(el.querySelectorAll('.os-panel .ms-boxtitle').map(t => t.textContent), ['⏳ held sign-ups', '🚨 alerts', '✋ strike appeals', '🤖 AI scans']);
+  const held = el.querySelector('.mod-held');
+  assert.match(held.textContent, /pal.*risk 5.*not confirmed.*growfast\.example.*AS14061.*cloud \/ hosting network, same network signed up today/);
+  const press = (box, text) => box.querySelectorAll('button').find(b => b.textContent.includes(text)).click();
+  press(held, 'approve');
+  await dom.settle(); await dom.settle();
+  assert.deepEqual(posted, ['POST /admin/held/pal {"action":"approve","reason":""}']);
+  // refusing asks for a reason in a dialog: empty, nothing is sent; with one, it is
+  press(held, 'refuse');
+  document.querySelector('.ms-dialog-btns button').click();
+  await dom.settle();
+  assert.equal(posted.length, 1);
+  assert.match(toasts(), /a reason is needed/);
+  press(held, 'refuse');
+  document.querySelector('.ms-dialog input').value = 'bot farm';
+  document.querySelector('.ms-dialog-btns button').click();
+  await dom.settle(); await dom.settle();
+  assert.equal(posted[1], 'POST /admin/held/pal {"action":"refuse","reason":"bot farm"}');
+  // alerts: duplicate text can be released, a fifth strike can be banned (after a confirmation), all can be dismissed
+  const [dup, review] = el.querySelectorAll('.mod-alert');
+  assert.deepEqual(dup.querySelectorAll('button').map(b => b.textContent), ['👁 release (show the held posts)', '✔ dismiss']);
+  assert.deepEqual(review.querySelectorAll('button').map(b => b.textContent), ['⛔ ban…', '✔ dismiss']);
+  assert.match(dup.textContent, /buy my stuff/);
+  // a post held as duplicate text and one a moderator hid read differently (a release only shows the held one)
+  const snaps = dup.querySelectorAll('.mod-snap');
+  assert.deepEqual(snaps.map(s => s.dataset.state), ['held', 'hidden']);
+  assert.match(snaps[0].textContent, /\(held: waiting for you\)/);
+  assert.match(snaps[1].textContent, /\(hidden by a moderator\)/);
+  assert.doesNotMatch(snaps[1].textContent, /held/);
+  press(dup, 'release');
+  await dom.settle();
+  assert.equal(posted[2], 'POST /admin/alerts/3 {"action":"release","note":""}');
+  press(review, 'ban');
+  document.querySelector('.ms-dialog-btns button').click();
+  await dom.settle(); await dom.settle();
+  assert.equal(posted[3], 'POST /admin/alerts/4 {"action":"ban","note":""}');
+  // appeals
+  const appeal = el.querySelector('.mod-appeal');
+  assert.match(appeal.textContent, /kat.*strike 2: a posting timeout.*it was me/);
+  press(appeal, 'remove the strike');
+  document.querySelector('.ms-dialog-btns button').click();
+  await dom.settle(); await dom.settle();
+  assert.equal(posted[4], 'POST /admin/strikes/7 {"action":"remove","note":""}');
+  // scans
+  assert.match(el.querySelectorAll('.mod-q')[3].textContent, /shadow mode/);
+  const rows = el.querySelectorAll('.mod-scan');
+  assert.deepEqual(rows.map(r => r.dataset.decision), ['would_strike', 'clear']);
+  assert.match(rows[0].textContent, /97%.*AI.*would strike.*kat/);
+  assert.equal(rows[0].querySelectorAll('a').find(a => a.textContent === 'open').getAttribute('href'), '/u/kat/post/11');
+  S.me = ME;
+});

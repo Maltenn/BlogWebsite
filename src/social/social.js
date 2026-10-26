@@ -7,7 +7,7 @@ import { text, longText, tagKey } from '../shared/text.js';
 import { REF_COLS, ref, refOf, visibleUser, areFriends, canSeePosts, blockedEither, limit, VISIBLE, IN_THREAD, SEES, SEES_POST, REPOST_OK, CLEAR_TOMBSTONES } from '../shared/db.js';
 import { RESORT } from '../shared/ranking.js';
 import { claimMedia, dropObjects, keysIn, releaseMedia } from '../shared/media.js';
-import { POST_LIMITS, THREADED_SQL, POST_COLS, POSTS, EXCERPT, cursor, NEWEST, BEFORE, AFTER, hydrate, item, page, mentionsOf, writePost, dropRepost } from './items.js';
+import { POST_LIMITS, THREADED_SQL, POST_COLS, POSTS, EXCERPT, cursor, NEWEST, BEFORE, AFTER, hydrate, item, page, mentionsOf, writePost, dropRepost, heldOut } from './items.js';
 
 /* ------------------------------------------------------------ posts */
 
@@ -26,7 +26,7 @@ export async function postComment(c) {
   }
   await limit(c, 'post:' + me, POST_LIMITS);
   const id = await writePost(c, { kind: 'wall', target_id: u.id, body }, { mentionIn: body, tell: [['comment', u.id]] });
-  return json({ id, body }, 201);
+  return json({ id, body, ...heldOut(c) }, 201);
 }
 
 // POST /api/status { body, media? } — on my page and in my followers' feeds. media: up to 4 of my uploads (ids, or
@@ -38,7 +38,7 @@ export async function postStatus(c) {
   if (!body && !media.length) fail(400, 'what\'s on your mind? (you have to type it)');
   await limit(c, 'post:' + c.user.id, POST_LIMITS);
   const id = await writePost(c, { kind: 'status', body }, { mentionIn: body, tagIn: body, media });
-  return json({ id, body }, 201);
+  return json({ id, body, ...heldOut(c) }, 201);
 }
 
 // POST /api/blog { title, subtitle, mood, body, cover? } — a long post on my page (with a page of its own) and in my
@@ -56,7 +56,7 @@ export async function postBlog(c) {
   await limit(c, 'post:' + c.user.id, POST_LIMITS);
   const words = `${title}\n${body}`;
   const id = await writePost(c, { kind: 'blog', subject: title, subtitle, mood, body }, { mentionIn: words, tagIn: words, media });
-  return json({ id }, 201);
+  return json({ id, ...heldOut(c) }, 201);
 }
 
 // DELETE /api/posts/:id — your own post, a comment on your own page, or anything (moderators). A post that has replies

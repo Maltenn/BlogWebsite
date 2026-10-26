@@ -9,8 +9,10 @@
 //   everything else the static pages in public/ (wrangler.jsonc → assets), with /u/<name> etc. falling back to
 //                   index.html so the page's own router can draw them
 // The cron (every 30 min) clears out expired sessions, sign-in tickets, reset links, old rate-limit rows, photo uploads
-// never attached to anything, #ourspace messages past its rolling window, expired mutes and faded interaction scores.
-import { HttpError, json } from './shared/http.js';
+// never attached to anything, #ourspace messages past its rolling window, expired mutes and faded interaction scores,
+// and the trust data past its time (sign-up signals and AI scores after 90 days); a nightly one looks for clusters of
+// accounts for the moderators (src/trust/clusters.js).
+import { HttpError, json, netLimit } from './shared/http.js';
 import { currentUser, me, signup, login, logout, changePassword, deleteAccount, forgotPassword, resetPassword } from './accounts/auth.js';
 import { oauthStart, oauthCallback, signupPending, signupFinish, providers, account, unlink } from './accounts/oauth.js';
 import { options, profile, browse, saveProfile, saveSettings } from './profiles/profiles.js';
@@ -31,39 +33,57 @@ import { listBlocks, block, unblock, report, adminReports, resolveReport, adminU
 import { discover, mutuals, people, boardsForYou, hideSuggestion, unhideSuggestion } from './browse/browse.js';
 import { boardTerms, saveBoardTerms } from './browse/terms.js';
 import { uploadMedia, deleteUpload, serveMedia, adminMedia, moderateMedia, sweepMedia } from './media/media.js';
+import { verifyEmail, resendVerification } from './accounts/verify.js';
+import { formFor } from './trust/form.js';
+import { heldAccounts, decideHeld, adminAlerts, resolveAlert } from './trust/moderation.js';
+import { findClusters, sweepTrust } from './trust/clusters.js';
+import { myStrikes, appealStrike, adminAppeals, decideStrike, adminScans } from './ai/strikes.js';
+import { sweepStrikes } from './ai/scan.js';
+import { checkGate } from './shared/gate.js';
 
 // the Durable Object class behind every chat room (wrangler.jsonc → durable_objects)
 export { Room } from './live/room.js';
 
 const OPEN = 0, AUTH = 1, ADMIN = 2;
+const NIGHTLY = '17 3 * * *';
 
+// Every write a member makes (AUTH, not GET) passes the gate in src/shared/gate.js: a confirmed email and not held for
+// review; `gate: 'post'` adds "no posting timeout" (public posting and commenting). A write that needs neither (account
+// and page set-up, private things, undoing, safety) says why in `free`; `freeWhen` narrows that to some requests.
+// `net`: unauthenticated sign-up traffic, braked per network (netLimit in src/shared/http.js).
+// test/api.test.mjs reads this table and tries every gated route as an unverified, a held and a timed-out member.
 const ROUTES = [
   ['GET', '/api/options', options, OPEN],
   ['GET', '/api/me', me, OPEN],
-  ['POST', '/api/signup', signup, OPEN],
+  ['GET', '/api/form/:purpose', formFor, OPEN, { net: true }],
+  ['POST', '/api/signup', signup, OPEN, { net: true }],
   ['POST', '/api/login', login, OPEN],
   ['POST', '/api/logout', logout, OPEN],
   ['POST', '/api/password/forgot', forgotPassword, OPEN],
   ['POST', '/api/password/reset', resetPassword, OPEN],
+  ['POST', '/api/verify', verifyEmail, OPEN],
   ['GET', '/api/auth/providers', providers, OPEN],
   ['GET', '/api/oauth/:provider/start', oauthStart, OPEN],
   ['GET', '/api/oauth/:provider/callback', oauthCallback, OPEN],
   ['POST', '/api/oauth/:provider/callback', oauthCallback, OPEN, { crossSite: true }],   // Apple answers with a form POST
   ['GET', '/api/signup/pending', signupPending, OPEN],
-  ['POST', '/api/signup/finish', signupFinish, OPEN],
+  ['POST', '/api/signup/finish', signupFinish, OPEN, { net: true }],
 
   ['GET', '/api/me/account', account, AUTH],
-  ['DELETE', '/api/me/identities/:provider', unlink, AUTH],
-  ['PUT', '/api/me/profile', saveProfile, AUTH],
-  ['PUT', '/api/me/settings', saveSettings, AUTH],
-  ['PUT', '/api/me/markers/:name', saveMarker, AUTH],
+  ['DELETE', '/api/me/identities/:provider', unlink, AUTH, { free: 'account' }],
+  ['PUT', '/api/me/profile', saveProfile, AUTH, { free: 'setting up your page' }],
+  ['PUT', '/api/me/settings', saveSettings, AUTH, { free: 'privacy settings' }],
+  ['PUT', '/api/me/markers/:name', saveMarker, AUTH, { free: 'private: how far you read' }],
   ['GET', '/api/me/bookmarks', bookmarks, AUTH],
-  ['POST', '/api/me/password', changePassword, AUTH],
-  ['DELETE', '/api/me', deleteAccount, AUTH],
+  ['POST', '/api/me/password', changePassword, AUTH, { free: 'account' }],
+  ['DELETE', '/api/me', deleteAccount, AUTH, { free: 'account' }],
+  ['POST', '/api/me/verify/resend', resendVerification, AUTH, { free: 'the way to get verified' }],
+  ['GET', '/api/me/strikes', myStrikes, AUTH],
+  ['POST', '/api/me/strikes/:id/appeal', appealStrike, AUTH, { free: 'appealing must work while timed out' }],
   ['GET', '/api/me/spotify', getSpotify, AUTH],
-  ['PUT', '/api/me/spotify', putSpotify, AUTH],
-  ['POST', '/api/me/spotify/refresh', refreshSpotify, AUTH],
-  ['DELETE', '/api/me/spotify', deleteSpotify, AUTH],
+  ['PUT', '/api/me/spotify', putSpotify, AUTH, { free: 'setting up your page' }],
+  ['POST', '/api/me/spotify/refresh', refreshSpotify, AUTH, { free: 'setting up your page' }],
+  ['DELETE', '/api/me/spotify', deleteSpotify, AUTH, { free: 'setting up your page' }],
 
   ['GET', '/api/astro/sky', astroSky, OPEN],
   ['GET', '/api/astro/sign/:sign', astroSign, OPEN],
@@ -78,32 +98,32 @@ const ROUTES = [
   ['GET', '/api/users/:name/statuses', statusesOf, OPEN],
   ['GET', '/api/users/:name/replies', repliesOf, OPEN],
   ['GET', '/api/users/:name/comments', commentsOf, OPEN],
-  ['POST', '/api/users/:name/comments', postComment, AUTH],
+  ['POST', '/api/users/:name/comments', postComment, AUTH, { gate: 'post' }],
 
   ['GET', '/api/feed', feed, OPEN],
-  ['POST', '/api/status', postStatus, AUTH],
-  ['POST', '/api/blog', postBlog, AUTH],
+  ['POST', '/api/status', postStatus, AUTH, { gate: 'post' }],
+  ['POST', '/api/blog', postBlog, AUTH, { gate: 'post' }],
   ['GET', '/api/posts/:id', onePost, OPEN],
-  ['DELETE', '/api/posts/:id', deletePost, AUTH],
-  ['POST', '/api/posts/:id/replies', postReply, AUTH],
-  ['POST', '/api/posts/:id/quote', postQuote, AUTH],
+  ['DELETE', '/api/posts/:id', deletePost, AUTH, { free: 'deleting your own post' }],
+  ['POST', '/api/posts/:id/replies', postReply, AUTH, { gate: 'post' }],
+  ['POST', '/api/posts/:id/quote', postQuote, AUTH, { gate: 'post' }],
   ['POST', '/api/posts/:id/like', likePost, AUTH],
-  ['DELETE', '/api/posts/:id/like', unlikePost, AUTH],
+  ['DELETE', '/api/posts/:id/like', unlikePost, AUTH, { free: 'undoing' }],
   ['POST', '/api/posts/:id/repost', repostPost, AUTH],
-  ['DELETE', '/api/posts/:id/repost', unrepostPost, AUTH],
-  ['POST', '/api/posts/:id/bookmark', bookmarkPost, AUTH],
-  ['DELETE', '/api/posts/:id/bookmark', unbookmarkPost, AUTH],
+  ['DELETE', '/api/posts/:id/repost', unrepostPost, AUTH, { free: 'undoing' }],
+  ['POST', '/api/posts/:id/bookmark', bookmarkPost, AUTH, { free: 'private to you' }],
+  ['DELETE', '/api/posts/:id/bookmark', unbookmarkPost, AUTH, { free: 'private to you' }],
   ['GET', '/api/tags/:tag', tagged, OPEN],
-  ['POST', '/api/media', uploadMedia, AUTH],
-  ['DELETE', '/api/media/:id', deleteUpload, AUTH],
+  ['POST', '/api/media', uploadMedia, AUTH, { free: 'your own picture is page set-up', freeWhen: c => c.url.searchParams.get('purpose') === 'avatar' }],
+  ['DELETE', '/api/media/:id', deleteUpload, AUTH, { free: 'taking back your own upload' }],
 
   ['GET', '/api/boards', boardList, OPEN],
   ['POST', '/api/boards/requests', requestBoard, AUTH],
   ['GET', '/api/boards/:slug', board, OPEN],
-  ['POST', '/api/boards/:slug/threads', postThread, AUTH],
+  ['POST', '/api/boards/:slug/threads', postThread, AUTH, { gate: 'post' }],
   ['GET', '/api/threads/:id', boardThread, OPEN],
   ['GET', '/api/threads/:id/comments/:commentId', threadComments, OPEN],
-  ['POST', '/api/threads/:id/comments', postThreadComment, AUTH],
+  ['POST', '/api/threads/:id/comments', postThreadComment, AUTH, { gate: 'post' }],
   ['PUT', '/api/posts/:id/vote', votePost, AUTH],
   ['GET', '/api/notifications', notifications, AUTH],
 
@@ -111,14 +131,14 @@ const ROUTES = [
   ['GET', '/api/browse/mutuals', mutuals, OPEN],
   ['GET', '/api/browse/people', people, OPEN],
   ['GET', '/api/browse/boards', boardsForYou, OPEN],
-  ['POST', '/api/browse/hidden/:kind/:ref', hideSuggestion, AUTH],
-  ['DELETE', '/api/browse/hidden/:kind/:ref', unhideSuggestion, AUTH],
+  ['POST', '/api/browse/hidden/:kind/:ref', hideSuggestion, AUTH, { free: 'private to you' }],
+  ['DELETE', '/api/browse/hidden/:kind/:ref', unhideSuggestion, AUTH, { free: 'private to you' }],
 
   ['GET', '/api/requests', requests, AUTH],
   ['POST', '/api/follows/:name', followUser, AUTH],
-  ['DELETE', '/api/follows/:name', unfollowUser, AUTH],
+  ['DELETE', '/api/follows/:name', unfollowUser, AUTH, { free: 'undoing' }],
   ['POST', '/api/followers/:name', acceptFollower, AUTH],
-  ['DELETE', '/api/followers/:name', removeFollower, AUTH],
+  ['DELETE', '/api/followers/:name', removeFollower, AUTH, { free: 'removing someone' }],
 
   ['GET', '/api/chats', chatList, AUTH],
   ['POST', '/api/chats', createChat, AUTH],
@@ -127,20 +147,20 @@ const ROUTES = [
   ['PUT', '/api/chats/:id', renameChat, AUTH],
   ['GET', '/api/chats/:id/messages', chatMessages, AUTH],
   ['POST', '/api/chats/:id/messages', sendChatMessage, AUTH],
-  ['PUT', '/api/chats/:id/read', readChat, AUTH],
+  ['PUT', '/api/chats/:id/read', readChat, AUTH, { free: 'private: how far you read' }],
   ['POST', '/api/chats/:id/members', addMembers, AUTH],
-  ['DELETE', '/api/chats/:id/members/:name', removeMember, AUTH],
-  ['POST', '/api/chats/:id/leave', leaveChat, AUTH],
+  ['DELETE', '/api/chats/:id/members/:name', removeMember, AUTH, { free: 'removing someone' }],
+  ['POST', '/api/chats/:id/leave', leaveChat, AUTH, { free: 'leaving' }],
   ['POST', '/api/chats/:id/invite', answerInvite, AUTH],
-  ['DELETE', '/api/chat-messages/:id', deleteChatMessage, AUTH],
+  ['DELETE', '/api/chat-messages/:id', deleteChatMessage, AUTH, { free: 'deleting your own message' }],
   ['GET', '/api/ourspace/messages', ourspaceMessages, AUTH],
   ['POST', '/api/ourspace/messages', postOurspace, AUTH],
   ['GET', '/api/live/:room', liveRoom, AUTH],
 
   ['GET', '/api/blocks', listBlocks, AUTH],
-  ['POST', '/api/blocks/:name', block, AUTH],
-  ['DELETE', '/api/blocks/:name', unblock, AUTH],
-  ['POST', '/api/reports', report, AUTH],
+  ['POST', '/api/blocks/:name', block, AUTH, { free: 'safety' }],
+  ['DELETE', '/api/blocks/:name', unblock, AUTH, { free: 'safety' }],
+  ['POST', '/api/reports', report, AUTH, { free: 'safety' }],
 
   ['GET', '/api/admin/reports', adminReports, ADMIN],
   ['POST', '/api/admin/reports/:id', resolveReport, ADMIN],
@@ -156,6 +176,13 @@ const ROUTES = [
   ['GET', '/api/admin/media', adminMedia, ADMIN],
   ['POST', '/api/admin/media/:id', moderateMedia, ADMIN],
   ['POST', '/api/admin/mutes', muteMember, ADMIN],
+  ['GET', '/api/admin/held', heldAccounts, ADMIN],
+  ['POST', '/api/admin/held/:name', decideHeld, ADMIN],
+  ['GET', '/api/admin/alerts', adminAlerts, ADMIN],
+  ['POST', '/api/admin/alerts/:id', resolveAlert, ADMIN],
+  ['GET', '/api/admin/appeals', adminAppeals, ADMIN],
+  ['POST', '/api/admin/strikes/:id', decideStrike, ADMIN],
+  ['GET', '/api/admin/ai-scans', adminScans, ADMIN],
 ].map(([method, path, handler, access, opts = {}]) => ({
   method, handler, access, ...opts,
   keys: [...path.matchAll(/:(\w+)/g)].map(m => m[1]),
@@ -190,9 +217,14 @@ async function api(request, env, ctx, url) {
   }
 
   c.params = found.params;
+  // `net`: unauthenticated sign-up traffic, braked per network before anything touches the database (shared/http.js)
+  if (found.route.net) await netLimit(c);
   c.user = await currentUser(c);
   if (found.route.access >= AUTH && !c.user) return json({ error: 'log in first.' }, 401);
   if (found.route.access === ADMIN && !c.user.is_admin) return json({ error: 'moderators only.' }, 403);
+  // the gate on members' writes (src/shared/gate.js): verified, not held, and for public posting no timeout
+  const r = found.route;
+  if (r.access === AUTH && request.method !== 'GET' && !(r.free && (!r.freeWhen || r.freeWhen(c)))) await checkGate(c, r.gate || 'write');
   return found.route.handler(c);
 }
 
@@ -212,7 +244,7 @@ export default {
     try {
       return await (isMedia ? media(request, env, ctx, url) : api(request, env, ctx, url));
     } catch (e) {
-      if (e instanceof HttpError) return json({ error: e.message }, e.status, e.cookie ? { 'Set-Cookie': e.cookie } : {});
+      if (e instanceof HttpError) return json({ ...(e.extra || {}), error: e.message }, e.status, e.cookie ? { 'Set-Cookie': e.cookie } : {});
       console.error((e && e.stack) || e);
       return json({ error: 'something broke on our end. try again in a minute.' }, 500);
     }
@@ -220,6 +252,11 @@ export default {
 
   async scheduled(event, env, ctx) {
     const now = Date.now();
+    // nightly (wrangler.jsonc: '17 3 * * *'): look for accounts that came together, for the moderators. Never bans.
+    if (event.cron === NIGHTLY) {
+      ctx.waitUntil(findClusters(env, now).catch(e => console.error('cluster check failed:', (e && e.stack) || e)));
+      return;
+    }
     ctx.waitUntil(env.DB.batch([
       env.DB.prepare('DELETE FROM sessions WHERE expires < ?').bind(now),
       env.DB.prepare('DELETE FROM oauth_states WHERE expires < ?').bind(now),
@@ -231,5 +268,9 @@ export default {
     ctx.waitUntil(sweepMedia(env, now).catch(e => console.error('media sweep failed:', (e && e.stack) || e)));
     // #ourspace's rolling window (reported messages stay), expired mutes, interaction scores faded below 0.05
     ctx.waitUntil(sweepChat(env, now).catch(e => console.error('chat sweep failed:', (e && e.stack) || e)));
+    // sign-up signals (90 days), post fingerprints (7), used form nonces and email links, resolved alerts (90 days);
+    // strikes past their 90 clean days, old flagged text, AI scan scores (90 days)
+    ctx.waitUntil(sweepTrust(env, now).catch(e => console.error('trust sweep failed:', (e && e.stack) || e)));
+    ctx.waitUntil(sweepStrikes(env, now).catch(e => console.error('strike sweep failed:', (e && e.stack) || e)));
   },
 };
