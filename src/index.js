@@ -1,7 +1,7 @@
 // ourspace-social — one Worker for the whole site:
 //   /api/*          the JSON API below (accounts, sign-in providers, profiles, follows, posts and the feed, replies,
-//                   likes, reposts, quotes, bookmarks, tags, notifications, messages, Spotify, astrology, blocks,
-//                   reports, moderation)
+//                   likes, reposts, quotes, bookmarks, tags, boards with their threads, comments and votes,
+//                   notifications, messages, Spotify, astrology, blocks, reports, moderation)
 //   everything else the static pages in public/ (wrangler.jsonc → assets), with /u/<name> etc. falling back to
 //                   index.html so the page's own router can draw them
 // The cron (every 30 min) clears out expired sessions, sign-in tickets, reset links and old rate-limit rows.
@@ -10,8 +10,11 @@ import { currentUser, me, signup, login, logout, changePassword, deleteAccount, 
 import { oauthStart, oauthCallback, signupPending, signupFinish, providers, account, unlink } from './accounts/oauth.js';
 import { options, profile, browse, saveProfile, saveSettings } from './profiles/profiles.js';
 import { followUser, unfollowUser, acceptFollower, removeFollower, requests, followersOf, followingOf, friendsOf } from './follows/follows.js';
-import { postComment, postStatus, postBulletin, postBlog, deletePost, feed, saveMarker, bulletins, blogOf, statusesOf, repliesOf, commentsOf, onePost, tagged } from './social/social.js';
+import { postComment, postStatus, postBlog, deletePost, feed, saveMarker, blogOf, statusesOf, repliesOf, commentsOf, onePost, tagged } from './social/social.js';
 import { postReply, postQuote, likePost, unlikePost, repostPost, unrepostPost, bookmarkPost, unbookmarkPost, bookmarks } from './social/interactions.js';
+import { boardList, board, postThread, boardThread, threadComments, postThreadComment, moderateThread, moderateBoard } from './boards/boards.js';
+import { votePost } from './boards/votes.js';
+import { requestBoard, boardRequests, decideBoardRequest } from './boards/requests.js';
 import { notifications } from './notifications/notifications.js';
 import { inbox, thread, sendMessage } from './messages/messages.js';
 import { getSpotify, putSpotify, refreshSpotify, deleteSpotify } from './music/spotify.js';
@@ -65,8 +68,6 @@ const ROUTES = [
 
   ['GET', '/api/feed', feed, OPEN],
   ['POST', '/api/status', postStatus, AUTH],
-  ['GET', '/api/bulletins', bulletins, OPEN],
-  ['POST', '/api/bulletins', postBulletin, AUTH],
   ['POST', '/api/blog', postBlog, AUTH],
   ['GET', '/api/posts/:id', onePost, OPEN],
   ['DELETE', '/api/posts/:id', deletePost, AUTH],
@@ -79,6 +80,15 @@ const ROUTES = [
   ['POST', '/api/posts/:id/bookmark', bookmarkPost, AUTH],
   ['DELETE', '/api/posts/:id/bookmark', unbookmarkPost, AUTH],
   ['GET', '/api/tags/:tag', tagged, OPEN],
+
+  ['GET', '/api/boards', boardList, OPEN],
+  ['POST', '/api/boards/requests', requestBoard, AUTH],
+  ['GET', '/api/boards/:slug', board, OPEN],
+  ['POST', '/api/boards/:slug/threads', postThread, AUTH],
+  ['GET', '/api/threads/:id', boardThread, OPEN],
+  ['GET', '/api/threads/:id/comments/:commentId', threadComments, OPEN],
+  ['POST', '/api/threads/:id/comments', postThreadComment, AUTH],
+  ['PUT', '/api/posts/:id/vote', votePost, AUTH],
   ['GET', '/api/notifications', notifications, AUTH],
 
   ['GET', '/api/requests', requests, AUTH],
@@ -101,6 +111,10 @@ const ROUTES = [
   ['POST', '/api/admin/users/:name', adminUser, ADMIN],
   ['POST', '/api/admin/content', adminContent, ADMIN],
   ['GET', '/api/admin/log', adminLog, ADMIN],
+  ['GET', '/api/admin/board-requests', boardRequests, ADMIN],
+  ['POST', '/api/admin/board-requests/:id', decideBoardRequest, ADMIN],
+  ['POST', '/api/admin/threads/:id', moderateThread, ADMIN],
+  ['POST', '/api/admin/boards/:slug', moderateBoard, ADMIN],
 ].map(([method, path, handler, access, opts = {}]) => ({
   method, handler, access, ...opts,
   keys: [...path.matchAll(/:(\w+)/g)].map(m => m[1]),

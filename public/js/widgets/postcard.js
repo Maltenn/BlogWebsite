@@ -3,6 +3,8 @@
      status / blog / reply   the writer, the words (@mentions and #tags are links), the time, the 💬 ↻ ♥ 🔖 row
      quote                   the writer's words, then the post they quote in a box
      repost                  "↻ kat reposted" above the original's card
+     thread                  a board thread (#tag pages): board chip, title, a line of the words, ▲ ▼ 💬 to read; all
+                             of it leads to the thread page, where the voting and commenting happen
      deleted                 "this post was deleted." (a tombstone keeps a conversation's shape)
    (Friends' Comments and the blog's own page have their own looks.) */
 
@@ -17,6 +19,7 @@ import { rich } from './richtext.js';
 import { reactionRow } from './reactions.js';
 import { quoteBox } from './quotebox.js';
 import { postPath, blogPath } from './postlinks.js';
+import { boardPath, threadPath } from './boardlinks.js';
 
 // the time, as a link to the post: 'ago' ("3 hours ago"), 'clock' ("9:12 PM", under a day heading) or 'full' (the whole date)
 // (`to` is the post it links to, when that isn't `p`: a repost's time links to its original)
@@ -47,6 +50,7 @@ export function postCard(item, opts = {}) {
 
 function draw(row, item, opts) {
   row.classList.toggle('is-repost', item.kind === 'repost');
+  if (item.kind === 'thread' && !item.deleted) { row.replaceChildren(threadBody(row, item, opts)); return; }
   if (item.kind !== 'repost') { row.replaceChildren(item.deleted ? gone(item, opts) : body(row, item, item, opts)); return; }
   const orig = item.quoted;
   const line = h('div', { class: 'ms-repostline' }, '↻ ', nameLink(item.author), ' reposted',
@@ -61,6 +65,26 @@ function gone(p, opts) {
     h('div', { class: 'ms-feedmid' }, h('div', null, nameLink(p.author)),
       h('div', { class: 'ms-feedtext ms-gone', text: 'this post was deleted.' }),
       h('div', null, stamp(p, opts.time))));
+}
+
+// A board thread (on a #tag page): its board, title and a line of its words, all leading to the thread page, with its
+// ▲ ▼ 💬 counts to read. Votes and comments happen on the thread page, so no 💬 ↻ ♥ 🔖 row.
+function threadBody(row, t, opts) {
+  const to = threadPath(t.board.slug, t.id);
+  const n = (k, one, many) => `${t.counts[k]} ${t.counts[k] === 1 ? one : many}`;
+  return h('div', { class: 'ms-feedrow' },
+    avatar(t.author, 40),
+    h('div', { class: 'ms-feedmid' },
+      h('div', null, nameLink(t.author), ' started a thread in ',
+        h('a', { class: 'ms-chip pc-board', href: boardPath(t.board.slug), text: `${t.board.icon} ${t.board.name}` })),
+      h('a', { class: 'ms-feedtitle', href: to, text: t.subject }),
+      h('div', { class: 'ms-feedtext' }, rich(teaser(t.body), t.mentions)),
+      h('div', { class: 'ms-feedmeta' }, h('a', { class: 'ms-time', href: to, title: when(t.created), text: opts.time === 'clock' ? clock(t.created) : ago(t.created) }),
+        postActions(t, r => { if (r.tombstone) { row.replaceChildren(gone(t, opts)); } else row.remove(); if (opts.onDeleted) opts.onDeleted(t, r.tombstone); })),
+      h('a', { class: 'pc-threadstats', href: to, 'aria-label': `${n('up', 'like', 'likes')}, ${n('down', 'dislike', 'dislikes')}, ${n('comments', 'comment', 'comments')}: open the thread` },
+        h('span', { class: 'bb-up' }, '▲ ', h('b', { text: String(t.counts.up) })),
+        h('span', { class: 'bb-down' }, '▼ ', h('b', { text: String(t.counts.down) })),
+        h('span', null, '💬 ', h('b', { text: String(t.counts.comments) })))));
 }
 
 // The card's avatar and words. via: the item in the list (the same as `p`, or the repost that brought `p` here).

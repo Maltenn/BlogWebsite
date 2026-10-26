@@ -1,6 +1,6 @@
 // Migration tests: `npm test`. Builds a database the way 0001_init.sql left it (friend requests, blocks, "became friends"
 // and "joined" lines in the feed), applies 0002_follows.sql on top, and checks what became of everything; then adds posts
-// and applies 0003_interactions.sql. Uses wrangler's local D1 (run through node, like the API tests) on a throwaway folder.
+// and applies 0003_interactions.sql, then adds bulletins and applies 0004_boards.sql. Uses wrangler's local D1 (run through node, like the API tests) on a throwaway folder.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
@@ -8,6 +8,7 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { hot } from '../src/shared/ranking.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const WRANGLER = path.join(ROOT, 'node_modules', 'wrangler', 'bin', 'wrangler.js');
@@ -136,4 +137,44 @@ test('0003 adds replies, quotes, reposts, likes, bookmarks, mentions, tags and n
   ]);
   assert.equal(gone[0].n, 0);
   assert.equal(left[0].n, 0, 'the follow notification from the account went with it');
+});
+
+// (continues: ben, cat and the rest; posts 11 and 12 are still there)
+test('0004 makes the boards, moves the bulletins into Random as threads, and adds votes and board requests', () => {
+  sql(`INSERT INTO posts (id, kind, author_id, subject, body, created, hidden) VALUES
+    (30, 'bulletin', 2, 'TAKE THIS SURVEY', 'copy and paste!!', 1767312000000, 0), (31, 'bulletin', 3, 'free layouts', 'ask me', 1700000000000, 1)`);
+
+  apply('0004_boards.sql');
+
+  const [boards, posts, cols] = sql(
+    'SELECT slug, name, icon, position, archived FROM boards ORDER BY position',
+    'SELECT id, kind, author_id, board_id, subject, body, created, hidden, sticky, locked, up_count, down_count, comment_count, hot, best, score FROM posts WHERE id IN (11, 12, 30, 31) ORDER BY id',
+    "SELECT name FROM pragma_table_info('notifications') WHERE name = 'request_id'");
+  assert.deepEqual(boards.map(b => b.slug), ['music', 'movies-tv', 'games', 'art-layouts', 'cooking', 'pets', 'sports', 'tech', 'fashion',
+    'books-writing', 'astrology', 'school', 'advice', 'random'], 'the 14 curated boards, in order');
+  assert.deepEqual(boards.find(b => b.slug === 'movies-tv'), { slug: 'movies-tv', name: 'Movies & TV', icon: '🎬', position: 2, archived: 0 });
+  const random = sql("SELECT id FROM boards WHERE slug = 'random'")[0][0].id;
+  const zero = { sticky: 0, locked: 0, up_count: 0, down_count: 0, comment_count: 0, best: 0, score: 0 };
+  assert.deepEqual(posts, [
+    { id: 11, kind: 'blog', author_id: 3, board_id: null, subject: 'a title', body: 'a blog post', created: 9100, hidden: 0, ...zero, hot: 0 },
+    { id: 12, kind: 'wall', author_id: 3, board_id: null, subject: null, body: 'hi ben', created: 9200, hidden: 0, ...zero, hot: 0 },
+    { id: 30, kind: 'thread', author_id: 2, board_id: random, subject: 'TAKE THIS SURVEY', body: 'copy and paste!!', created: 1767312000000, hidden: 0, ...zero, hot: 0.5 },
+    { id: 31, kind: 'thread', author_id: 3, board_id: random, subject: 'free layouts', body: 'ask me', created: 1700000000000, hidden: 1, ...zero, hot: hot(0, 0, 0, 1700000000000) },
+  ], 'the bulletins are threads in Random, keeping their ids, writers, times and words (and a hidden one stays hidden), sorted by how new they are');
+  assert.equal(sql("SELECT COUNT(*) AS n FROM posts WHERE kind = 'bulletin'")[0][0].n, 0);
+  assert.equal(cols.length, 1);
+
+  sql(`INSERT INTO posts (id, kind, author_id, board_id, body, reply_to, root_id, created) VALUES (40, 'comment', 5, ${random}, 'me first', 30, 30, 1767400000000)`,
+    'INSERT INTO votes (user_id, post_id, value, created) VALUES (3, 30, 1, 1767400000000), (5, 30, -1, 1767400000000), (2, 40, 1, 1767400000000)',
+    "INSERT INTO board_requests (id, user_id, name, reason, created) VALUES (1, 6, 'Knitting', 'yarn!!', 1767400000000)",
+    "INSERT INTO notifications (user_id, kind, actor_id, request_id, created) VALUES (6, 'board_declined', 2, 1, 1767400000000)");
+  assert.throws(() => sql('INSERT INTO votes (user_id, post_id, value, created) VALUES (3, 30, -1, 1)'), 'one vote per person per post');
+  assert.throws(() => sql('INSERT INTO votes (user_id, post_id, value, created) VALUES (6, 30, 2, 1)'), 'a vote is +1 or -1');
+  const [, , , left] = sql(
+    'DELETE FROM posts WHERE id = 40',
+    'DELETE FROM users WHERE id = 6',
+    'DELETE FROM users WHERE id = 3',
+    `SELECT (SELECT COUNT(*) FROM votes) AS votes, (SELECT COUNT(*) FROM board_requests) AS requests,
+      (SELECT COUNT(*) FROM notifications WHERE request_id IS NOT NULL) AS told`);
+  assert.deepEqual(left[0], { votes: 1, requests: 0, told: 0 }, 'votes go with their post or their voter (only eve\'s on 30 is left), requests and their answers with the member');
 });

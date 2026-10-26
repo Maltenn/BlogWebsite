@@ -101,6 +101,10 @@ export const NOT_BLOCKED = (col, viewer = '?1') =>
 export const SEES = (u, viewer = '?1') => `(${u}.follow_policy != 'approve' OR ${u}.id = ${viewer}
   OR EXISTS (SELECT 1 FROM follows sf WHERE sf.follower_id = ${viewer} AND sf.followee_id = ${u}.id AND sf.status = 'accepted'))`;
 
+// SQL: SEES for a post `p` written by `u`: board threads and comments are public spaces, so a private profile's are
+// seen by everyone (whatever else hides a post still does)
+export const SEES_POST = (p, u, viewer = '?1') => `(${p}.board_id IS NOT NULL OR ${SEES(u, viewer)})`;
+
 // SQL: the posts `p` (joined to their author as users `a`) the viewer may see: not hidden, not dated in the future, not
 // deleted, author not banned and not blocked in either direction. Binds: ?1 viewer, ?2 now. IN_THREAD also keeps the
 // tombstones of deleted posts, which hold a conversation together.
@@ -116,19 +120,32 @@ export const REPOST_OK = `(p.kind != 'repost' OR (o.hidden = 0 AND o.deleted = 0
 // that point at it (its mentions, tags, notifications). A batch runs on its own, so their newest such post is that one.
 export const JUST_WRITTEN = kind => `(SELECT MAX(id) FROM posts WHERE author_id = ?1 AND kind = ${kind} AND created = ?2)`;
 
-// SQL: tombstone `x` is held by nothing but `replies` replies (the ones going with it) and no quote that isn't deleted
-const UNHELD = replies => `x.deleted = 1 AND (SELECT COUNT(*) FROM posts r WHERE r.reply_to = x.id) = ${replies}
-  AND NOT EXISTS (SELECT 1 FROM posts q WHERE q.quote_of = x.id AND q.kind = 'quote' AND q.deleted = 0)`;
+// SQL: tombstone `x` is held by nothing but `replies` replies (the ones going with it) and no quote that isn't deleted;
+// a board thread also by no comment in it but the `comments` going with it (however deep: a thread holds every comment
+// whose root_id it is)
+const UNHELD = (replies, comments) => `x.deleted = 1 AND (SELECT COUNT(*) FROM posts r WHERE r.reply_to = x.id) = ${replies}
+  AND NOT EXISTS (SELECT 1 FROM posts q WHERE q.quote_of = x.id AND q.kind = 'quote' AND q.deleted = 0)
+  AND (x.kind != 'thread' OR (SELECT COUNT(*) FROM posts r WHERE r.root_id = x.id AND r.kind = 'comment') = ${comments})`;
 
 // SQL: removes the tombstones in the JSON list ?1 that nothing holds any more (no replies left, no quotes that aren't
-// deleted), then the tombstones above them in their conversations that only those held, all the way up. For the end of
-// a batch that removed a reply or a quote, with the post it answered or quoted. No count changes: a tombstone is already
-// out of its parent's counts and has none of its own left.
-export const CLEAR_TOMBSTONES = `WITH RECURSIVE gone(id, up) AS (
-    SELECT x.id, x.reply_to FROM posts x WHERE x.id IN (SELECT value FROM json_each(?1)) AND ${UNHELD(0)}
+// deleted, for a thread no comments), then the tombstones above them in their conversations that only those held, all
+// the way up (`n`: the comments going so far, which a thread may be holding). For the end of a batch that removed a
+// reply or a quote, with the post it answered or quoted. No count changes: a tombstone is already out of its parent's
+// counts and has none of its own left.
+export const CLEAR_TOMBSTONES = `WITH RECURSIVE gone(id, up, n) AS (
+    SELECT x.id, x.reply_to, x.kind = 'comment' FROM posts x WHERE x.id IN (SELECT value FROM json_each(?1)) AND ${UNHELD(0, 0)}
     UNION ALL
-    SELECT x.id, x.reply_to FROM gone g JOIN posts x ON x.id = g.up WHERE ${UNHELD(1)})
+    SELECT x.id, x.reply_to, g.n + (x.kind = 'comment') FROM gone g JOIN posts x ON x.id = g.up WHERE ${UNHELD(1, 'g.n')})
   DELETE FROM posts WHERE id IN (SELECT id FROM gone)`;
+
+// SQL: board post `x` and everything above it in its thread (the comments it answers, up to the thread itself) show to
+// the viewer (SQL, default ?1): none hidden by a moderator or (with `now`) dated in the future, none by someone banned
+// or with a block either way. Tombstones don't stop it. The same reach growTree (boards/tree.js) gives a comment tree,
+// for votes, replies and the notifications about comments.
+export const REACHABLE = (x, viewer = '?1', now = '?2') => `NOT EXISTS (WITH RECURSIVE up(id) AS (
+    SELECT ${x} UNION ALL SELECT ux.reply_to FROM up JOIN posts ux ON ux.id = up.id WHERE ux.kind = 'comment')
+  SELECT 1 FROM up JOIN posts ux ON ux.id = up.id JOIN users ua ON ua.id = ux.author_id
+  WHERE ux.hidden = 1 OR ${now ? `ux.created > ${now} OR ` : ''}ua.banned = 1 OR NOT ${NOT_BLOCKED('ux.author_id', viewer)})`;
 
 // A post in brief, as a quote's box or a notification shows it, with its words cut at 280 characters. The row has
 // `prefix` + id, kind, created, subject, subtitle, body and deleted, and the author's REF_COLS under `prefix` + 'a_'.

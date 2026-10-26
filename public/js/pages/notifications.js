@@ -11,14 +11,15 @@ import { loadMe } from '../core/state.js';
 import { go } from '../core/router.js';
 import { avatar, nameLink } from '../widgets/people.js';
 import { postPath } from '../widgets/postlinks.js';
+import { boardPath, threadPath } from '../widgets/boardlinks.js';
 
 const GROUPED = ['like', 'repost'];                       // one after another about the same post: one line
 
 // a post's kind as "your ___"
-const what = p => (!p ? 'post' : p.kind === 'blog' ? 'blog post' : p.kind === 'reply' ? 'reply' : p.kind === 'quote' ? 'quote' : 'post');
+const what = p => (!p ? 'post' : p.kind === 'blog' ? 'blog post' : p.kind === 'reply' ? 'reply' : p.kind === 'quote' ? 'quote' : p.kind === 'thread' ? 'thread' : p.kind === 'comment' ? 'comment' : 'post');
 const snippet = (p, max = 140) => {
   if (!p) return '';
-  const text = p.kind === 'blog' ? p.subject || '' : p.body || '';
+  const text = p.kind === 'blog' || p.kind === 'thread' ? p.subject || '' : p.body || '';
   const chars = Array.from(text.replace(/\s+/g, ' ').trim());
   return chars.length > max ? chars.slice(0, max).join('').trimEnd() + '…' : chars.join('');
 };
@@ -27,6 +28,9 @@ const snippet = (p, max = 140) => {
 function target(n) {
   const p = n.post;
   if (n.kind === 'follow_request') return '/requests';
+  if (n.kind === 'board_approved') return n.request && n.request.board ? boardPath(n.request.board.slug) : '/boards';
+  if (n.kind === 'board_declined') return '/boards';
+  if (p && p.board) return threadPath(p.board.slug, p.threadId);              // a board thread or comment: the thread it is in
   if (!p) return userPath(n.actor.name);
   if (p.kind === 'wall') return userPath(p.page ? p.page.name : n.actor.name) + '/comments';
   return postPath(p);
@@ -46,9 +50,11 @@ function verb(g) {
   switch (n.kind) {
     case 'like': return `liked your ${what(p)}`;
     case 'repost': return `reposted your ${what(p)}`;
-    case 'reply': return 'replied to your post';
+    case 'reply': return p && p.board ? `replied to you in ${p.board.name}` : 'replied to your post';
     case 'quote': return 'quoted your post';
-    case 'mention': return p && p.kind === 'wall' ? `mentioned you in a comment${p.page ? ` on ${p.page.name}'s page` : ''}` : p && p.kind === 'blog' ? 'mentioned you in a blog post' : 'mentioned you';
+    case 'board_approved': return `approved your board request: ${n.request ? n.request.name : 'a new board'}`;
+    case 'board_declined': return `declined your board request: ${n.request ? n.request.name : ''}`;
+    case 'mention': return p && p.board ? `mentioned you in ${p.board.name}` : p && p.kind === 'wall' ? `mentioned you in a comment${p.page ? ` on ${p.page.name}'s page` : ''}` : p && p.kind === 'blog' ? 'mentioned you in a blog post' : 'mentioned you';
     case 'comment': return 'left a comment on your page';
     case 'follow': return 'followed you';
     case 'follow_request': return 'asked to follow you';

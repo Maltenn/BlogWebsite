@@ -1,9 +1,11 @@
-// The posting part: statuses, blog posts, Friends' Comments, bulletins, deleting, conversations, the feed (statuses,
-// blog posts, quotes and reposts from the people you follow) and #tag pages. Replies, likes, reposts, quotes and
-// bookmarks are interactions.js; the item every list shows is items.js. Everyone here is a real person: there are no bots.
+// The posting part: statuses, blog posts, Friends' Comments, deleting (board threads and comments too), conversations,
+// the feed (statuses, blog posts, quotes and reposts from the people you follow) and #tag pages. Replies, likes, reposts,
+// quotes and bookmarks are interactions.js; the item every list shows is items.js; boards are src/boards/. Everyone here
+// is a real person: there are no bots.
 import { fail, json, readBody, int } from '../shared/http.js';
 import { text, longText, tagKey } from '../shared/text.js';
-import { REF_COLS, ref, refOf, visibleUser, areFriends, canSeePosts, blockedEither, limit, VISIBLE, IN_THREAD, SEES, REPOST_OK, CLEAR_TOMBSTONES } from '../shared/db.js';
+import { REF_COLS, ref, refOf, visibleUser, areFriends, canSeePosts, blockedEither, limit, VISIBLE, IN_THREAD, SEES, SEES_POST, REPOST_OK, CLEAR_TOMBSTONES } from '../shared/db.js';
+import { RESORT } from '../shared/ranking.js';
 import { POST_LIMITS, THREADED_SQL, POST_COLS, POSTS, EXCERPT, cursor, NEWEST, BEFORE, AFTER, hydrate, item, page, mentionsOf, writePost, dropRepost } from './items.js';
 
 /* ------------------------------------------------------------ posts */
@@ -35,19 +37,6 @@ export async function postStatus(c) {
   return json({ id, body }, 201);
 }
 
-// POST /api/bulletins { subject, body } — a post to the bulletin board
-export async function postBulletin(c) {
-  const b = await readBody(c.req);
-  const subject = text(b.subject, 80);
-  const body = longText(b.body, 2000);
-  if (!subject || !body) fail(400, 'a bulletin needs a subject and a message.');
-  await limit(c, 'bulletin:' + c.user.id, [[3, 3600000], [10, 86400000]], 'you\'ve posted plenty of bulletins today.');
-  await limit(c, 'post:' + c.user.id, POST_LIMITS);
-  const row = await c.env.DB.prepare('INSERT INTO posts (kind, author_id, subject, body, created) VALUES (\'bulletin\', ?, ?, ?, ?) RETURNING id')
-    .bind(c.user.id, subject, body, c.now).first();
-  return json({ id: row.id }, 201);
-}
-
 // POST /api/blog { title, subtitle, mood, body } — a long post on my page (with a page of its own) and in my
 // followers' feeds. @mentions and #tags count in the title and the body.
 export async function postBlog(c) {
@@ -65,30 +54,38 @@ export async function postBlog(c) {
 }
 
 // DELETE /api/posts/:id — your own post, a comment on your own page, or anything (moderators). A post that has replies
-// or quotes stays as a tombstone ("this post was deleted") so its conversation and the quotes keep their shape;
-// otherwise it goes. Either way its likes, bookmarks, reposts, mentions, tags and notifications go, and the counts of
-// the post it answered or quoted come down; if that one is a tombstone nothing holds any more, it goes too (and so on up
-// the conversation). Deleting a repost undoes it. Answers { ok, tombstone }: whether it stayed as a tombstone.
+// or quotes (a board comment: replies; a thread: any comment in it, however deep) stays as a tombstone ("this post was deleted", "[deleted]") so its
+// conversation and the quotes keep their shape; otherwise it goes. Either way its likes, votes, bookmarks, reposts,
+// mentions, tags and notifications go, and the counts of the post it answered or quoted come down (a board comment's
+// thread also counts one comment fewer and is re-sorted); if that one is a tombstone nothing holds any more, it goes too
+// (and so on up the conversation). Deleting a repost undoes it. Answers { ok, tombstone }: whether it stayed as a
+// tombstone.
 export async function deletePost(c) {
   const id = int(c.params.id);
   const DB = c.env.DB;
-  const p = id && await DB.prepare('SELECT id, kind, author_id, target_id, reply_to, quote_of FROM posts WHERE id = ? AND deleted = 0').bind(id).first();
+  const p = id && await DB.prepare('SELECT id, kind, author_id, target_id, reply_to, root_id, quote_of FROM posts WHERE id = ? AND deleted = 0').bind(id).first();
   if (!p) fail(404, 'that post is already gone.');
   const me = c.user.id;
   const mine = p.author_id === me || (p.kind === 'wall' && p.target_id === me);
   if (!(mine || c.user.is_admin)) fail(403, 'that isn\'t yours to delete.');
   // (the counts only come down while the post is still there, so two deletes at once change them once)
   const live = 'EXISTS (SELECT 1 FROM posts WHERE id = ?1 AND deleted = 0)';
-  const above = p.kind === 'reply' ? p.reply_to : p.kind === 'quote' ? p.quote_of : null;   // the post it answered or quoted
+  const answers = p.kind === 'reply' || p.kind === 'comment';
+  const above = answers ? p.reply_to : p.kind === 'quote' ? p.quote_of : null;   // the post it answered or quoted
   const res = await DB.batch(p.kind === 'repost' ? dropRepost(DB, p.author_id, p.quote_of) : [
-    p.kind === 'reply' && DB.prepare(`UPDATE posts SET reply_count = reply_count - 1 WHERE id = ?2 AND ${live}`).bind(id, p.reply_to),
+    answers && DB.prepare(`UPDATE posts SET reply_count = reply_count - 1 WHERE id = ?2 AND ${live}`).bind(id, p.reply_to),
+    p.kind === 'comment' && DB.prepare(`UPDATE posts SET comment_count = comment_count - 1 WHERE id = ?2 AND ${live}`).bind(id, p.root_id),
     p.kind === 'quote' && DB.prepare(`UPDATE posts SET quote_count = quote_count - 1 WHERE id = ?2 AND ${live}`).bind(id, p.quote_of),
     DB.prepare('DELETE FROM posts WHERE kind = \'repost\' AND quote_of = ?').bind(id),
-    ...['likes', 'bookmarks', 'mentions', 'post_tags', 'notifications'].map(t => DB.prepare(`DELETE FROM ${t} WHERE post_id = ?`).bind(id)),
-    DB.prepare(`UPDATE posts SET deleted = 1, subject = NULL, subtitle = NULL, body = '', mood = NULL, quote_of = NULL, like_count = 0, repost_count = 0
-      WHERE id = ?1 AND (EXISTS (SELECT 1 FROM posts WHERE reply_to = ?1) OR EXISTS (SELECT 1 FROM posts WHERE quote_of = ?1 AND kind = 'quote' AND deleted = 0))`).bind(id),
+    ...['likes', 'votes', 'bookmarks', 'mentions', 'post_tags', 'notifications'].map(t => DB.prepare(`DELETE FROM ${t} WHERE post_id = ?`).bind(id)),
+    DB.prepare(`UPDATE posts SET deleted = 1, subject = NULL, subtitle = NULL, body = '', mood = NULL, quote_of = NULL, like_count = 0, repost_count = 0,
+        up_count = 0, down_count = 0
+      WHERE id = ?1 AND (EXISTS (SELECT 1 FROM posts WHERE reply_to = ?1) OR EXISTS (SELECT 1 FROM posts WHERE quote_of = ?1 AND kind = 'quote' AND deleted = 0)
+        OR EXISTS (SELECT 1 FROM posts WHERE root_id = ?1 AND kind = 'comment'))`).bind(id),
     DB.prepare('DELETE FROM posts WHERE id = ? AND deleted = 0').bind(id),
     above && DB.prepare(CLEAR_TOMBSTONES).bind(JSON.stringify([above])),
+    // a board post's tombstone, and its thread: hot counts the comments from others
+    (p.kind === 'thread' || p.kind === 'comment') && DB.prepare(`UPDATE posts SET ${RESORT} WHERE id IN (?1, ?2)`).bind(id, p.root_id || id),
     DB.prepare('SELECT 1 AS x FROM posts WHERE id = ?').bind(id),
   ].filter(Boolean));
   if (c.user.is_admin && !mine) {
@@ -160,16 +157,6 @@ export async function saveMarker(c) {
   ]);
   const m = now.results[0];
   return json({ ok: true, marker: { created: m.last_created, id: m.last_id } });
-}
-
-// GET /api/bulletins?before= — the bulletin board
-export async function bulletins(c) {
-  const per = 20;
-  const { results } = await c.env.DB.prepare(`
-    SELECT ${POST_COLS} FROM ${POSTS}
-    WHERE p.kind = 'bulletin' AND ${VISIBLE} AND ${BEFORE}
-    ORDER BY p.created DESC, p.id DESC LIMIT ${per + 1}`).bind(c.user ? c.user.id : 0, c.now, ...NEWEST(c)).all();
-  return json(await page(c, results, per));
 }
 
 // GET /api/users/:name/blog — the blog's index: every post on somebody's page, newest first, long ones cut short
@@ -265,14 +252,15 @@ export async function onePost(c) {
   });
 }
 
-// GET /api/tags/:tag?before= — the posts with this #tag that the viewer may see, newest first, 30 a page
+// GET /api/tags/:tag?before= — the posts with this #tag that the viewer may see (board threads too), newest first, 30
+// a page
 export async function tagged(c) {
   const tag = tagKey(String(c.params.tag).replace(/^#/, ''));
   if (!tag) fail(404, 'that isn\'t a tag.');
   const per = 30;
   const { results } = await c.env.DB.prepare(`
     SELECT ${POST_COLS} FROM post_tags t CROSS JOIN ${POSTS}
-    WHERE t.tag = ?5 AND p.id = t.post_id AND ${VISIBLE} AND ${SEES('a')} AND (t.created < ?3 OR (t.created = ?3 AND t.post_id < ?4))
+    WHERE t.tag = ?5 AND p.id = t.post_id AND ${VISIBLE} AND ${SEES_POST('p', 'a')} AND (t.created < ?3 OR (t.created = ?3 AND t.post_id < ?4))
     ORDER BY t.created DESC, t.post_id DESC LIMIT ${per + 1}`).bind(c.user ? c.user.id : 0, c.now, ...NEWEST(c), tag).all();
   return json({ tag, ...await page(c, results, per, EXCERPT) });
 }

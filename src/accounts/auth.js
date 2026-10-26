@@ -5,6 +5,7 @@
 import { HttpError, fail, json, readBody, getCookie, sessionCookie, sha256Hex } from '../shared/http.js';
 import { nameProblem } from '../shared/text.js';
 import { limit, CLEAR_TOMBSTONES } from '../shared/db.js';
+import { RESORT } from '../shared/ranking.js';
 import { defaultProfile, isAvatar, DEFAULT_AVATAR } from '../profiles/profiles.js';
 import { checkBirthday } from '../shared/dates.js';
 import { sunSign } from '../shared/astro.js';
@@ -268,11 +269,23 @@ export async function changePassword(c) {
   return json({ ok: true });
 }
 
+// SQL (a WITH clause, user ?1): `moved` is every board comment by someone else that answers a comment of ?1's, with the
+// post it moves up to when ?1's comments go: the nearest one above it that isn't a comment of theirs (in the end the
+// thread). `up` climbs one of their comments at a time.
+const MOVED = `WITH RECURSIVE up(id, to_id) AS (
+    SELECT x.id, x.reply_to FROM posts x JOIN posts px ON px.id = x.reply_to
+      WHERE x.kind = 'comment' AND x.author_id != ?1 AND px.kind = 'comment' AND px.author_id = ?1
+    UNION ALL
+    SELECT u.id, p.reply_to FROM up u JOIN posts p ON p.id = u.to_id WHERE p.kind = 'comment' AND p.author_id = ?1),
+  moved(id, to_id) AS (SELECT u.id, u.to_id FROM up u JOIN posts t ON t.id = u.to_id WHERE t.kind != 'comment' OR t.author_id != ?1)`;
+
 // DELETE /api/me { password } (or { confirm: <screen name> } for accounts without a password)
 // The account and everything it wrote, liked, reposted and bookmarked; the counts on other people's posts come down to
 // match, and other people's tombstones that only its replies or quotes held go too. Other people's replies to and
 // quotes of its posts stay: a reply keeps pointing at the post it answered (so it says "replying to a deleted account"
-// and stays in its conversation), a quote shows its original as unavailable. Reports about it keep their snapshot.
+// and stays in its conversation), a quote shows its original as unavailable. A board comment answering one of its
+// comments moves up instead (MOVED), so a thread's tree never has a comment answering nothing. Reports about it keep
+// their snapshot.
 export async function deleteAccount(c) {
   const b = await readBody(c.req);
   await limit(c, 'delete:' + c.user.id, [[5, 15 * 60000]]);
@@ -283,20 +296,41 @@ export async function deleteAccount(c) {
   }
   const id = c.user.id;
   const DB = c.env.DB;
-  // the posts its replies answer and its quotes quote: tombstones among them may be held by nothing else
-  const { results: above } = await DB.prepare(`SELECT reply_to AS id FROM posts WHERE author_id = ?1 AND kind = 'reply' AND reply_to IS NOT NULL
-    UNION SELECT quote_of FROM posts WHERE author_id = ?1 AND kind = 'quote' AND quote_of IS NOT NULL`).bind(id).all();
+  // the posts its replies and board comments answer and its quotes quote, and the threads its comments are in:
+  // tombstones among them may be held by nothing else; and the threads it commented in, whose hot counts the comments
+  // from others
+  const [{ results: above }, { results: threads }] = await DB.batch([
+    DB.prepare(`SELECT reply_to AS id FROM posts WHERE author_id = ?1 AND kind IN ('reply', 'comment') AND reply_to IS NOT NULL
+      UNION SELECT quote_of FROM posts WHERE author_id = ?1 AND kind = 'quote' AND quote_of IS NOT NULL
+      UNION SELECT root_id FROM posts WHERE author_id = ?1 AND kind = 'comment'`).bind(id),
+    DB.prepare('SELECT DISTINCT root_id AS id FROM posts WHERE author_id = ? AND kind = \'comment\'').bind(id),
+  ]);
   await DB.batch([
     DB.prepare('UPDATE posts SET like_count = like_count - 1 WHERE id IN (SELECT post_id FROM likes WHERE user_id = ?)').bind(id),
+    DB.prepare(`UPDATE posts SET up_count = up_count - (SELECT COUNT(*) FROM votes v WHERE v.post_id = posts.id AND v.user_id = ?1 AND v.value = 1),
+        down_count = down_count - (SELECT COUNT(*) FROM votes v WHERE v.post_id = posts.id AND v.user_id = ?1 AND v.value = -1)
+      WHERE id IN (SELECT post_id FROM votes WHERE user_id = ?1)`).bind(id),
+    DB.prepare(`UPDATE posts SET ${RESORT} WHERE id IN (SELECT post_id FROM votes WHERE user_id = ?)`).bind(id),
     DB.prepare(`UPDATE posts SET
-        reply_count = reply_count - (SELECT COUNT(*) FROM posts x WHERE x.reply_to = posts.id AND x.author_id = ?1 AND x.kind = 'reply' AND x.deleted = 0),
+        reply_count = reply_count - (SELECT COUNT(*) FROM posts x WHERE x.reply_to = posts.id AND x.author_id = ?1 AND x.kind IN ('reply', 'comment') AND x.deleted = 0),
         quote_count = quote_count - (SELECT COUNT(*) FROM posts x WHERE x.quote_of = posts.id AND x.author_id = ?1 AND x.kind = 'quote' AND x.deleted = 0),
-        repost_count = repost_count - (SELECT COUNT(*) FROM posts x WHERE x.quote_of = posts.id AND x.author_id = ?1 AND x.kind = 'repost')
-      WHERE id IN (SELECT reply_to FROM posts WHERE author_id = ?1 UNION SELECT quote_of FROM posts WHERE author_id = ?1)`).bind(id),
+        repost_count = repost_count - (SELECT COUNT(*) FROM posts x WHERE x.quote_of = posts.id AND x.author_id = ?1 AND x.kind = 'repost'),
+        comment_count = comment_count - (SELECT COUNT(*) FROM posts x WHERE x.root_id = posts.id AND x.author_id = ?1 AND x.kind = 'comment' AND x.deleted = 0)
+      WHERE id IN (SELECT reply_to FROM posts WHERE author_id = ?1 UNION SELECT quote_of FROM posts WHERE author_id = ?1
+        UNION SELECT root_id FROM posts WHERE author_id = ?1 AND kind = 'comment')`).bind(id),
     DB.prepare('DELETE FROM posts WHERE kind = \'repost\' AND quote_of IN (SELECT id FROM posts WHERE author_id = ?)').bind(id),
+    // other people's board comments under its comments move up to the nearest post above that isn't its (the comment
+    // or thread its comment answered), counted there as replies, so no comment is left answering nothing
+    DB.prepare(`${MOVED} UPDATE posts SET reply_count = reply_count + (SELECT COUNT(*) FROM moved m JOIN posts x ON x.id = m.id WHERE m.to_id = posts.id AND x.deleted = 0)
+      WHERE id IN (SELECT to_id FROM moved)`).bind(id),
+    DB.prepare(`${MOVED} UPDATE posts SET reply_to = (SELECT to_id FROM moved WHERE moved.id = posts.id) WHERE id IN (SELECT id FROM moved)`).bind(id),
+    // its threads go with all their comments (without the thread they would have nowhere to show)
+    DB.prepare('DELETE FROM posts WHERE kind = \'comment\' AND root_id IN (SELECT id FROM posts WHERE author_id = ? AND kind = \'thread\')').bind(id),
     DB.prepare('DELETE FROM posts WHERE author_id = ?1 OR target_id = ?1').bind(id),
     DB.prepare(CLEAR_TOMBSTONES).bind(JSON.stringify(above.map(r => r.id))),
+    DB.prepare(`UPDATE posts SET ${RESORT} WHERE id IN (SELECT value FROM json_each(?))`).bind(JSON.stringify(threads.map(r => r.id))),
     DB.prepare('DELETE FROM likes WHERE user_id = ?').bind(id),
+    DB.prepare('DELETE FROM votes WHERE user_id = ?').bind(id),
     DB.prepare('DELETE FROM bookmarks WHERE user_id = ?').bind(id),
     DB.prepare('DELETE FROM mentions WHERE user_id = ?').bind(id),
     DB.prepare('DELETE FROM notifications WHERE user_id = ?1 OR actor_id = ?1').bind(id),

@@ -10,6 +10,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { startMock } from './helpers/mock-providers.mjs';
+import { hot, wilson, RESORT } from '../src/shared/ranking.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 // run wrangler.js through node itself: node_modules/.bin/wrangler is a shell script, which Windows can't spawn
@@ -511,11 +512,8 @@ test('statuses hold up to 500 characters, and a profile shows the latest', async
   assert.equal((await client().get('/api/users/' + c.name)).data.latestStatus.body, 'z'.repeat(500));
 });
 
-test('bulletins, blog posts with a subtitle, and a blog post\'s own page', async () => {
+test('blog posts with a subtitle, and a blog post\'s own page', async () => {
   const c = await newUser('writer');
-  assert.equal((await c.post('/api/bulletins', { subject: 'hi all', body: 'first bulletin' })).status, 201);
-  assert.ok((await client().get('/api/bulletins')).data.items.some(i => i.subject === 'hi all'));
-  assert.ok(!(await client().get('/api/feed')).data.items.some(i => i.kind === 'bulletin'), 'bulletins stay out of the feed');
   assert.equal((await c.post('/api/blog', { title: 'day one', mood: 'giddy', body: 'line one\n\n\n\nline two' })).status, 201);
   assert.equal((await client().get(`/api/users/${c.name}/blog`)).data.entries[0].body, 'line one\n\nline two');
   const long = 'word '.repeat(4000).trim();                 // 19,999 characters
@@ -637,8 +635,8 @@ test('replies: a conversation, oldest first, with the posts above it, in nobody\
   assert.equal((await reply(b, root, '   ')).status, 400);
   assert.equal((await reply(b, 99999999, 'hello?')).status, 404);
   assert.equal((await client().post(`/api/posts/${root}/replies`, { body: 'hi' })).status, 401);
-  const bulletin = (await a.post('/api/bulletins', { subject: 'hi', body: 'a bulletin' })).data.id;
-  assert.equal((await reply(b, bulletin, 'nope')).status, 404, 'bulletins take no replies');
+  const thread = (await a.post('/api/boards/random/threads', { subject: 'hi', body: 'a thread' })).data.thread.id;
+  assert.equal((await reply(b, thread, 'nope')).status, 404, 'board threads take comments, not replies');
 
   // a reply from a private profile is for its followers
   const shy = await newUser('conv_shy'); const pal = await newUser('conv_pal');
@@ -1171,6 +1169,557 @@ test('likes, reposts and bookmarks have hourly limits of their own; replies and 
   assert.equal((await u.post(`/api/posts/${id}/quote`, { body: 'the seventh' })).status, 429);
 });
 
+/* ---------------------------------------------------- boards: threads, nested comments, votes */
+
+async function newThread(who, slug, subject, body = 'what do you all think?') {
+  const r = await who.post(`/api/boards/${slug}/threads`, { subject, body });
+  assert.equal(r.status, 201, JSON.stringify(r.data));
+  return r.data.thread;
+}
+async function newComment(who, thread, body, parent) {
+  const r = await who.post(`/api/threads/${thread}/comments`, parent ? { body, parent } : { body });
+  assert.equal(r.status, 201, JSON.stringify(r.data));
+  return r.data.comment;
+}
+const vote = (who, id, value) => who.put(`/api/posts/${id}/vote`, { value });
+async function moderator(prefix = 'boss') {
+  const m = await newUser(prefix);
+  sql(`UPDATE users SET is_admin = 1 WHERE id = ${m.id}`);
+  return m;
+}
+// a comment tree as [id, [children]] (or a bare id), with stubs as "+<more>@<parent>:<after>"
+const tree = nodes => nodes.map(n => (n.more !== undefined ? `+${n.more}@${n.parent}:${n.after}` : n.children.length ? [n.item.id, tree(n.children)] : n.item.id));
+// every comment's thread is there, and so is what it answers (no comment is ever left answering nothing)
+const orphans = () => sql(`SELECT c.id, c.root_id, c.reply_to FROM posts c WHERE c.kind = 'comment'
+  AND (NOT EXISTS (SELECT 1 FROM posts t WHERE t.id = c.root_id AND t.kind = 'thread') OR NOT EXISTS (SELECT 1 FROM posts r WHERE r.id = c.reply_to))`);
+const listed = async (who, slug, q = 'sort=new') => (await who.get(`/api/boards/${slug}?${q}`)).data.items.map(i => i.id);
+const BOARDS = ['music', 'movies-tv', 'games', 'art-layouts', 'cooking', 'pets', 'sports', 'tech', 'fashion', 'books-writing', 'astrology', 'school', 'advice', 'random'];
+
+test('boards: the curated index, each with its threads and its last post; the old bulletin routes are gone', async () => {
+  const index = async who => (await who.get('/api/boards')).data.boards;
+  const before = await index(client());
+  assert.deepEqual(before.slice(0, 14).map(b => b.slug), BOARDS);
+  const cooking = before.find(b => b.slug === 'cooking');
+  assert.deepEqual(Object.keys(cooking).sort(), ['description', 'icon', 'lastPost', 'name', 'slug', 'threads']);
+  assert.deepEqual([cooking.name, cooking.icon], ['Cooking', '🍳']);
+  const a = await newUser('chef'); const b = await newUser('chef');
+  const t = await newThread(a, 'cooking', 'best grilled cheese?');
+  let now = (await index(client())).find(x => x.slug === 'cooking');
+  assert.deepEqual([now.threads, now.lastPost], [cooking.threads + 1, { created: t.created, author: t.author, thread: { id: t.id, subject: 'best grilled cheese?' } }]);
+  const c1 = await newComment(b, t.id, 'butter on the outside');
+  now = (await index(client())).find(x => x.slug === 'cooking');
+  assert.deepEqual([now.threads, now.lastPost], [cooking.threads + 1, { created: c1.created, author: c1.author, thread: { id: t.id, subject: 'best grilled cheese?' } }],
+    'a comment is the last post too, with its thread');
+  await a.post('/api/blocks/' + b.name);
+  assert.equal((await index(a)).find(x => x.slug === 'cooking').lastPost.author.name, a.name, 'not across a block');
+  await a.del('/api/blocks/' + b.name);
+  for (const method of ['get', 'post']) assert.equal((await a[method]('/api/bulletins')).status, 404);
+  assert.equal((await client().get('/api/boards/nope')).status, 404);
+});
+
+test('threads: a title and up to 10,000 characters, with @mentions and #tags, on a board and never in the feed', async () => {
+  const a = await newUser('op'); const pal = await newUser('op_pal');
+  await pal.post('/api/follows/' + a.name);
+  const tag = 'soup' + uniq();
+  const t = await newThread(a, 'cooking', 'T'.repeat(130), `ask @${pal.name} about #${tag}`);
+  assert.deepEqual([t.kind, t.subject.length, t.board, t.counts, t.viewer, t.sticky, t.locked, t.mentions.map(m => m.name), t.tags, t.deleted, t.canDelete, t.replyTo, t.rootId],
+    ['thread', 120, { slug: 'cooking', name: 'Cooking', icon: '🍳', archived: false }, { up: 0, down: 0, comments: 0 }, { vote: 0 }, false, false, [pal.name], [tag], false, true, null, null]);
+  assert.equal((await a.post('/api/boards/cooking/threads', { subject: '', body: 'words' })).status, 400);
+  assert.equal((await a.post('/api/boards/cooking/threads', { subject: 'title', body: '   ' })).status, 400);
+  assert.equal((await a.post('/api/boards/nope/threads', { subject: 'title', body: 'words' })).status, 404);
+  assert.equal((await client().post('/api/boards/cooking/threads', { subject: 'title', body: 'words' })).status, 401);
+  assert.equal((await newThread(a, 'cooking', 'the long one', 'w'.repeat(10050))).body.length, 10000);
+  await newThread(a, 'cooking', 'the third this hour');
+  assert.equal((await a.post('/api/boards/cooking/threads', { subject: 'a fourth', body: 'words' })).status, 429, '3 an hour');
+
+  const page = (await client().get('/api/threads/' + t.id)).data;
+  assert.deepEqual(Object.keys(page).sort(), ['comments', 'sort', 'thread']);
+  assert.deepEqual([page.thread.id, page.thread.body, page.thread.viewer, page.sort, page.comments], [t.id, t.body, { vote: 0 }, 'best', []]);
+  const row = (await client().get('/api/boards/cooking?sort=new')).data.items.find(i => i.id === t.id);
+  assert.deepEqual(row, { id: t.id, subject: t.subject, excerpt: t.body, author: t.author, created: t.created, sticky: false, locked: false,
+    counts: { up: 0, down: 0, comments: 0 }, lastComment: null, viewer: { vote: 0 } });
+  assert.ok((await client().get('/api/boards/cooking?sort=new')).data.items.find(i => i.body === undefined && i.excerpt.length === 201), 'a long one is cut at 200 characters');
+
+  assert.ok(!(await pal.get('/api/feed')).data.items.some(i => i.kind === 'thread'), 'not in the following feed');
+  assert.ok(!(await client().get('/api/feed')).data.items.some(i => i.kind === 'thread'));
+  assert.deepEqual((await client().get(`/api/users/${a.name}/statuses`)).data.items, []);
+  assert.deepEqual((await client().get('/api/tags/' + tag)).data.items.map(i => [i.id, i.kind, i.board.slug]), [[t.id, 'thread', 'cooking']], 'its #tags have pages');
+  for (const what of ['like', 'repost', 'bookmark', 'replies', 'quote']) assert.equal((await pal.post(`/api/posts/${t.id}/${what}`, { body: 'hi' })).status, 404, what);
+  assert.equal((await client().get('/api/posts/' + t.id)).status, 404, 'a thread opens at /api/threads/:id');
+  assert.equal((await client().get('/api/threads/99999999')).status, 404);
+  const told = (await notes(pal)).items.find(n => n.kind === 'mention' && n.post.id === t.id);
+  assert.deepEqual([told.post.kind, told.post.board, told.post.threadId], ['thread', { slug: 'cooking', name: 'Cooking' }, t.id]);
+});
+
+test('board sorts: hot, new, top and best, from fixed fixtures; sticky threads first; 25 a page', async () => {
+  const u = await newUser('sorter');
+  const slug = 'sorts-' + uniq();
+  sql(`INSERT INTO boards (slug, name, description, icon, position, created) VALUES ('${slug}', 'Sorts', 'for the tests', '🧪', 1000, ${Date.now()})`);
+  const board = sql(`SELECT id FROM boards WHERE slug = '${slug}'`)[0].id;
+  const now = Date.now(), h = 3600000;
+  const fixtures = { t1: [10, 0, 72 * h], t2: [2, 0, h], t3: [30, 25, 48 * h], t4: [0, 3, h / 6], t5: [6, 1, 120 * h] };   // [up, down, age]; t5 is sticky
+  const id = {};
+  for (const [name, [up, down, age]] of Object.entries(fixtures)) {
+    const created = now - age;
+    id[name] = sql(`INSERT INTO posts (kind, author_id, board_id, subject, body, created, up_count, down_count, hot, best, score, sticky)
+      VALUES ('thread', ${u.id}, ${board}, '${name}', 'a fixture', ${created}, ${up}, ${down}, ${hot(up, down, 0, created)}, ${wilson(up, down)}, ${up - down},
+      ${name === 't5' ? 1 : 0}) RETURNING id`)[0].id;
+  }
+  const order = names => names.map(n => id[n]);
+  const got = await client().get(`/api/boards/${slug}`);
+  assert.deepEqual([got.data.board, got.data.sort, got.data.next], [{ slug, name: 'Sorts', description: 'for the tests', icon: '🧪', archived: false }, 'hot', null]);
+  assert.deepEqual(got.data.items.map(i => i.id), order(['t5', 't2', 't3', 't1', 't4']), 'hot (the default): votes against age');
+  assert.deepEqual(await listed(client(), slug, 'sort=new'), order(['t5', 't4', 't2', 't3', 't1']), 'new');
+  assert.deepEqual(await listed(client(), slug, 'sort=top'), order(['t5', 't1', 't3', 't2', 't4']), 'top: net votes');
+  assert.deepEqual(await listed(client(), slug, 'sort=best'), order(['t5', 't1', 't2', 't3', 't4']), 'best: the Wilson bound');
+  assert.deepEqual(await listed(client(), slug, 'sort=bogus'), order(['t5', 't2', 't3', 't1', 't4']));
+  assert.deepEqual(got.data.items.map(i => i.sticky), [true, false, false, false, false]);
+  assert.deepEqual(got.data.items[3].counts, { up: 10, down: 0, comments: 0 });
+
+  // 30 more, older and with no votes: pages of 25, the sticky one only on the first
+  sql(`INSERT INTO posts (kind, author_id, board_id, subject, body, created, hot)
+    SELECT 'thread', ${u.id}, ${board}, 'old ' || i, 'a fixture', ${now - 200 * h} - i * 1000, ((${now - 200 * h} - i * 1000) / 1000.0 - 1767225600) / 172800.0
+    FROM (WITH RECURSIVE k(i) AS (SELECT 1 UNION ALL SELECT i + 1 FROM k WHERE i < 30) SELECT i FROM k)`);
+  for (const sort of ['new', 'hot', 'top', 'best']) {
+    const p1 = (await client().get(`/api/boards/${slug}?sort=${sort}`)).data;
+    const p2 = (await client().get(`/api/boards/${slug}?sort=${sort}&before=${encodeURIComponent(p1.next)}`)).data;
+    assert.deepEqual([p1.items.length, p1.items[0].id, p2.items.length, p2.next], [26, id.t5, 9, null], sort);
+    const all = [...p1.items, ...p2.items].map(i => i.id);
+    assert.equal(new Set(all).size, 35, `${sort}: every thread once`);
+    if (sort === 'new') assert.deepEqual(p2.items.map(i => i.subject), Array.from({ length: 9 }, (_, i) => 'old ' + (i + 22)));
+  }
+  sql(`DELETE FROM posts WHERE board_id = ${board}; DELETE FROM boards WHERE id = ${board}`);
+});
+
+test('votes: like or dislike, switch or take back, counted exactly with the sort keys; never your own, never when locked or gone', async () => {
+  const a = await newUser('voted'); const b = await newUser('voter'); const c = await newUser('voter'); const mod = await moderator();
+  const t = await newThread(a, 'games', 'best console?');
+  const cm = await newComment(b, t.id, 'the one with the most games');
+  assert.deepEqual((await vote(b, t.id, 1)).data, { vote: 1, up: 1, down: 0 });
+  assert.deepEqual((await vote(b, t.id, 1)).data, { vote: 1, up: 1, down: 0 }, 'voting twice is voting once');
+  assert.deepEqual((await vote(b, t.id, -1)).data, { vote: -1, up: 0, down: 1 }, 'switching moves both counts');
+  assert.deepEqual((await vote(c, t.id, -1)).data, { vote: -1, up: 0, down: 2 });
+  assert.deepEqual((await vote(b, t.id, 0)).data, { vote: 0, up: 0, down: 1 }, 'taking it back');
+  assert.deepEqual((await vote(b, t.id, 0)).data, { vote: 0, up: 0, down: 1 });
+  assert.deepEqual((await vote(a, cm.id, 1)).data, { vote: 1, up: 1, down: 0 }, 'comments take votes too');
+  const [k] = sql(`SELECT up_count, down_count, hot, best, score FROM posts WHERE id = ${t.id}`);
+  assert.deepEqual([k.up_count, k.down_count, k.score], [0, 1, -1]);
+  assert.ok(Math.abs(k.hot - hot(0, 1, 1, t.created)) < 1e-9 && Math.abs(k.best - wilson(0, 1)) < 1e-12, 'the stored keys follow (b\'s comment counts toward hot)');
+  const [kc] = sql(`SELECT best, score FROM posts WHERE id = ${cm.id}`);
+  assert.ok(Math.abs(kc.best - wilson(1, 0)) < 1e-12 && kc.score === 1);
+  const page = (await c.get('/api/threads/' + t.id)).data;
+  assert.deepEqual([page.thread.viewer, page.thread.counts, page.comments[0].item.counts, page.comments[0].item.viewer],
+    [{ vote: -1 }, { up: 0, down: 1, comments: 1 }, { up: 1, down: 0, comments: 0 }, { vote: 0 }]);
+  assert.equal((await c.get('/api/boards/games?sort=new')).data.items.find(i => i.id === t.id).viewer.vote, -1);
+  assert.equal((await a.get('/api/threads/' + t.id)).data.comments[0].item.viewer.vote, 1);
+
+  assert.equal((await vote(a, t.id, 1)).status, 400, 'not on your own post');
+  assert.equal((await vote(b, t.id, 2)).status, 400);
+  assert.equal((await vote(b, t.id, '1')).status, 400);
+  assert.equal((await client().put(`/api/posts/${t.id}/vote`, { value: 1 })).status, 401);
+  const status = (await a.post('/api/status', { body: 'no votes here' })).data.id;
+  assert.equal((await vote(b, status, 1)).status, 404, 'only threads and comments take votes');
+  assert.equal((await vote(b, 99999999, 1)).status, 404);
+
+  assert.equal((await b.post('/api/admin/threads/' + t.id, { locked: true })).status, 403);
+  assert.deepEqual((await mod.post('/api/admin/threads/' + t.id, { locked: true })).data, { thread: { id: t.id, sticky: false, locked: true } });
+  assert.equal((await client().get('/api/threads/' + t.id)).data.thread.locked, true);
+  assert.equal((await vote(c, t.id, 1)).status, 403, 'a locked thread takes no votes');
+  assert.equal((await vote(c, cm.id, 1)).status, 403, 'on its comments either');
+  assert.equal((await b.post(`/api/threads/${t.id}/comments`, { body: 'hello?' })).status, 403, 'and no comments');
+  assert.equal((await mod.post(`/api/threads/${t.id}/comments`, { body: 'locked, folks' })).status, 403, 'from anyone');
+  assert.equal((await b.del('/api/posts/' + cm.id)).status, 200, 'but deleting still works');
+  await mod.post('/api/admin/threads/' + t.id, { locked: false });
+  assert.equal((await vote(c, cm.id, 1)).status, 404, 'gone');
+  await mod.post('/api/admin/content', { type: 'post', id: t.id, hidden: true });
+  assert.equal((await vote(c, t.id, 1)).status, 404, 'hidden');
+  await mod.post('/api/admin/content', { type: 'post', id: t.id, hidden: false });
+  assert.ok((await notes(a)).items.every(n => n.kind === 'reply'), 'votes tell nobody');
+  assert.ok((await mod.get('/api/admin/log')).data.log.some(l => l.action === 'lock' && l.targetId === t.id));
+
+  sql(`INSERT INTO attempts (k, created) SELECT 'vote:${c.id}', ${Date.now()} FROM (WITH RECURSIVE k(i) AS (SELECT 1 UNION ALL SELECT i + 1 FROM k WHERE i < 298) SELECT i FROM k)`);
+  assert.equal((await vote(c, t.id, 1)).status, 200);
+  assert.equal((await vote(c, t.id, -1)).status, 429, '300 an hour');
+  assert.deepEqual((await vote(c, t.id, 0)).data, { vote: 0, up: 0, down: 0 }, 'taking one back is free');
+});
+
+test('comments: nested replies sorted best, new or old, tombstones, and a big tree cut into pages', async () => {
+  const a = await newUser('tree_a'); const b = await newUser('tree_b'); const c = await newUser('tree_c'); const d = await newUser('tree_d');
+  const t = await newThread(a, 'advice', 'how do i ask my crush to the dance');
+  const c1 = await newComment(b, t.id, 'just ask!!');
+  const c2 = await newComment(c, t.id, 'write a note');
+  const r1 = await newComment(a, t.id, 'but HOW', c1.id);
+  const r2 = await newComment(c, t.id, 'with words', r1.id);
+  assert.deepEqual([c1.kind, c1.replyTo.id, c1.replyTo.author.name, c1.rootId, c1.board.slug, c1.counts, c1.viewer, c1.tags, c1.sticky],
+    ['comment', t.id, a.name, t.id, 'advice', { up: 0, down: 0, comments: 0 }, { vote: 0 }, [], undefined]);
+  assert.deepEqual([r1.replyTo.id, r1.replyTo.author.name, r2.rootId], [c1.id, b.name, t.id]);
+  const get = async (q = '') => (await client().get(`/api/threads/${t.id}${q}`)).data;
+  assert.deepEqual(tree((await get('?sort=old')).comments), [[c1.id, [[r1.id, [r2.id]]]], c2.id], 'old');
+  assert.deepEqual(tree((await get('?sort=new')).comments), [c2.id, [c1.id, [[r1.id, [r2.id]]]]], 'new');
+  assert.deepEqual(tree((await get()).comments), [[c1.id, [[r1.id, [r2.id]]]], c2.id], 'best, with no votes: older first');
+  await vote(a, c2.id, 1); await vote(d, c2.id, 1); await vote(d, c1.id, -1);
+  const best = await get();
+  assert.deepEqual([best.sort, tree(best.comments)], ['best', [c2.id, [c1.id, [[r1.id, [r2.id]]]]]], 'best: 2 likes above a dislike');
+  assert.deepEqual([best.thread.counts.comments, best.comments[1].item.counts], [4, { up: 0, down: 1, comments: 1 }]);
+  const row = (await client().get('/api/boards/advice?sort=new')).data.items.find(i => i.id === t.id);
+  assert.deepEqual([row.counts.comments, row.lastComment], [4, { created: r2.created, author: r2.author }]);
+  assert.equal((await b.post(`/api/threads/${t.id}/comments`, { body: ' ' })).status, 400);
+  assert.equal((await client().post(`/api/threads/${t.id}/comments`, { body: 'hi' })).status, 401);
+  const other = await newThread(d, 'advice', 'another question');
+  assert.equal((await b.post(`/api/threads/${other.id}/comments`, { body: 'hm', parent: c1.id })).status, 404, 'a parent from another thread');
+  assert.equal((await b.post(`/api/threads/${t.id}/comments`, { body: 'hm', parent: other.id })).status, 404);
+  assert.equal((await b.post(`/api/threads/${t.id}/comments`, { body: 'x'.repeat(10050) })).data.comment.body.length, 10000);
+
+  // a deleted comment with replies stays as a tombstone, until nothing holds it
+  assert.deepEqual((await b.del('/api/posts/' + c1.id)).data, { ok: true, tombstone: true });
+  let page = await get('?sort=old');
+  const tomb = page.comments[0].item;
+  assert.deepEqual([tomb.id, tomb.deleted, tomb.body, tomb.counts, tomb.viewer, tomb.canDelete], [c1.id, true, '', { up: 0, down: 0, comments: 1 }, { vote: 0 }, false]);
+  assert.equal(page.thread.counts.comments, 4, 'a tombstone isn\'t counted');
+  assert.equal((await d.post(`/api/threads/${t.id}/comments`, { body: 'hm', parent: c1.id })).status, 404, 'no replying to it');
+  assert.equal((await vote(d, c1.id, 1)).status, 404, 'or voting on it');
+  await c.del('/api/posts/' + r2.id);
+  await a.del('/api/posts/' + r1.id);
+  page = await get('?sort=old');
+  assert.equal(tree(page.comments)[0], c2.id, 'the tombstone went once nothing held it');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM posts WHERE id = ${c1.id}`)[0].n, 0);
+
+  // a deep, wide thread: c2 ← k1 ← k2 ← … ← k9, and 12 more replies to k1
+  const board = sql(`SELECT board_id FROM posts WHERE id = ${t.id}`)[0].board_id;
+  const at = Date.now() - 600000;
+  const add = (body, parent, i) => `INSERT INTO posts (kind, author_id, board_id, body, reply_to, root_id, created) VALUES ('comment', ${d.id}, ${board}, '${body}', ${parent}, ${t.id}, ${at + i})`;
+  sql([...Array.from({ length: 9 }, (_, i) => add('k' + (i + 1), i ? `(SELECT MAX(id) FROM posts WHERE root_id = ${t.id} AND author_id = ${d.id})` : c2.id, i)),
+    ...Array.from({ length: 12 }, (_, i) => add('s' + (i + 1), `(SELECT id FROM posts WHERE root_id = ${t.id} AND body = 'k1')`, 100 + i)),
+    `UPDATE posts SET reply_count = (SELECT COUNT(*) FROM posts x WHERE x.reply_to = posts.id AND x.deleted = 0),
+      comment_count = (SELECT COUNT(*) FROM posts x WHERE x.root_id = posts.id AND x.deleted = 0) WHERE id = ${t.id} OR root_id = ${t.id}`,
+    `UPDATE posts SET ${RESORT} WHERE id = ${t.id}`].join(';\n'));
+  const ids = Object.fromEntries(sql(`SELECT body, id FROM posts WHERE root_id = ${t.id} AND author_id = ${d.id}`).map(r => [r.body, r.id]));
+  page = await get('?sort=old');
+  const k1 = page.comments[0].children[0];
+  assert.equal(k1.item.id, ids.k1);
+  assert.deepEqual(k1.children.map(n => n.item ? n.item.id : n), [ids.k2, ...Array.from({ length: 9 }, (_, i) => ids['s' + (i + 1)]), { more: 3, parent: ids.k1, after: `${at + 108}:${ids.s9}` }],
+    '10 replies to a comment, then a stub that goes on after the 10th (s9: created, id)');
+  let n = k1;
+  for (let depth = 2; depth <= 7; depth++) n = n.children[0];
+  assert.deepEqual([n.item.id, n.children], [ids.k7, [{ more: 2, parent: ids.k7, after: null }]], 'eight levels, then a stub');
+  const deeper = (await client().get(`/api/threads/${t.id}/comments/${ids.k7}?sort=old`)).data;
+  assert.deepEqual([deeper.parent.id, deeper.sort, tree(deeper.comments)], [ids.k7, 'old', [[ids.k8, [ids.k9]]]]);
+  const wider = (await client().get(`/api/threads/${t.id}/comments/${ids.k1}?sort=old&after=${encodeURIComponent(k1.children.at(-1).after)}`)).data;
+  assert.deepEqual(tree(wider.comments), [ids.s10, ids.s11, ids.s12]);
+  assert.deepEqual(tree((await client().get(`/api/threads/${t.id}/comments/${ids.k1}?sort=old&after=nonsense`)).data.comments).slice(0, 2).map(x => (Array.isArray(x) ? x[0] : x)),
+    [ids.k2, ids.s1], 'a cursor that isn\'t one starts from the first');
+  const top = (await client().get(`/api/threads/${t.id}/comments/${t.id}?sort=new`)).data;
+  assert.deepEqual([top.parent, top.comments.map(x => x.item.id)], [null, tree(page.comments).map(x => (Array.isArray(x) ? x[0] : x)).reverse()]);
+  assert.equal((await client().get(`/api/threads/${t.id}/comments/${c1.id}`)).status, 404);
+  assert.equal((await client().get(`/api/threads/${other.id}/comments/${ids.k1}`)).status, 404, 'a comment from another thread');
+});
+
+test('board notifications: replies to your thread or comment and @mentions, by phase 2\'s rules', async () => {
+  const a = await newUser('bn_a'); const b = await newUser('bn_b'); const c = await newUser('bn_c'); const shy = await newUser('bn_shy');
+  await shy.put('/api/me/settings', { followPolicy: 'approve' });
+  const t = await newThread(a, 'music', 'what are you listening to');
+  const cb = await newComment(b, t.id, 'paramore on repeat');
+  const ra = await newComment(a, t.id, 'same', cb.id);
+  const rc = await newComment(c, t.id, `@${b.name} riot! is better`, cb.id);
+  const toA = (await notes(a)).items;
+  assert.deepEqual(toA.map(x => [x.kind, x.actor.name, x.post.id, x.post.kind, x.post.board, x.post.threadId]),
+    [['reply', b.name, cb.id, 'comment', { slug: 'music', name: 'Music' }, t.id]], 'a reply to my thread (my own reply tells nobody)');
+  assert.deepEqual((await notes(b)).items.map(x => [x.kind, x.actor.name, x.post.id]), [['reply', c.name, rc.id], ['reply', a.name, ra.id]],
+    'replies to my comment, and a mention in one isn\'t told twice');
+  const st = await newThread(shy, 'music', `@${c.name} you would like this`);
+  assert.ok((await notes(c)).items.some(x => x.kind === 'mention' && x.post.id === st.id), 'boards are public: a private member\'s mention reaches anyone');
+  await b.post('/api/blocks/' + c.name);
+  assert.ok(!(await notes(b)).items.some(x => x.actor.id === c.id), 'a block hides what came before it');
+  assert.equal((await c.post(`/api/threads/${t.id}/comments`, { body: 'hello?', parent: cb.id })).status, 404, 'they can\'t see each other\'s comments');
+  const late = await newComment(c, t.id, `@${b.name} hello?`);
+  assert.ok(!(await notes(b)).items.some(x => x.actor.id === c.id), 'and a mention tells nothing new');
+  await b.del('/api/blocks/' + c.name);
+  await b.del('/api/posts/' + cb.id);
+  assert.deepEqual((await notes(a)).items.map(x => x.post.id), [late.id], 'deleting a comment takes back what was told about it');
+});
+
+test('boards are public spaces: a private member\'s threads and comments show to everyone; blocks, bans and hiding still hide them', async () => {
+  const shy = await newUser('pub_shy'); const x = await newUser('pub_x'); const y = await newUser('pub_y'); const mod = await moderator();
+  await shy.put('/api/me/settings', { followPolicy: 'approve' });
+  const t = await newThread(shy, 'fashion', 'thrift haul');
+  const yc = await newComment(y, t.id, 'show us!');
+  const sc = await newComment(shy, t.id, 'ok ok', yc.id);
+  const yr = await newComment(y, t.id, 'love it', sc.id);
+  const anon = client();
+  assert.ok((await listed(anon, 'fashion')).includes(t.id));
+  const page = (await anon.get('/api/threads/' + t.id)).data;
+  assert.deepEqual([page.thread.author.name, tree(page.comments)], [shy.name, [[yc.id, [[sc.id, [yr.id]]]]]]);
+  assert.equal(page.comments[0].children[0].children[0].item.replyTo.author.name, shy.name, '"replying to" names them too');
+  assert.equal((await anon.get(`/api/users/${shy.name}/statuses`)).status, 403, 'while their page stays private');
+
+  const yt = await newThread(y, 'fashion', 'jeans');
+  const s2 = await newComment(shy, yt.id, 'flares');
+  const y2 = await newComment(y, yt.id, 'agreed', s2.id);
+  const y3 = await newComment(y, yt.id, 'skinny');
+  await x.post('/api/blocks/' + shy.name);
+  assert.ok(!(await listed(x, 'fashion')).includes(t.id), 'a block hides their threads');
+  assert.equal((await x.get('/api/threads/' + t.id)).status, 404);
+  assert.deepEqual(tree((await x.get('/api/threads/' + yt.id)).data.comments), [y3.id], 'and their comments, with the replies under them');
+  assert.deepEqual(tree((await anon.get('/api/threads/' + yt.id)).data.comments), [[s2.id, [y2.id]], y3.id]);
+  assert.equal((await x.post(`/api/threads/${yt.id}/comments`, { body: 'hm', parent: s2.id })).status, 404);
+  assert.equal((await vote(x, s2.id, 1)).status, 404);
+  assert.equal((await x.post(`/api/threads/${t.id}/comments`, { body: 'hm' })).status, 404);
+
+  await mod.post('/api/admin/users/' + shy.name, { banned: true });
+  assert.ok(!(await listed(anon, 'fashion')).includes(t.id), 'banned');
+  assert.deepEqual(tree((await anon.get('/api/threads/' + yt.id)).data.comments), [y3.id]);
+  await mod.post('/api/admin/users/' + shy.name, { banned: false });
+
+  assert.equal((await y.post('/api/reports', { type: 'post', id: s2.id, reason: 'spam' })).status, 201, 'comments can be reported');
+  assert.equal((await x.post('/api/reports', { type: 'post', id: yt.id, reason: 'spam' })).status, 201, 'threads too');
+  const reports = (await mod.get('/api/admin/reports')).data.reports;
+  assert.deepEqual(reports.filter(r => [s2.id, yt.id].includes(r.targetId)).map(r => [r.snapshot.kind, r.snapshot.subject || r.snapshot.body]).sort(),
+    [['comment', 'flares'], ['thread', 'jeans']]);
+  await mod.post('/api/admin/reports/' + reports.find(r => r.targetId === s2.id).id, { action: 'hide' });
+  assert.deepEqual(tree((await anon.get('/api/threads/' + yt.id)).data.comments), [y3.id], 'a moderator\'s hide works');
+});
+
+test('board requests: members ask, a moderator approves (making the board) or declines, and the member hears either way', async () => {
+  const m = await newUser('asker'); const mod = await moderator();
+  const name = 'Knitting ' + uniq();
+  const r = await m.post('/api/boards/requests', { name, reason: 'yarn is life' });
+  assert.equal(r.status, 201, JSON.stringify(r.data));
+  assert.deepEqual(Object.keys(r.data.request).sort(), ['created', 'decided', 'id', 'name', 'reason', 'status']);
+  assert.deepEqual([r.data.request.name, r.data.request.reason, r.data.request.status, r.data.request.decided], [name, 'yarn is life', 'pending', null]);
+  assert.equal((await m.post('/api/boards/requests', { name: ' ', reason: 'x' })).status, 400);
+  assert.equal((await client().post('/api/boards/requests', { name: 'x' })).status, 401);
+  assert.equal((await m.get('/api/admin/board-requests')).status, 403);
+  const waiting = (await mod.get('/api/admin/board-requests')).data.requests.find(x => x.id === r.data.request.id);
+  assert.deepEqual([waiting.user.name, waiting.status, waiting.board, waiting.decidedBy], [m.name, 'pending', null, null]);
+
+  const decide = (id, body) => mod.post('/api/admin/board-requests/' + id, body);
+  const id = r.data.request.id;
+  assert.equal((await decide(id, { action: 'maybe' })).status, 400);
+  assert.equal((await decide(id, { action: 'approve', slug: 'Bad Slug!' })).status, 400);
+  assert.equal((await decide(id, { action: 'approve', slug: 'requests' })).status, 400);
+  assert.equal((await decide(id, { action: 'approve', icon: 'yarn' })).status, 400, 'the icon is an emoji');
+  assert.equal((await decide(id, { action: 'approve', slug: 'music' })).status, 409, 'a slug that\'s taken');
+  assert.equal((await decide(99999999, { action: 'decline' })).status, 404);
+  const slug = 'knit-' + uniq();
+  const ok = await decide(id, { action: 'approve', slug, icon: '🧶', description: 'scarves and such' });
+  assert.deepEqual([ok.data.board, ok.data.request.status], [{ slug, name, description: 'scarves and such', icon: '🧶', archived: false }, 'approved']);
+  assert.equal((await decide(id, { action: 'decline' })).status, 409, 'decided once');
+  const index = (await client().get('/api/boards')).data.boards;
+  assert.deepEqual(index.at(-1), { slug, name, description: 'scarves and such', icon: '🧶', threads: 0, lastPost: null }, 'at the end of the index');
+  await newThread(m, slug, 'first!!');
+  const yes = (await notes(m)).items.find(x => x.kind === 'board_approved');
+  assert.deepEqual([yes.actor.name, yes.post, yes.request], [mod.name, null, { name, status: 'approved', board: { slug, name, icon: '🧶' } }]);
+
+  const no = (await m.post('/api/boards/requests', { name: 'Glitter Emergencies', reason: '' })).data.request;
+  assert.equal((await decide(no.id, { action: 'decline' })).data.board, null);
+  assert.deepEqual((await notes(m)).items.find(x => x.kind === 'board_declined').request, { name: 'Glitter Emergencies', status: 'declined', board: null });
+  const plain = (await m.post('/api/boards/requests', { name: 'Pixel Art & Sprites ' + uniq().toUpperCase() })).data.request;
+  const made = (await decide(plain.id, { action: 'approve' })).data.board;
+  assert.deepEqual([made.slug, made.icon, made.description], [plain.name.toLowerCase().replace(/[^a-z0-9]+/g, '-'), '💬', ''], 'the address comes from the name');
+  assert.equal((await m.post('/api/boards/requests', { name: 'one more' })).status, 429, '3 a day');
+  const long = (await (await newUser('asker')).post('/api/boards/requests', { name: 'abcdefghij abcdefghij abcdefg xyz' })).data.request;
+  assert.equal((await decide(long.id, { action: 'approve' })).data.board.slug, 'abcdefghij-abcdefghij-abcdefg', 'cut at 30, never ending in a dash (as the form suggests: frontend.test.mjs)');
+  const closed = (await mod.get('/api/admin/board-requests?status=closed')).data.requests.filter(x => [id, no.id].includes(x.id));
+  assert.deepEqual(closed.map(x => [x.status, x.decidedBy, x.board && x.board.slug]).sort(), [['approved', mod.name, slug], ['declined', mod.name, null]]);
+  assert.ok((await mod.get('/api/admin/log')).data.log.some(l => l.action === 'approve_board' && l.targetId === id));
+});
+
+test('moderators: sticky threads lead every sort, and archived boards leave the index and take nothing new', async () => {
+  const a = await newUser('pin_a'); const b = await newUser('pin_b'); const mod = await moderator();
+  const t1 = await newThread(a, 'pets', 'the house rules');
+  const t2 = await newThread(a, 'pets', 'my cat');
+  const t2c = await newComment(b, t2.id, 'cute');
+  assert.equal((await a.post('/api/admin/threads/' + t1.id, { sticky: true })).status, 403);
+  assert.equal((await mod.post('/api/admin/threads/' + t1.id, {})).status, 400);
+  assert.equal((await mod.post('/api/admin/threads/99999999', { sticky: true })).status, 404);
+  assert.equal((await mod.post('/api/admin/threads/' + t2c.id, { sticky: true })).status, 404, 'threads only');
+  assert.deepEqual((await mod.post('/api/admin/threads/' + t1.id, { sticky: true })).data, { thread: { id: t1.id, sticky: true, locked: false } });
+  for (const sort of ['hot', 'new', 'top', 'best']) assert.equal((await listed(client(), 'pets', 'sort=' + sort))[0], t1.id, sort);
+  assert.equal((await client().get('/api/threads/' + t1.id)).data.thread.sticky, true);
+
+  assert.equal((await a.post('/api/admin/boards/pets', { archived: true })).status, 403);
+  assert.equal((await mod.post('/api/admin/boards/pets', {})).status, 400);
+  assert.equal((await mod.post('/api/admin/boards/nope', { archived: true })).status, 404);
+  assert.deepEqual((await mod.post('/api/admin/boards/pets', { archived: true })).data.board, { slug: 'pets', name: 'Pets', description: 'brag about your cat, dog, hamster or lizard', icon: '🐾', archived: true });
+  assert.ok(!(await client().get('/api/boards')).data.boards.some(x => x.slug === 'pets'), 'off the index');
+  assert.equal((await client().get('/api/boards/pets')).data.board.archived, true, 'still readable');
+  assert.equal((await b.post('/api/boards/pets/threads', { subject: 'hi', body: 'there' })).status, 403);
+  assert.equal((await b.post(`/api/threads/${t2.id}/comments`, { body: 'hello?' })).status, 403);
+  const refused = await vote(b, t2.id, 1);
+  assert.deepEqual([refused.status, refused.data.error], [403, 'this board is archived.'], 'the vote says why');
+  assert.deepEqual([(await client().get('/api/threads/' + t2.id)).data.thread.board.archived, (await client().get('/api/threads/' + t1.id)).data.thread.board.archived],
+    [true, true], 'its threads say so (the page hides the comment box and Reply)');
+  assert.equal((await mod.post('/api/admin/boards/pets', { archived: false })).data.board.archived, false);
+  assert.equal((await client().get('/api/threads/' + t2.id)).data.thread.board.archived, false);
+  assert.ok((await client().get('/api/boards')).data.boards.some(x => x.slug === 'pets'));
+  await mod.post('/api/admin/threads/' + t1.id, { sticky: false });
+  assert.ok((await mod.get('/api/admin/log')).data.log.some(l => l.action === 'archive' && l.targetType === 'board'));
+});
+
+test('votes and comments racing a delete or a lock land on nothing, and every count stays exact', async () => {
+  const voters = await Promise.all(Array.from({ length: 6 }, () => newUser('vrace')));
+  const mod = await moderator();
+  const statuses = {};
+  for (let round = 0; round < 3; round++) {
+    const op = await newUser('vrace_op');
+    const t = await newThread(op, 'random', 'race ' + round);
+    const keep = await newComment(voters[0], t.id, 'keep me');
+    const doomed = await newComment(op, t.id, 'doomed', keep.id);
+    const all = await Promise.all([
+      op.del('/api/posts/' + doomed.id),
+      round === 2 ? mod.post('/api/admin/threads/' + t.id, { locked: true }) : op.del('/api/posts/' + t.id),
+      ...voters.slice(1).flatMap((u, i) => [vote(u, doomed.id, i % 2 ? 1 : -1), vote(u, t.id, 1), vote(u, keep.id, -1),
+        u.post(`/api/threads/${t.id}/comments`, { body: 'late', parent: doomed.id }), u.post(`/api/threads/${t.id}/comments`, { body: 'late too' })]),
+    ]);
+    for (const r of all) statuses[r.status] = (statuses[r.status] || 0) + 1;
+  }
+  assert.ok(Object.keys(statuses).every(s => [200, 201, 403, 404].includes(Number(s))), JSON.stringify(statuses));
+  assert.deepEqual(sql(`SELECT v.post_id FROM votes v JOIN posts p ON p.id = v.post_id WHERE p.deleted = 1`), [], 'no vote on a tombstone');
+  assert.deepEqual(sql(`SELECT c.id FROM posts c WHERE c.kind = 'comment' AND c.author_id IN (${voters.map(v => v.id)})
+    AND NOT EXISTS (SELECT 1 FROM posts p WHERE p.id = c.reply_to)`), [], 'no comment answers a post that\'s gone');
+});
+
+test('deleting an account takes its votes, comments and threads, and the counts and keys on everyone else\'s come right', async () => {
+  const a = await newUser('stay_a'); const v = await newUser('leave_v'); const b = await newUser('stay_b');
+  const t = await newThread(a, 'school', 'finals week');
+  const vc = await newComment(v, t.id, 'cramming');
+  const br = await newComment(b, t.id, 'same', vc.id);
+  const bc = await newComment(b, t.id, 'good luck');
+  await vote(v, t.id, 1); await vote(v, bc.id, -1); await vote(b, t.id, -1);
+  const vt = await newThread(v, 'school', 'my own thread');
+  await newComment(b, vt.id, 'bye');
+  await vote(b, vt.id, 1);
+  assert.equal((await v.del('/api/me', { password: PW })).status, 200);
+  const page = (await client().get(`/api/threads/${t.id}?sort=old`)).data;
+  assert.deepEqual([page.thread.counts, tree(page.comments), page.comments[0].item.replyTo, page.comments[1].item.counts],
+    [{ up: 0, down: 1, comments: 2 }, [br.id, bc.id], { id: t.id, author: page.thread.author }, { up: 0, down: 0, comments: 0 }],
+    'its comment and votes are gone; a reply to it moves up to what its comment answered (here the thread)');
+  assert.deepEqual(orphans(), []);
+  assert.equal((await client().get('/api/threads/' + vt.id)).status, 404);
+  assert.equal(sql(`SELECT reply_count FROM posts WHERE id = ${t.id}`)[0].reply_count, 2, 'counted as a reply where it moved');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM posts WHERE root_id = ${vt.id}`)[0].n, 0, 'its threads went with their comments');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM votes WHERE user_id = ${v.id}`)[0].n, 0);
+});
+
+test('no comment is ever orphaned: a deleted thread stays while any comment is in it, and replies to a leaving account\'s comments move up', async () => {
+  for (const order of ['thread first', 'account first']) {
+    const op = await newUser('orph_op'); const x = await newUser('orph_x'); const y = await newUser('orph_y');
+    const t = await newThread(op, 'school', 'orphans? ' + order);
+    const cx = await newComment(x, t.id, 'X');
+    const cy = await newComment(y, t.id, 'Y', cx.id);
+    if (order === 'thread first') {
+      assert.deepEqual((await op.del('/api/posts/' + t.id)).data, { ok: true, tombstone: true });
+      assert.equal((await x.del('/api/me', { password: PW })).status, 200, 'and then X\'s writer leaves');
+    } else {
+      assert.equal((await x.del('/api/me', { password: PW })).status, 200);
+      assert.deepEqual((await op.del('/api/posts/' + t.id)).data, { ok: true, tombstone: true }, 'Y, moved up, still holds the thread');
+    }
+    const page = (await client().get('/api/threads/' + t.id)).data;
+    assert.deepEqual([page.thread.deleted, tree(page.comments), page.comments[0].item.replyTo.id, page.thread.counts.comments], [true, [cy.id], t.id, 1], order);
+    assert.deepEqual(orphans(), [], order);
+    assert.deepEqual((await y.del('/api/posts/' + cy.id)).data, { ok: true, tombstone: false });
+    assert.equal(sql(`SELECT COUNT(*) AS n FROM posts WHERE id = ${t.id}`)[0].n, 0, `${order}: the last comment going takes the thread's tombstone with it`);
+  }
+
+  // up a chain of the leaving account's comments, to the nearest one above that isn't theirs; a tombstone moves with its reply
+  const a = await newUser('orph_a'); const v = await newUser('orph_v'); const b = await newUser('orph_b');
+  const t = await newThread(a, 'school', 'a long chain');
+  const ca = await newComment(a, t.id, 'A');
+  const v1 = await newComment(v, t.id, 'V1', ca.id);
+  const v2 = await newComment(v, t.id, 'V2', v1.id);
+  const b1 = await newComment(b, t.id, 'B1', v2.id);
+  const b2 = await newComment(b, t.id, 'B2', v1.id);
+  const deep = await newComment(a, t.id, 'deep', b1.id);
+  await b.del('/api/posts/' + b1.id);
+  assert.equal((await v.del('/api/me', { password: PW })).status, 200);
+  const page = (await client().get(`/api/threads/${t.id}?sort=old`)).data;
+  assert.deepEqual(tree(page.comments), [[ca.id, [[b1.id, [deep.id]], b2.id]]]);
+  assert.deepEqual([page.comments[0].children[1].item.replyTo, page.comments[0].item.counts.comments], [{ id: ca.id, author: ca.author }, 1],
+    'they answer A now, which counts B2 (a tombstone isn\'t counted)');
+  // a deleted thread held only by a comment deep down (its own top-level comment a tombstone too)
+  await a.del('/api/posts/' + ca.id);
+  assert.deepEqual((await a.del('/api/posts/' + t.id)).data, { ok: true, tombstone: true });
+  await b.del('/api/posts/' + b2.id);
+  assert.equal((await client().get('/api/threads/' + t.id)).status, 200, 'deep still holds it all');
+  await a.del('/api/posts/' + deep.id);
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM posts WHERE id IN (${t.id}, ${ca.id}, ${b1.id})`)[0].n, 0, 'and its going clears the tombstones up to the thread');
+  assert.deepEqual(orphans(), []);
+});
+
+test('votes and replies reach only what the tree shows the writer: not under a hidden comment, not across a block with the thread\'s writer, not past someone banned; nothing moves and nobody is told', async () => {
+  const op = await newUser('reach_op'); const c = await newUser('reach_c'); const d = await newUser('reach_d'); const e = await newUser('reach_e'); const f = await newUser('reach_f');
+  const mod = await moderator();
+  const t = await newThread(op, 'fashion', 'within reach');
+  const x = await newComment(c, t.id, 'X');
+  const y = await newComment(d, t.id, 'Y', x.id);
+  const counts = () => sql(`SELECT id, up_count, down_count, reply_count, comment_count, hot, best FROM posts WHERE id IN (${t.id}, ${x.id}, ${y.id}) ORDER BY id`);
+  const before = counts();
+  const refused = async (who, label) => {
+    assert.equal((await vote(who, y.id, 1)).status, 404, label + ': no vote');
+    assert.equal((await who.post(`/api/threads/${t.id}/comments`, { body: 'hm', parent: y.id })).status, 404, label + ': no reply');
+  };
+  await op.post('/api/blocks/' + e.name);
+  assert.equal((await vote(e, x.id, -1)).status, 404, 'the thread\'s writer blocked them');
+  await refused(e, 'blocked by the thread\'s writer');
+  await mod.post('/api/admin/content', { type: 'post', id: x.id, hidden: true });
+  await refused(c, 'under a hidden comment');
+  await refused(f, 'under a hidden comment');
+  await mod.post('/api/admin/content', { type: 'post', id: x.id, hidden: false });
+  await mod.post('/api/admin/users/' + c.name, { banned: true });
+  await refused(f, 'under a banned writer\'s comment');
+  await mod.post('/api/admin/users/' + c.name, { banned: false });
+  await mod.post('/api/admin/users/' + op.name, { banned: true });
+  await refused(f, 'in a banned writer\'s thread');
+  await mod.post('/api/admin/users/' + op.name, { banned: false });
+  assert.deepEqual(counts(), before, 'no count or key moved');
+  assert.ok(!(await notes(d)).items.some(n => n.kind === 'reply'), 'and nobody was told');
+  assert.equal((await vote(f, y.id, 1)).status, 200, 'all in reach again');
+  assert.equal((await f.post(`/api/threads/${t.id}/comments`, { body: 'hello', parent: y.id })).status, 201);
+});
+
+test('hiding a thread, or a comment, silences what was told about the comments under it', async () => {
+  const op = await newUser('quiet_op'); const c = await newUser('quiet_c'); const d = await newUser('quiet_d'); const mod = await moderator();
+  const t = await newThread(op, 'advice', 'quiet please');
+  const x = await newComment(c, t.id, 'X');
+  const y = await newComment(d, t.id, 'Y', x.id);
+  const z = await newComment(op, t.id, 'Z', y.id);
+  const told = async () => Promise.all([op, c, d].map(async who => (await notes(who)).items.filter(n => n.kind === 'reply').map(n => n.post.id)));
+  assert.deepEqual(await told(), [[x.id], [y.id], [z.id]]);
+  const hide = (id, hidden) => mod.post('/api/admin/content', { type: 'post', id, hidden });
+  await hide(x.id, true);
+  assert.deepEqual(await told(), [[], [], []], 'X hidden: what was told about X and about everything under it');
+  assert.equal((await notes(d)).unread, 0, 'and the badge agrees');
+  await hide(x.id, false);
+  assert.deepEqual(await told(), [[x.id], [y.id], [z.id]], 'back when X is');
+  await hide(t.id, true);
+  assert.deepEqual(await told(), [[], [], []], 'the thread hidden: all of it');
+  await hide(t.id, false);
+});
+
+test('"load more" goes on from a cursor: a comment written or deleted between the first answer and the next neither repeats nor pushes one out', async () => {
+  const op = await newUser('more_op'); const w = await newUser('more_w');
+  const t = await newThread(op, 'random', 'a busy one');
+  const board = sql(`SELECT board_id FROM posts WHERE id = ${t.id}`)[0].board_id;
+  const at = Date.now() - 3600000;
+  sql([`INSERT INTO posts (kind, author_id, board_id, body, reply_to, root_id, created)
+      SELECT 'comment', ${w.id}, ${board}, 'c' || value, ${t.id}, ${t.id}, ${at} + value FROM json_each('[${Array.from({ length: 210 }, (_, i) => i).join(',')}]')`,
+    `UPDATE posts SET reply_count = 210, comment_count = 210 WHERE id = ${t.id}`, `UPDATE posts SET ${RESORT} WHERE id = ${t.id}`].join(';\n'));
+  const all = sql(`SELECT id FROM posts WHERE root_id = ${t.id}`).map(r => r.id);
+  for (const sort of ['new', 'best']) {
+    const first = (await client().get(`/api/threads/${t.id}?sort=${sort}`)).data.comments;
+    const stub = first.at(-1);
+    assert.deepEqual([first.length, stub.more, stub.parent], [201, 10, t.id], sort);
+    const shown = first.slice(0, -1).map(n => n.item.id);
+    const late = await newComment(op, t.id, 'late ' + sort);                    // first in new, last in best (no votes: older first)
+    await w.del('/api/posts/' + shown[5]);
+    const rest = (await client().get(`/api/threads/${t.id}/comments/${t.id}?sort=${sort}&after=${encodeURIComponent(stub.after)}`)).data.comments.map(n => n.item.id);
+    assert.deepEqual(rest.filter(id => shown.includes(id)), [], `${sort}: nothing shown again`);
+    assert.deepEqual([...shown, ...rest].filter(id => all.includes(id)).sort((p, q) => p - q), [...all].sort((p, q) => p - q), `${sort}: nothing skipped`);
+    all.splice(all.indexOf(shown[5]), 1);
+    all.push(late.id);
+  }
+});
+
 /* ------------------------------------------------------- other sign-in options */
 
 test('sign up with Google: provider, then screen name + birthday, then straight in next time', async () => {
@@ -1345,10 +1894,23 @@ test('deleting an account removes it and frees the name and email', async () => 
   assert.equal((await client().post('/api/signup',{ email: c.email, password: PW, name: c.name, birthday: '1995-08-15', rulesOk: true })).status, 201);
 });
 
-test('every count in the database matches the rows behind it, after everything the tests above did', () => {
-  assert.deepEqual(sql(`SELECT id, kind, like_count, reply_count, repost_count, quote_count FROM posts p WHERE
+test('every count and stored sort key in the database matches the rows behind it, after everything the tests above did', () => {
+  assert.deepEqual(sql(`SELECT id, kind, like_count, reply_count, repost_count, quote_count, up_count, down_count, comment_count FROM posts p WHERE
     like_count != (SELECT COUNT(*) FROM likes WHERE post_id = p.id)
-    OR reply_count != (SELECT COUNT(*) FROM posts x WHERE x.reply_to = p.id AND x.kind = 'reply' AND x.deleted = 0)
+    OR up_count != (SELECT COUNT(*) FROM votes WHERE post_id = p.id AND value = 1)
+    OR down_count != (SELECT COUNT(*) FROM votes WHERE post_id = p.id AND value = -1)
+    OR comment_count != (SELECT COUNT(*) FROM posts x WHERE x.root_id = p.id AND x.kind = 'comment' AND x.deleted = 0)
+    OR reply_count != (SELECT COUNT(*) FROM posts x WHERE x.reply_to = p.id AND x.kind IN ('reply', 'comment') AND x.deleted = 0)
     OR repost_count != (SELECT COUNT(*) FROM posts x WHERE x.quote_of = p.id AND x.kind = 'repost')
     OR quote_count != (SELECT COUNT(*) FROM posts x WHERE x.quote_of = p.id AND x.kind = 'quote' AND x.deleted = 0)`), []);
+  // the stored sort keys of every thread and comment are what src/shared/ranking.js makes of its counts (the SQL that
+  // stored them, checked against the unit-tested JS)
+  const keyed = sql(`SELECT id, kind, up_count AS up, down_count AS down, created, hot, best, score,
+    (SELECT COUNT(*) FROM posts c WHERE c.root_id = p.id AND c.kind = 'comment' AND c.deleted = 0 AND c.author_id != p.author_id) AS others
+    FROM posts p WHERE kind IN ('thread', 'comment')`);
+  assert.ok(keyed.filter(r => r.up + r.down > 0).length >= 2, 'the tests above left votes');
+  const off = keyed.filter(r => r.score !== r.up - r.down || Math.abs(r.best - wilson(r.up, r.down)) > 1e-12
+    || Math.abs(r.hot - (r.kind === 'thread' ? hot(r.up, r.down, r.others, r.created) : 0)) > 1e-9);
+  assert.deepEqual(off, []);
+  assert.deepEqual(orphans(), [], 'every comment\'s thread is there, and so is what it answers');
 });

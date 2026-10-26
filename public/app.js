@@ -18,7 +18,7 @@ import { renderAdmin } from './js/pages/admin.js';
 import { renderJoin, renderFinish, renderLogin, renderForgot, renderReset } from './js/pages/auth.js';
 import { renderBookmarks } from './js/pages/bookmarks.js';
 import { renderBrowse } from './js/pages/browse.js';
-import { renderBulletins } from './js/pages/bulletins.js';
+import { renderBoards, renderBoard } from './js/pages/boards.js';
 import { renderEdit } from './js/pages/edit.js';
 import { renderHome } from './js/pages/home.js';
 import { renderHoroscope } from './js/pages/horoscope.js';
@@ -32,6 +32,7 @@ import { renderRequests } from './js/pages/requests.js';
 import { renderRules } from './js/pages/rules.js';
 import { renderSettings } from './js/pages/settings.js';
 import { renderTag } from './js/pages/tags.js';
+import { renderBoardThread } from './js/pages/thread.js';
 
 /* ------------------------------------------------------------ router */
 
@@ -58,7 +59,10 @@ const ROUTES = [
   [/^\/requests$/, renderRequests, true],
   [/^\/inbox$/, renderInbox, true],
   [/^\/inbox\/([^/]+)$/, renderThread, true],
-  [/^\/bulletins$/, renderBulletins],
+  [/^\/boards$/, renderBoards],
+  [/^\/boards\/([^/]+)$/, renderBoard],
+  [/^\/boards\/([^/]+)\/(\d+)$/, renderBoardThread],
+  [/^\/bulletins$/, root => { go('/boards', true); }],   // the old Bulletin Board's address
   [/^\/horoscope$/, renderHoroscope],
   [/^\/horoscope\/([a-z]+)$/, renderHoroscope],
   [/^\/edit$/, renderEdit, true],

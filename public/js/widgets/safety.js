@@ -20,7 +20,7 @@ export function postActions(item, onDeleted) {
       if (onDeleted) onDeleted(r);
     } }));
   }
-  if (S.me && item.author && item.author.id !== S.me.id && ['status', 'wall', 'bulletin', 'blog', 'reply', 'quote'].includes(item.kind)) {
+  if (S.me && item.author && item.author.id !== S.me.id && ['status', 'wall', 'bulletin', 'thread', 'comment', 'blog', 'reply', 'quote'].includes(item.kind)) {
     box.append(h('a', { href: '#', text: '⚑ report', title: 'report this to the moderators', onclick: e => { e.preventDefault(); reportDialog({ type: 'post', id: item.id, what: 'this post' }); } }));
   }
   return box;

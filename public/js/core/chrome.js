@@ -29,7 +29,7 @@ export function paintChrome() {
     S.me ? tab('Notifications', '/notifications', S.counts.notifications, path === '/notifications' || path === '/requests') : null,
     S.me ? tab('Inbox', '/inbox', S.counts.unread, path.startsWith('/inbox')) : null,
     S.me ? tab('🔖 Bookmarks', '/bookmarks', 0, path === '/bookmarks') : null,
-    tab('Bulletins', '/bulletins', 0, path === '/bulletins'),
+    tab('Boards', '/boards', 0, path === '/boards' || path.startsWith('/boards/')),
     tab('🔮 Horoscope', '/horoscope', 0, path.startsWith('/horoscope')),
     h('a', { class: 'ms-tab', href: '/blog/', text: 'Blog' }),
     S.me && S.me.isAdmin ? tab('Moderation', '/admin', S.counts.reports, path === '/admin') : null,

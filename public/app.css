@@ -286,10 +286,6 @@ img { image-rendering: pixelated; }
 .ms-dm.me { background: #f3eefb; align-self: flex-end; }
 .ms-dm .ms-time { display: block; }
 
-.ms-bulletin { border: 1px solid #6699cc; margin: 8px; }
-.ms-bulletin-head { display: flex; align-items: center; gap: 8px; padding: 6px 8px; background: #eef4ff; font-size: 11px; }
-.ms-bulletin-subj { font-weight: bold; padding: 6px 8px 0; color: #cc5500; font-size: 13px; }
-.ms-bulletin-body { padding: 4px 8px 8px; font-size: 12px; white-space: pre-wrap; word-wrap: break-word; }
 
 /* ---------- sign-up / log-in ---------- */
 .ms-signup { max-width: 600px; margin: 18px auto; font-size: 12px; }
@@ -800,4 +796,156 @@ a.ms-time:hover { text-decoration: underline; opacity: 1; }
     .ms-note-row > .ms-note-mid, .ms-note-row > .ms-time { grid-column: 2; }
     .ms-note-av .av-wrap + .av-wrap { margin-left: -12px; }
     .ms-discussion .ms-feeditem { padding-left: 0; padding-right: 0; }
+}
+
+/* ---------- Boards (phase 3): the index, a board's thread list, a thread and its comments ---------- */
+.is-hidden { display: none !important; }
+
+/* the index: icon · board + description · threads · last post */
+.bi-table { margin: 8px; }
+.bi-head, .bi-row { display: grid; grid-template-columns: 54px minmax(0, 1fr) 84px 220px; gap: 0 8px; align-items: center; }
+.bi-head { padding: 4px 8px; }
+.bi-head > :first-child { grid-column: 1 / span 2; }
+.bi-row { padding: 8px; border-top: 1px solid #ddd; font-size: 12px; background: #fff; color: #000; }
+.bi-row:nth-child(even) { background: #f7f9ff; }
+.bi-icon { font-size: 28px; text-align: center; line-height: 1; }
+.bi-name { font-size: 14px; font-weight: bold; color: #003366; text-decoration: none; }
+.bi-name:hover { text-decoration: underline; }
+.bi-desc { font-size: 11px; color: #555; margin-top: 2px; overflow-wrap: anywhere; }
+.bi-threads { text-align: center; }
+.bi-threads .bi-lbl { display: none; }
+.bi-last { min-width: 0; }
+.bi-lastlink { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; color: #003366; font-weight: bold; text-decoration: none; }
+.bi-lastlink:hover { text-decoration: underline; }
+.bi-last .ms-time { opacity: .8; }
+
+/* a board: ▲ ▼ 💬 columns, last post */
+.bb-sorts { padding: 6px 8px; }
+.bb-sorts a.btn98 { text-decoration: none; color: #000; }
+.bb-table { margin: 0 8px; }
+.bb-head, .bb-row { display: grid; grid-template-columns: 46px minmax(0, 1fr) 52px 52px 52px 170px; gap: 0 6px; align-items: center; }
+.bb-head { background: #6699cc; color: #fff; font-weight: bold; font-size: 12px; padding: 3px 8px; text-shadow: 1px 1px 0 rgba(0, 0, 0, .35); }
+.bb-head > .bb-h-main { grid-column: 1 / span 2; }
+.bb-head > span:not(.bb-h-main):not(.bb-h-last) { text-align: center; }
+.bb-table + div { margin: 0 8px; border: 1px solid #6699cc; border-top: 0; }
+.bb-table + div > .ms-empty { background: #fff; }
+.bb-row { padding: 7px 8px; border-bottom: 1px solid #ddd; font-size: 12px; background: #fff; color: #000; }
+.bb-row:nth-child(even) { background: #f7f9ff; }
+.bb-row:last-child { border-bottom: 0; }
+.bb-row.is-sticky { background: #fffbe6; }
+.bb-icon { text-align: center; font-size: 16px; line-height: 1.2; }
+.bb-title { font-weight: bold; font-size: 13px; color: #003366; text-decoration: none; overflow-wrap: anywhere; }
+.bb-title:hover { text-decoration: underline; }
+.bb-by { margin-top: 1px; }
+.bb-excerpt { font-size: 11px; color: #555; margin-top: 2px; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow-wrap: anywhere; }
+.bb-stat { text-align: center; font-size: 11px; white-space: nowrap; }
+.bb-up b { color: #cc5500; }
+.bb-down b { color: #1c3f94; }
+.bb-last { font-size: 11px; min-width: 0; overflow-wrap: anywhere; }
+
+/* a thread as a card (on a #tag page): board chip, ▲ ▼ 💬 to read, all leading to the thread */
+.ms-chip.pc-board { text-decoration: none; white-space: nowrap; }
+.ms-chip.pc-board:hover { text-decoration: underline; }
+.pc-threadstats { display: inline-flex; gap: 12px; margin-top: 4px; font-size: 11px; color: inherit; text-decoration: none; }
+.pc-threadstats:hover b { text-decoration: underline; }
+.pc-threadstats .bb-up b { color: #cc5500; }
+.pc-threadstats .bb-down b { color: #1c3f94; }
+
+/* ▲n ▼n */
+.bv { display: inline-flex; gap: 4px; align-items: center; }
+.bv-btn {
+    display: inline-flex; align-items: center; gap: 4px; min-height: 24px; padding: 1px 9px; font: inherit; font-size: 12px; cursor: pointer;
+    color: #000; background: #ece9f4; border: 2px outset #fff;
+}
+.bv-btn:hover { background: #f5f0fb; }
+.bv-glyph { font-size: 11px; line-height: 1; }
+.bv-n { font-weight: bold; min-width: 8px; }
+.bv-btn.on { border-style: inset; }
+.bv-btn.up.on { background: #ffd9a8; color: #a34100; }
+.bv-btn.down.on { background: #cfd8f7; color: #1c3f94; }
+.bv-btn.is-off { opacity: .55; cursor: not-allowed; }
+
+/* a thread */
+.bt-thread { padding: 14px 12px 8px; background: #fff; color: #000; border-bottom: 2px solid #99aacc; }
+.bt-title { margin: 0 0 8px; font: bold 22px/1.25 Georgia, 'Times New Roman', serif; color: #4b2d83; overflow-wrap: anywhere; }
+.bt-title.ms-gone { color: #777; }
+.bt-by { display: flex; align-items: center; gap: 8px; font-size: 12px; margin-bottom: 10px; }
+.bt-body { font-size: 14px; line-height: 1.5; white-space: pre-wrap; overflow-wrap: anywhere; }
+.bt-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; margin-top: 12px; padding-top: 6px; border-top: 1px solid rgba(128, 128, 128, .35); font-size: 12px; }
+.bt-acts .ms-actions { margin-left: 0; }
+.bt-mod { margin-top: 8px; padding: 6px 8px; background: #fff8e0; border: 1px solid #f0d68a; font-size: 12px; display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.bt-locked { margin: 8px; border: 1px solid #f0d68a; }
+.bt-bar { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; padding: 6px 8px; background: #eef4ff; border-bottom: 1px solid #c7d2e8; }
+.bt-h2 { margin: 0; font-size: 14px; color: #003366; }
+.bt-bar .ms-feedbar { border: 0; padding: 0; margin-left: auto; }
+.bt-bar a.btn98 { text-decoration: none; color: #000; }
+.bt-boxwrap { padding: 8px; }
+.bt-boxwrap > .ms-note { margin: 0; border: 1px solid #f0d68a; }
+.bt-boxwrap .ms-compose { margin: 0; }
+.bc-box-body textarea { width: 100%; min-height: 72px; box-sizing: border-box; resize: vertical; border: 2px inset #fff; padding: 4px; font: inherit; font-size: 13px; background: #fff; color: #000; }
+.bc-box-body { display: flex; flex-direction: column; gap: 4px; }
+.ms-compose-body.bc-box-body { padding: 6px; align-items: stretch; }
+.bc-box-btns { display: flex; align-items: center; justify-content: flex-end; gap: 8px; }
+
+/* nested comments */
+.bc-tree { padding: 0 8px 12px; }
+.bc-comment { margin-top: 10px; font-size: 12px; }
+.bc-head { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; font-size: 11px; }
+.bc-head .ms-avatar { width: 22px; height: 22px; }
+.bc-head .ms-time { opacity: .7; }
+.bc-toggle { font: 11px/1 monospace; background: none; border: 0; padding: 2px 2px; color: #555; cursor: pointer; }
+.bc-toggle:hover { color: #cc5500; }
+.bc-op { margin-left: 0; }
+.bc-body { margin: 3px 0 2px 2px; font-size: 13px; line-height: 1.4; white-space: pre-wrap; overflow-wrap: anywhere; }
+.bc-acts { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 12px; margin: 3px 0 0 2px; font-size: 11px; }
+.bc-acts .ms-actions { margin-left: 0; font-size: 11px; }
+.bc-acts .bc-replylink { color: #666; font-weight: bold; text-decoration: none; }
+.bc-acts .bc-replylink:hover { color: #cc5500; text-decoration: underline; }
+.bc-acts .bv-btn { min-height: 20px; padding: 0 7px; font-size: 11px; }
+.bc-slot > .bc-box { margin: 6px 0 2px 2px; }
+.bc-kids { position: relative; margin-left: 4px; padding-left: 14px; }
+.bc-rail { position: absolute; left: 0; top: 2px; height: calc(100% - 2px); width: 10px; padding: 0; border: 0; cursor: pointer; background: linear-gradient(#c7d2e8, #c7d2e8) 4px 0 / 2px 100% no-repeat; }
+.bc-rail:hover, .bc-rail:focus-visible { background-image: linear-gradient(#6699cc, #6699cc); }
+.bc-kids > .bc-rail:only-child { display: none; }
+.bc-comment.is-folded > .bc-main, .bc-comment.is-folded > .bc-kids { display: none; }
+.bc-continue { display: block; margin: 8px 0 2px; color: #003366; font-weight: bold; font-size: 12px; }
+.btn98.bc-more { margin: 8px 0 2px; font-size: 11px; padding: 2px 10px; }
+
+/* Moderation: board requests */
+.mod-boardform { padding: 4px 0 0; max-width: none; }
+.mod-boardform .row { align-items: flex-end; }
+.mod-boardform .row label { flex: 1 1 140px; }
+.mod-boardform .mod-icon { width: 64px; }
+.mod-boardform .row label:last-child { flex: 0 0 72px; }
+
+@media (max-width: 760px) {
+    .bi-table, .bb-table { margin: 6px 0; }
+    .bb-table + div { margin: 0; }
+    .bi-head { display: none; }
+    .bi-row { grid-template-columns: 40px minmax(0, 1fr); gap: 2px 8px; align-items: start; }
+    .bi-row > .bi-icon { grid-row: 1 / span 3; font-size: 26px; }
+    .bi-row > .bi-main, .bi-row > .bi-threads, .bi-row > .bi-last { grid-column: 2; }
+    .bi-threads { text-align: left; font-size: 11px; color: #555; }
+    .bi-threads .bi-lbl { display: inline; }
+    .bb-head { display: none; }
+    .bb-row { grid-template-columns: 30px repeat(3, auto) minmax(0, 1fr); gap: 3px 10px; }
+    .bb-row > .bb-icon { grid-row: 1 / span 3; align-self: start; }
+    .bb-row > .bb-main { grid-column: 2 / -1; }
+    .bb-row > .bb-up { grid-column: 2; }
+    .bb-row > .bb-down { grid-column: 3; }
+    .bb-row > .bb-coms { grid-column: 4; }
+    .bb-row > .bb-last { grid-column: 2 / -1; color: #555; font-size: 10px; }
+    .bb-row > .bb-stat { text-align: left; }
+    .bb-sorts { padding: 6px 0; }
+    .bt-title { font-size: 20px; }
+    .bt-thread { padding: 12px 8px 8px; }
+    .bt-bar .ms-feedbar { margin-left: 0; }
+    .bc-tree { padding: 0 4px 12px; }
+    .bc-kids { margin-left: 2px; padding-left: 10px; }
+    .bc-rail { width: 12px; background-position: 5px 0; }
+    .bc-toggle { padding: 6px 4px; }
+    .bc-acts .bv-btn { min-height: 30px; padding: 0 10px; }
+    .bc-acts .bc-replylink { padding: 6px 4px; }
+    .bc-acts .ms-actions a { padding: 6px 2px; }
+    .bc-body { font-size: 14px; }
 }

@@ -11,7 +11,7 @@ import { POST_LIMITS, THREADED_SQL, POST_COLS, POSTS, EXCERPT, NEWEST, LIVE, pag
 const STANDS_FOR = '(SELECT CASE WHEN kind = \'repost\' THEN quote_of ELSE id END FROM posts WHERE id = ?3)';
 
 // The post being replied to, liked, reposted, quoted or bookmarked. Anything the viewer may not see, or that takes no
-// interactions (Friends' Comments, bulletins), is "gone".
+// interactions (Friends' Comments; board threads and comments take votes instead), is "gone".
 async function target(c) {
   const id = int(c.params.id);
   const p = id && await c.env.DB.prepare(`SELECT p.id, p.author_id, p.root_id, a.follow_policy FROM posts p JOIN users a ON a.id = p.author_id

@@ -7,17 +7,19 @@ import { toast, oops, pageTitle } from '../core/ui.js';
 import { S, loadMe } from '../core/state.js';
 import { route } from '../core/router.js';
 import { nameLink } from '../widgets/people.js';
+import { boardRequests } from '../widgets/boardrequests.js';
 
-const KIND_LABEL = { wall: 'Friends\' Comment', status: 'status', blog: 'blog post', bulletin: 'bulletin' };   // what a report's post is called
+const KIND_LABEL = { wall: 'Friends\' Comment', status: 'status', blog: 'blog post', bulletin: 'bulletin', thread: 'board thread', comment: 'board comment' };   // what a report's post is called
 
 let modView = 'open';
 export async function renderAdmin(root) {
   if (!S.me.isAdmin) { root.append(pageTitle('Moderation'), h('div', { class: 'ms-empty', text: 'moderators only.' })); return; }
-  const [d, log] = await Promise.all([api.get('/admin/reports?status=' + modView), api.get('/admin/log')]);
+  const [d, log, asked] = await Promise.all([api.get('/admin/reports?status=' + modView), api.get('/admin/log'), api.get('/admin/board-requests?status=' + modView)]);
   root.append(pageTitle('Moderation',
     h('button', { class: 'btn98' + (modView === 'open' ? ' pressed' : ''), type: 'button', text: 'open', onclick: () => { modView = 'open'; route(); } }),
     h('button', { class: 'btn98' + (modView === 'closed' ? ' pressed' : ''), type: 'button', text: 'closed', onclick: () => { modView = 'closed'; route(); } })));
   root.append(h('div', { class: 'ms-note', text: 'hide = nobody sees the post or message any more (it stays in the database as evidence). ban = the account is logged out, can\'t log in, and everything it wrote disappears from the site. both can be undone.' }));
+  root.append(boardRequests(asked.requests, () => route()));
   if (!d.reports.length) root.append(h('div', { class: 'ms-empty', text: modView === 'open' ? 'no open reports. ✨' : 'nothing closed yet.' }));
   const act = async (r, action) => {
     const note = action === 'dismiss' ? '' : (prompt('note for the log (optional):') || '');

@@ -132,3 +132,155 @@ test('Friends\' Comments link their @mentions but not #tags (the server doesn\'t
   assert.equal(body.textContent, 'hi @kat, #glitter forever');
   assert.deepEqual(body.querySelectorAll('a').map(a => a.textContent), ['@kat']);
 });
+
+/* ---- boards (phase 3): votes and nested comments ---- */
+const { voteBar } = await import('../public/js/widgets/votes.js');
+const { commentTree } = await import('../public/js/widgets/comments.js');
+
+const BOARD = { slug: 'cooking', name: 'Cooking', icon: '🍳' };
+const VOTES = { up: 2, down: 1, comments: 0 };
+// a thread or comment as the API sends it
+const threadItem = more => ({ ...item({ id: 50, kind: 'thread', subject: 'grilled cheese', author: kat }), board: BOARD, sticky: false, locked: false, counts: { up: 0, down: 0, comments: 4 }, viewer: { vote: 0 }, ...more });
+const commentItem = (id, body, more) => ({ ...item({ id, kind: 'comment', body, author: pal, rootId: 50 }), board: BOARD, counts: VOTES, viewer: { vote: 0 }, ...more });
+const node = (id, body, children = []) => ({ item: commentItem(id, body), children });
+
+test('votes: ▲ ▼ change at once, switching moves one count to the other, and a refused vote puts the numbers back', async () => {
+  S.me = ME;
+  const calls = [];
+  let answerWith = null;
+  dom.onFetch = (method, path, body) => { calls.push([method, path, body]); return answerWith(); };
+  const bar = voteBar(commentItem(9, 'hi'));
+  const [up, down] = bar.querySelectorAll('button');
+  assert.deepEqual([up.textContent, down.textContent], ['▲2', '▼1']);
+
+  answerWith = () => answer(200, { vote: 1, up: 3, down: 1 });
+  up.click();
+  assert.deepEqual([up.textContent, up.classList.contains('on'), up.getAttribute('aria-pressed')], ['▲3', true, 'true'], 'liked at once');
+  await dom.settle();
+  assert.deepEqual(calls.at(-1), ['PUT', '/posts/9/vote', { value: 1 }]);
+
+  answerWith = () => answer(200, { vote: -1, up: 2, down: 2 });
+  down.click();
+  assert.deepEqual([up.textContent, down.textContent, down.classList.contains('on')], ['▲2', '▼2', true], 'switching: one goes down, the other up');
+  await dom.settle();
+  assert.deepEqual(calls.at(-1)[2], { value: -1 });
+
+  answerWith = () => answer(200, { vote: 0, up: 2, down: 1 });
+  down.click();                                                      // your current vote again takes it back
+  await dom.settle();
+  assert.deepEqual(calls.at(-1)[2], { value: 0 });
+  assert.deepEqual([up.textContent, down.textContent, up.classList.contains('on'), down.classList.contains('on')], ['▲2', '▼1', false, false]);
+
+  answerWith = () => answer(403, { error: 'this thread is locked.' });
+  up.click();
+  assert.equal(up.textContent, '▲3');
+  await dom.settle();
+  assert.deepEqual([up.textContent, up.classList.contains('on')], ['▲2', false], 'refused: only the vote goes back');
+  assert.match(document.querySelector('#toasts').textContent, /this thread is locked\./);
+});
+
+test('votes: no asking the server about your own post or a locked thread; logged out they ask you to log in', async () => {
+  const calls = [];
+  dom.onFetch = (method, path) => { calls.push(path); return answer(200, { vote: 1, up: 3, down: 1 }); };
+  S.me = ME;
+  voteBar(commentItem(9, 'mine', { author: ME })).querySelector('button').click();
+  voteBar(commentItem(9, 'locked'), { locked: true }).querySelector('button').click();
+  await dom.settle();
+  assert.deepEqual(calls, [], 'no request');
+  assert.match(document.querySelector('#toasts').textContent, /you can't vote on your own post/);
+  assert.match(document.querySelector('#toasts').textContent, /locked: no more votes here/);
+});
+
+test('comment tree: the depth cap hides what is under it behind "Continue this thread →", [−] folds to [+n], and a deleted one is [deleted]', async () => {
+  S.me = ME;
+  const tomb = { item: commentItem(12, '', { deleted: true, body: '' }), children: [node(13, 'deep one', [node(14, 'too deep to show')])] };
+  const tree = commentTree(threadItem(), [{ item: commentItem(11, 'first @kat', { mentions: [{ id: 2, name: 'kat' }] }), children: [tomb] }], { max: 3 });
+  const shown = tree.el.querySelectorAll('.bc-comment').map(e => Number(e.dataset.id));
+  assert.deepEqual(shown, [11, 12, 13], 'three levels, not the fourth');
+  const link = tree.el.querySelector('a.bc-continue');
+  assert.deepEqual([link.textContent, link.getAttribute('href')], ['Continue this thread →', '/boards/cooking/50?c=13']);
+  const gone = tree.el.querySelectorAll('.bc-comment')[1];
+  assert.match(gone.querySelector('.bc-head').textContent, /\[deleted\]/);
+  assert.equal(gone.querySelectorAll('.bv').length, 1, 'a [deleted] comment has no vote buttons of its own (only the reply under it has)');
+  assert.deepEqual(tree.el.querySelector('a.ms-mention').getAttribute('href'), '/u/kat', 'comments link @mentions');
+
+  const first = tree.el.querySelector('.bc-comment');
+  const toggle = first.querySelector('button.bc-toggle');
+  assert.equal(toggle.textContent, '[−]');
+  toggle.click();
+  assert.deepEqual([first.classList.contains('is-folded'), toggle.textContent], [true, '[+2]'], 'folded, with what is under it counted');
+  toggle.click();
+  assert.deepEqual([first.classList.contains('is-folded'), toggle.textContent], [false, '[−]']);
+});
+
+test('comment tree: "Load more replies (n)" asks for the rest and puts it where the button was; a locked thread has no Reply', async () => {
+  S.me = ME;
+  const asked = [];
+  dom.onFetch = (method, path) => { asked.push(path); return answer(200, { parent: null, sort: 'best', comments: [node(21, 'more a'), node(22, 'more b')] }); };
+  const tree = commentTree(threadItem(), [node(20, 'first'), { more: 2, parent: 50, after: '0.5:1700000000000:20' }]);
+  const button = tree.el.querySelector('button.bc-more');
+  assert.equal(button.textContent, 'Load more replies (2)');
+  button.click();
+  await dom.settle();
+  assert.deepEqual(asked, ['/threads/50/comments/50?sort=best&after=0.5%3A1700000000000%3A20'], 'with the stub\'s cursor');
+  assert.deepEqual(tree.el.querySelectorAll('.bc-comment').map(e => Number(e.dataset.id)), [20, 21, 22]);
+  assert.equal(tree.el.querySelectorAll('button.bc-more').length, 0, 'the button is gone');
+  assert.equal(tree.el.querySelectorAll('a.bc-replylink').length, 3, 'Reply under each');
+  const locked = commentTree(threadItem({ locked: true }), [node(30, 'x')]);
+  assert.equal(locked.el.querySelectorAll('a.bc-replylink').length, 0, 'locked: no Reply');
+});
+
+test('comment tree: a "load more" answer never draws a comment that is already on the page, and a stub without a cursor starts from the first', async () => {
+  S.me = ME;
+  const asked = [];
+  dom.onFetch = (method, path) => { asked.push(path); return answer(200, { parent: null, sort: 'new', comments: [node(41, 'mine, already shown'), node(40, 'shown'), node(43, 'new to the page')] }); };
+  const tree = commentTree(threadItem(), [node(41, 'mine'), node(40, 'first'), node(42, 'second', [{ more: 3, parent: 42, after: null }])], { sort: 'new' });
+  tree.el.querySelector('button.bc-more').click();
+  await dom.settle();
+  assert.deepEqual(asked, ['/threads/50/comments/42?sort=new']);
+  assert.deepEqual(tree.el.querySelectorAll('.bc-comment').map(e => Number(e.dataset.id)), [41, 40, 42, 43], 'each comment once');
+});
+
+test('an archived board\'s thread: no comment box, no Reply, and its votes say the board is archived', async () => {
+  S.me = ME;
+  const ARCHIVED = { ...BOARD, archived: true };
+  const tree = commentTree(threadItem({ board: ARCHIVED }), [node(60, 'x', [node(61, 'y')])]);
+  assert.equal(tree.el.querySelectorAll('a.bc-replylink').length, 0, 'no Reply');
+  const calls = [];
+  dom.onFetch = (method, path) => { calls.push(path); return answer(200, {}); };
+  tree.el.querySelector('button.bv-btn').click();
+  await dom.settle();
+  assert.deepEqual(calls, [], 'no request');
+  assert.match(document.querySelector('#toasts').textContent, /this board is archived: no more votes here/);
+
+  const { renderBoardThread } = await import('../public/js/pages/thread.js');
+  dom.onFetch = serve({ 'GET /threads/50?sort=best': { thread: threadItem({ board: ARCHIVED }), sort: 'best', comments: [node(60, 'x')] } });
+  const root = document.createElement('main');
+  await renderBoardThread(root, 'cooking', '50');
+  assert.deepEqual([root.querySelectorAll('textarea').length, root.querySelectorAll('form').length, root.querySelectorAll('a.bc-replylink').length], [0, 0, 0], 'no comment box, no Reply');
+  assert.match(root.querySelector('.bt-locked').textContent, /this board is archived/);
+  const open = document.createElement('main');
+  dom.onFetch = serve({ 'GET /threads/50?sort=best': { thread: threadItem(), sort: 'best', comments: [node(60, 'x')] } });
+  await renderBoardThread(open, 'cooking', '50');
+  assert.deepEqual([open.querySelectorAll('textarea').length, open.querySelectorAll('a.bc-replylink').length], [1, 1], 'an open board has both');
+});
+
+test('a thread on a #tag page is a card that leads to the thread: board, title, words and ▲ ▼ 💬 to read, no like / repost / bookmark row', () => {
+  S.me = ME;
+  const card = postCard(threadItem({ body: 'with #cheese and @kat', mentions: [{ id: 2, name: 'kat' }], counts: { up: 3, down: 1, comments: 7 } }));
+  const links = card.querySelectorAll('a').map(a => [a.textContent, a.getAttribute('href')]);
+  assert.ok(links.some(([t, href]) => t === '🍳 Cooking' && href === '/boards/cooking'), 'the board chip');
+  assert.ok(links.some(([t, href]) => t === 'grilled cheese' && href === '/boards/cooking/50'), 'the title');
+  assert.equal(card.querySelector('a.pc-threadstats').getAttribute('href'), '/boards/cooking/50');
+  assert.equal(card.querySelector('a.pc-threadstats').textContent, '▲ 3▼ 1💬 7');
+  assert.equal(card.querySelector('a.ms-time').getAttribute('href'), '/boards/cooking/50', 'the time too');
+  assert.ok(!links.some(([, href]) => href && href.includes('/post/')), 'nothing points at a status page');
+  assert.deepEqual([card.querySelectorAll('button.ms-act').length, card.querySelectorAll('.bv').length], [0, 0], 'nothing to press');
+  assert.match(card.querySelector('.ms-feedtext').textContent, /with #cheese and @kat/);
+});
+
+test('the board request form suggests the slug the server would make (never ending in a dash)', async () => {
+  const { slugOf } = await import('../public/js/widgets/boardrequests.js');
+  assert.equal(slugOf('Pixel Art & Sprites'), 'pixel-art-sprites');
+  assert.equal(slugOf('abcdefghij abcdefghij abcdefg xyz'), 'abcdefghij-abcdefghij-abcdefg', 'cut at 30, then the dash goes (api.test.mjs: the server agrees)');
+});

@@ -5,10 +5,11 @@
 ```
 one Cloudflare Worker "ourspace-social" (same origin for pages and API, so the login cookie is HttpOnly + SameSite=Lax)
  ├── public/      the pages: index.html + app.js (single-page app, ES modules), app.css, blog/, assets/   (Workers static assets)
- ├── /api/*       src/index.js → accounts, profiles, follows, social, notifications, messages, safety, music, horoscope
+ ├── /api/*       src/index.js → accounts, profiles, follows, social, boards, notifications, messages, safety, music, horoscope
  ├── D1 "ourspace-social-db"   migrations/ (users, profiles, sessions, identities, oauth_states, oauth_signups,
  │                             password_resets, spotify, follows, posts, likes, bookmarks, mentions, post_tags,
- │                             notifications, markers, messages, blocks, reports, mod_log, attempts)
+ │                             notifications, markers, boards, board_requests, votes, messages, blocks, reports,
+ │                             mod_log, attempts)
  └── cron */30    housekeeping: expired sessions, sign-in tickets, reset links, old rate-limit rows
 ```
 
@@ -21,7 +22,7 @@ src/
   index.js     Worker entry
   shared/      infrastructure; never imports a feature
   catalog/     the choices people have when decorating a page
-  accounts/  profiles/  follows/  social/  notifications/  messages/  safety/  music/  horoscope/     features
+  accounts/  profiles/  follows/  social/  boards/  notifications/  messages/  safety/  music/  horoscope/     features
 ```
 
 | Path | What |
@@ -30,6 +31,7 @@ src/
 | `src/shared/http.js` | JSON answers, `fail(status, message)` errors, reading JSON bodies, cookies, SHA-256. |
 | `src/shared/db.js` | User lookups, the shape a user takes in every answer, follows (who are friends, who may see a private profile's posts, how two people are connected, the SQL for the followers / following / friends lists), blocks, which posts the viewer may see (`VISIBLE`, `SEES`, `REPOST_OK`), a post in brief (`lite`), and `limit()`, the rate limiter. |
 | `src/shared/notify.js` | Notifications: `notify()`, the statement each feature adds to its write batch (never to yourself, across a block, or about a post the person can't see), and `SHOWN`, which ones still show. |
+| `src/shared/ranking.js` | The board sort keys of [decisions/001](decisions/001-ranking.md): hot, best (the Wilson bound) and score, with their constants, each as a JS function and as the SQL that stores it (`RESORT`). |
 | `src/shared/text.js` | Text cleaning: invisible characters, links removed, the blocked-word list (whole words). Reading the `@mentions` and `#tags` out of a post. |
 | `src/shared/dates.js` | Birthdays: parsing, the age check, age on a given day. |
 | `src/shared/seal.js` | AES-GCM encryption for the tokens we have to keep (`TOKEN_KEY`), and random tokens. |
@@ -41,9 +43,13 @@ src/
 | `src/accounts/oauth.js` | "Other options" sign-in (Google, Apple, Microsoft, Discord, GitHub), linking and unlinking them in Settings, and the Spotify connection. Authorization code flow with PKCE (Apple uses a signed client secret instead). |
 | `src/profiles/profiles.js` | Profiles (counts, a Top 8 of friends, the latest status and blog posts, Friends' Comments), Browse, Edit My Page validation (only values from `src/catalog/options.js` are accepted), the follow and message settings, show age / show sign. |
 | `src/follows/follows.js` | Following, unfollowing, accepting and removing followers, the Requests tab, the followers / following / friends lists. |
-| `src/social/social.js` | Statuses, blog posts, Friends' Comments, bulletins, deleting posts (tombstones), conversations, the Posts and Replies tabs, `#tag` pages, the feed and the read markers. |
+| `src/social/social.js` | Statuses, blog posts, Friends' Comments, deleting posts (tombstones; board threads and comments too), conversations, the Posts and Replies tabs, `#tag` pages, the feed and the read markers. |
 | `src/social/interactions.js` | Replies, quotes, likes, reposts, bookmarks and the bookmarks list. |
-| `src/social/items.js` | The item every list shows, with what a whole page of them needs fetched in one batch, and writing a new post with its mentions, tags, counts and notifications in one batch. |
+| `src/social/items.js` | The item every list shows (board threads and comments too), with what a whole page of them needs fetched in one batch, and writing a new post with its mentions, tags, counts and notifications in one batch. |
+| `src/boards/boards.js` | The boards index, a board's threads in each sort, threads and their comment trees, writing threads and comments, and the moderators' sticky, lock and archive. |
+| `src/boards/tree.js` | A thread's comments as a tree, with the caps and the "more" stubs. |
+| `src/boards/votes.js` | Likes and dislikes on threads and comments. |
+| `src/boards/requests.js` | Asking for a new board, and the moderators approving or declining. |
 | `src/notifications/notifications.js` | The Notifications tab. |
 | `src/messages/messages.js` | Private messages. |
 | `src/safety/safety.js` | Blocks, reports (with a snapshot of the reported text), the moderation actions and log. |
@@ -54,7 +60,7 @@ src/
 | `public/assets/` | Every image the pages and `src/catalog/` use. Credits are in [CREDITS.md](../public/assets/CREDITS.md), served at `/assets/CREDITS.md`. |
 | `migrations/` | D1 schema, one numbered file per change. |
 | `tools/demo.mjs` | `npm run demo`: the site on your computer with sample content and pretend sign-in pages. |
-| `test/` | `api.test.mjs` (end-to-end, against a throwaway local Worker), `migrations.test.mjs` (a migration applied to a database the earlier ones left), `astro.test.mjs` (the astronomy against known dates), `text.test.mjs` (the `@mention` and `#tag` readers), `frontend.test.mjs` (page code from `public/js` on a pretend browser, `helpers/fake-dom.mjs`, with the API answered by the test), `static.test.mjs` (assets and imports), `helpers/mock-providers.mjs` (a stand-in for every sign-in provider, Spotify and iTunes, used by the tests and the demo). |
+| `test/` | `api.test.mjs` (end-to-end, against a throwaway local Worker), `migrations.test.mjs` (a migration applied to a database the earlier ones left), `astro.test.mjs` (the astronomy against known dates), `text.test.mjs` (the `@mention` and `#tag` readers), `ranking.test.mjs` (the board sort keys against worked-out values, and the comment tree), `frontend.test.mjs` (page code from `public/js` on a pretend browser, `helpers/fake-dom.mjs`, with the API answered by the test), `static.test.mjs` (assets and imports), `helpers/mock-providers.mjs` (a stand-in for every sign-in provider, Spotify and iTunes, used by the tests and the demo). |
 
 Features import only `shared/` and `catalog/`. The few exceptions are listed in [CONVENTIONS.md](../CONVENTIONS.md).
 
@@ -86,7 +92,7 @@ Features import only `shared/` and `catalog/`. The few exceptions are listed in 
 | `follows` | One row per follow: `follower_id` follows `followee_id`, `status` `accepted` or `pending`, `created`, `accepted` (when). **Friends** are two people who follow each other, both accepted; friendship isn't stored anywhere else. |
 | `users.follow_policy` | `open` (the default: a follow is accepted at once) or `approve` (a private profile: follows wait as requests). |
 | `users.dm_policy` | `everyone` or `friends` (in the sense above). |
-| `posts` | `kind` is `status` (up to 500 characters), `blog` (title in `subject`, an optional `subtitle`, `mood`, a body up to 20,000), `wall` (a Friends' Comment on `target_id`'s page) or `bulletin`; since `0003` also `reply`, `quote` and `repost` (see [the next section](#replies-likes-reposts-quotes-bookmarks-mentions-tags-and-notifications)). |
+| `posts` | `kind` is `status` (up to 500 characters), `blog` (title in `subject`, an optional `subtitle`, `mood`, a body up to 20,000), `wall` (a Friends' Comment on `target_id`'s page) or `bulletin`; since `0003` also `reply`, `quote` and `repost` (see [the next section](#replies-likes-reposts-quotes-bookmarks-mentions-tags-and-notifications)); since `0004` `thread` and `comment` instead of `bulletin` (see [Boards](#boards-threads-nested-comments-and-votes)). |
 | `markers` | Read positions, like Mastodon's markers: `(user_id, name)` → `last_created` / `last_id` of the last thing seen. `name` is `feed` (the last post) or `notifications` (the newest notification). |
 
 ### Who sees what
@@ -97,7 +103,7 @@ Features import only `shared/` and `catalog/`. The few exceptions are listed in 
 
 ### The feed
 
-`GET /api/feed` has statuses, blog posts, quotes and reposts, never replies, comments or bulletins. A repost of a post the viewer may not see (its author went private, blocked them, was banned) is left out.
+`GET /api/feed` has statuses, blog posts, quotes and reposts, never replies, Friends' Comments or board threads. A repost of a post the viewer may not see (its author went private, blocked them, was banned) is left out.
 
 - **scope** `following` (the default when logged in): people I follow (accepted) and me. `everyone` (always, when logged out): everybody with an open profile.
 - **mode** `latest`: newest first, 30 a page; `next` is the cursor (`<created>:<id>`) for `before=`. `resume` ("pick up where I left off"): oldest first, from just after my `feed` marker (or three days back if I have none yet); `next` is the cursor for `after=`. Resume leaves out my own posts and, in the following scope, anything written before I followed its author.
@@ -131,7 +137,7 @@ Features import only `shared/` and `catalog/`. The few exceptions are listed in 
 
 ## Replies, likes, reposts, quotes, bookmarks, mentions, tags and notifications
 
-Statuses and blog posts get Twitter's interactions (bulletin-board threads are a later phase). Friends' Comments only get `@mentions`; bulletins get nothing new.
+Statuses and blog posts get Twitter's interactions. Friends' Comments only get `@mentions`. Board threads and comments get Reddit's instead (next section).
 
 ### The data
 
@@ -140,7 +146,7 @@ Statuses and blog posts get Twitter's interactions (bulletin-board threads are a
 | Table / column | What |
 |---|---|
 | `posts.kind` | adds `reply` (up to 500 characters, answering `reply_to`), `quote` (up to 500, about `quote_of`) and `repost` (no words, just `quote_of`; one per person per post, a partial unique index). |
-| `posts.reply_to`, `root_id`, `quote_of` | The post a reply answers, its conversation's first post (NULL on that post itself and on anything that isn't a reply), the post a quote or repost points at. `quote_of` is `ON DELETE SET NULL`; `reply_to` and `root_id` are plain ids, not foreign keys, so when a post goes with its writer's account the replies to it keep pointing at it: they stay in their conversation and say they answer a deleted account. |
+| `posts.reply_to`, `root_id`, `quote_of` | The post a reply answers, its conversation's first post (NULL on that post itself and on anything that isn't a reply), the post a quote or repost points at. `quote_of` is `ON DELETE SET NULL`; `reply_to` and `root_id` are plain ids, not foreign keys, so when a post goes with its writer's account the replies to it keep pointing at it: they stay in their conversation and say they answer a deleted account. (Board comments are the exception: they move up to the post above, see Boards.) |
 | `posts.like_count`, `reply_count`, `repost_count`, `quote_count` | Changed in the same batch as every write that changes them, and only when that write really happens (`EXISTS` / `NOT EXISTS` guards), so liking twice or two deletes at once can't skew them. Deleted replies and quotes aren't counted. Posts the viewer can't see are (as on Twitter). |
 | `posts.deleted` | A tombstone: a deleted post that still has replies or quotes stays, its words cleared, so the conversation keeps its shape. Once nothing holds it (no replies left, no quote that isn't deleted) it's removed, and so are the tombstones above it that only it held (`CLEAR_TOMBSTONES` in `src/shared/db.js`). |
 | `likes`, `bookmarks` | `(user_id, post_id, created)`. Bookmarks are private to their owner. |
@@ -199,6 +205,61 @@ Every list and page returns posts in one shape:
 | `GET /api/notifications?before=` | member | `{ items: [{ id, kind, created, actor, post, unread }], next, unread }`, newest first, 30 a page. `post` is the post in brief (as a quote's `quoted`, plus `page: { id, name, avatar }` for a Friends' Comment) or null. `unread` (the total) stops at 99. |
 | `GET /api/me` | anyone | `counts` adds `notifications`: unread ones, up to 99. |
 
+## Boards: threads, nested comments and votes
+
+The bulletin board became topic boards, like a forum: a board (Cooking, Random …) lists its threads, phpBB-style, and a thread opens with its whole post and its comments, nested Reddit-style. Threads and every comment take a like and a dislike, both counted and shown. Statuses and blog posts keep their tweet-style replies and likes.
+
+### The data
+
+`migrations/0004_boards.sql`:
+
+| Table / column | What |
+|---|---|
+| `boards` | `(id, slug, name, description, icon, position, created, archived)`. Curated: the 14 at launch (Music, Movies & TV, Games, Art & Layouts, Cooking, Pets, Sports, Tech & Computers, Fashion, Books & Writing, Astrology, School, Advice, Random), more from approved requests. `icon` is an emoji; the index is in `position` order. An archived board leaves the index and takes no new threads, comments or votes; what's in it stays readable. |
+| `board_requests` | `(id, user_id, name, reason, status, created, decided_by, decided, board_id)`. `status` `pending`, `approved` (`board_id` is the board it made) or `declined`. |
+| `posts.kind` | `thread` (a title in `subject` up to 120 characters, words up to 10,000) and `comment` (up to 10,000, answering `reply_to`: the thread or another comment; `root_id` is the thread). Both carry `board_id`. The bulletins became threads in Random, keeping their ids, writers and times; nothing writes `bulletin` any more. |
+| `posts.sticky`, `locked` | Threads only. Sticky threads come first in every sort; a locked one takes no new comments or votes. |
+| `posts.up_count`, `down_count` | The votes. `comment_count`: a thread's comments that aren't deleted, however deep. `reply_count` stays the direct answers (a thread's top-level comments, a comment's replies). Kept exact like 0003's counts: they move in the same batch as the write that changes them, and only when it really happens. |
+| `posts.hot`, `best`, `score` | The stored sort keys of [decisions/001](decisions/001-ranking.md), in `src/shared/ranking.js`: `score` = up - down; `best` = the Wilson lower bound of up among up + down at z = 1.2816; `hot` (threads) = sign(s)·log10(1 + \|s\|) + (created - EPOCH) / UNIT with s = up - down + min(comments from others, 5), EPOCH 2026-01-01, UNIT 2 days. They're recomputed by SQL in the same batch as every vote, comment and delete (`RESORT`), from the row the counts just landed in, so nothing can leave them stale; the JS functions are the unit-tested reference and what a new thread starts with. Each board sort has its index (`board_id, sticky, key DESC, created DESC, id DESC`, threads only). |
+| `votes` | `(user_id, post_id, value +1 \| -1, created)`, one per person per post. |
+| `notifications.request_id` | For the kinds `board_approved` and `board_declined`: the request it answers. A comment is told as a `reply`. |
+
+### The rules
+
+- **Boards are public spaces.** A thread or comment shows to everyone, logged in or not, even when its writer's profile is private (the privacy hint in Settings says a private member's bulletins are seen by whoever can see them; the front end words it for boards). Everything else that hides a post still hides it: a banned writer, a block either way, a moderator's hide, a deleted post. A comment the viewer can't see is left out of the tree with every reply under it.
+- **Never in the feed.** Board threads aren't in the Following or Everyone feed or on the Posts tab (Browse discovery is phase 6). Their `#tags` have pages like other posts' (`GET /api/tags/:tag`), and `@mentions` work in threads and comments. Comments get `@mentions` only, no `#tags`, like Friends' Comments.
+- **Reach.** A vote or a reply needs its target to be reachable for the writer the way the tree reaches it: the thread and every comment above the target show to them (none hidden, none by someone banned, no block either way; a tombstone on the way is fine). Otherwise it's a 404 and nothing moves. A notification about a comment shows only while that holds for its reader, so hiding a thread or a comment silences what was told about the comments under it.
+- **Votes**: one per person per post, switched or taken back (`value` 0). Never on your own post, a deleted or hidden one, in a locked thread or an archived board. Nobody is told about a vote. A vote checks in its own batch that the voter's vote is still the one it read and that the post still takes votes, so two votes at once or a delete or a lock at the same moment can't move the counts without the vote.
+- **Comments**: nested as deep as people like. A deleted comment that still has replies stays as a tombstone (`deleted: true`, no words, "[deleted]") until nothing holds it, as in phase 2; a deleted thread stays as one while any comment is in it, however deep. When a comment goes with its writer's account, the replies to it move up to the comment (or thread) it answered, so every comment answers a post that's there and every thread holding comments is there. Deleting an account takes its threads with all their comments, its comments elsewhere, and its votes, and puts the counts and keys of everyone else's posts right.
+- **Notifications**: a comment tells whoever wrote what it answers (the thread or the comment) as a `reply`, and anyone it `@mentions`, by phase 2's rules (never across a block, never about your own doings). A board request's answer tells the member who asked.
+- **Moderators** (only they) pin and lock threads, archive boards and decide requests; each lands in the moderation log. Threads and comments are reported and hidden like any post, and a locked thread can still be moderated.
+- **Rate limits**: threads 3 an hour and 10 a day, and they and comments count as posts (6 a minute, 300 a day); votes 300 an hour (taking one back is free); board requests 3 a day.
+
+### The answers
+
+- **A board's thread** (thread-lite): `{ id, subject, excerpt (the words cut at 200 characters, with …), author, created, sticky, locked, counts: { up, down, comments }, lastComment: { created, author } | null, viewer: { vote } }`. `viewer.vote` is 1, -1 or 0.
+- **A thread or comment as an item** (the item of the previous section, with votes instead of likes): `counts: { up, down, comments }` (a thread's comments however deep, a comment's direct replies), `viewer: { vote }`, `board: { slug, name, icon, archived }`; a thread also has `sticky` and `locked`. On a `#tag` page a thread shows as a card with its board, title, a line of its words and its ▲ ▼ 💬 counts (to read), all leading to the thread page. A comment's `replyTo` is the thread or the comment it answers, `rootId` its thread.
+- **A comment tree**: `[{ item, children: [...] }]`, siblings sorted within their parent: `best` (ties: older first), `new` or `old`. One answer holds up to 200 comments, 8 levels and 10 replies per comment (the top level takes the rest of the 200). What's cut is a stub `{ more, parent, after }`: `more` comments under `parent` (a comment, or the thread's id for the top level) after the sibling the cursor `after` names (`<best>:<created>:<id>` in best, `<created>:<id>` in new and old; null: from the first), which `GET /api/threads/:id/comments/:parent?sort=&after=` brings back. The cursor is a place in the sort, not a position, so comments written or deleted in between neither repeat nor go missing (the page also never draws a comment twice). The whole thread is read in one query (its oldest 5,000 comments), the tree is cut in the Worker (`src/boards/tree.js`), and only the comments that show are read in full, with one batch for what their items need.
+
+### The routes
+
+| Route | Access | Answer |
+|---|---|---|
+| `GET /api/boards` | anyone | `{ boards: [{ slug, name, description, icon, threads, lastPost: { created, author, thread: { id, subject } } \| null }] }`: the index in order, without archived boards. `threads` and `lastPost` count only what the viewer may see. |
+| `GET /api/boards/:slug?sort=hot\|new\|top\|best&before=` | anyone | `{ board: { slug, name, description, icon, archived }, sort, items: [thread-lite], next }`: 25 a page, the sticky threads first (first page only). Every sort ties on newest first. `next` is the cursor for `before=`: `<key>:<created>:<id>`. |
+| `POST /api/boards/:slug/threads` | member | `{ subject (120), body (10,000) }` → 201 `{ thread }` (an item). 403 on an archived board. |
+| `GET /api/threads/:id?sort=best\|new\|old` | anyone | `{ thread, sort, comments }`: the thread as an item (a tombstone too) and its comment tree. 404 if it's missing or hidden from the viewer. |
+| `GET /api/threads/:id/comments/:commentId?sort=&after=` | anyone | `{ parent, sort, comments }`: the tree under one of its comments (`parent` is that comment as an item), or under the thread itself when `:commentId` is the thread's id (`parent` null), after the sibling a stub's cursor `after` names (none: from the first). 404 for a comment that isn't in the thread or doesn't show. |
+| `POST /api/threads/:id/comments` | member | `{ body (10,000), parent? }` → 201 `{ comment }` (an item). `parent` is a comment in the thread (default: the thread). 403 when locked or archived, 404 when the thread or the comment is gone or the writer can't reach it (rules above). |
+| `PUT /api/posts/:id/vote` | member | `{ value: 1 \| -1 \| 0 }` → `{ vote, up, down }`. Threads and comments only (404 otherwise, and for one the voter can't reach); 400 on your own post; 403 when locked or archived (the message says which). |
+| `DELETE /api/posts/:id` | member | Deletes threads and comments too (previous section). |
+| `POST /api/boards/requests` | member | `{ name (40), reason (500) }` → 201 `{ request: { id, name, reason, status, created, decided } }` |
+| `GET /api/admin/board-requests?status=open\|closed` | moderator | `{ requests: [{ …request, user, decidedBy, board }] }`: waiting ones oldest first, or the last 100 decided. |
+| `POST /api/admin/board-requests/:id` | moderator | `{ action: approve \| decline, slug?, name?, icon?, description? }` → `{ request, board }`. Approving makes the board at the end of the index: `slug` (default: from the name; up to 30 lower-case letters, digits and dashes), `name` (default: the one asked for), `icon` (an emoji, default 💬), `description` (140). 409 when it was already decided or the slug is taken. |
+| `POST /api/admin/threads/:id` | moderator | `{ sticky?, locked? }` → `{ thread: { id, sticky, locked } }` |
+| `POST /api/admin/boards/:slug` | moderator | `{ archived }` → `{ board }` |
+| `GET /api/notifications` | member | A board thread's or comment's `post` adds `board: { slug, name }` and `threadId`; `board_approved` and `board_declined` carry `request: { name, status, board: { slug, name, icon } \| null }` and no post. |
+
 ## Front end
 
 `public/index.html` loads `public/app.js` as an ES module. There is no build step: the files in `public/` are what the browser gets.
@@ -232,6 +293,12 @@ public/
     blogtext.js         a blog post's body (plain text plus a few marks, links inside them) and the teaser for the feed and index
     blogindex.js        the Blog tab: the write form and the index of posts
     readmarker.js       "pick up where I left off": which cards you've seen and how far you've read
+    votes.js            ▲n ▼n under a thread or comment: both counts, your vote pressed; changes at once and puts only the vote back if refused
+    comments.js         a thread's nested comments: 14px indent under a rail, [−] / [+n] fold, depth cap 6 (3 on a phone) then "Continue this thread →", "Load more replies (n)", [deleted] tombstones
+    commentbox.js       the comment box (a Win98 window at the top of a thread, a small reply box under a comment), 10,000 characters
+    threaddialog.js     the New Thread window (title 120, words 10,000)
+    boardlinks.js       where boards and threads live: /boards/cooking, /boards/cooking/42
+    boardrequests.js    the board requests on the Moderation page: approve (address, icon, description) or decline
   js/pages/             one module per screen
     home.js             Home: a welcome and the latest from everyone, or the Feed
     profile.js          someone's page, with the Posts, Replies, Blog and Friends' Comments tabs
@@ -244,12 +311,13 @@ public/
     browse.js           find people
     requests.js         follow requests, in and out (also reached from Notifications)
     inbox.js            the Inbox and a conversation
-    bulletins.js        the Bulletin Board
+    boards.js           the boards: the index (a phpBB-style table, "request a board") and one board's thread list (Hot / New / Top / Best, paged)
+    thread.js           a thread: the post, ▲n ▼n, the comment box and the nested comments (?c= opens one comment's replies), Pin and Lock for moderators
     horoscope.js        the daily horoscope, your birth chart and today's sky
     auth.js             sign up, finish a provider sign-up, log in, forgot / reset password
     edit.js             Edit My Page
     settings.js         Settings
-    admin.js            Moderation (moderators only)
+    admin.js            Moderation (moderators only): board requests, reports, the log
     rules.js            House Rules & Privacy
   app.css  _headers  assets/  blog/
 ```

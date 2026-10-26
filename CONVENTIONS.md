@@ -15,6 +15,7 @@ Rules for changing this repo. Setup and architecture are in [README.md](README.m
   - `accounts/oauth` → `music/spotify`
   - `profiles` → `music/spotify`
   - `accounts/auth` → `profiles` (`defaultProfile`, `isAvatar`, `DEFAULT_AVATAR`)
+  - `boards/boards` → `social/items` (the item, `hydrate`, `writePost`: board threads and comments are posts)
 - `shared/` never imports a feature.
 - A feature that switches on with secrets exposes `xReady(env)` (like `spotifyReady`, `mailReady`). Its secrets go in [docs/deploy.md](docs/deploy.md) and in the comment at the top of `wrangler.jsonc`.
 
@@ -58,4 +59,4 @@ See [docs/roadmap.md](docs/roadmap.md) for the placement of each unbuilt feature
 - Email verification: `src/accounts/verify.js`.
 - Terms of service: `public/legal/` (static) and `src/accounts/terms.js`.
 - Invite codes: `src/accounts/invites.js`. Ban-evasion signals: `src/safety/`.
-- Boards (phase 3, forum threads replacing the bulletin board): `src/boards/`.
+- Unread threads on the boards (`thread_reads`): `src/boards/reads.js`.

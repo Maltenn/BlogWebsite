@@ -10,6 +10,7 @@ import fs from 'node:fs';
 import net from 'node:net';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { RESORT } from '../src/shared/ranking.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DEMO = path.join(ROOT, '.demo');
@@ -159,6 +160,10 @@ async function seed() {
   const dm = (from, to, body) => from.post('/api/inbox/' + encodeURIComponent(to.name), { body });
   const reply = async (c, to, body) => (await c.post(`/api/posts/${to}/replies`, { body })).post.id;
   const act = (c, what, id) => c.post(`/api/posts/${id}/${what}`);              // like, repost or bookmark
+  const thread = async (c, board, subject, body) => (await c.post(`/api/boards/${board}/threads`, { subject, body })).thread.id;
+  const chime = async (c, to, body, parent) => (await c.post(`/api/threads/${to}/comments`, parent ? { body, parent } : { body })).comment.id;
+  const vote = (value, id, ...who) => Promise.all(who.map(c => c.put(`/api/posts/${id}/vote`, { value })));
+  sql(`UPDATE users SET is_admin = 1 WHERE name_key = 'malten'`);            // (so he can pin the house rules)
 
   // the follows so far count as read on your Notifications tab; everything about posts below arrives as new
   const readUpTo = (await you.get('/api/notifications')).items[0].id;
@@ -168,7 +173,7 @@ async function seed() {
   await act(mia, 'like', marquee);
   await comment(jules, kat, 'ur layout is blinding me (compliment)');
   const offButton = await reply(pete, offOn, '@sk8r_jules the marquee IS the off button');
-  await kat.post('/api/bulletins', { subject: 'TAKE THIS SURVEY!!! ♥', body: 'copy, paste, repost!!\n\n1. name: kat\n2. fave color: glitter\n3. last song you heard: misery business\n4. top 8 drama level (1-10): 11\n5. would you rather never use the internet again, or only listen to one song forever?\n\nrepost with ur answers!!' });
+  const survey = await thread(kat, 'random', 'TAKE THIS SURVEY!!! ♥', 'copy, paste, answer!!\n\n1. name: kat\n2. fave color: glitter\n3. last song you heard: misery business\n4. top 8 drama level (1-10): 11\n5. would you rather never use the internet again, or only listen to one song forever?\n\ncomment ur answers!!');
   const landed = await status(jules, 'landed it!!! (once) (nobody filmed it) #sk8');
   await act(kat, 'like', landed);
   await reply(jules, offButton, 'respect. leave it on then');
@@ -178,18 +183,18 @@ async function seed() {
   const moon = await status(mia, 'the moon is in my sign today and i can FEEL it #fullmoon');
   await reply(kat, marquee, 'leave it. marquees are a lifestyle');
   await comment(drew, mia, 'thanks for the tarot reading. the tower card was rude though');
-  await pete.post('/api/bulletins', { subject: 'free layouts!!', body: 'taking layout requests this weekend. tell me your colors and your favorite band. no promises on the marquee.' });
+  const layouts = await thread(pete, 'art-layouts', 'free layouts!!', 'taking layout requests this weekend. tell me your colors and your favorite band. no promises on the marquee. #layouts');
   await comment(banana, pete, 'ur playlist is decent. jk it\'s elite');
   const fullMoon = (await mia.post('/api/blog', { title: 'full moon notes', subtitle: 'what i\'m keeping and what i\'m letting go', mood: 'dreamy', body: 'the moon was so bright tonight that i could read without a lamp. i made a list of everything i want to let go of this month and then fell asleep before i finished it, which honestly feels like the point.\n\nthings i\'m keeping: my friends, my playlists, the glow-in-the-dark stars on my ceiling.\n\nthings i\'m letting go of: checking if someone read my message. it\'s a full moon, not a read receipt. #fullmoon' })).id;
   await act(banana, 'like', fullMoon);
   await act(banana, 'like', moon);
   await comment(mia, banana, 'your banana bread mix cured my mercury retrograde');
-  await banana.post('/api/bulletins', { subject: 'new mix out', body: '"songs to clean your room to" vol. 2 is done. 14 tracks, zero skips. message me for the tracklist.' });
+  const mix = await thread(banana, 'music', 'new mix out', '"songs to clean your room to" vol. 2 is done. 14 tracks, zero skips. message me for the tracklist. #mixtape');
   await comment(kat, jules, 'film me next time, i wanna be in the documentary');
   await status(drew, 'new poem on my blog. it\'s about rain. it\'s always about rain');
   await dm(drew, mia, 'did you mean it about the tower card');
   await dm(mia, drew, 'it means change!! good change. probably');
-  await status(banana, 'new mix: songs to clean your room to. link in my bulletin #mixtape');
+  await status(banana, 'new mix: songs to clean your room to. it\'s on the Music board #mixtape');
   const hello = await status(you, 'just joined!! still figuring out where all the buttons are #newhere');
   await act(kat, 'like', hello);
   await reply(pete, hello, 'welcome!! the buttons are mostly decorative');
@@ -204,8 +209,47 @@ async function seed() {
   for (const c of [jules, pete, mia]) await act(c, 'like', layout);
   await act(you, 'bookmark', fullMoon);
   await dm(pete, you, 'green. also green. (i can do purple too)');
-  await dm(kat, you, 'omg hi!! welcome!! did u see my survey bulletin?? take it!!!');
+  await dm(kat, you, 'omg hi!! welcome!! did u see my survey in Random?? take it!!!');
   await kat.post('/api/reports', { type: 'post', id: peteComment.id, reason: 'harassment', details: 'he\'s being mean about my sparkle cursor (jk, i\'m testing the report button)' });
+
+  // the boards: threads in several of them, comments under comments, likes and dislikes, and the house rules pinned
+  // in Random. (The sample people post faster than a real person may, so their rate limits start over first.)
+  sql('DELETE FROM attempts');
+  const rules = await thread(malten, 'random', 'house rules (read me!!)', '1. be nice. real people live here.\n2. no spam, and no "repost this or bad luck forever" threats.\n3. keep each board on its topic. Random is for everything else.\n4. see something gross? report it and a moderator will take a look.\n\nhave fun!! ♥');
+  await malten.post(`/api/admin/threads/${rules}`, { sticky: true });
+  await vote(1, rules, kat, jules, pete, mia, banana, you);
+  const miaSurvey = await chime(mia, survey, '1. mia\n2. midnight blue\n3. landslide\n4. a solid 3, i\'m a libra\n5. one song forever. obviously.');
+  const whichSong = await chime(kat, survey, 'ONE SONG?? which one tho', miaSurvey);
+  await chime(mia, survey, 'dreams by fleetwood mac. don\'t @ me', whichSong);
+  const julesSurvey = await chime(jules, survey, '4. top 8 drama level: kat IS the drama');
+  await chime(kat, survey, 'rude. accurate, but rude', julesSurvey);
+  await vote(1, survey, mia, jules, pete, you);
+  await vote(-1, survey, drew);
+  await vote(1, miaSurvey, kat, jules, banana);
+  const katLayout = await chime(kat, layouts, 'me me me!! pink and black, paramore');
+  await chime(pete, layouts, 'pink and paramore. say less', katLayout);
+  const purple = await chime(you, layouts, 'can i get a purple one?');
+  await chime(pete, layouts, '@the_reviewer purple is my second favorite green', purple);
+  await vote(1, layouts, kat, mia, you, banana);
+  await chime(mia, mix, 'track 7 is perfect for folding laundry');
+  const blink = await chime(jules, mix, 'needs more blink-182');
+  const two = await chime(banana, mix, 'there are TWO blink songs on it', blink);
+  await chime(jules, mix, 'needs THREE', two);
+  await vote(1, mix, mia, jules, kat);
+  await vote(-1, mix, pete);
+  await vote(1, blink, pete, kat);
+  await vote(-1, blink, banana);
+  const retro = await thread(mia, 'astrology', 'mercury retrograde survival guide', 'back up your files, don\'t text your ex, and read every message twice before you hit send. it ends on the 13th. we\'ll make it. #mercuryretrograde');
+  const rhyme = await chime(drew, retro, 'is that why my poem won\'t rhyme');
+  await chime(mia, retro, 'yes. 100%. blame mercury', rhyme);
+  await vote(1, retro, drew, kat, banana);
+  const lines = await thread(drew, 'books-writing', 'share a line from your notebook', 'just one line. no context. i\'ll go first: "the streetlights hum the songs we never finished."');
+  const nightlight = await chime(mia, lines, 'the moon is a nightlight for people who forgot to sleep');
+  await chime(drew, lines, '...ok that one is good', nightlight);
+  await vote(1, lines, mia, pete);
+  const kickflip = await thread(jules, 'sports', 'kickflip tips??', 'i landed one (once). how do i land two');
+  await chime(pete, kickflip, 'bend your knees more than you think you need to');
+  await vote(1, kickflip, pete, kat);
 
   // spread it all over the last day or so, so the feed and inbox read like a real afternoon, not one second
   const now = Date.now();
@@ -213,12 +257,15 @@ async function seed() {
   sql(`UPDATE messages SET created = ${now} - ((SELECT MAX(id) FROM messages) - id) * 1200000 - 120000`);
   // the follows came first (or "pick up where I left off", which skips posts from before a follow, would be empty)
   sql(`UPDATE follows SET created = ${now} - 86400000, accepted = CASE WHEN status = 'accepted' THEN ${now} - 86400000 END`);
-  // what hangs off a post follows it: a tag has its post's time, a like or bookmark comes two minutes later, a
-  // notification when what it's about happened (follows: a day back). Then your Notifications tab is read up to the follows.
+  // what hangs off a post follows it: a tag has its post's time, a like, vote or bookmark comes two minutes later, a
+  // notification when what it's about happened (follows: a day back), and a thread's hot is worked out again from its
+  // new time. Then your Notifications tab is read up to the follows.
   sql([
     'UPDATE post_tags SET created = (SELECT created FROM posts WHERE id = post_id)',
     'UPDATE likes SET created = (SELECT created FROM posts WHERE id = post_id) + 120000',
     'UPDATE bookmarks SET created = (SELECT created FROM posts WHERE id = post_id) + 120000',
+    'UPDATE votes SET created = (SELECT created FROM posts WHERE id = post_id) + 120000',
+    `UPDATE posts SET ${RESORT} WHERE kind IN ('thread', 'comment')`,                // hot counts from the thread's new time
     `UPDATE notifications SET created = CASE kind
       WHEN 'like' THEN (SELECT created FROM posts WHERE id = post_id) + 120000
       WHEN 'repost' THEN (SELECT created FROM posts WHERE kind = 'repost' AND author_id = actor_id AND quote_of = post_id)
@@ -226,7 +273,6 @@ async function seed() {
     `INSERT INTO markers (user_id, name, last_created, last_id, updated) SELECT user_id, 'notifications', created, id, ${now} FROM notifications WHERE id = ${readUpTo}`,
   ].join(';\n'));
   sql(`UPDATE users SET created = ${now} - ((SELECT MAX(id) FROM users) - id + 2) * 86400000`);   // they joined over the past week or so
-  sql(`UPDATE users SET is_admin = 1 WHERE name_key = 'malten'`);
 }
 
 /* ---------------------------------------------------------------- start */

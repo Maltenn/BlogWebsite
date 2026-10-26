@@ -47,6 +47,7 @@ All sorts tie-break on `created DESC, id DESC`. Constants: `EPOCH = 1767225600` 
 - z = 1.2816 follows Reddit's code. A 95% z (1.96) marks small samples down harder (1 up, 0 down scores 0.207, not 0.378), which suits a big site more than ours. Examples at z = 1.2816: 1 up, 0 down = 0.378; 5-0 = 0.753; 10-2 = 0.658; 100-100 = 0.455; 1-1 = 0.164.
 - Ties: older comment first, so replies read in order. Threads tie-break newest first.
 - Sort siblings only, within each parent. Fetch all comments of a thread in one query (cap 300, depth 6, then "continue thread"), order by `(parent_id, best DESC, created ASC)`, build the tree in JS. Collapse (never delete) a comment at net -5 or lower.
+- **Implemented** (phase 3, `src/boards/tree.js`): one answer holds up to 200 comments, 8 levels and 10 replies per comment (the top level takes the rest of the 200); what's cut is a "load more" stub whose cursor is the last shown sibling's place in the sort (best, created, id), not a position. The front end shows 6 levels on a desktop and 3 on a phone, then "Continue this thread". There is no collapse at net -5: that front-end choice was not taken, and every comment shows open (anyone can fold one by hand).
 - SQL form, tested in local D1, in case you prefer no JS: `max(0, (1.0*up/n + 1.6425/(2.0*n) - 1.2816*sqrt((1.0*up/n)*(1.0*down/n)/n + 1.6425/(4.0*n*n))) / (1 + 1.6425/n))`.
 
 ### Browse discovery
