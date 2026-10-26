@@ -1,12 +1,14 @@
 // ourspace-social — one Worker for the whole site:
 //   /api/*          the JSON API below (accounts, sign-in providers, profiles, follows, posts and the feed, replies,
 //                   likes, reposts, quotes, bookmarks, tags, boards with their threads, comments and votes,
-//                   notifications, messages, photo uploads, Spotify, astrology, blocks, reports, moderation)
+//                   notifications, chat (#ourspace, group chats, DMs), photo uploads, Spotify, astrology, blocks,
+//                   reports, moderation)
+//   /api/live/:room a chat room's WebSocket, handed to its Durable Object (src/live/room.js, exported below as Room)
 //   /media/<key>    uploaded photos, from the R2 bucket MEDIA, to whoever may see them (src/media/media.js)
 //   everything else the static pages in public/ (wrangler.jsonc → assets), with /u/<name> etc. falling back to
 //                   index.html so the page's own router can draw them
-// The cron (every 30 min) clears out expired sessions, sign-in tickets, reset links, old rate-limit rows, and photo
-// uploads never attached to anything.
+// The cron (every 30 min) clears out expired sessions, sign-in tickets, reset links, old rate-limit rows, photo uploads
+// never attached to anything, #ourspace messages past its rolling window, expired mutes and faded interaction scores.
 import { HttpError, json } from './shared/http.js';
 import { currentUser, me, signup, login, logout, changePassword, deleteAccount, forgotPassword, resetPassword } from './accounts/auth.js';
 import { oauthStart, oauthCallback, signupPending, signupFinish, providers, account, unlink } from './accounts/oauth.js';
@@ -18,11 +20,17 @@ import { boardList, board, postThread, boardThread, threadComments, postThreadCo
 import { votePost } from './boards/votes.js';
 import { requestBoard, boardRequests, decideBoardRequest } from './boards/requests.js';
 import { notifications } from './notifications/notifications.js';
-import { inbox, thread, sendMessage } from './messages/messages.js';
+import { chatList, oneChat, chatMessages, sendChatMessage, readChat, createChat, addMembers, removeMember, leaveChat, answerInvite, renameChat, chatSuggestions } from './chats/chats.js';
+import { deleteChatMessage } from './chats/messages.js';
+import { ourspaceMessages, postOurspace, muteMember, sweepChat } from './chats/ourspace.js';
+import { liveRoom } from './chats/live.js';
 import { getSpotify, putSpotify, refreshSpotify, deleteSpotify } from './music/spotify.js';
 import { astroSky, astroSign, astroMe } from './horoscope/horoscope.js';
 import { listBlocks, block, unblock, report, adminReports, resolveReport, adminUser, adminContent, adminLog } from './safety/safety.js';
 import { uploadMedia, deleteUpload, serveMedia, adminMedia, moderateMedia, sweepMedia } from './media/media.js';
+
+// the Durable Object class behind every chat room (wrangler.jsonc → durable_objects)
+export { Room } from './live/room.js';
 
 const OPEN = 0, AUTH = 1, ADMIN = 2;
 
@@ -102,9 +110,22 @@ const ROUTES = [
   ['POST', '/api/followers/:name', acceptFollower, AUTH],
   ['DELETE', '/api/followers/:name', removeFollower, AUTH],
 
-  ['GET', '/api/inbox', inbox, AUTH],
-  ['GET', '/api/inbox/:name', thread, AUTH],
-  ['POST', '/api/inbox/:name', sendMessage, AUTH],
+  ['GET', '/api/chats', chatList, AUTH],
+  ['POST', '/api/chats', createChat, AUTH],
+  ['GET', '/api/chats/suggestions', chatSuggestions, AUTH],
+  ['GET', '/api/chats/:id', oneChat, AUTH],
+  ['PUT', '/api/chats/:id', renameChat, AUTH],
+  ['GET', '/api/chats/:id/messages', chatMessages, AUTH],
+  ['POST', '/api/chats/:id/messages', sendChatMessage, AUTH],
+  ['PUT', '/api/chats/:id/read', readChat, AUTH],
+  ['POST', '/api/chats/:id/members', addMembers, AUTH],
+  ['DELETE', '/api/chats/:id/members/:name', removeMember, AUTH],
+  ['POST', '/api/chats/:id/leave', leaveChat, AUTH],
+  ['POST', '/api/chats/:id/invite', answerInvite, AUTH],
+  ['DELETE', '/api/chat-messages/:id', deleteChatMessage, AUTH],
+  ['GET', '/api/ourspace/messages', ourspaceMessages, AUTH],
+  ['POST', '/api/ourspace/messages', postOurspace, AUTH],
+  ['GET', '/api/live/:room', liveRoom, AUTH],
 
   ['GET', '/api/blocks', listBlocks, AUTH],
   ['POST', '/api/blocks/:name', block, AUTH],
@@ -122,6 +143,7 @@ const ROUTES = [
   ['POST', '/api/admin/boards/:slug', moderateBoard, ADMIN],
   ['GET', '/api/admin/media', adminMedia, ADMIN],
   ['POST', '/api/admin/media/:id', moderateMedia, ADMIN],
+  ['POST', '/api/admin/mutes', muteMember, ADMIN],
 ].map(([method, path, handler, access, opts = {}]) => ({
   method, handler, access, ...opts,
   keys: [...path.matchAll(/:(\w+)/g)].map(m => m[1]),
@@ -195,5 +217,7 @@ export default {
     ]).catch(e => console.error('cron failed:', (e && e.stack) || e)));
     // photo uploads loose for a day, and photos whose post went without them: out of the table and R2
     ctx.waitUntil(sweepMedia(env, now).catch(e => console.error('media sweep failed:', (e && e.stack) || e)));
+    // #ourspace's rolling window (reported messages stay), expired mutes, interaction scores faded below 0.05
+    ctx.waitUntil(sweepChat(env, now).catch(e => console.error('chat sweep failed:', (e && e.stack) || e)));
   },
 };

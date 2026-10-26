@@ -1,7 +1,8 @@
 // Migration tests: `npm test`. Builds a database the way 0001_init.sql left it (friend requests, blocks, "became friends"
 // and "joined" lines in the feed), applies 0002_follows.sql on top, and checks what became of everything; then adds posts
 // and applies 0003_interactions.sql, then adds bulletins and applies 0004_boards.sql, then 0005_media.sql (photos: the
-// attach-once trigger and what happens to photos when their post or owner goes). Uses wrangler's local D1 (run through
+// attach-once trigger and what happens to photos when their post or owner goes), then 0006 and 0007_chat.sql (the 1:1
+// messages become DMs; the 50-member cap of a group). Uses wrangler's local D1 (run through
 // node, like the API tests) on a throwaway folder.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
@@ -204,4 +205,78 @@ test('0005 adds photos: an upload is attached once, a post or an owner that goes
     { id: 4, owner_id: 52, post_id: null, attached: 6000, alt: '', hidden: 1 },
   ], 'post 50 went without taking its photo: post_id falls to NULL (the cron then deletes it); the avatar outlives its owner '
     + 'only until the cron; the photo on post 51, which a moderator hid, is held as a hidden photo');
+});
+
+// (continues: ben (2), eve (5), gus (7), hal (8) and the others are still there; 0001's messages table was never touched)
+test('0007 turns the 1:1 messages into DMs, keeping ids, times, read state, hidden ones and reports, then drops them', () => {
+  apply('0006_media_review.sql');
+  sql(`INSERT INTO messages (id, from_id, to_id, body, created, read_at, hidden) VALUES
+      (101, 2, 5, 'hi eve', 10000, 10500, 0),
+      (102, 5, 2, 'hi ben', 11000, NULL, 0),
+      (103, 2, 5, 'you there?', 12000, NULL, 0),
+      (104, 7, 2, 'spam spam', 13000, NULL, 1),
+      (105, 2, 7, 'stop', 14000, 14100, 0),
+      (106, 8, 5, 'yo', 15000, 15500, 0),
+      (107, 9, 5, 'evidence', 15800, NULL, 0),
+      (108, 9, 2, 'more evidence', 15900, NULL, 0)`,
+    `INSERT INTO reports (id, reporter_id, target_type, target_id, target_user_id, reason, snapshot, created) VALUES
+      (1, 2, 'message', 104, 7, 'spam', '{"body":"spam spam"}', 13500),
+      (2, 5, 'message', 107, 9, 'harassment', '{"body":"evidence"}', 15850),
+      (3, 2, 'message', 108, 9, 'harassment', '{"body":"more evidence"}', 15950)`,
+    // the newest messages go before the move (their writer's account was deleted): only the reports remember them
+    'DELETE FROM messages WHERE id IN (107, 108)');
+
+  apply('0007_chat.sql');
+
+  // new messages get ids no old message ever had, so the reports of the gone ones still point at nothing
+  const [made, reported] = sql("INSERT INTO chat_messages (room, author_id, body, created) VALUES ('ourspace', 2, 'brand new', 30000) RETURNING id",
+    "SELECT r.id, m.id AS message FROM reports r LEFT JOIN chat_messages m ON m.id = r.target_id WHERE r.target_type = 'message' ORDER BY r.id");
+  assert.equal(made[0].id, 109, 'the counter carries on from the old messages\' (108), not from the highest id left (106)');
+  assert.deepEqual(reported, [{ id: 1, message: 104 }, { id: 2, message: null }, { id: 3, message: null }], 'reports of gone messages resolve to nothing');
+  sql('DELETE FROM chat_messages WHERE id = 109');
+
+  const [convs, members, msgs, gone, report] = sql(
+    'SELECT id, kind, created_by, created, last_message_at, dm_key FROM conversations ORDER BY id',
+    'SELECT conversation_id AS c, user_id AS u, role, status, joined, last_read_id AS r FROM conversation_members ORDER BY conversation_id, user_id',
+    'SELECT id, conversation_id AS c, room, author_id AS a, body, created, hidden, deleted FROM chat_messages ORDER BY id',
+    "SELECT COUNT(*) AS n FROM sqlite_master WHERE name = 'messages'",
+    "SELECT r.target_type, m.body FROM reports r JOIN chat_messages m ON m.id = r.target_id WHERE r.id = 1");
+  assert.deepEqual(convs, [
+    { id: 1, kind: 'dm', created_by: 2, created: 10000, last_message_at: 12000, dm_key: '2:5' },
+    { id: 2, kind: 'dm', created_by: 7, created: 13000, last_message_at: 14000, dm_key: '2:7' },
+    { id: 3, kind: 'dm', created_by: 8, created: 15000, last_message_at: 15000, dm_key: '5:8' },
+  ], 'one DM per pair, started by whoever wrote first');
+  const m = (c, u, r) => ({ c, u, role: 'member', status: 'joined', joined: convs[c - 1].created, r });
+  assert.deepEqual(members, [
+    m(1, 2, 101),               // ben never read eve's 102: what came before it is read
+    m(1, 5, 102),               // eve read 101 but not 103 (her own 102 sits between)
+    m(2, 2, 103),               // the hidden 104 was unread
+    m(2, 7, 105),               // gus had read everything: up to the newest
+    m(3, 5, 106), m(3, 8, 106),
+  ], 'both people in each, and what they had read stays read');
+  assert.deepEqual(msgs.map(x => [x.id, x.c, x.a, x.created, x.hidden]), [
+    [101, 1, 2, 10000, 0], [102, 1, 5, 11000, 0], [103, 1, 2, 12000, 0], [104, 2, 7, 13000, 1], [105, 2, 2, 14000, 0], [106, 3, 8, 15000, 0],
+  ], 'every message keeps its id, writer, time and hidden mark');
+  assert.ok(msgs.every(x => x.room === null && x.deleted === 0));
+  assert.equal(gone[0].n, 0, 'messages is gone');
+  assert.deepEqual(report, [{ target_type: 'message', body: 'spam spam' }], 'the report points at the same message');
+
+  // a group holds 50 at most (joined and invited together), however the rows come
+  sql("INSERT INTO conversations (id, kind, created_by, created) VALUES (10, 'group', 2, 20000)",
+    `WITH RECURSIVE n(i) AS (SELECT 1 UNION ALL SELECT i + 1 FROM n WHERE i < 50)
+      INSERT INTO users (id, name, name_key, avatar, birthdate, created) SELECT 1000 + i, 'f' || i, 'f' || i, '/a.png', '1990-01-01', 1 FROM n`,
+    "INSERT INTO conversation_members (conversation_id, user_id, status, joined) SELECT 10, id, 'joined', 1 FROM users WHERE id > 1000",
+    "INSERT INTO conversation_members (conversation_id, user_id, status, joined) VALUES (10, 2, 'left', 1)");
+  assert.throws(() => sql("INSERT INTO conversation_members (conversation_id, user_id, status, joined) VALUES (10, 5, 'invited', 1)"),
+    e => /group full/.test(String(e.stdout)), 'the 51st');
+  assert.throws(() => sql("UPDATE conversation_members SET status = 'joined' WHERE conversation_id = 10 AND user_id = 2"),
+    e => /group full/.test(String(e.stdout)), 'or someone coming back');
+  assert.throws(() => sql("INSERT INTO chat_messages (conversation_id, room, author_id, body, created) VALUES (1, 'ourspace', 2, 'x', 1)"), 'a conversation or the room, not both');
+  assert.throws(() => sql("INSERT INTO conversations (kind, created) VALUES ('dm', 1)"), 'a DM has its pair');
+
+  // an account that goes takes its memberships, messages and scores
+  sql('INSERT INTO affinity (from_id, to_id, eff, updated) VALUES (8, 5, 2, 1), (5, 8, 1, 1)', 'DELETE FROM users WHERE id = 8');
+  const [left] = sql(`SELECT (SELECT COUNT(*) FROM conversation_members WHERE user_id = 8) + (SELECT COUNT(*) FROM chat_messages WHERE author_id = 8)
+    + (SELECT COUNT(*) FROM affinity WHERE 8 IN (from_id, to_id)) AS n`);
+  assert.equal(left[0].n, 0);
 });

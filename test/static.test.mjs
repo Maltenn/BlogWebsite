@@ -170,3 +170,11 @@ test('front end layering: js/core/ imports only core; js/widgets/ never imports 
   }
   assert.deepEqual(bad, []);
 });
+
+test('the CSP lets the live chat\'s socket reach the site (wss:, and ws: to the local machine for wrangler dev) and nothing else loosens', () => {
+  const csp = read(path.join(PUBLIC, '_headers')).match(/Content-Security-Policy: (.*)/)[1].trim();
+  const directives = Object.fromEntries(csp.split(';').map(d => d.trim().split(/\s+/)).map(([k, ...v]) => [k, v]));
+  // older WebKit never matched ws:/wss: against 'self' (WebKit bug 235873), and a static header can't name the host
+  assert.deepEqual(directives['connect-src'], ["'self'", 'wss:', 'ws://localhost:*', 'ws://127.0.0.1:*']);
+  assert.deepEqual([directives['script-src'], directives['default-src']], [["'self'"], ["'self'"]]);
+});

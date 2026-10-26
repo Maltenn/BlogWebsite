@@ -6,6 +6,7 @@ import assert from 'node:assert/strict';
 import { spawn, execFileSync } from 'node:child_process';
 import { generateKeyPairSync } from 'node:crypto';
 import fs from 'node:fs';
+import http from 'node:http';
 import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -145,7 +146,8 @@ test('public pages work logged out, and there are no bots', async () => {
   assert.equal((await c.get('/api/users')).data.users.length, 0, 'nobody lives here until people sign up');
   assert.equal((await c.get('/api/users/todd')).status, 404);
   assert.equal((await c.get('/api/feed')).status, 200);
-  assert.equal((await c.get('/api/inbox')).status, 401);
+  assert.equal((await c.get('/api/chats')).status, 401);
+  assert.equal((await c.get('/api/inbox')).status, 404, 'the old inbox is gone');
   assert.equal((await c.get('/api/requests')).status, 401);
 });
 
@@ -246,7 +248,7 @@ const befriend = async (a, b) => { await a.post('/api/follows/' + b.name); await
 test('following: an open profile takes a follow at once, and two follows make friends', async () => {
   const a = await newUser('alice'); const b = await newUser('bob');
   assert.equal((await b.get('/api/me')).data.counts.requests, 0);
-  assert.equal((await b.get('/api/inbox')).data.threads.length, 0, 'nobody writes to you unless a person does');
+  assert.equal((await b.get('/api/chats')).data.items.length, 0, 'nobody writes to you unless a person does');
   assert.equal(sql(`SELECT COUNT(*) AS n FROM posts WHERE author_id IN (${a.id}, ${b.id})`)[0].n, 0, 'joining posts nothing');
   assert.equal((await a.post('/api/follows/' + a.name)).status, 400);
   let r = await a.post('/api/follows/' + b.name);
@@ -431,19 +433,49 @@ test('Friends\' Comments come ten to a page, newest first, and the profile count
   assert.equal((await client().get(`/api/users/nobody_here_${uniq()}/comments`)).status, 404);
 });
 
-test('private messages, where "friends only" means both follow each other', async () => {
+// the DM between two people (opened, or made, by `a`): its id
+const dmOf = async (a, b) => {
+  const r = await a.post('/api/chats', { dm: b.name });
+  assert.ok(r.status === 200 || r.status === 201, JSON.stringify(r.data));
+  return r.data.chat.id;
+};
+
+test('DMs: one per pair, unread and read, and "friends only" means both follow each other', async () => {
   const a = await newUser('dm_a'); const b = await newUser('dm_b');
-  assert.equal((await a.post('/api/inbox/' + b.name, { body: 'hey!' })).status, 201);
+  const opened = await a.post('/api/chats', { dm: b.name });
+  assert.equal(opened.status, 201);
+  const id = opened.data.chat.id;
+  assert.deepEqual([opened.data.chat.kind, opened.data.chat.members.map(m => m.name), opened.data.chat.lastMessage], ['dm', [b.name], null]);
+  assert.equal((await b.get('/api/chats')).data.items.length, 0, 'an empty DM shows only to whoever opened it');
+  assert.equal((await b.post('/api/chats', { dm: a.name })).data.chat.id, id, 'one DM per pair, whoever opens it');
+  assert.equal((await a.post('/api/chats', { dm: a.name })).status, 400);
+  const sent = await a.post(`/api/chats/${id}/messages`, { body: 'hey! www.spam.example' });
+  assert.equal(sent.status, 201);
+  assert.deepEqual([sent.data.message.body, sent.data.message.mine, sent.data.message.chatId], ['hey! [link removed]', true, id]);
   assert.equal((await b.get('/api/me')).data.counts.unread, 1);
-  assert.equal((await b.get('/api/inbox/' + a.name)).data.messages.at(-1).body, 'hey!');
+  assert.equal((await a.get('/api/me')).data.counts.unread, 0, 'my own message is read');
+  const list = (await b.get('/api/chats')).data.items;
+  assert.deepEqual([list[0].id, list[0].unread, list[0].lastMessage.body, list[0].lastMessage.author.name], [id, 1, 'hey! [link removed]', a.name]);
+  const page = await b.get(`/api/chats/${id}/messages`);
+  assert.deepEqual([page.data.messages.at(-1).body, page.data.messages.at(-1).mine, page.data.canMessage, page.data.next], ['hey! [link removed]', false, true, null]);
+  assert.equal((await b.get('/api/me')).data.counts.unread, 1, 'reading the page doesn\'t mark it read');
+  assert.deepEqual((await b.put(`/api/chats/${id}/read`, { id: sent.data.message.id + 1000 })).data, { ok: true, lastReadId: sent.data.message.id }, 'never past the newest');
   assert.equal((await b.get('/api/me')).data.counts.unread, 0);
+  assert.equal((await b.put(`/api/chats/${id}/read`, { id: 0 })).data.lastReadId, sent.data.message.id, 'forward only');
   await b.put('/api/me/settings', { dmPolicy: 'friends' });
-  assert.equal((await a.post('/api/inbox/' + b.name, { body: 'again' })).status, 403);
+  assert.equal((await a.post(`/api/chats/${id}/messages`, { body: 'again' })).status, 403);
+  assert.equal((await a.get(`/api/chats/${id}/messages`)).data.canMessage, false);
   await a.post('/api/follows/' + b.name);
-  assert.equal((await a.post('/api/inbox/' + b.name, { body: 'again' })).status, 403, 'following them isn\'t enough');
+  assert.equal((await a.post(`/api/chats/${id}/messages`, { body: 'again' })).status, 403, 'following them isn\'t enough');
+  const c = await newUser('dm_c');
+  assert.equal((await c.post('/api/chats', { dm: b.name })).status, 403, 'and nobody new may start one');
   await b.post('/api/follows/' + a.name);
   assert.equal((await a.get('/api/users/' + b.name)).data.relation.canMessage, true);
-  assert.equal((await a.post('/api/inbox/' + b.name, { body: 'again' })).status, 201);
+  assert.equal((await a.post(`/api/chats/${id}/messages`, { body: 'again' })).status, 201);
+  assert.equal((await c.get(`/api/chats/${id}/messages`)).status, 404, 'outsiders see nothing');
+  assert.equal((await c.post(`/api/chats/${id}/messages`, { body: 'me too' })).status, 404);
+  assert.equal((await a.post(`/api/chats/${id}/messages`, { body: '   ' })).status, 400);
+  assert.equal((await a.post(`/api/chats/${id}/leave`)).status, 400, 'a DM can\'t be left');
 });
 
 test('blocking hides both people from each other, ends their follows and stops contact', async () => {
@@ -454,7 +486,7 @@ test('blocking hides both people from each other, ends their follows and stops c
   assert.equal(sql(`SELECT COUNT(*) AS n FROM follows WHERE ${a.id} IN (follower_id, followee_id) AND ${b.id} IN (follower_id, followee_id)`)[0].n, 0,
     'both follows are gone');
   assert.equal((await a.get('/api/users/' + b.name)).status, 404);
-  assert.equal((await a.post('/api/inbox/' + b.name, { body: 'hello?' })).status, 404);
+  assert.equal((await a.post('/api/chats', { dm: b.name })).status, 404);
   assert.equal((await a.post(`/api/users/${b.name}/comments`, { body: 'hello?' })).status, 404);
   assert.equal((await a.post('/api/follows/' + b.name)).status, 404);
   assert.equal((await b.post('/api/follows/' + a.name)).status, 403, 'the blocker can\'t follow them either');
@@ -485,11 +517,25 @@ test('reports reach moderators, who can hide posts and ban accounts', async () =
   assert.equal((await troll.post('/api/login', { login: troll.email, password: PW })).status, 200);
 });
 
-test('only the receiver can report a message', async () => {
+test('only someone who can read a message, and didn\'t write it, can report it; the report keeps its words', async () => {
   const a = await newUser('msg_a'); const b = await newUser('msg_b'); const c = await newUser('msg_c');
-  const m = await a.post('/api/inbox/' + b.name, { body: 'buy my mixtape' });
-  assert.equal((await c.post('/api/reports', { type: 'message', id: m.data.id, reason: 'spam' })).status, 404);
-  assert.equal((await b.post('/api/reports', { type: 'message', id: m.data.id, reason: 'spam' })).status, 201);
+  const mod = await moderator('msgmod');
+  const m = (await a.post(`/api/chats/${await dmOf(a, b)}/messages`, { body: 'buy my mixtape' })).data.message;
+  assert.equal((await c.post('/api/reports', { type: 'message', id: m.id, reason: 'spam' })).status, 404, 'not in the DM');
+  assert.equal((await a.post('/api/reports', { type: 'message', id: m.id, reason: 'spam' })).status, 404, 'its writer');
+  assert.equal((await b.post('/api/reports', { type: 'message', id: m.id, reason: 'spam' })).status, 201);
+  assert.equal((await a.del('/api/chat-messages/' + m.id)).status, 200, 'its writer deletes it');
+  const rep = (await mod.get('/api/admin/reports')).data.reports.find(r => r.type === 'message' && r.targetId === m.id);
+  assert.deepEqual([rep.snapshot.body, rep.snapshot.chatId, rep.targetHidden], ['buy my mixtape', m.chatId, false], 'the snapshot stays');
+  assert.equal((await b.get(`/api/chats/${m.chatId}/messages`)).data.messages.length, 0, 'gone from the conversation');
+  // a moderator takes one down: kept, shown to nobody
+  const m2 = (await a.post(`/api/chats/${m.chatId}/messages`, { body: 'really, buy it' })).data.message;
+  await b.post('/api/reports', { type: 'message', id: m2.id, reason: 'spam' });
+  const rep2 = (await mod.get('/api/admin/reports')).data.reports.find(r => r.type === 'message' && r.targetId === m2.id);
+  assert.equal((await mod.post('/api/admin/reports/' + rep2.id, { action: 'hide' })).status, 200);
+  assert.equal(sql(`SELECT hidden, body FROM chat_messages WHERE id = ${m2.id}`)[0].body, 'really, buy it');
+  assert.equal((await a.get(`/api/chats/${m.chatId}/messages`)).data.messages.length, 0, 'not even its writer sees it');
+  assert.equal((await b.del('/api/chat-messages/' + m2.id)).status, 404);
 });
 
 test('cross-site and non-JSON writes are refused', async () => {
@@ -2556,4 +2602,555 @@ test('a child-safety (csam) report holds the post\'s photos at once, comes first
   // the moderator finishes it: remove the held photo
   assert.equal((await mod.post(`/api/admin/media/${a.id}`, { action: 'remove', note: 'NCMEC report filed' })).status, 200);
   assert.ok(!(await bucket()).has(keyOf(a.url)));
+});
+
+/* ---------------------------------------------------- live chat: groups, DMs, #ourspace, the interaction score */
+
+const chatOf = async (owner, names, title) => {
+  const r = await owner.post('/api/chats', { members: names.map(p => p.name), ...(title ? { title } : {}) });
+  assert.equal(r.status, 201, JSON.stringify(r.data));
+  return r.data.chat;
+};
+const say = async (who, chat, body) => {
+  const r = await who.post(`/api/chats/${chat}/messages`, { body });
+  assert.equal(r.status, 201, JSON.stringify(r.data));
+  return r.data.message;
+};
+const bodies = async (who, chat, q = '') => (await who.get(`/api/chats/${chat}/messages${q}`)).data.messages.map(m => m.body);
+
+test('groups: friends join at once, anybody else is invited and sees nothing until they accept', async () => {
+  const o = await newUser('grp_owner'); const f1 = await newUser('grp_f1'); const f2 = await newUser('grp_f2');
+  const s = await newUser('grp_stranger'); const p = await newUser('grp_picky'); const k = await newUser('grp_blocker');
+  await befriend(o, f1); await befriend(o, f2);
+  await p.put('/api/me/settings', { dmPolicy: 'friends' });
+  await k.post('/api/blocks/' + o.name);
+  assert.equal((await o.post('/api/chats', { members: [p.name] })).status, 403, 'a non-friend who only takes messages from friends');
+  assert.equal((await o.post('/api/chats', { members: [k.name] })).status, 404, 'someone who blocked me');
+  assert.equal((await o.post('/api/chats', { members: ['nobody_by_this_name'] })).status, 404);
+  assert.equal((await o.post('/api/chats', { members: [o.name] })).status, 400, 'a group needs someone else');
+  assert.equal((await o.post('/api/chats', { members: Array.from({ length: 51 }, (_, i) => 'x' + i) })).status, 400, '50 at most');
+
+  const g = await chatOf(o, [f1, s], 'the crew');
+  assert.deepEqual([g.kind, g.title, g.role, g.status, g.memberCount, g.owner.name], ['group', 'the crew', 'owner', 'joined', 2, o.name]);
+  assert.deepEqual([g.members.map(m => m.name), g.invited.map(m => m.name)], [[f1.name], [s.name]]);
+  await say(o, g.id, 'hello crew');
+  const invite = (await s.get('/api/chats')).data.items.find(i => i.id === g.id);
+  assert.deepEqual([invite.status, invite.invitedBy.name, invite.members, invite.lastMessage, invite.unread, invite.memberCount],
+    ['invited', o.name, [], null, 0, 2], 'an invite shows who asked and how many are in it, nothing else');
+  assert.equal((await s.get(`/api/chats/${g.id}/messages`)).status, 403);
+  assert.equal((await s.post(`/api/chats/${g.id}/messages`, { body: 'hi?' })).status, 403);
+  assert.equal((await s.get('/api/me')).data.counts.unread, 0, 'an invite isn\'t an unread conversation');
+  const told = (await s.get('/api/notifications')).data.items.find(n => n.kind === 'group_invite');
+  assert.deepEqual([told.actor.name, told.chat], [o.name, { id: g.id, title: 'the crew' }]);
+  assert.equal((await f1.get('/api/me')).data.counts.unread, 1, 'a friend is in at once');
+  assert.deepEqual(await bodies(f1, g.id), ['hello crew']);
+
+  const accepted = await s.post(`/api/chats/${g.id}/invite`, { action: 'accept' });
+  assert.deepEqual([accepted.data.chat.status, accepted.data.chat.memberCount], ['joined', 3]);
+  assert.deepEqual(await bodies(s, g.id), ['hello crew'], 'the history is there once you\'re in');
+  assert.equal((await s.get('/api/me')).data.counts.unread, 0, 'and counts as read');
+  assert.equal((await s.post(`/api/chats/${g.id}/invite`, { action: 'accept' })).status, 409);
+
+  // the owner renames, adds and removes; nobody else may
+  assert.equal((await f1.put(`/api/chats/${g.id}`, { title: 'mine now' })).status, 403);
+  assert.equal((await o.put(`/api/chats/${g.id}`, { title: 'the crew 2' })).data.chat.title, 'the crew 2');
+  assert.equal((await f1.post(`/api/chats/${g.id}/members`, { names: [f2.name] })).status, 403);
+  const added = await o.post(`/api/chats/${g.id}/members`, { names: [f2.name] });
+  assert.ok(added.data.chat.members.some(m => m.name === f2.name), 'a friend joins at once');
+  assert.equal((await o.post(`/api/chats/${g.id}/members`, { names: [f2.name] })).status, 400, 'already in it');
+  assert.equal((await f1.del(`/api/chats/${g.id}/members/${s.name}`)).status, 403);
+  const removed = await o.del(`/api/chats/${g.id}/members/${s.name}`);
+  assert.ok(!removed.data.chat.members.some(m => m.name === s.name));
+  assert.equal((await s.get(`/api/chats/${g.id}/messages`)).status, 404, 'removed: nothing to see');
+  assert.equal((await o.del(`/api/chats/${g.id}/members/${s.name}`)).status, 404);
+  assert.equal((await o.del(`/api/chats/${g.id}/members/${o.name}`)).status, 400, 'the owner leaves instead');
+
+  // invited again, and declining
+  await o.post(`/api/chats/${g.id}/members`, { names: [s.name] });
+  assert.equal((await s.get('/api/chats')).data.items.find(i => i.id === g.id).status, 'invited');
+  assert.deepEqual((await s.post(`/api/chats/${g.id}/invite`, { action: 'decline' })).data, { ok: true });
+  assert.ok(!(await s.get('/api/chats')).data.items.some(i => i.id === g.id));
+  assert.ok(!(await s.get('/api/notifications')).data.items.some(n => n.kind === 'group_invite' && n.chat.id === g.id), 'nor its invites');
+  assert.equal((await s.post(`/api/chats/${g.id}/invite`, { action: 'accept' })).status, 404, 'declined is declined');
+
+  // the owner leaves: the member there longest takes over
+  assert.deepEqual((await o.post(`/api/chats/${g.id}/leave`)).data, { ok: true });
+  const after = (await f1.get(`/api/chats/${g.id}`)).data.chat;
+  assert.deepEqual([after.role, after.owner.name, after.memberCount], ['owner', f1.name, 2]);
+  assert.equal((await o.get(`/api/chats/${g.id}/messages`)).status, 404);
+  assert.equal((await o.post(`/api/chats/${g.id}/leave`)).status, 404);
+  assert.equal((await f2.get(`/api/chats/${g.id}`)).data.chat.role, 'member');
+  assert.equal((await f1.put(`/api/chats/${g.id}`, { title: '' })).data.chat.title, null, 'the new owner may rename it');
+});
+
+test('groups: 50 people at most, 10 new groups a day', async () => {
+  const o = await newUser('grp_many'); const f = await newUser('grp_pal');
+  await befriend(o, f);
+  for (let i = 0; i < 10; i++) await chatOf(o, [f]);
+  assert.equal((await o.post('/api/chats', { members: [f.name] })).status, 429);
+  // the 50 is the database's own rule (migrations test), so two adds at once can't both squeeze in
+  const g = (await f.post('/api/chats', { members: [o.name] })).data.chat;
+  const tag = uniq();
+  sql(`WITH RECURSIVE n(i) AS (SELECT 1 UNION ALL SELECT i + 1 FROM n WHERE i < 48)
+    INSERT INTO users (name, name_key, avatar, birthdate, created) SELECT 'filler_${tag}_' || i, 'filler_${tag}_' || i, '/a.png', '1990-01-01', 1 FROM n`);
+  sql(`INSERT INTO conversation_members (conversation_id, user_id, status, joined) SELECT ${g.id}, id, 'joined', 1 FROM users
+    WHERE name_key LIKE 'filler_${tag}_%'`);
+  assert.equal((await f.get(`/api/chats/${g.id}`)).data.chat.memberCount, 50);
+  const extra = await newUser('grp_51');
+  await befriend(f, extra);
+  assert.equal((await f.post(`/api/chats/${g.id}/members`, { names: [extra.name] })).status, 409);
+});
+
+test('a block inside a group: the two don\'t see each other\'s messages, in reads, unread counts and the list', async () => {
+  const x = await newUser('gb_x'); const y = await newUser('gb_y'); const z = await newUser('gb_z');
+  await befriend(x, y); await befriend(x, z);
+  const g = await chatOf(x, [y, z]);
+  await z.post('/api/blocks/' + y.name);
+  await say(y, g.id, 'from y');
+  await say(x, g.id, 'from x');
+  await say(z, g.id, 'from z');
+  assert.deepEqual(await bodies(x, g.id), ['from y', 'from x', 'from z']);
+  assert.deepEqual(await bodies(y, g.id), ['from y', 'from x']);
+  assert.deepEqual(await bodies(z, g.id), ['from x', 'from z']);
+  const yChat = (await y.get('/api/chats')).data.items.find(i => i.id === g.id);
+  assert.deepEqual([yChat.members.map(m => m.name), yChat.unread, yChat.lastMessage.body], [[x.name], 1, 'from x']);
+  assert.equal(yChat.memberCount, 3, 'they are still in it');
+  assert.equal((await x.get(`/api/chats/${g.id}`)).data.chat.unread, 1, 'z\'s (writing marked y\'s, before it, read)');
+  // older pages: 50 a page, oldest first, `next` going back
+  sql(`WITH RECURSIVE n(i) AS (SELECT 1 UNION ALL SELECT i + 1 FROM n WHERE i < 60)
+    INSERT INTO chat_messages (conversation_id, author_id, body, created) SELECT ${g.id}, ${x.id}, 'old ' || i, 1000 + i FROM n`);
+  const first = (await x.get(`/api/chats/${g.id}/messages`)).data;
+  assert.equal(first.messages.length, 50);
+  assert.equal(first.messages.at(-1).body, 'old 60', 'the newest ids last (ids, not times, order a conversation)');
+  const second = (await x.get(`/api/chats/${g.id}/messages?before=${first.next}`)).data;
+  assert.deepEqual([second.messages.length, second.next], [13, null]);
+  const caught = (await x.get(`/api/chats/${g.id}/messages?after=${second.messages[2].id}`)).data;
+  assert.deepEqual([caught.messages.length, caught.messages[0].body, caught.next], [60, 'old 1', null], 'after= catches up, oldest first');
+});
+
+test('group suggestions: friends by closeness, then people I talk to who aren\'t friends yet; never blocked people', async () => {
+  const m = await newUser('sg_me');
+  const [f1, f2, f3, f4, n1, n2, n3, bl] = await Promise.all(['sg_fa', 'sg_fb', 'sg_fc', 'sg_fd', 'sg_na', 'sg_nb', 'sg_nc', 'sg_bl'].map(p => newUser(p)));
+  for (const f of [f1, f2, f3, f4]) await befriend(m, f);
+  await n3.put('/api/me/settings', { dmPolicy: 'friends' });
+  const now = Date.now(), DAY = 86400000;
+  sql(`INSERT INTO affinity (from_id, to_id, eff, updated) VALUES
+    (${m.id}, ${f1.id}, 4, ${now}),
+    (${m.id}, ${f2.id}, 5, ${now}), (${f2.id}, ${m.id}, 5, ${now}),
+    (${m.id}, ${f4.id}, 8, ${now - 60 * DAY}),
+    (${m.id}, ${n1.id}, 3, ${now}), (${n1.id}, ${m.id}, 1, ${now}),
+    (${n2.id}, ${m.id}, 9, ${now}),
+    (${m.id}, ${n3.id}, 6, ${now}),
+    (${m.id}, ${bl.id}, 7, ${now})`);
+  await m.post('/api/blocks/' + bl.name);
+  // closeness = eff + min(eff, back): f2 5 + 5 = 10; f1 4 + 0; f4 8 halved twice in 60 days = 2; f3 nothing; n1 3 + 1;
+  // n2 only wrote to me (0: a stranger's attention doesn't count); n3 takes messages from friends only; bl is blocked
+  const r = await m.get('/api/chats/suggestions');
+  assert.deepEqual(r.data.people.map(p => p.name), [f2.name, f1.name, f4.name, f3.name, n1.name]);
+  assert.deepEqual(r.data.people.map(p => p.friend), [true, true, true, true, false]);
+  assert.equal(typeof r.data.people[0].online, 'boolean');
+  assert.deepEqual((await m.get('/api/chats/suggestions?q=' + f4.name.slice(3).toUpperCase())).data.people.map(p => p.name), [f4.name], 'q filters by name');
+  assert.deepEqual((await n2.get('/api/chats/suggestions')).data.people.map(p => p.name), [m.name], 'while to n2, who talks to me, I\'m someone they talk to');
+});
+
+test('the interaction score moves with replies, likes, reposts, mentions, Friends\' Comments, DMs and small groups (once each)', async () => {
+  const a = await newUser('af_a'); const b = await newUser('af_b'); const c = await newUser('af_c');
+  await befriend(a, b); await befriend(a, c);
+  const score = (x, y) => {
+    const r = sql(`SELECT eff FROM affinity WHERE from_id = ${x.id} AND to_id = ${y.id}`)[0];
+    return r ? Math.round(r.eff * 100) / 100 : 0;
+  };
+  const st = (await b.post('/api/status', { body: 'hello' })).data.id;
+  await a.post(`/api/posts/${st}/replies`, { body: 'hi b' });
+  assert.equal(score(a, b), 3, 'a reply: 3');
+  await a.post(`/api/posts/${st}/like`);
+  await a.post(`/api/posts/${st}/like`);
+  assert.equal(score(a, b), 4, 'a like: 1, once');
+  await a.post(`/api/posts/${st}/repost`);
+  assert.equal(score(a, b), 5, 'a repost: 1');
+  await a.post('/api/status', { body: `hey @${c.name}` });
+  assert.equal(score(a, c), 2, 'a mention: 2');
+  await a.post(`/api/users/${c.name}/comments`, { body: 'nice page' });
+  assert.equal(score(a, c), 5, 'a Friends\' Comment: 3');
+  await say(a, await dmOf(a, b), 'psst');
+  assert.equal(score(a, b), 7, 'a DM: 2');
+  const g = await chatOf(a, [b, c]);
+  await say(a, g.id, 'hi both');
+  assert.deepEqual([score(a, b), score(a, c)], [7.5, 5.5], 'a group message: 0.5 to each member');
+  assert.equal(score(b, a), 0, 'what a did tells nothing about b');
+  assert.ok(sql(`SELECT updated FROM affinity WHERE from_id = ${a.id} AND to_id = ${b.id}`)[0].updated > Date.now() - 60000);
+});
+
+// cookie header for a client's session
+const cookieOf = c => [...c.jar].map(([k, v]) => `${k}=${v}`).join('; ');
+
+// A WebSocket to a room, as a page opens it (our Origin, the session cookie). `next(test)` waits for the first event
+// that passes it (and takes it off the list).
+function live(c, room) {
+  const ws = new WebSocket(`ws://127.0.0.1:${PORT}/api/live/${room}`, { headers: { Cookie: cookieOf(c), Origin: BASE } });
+  const events = [];
+  let wake = () => {};
+  ws.addEventListener('message', e => { events.push(JSON.parse(e.data)); wake(); });
+  const opened = new Promise((res, rej) => {
+    ws.addEventListener('open', res);
+    ws.addEventListener('error', () => rej(new Error('the socket was refused')));
+  });
+  // the close code: from the close itself, or from the { type: 'bye', code } frame that comes just before it (in wrangler
+  // dev a close made by an RPC reaches the client seconds late; the page stops on the frame, src/live/room.js)
+  const closed = new Promise(res => {
+    ws.addEventListener('close', e => res(e.code));
+    ws.addEventListener('message', e => { const m = JSON.parse(e.data); if (m.type === 'bye') res(m.code); });
+  });
+  async function next(ok, ms = 5000) {
+    const end = Date.now() + ms;
+    for (;;) {
+      const i = events.findIndex(ok);
+      if (i >= 0) return events.splice(i, 1)[0];
+      if (Date.now() > end) throw new Error('no such event; got ' + JSON.stringify(events));
+      await new Promise(r => { wake = r; setTimeout(r, 50); });
+    }
+  }
+  return { ws, events, opened, closed, next, send: o => ws.send(typeof o === 'string' ? o : JSON.stringify(o)), close: () => ws.close() };
+}
+
+// the status a WebSocket upgrade gets (101 when it's let through)
+function upgrade(c, room, origin = BASE) {
+  return new Promise((res, rej) => {
+    const req = http.request({ host: '127.0.0.1', port: PORT, path: '/api/live/' + room, headers: {
+      Connection: 'Upgrade', Upgrade: 'websocket', 'Sec-WebSocket-Key': 'dGhlIHNhbXBsZSBub25jZQ==', 'Sec-WebSocket-Version': '13',
+      ...(c ? { Cookie: cookieOf(c) } : {}), ...(origin ? { Origin: origin } : {}) } });
+    req.on('response', r => { r.resume(); res(r.statusCode); });
+    req.on('upgrade', (r, sock) => { sock.destroy(); res(101); });
+    req.on('error', rej);
+    req.end();
+  });
+}
+
+test('live: two members get each other\'s messages in order, typing, presence and reads; outsiders and other sites are refused', async () => {
+  const a = await newUser('live_a'); const b = await newUser('live_b'); const out = await newUser('live_out');
+  await befriend(a, b);
+  const g = await chatOf(a, [b]);
+  assert.equal(await upgrade(out, g.id), 404, 'not a member');
+  assert.equal(await upgrade(null, g.id), 401, 'logged out');
+  assert.equal(await upgrade(a, g.id, 'https://evil.example'), 403, 'another site\'s page');
+  assert.equal(await upgrade(a, g.id, null), 403, 'no Origin at all');
+  assert.equal(await upgrade(a, 'nope'), 404);
+  assert.equal((await a.get(`/api/live/${g.id}`)).status, 426, 'not a WebSocket');
+  assert.equal(await upgrade(a, g.id), 101);
+  const sa = live(a, g.id), sb = live(b, g.id);
+  await Promise.all([sa.opened, sb.opened]);
+  const both = await sb.next(e => e.type === 'presence' && e.online.length === 2);
+  assert.deepEqual(both.online.map(p => p.name).sort(), [a.name, b.name].sort());
+  assert.deepEqual(Object.keys(both.online[0]).sort(), ['avatar', 'id', 'name']);
+
+  for (const body of ['one', 'two', 'three']) await say(a, g.id, body);
+  const got = [];
+  for (let i = 0; i < 3; i++) got.push((await sb.next(e => e.type === 'message')).message);
+  assert.deepEqual(got.map(m => m.body), ['one', 'two', 'three'], 'in order');
+  assert.deepEqual(Object.keys(got[0]).sort(), ['author', 'body', 'chatId', 'created', 'id', 'room']);
+  assert.deepEqual([got[0].chatId, got[0].room, got[0].author.name], [g.id, null, a.name]);
+  await say(b, g.id, 'hi a');
+  assert.equal((await sa.next(e => e.type === 'message' && e.message.author.id === b.id)).message.body, 'hi a');
+
+  const bRef = { id: b.id, name: b.name, avatar: (await b.get('/api/me')).data.user.avatar };
+  sb.send({ type: 'typing' });
+  assert.deepEqual(await sa.next(e => e.type === 'typing'), { type: 'typing', user: bRef });
+  sa.send('{"type":"ping"}');
+  await sa.next(e => e.type === 'pong');
+
+  const readMe = await say(a, g.id, 'read me');
+  await b.put(`/api/chats/${g.id}/read`, { id: readMe.id });
+  assert.deepEqual(await sa.next(e => e.type === 'read'), { type: 'read', user: bRef, id: readMe.id });
+  assert.deepEqual((await a.get(`/api/chats/${g.id}/messages`)).data.reads, [{ user: bRef, id: readMe.id }]);
+
+  await a.del('/api/chat-messages/' + got[0].id);
+  assert.deepEqual(await sb.next(e => e.type === 'deleted'), { type: 'deleted', id: got[0].id });
+  await a.put(`/api/chats/${g.id}`, { title: 'live room' });
+  await sb.next(e => e.type === 'changed');
+
+  // b drops off: a sees them go; what b missed comes back from the history
+  sb.close();
+  await sb.closed;
+  await sa.next(e => e.type === 'presence' && e.online.length === 1);
+  const lastSeen = got[2].id;
+  await say(a, g.id, 'missed 1');
+  await say(a, g.id, 'missed 2');
+  const sb2 = live(b, g.id);
+  await sb2.opened;
+  await sa.next(e => e.type === 'presence' && e.online.length === 2);
+  const missed = (await b.get(`/api/chats/${g.id}/messages?after=${lastSeen}`)).data.messages.map(m => m.body);
+  assert.deepEqual(missed, ['hi a', 'read me', 'missed 1', 'missed 2']);
+
+  // removed from the group: the socket closes
+  await a.del(`/api/chats/${g.id}/members/${b.name}`);
+  assert.equal(await sb2.closed, 4003);
+  assert.equal(await upgrade(b, g.id), 404);
+  sa.close();
+});
+
+test('live: a block keeps two people apart in a room: no messages, no typing, not in each other\'s presence', async () => {
+  const x = await newUser('lb_x'); const y = await newUser('lb_y'); const z = await newUser('lb_z');
+  await befriend(x, y); await befriend(x, z);
+  const g = await chatOf(x, [y, z]);
+  await z.post('/api/blocks/' + y.name);
+  const sx = live(x, g.id), sy = live(y, g.id), sz = live(z, g.id);
+  await Promise.all([sx.opened, sy.opened, sz.opened]);
+  await sx.next(e => e.type === 'presence' && e.online.length === 3);
+  const zSees = await sz.next(e => e.type === 'presence' && e.online.some(p => p.id === x.id));
+  assert.ok(!zSees.online.some(p => p.id === y.id), 'z doesn\'t see y online');
+  sy.send({ type: 'typing' });
+  await sx.next(e => e.type === 'typing' && e.user.id === y.id);
+  await say(y, g.id, 'from y');
+  await sx.next(e => e.type === 'message' && e.message.body === 'from y');
+  await say(x, g.id, 'from x');
+  await sz.next(e => e.type === 'message' && e.message.body === 'from x');
+  assert.ok(!sz.events.some(e => (e.type === 'message' && e.message.author.id === y.id) || (e.type === 'typing' && e.user.id === y.id)),
+    'nothing of y reached z');
+  assert.ok(!sz.events.some(e => e.type === 'presence' && e.online.some(p => p.id === y.id)));
+  for (const s of [sx, sy, sz]) s.close();
+});
+
+const pause = ms => new Promise(r => setTimeout(r, ms));
+// a socket that still works answers a ping
+const alive = async s => { s.send('{"type":"ping"}'); await s.next(e => e.type === 'pong'); };
+
+test('live: logging out, a password change or reset, a ban and deleting the account close the sockets for good (4001), in every room', async () => {
+  const a = await newUser('so_a'); const b = await newUser('so_b'); const mod = await moderator('so_mod');
+  await befriend(a, b);
+  const g = await chatOf(a, [b]);
+  const phone = client();
+  assert.equal((await phone.post('/api/login', { login: a.email, password: PW })).status, 200);
+
+  // logging out: that session's sockets, in #ourspace and the group; the phone's stay
+  const a1 = live(a, 'ourspace'), a2 = live(a, g.id), p1 = live(phone, g.id);
+  await Promise.all([a1.opened, a2.opened, p1.opened]);
+  await a.post('/api/logout');
+  assert.deepEqual(await Promise.all([a1.closed, a2.closed]), [4001, 4001]);
+  await alive(p1);
+  assert.equal(await upgrade(a, g.id), 401);
+  await say(b, g.id, 'after the logout');
+  await p1.next(e => e.type === 'message' && e.message.body === 'after the logout');
+  assert.ok(!a2.events.some(e => e.type === 'message'), 'nothing more reaches a closed session\'s socket');
+
+  // a password change: every other device's sockets
+  const laptop = client();
+  await laptop.post('/api/login', { login: a.email, password: PW });
+  const l1 = live(laptop, g.id);
+  await l1.opened;
+  assert.equal((await phone.post('/api/me/password', { current: PW, next: 'brand-new-pass-7' })).status, 200);
+  assert.equal(await l1.closed, 4001);
+  await alive(p1);
+
+  // a password reset: all of them
+  await phone.post('/api/password/forgot', { email: a.email });
+  await pause(500);
+  const token = [...serverLog.matchAll(/\/reset#token=([\w-]+)/g)].map(m => m[1]).pop();
+  assert.equal((await client().post('/api/password/reset', { token, password: 'brand-new-pass-8' })).status, 200);
+  assert.equal(await p1.closed, 4001);
+
+  // a ban: the banned member's sockets close and they leave the online list
+  const watcher = await newUser('so_watch');
+  const b1 = live(b, 'ourspace'), b2 = live(b, g.id), w1 = live(watcher, 'ourspace');
+  await Promise.all([b1.opened, b2.opened, w1.opened]);
+  assert.ok((await watcher.get('/api/ourspace/messages')).data.online.some(p => p.id === b.id));
+  assert.equal((await mod.post('/api/admin/users/' + b.name, { banned: true, note: 'x' })).status, 200);
+  assert.deepEqual(await Promise.all([b1.closed, b2.closed]), [4001, 4001]);
+  await w1.next(e => e.type === 'presence' && !e.online.some(p => p.id === b.id) && e.online.some(p => p.id === watcher.id));
+  assert.ok(!(await watcher.get('/api/ourspace/messages')).data.online.some(p => p.id === b.id), 'not online any more');
+
+  // deleting the account
+  const d = await newUser('so_del');
+  const d1 = live(d, 'ourspace');
+  await d1.opened;
+  assert.equal((await d.del('/api/me', { password: PW })).status, 200);
+  assert.equal(await d1.closed, 4001);
+
+  // a session that went without the room being told: the next frame finds out
+  const e = await newUser('so_quiet');
+  const e1 = live(e, 'ourspace');
+  await e1.opened;
+  sql(`DELETE FROM sessions WHERE user_id = ${e.id}`);
+  e1.send({ type: 'typing' });
+  assert.equal(await e1.closed, 4001);
+
+  // and a socket never outlives its session's time
+  const f = await newUser('so_brief');
+  sql(`UPDATE sessions SET expires = ${Date.now() + 2500} WHERE user_id = ${f.id}`);
+  const f1 = live(f, 'ourspace');
+  await f1.opened;
+  await pause(3000);
+  const poster = await newUser('so_post');
+  assert.equal((await poster.post('/api/ourspace/messages', { body: 'anyone?' })).status, 201);
+  assert.equal(await f1.closed, 4001);
+  assert.ok(!f1.events.some(x => x.type === 'message'), 'nothing reached it after its time');
+  w1.close();
+});
+
+test('live: 5 sockets per member in a room (the oldest goes, 4002), typing once per 2 s per person, presence in rounds, floods closed, upgrades limited', async () => {
+  const u = await newUser('fl_u'); const w = await newUser('fl_w');
+  await befriend(u, w);
+  const g = await chatOf(u, [w]);
+  const sw = live(w, g.id);
+  await sw.opened;
+  await sw.next(e => e.type === 'presence');
+  const socks = [];
+  for (let i = 0; i < 6; i++) { const s = live(u, g.id); await s.opened; socks.push(s); }
+  assert.equal(await socks[0].closed, 4002, 'the oldest of six');
+  await pause(1500);
+  const rounds = sw.events.filter(e => e.type === 'presence');
+  assert.ok(rounds.length >= 1 && rounds.length <= 3, `six connects and a close came to ${rounds.length} presence frames`);
+  assert.deepEqual(rounds.at(-1).online.map(p => p.id).sort(), [u.id, w.id].sort(), 'each person once');
+
+  // typing: once per 2 s per person, however many sockets they have
+  socks[1].send({ type: 'typing' });
+  socks[2].send({ type: 'typing' });
+  await sw.next(e => e.type === 'typing');
+  await pause(500);
+  assert.equal(sw.events.filter(e => e.type === 'typing').length, 0, 'the second socket\'s typing was dropped');
+
+  // a flood of frames closes that socket (and only that one)
+  for (let i = 0; i < 40; i++) socks[3].send({ type: 'junk', i });
+  assert.equal(await socks[3].closed, 1008);
+  await alive(socks[4]);
+
+  // upgrades: 30 a minute per member
+  const v = await newUser('fl_v');
+  for (let i = 0; i < 30; i++) assert.equal(await upgrade(v, 'ourspace'), 101);
+  assert.equal(await upgrade(v, 'ourspace'), 429);
+  for (const s of [sw, ...socks]) s.close();
+});
+
+test('live: a block made while both are connected applies at once (no typing, out of presence), and lifting it brings them back', async () => {
+  const x = await newUser('lbn_x'); const y = await newUser('lbn_y'); const z = await newUser('lbn_z');
+  await befriend(x, y); await befriend(x, z);
+  const g = await chatOf(x, [y, z]);
+  const sx = live(x, g.id), sy = live(y, g.id), sz = live(z, g.id), ox = live(x, 'ourspace'), oy = live(y, 'ourspace');
+  await Promise.all([sx, sy, sz, ox, oy].map(s => s.opened));
+  await sx.next(e => e.type === 'presence' && e.online.length === 3);
+  await ox.next(e => e.type === 'presence' && e.online.some(p => p.id === y.id));
+
+  assert.equal((await x.post('/api/blocks/' + y.name)).status, 200);
+  await sx.next(e => e.type === 'presence' && e.online.length === 2 && !e.online.some(p => p.id === y.id));
+  await sy.next(e => e.type === 'presence' && !e.online.some(p => p.id === x.id));
+  await ox.next(e => e.type === 'presence' && !e.online.some(p => p.id === y.id));
+  sx.events.length = 0;
+  sy.send({ type: 'typing' });
+  await sz.next(e => e.type === 'typing' && e.user.id === y.id);
+  await pause(300);
+  assert.ok(!sx.events.some(e => e.type === 'typing'), 'x doesn\'t see y typing');
+
+  assert.equal((await x.del('/api/blocks/' + y.name)).status, 200);
+  await sx.next(e => e.type === 'presence' && e.online.some(p => p.id === y.id));
+  await pause(2100);
+  sy.send({ type: 'typing' });
+  await sx.next(e => e.type === 'typing' && e.user.id === y.id);
+  for (const s of [sx, sy, sz, ox, oy]) s.close();
+});
+
+test('invites: after a decline the group can\'t ask again for 30 days, nor the inviter into any group for 7; one notification per invite', async () => {
+  const o = await newUser('dec_o'); const v = await newUser('dec_v'); const f = await newUser('dec_f'); const o2 = await newUser('dec_o2');
+  await befriend(o, f); await befriend(o2, f);
+  const g = await chatOf(o, [f, v]);
+  assert.deepEqual((await v.post(`/api/chats/${g.id}/invite`, { action: 'decline' })).data, { ok: true });
+  const again = await o.post(`/api/chats/${g.id}/members`, { names: [v.name] });
+  assert.equal(again.status, 403, 'the same group, right away');
+  assert.match(again.data.error, /lately/);
+  assert.equal((await o.post('/api/chats', { members: [f.name, v.name] })).status, 403, 'the same inviter, another group');
+  assert.ok((await chatOf(o2, [f, v])).invited.some(p => p.id === v.id), 'somebody else may still ask');
+  const back = days => sql(`UPDATE conversation_members SET declined = declined - ${days * 86400000} WHERE user_id = ${v.id} AND conversation_id = ${g.id}`);
+
+  back(8);
+  assert.equal((await o.post(`/api/chats/${g.id}/members`, { names: [v.name] })).status, 403, 'a week on, still not this group');
+  assert.equal((await o.post('/api/chats', { members: [f.name, v.name] })).status, 201, 'but another group of the inviter\'s');
+
+  back(23);
+  assert.equal((await o.post(`/api/chats/${g.id}/members`, { names: [v.name] })).status, 200, 'a month on, this group may ask again');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM notifications WHERE user_id = ${v.id} AND kind = 'group_invite' AND conversation_id = ${g.id}`)[0].n, 1,
+    'one invite notification for the group');
+  assert.equal(sql(`SELECT declined FROM conversation_members WHERE user_id = ${v.id} AND conversation_id = ${g.id}`)[0].declined, null);
+});
+
+test('#ourspace: members only, slow mode, links out, mentions notify, moderators delete and mute', async () => {
+  const u1 = await newUser('os_one'); const u2 = await newUser('os_two'); const mod = await moderator('os_mod');
+  assert.equal((await client().get('/api/ourspace/messages')).status, 401);
+  assert.equal(await upgrade(null, 'ourspace'), 401);
+  const s2 = live(u2, 'ourspace');
+  await s2.opened;
+  const first = await u1.post('/api/ourspace/messages', { body: `hi @${u2.name} see www.example.com` });
+  assert.equal(first.status, 201);
+  assert.deepEqual([first.data.message.body, first.data.message.room, first.data.message.chatId], [`hi @${u2.name} see [link removed]`, 'ourspace', null]);
+  assert.equal((await s2.next(e => e.type === 'message')).message.id, first.data.message.id);
+  const note = (await u2.get('/api/notifications')).data.items.find(n => n.kind === 'chat_mention');
+  assert.deepEqual([note.actor.name, note.message.id, note.message.room], [u1.name, first.data.message.id, 'ourspace']);
+  assert.equal((await u1.post('/api/ourspace/messages', { body: 'again!' })).status, 429, 'one message every 3 seconds');
+  sql(`DELETE FROM attempts WHERE k = 'ourspace:${u1.id}'`);
+  const page = (await u2.get('/api/ourspace/messages')).data;
+  assert.equal(page.messages.at(-1).id, first.data.message.id);
+  assert.deepEqual([page.slowMode, page.mutedUntil], [{ seconds: 3, perMinute: 20 }, null]);
+  assert.ok(page.online.some(p => p.id === u2.id), 'who has the room open');
+
+  // moderators: mute (1 h / 24 h / 7 days, or lift), delete anybody's message
+  assert.equal((await u2.post('/api/admin/mutes', { name: u1.name, hours: 1 })).status, 403);
+  assert.equal((await mod.post('/api/admin/mutes', { name: u1.name, hours: 5 })).status, 400);
+  assert.equal((await mod.post('/api/admin/mutes', { name: mod.name, hours: 1 })).status, 400);
+  const muted = await mod.post('/api/admin/mutes', { name: u1.name, hours: 1, reason: 'cool it' });
+  assert.ok(muted.data.until > Date.now() + 3500000);
+  assert.equal((await u1.post('/api/ourspace/messages', { body: 'let me talk' })).status, 403);
+  assert.equal((await u1.get('/api/ourspace/messages')).data.mutedUntil, muted.data.until);
+  assert.ok((await mod.get('/api/admin/log')).data.log.some(l => l.action === 'mute' && l.targetId === u1.id));
+  assert.equal((await mod.post('/api/admin/mutes', { name: u1.name, hours: 0 })).data.until, null);
+  const second = await u1.post('/api/ourspace/messages', { body: 'thanks' });
+  assert.equal(second.status, 201);
+  assert.equal((await u2.del('/api/chat-messages/' + second.data.message.id)).status, 403, 'not yours');
+  assert.equal((await mod.del('/api/chat-messages/' + second.data.message.id)).status, 200);
+  assert.deepEqual(await s2.next(e => e.type === 'deleted'), { type: 'deleted', id: second.data.message.id });
+  assert.ok(!(await u2.get('/api/ourspace/messages')).data.messages.some(m => m.id === second.data.message.id));
+  assert.equal(sql(`SELECT hidden FROM chat_messages WHERE id = ${second.data.message.id}`)[0].hidden, 1, 'kept, taken down');
+  s2.close();
+});
+
+test('#ourspace keeps the newest 500 messages of the last day; the cron deletes the rest, but never a reported one', async () => {
+  const u = await newUser('os_roll'); const r = await newUser('os_rep');
+  const now = Date.now();
+  sql(`INSERT INTO chat_messages (room, author_id, body, created) VALUES ('ourspace', ${u.id}, 'yesterday', ${now - 25 * 3600000}),
+    ('ourspace', ${u.id}, 'yesterday, reported', ${now - 25 * 3600000})`);
+  sql(`WITH RECURSIVE n(i) AS (SELECT 1 UNION ALL SELECT i + 1 FROM n WHERE i < 520)
+    INSERT INTO chat_messages (room, author_id, body, created) SELECT 'ourspace', ${u.id}, 'filler ' || i, ${now - 600000} + i FROM n`);
+  const [old, oldReported] = sql(`SELECT id FROM chat_messages WHERE room = 'ourspace' AND body LIKE 'yesterday%' ORDER BY id`).map(x => x.id);
+  const beyond = sql(`SELECT id FROM chat_messages WHERE room = 'ourspace' AND body = 'filler 3'`)[0].id;
+  const cut = sql(`SELECT id FROM chat_messages WHERE room = 'ourspace' ORDER BY id DESC LIMIT 1 OFFSET 499`)[0].id;
+  assert.equal((await r.post('/api/reports', { type: 'message', id: oldReported, reason: 'harassment' })).status, 201);
+  assert.equal((await r.post('/api/reports', { type: 'message', id: beyond, reason: 'spam' })).status, 201);
+  const window = (await r.get('/api/ourspace/messages?after=0')).data.messages;
+  assert.equal(window[0].id, cut, 'the oldest that shows is the 500th newest');
+  assert.ok(!window.some(m => m.body.startsWith('yesterday')));
+  await runCron(() => sql(`SELECT COUNT(*) AS n FROM chat_messages WHERE id = ${old}`)[0].n === 0);
+  const left = sql(`SELECT id FROM chat_messages WHERE room = 'ourspace' AND id < ${cut} ORDER BY id`).map(x => x.id);
+  assert.deepEqual(left, [oldReported, beyond], 'only the reported ones stay below the window');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM chat_messages WHERE room = 'ourspace' AND id >= ${cut}`)[0].n, 500);
+});
+
+test('deleting an account takes its DMs, hands its groups on, and takes its messages and scores', async () => {
+  const a = await newUser('del_chat'); const b = await newUser('del_b'); const c = await newUser('del_c');
+  await befriend(a, b); await befriend(a, c);
+  const dm = await dmOf(b, a);
+  await say(b, dm, 'bye?');
+  const g = await chatOf(a, [b, c]);
+  await say(a, g.id, 'my group');
+  await say(c, g.id, 'thanks');
+  assert.equal((await a.del('/api/me', { password: PW })).status, 200);
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM conversations WHERE id = ${dm}`)[0].n, 0, 'the DM is gone');
+  const after = (await b.get(`/api/chats/${g.id}`)).data.chat;
+  assert.deepEqual([after.owner.name, after.memberCount], [b.name, 2], 'the group passes on to whoever joined first');
+  assert.deepEqual(await bodies(c, g.id), ['thanks']);
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM affinity WHERE ${a.id} IN (from_id, to_id)`)[0].n, 0);
+});
+
+test('every DM has its two members, no group holds over 50, and every read position is a message that was there, after everything the tests above did', () => {
+  assert.deepEqual(sql(`SELECT v.id FROM conversations v WHERE v.kind = 'dm'
+    AND (SELECT COUNT(*) FROM conversation_members m WHERE m.conversation_id = v.id AND m.status = 'joined') != 2`), []);
+  assert.deepEqual(sql(`SELECT conversation_id FROM conversation_members WHERE status != 'left' GROUP BY conversation_id HAVING COUNT(*) > 50`), []);
+  assert.deepEqual(sql(`SELECT conversation_id, user_id FROM conversation_members m
+    WHERE last_read_id > COALESCE((SELECT MAX(id) FROM chat_messages c WHERE c.conversation_id = m.conversation_id), 0)`), []);
+  assert.deepEqual(sql(`SELECT id FROM chat_messages WHERE (conversation_id IS NULL) = (room IS NULL)`), []);
 });

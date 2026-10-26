@@ -23,7 +23,7 @@ To start `npm run dev` over with an empty database, delete `.wrangler/state` and
 1. applies the migrations to a local database in `.demo/state`;
 2. starts the stand-in providers from `test/helpers/mock-providers.mjs` in "pretend" mode, where "Continue with Google" and "connect Spotify" show a labeled page that asks for a name instead of approving at once;
 3. starts `wrangler dev` with `TEST_PROVIDER_BASE` pointing at the stand-ins, made-up client IDs for every provider (so every sign-in button appears), and a `TOKEN_KEY` it generates once and keeps in `.demo/token-key`;
-4. on the first run, fills the site with sample people, follows, posts, messages and one report by calling the real API (with a few photos it draws as PNGs and uploads: on statuses, a board thread, a blog cover and `starlight_mia`'s own picture), then makes `malten` a moderator. It writes `.demo/seeded` when it's done. The photos live in the local R2 bucket in `.demo/state` too;
+4. on the first run, fills the site with sample people, follows, posts, DMs, a group chat (and a group invite waiting for `the_reviewer`), some #ourspace chatter and one report by calling the real API (with a few photos it draws as PNGs and uploads: on statuses, a board thread, a blog cover and `starlight_mia`'s own picture), then makes `malten` a moderator. It writes `.demo/seeded` when it's done. The photos live in the local R2 bucket in `.demo/state` too;
 5. prints password-reset emails in its own window.
 
 The sample people are the `PEOPLE` list in `tools/demo.mjs`; change them there and start over with `npm run demo -- --fresh`. Set the `PORT` environment variable to start the search for a free port somewhere other than 8787, and `DEMO_DIR` to keep a throwaway demo somewhere other than `.demo/`.

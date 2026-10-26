@@ -6,6 +6,7 @@ import { text } from '../shared/text.js';
 import { canSeePosts, limit, VISIBLE, SEES } from '../shared/db.js';
 import { notify } from '../shared/notify.js';
 import { claimMedia } from '../shared/media.js';
+import { bump, W } from '../shared/affinity.js';
 import { POST_LIMITS, THREADED_SQL, POST_COLS, POSTS, EXCERPT, NEWEST, LIVE, page, itemById, writePost, dropRepost } from './items.js';
 
 // SQL: the post :id (bound as ?3) stands for: itself, or a repost's original
@@ -87,7 +88,7 @@ export async function postQuote(c) {
 
 /* ------------------------------------------------------------- likes */
 
-// POST /api/posts/:id/like — answers { liked, likes }. Liking twice is liking once.
+// POST /api/posts/:id/like — answers { liked, likes }. Liking twice is liking once (and moves the interaction score once).
 export async function likePost(c) {
   const p = await target(c);
   await limit(c, 'like:' + c.user.id, [[300, 3600000]], 'that\'s a lot of likes. take a breather.');
@@ -96,6 +97,7 @@ export async function likePost(c) {
   const res = await DB.batch([
     DB.prepare(`UPDATE posts SET like_count = like_count + 1 WHERE id = ?2 AND deleted = 0 AND hidden = 0 AND ${fresh}`).bind(c.user.id, p.id),
     notify(c, 'like', [p.author_id], p.id, fresh.replace('?2', '?5')),
+    bump(c, [[p.author_id, W.like]], `${fresh.replace('?2', '?4')} AND ${LIVE('?4')}`, p.id),
     DB.prepare(`INSERT OR IGNORE INTO likes (user_id, post_id, created) SELECT ?1, ?2, ?3 WHERE ${LIVE('?2')}`).bind(c.user.id, p.id, c.now),
     landed(DB, 'like_count', p.id),
   ].filter(Boolean));
@@ -129,6 +131,7 @@ export async function repostPost(c) {
   const res = await DB.batch([
     DB.prepare(`UPDATE posts SET repost_count = repost_count + 1 WHERE id = ?2 AND deleted = 0 AND hidden = 0 AND ${fresh}`).bind(c.user.id, p.id),
     notify(c, 'repost', [p.author_id], p.id, fresh.replace('?2', '?5')),
+    bump(c, [[p.author_id, W.repost]], `${fresh.replace('?2', '?4')} AND ${LIVE('?4')}`, p.id),
     DB.prepare(`INSERT OR IGNORE INTO posts (kind, author_id, quote_of, created) SELECT 'repost', ?1, ?2, ?3 WHERE ${LIVE('?2')}`).bind(c.user.id, p.id, c.now),
     landed(DB, 'repost_count', p.id),
   ].filter(Boolean));

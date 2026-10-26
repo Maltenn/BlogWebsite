@@ -4,6 +4,7 @@ import { text, longText } from '../shared/text.js';
 import { REF_COLS, ref, refOf, userByName, visibleUser, limit, profileData } from '../shared/db.js';
 import { REPORT_REASONS } from '../catalog/options.js';
 import { ALL_MEDIA_OF, mediaByPost } from '../shared/media.js';
+import { tell, kick, signOut, setApart, OURSPACE } from '../shared/live.js';
 
 const REASONS = new Set(REPORT_REASONS.map(r => r.v));
 export const TAKEDOWN_MS = 48 * 3600000;       // the Take It Down Act's 48 hours (and what we hold ourselves to for CSAM reports)
@@ -19,7 +20,8 @@ export async function listBlocks(c) {
 }
 
 // POST /api/blocks/:name — they can't message me, comment on my page or follow me, and we stop seeing each other's
-// posts. Every follow (or request) between us, either way, ends.
+// posts and chat messages. Every follow (or request) between us, either way, ends, and our DM closes on both screens;
+// in the rooms we both may have open (#ourspace, our groups) our sockets stop showing each other typing or online at once.
 export async function block(c) {
   const u = await userByName(c.env, c.params.name);
   if (!u) fail(404, 'nobody by that name lives here.');
@@ -29,6 +31,9 @@ export async function block(c) {
     c.env.DB.prepare('INSERT OR IGNORE INTO blocks (blocker_id, blocked_id, created) VALUES (?, ?, ?)').bind(c.user.id, u.id, c.now),
     c.env.DB.prepare('DELETE FROM follows WHERE (follower_id = ?1 AND followee_id = ?2) OR (follower_id = ?2 AND followee_id = ?1)').bind(c.user.id, u.id),
   ]);
+  const dm = await c.env.DB.prepare('SELECT id FROM conversations WHERE dm_key = ?').bind(`${Math.min(c.user.id, u.id)}:${Math.max(c.user.id, u.id)}`).first();
+  if (dm) await kick(c.env, dm.id, [c.user.id, u.id]);
+  await setApart(c.env, c.user.id, u.id, true);
   return json({ ok: true, blocked: refOf(u) });
 }
 
@@ -36,13 +41,19 @@ export async function block(c) {
 export async function unblock(c) {
   const u = await userByName(c.env, c.params.name);
   if (!u) fail(404, 'nobody by that name lives here.');
-  await c.env.DB.prepare('DELETE FROM blocks WHERE blocker_id = ? AND blocked_id = ?').bind(c.user.id, u.id).run();
+  const [gone, still] = await c.env.DB.batch([
+    c.env.DB.prepare('DELETE FROM blocks WHERE blocker_id = ? AND blocked_id = ?').bind(c.user.id, u.id),
+    c.env.DB.prepare('SELECT 1 AS x FROM blocks WHERE blocker_id = ? AND blocked_id = ?').bind(u.id, c.user.id),
+  ]);
+  // (open sockets see each other again only once no block is left either way)
+  if (gone.meta.changes && !still.results.length) await setApart(c.env, c.user.id, u.id, false);
   return json({ ok: true });
 }
 
 /* ----------------------------------------------------------- reports */
 
-// POST /api/reports { type: user|post|message, name | id, reason, details }
+// POST /api/reports { type: user|post|message, name | id, reason, details } — a message is a chat message (#ourspace,
+// a group or a DM), reported by someone who can read it (a member, for a group or DM) who didn't write it.
 // Stores a snapshot of what was reported, so the evidence survives the author deleting it. A post's snapshot lists its
 // photos ({ id, url, width, height, alt }): the files themselves go if the post is deleted, unless a moderator hid the
 // post or the photo first (then they're held until a moderator removes them). A report with reason `csam` on a post holds
@@ -75,12 +86,13 @@ export async function report(c) {
     snapshot = { kind: p.kind, author: p.author, subject: p.subject, body: p.body, created: p.created,
       media: [...(covers.has(p.id) ? [covers.get(p.id)] : []), ...(media.get(p.id) || [])] };
   } else if (type === 'message') {
-    const m = await c.env.DB.prepare(`SELECT m.id, m.from_id, m.to_id, m.body, m.created, f.name AS author
-      FROM messages m JOIN users f ON f.id = m.from_id WHERE m.id = ?`).bind(int(b.id, 0)).first();
-    // only the person who received a message can report it
-    if (!m || m.to_id !== c.user.id || m.created > c.now) fail(404, 'that message is gone.');
-    targetId = m.id; targetUser = m.from_id;
-    snapshot = { author: m.author, body: m.body, created: m.created };
+    const m = await c.env.DB.prepare(`SELECT m.id, m.author_id, m.body, m.created, m.conversation_id, m.room, f.name AS author,
+        (m.room IS NOT NULL OR EXISTS (SELECT 1 FROM conversation_members cm WHERE cm.conversation_id = m.conversation_id
+          AND cm.user_id = ?2 AND cm.status = 'joined')) AS reader
+      FROM chat_messages m JOIN users f ON f.id = m.author_id WHERE m.id = ?1 AND m.deleted = 0 AND m.hidden = 0`).bind(int(b.id, 0), c.user.id).first();
+    if (!m || !m.reader || m.author_id === c.user.id) fail(404, 'that message is gone.');
+    targetId = m.id; targetUser = m.author_id;
+    snapshot = { author: m.author, body: m.body, created: m.created, chatId: m.conversation_id, room: m.room };
   } else fail(400, 'report a user, a post or a message.');
 
   await limit(c, 'report:' + c.user.id, [[10, 3600000], [40, 86400000]], 'you\'ve sent a lot of reports. a moderator will get to them.');
@@ -108,15 +120,19 @@ async function setBanned(c, userId, banned, note) {
   const stmts = [c.env.DB.prepare('UPDATE users SET banned = ? WHERE id = ?').bind(banned ? 1 : 0, userId)];
   if (banned) stmts.push(c.env.DB.prepare('DELETE FROM sessions WHERE user_id = ?').bind(userId));
   await c.env.DB.batch(stmts);
+  // a banned member's chat sockets close at once (code 4001), in every room they may have open
+  if (banned) await signOut(c.env, userId);
   await log(c, banned ? 'ban' : 'unban', 'user', userId, note);
 }
 
 async function setHidden(c, type, id, hidden, note) {
-  const table = type === 'post' ? 'posts' : type === 'message' ? 'messages' : null;
+  const table = type === 'post' ? 'posts' : type === 'message' ? 'chat_messages' : null;
   if (!table) fail(400, 'only posts and messages can be hidden.');
-  const r = await c.env.DB.prepare(`UPDATE ${table} SET hidden = ? WHERE id = ?`).bind(hidden ? 1 : 0, id).run();
-  if (!r.meta.changes) fail(404, 'that is already gone (deleted by its author).');
+  const r = await c.env.DB.prepare(`UPDATE ${table} SET hidden = ? WHERE id = ? RETURNING ${type === 'message' ? 'conversation_id, room' : 'id'}`).bind(hidden ? 1 : 0, id).first();
+  if (!r) fail(404, 'that is already gone (deleted by its author).');
   await log(c, hidden ? 'hide' : 'unhide', type, id, note);
+  // a chat message taken down leaves the screens of everyone connected
+  if (type === 'message' && hidden) await tell(c.env, r.room ? OURSPACE : r.conversation_id, { type: 'deleted', id });
 }
 
 // GET /api/admin/reports?status=open|closed — open ones: child-safety (csam) reports first, then oldest first. `deadline`:
@@ -126,7 +142,7 @@ export async function adminReports(c) {
   const { results } = await c.env.DB.prepare(`
     SELECT r.*, ${REF_COLS('rp', 'r_')}, ${REF_COLS('tu', 't_')}, tu.banned AS t_banned, rs.name AS resolver,
       CASE r.target_type WHEN 'post' THEN (SELECT hidden FROM posts WHERE id = r.target_id)
-                         WHEN 'message' THEN (SELECT hidden FROM messages WHERE id = r.target_id) END AS t_hidden,
+                         WHEN 'message' THEN (SELECT hidden FROM chat_messages WHERE id = r.target_id) END AS t_hidden,
       (SELECT COUNT(*) FROM reports o WHERE o.target_user_id = r.target_user_id) AS t_reports
     FROM reports r LEFT JOIN users rp ON rp.id = r.reporter_id LEFT JOIN users tu ON tu.id = r.target_user_id
     LEFT JOIN users rs ON rs.id = r.resolved_by

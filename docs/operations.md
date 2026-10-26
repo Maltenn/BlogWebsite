@@ -10,7 +10,7 @@ Sign up on the site first (claim `malten` before anyone else does), then:
 npx wrangler d1 execute ourspace-social-db --remote --command "UPDATE users SET is_admin = 1 WHERE name_key = 'malten'"
 ```
 
-Use `--local` instead of `--remote` for the local copy. Log out and back in, and a **Moderation** tab appears with the open reports. From there you can hide a post or message, ban an account, dismiss a report, and undo both. Every action is written to the moderation log. Banning logs the person out. Admins can't be banned from the tab: set `is_admin = 0` the same way first.
+Use `--local` instead of `--remote` for the local copy. Log out and back in, and a **Moderation** tab appears with the open reports. From there you can hide a post or chat message, ban an account, dismiss a report, and undo both. Every action is written to the moderation log. Banning logs the person out. Admins can't be banned from the tab: set `is_admin = 0` the same way first.
 
 ## Daily routine
 
@@ -34,6 +34,17 @@ Members' photos live in the R2 bucket `ourspace-social-media`, under random keys
   3. **Then remove it** (`{ "action": "remove", "note": "NCMEC report <number>" }`) and ban the account. Never forward the material by email or chat.
 - **Storage**: each member may keep 200 MB. `SELECT owner_id, COUNT(*), SUM(bytes) / 1048576.0 AS mb FROM media GROUP BY owner_id ORDER BY mb DESC LIMIT 20` shows who uses the most; `SELECT SUM(bytes) / 1073741824.0 FROM media` the whole bucket in GB (R2's first 10 GB are free, then $0.015 per GB-month: [decisions/004](decisions/004-cloudflare-limits-and-costs.md)).
 - **Housekeeping**: the cron deletes uploads nobody attached within a day, and photos whose post or owner went without them, but never held (hidden) ones. If an R2 delete ever fails, the Worker logs `R2 delete failed:` with the keys; delete them by hand with `npx wrangler r2 object delete ourspace-social-media/<key> --remote`.
+
+## Chat
+
+Every chat message is in D1 (`chat_messages`): #ourspace's have `room = 'ourspace'`, a group's or DM's a `conversation_id`. The Durable Objects only pass events along, so there's nothing to back up or clean in them.
+
+- **Delete a message**: a moderator's delete button in #ourspace, or `DELETE /api/chat-messages/<id>` from a moderator's session, takes it down (`hidden = 1`: kept as evidence, shown to nobody, logged as `hide`), and it disappears from every open screen at once. Hiding a reported message from the Moderation tab does the same. A member deleting their own clears its words (`deleted = 1`); the report, if there is one, keeps them in its snapshot.
+- **Mute someone in #ourspace**: `POST /api/admin/mutes { "name": "…", "hours": 1 | 24 | 168, "reason": "…" }` (0 hours lifts it). They can still read the room and use their DMs and groups. Logged as `mute` / `unmute`. Who's muted: `SELECT u.name, m.until, m.reason FROM chat_mutes m JOIN users u ON u.id = m.user_id`. The cron clears expired mutes.
+- **Trimming**: #ourspace shows only the newest 500 messages of the last 24 hours, and the cron deletes everything older, **except messages someone reported** (`reports.target_type = 'message'`), which stay as evidence for as long as the report does. Groups and DMs are never trimmed.
+- **Read a reported DM or group message in context**: `SELECT id, author_id, body, created, hidden FROM chat_messages WHERE conversation_id = (SELECT conversation_id FROM chat_messages WHERE id = <id>) AND id BETWEEN <id> - 20 AND <id> + 20 ORDER BY id`. Only do this for a report you are handling.
+- **Interaction scores** (`affinity`, which orders the group-chat suggestions): the cron deletes scores that have faded below 0.05. Nobody sees them but the suggestion list.
+- **If live chat breaks** (the Durable Object can't be reached): messages are still stored, and the pages fall back to polling. `npx wrangler tail` shows `live: telling … failed`.
 
 ## Logs
 
@@ -68,7 +79,10 @@ They are counted per person unless noted, in the `attempts` table, and old rows 
 | Posts (statuses, replies, quotes, Friends' Comments, blog posts, board threads and comments together) | 6 a minute and 300 a day |
 | Likes · reposts · bookmarks (undoing one is free) | 300 · 60 · 300 an hour |
 | Votes on threads and comments (taking one back is free) | 300 an hour |
-| Messages | 15 a minute and 400 a day |
+| Messages (DMs and group chats together) | 15 a minute and 400 a day |
+| New DMs opened · new group chats · group invites to non-friends | 30 an hour · 10 a day · 30 an hour |
+| #ourspace (slow mode) | 1 every 3 seconds and 20 a minute |
+| Read positions in chats (`PUT /api/chats/:id/read`) | 120 a minute |
 | Follows (new ones; unfollowing is free) | 20 an hour and 100 a day |
 | Read positions (`PUT /api/me/markers/feed` and `/notifications`) | 120 a minute |
 | Board threads (also count as posts) | 3 an hour and 10 a day |

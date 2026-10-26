@@ -27,9 +27,16 @@ class ClassList {
   }
 }
 
-// one simple selector: tag, .class, #id, or a mix (a.ms-mention); no combinators
+// selectors: tag, .class, #id, or a mix (a.ms-mention), with commas, and a space for "somewhere inside" (.box a)
 function matches(el, sel) {
   return sel.split(',').some(one => {
+    const parts = one.trim().split(/\s+/);
+    if (parts.length > 1) {
+      if (!matches(el, parts.pop())) return false;
+      let up = el.parentNode;
+      while (parts.length && up instanceof Element) { if (matches(up, parts[parts.length - 1])) parts.pop(); up = up.parentNode; }
+      return !parts.length;
+    }
     const m = one.trim().match(/^([a-z0-9]*)((?:[.#][\w-]+)*)$/i);
     if (!m) throw new Error('fake-dom can\'t match ' + one);
     if (m[1] && el.tagName !== m[1].toUpperCase()) return false;
@@ -128,6 +135,18 @@ const doc = {
   querySelectorAll: sel => doc.body.querySelectorAll(sel),
 };
 
+// A WebSocket the test drives by hand: FakeSocket.all is every one made (newest last); .open() / .emit(event) / .shut(code)
+// play what the server does; .sent is what the page sent. Put it in place with globalThis.WebSocket = FakeSocket.
+export class FakeSocket {
+  static all = [];
+  constructor(url) { this.url = url; this.readyState = 0; this.sent = []; FakeSocket.all.push(this); }
+  send(data) { this.sent.push(data); }
+  close(code) { this.shut(code); }
+  open() { this.readyState = 1; this.onopen && this.onopen(); }
+  emit(event) { this.onmessage && this.onmessage({ data: typeof event === 'string' ? event : JSON.stringify(event) }); }
+  shut(code = 1006) { if (this.readyState === 3) return; this.readyState = 3; this.onclose && this.onclose({ code }); }
+}
+
 // A fake Response for fetch.
 export const answer = (status, data) => ({ ok: status >= 200 && status < 300, status, json: async () => data });
 
@@ -139,13 +158,15 @@ export function installDom(onFetch = () => answer(404, { error: 'not here' })) {
   const toasts = new Element('div');
   toasts.setAttribute('id', 'toasts');
   doc.body.append(toasts);
-  const location = { pathname: '/', search: '', origin: 'http://localhost', href: 'http://localhost/' };
+  const location = { pathname: '/', search: '', origin: 'http://localhost', href: 'http://localhost/', protocol: 'http:', host: 'localhost' };
   const timer = globalThis.setTimeout;
+  const every = globalThis.setInterval;
   Object.assign(globalThis, {
     document: doc, Node, location,
     window: { scrollTo() {}, addEventListener() {}, removeEventListener() {}, getSelection: () => null, location },
     history: { pushState() {}, replaceState() {} },
     setTimeout: (fn, ms, ...args) => { const t = timer(fn, ms, ...args); t.unref?.(); return t; },
+    setInterval: (fn, ms, ...args) => { const t = every(fn, ms, ...args); t.unref?.(); return t; },     // a page's refresh timer doesn't keep the run alive either
   });
   const dom = {
     onFetch,

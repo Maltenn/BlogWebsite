@@ -12,7 +12,9 @@ import { sunSign } from '../shared/astro.js';
 import { randomToken } from '../shared/seal.js';
 import { sendMail, mailReady } from '../shared/mail.js';
 import { SHOWN, UNREAD } from '../shared/notify.js';
+import { UNREAD_CHATS, HANDOVER } from '../shared/chat.js';
 import { dropObjects, keysIn, releaseMedia } from '../shared/media.js';
+import { signOut, roomsOf } from '../shared/live.js';
 
 const ITERATIONS = 100000;
 const SESSION_DAYS = 30;
@@ -142,7 +144,8 @@ export async function currentUser(c) {
   return { ...u, tokenHash };
 }
 
-// GET /api/me — who am I, plus the numbers the tabs show (notifications: unread ones, up to 99)
+// GET /api/me — who am I, plus the numbers the tabs show (notifications: unread ones, up to 99; unread: conversations
+// with unread messages, up to 99)
 export async function me(c) {
   if (!c.user) return json({ user: null, minAge: Number(c.env.MIN_AGE || 13) });
   const id = c.user.id;
@@ -150,11 +153,9 @@ export async function me(c) {
     SELECT
       (SELECT COUNT(*) FROM follows f JOIN users x ON x.id = f.follower_id
          WHERE f.followee_id = ?1 AND f.status = 'pending' AND x.banned = 0) AS requests,
-      (SELECT COUNT(*) FROM messages m JOIN users x ON x.id = m.from_id
-         WHERE m.to_id = ?1 AND m.read_at IS NULL AND m.hidden = 0 AND m.created <= ?2 AND x.banned = 0
-         AND NOT EXISTS (SELECT 1 FROM blocks bl WHERE (bl.blocker_id = ?1 AND bl.blocked_id = m.from_id) OR (bl.blocked_id = ?1 AND bl.blocker_id = m.from_id))) AS unread,
+      ${UNREAD_CHATS} AS unread,
       (SELECT COUNT(*) FROM (SELECT 1 FROM ${SHOWN} AND ${UNREAD} LIMIT 99)) AS notifications,
-      (SELECT COUNT(*) FROM reports WHERE status = 'open') AS reports`).bind(id, c.now).first();
+      (SELECT COUNT(*) FROM reports WHERE status = 'open') AS reports`).bind(id).first();
   return json({
     user: userOut(c.user),
     counts: { requests: counts.requests, unread: counts.unread, notifications: counts.notifications, reports: c.user.is_admin ? counts.reports : 0 },
@@ -209,9 +210,12 @@ export async function login(c) {
   return json({ user: userOut(u) }, 200, { 'Set-Cookie': await startSession(c, u.id) });
 }
 
-// POST /api/logout
+// POST /api/logout — this session ends, and its chat sockets close (code 4001)
 export async function logout(c) {
-  if (c.user) await c.env.DB.prepare('DELETE FROM sessions WHERE token_hash = ?').bind(c.user.tokenHash).run();
+  if (c.user) {
+    await c.env.DB.prepare('DELETE FROM sessions WHERE token_hash = ?').bind(c.user.tokenHash).run();
+    await signOut(c.env, c.user.id, { only: c.user.tokenHash });
+  }
   return json({ ok: true }, 200, { 'Set-Cookie': sessionCookie(c.url, '', 0) });
 }
 
@@ -252,6 +256,7 @@ export async function resetPassword(c) {
     c.env.DB.prepare('DELETE FROM password_resets WHERE user_id = ?').bind(r.user_id),
     c.env.DB.prepare('DELETE FROM sessions WHERE user_id = ?').bind(r.user_id),
   ]);
+  await signOut(c.env, r.user_id);
   return json({ user: userOut({ ...r, id: r.user_id }) }, 200, { 'Set-Cookie': await startSession(c, r.user_id) });
 }
 
@@ -267,6 +272,7 @@ export async function changePassword(c) {
     c.env.DB.prepare('UPDATE users SET pass_hash = ? WHERE id = ?').bind(await hashPassword(b.next), c.user.id),
     c.env.DB.prepare('DELETE FROM sessions WHERE user_id = ? AND token_hash != ?').bind(c.user.id, c.user.tokenHash),
   ]);
+  await signOut(c.env, c.user.id, { except: c.user.tokenHash });
   return json({ ok: true });
 }
 
@@ -306,6 +312,8 @@ export async function deleteAccount(c) {
       UNION SELECT root_id FROM posts WHERE author_id = ?1 AND kind = 'comment'`).bind(id),
     DB.prepare('SELECT DISTINCT root_id AS id FROM posts WHERE author_id = ? AND kind = \'comment\'').bind(id),
   ]);
+  // the rooms it may have open, read while its memberships are still there: their sockets close once it's gone
+  const rooms = await roomsOf(c.env, id);
   const res = await DB.batch([
     // every photo it uploaded, and the photos on other people's comments in its threads (which go with them); those
     // held as evidence (hidden by a moderator, or their post was) stay as hidden photos until a moderator removes them
@@ -339,7 +347,14 @@ export async function deleteAccount(c) {
     DB.prepare('DELETE FROM bookmarks WHERE user_id = ?').bind(id),
     DB.prepare('DELETE FROM mentions WHERE user_id = ?').bind(id),
     DB.prepare('DELETE FROM notifications WHERE user_id = ?1 OR actor_id = ?1').bind(id),
-    DB.prepare('DELETE FROM messages WHERE from_id = ?1 OR to_id = ?1').bind(id),
+    // chat: its DMs go whole; groups it owned pass to their longest-standing member; its messages, memberships,
+    // interaction scores and mutes go (reports keep their snapshots)
+    DB.prepare('DELETE FROM conversations WHERE kind = \'dm\' AND id IN (SELECT conversation_id FROM conversation_members WHERE user_id = ?)').bind(id),
+    DB.prepare(HANDOVER('1')).bind(id),
+    DB.prepare('DELETE FROM chat_messages WHERE author_id = ?').bind(id),
+    DB.prepare('DELETE FROM conversation_members WHERE user_id = ?').bind(id),
+    DB.prepare('DELETE FROM affinity WHERE from_id = ?1 OR to_id = ?1').bind(id),
+    DB.prepare('DELETE FROM chat_mutes WHERE user_id = ?').bind(id),
     DB.prepare('DELETE FROM follows WHERE follower_id = ?1 OR followee_id = ?1').bind(id),
     DB.prepare('DELETE FROM markers WHERE user_id = ?').bind(id),
     DB.prepare('DELETE FROM blocks WHERE blocker_id = ?1 OR blocked_id = ?1').bind(id),
@@ -355,5 +370,6 @@ export async function deleteAccount(c) {
     DB.prepare('DELETE FROM users WHERE id = ?').bind(id),
   ]);
   await dropObjects(c.env, keysIn(res[0]));
+  await signOut(c.env, id, { rooms });
   return json({ ok: true }, 200, { 'Set-Cookie': sessionCookie(c.url, '', 0) });
 }

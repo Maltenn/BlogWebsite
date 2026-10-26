@@ -12,6 +12,7 @@ import { go } from '../core/router.js';
 import { avatar, nameLink } from '../widgets/people.js';
 import { postPath } from '../widgets/postlinks.js';
 import { boardPath, threadPath } from '../widgets/boardlinks.js';
+import { chatPath } from '../widgets/chatparts.js';
 
 const GROUPED = ['like', 'repost'];                       // one after another about the same post: one line
 
@@ -28,6 +29,8 @@ const snippet = (p, max = 140) => {
 function target(n) {
   const p = n.post;
   if (n.kind === 'follow_request') return '/requests';
+  if (n.kind === 'group_invite') return n.chat ? chatPath(n.chat.id) : '/messages';
+  if (n.kind === 'chat_mention') return '/ourspace';
   if (n.kind === 'board_approved') return n.request && n.request.board ? boardPath(n.request.board.slug) : '/boards';
   if (n.kind === 'board_declined') return '/boards';
   if (p && p.board) return threadPath(p.board.slug, p.threadId);              // a board thread or comment: the thread it is in
@@ -59,8 +62,24 @@ function verb(g) {
     case 'follow': return 'followed you';
     case 'follow_request': return 'asked to follow you';
     case 'follow_accepted': return 'accepted your follow request';
+    case 'group_invite': return `invited you to the group chat${n.chat && n.chat.title ? ' "' + n.chat.title + '"' : ''}`;
+    case 'chat_mention': return 'mentioned you in #ourspace';
     default: return 'did something';
   }
+}
+
+// Accept / Decline on a group invite, right in the list
+function inviteButtons(chat) {
+  const box = h('div', { class: 'ms-note-actions' });
+  const answer = action => async () => {
+    try {
+      await api.post('/chats/' + enc(chat.id) + '/invite', { action });
+      loadMe().catch(() => {});
+      if (action === 'accept') go(chatPath(chat.id)); else { toast('invite declined.'); box.replaceChildren('declined.'); }
+    } catch (e) { oops(e); box.replaceChildren(h('a', { href: chatPath(chat.id), text: 'open the group' })); }
+  };
+  box.append(h('button', { class: 'btn98 go', type: 'button', text: '✔ Accept', onclick: answer('accept') }), h('button', { class: 'btn98', type: 'button', text: 'Decline', onclick: answer('decline') }));
+  return box;
 }
 
 // one line (a group of one or more notifications)
@@ -71,11 +90,12 @@ function line(g) {
   const unread = g.items.some(n => n.unread);
   const path = target(newest);
   const row = h('div', { class: 'ms-note-row ms-clickable' + (unread ? ' unread' : ''), dataset: { kind: newest.kind },
-    onclick: e => { if (!e.target.closest('a')) go(path); } },
+    onclick: e => { if (!e.target.closest('a, button')) go(path); } },
   h('div', { class: 'ms-note-av' }, actors.slice(0, 5).map(a => avatar(a, actors.length > 1 ? 28 : 40))),
   h('div', { class: 'ms-note-mid' },
     h('div', { class: 'ms-note-text' }, names(actors), ' ', h('a', { href: path, text: verb(g) }), unread ? h('span', { class: 'ms-chip ms-newchip', text: 'new' }) : null),
-    newest.post ? h('div', { class: 'ms-preview ms-note-snippet', text: snippet(newest.post) }) : null),
+    newest.post || newest.message ? h('div', { class: 'ms-preview ms-note-snippet', text: snippet(newest.post || newest.message) }) : null,
+    newest.kind === 'group_invite' && newest.chat ? inviteButtons(newest.chat) : null),
   h('span', { class: 'ms-time', title: when(newest.created), text: ago(newest.created) }));
   return row;
 }

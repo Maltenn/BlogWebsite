@@ -1,8 +1,8 @@
 # OurSpace
 
-A social network for real people, in the spirit of early-2000s MySpace: decorated pages, a Top 8, Friends' Comments, topic boards, photos and private messages, and no bots. One Cloudflare Worker serves the pages and the API, the data lives in one D1 database, and the photos in one R2 bucket. This repo used to hold a Windows 98 desktop site as well; see [docs/history.md](docs/history.md).
+A social network for real people, in the spirit of early-2000s MySpace: decorated pages, a Top 8, Friends' Comments, topic boards, photos, live chat, and no bots. One Cloudflare Worker serves the pages and the API, the data lives in one D1 database, the photos in one R2 bucket, and live chat runs through Durable Objects. This repo used to hold a Windows 98 desktop site as well; see [docs/history.md](docs/history.md).
 
-- **Real people only.** There are no bot accounts, and nothing posts on anyone's behalf. Requests and Inbox only ever hold things from people.
+- **Real people only.** There are no bot accounts, and nothing posts on anyone's behalf. Requests and Messages only ever hold things from people.
 - **Sign up with an email and a password** (the default tab), or under **Other options** with Google, Apple, Microsoft, Discord or GitHub. Every way in asks for a screen name and a **birthday**.
 - **Birthdays keep it 13+** and give everyone their **star sign**. The birthday itself stays private. People choose whether their page shows their age and their sign.
 - **Profiles** at `/u/<name>` that anyone can view, with statuses (up to 500 characters), a blog (titles, subtitles, a page for each post), Friends' Comments, a Top 8, Spotify and private messages.
@@ -12,7 +12,8 @@ A social network for real people, in the spirit of early-2000s MySpace: decorate
 - **Boards**, like a forum: Music, Movies & TV, Games, Art & Layouts, Cooking, Pets, Sports, Tech & Computers, Fashion, Books & Writing, Astrology, School, Advice and Random (where the old bulletins went). Scroll a board's threads by Hot, New, Top or Best, open one to read the whole post and its comments, nested as deep as people reply. Every thread and comment takes a like and a dislike, and both counts show. Moderators pin and lock threads and add boards; members can ask for new ones. Boards are public: a private profile's threads and comments are seen by everyone there.
 - **Photos** on statuses, replies, quotes and board threads (up to 4), board comments (1) and blog posts (a cover), and **your own profile picture** instead of a preset. The browser shrinks each photo, and the server checks it is really a JPEG, PNG, GIF or WebP and takes out its location and other metadata before storing it. A private profile's photos are only for its followers. No video.
 - **@mentions and #tags.** `@name` in a post, a thread, a comment or a Friends' Comment links to that person (and tells them, if they may see the post); every `#tag` has a page of its posts.
-- **Notifications** for likes, replies (on the boards too), reposts, quotes, mentions, Friends' Comments on your page, follows and answers to board requests, in the app only (no email, no push), with an unread count.
+- **Live chat.** **#ourspace** is one room every member can talk in, like a Discord channel (the last 500 messages or 24 hours, slow mode, moderators delete and mute). **DMs** between two people (who respect each other's "friends only" setting and blocks) and **group chats** of up to 50: friends join at once, anybody else gets an invite to accept, and the suggestions put the friends you talk to most first. Messages, "is typing…" and who's online arrive live over WebSockets; a page that can't keep its socket polls instead.
+- **Notifications** for likes, replies (on the boards too), reposts, quotes, mentions, Friends' Comments on your page, follows, answers to board requests, group chat invites and mentions in #ourspace, in the app only (no email, no push), with an unread count.
 - **Everyone can connect their own Spotify.** Their page then shows their top songs, with previews (see the Spotify limit in [docs/deploy.md](docs/deploy.md) before relying on it).
 - **Daily horoscopes, written from the real sky.** There's a reading of today's sky for everybody, a horoscope for each sign, and a personal reading for each member that also compares today's planets with the sky on the day they were born.
 - **Pages are decorated** with the Edit My Page choices: 231 preset pictures, 10 color themes, 14 background tiles (or a plain color), fonts, decor gifs and 88x31 buttons.
@@ -22,7 +23,7 @@ A social network for real people, in the spirit of early-2000s MySpace: decorate
 
 ## Try it on your computer (the demo)
 
-One command starts the whole site on your own computer, already filled with sample people, follows, posts (some with photos), board threads and messages. Nothing in it is real or online.
+One command starts the whole site on your own computer, already filled with sample people, follows, posts (some with photos), board threads, DMs, a group chat and #ourspace chatter. Nothing in it is real or online.
 
 You need [Node.js](https://nodejs.org) 22 or newer and [git](https://git-scm.com). Then, in a terminal:
 
@@ -38,7 +39,7 @@ When it says **ourspace demo is running**, open **http://127.0.0.1:8787** in you
 
 | Log in as | Email | Password | Who |
 |---|---|---|---|
-| you | `you@example.com` | `ourspace-demo` | `the_reviewer`, a regular member with friends, two new followers, a follow request waiting on a private profile (`emo_drew`), messages, a bookmark, and a few unread notifications (a like, replies on a post and on a board, a repost, a quote, a mention and Friends' Comments) |
+| you | `you@example.com` | `ourspace-demo` | `the_reviewer`, a regular member with friends, two new followers, a follow request waiting on a private profile (`emo_drew`), unread DMs, a group chat (`top 8 crew ♥`), an invite waiting to a group (`mixtape club`, from someone who isn't a friend yet), a bookmark, and a few unread notifications (a like, replies on a post and on a board, a repost, a quote, a mention and Friends' Comments) |
 | the moderator | `malten@example.com` | `ourspace-demo` | `malten`, sees the **Moderation** tab with a sample report, and pinned the house rules in Random |
 | anyone else | `kat@`, `jules@`, `drew@`, `pete@`, `mia@` or `banana@example.com` | `ourspace-demo` | the sample members, to see the site from their side |
 
@@ -47,7 +48,7 @@ How the demo differs from the real site:
 - **Sign-in and Spotify go to pretend pages.** "Continue with Google" (or Apple, Microsoft, Discord, GitHub) and "connect Spotify" open a page labeled *local demo: not the real Google*. Type any name to continue; the same name brings back the same pretend account. Cancel works too. On Spotify's pretend page you can tick a box to see what people outside the 5-person allowlist are told.
 - **Pretend Spotify has no album covers** (grey squares). The 30-second previews are real ones from Apple when your computer can reach the iTunes Search API.
 - **"Forgot my password" emails** appear in the terminal window running the demo. Copy the link from there.
-- **Your changes stick** between runs: the data (and any photos you upload) lives in `.demo/`. `npm run demo -- --fresh` starts over with just the sample content. (A demo made before the boards keeps its data, with its bulletins moved into Random; `--fresh` brings the sample threads, comments and votes.)
+- **Your changes stick** between runs: the data (and any photos you upload) lives in `.demo/`. `npm run demo -- --fresh` starts over with just the sample content. (A demo made before the boards keeps its data, with its bulletins moved into Random, and one made before chat keeps its messages as DMs; `--fresh` brings the sample threads, group chats and #ourspace.)
 - **Editing works live.** Change a file in `public/` or `src/` and refresh the browser.
 
 Stop it with **Ctrl+C**. If port 8787 is already taken, it picks the next free one and prints the address.

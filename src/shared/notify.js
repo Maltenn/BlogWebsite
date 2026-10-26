@@ -24,14 +24,19 @@ export function notify(c, kind, to, post = null, when = '1') {
 // way, and the post, if there is one (`p` by `a`, on the page of `o`: a Friends' Comment's page owner, else the author),
 // is still there for them to see (neither its writer nor its page banned or blocked either way; a board comment's
 // thread and the comments above it too, so hiding a thread or a comment silences what was told about the comments
-// under it). Also joined: the
-// post's board `pb`, and for a board request's answer the request `q` and the board it made `qb`. Everything after
-// FROM; it ends inside the WHERE, so more conditions can follow.
+// under it). A group invite shows while its member is invited or joined (not after declining or being removed), a
+// #ourspace mention while its message is there (not deleted or taken down). Also joined: the post's board `pb`, for a
+// board request's answer the request `q` and the board it made `qb`, for a group invite the conversation `cv`, for a
+// mention in #ourspace the message `cmm`. Everything after FROM; it ends inside the WHERE, so more conditions can follow.
 export const SHOWN = `notifications n JOIN users x ON x.id = n.actor_id
   LEFT JOIN posts p ON p.id = n.post_id LEFT JOIN users a ON a.id = p.author_id
   LEFT JOIN users o ON o.id = COALESCE(p.target_id, p.author_id) LEFT JOIN boards pb ON pb.id = p.board_id
   LEFT JOIN board_requests q ON q.id = n.request_id LEFT JOIN boards qb ON qb.id = q.board_id
+  LEFT JOIN conversations cv ON cv.id = n.conversation_id LEFT JOIN chat_messages cmm ON cmm.id = n.message_id
   WHERE n.user_id = ?1 AND x.banned = 0 AND ${NOT_BLOCKED('n.actor_id')}
+    AND (n.conversation_id IS NULL OR EXISTS (SELECT 1 FROM conversation_members ncm WHERE ncm.conversation_id = n.conversation_id
+      AND ncm.user_id = ?1 AND ncm.status IN ('invited', 'joined')))
+    AND (n.message_id IS NULL OR (cmm.hidden = 0 AND cmm.deleted = 0))
     AND (n.post_id IS NULL OR (p.hidden = 0 AND p.deleted = 0 AND a.banned = 0 AND o.banned = 0
       AND ${NOT_BLOCKED('p.author_id')} AND ${NOT_BLOCKED('o.id')} AND ${SEES_POST('p', 'o')}
       AND (p.kind != 'comment' OR ${REACHABLE('p.id', '?1', null)})))`;

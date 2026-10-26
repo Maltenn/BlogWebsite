@@ -200,7 +200,15 @@ async function seed() {
   const shots = async (c, ...images) => Promise.all(images.map(([image, alt]) => upload(c, image).then(m => ({ id: m.id, alt }))));
   const status = async (c, body, media) => (await c.post('/api/status', { body, ...(media ? { media } : {}) })).id;
   const comment = (from, to, body) => from.post(`/api/users/${encodeURIComponent(to.name)}/comments`, { body });
-  const dm = (from, to, body) => from.post('/api/inbox/' + encodeURIComponent(to.name), { body });
+  // a DM: the pair's conversation, opened (or made) by whoever writes first
+  const dms = new Map();
+  const dm = async (from, to, body) => {
+    const pair = [from.id, to.id].sort((x, y) => x - y).join(':');
+    if (!dms.has(pair)) dms.set(pair, (await from.post('/api/chats', { dm: to.name })).chat.id);
+    return from.post(`/api/chats/${dms.get(pair)}/messages`, { body });
+  };
+  const say = (c, chat, body) => c.post(`/api/chats/${chat}/messages`, { body });
+  const room = (c, body) => c.post('/api/ourspace/messages', { body });
   const reply = async (c, to, body) => (await c.post(`/api/posts/${to}/replies`, { body })).post.id;
   const act = (c, what, id) => c.post(`/api/posts/${id}/${what}`);              // like, repost or bookmark
   const thread = async (c, board, subject, body, media) => (await c.post(`/api/boards/${board}/threads`, { subject, body, ...(media ? { media } : {}) })).thread.id;
@@ -301,10 +309,37 @@ async function seed() {
   await chime(pete, kickflip, 'bend your knees more than you think you need to');
   await vote(1, kickflip, pete, kat);
 
+  // chat: a group chat you're in (kat's: her friends join at once), a group banana invited you to (you aren't friends
+  // yet, so it waits for your answer), and some #ourspace chatter (slow mode: one message every 3 seconds per person,
+  // so the second round starts over)
+  const crew = (await kat.post('/api/chats', { members: [you.name, mia.name, jules.name], title: 'top 8 crew ♥' })).chat.id;
+  await say(kat, crew, 'welcome to the group chat!! this is where the real top 8 drama happens');
+  await say(jules, crew, 'there is no drama. kat IS the drama');
+  await say(mia, crew, 'mercury is retrograde, so technically all drama is excused this week ✩');
+  await say(kat, crew, `@${you.name} say hi!!`);
+  await banana.post('/api/chats', { members: [pete.name, you.name], title: 'mixtape club' });
+  await room(kat, 'hiii #ourspace!! who\'s online');
+  await room(pete, 'me. compiling. always compiling');
+  await room(banana, 'new mix dropping tonight, songs to do homework to (you won\'t)');
+  await room(mia, 'happy full moon everyone ✩');
+  await room(jules, 'anyone skating later? the 7-eleven lot is dry');
+  sql('DELETE FROM attempts WHERE k LIKE \'ourspace:%\'');
+  await room(kat, `@${pete.name} fix my marquee pls`);
+  await room(pete, 'the marquee is a feature');
+  await room(drew, 'it\'s raining here. obviously');
+
   // spread it all over the last day or so, so the feed and inbox read like a real afternoon, not one second
   const now = Date.now();
   sql(`UPDATE posts SET created = ${now} - ((SELECT MAX(id) FROM posts) - id) * 1500000 - 240000`);
-  sql(`UPDATE messages SET created = ${now} - ((SELECT MAX(id) FROM messages) - id) * 1200000 - 120000`);
+  // DMs and group messages over the afternoon, #ourspace over the last hour (its scrollback is a day), and each
+  // conversation started at its first message (an invite when it was sent)
+  sql([
+    `UPDATE chat_messages SET created = ${now} - ((SELECT MAX(id) FROM chat_messages WHERE room IS NULL) - id) * 1200000 - 120000 WHERE room IS NULL`,
+    `UPDATE chat_messages SET created = ${now} - ((SELECT MAX(id) FROM chat_messages WHERE room IS NOT NULL) - id) * 300000 - 60000 WHERE room IS NOT NULL`,
+    `UPDATE conversations SET created = COALESCE((SELECT MIN(created) FROM chat_messages WHERE conversation_id = conversations.id), ${now} - 3600000),
+      last_message_at = (SELECT MAX(created) FROM chat_messages WHERE conversation_id = conversations.id)`,
+    'UPDATE conversation_members SET joined = (SELECT created FROM conversations WHERE id = conversation_id)',
+  ].join(';\n'));
   // the follows came first (or "pick up where I left off", which skips posts from before a follow, would be empty)
   sql(`UPDATE follows SET created = ${now} - 86400000, accepted = CASE WHEN status = 'accepted' THEN ${now} - 86400000 END`);
   // what hangs off a post follows it: a tag has its post's time, a like, vote or bookmark comes two minutes later, a
@@ -319,6 +354,8 @@ async function seed() {
     `UPDATE notifications SET created = CASE kind
       WHEN 'like' THEN (SELECT created FROM posts WHERE id = post_id) + 120000
       WHEN 'repost' THEN (SELECT created FROM posts WHERE kind = 'repost' AND author_id = actor_id AND quote_of = post_id)
+      WHEN 'group_invite' THEN (SELECT created FROM conversations WHERE id = conversation_id)
+      WHEN 'chat_mention' THEN (SELECT created FROM chat_messages WHERE id = message_id)
       ELSE COALESCE((SELECT created FROM posts WHERE id = post_id), ${now} - 86400000) END`,
     `INSERT INTO markers (user_id, name, last_created, last_id, updated) SELECT user_id, 'notifications', created, id, ${now} FROM notifications WHERE id = ${readUpTo}`,
   ].join(';\n'));

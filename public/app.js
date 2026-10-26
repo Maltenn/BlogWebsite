@@ -22,10 +22,12 @@ import { renderBoards, renderBoard } from './js/pages/boards.js';
 import { renderEdit } from './js/pages/edit.js';
 import { renderHome } from './js/pages/home.js';
 import { renderHoroscope } from './js/pages/horoscope.js';
-import { renderInbox, renderThread } from './js/pages/inbox.js';
+import { renderChat } from './js/pages/chat.js';
 import { renderBlogPost } from './js/pages/blog.js';
 import { renderFollowers, renderFollowing, renderFriends } from './js/pages/lists.js';
+import { renderMessages, renderInboxRedirect } from './js/pages/messages.js';
 import { renderNotifications } from './js/pages/notifications.js';
+import { renderOurspace } from './js/pages/ourspace.js';
 import { renderPost } from './js/pages/post.js';
 import { renderProfile, renderProfileReplies, renderProfileBlog, renderProfileComments } from './js/pages/profile.js';
 import { renderRequests } from './js/pages/requests.js';
@@ -57,8 +59,11 @@ const ROUTES = [
   [/^\/bookmarks$/, renderBookmarks, true],
   [/^\/tags\/([^/]+)$/, renderTag],
   [/^\/requests$/, renderRequests, true],
-  [/^\/inbox$/, renderInbox, true],
-  [/^\/inbox\/([^/]+)$/, renderThread, true],
+  [/^\/messages$/, renderMessages, true],
+  [/^\/messages\/(\d+)$/, renderChat, true],
+  [/^\/inbox$/, renderInboxRedirect, true],                // the old Inbox's addresses
+  [/^\/inbox\/([^/]+)$/, renderInboxRedirect, true],
+  [/^\/ourspace$/, renderOurspace],
   [/^\/boards$/, renderBoards],
   [/^\/boards\/([^/]+)$/, renderBoard],
   [/^\/boards\/([^/]+)\/(\d+)$/, renderBoardThread],
@@ -86,7 +91,7 @@ async function poll() {
   if (!S.me || document.hidden) return;
   try {
     const before = await loadMe();
-    if (S.counts.unread > before && !location.pathname.startsWith('/inbox')) toast('✉ you have a new message!', false, () => go('/inbox'));
+    if (S.counts.unread > before && !location.pathname.startsWith('/messages')) toast('✉ you have a new message!', false, () => go('/messages'));
   } catch { /* offline for a moment */ }
 }
 

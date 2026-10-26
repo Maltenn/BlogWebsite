@@ -173,16 +173,14 @@ export const LISTS = {
   },
 };
 
-// Count attempts under `key` in each window; refuse when any window is full, else record this one.
-// windows: [[max, ms], …]
-export async function limit(c, key, windows, message = 'slow down — try again in a bit') {
-  const longest = Math.max(...windows.map(w => w[1]));
-  const { results } = await c.env.DB.prepare('SELECT created FROM attempts WHERE k = ? AND created > ?')
-    .bind(key, c.now - longest).all();
-  for (const [max, ms] of windows) {
-    if (results.filter(r => r.created > c.now - ms).length >= max) fail(429, message);
-  }
-  await c.env.DB.prepare('INSERT INTO attempts (k, created) VALUES (?, ?)').bind(key, c.now).run();
+// Count attempts under `key` in each window; refuse when any window can't take `n` more (one by default), else record
+// them. windows: [[max, ms], …]. Counting and recording are one statement, so requests racing each other (a burst of
+// them at once) can't all slip in under the limit.
+export async function limit(c, key, windows, message = 'slow down — try again in a bit', n = 1) {
+  const room = windows.map(([max, ms]) => `(SELECT COUNT(*) FROM attempts WHERE k = ?1 AND created > ?2 - ${Number(ms)}) + ${Number(n)} <= ${Number(max)}`);
+  const r = await c.env.DB.prepare(`INSERT INTO attempts (k, created) SELECT ?1, ?2 FROM json_each(?3) WHERE ${room.join(' AND ')}`)
+    .bind(key, c.now, JSON.stringify(Array(n).fill(0))).run();
+  if (!r.meta.changes) fail(429, message);
 }
 
 // the profile JSON for a user id ({} if missing or unreadable)

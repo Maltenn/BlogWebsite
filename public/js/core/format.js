@@ -53,3 +53,14 @@ export function readTime(text) {
   const words = String(text).trim().split(/\s+/).filter(Boolean).length;
   return Math.max(1, Math.ceil(words / 220)) + ' min read';
 }
+
+/* ---- chat ---- */
+// "19:14" — the time in front of a line in #ourspace
+export const hm = ms => { const d = new Date(ms); return `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')}`; };
+// "Today", "Yesterday", "Tuesday, October 21" (with the year when it isn't this year) — the line between days in a chat
+export function dayHeading(ms, now = Date.now()) {
+  if (sameDay(ms, now)) return 'Today';
+  if (sameDay(ms, now - 86400000)) return 'Yesterday';
+  const d = new Date(ms);
+  return d.toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric', ...(d.getFullYear() === new Date(now).getFullYear() ? {} : { year: 'numeric' }) });
+}

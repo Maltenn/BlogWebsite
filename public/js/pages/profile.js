@@ -9,6 +9,7 @@ import { toast, oops, skin, paged, errorCard } from '../core/ui.js';
 import { S } from '../core/state.js';
 import { go, route, needLogin } from '../core/router.js';
 import { avatar } from '../widgets/people.js';
+import { openDm } from '../widgets/chatparts.js';
 import { postActions, reportDialog, blockUser } from '../widgets/safety.js';
 import { topSongs } from '../widgets/songs.js';
 import { followButton } from '../widgets/followbutton.js';
@@ -78,7 +79,7 @@ async function drawProfile(root, name, tab) {
   if (d.self) actions.append(h('a', { class: 'btn98 ms-editbig', href: '/edit', text: '🎨 Edit My Page' }));
   else {
     actions.append(followButton(u, rel, { isPrivate: d.private, onChange: changed }));
-    if (S.me && rel.canMessage) actions.append(h('a', { class: 'btn98', href: '/inbox/' + enc(u.name), text: '✉ Message' }));
+    if (S.me && rel.canMessage) actions.append(h('button', { class: 'btn98', type: 'button', text: '✉ Message', onclick: () => openDm(u.name) }));
   }
   left.append(h('div', { class: 'ms-idcard' },
     h('div', { class: 'ms-idhead' }, h('span', { class: 'ms-name', text: u.name }), rel && rel.followsMe ? h('span', { class: 'ms-chip', text: 'Follows you' }) : null),
@@ -112,7 +113,7 @@ async function drawProfile(root, name, tab) {
   } else if (!S.me) {
     [['✉', 'Send Message'], ['💬', 'Add Comment'], ['🚫', 'Block User'], ['⚑', 'Report User']].forEach(([icon, label]) => link(icon, label, needLogin));
   } else {
-    if (rel.canMessage) link('✉', 'Send Message', () => go('/inbox/' + enc(u.name)));
+    if (rel.canMessage) link('✉', 'Send Message', () => openDm(u.name));
     else off('✉', 'Send Message', `${u.name} only takes messages from friends`);
     if (rel.canComment && !locked) link('💬', 'Add Comment', addComment);
     else off('💬', 'Add Comment', `${u.name} only takes comments from friends`);

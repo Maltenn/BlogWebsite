@@ -5,17 +5,23 @@
 ```
 one Cloudflare Worker "ourspace-social" (same origin for pages and API, so the login cookie is HttpOnly + SameSite=Lax)
  ├── public/      the pages: index.html + app.js (single-page app, ES modules), app.css, blog/, assets/   (Workers static assets)
- ├── /api/*       src/index.js → accounts, profiles, follows, social, boards, notifications, messages, media, safety, music, horoscope
+ ├── /api/*       src/index.js → accounts, profiles, follows, social, boards, notifications, chats, media, safety, music, horoscope
+ ├── /api/live/:room   a chat room's WebSocket: checked by the Worker (src/chats/live.js), then handed to the room's
+ │                     Durable Object
  ├── /media/*     uploaded photos, through the Worker (src/media/media.js) to whoever may see them
  ├── D1 "ourspace-social-db"   migrations/ (users, profiles, sessions, identities, oauth_states, oauth_signups,
  │                             password_resets, spotify, follows, posts, likes, bookmarks, mentions, post_tags,
- │                             notifications, markers, boards, board_requests, votes, media, messages, blocks,
- │                             reports, mod_log, attempts)
+ │                             notifications, markers, boards, board_requests, votes, media, conversations,
+ │                             conversation_members, chat_messages, chat_mutes, affinity, blocks, reports, mod_log,
+ │                             attempts)
  ├── R2 "ourspace-social-media" (binding MEDIA)   the photo files, under random keys
- └── cron */30    housekeeping: expired sessions, sign-in tickets, reset links, old rate-limit rows, loose photo uploads
+ ├── Durable Objects "Room" (binding ROOMS)   one per chat room (#ourspace, each group, each DM): carries live events to
+ │                             the connected sockets, owns no data (src/live/room.js)
+ └── cron */30    housekeeping: expired sessions, sign-in tickets, reset links, old rate-limit rows, loose photo uploads,
+                  #ourspace's rolling window, expired mutes, faded interaction scores
 ```
 
-`wrangler.jsonc` sends only `/api/*` and `/media/*` to the Worker first. Every other path is served from `public/`, and a path that isn't a file gets `index.html`, so `/u/<name>`, `/inbox`, `/edit` and the rest are drawn by the page's own router.
+`wrangler.jsonc` sends only `/api/*` and `/media/*` to the Worker first. Every other path is served from `public/`, and a path that isn't a file gets `index.html`, so `/u/<name>`, `/messages`, `/edit` and the rest are drawn by the page's own router.
 
 ## File map
 
@@ -24,7 +30,8 @@ src/
   index.js     Worker entry
   shared/      infrastructure; never imports a feature
   catalog/     the choices people have when decorating a page
-  accounts/  profiles/  follows/  social/  boards/  notifications/  messages/  media/  safety/  music/  horoscope/     features
+  accounts/  profiles/  follows/  social/  boards/  notifications/  chats/  media/  safety/  music/  horoscope/     features
+  live/        the Durable Object behind every chat room (carries events, owns no data)
 ```
 
 | Path | What |
@@ -34,6 +41,9 @@ src/
 | `src/shared/db.js` | User lookups, the shape a user takes in every answer, follows (who are friends, who may see a private profile's posts, how two people are connected, the SQL for the followers / following / friends lists), blocks, which posts the viewer may see (`VISIBLE`, `SEES`, `REPOST_OK`), a post in brief (`lite`), and `limit()`, the rate limiter. |
 | `src/shared/notify.js` | Notifications: `notify()`, the statement each feature adds to its write batch (never to yourself, across a block, or about a post the person can't see), and `SHOWN`, which ones still show. |
 | `src/shared/media.js` | Photos as the other features use them: a page of posts' photos in one read (`MEDIA_OF`), checking a post's `media` (`claimMedia`) and the statements that attach it in the post's write batch, a member's own uploaded picture, and deleting files from R2 (`dropObjects`) with the rows that held them. |
+| `src/shared/affinity.js` | The interaction score of [decisions/001](decisions/001-ranking.md): weights, the 30-day half-life, closeness, each as JS (unit-tested) and SQL, and `bump()`, the statement every interaction adds to its write batch. |
+| `src/shared/chat.js` | Chat SQL other features need: which conversations a member may open (`CHAT_OPEN`) and has on their list (`CHAT_LISTED`), unread counts (`UNREAD_CHATS`, the badge in `GET /api/me`), and handing a group to its next owner (`HANDOVER`). |
+| `src/shared/live.js` | How the features reach a room's Durable Object: `tell()` (broadcast an event, minus people with a block), `kick()`, `online()`, `connect()` (the upgrade). Best effort: a failure is logged, never fails the write. |
 | `src/shared/ranking.js` | The board sort keys of [decisions/001](decisions/001-ranking.md): hot, best (the Wilson bound) and score, with their constants, each as a JS function and as the SQL that stores it (`RESORT`). |
 | `src/shared/text.js` | Text cleaning: invisible characters, links removed, the blocked-word list (whole words). Reading the `@mentions` and `#tags` out of a post. |
 | `src/shared/dates.js` | Birthdays: parsing, the age check, age on a given day. |
@@ -54,7 +64,11 @@ src/
 | `src/boards/votes.js` | Likes and dislikes on threads and comments. |
 | `src/boards/requests.js` | Asking for a new board, and the moderators approving or declining. |
 | `src/notifications/notifications.js` | The Notifications tab. |
-| `src/messages/messages.js` | Private messages. |
+| `src/chats/chats.js` | Group chats and DMs: the list, a chat, its messages, sending, read positions, making a DM or a group, adding and removing people, leaving (and the owner hand-over), answering invites, renaming, and the group suggestions. |
+| `src/chats/ourspace.js` | #ourspace: its messages (the rolling window), writing (slow mode, mentions), mutes, and the cron's chat housekeeping. |
+| `src/chats/messages.js` | What every chat message shares: its shape, who may see it, a page of them (`before=` / `after=`), deleting one. |
+| `src/chats/live.js` | `GET /api/live/:room`: Origin, session and membership checked, then the upgrade goes to the room. |
+| `src/live/room.js` | The Durable Object `Room` (WebSocket Hibernation API): who is connected (with whom they have blocks), presence, typing, broadcasts, kicks. Its event list is the comment at its top. |
 | `src/media/media.js` | Photo uploads (checked, stripped, stored in R2), taking back an unused one, serving `/media/<key>` to whoever may see it, the moderators' hide and remove-now, and the cron's sweep of loose uploads. |
 | `src/media/sniff.js` | What an upload really is, from its bytes: JPEG, PNG, GIF or WebP, its size in pixels, whether it moves, and whether it's whole (each format walked from end to end). |
 | `src/media/strip.js` | The same walks, rebuilding the file without its metadata (EXIF and GPS, XMP, ICC, IPTC, comments, text chunks) or anything after the picture's end. |
@@ -66,7 +80,7 @@ src/
 | `public/assets/` | Every image the pages and `src/catalog/` use. Credits are in [CREDITS.md](../public/assets/CREDITS.md), served at `/assets/CREDITS.md`. |
 | `migrations/` | D1 schema, one numbered file per change. |
 | `tools/demo.mjs` | `npm run demo`: the site on your computer with sample content and pretend sign-in pages. |
-| `test/` | `api.test.mjs` (end-to-end, against a throwaway local Worker), `migrations.test.mjs` (a migration applied to a database the earlier ones left), `astro.test.mjs` (the astronomy against known dates), `text.test.mjs` (the `@mention` and `#tag` readers), `media.test.mjs` (the photo sniffers and metadata strippers, on byte-built files with GPS blocks, comments and text chunks, and on the real images in `public/assets`), `ranking.test.mjs` (the board sort keys against worked-out values, and the comment tree), `frontend.test.mjs` (page code from `public/js` on a pretend browser, `helpers/fake-dom.mjs`, with the API answered by the test), `static.test.mjs` (assets and imports), `helpers/mock-providers.mjs` (a stand-in for every sign-in provider, Spotify and iTunes, used by the tests and the demo), `helpers/images.mjs` (small JPEG, PNG, GIF and WebP files built byte by byte, for the photo tests and the demo's sample photos). |
+| `test/` | `api.test.mjs` (end-to-end, against a throwaway local Worker), `migrations.test.mjs` (a migration applied to a database the earlier ones left), `astro.test.mjs` (the astronomy against known dates), `text.test.mjs` (the `@mention` and `#tag` readers), `media.test.mjs` (the photo sniffers and metadata strippers, on byte-built files with GPS blocks, comments and text chunks, and on the real images in `public/assets`), `ranking.test.mjs` (the board sort keys against worked-out values, and the comment tree), `affinity.test.mjs` (the interaction score's decay and closeness), the WebSocket tests inside `api.test.mjs` (Node's own `WebSocket` against the test `wrangler dev`, with its Durable Objects), `frontend.test.mjs` (page code from `public/js` on a pretend browser, `helpers/fake-dom.mjs`, with the API answered by the test), `static.test.mjs` (assets and imports), `helpers/mock-providers.mjs` (a stand-in for every sign-in provider, Spotify and iTunes, used by the tests and the demo), `helpers/images.mjs` (small JPEG, PNG, GIF and WebP files built byte by byte, for the photo tests and the demo's sample photos). |
 
 Features import only `shared/` and `catalog/`. The few exceptions are listed in [CONVENTIONS.md](../CONVENTIONS.md).
 
@@ -85,7 +99,7 @@ Features import only `shared/` and `catalog/`. The few exceptions are listed in 
    | `ADMIN` | a moderator (`users.is_admin`) | 403 "moderators only." |
 
 6. **The handler** (`verbNoun(c)`) gets one context, `c` (`req`, `env`, `ctx`, `url`, `now`, `params`, `user`), and returns `json(...)`. Problems are thrown with `fail(status, message)`. An `HttpError` becomes a JSON `{ "error": ... }` answer with that status. Anything else is logged and answered with a plain 500, so no internals leak.
-7. **Cron**, every 30 minutes (`*/30 * * * *`): deletes expired sessions, sign-in tickets (`oauth_states`, `oauth_signups`) and reset links, rate-limit rows (`attempts`) older than two days, and photo uploads never attached to anything within a day or left without their post or owner (with their files in R2; never photos held as evidence).
+7. **Cron**, every 30 minutes (`*/30 * * * *`): deletes expired sessions, sign-in tickets (`oauth_states`, `oauth_signups`) and reset links, rate-limit rows (`attempts`) older than two days, photo uploads never attached to anything within a day or left without their post or owner (with their files in R2; never photos held as evidence), #ourspace messages outside its rolling window (never reported ones), expired mutes, and interaction scores faded below 0.05.
 
 ## Following, friends and the feed
 
@@ -317,6 +331,91 @@ Every path that deletes `media` rows does it with `DELETE … RETURNING key` in 
 | `GET /api/admin/media?before=&filter=unreviewed\|all` | moderator | The photo review queue: every upload, attached or loose, newest first, 30 a page → `{ media: [{ id, url, width, height, alt, purpose, created, hidden, reviewed, reviewedAt, reviewedBy, uploader: { id, name, avatar, created } \| null, where }], next }`. `uploader.created` is the account's age; `where` is `null` (loose) or `{ type: avatar \| cover \| post \| thread \| comment \| gone, id, author, board, thread }`; `next` is the `before` for the following page (an id) or `null`. The default filter is `unreviewed`. |
 | `POST /api/admin/media/:id` | moderator | `{ action: reviewed \| remove \| hide \| unhide, note }` → `{ ok }`. `reviewed` records who and when (the first mark stays; not in the moderation log). 404 when it's already gone. |
 
+## Live chat: #ourspace, group chats and DMs
+
+**#ourspace** is one room every member can read and write, like a Discord channel. **DMs** are the one conversation between two people; **group chats** hold 2–50. Everything arrives live: messages, "is typing…", who's online, read positions. The private messages of 0001 became DMs.
+
+### How it works
+
+- **D1 owns all the data**; a Durable Object per room (`Room`, `src/live/room.js`; `idFromName('ourspace')`, `idFromName('c:' + conversation id)`) only carries events to the sockets connected to it. It uses the WebSocket Hibernation API (`ctx.acceptWebSocket`, `webSocketMessage` / `webSocketClose`), so a quiet room is evicted while its sockets stay open, and who each socket is (`{ id, name, avatar, blocks }`) rides on the socket (`serializeAttachment`). Pings are answered by `setWebSocketAutoResponse` without waking it. Costs: [decisions/004](decisions/004-cloudflare-limits-and-costs.md).
+- **Sending is HTTP**: `POST …/messages` checks, writes D1 in one batch (the message, the conversation's time, the writer's read position, the interaction scores, #ourspace's mention notifications) and then asks the room to broadcast it (RPC `broadcast(event, skip)`, `skip` being everyone with a block with the writer either way). If the room can't be reached the message is still stored.
+- **Receiving is a WebSocket**: `GET /api/live/:room` (`room` is `ourspace` or a chat id). Before the upgrade reaches the room, the Worker checks the session (401), the `Origin` header (must be the site's own, 403: the router's cross-site check skips GETs, and any site's page could open a socket with our cookie) and, for a chat, that the member has joined it (404). Anything else than an upgrade is 426. Opening sockets is rate limited (30 a minute and 600 a day per member, 429).
+- **Sessions**: whatever ends a session closes its sockets in every room the member may have open (#ourspace and their conversations) with code `4001`, and the page stops: logging out (that session's), a password change (every other one), a password reset, a ban and deleting the account (all of them). As a backstop the room keeps the session (its token hash and expiry) with each socket: a socket past its session's expiry is closed whenever the room next carries an event, the session is checked against D1 before the room acts on a socket's frame (typing), and every socket's session at least once a minute while the room carries events. A banned member never shows in presence or `online`.
+- **Floods**: a member has 5 sockets at most in one room (a sixth closes the oldest, code `4002`, and that page stops); a socket sending more than about a frame a second, sustained (a bucket of 10, refilled one a second; the auto-answered pings don't count), is closed with `1008`; typing goes out once every 2 seconds per person, however many sockets they have; and presence goes out to everyone at most once a second (a Durable Object alarm gathers the connects and disconnects of that second into one round), while a newcomer hears it at once.
+- **Blocks**: between two members of a group, neither sees the other's messages (left out of every read, every unread count, every last-message preview and every broadcast), their typing, or them in the presence list. A DM with a block either way, or with someone banned, is hidden (404) and its sockets are closed when the block is made. A block made (or lifted) while they're connected reaches the rooms they share (#ourspace and their groups) at once: their sockets' block lists change and presence goes out again, so typing and presence follow it immediately; messages use the blocks at the moment they're sent.
+- **Reconnecting**: a page that lost its socket asks for `?after=<the last id it has>` to catch up, and polls that every few seconds if the socket can't come back.
+
+### The data
+
+`migrations/0007_chat.sql`:
+
+| Table / column | What |
+|---|---|
+| `conversations` | `(id, kind 'dm' \| 'group', title, created_by, created, last_message_at, dm_key)`. A DM's `dm_key` is `'<smaller user id>:<larger>'`, unique: one DM per pair. |
+| `conversation_members` | `(conversation_id, user_id, role 'owner' \| 'member', status 'joined' \| 'invited' \| 'left', invited_by, joined, last_read_id, declined)`. `declined`: when they last said no to an invite to it (`invited_by` asked). A trigger caps a group at 50 non-left rows (joined and invited), so two adds at once can't both get in. Leaving, being removed or declining sets `left`; adding them back revives the row. |
+| `chat_messages` | `(id, conversation_id, room, author_id, body (2,000), created, hidden, deleted)`: `room = 'ourspace'` with no conversation, or a conversation with no room. `hidden`: a moderator took it down (kept, shown to nobody). `deleted`: its writer deleted it (words cleared). The 0001 `messages` came across with their ids, writers, times and hidden marks, so reports of them point at the same ids; the id counter carries on from where `messages`' stood (not from the highest id that survived), so a report of a message that went before the move (its writer deleted their account) points at nothing rather than at somebody's new message; each member's `last_read_id` is just before the oldest message to them they hadn't read. |
+| `chat_mutes` | `(user_id, until, muted_by, reason, created)`: no writing in #ourspace until `until`. |
+| `affinity` | `(from_id, to_id, eff, updated)`: the interaction score of [decisions/001](decisions/001-ranking.md), `eff` as it stood at `updated`, halving every 30 days. Added to (decayed first) in the same batch as: a reply 3, a Friends' Comment 3, a board comment to its parent's writer 3, a mention 2, a quote 2, a DM 2, a like 1, a repost 1, a group message 0.5 to each other member (groups of 8 or fewer). Never toward yourself or across a block; a like or repost that didn't happen (already there, post gone) adds nothing. |
+| `notifications.conversation_id`, `message_id` | For the kinds `group_invite` (shows while the invite is pending or accepted) and `chat_mention` (an `@mention` in #ourspace; shows while the message is there). |
+
+### The rules
+
+- **DMs** follow the old inbox: no messages across a block either way, and someone with `dm_policy: friends` only takes them from friends (both follow each other). Starting a DM makes (or reuses) the pair's conversation; it shows on the other person's list once somebody writes in it. A DM can't be left.
+- **Groups**: 2–50 people with the owner. Friends join at once; anyone else is invited (their `dm_policy` and blocks apply, as for a DM), gets a `group_invite` notification (one per person and group: a new invite replaces the old one), and sees only the title, who invited them and how many are in it until they accept. The owner renames, adds and removes; anyone leaves; when the owner leaves (or deletes their account) the member who joined first becomes the owner. Someone who declines an invite can't be invited to that group again for 30 days, nor into any group by the person who asked for 7 days (403); friends, who join without an invite, aren't held back. Members added later (or accepting) start with everything so far read, and see the history.
+- **#ourspace**: members only (logged out: 401). The newest 500 messages of the last 24 hours show; the cron deletes the rest except reported ones. Slow mode: one message every 3 seconds and 20 a minute. Links are removed as in posts; `@mentions` notify (`chat_mention`). Moderators delete any message and mute members for 1 hour, 24 hours or 7 days.
+- **Unread**: per membership, `last_read_id`. Writing marks your own message read; `PUT /api/chats/:id/read` moves it forward (never past the newest). `GET /api/me` `counts.unread` is the number of conversations with unread messages (up to 99); invites don't count.
+- **Reports**: a chat message is reported (`type: 'message'`) by someone who can read it and didn't write it; the snapshot keeps its words (`{ author, body, created, chatId, room }`). Hiding it from the Moderation tab takes it off every screen.
+- **Deleting an account** deletes its DMs whole, hands its groups on, and takes its messages, memberships, scores and mutes.
+- **Rate limits**: messages 15 a minute and 400 a day (DMs and groups together, as the inbox had); new DMs 30 an hour; new groups 10 a day; invites to non-friends 30 an hour; read positions 120 a minute; live sockets 30 a minute and 600 a day; #ourspace as above.
+
+### The answers
+
+- **A chat**: `{ id, kind: 'dm' | 'group', title, status: 'joined' | 'invited', role: 'owner' | 'member', created, memberCount (joined, me included), owner: ref | null (groups), members: [ref] (joined, not me, nobody with a block), invited: [ref] (groups), lastMessage: { id, body (cut at 140), author, created } | null, unread (up to 99), invitedBy: ref | null }`. An invite has `members: []`, `invited: []`, `lastMessage: null`, `unread: 0`, `owner: null`. A `ref` is `{ id, name, avatar }`.
+- **A message**: `{ id, chatId (null in #ourspace), room ('ourspace' or null), body, created, author: ref, mine }` (`mine` only in HTTP answers, not in live events).
+
+### The routes
+
+| Route | Access | Answer |
+|---|---|---|
+| `GET /api/chats` | member | `{ items: [chat] }`: my DMs and groups, newest activity first, and the invites waiting (200 at most). |
+| `POST /api/chats` | member | `{ dm: name }` → the pair's DM (`201` made, `200` already there) or `{ members: [names], title? (60) }` → a group (`201`), `{ chat }`. 404 for someone missing, banned or who blocked you; 403 if you blocked them or they only take messages from friends; 400 with nobody else or over 50; 429 over the limits. |
+| `GET /api/chats/suggestions?q=` | member | `{ people: [{ id, name, avatar, friend, online }] }`: friends by closeness, then whoever I talked to last, then name; then non-friends I've interacted with (closeness above 0, taking messages from everyone); never anyone banned or with a block; 30 at most; `q` keeps names containing it. |
+| `GET /api/chats/:id` | member | `{ chat }` (an invite too). 404 when I'm not in it. |
+| `PUT /api/chats/:id` | owner | `{ title }` → `{ chat }` (empty: no title). |
+| `GET /api/chats/:id/messages?before=&after=` | member | `{ chat, messages, next, reads: [{ user, id }], canMessage, reason }`: 50 a page, oldest first; `before=<id>` pages back (`next` is the next `before`); `after=<id>` catches up, 100 at most (`next` is the next `after`). `reads`: how far the other members have read. 403 while it's an invite. |
+| `POST /api/chats/:id/messages` | member | `{ body (2,000) }` → 201 `{ message }`. 403 in a DM that's no longer allowed. |
+| `PUT /api/chats/:id/read` | member | `{ id }` → `{ ok, lastReadId }`. |
+| `POST /api/chats/:id/members` | owner | `{ names: [] }` → `{ chat }`. 400 when they're all in already, 409 past 50. |
+| `DELETE /api/chats/:id/members/:name` | owner | → `{ chat }`; their socket closes (code 4003). |
+| `POST /api/chats/:id/leave` | member | → `{ ok }` (groups only). |
+| `POST /api/chats/:id/invite` | invitee | `{ action: 'accept' \| 'decline' }` → `{ chat }` / `{ ok }`. 409 if already answered. |
+| `DELETE /api/chat-messages/:id` | member | Your own (words cleared) or, for a moderator, anybody's (taken down, logged) → `{ ok }`. |
+| `GET /api/ourspace/messages?before=&after=` | member | `{ messages, next, online: [ref], mutedUntil, slowMode: { seconds: 3, perMinute: 20 } }`. |
+| `POST /api/ourspace/messages` | member | `{ body (2,000) }` → 201 `{ message }`. 403 while muted, 429 in slow mode. |
+| `POST /api/admin/mutes` | moderator | `{ name, hours: 1 \| 24 \| 168 \| 0, reason }` → `{ ok, until }` (0 lifts it). |
+| `GET /api/live/:room` | member | The WebSocket (101), or 401 / 403 (Origin) / 404 (not a member) / 426 (not an upgrade). |
+| `GET /api/notifications` | member | `group_invite` items carry `chat: { id, title }`; `chat_mention` items `message: { id, body (cut at 140), created, room }`. Both have `post: null`. |
+
+The old `/api/inbox` routes are gone.
+
+### The live events
+
+Every frame is JSON text. Server → client:
+
+| Event | When |
+|---|---|
+| `{ type: 'message', message }` | a new message (the message shape without `mine`) |
+| `{ type: 'deleted', id }` | deleted by its writer, or taken down by a moderator |
+| `{ type: 'typing', user }` | someone typing (at most every 2 seconds per person) |
+| `{ type: 'presence', online: [ref] }` | who has the room open, each once: to a newcomer at once, and to everyone within a second of any connect, disconnect or block |
+| `{ type: 'read', user, id }` | a member of a group or DM read up to `id` |
+| `{ type: 'changed' }` | the chat's title or members changed (fetch `GET /api/chats/:id`) |
+| `{ type: 'pong' }` | the answer to a ping |
+
+Client → server: `{"type":"typing"}` and `{"type":"ping"}` (exactly that text, answered without waking the room). Anything else is ignored (but counts toward the flood limit).
+
+Close codes: `4001` signed out, `4002` open in too many places (5 per member per room), `4003` not a member any more (left, removed, or a block closed the DM): the page stops for good on these (`public/js/core/live.js`) and says why, as it does when the history answers 401 (signed out) or 403/404 (not in the chat). After `1008` (too many frames) or anything else it reconnects with backoff, polling the history meanwhile (once a minute while the tab is hidden).
+
 ## Front end
 
 `public/index.html` loads `public/app.js` as an ES module. There is no build step: the files in `public/` are what the browser gets.
@@ -331,7 +430,8 @@ public/
     ui.js               toasts, the Win98 message box, page titles, error cards, "show more" paging, profile skins
     state.js            who's logged in and what the server told us (S, loadMe)
     router.js           the page router, the link interceptor, and STATIC_PREFIXES
-    chrome.js           the header (who's logged in) and the tabs with their badges (Notifications, Inbox)
+    chrome.js           the header (who's logged in) and the tabs with their badges (Notifications, Messages)
+    live.js             a live room: one WebSocket to /api/live/:room with reconnect (1 s doubling to 30 s), a ping every 25 s, `sync()` after every reconnect and a poll of the history every 4 s once it has failed three times in a row; closed on route leave; `dropSockets()` knocks every open one over for trying it out
   js/widgets/           code two or more pages share, or a piece of one page big enough for its own file
     people.js           a person's picture, name link and Browse card
     safety.js           report and block, under posts, on pages and in messages
@@ -360,18 +460,24 @@ public/
     threaddialog.js     the New Thread window (title 120, words 10,000, up to 4 photos)
     boardlinks.js       where boards and threads live: /boards/cooking, /boards/cooking/42
     boardrequests.js    the board requests on the Moderation page: approve (address, icon, description) or decline
+    chatparts.js        what the Messages list, the chat window and the profile share: a chat's name and picture, the unread badge, `openDm(name)` (Send Message: POST /api/chats {dm}, then open it)
+    peoplepicker.js     the search box over /api/chats/suggestions (friends first, then "people you talk to", who get an invite), chips, "add by name"
+    newgroup.js         the New group window (name, picker); resolves the new chat
+    groupsettings.js    a group's settings under the chat window's title bar: rename, members (the owner removes), invited, Add people, Leave
   js/pages/             one module per screen
     home.js             Home: a welcome and the latest from everyone, or the Feed
     profile.js          someone's page, with the Posts, Replies, Blog and Friends' Comments tabs
     blog.js             one blog post on its own page, with its Discussion
     post.js             a conversation: the posts above, the post enlarged, the reply box, the replies
-    notifications.js    the Notifications tab: follow requests waiting (Accept / Decline) and what happened, grouped, with unread ones highlighted
+    notifications.js    the Notifications tab: follow requests waiting (Accept / Decline) and what happened, grouped, with unread ones highlighted (a group invite answers in place; a #ourspace mention leads to the room)
     bookmarks.js        your bookmarks
     tags.js             a #tag's page
     lists.js            who follows someone, who they follow, and their friends
     browse.js           find people
     requests.js         follow requests, in and out (also reached from Notifications)
-    inbox.js            the Inbox and a conversation
+    messages.js         the Messages tab: DMs and groups (unread in bold, invites with Accept / Decline at the top), search, New group; looks again every 10 s; also the old /inbox addresses (redirect, /inbox/name opens the DM)
+    chat.js             one conversation (/messages/:id) in an AIM / MSN window, live: day separators, buddy pictures, "kat is typing…", who has it open, read ticks, delete / report, load earlier, mark read while visible, group settings, the reason instead of the box when you can't write; an unanswered invite shows Accept / Decline instead
+    ourspace.js         #ourspace (/ourspace), mIRC-style and live: [time] <nick> words, @mentions linked, a nick list from presence, join / quit lines, the slow-mode countdown on Send, the muted notice, [del] / [mute] for moderators; logged out: a login prompt
     boards.js           the boards: the index (a phpBB-style table, "request a board") and one board's thread list (Hot / New / Top / Best, paged)
     thread.js           a thread: the post, ▲n ▼n, the comment box and the nested comments (?c= opens one comment's replies), Pin and Lock for moderators
     horoscope.js        the daily horoscope, your birth chart and today's sky

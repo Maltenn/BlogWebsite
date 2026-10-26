@@ -8,6 +8,7 @@ import { mentionsIn, tagsIn, clip } from '../shared/text.js';
 import { REF_COLS, ref, lite, NOT_BLOCKED, SEES, SEES_POST, IN_THREAD, REPOSTED, JUST_WRITTEN } from '../shared/db.js';
 import { notify } from '../shared/notify.js';
 import { MEDIA_OF, mediaByPost, attachTo, attachFailed } from '../shared/media.js';
+import { bump, W } from '../shared/affinity.js';
 
 // how much one person may post (statuses, replies, quotes, Friends' Comments, blog posts, threads and comments together)
 export const POST_LIMITS = [[6, 60000], [300, 86400000]];
@@ -187,7 +188,8 @@ export const LIVE = id => `EXISTS (SELECT 1 FROM posts lv WHERE lv.id = ${id} AN
 // was deleted or hidden in the meantime nothing is written at all (the `more` statements must check LIVE themselves) and
 // it's a 404. `guard`: SQL that must hold instead (a comment's: its thread is still open), with the same effect.
 // `media`: the writer's uploads to attach, from claimMedia (shared/media.js); if one of them went on another post in the
-// meantime, nothing at all is written and it's a 409. Answers the new post's id.
+// meantime, nothing at all is written and it's a 409. The interaction scores (shared/affinity.js) toward the people told
+// (by the kind they're told: a reply, a quote, a comment) and mentioned move in the same batch. Answers the new post's id.
 export async function writePost(c, cols, { mentionIn = '', tagIn = '', tell = [], more = [], on = null, guard = null, media = [] } = {}) {
   const DB = c.env.DB;
   const people = await mentioned(c, mentionIn);
@@ -204,6 +206,7 @@ export async function writePost(c, cols, { mentionIn = '', tagIn = '', tell = []
     ...tell.map(([kind, id]) => notify(c, kind, [id], fresh, still)),
     notify(c, 'mention', people.filter(id => !tell.some(t => t[1] === id)), fresh, still),
     ...attachTo(DB, c.user.id, c.now, media, fresh, still),
+    bump(c, [...tell.map(([kind, id]) => [id, W[kind] || 0]), ...people.filter(id => !tell.some(t => t[1] === id)).map(id => [id, W.mention])], still),
   ].filter(Boolean)).catch(e => {
     if (attachFailed(e)) fail(409, 'one of those photos just went on another post. upload it again.');
     throw e;

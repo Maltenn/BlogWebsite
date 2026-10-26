@@ -3,7 +3,7 @@
 ## What's protected
 
 - **Passwords:** PBKDF2-SHA256, 100k iterations, per-user salt. Unknown accounts and wrong passwords take the same time. A password can't be the screen name or the email, or one of the most common passwords.
-- **Sessions:** a random 256-bit token in an `HttpOnly; SameSite=Lax` cookie (`Secure` on https), with only its hash stored. A password change logs out other devices, and a password reset logs out all of them. Banning logs the person out.
+- **Sessions:** a random 256-bit token in an `HttpOnly; SameSite=Lax` cookie (`Secure` on https), with only its hash stored. A password change logs out other devices, and a password reset logs out all of them. Banning logs the person out. Whatever ends a session (logging out, a password change or reset, a ban, deleting the account) also closes its live chat sockets at once (code 4001), and a room re-checks the sessions of its sockets against the database before acting on a frame and at least once a minute while it carries events, so a socket never outlives its session.
 - **Provider sign-in:**
   - The state is single-use, expires in 10 minutes, is stored server-side and is tied to the browser by a cookie.
   - PKCE is used wherever the provider supports it.
@@ -29,6 +29,8 @@ The Content-Security-Policy in `public/_headers` allows exactly these outside or
 | Audio previews | `*.itunes.apple.com`, `*.apple.com`, `*.mzstatic.com` (Apple's 30-second previews) |
 
 Scripts, styles, fonts and fetches are the site's own only. Adding a new outside origin means changing the CSP in `public/_headers` and this table together.
+
+**WebSockets (`connect-src 'self' wss: ws://localhost:* ws://127.0.0.1:*`).** The live chat's socket goes to the site itself (`wss://<this host>/api/live/…`). CSP Level 3 lets `'self'` cover that, but older WebKit (older Safari, iOS browsers included; WebKit bug 235873) never matched `ws:`/`wss:` against `'self'` and refused the socket, leaving those visitors on the polling fallback. A static `_headers` file can't name "this request's host" (the site answers on its workers.dev name and its own domain alike), so the policy allows `wss:` to any host, plus plain `ws:` to the local machine for `wrangler dev`. The trade-off: a script running on our pages could open a socket to another server. Scripts only come from the site itself (`script-src 'self'`, no inline scripts) and nothing people type is ever inserted as HTML, so that takes a script injection we don't have; fetches and images stay as locked down as before. Once those old Safaris are gone, `connect-src 'self'` alone is enough again.
 
 ## How accounts and providers fit together
 

@@ -1016,3 +1016,117 @@ a.ms-time:hover { text-decoration: underline; opacity: 1; }
     .pv-stage { padding: 0; }
     .ph-grid.is-small { max-width: 100%; }
 }
+
+/* ---------- Messages, the chat window and #ourspace (phase 5) ---------- */
+.ms-msghint { padding: 2px 8px 6px; }
+.ms-chatrow .ms-chat-rowtitle { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.ms-chatrow.unread .ms-preview { font-weight: bold; color: #000; }
+.ms-chatrow.invite { background: #fff8e0; }
+.ms-gicon { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 auto; border: 1px solid #6699cc; background: #eef4ff; font-size: 20px; }
+.ms-invitecard { display: flex; align-items: center; gap: 10px; margin: 8px; padding: 10px; flex-wrap: wrap; }
+.ms-loginprompt { margin: 8px; padding: 14px; font-size: 13px; }
+.ms-note-actions { display: flex; gap: 6px; margin-top: 4px; }
+.ms-note-actions .btn98 { font-size: 11px; }
+
+/* the AIM / MSN window */
+.ms-chatwin, .ms-irc { margin: 8px 0; max-width: 100%; position: relative; }
+.ms-chatwin .title-bar, .ms-irc .title-bar { min-width: 0; }
+.ms-chat-title { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 0; }
+.ms-chatwin .title-bar .ms-right-tools, .ms-irc .title-bar .ms-right-tools { display: flex; gap: 3px; flex: 0 0 auto; }
+.ms-buddies { display: flex; flex-wrap: wrap; gap: 4px 12px; align-items: center; padding: 5px 8px; background: #eef4ff; border-bottom: 1px solid #c7d2e8; font-size: 12px; }
+.ms-buddy { display: inline-flex; align-items: center; gap: 5px; }
+.ms-buddy .ms-avatar { width: 28px; height: 28px; }
+.ms-buddy-state { font-size: 9px; }
+.ms-chat-log { height: min(56vh, 520px); overflow-y: auto; padding: 6px 8px; background: #fff; border: 2px inset #fff; font-size: 13px; overscroll-behavior: contain; }
+.ms-day { display: flex; align-items: center; gap: 8px; margin: 10px 0 6px; color: #777; font-size: 11px; text-align: center; }
+.ms-day::before, .ms-day::after { content: ''; flex: 1; border-top: 1px solid #ddd; }
+.ms-chatmsg { display: flex; gap: 8px; padding: 3px 0; position: relative; }
+.ms-chatmsg .ms-avatar { width: 32px; height: 32px; }
+.ms-chat-gap { flex: 0 0 32px; }
+.ms-chat-mid { flex: 1 1 auto; min-width: 0; }
+.ms-chat-who { display: flex; align-items: baseline; gap: 6px; }
+.ms-aim-name { font-weight: bold; text-decoration: none; }
+.ms-aim-name.me { color: #c00000; }
+.ms-aim-name.them { color: #1c3f94; }
+.ms-chat-text { white-space: pre-wrap; overflow-wrap: anywhere; line-height: 1.35; }
+.ms-chat-seen { font-size: 10px; color: #777; text-align: right; }
+.ms-chatmsg > .ms-actions { flex: 0 0 auto; display: flex; gap: 6px; font-size: 10px; opacity: 0; transition: opacity .1s; align-self: flex-start; }
+.ms-chatmsg:hover > .ms-actions, .ms-chatmsg:focus-within > .ms-actions { opacity: 1; }
+@media (hover: none) { .ms-chatmsg > .ms-actions { opacity: .75; } }
+.ms-chat-typing { min-height: 18px; padding: 1px 8px; font-size: 11px; font-style: italic; color: #555; }
+.ms-chat-net { padding: 3px 8px; background: #fff3c4; border-bottom: 1px solid #d9b94a; font-size: 11px; }
+.ms-chat-composer { padding: 6px; }
+.ms-chat-form { display: flex; gap: 6px; align-items: stretch; }
+.ms-chat-form textarea { flex: 1 1 auto; min-width: 0; min-height: 46px; border: 2px inset #fff; padding: 4px 6px; font: inherit; font-size: 13px; resize: vertical; }
+.ms-chat-formside { display: flex; flex-direction: column; justify-content: space-between; align-items: stretch; gap: 3px; }
+.ms-chat-count { font-size: 10px; color: #666; text-align: right; }
+
+/* a group's settings */
+.ms-groupset { border-bottom: 1px solid #c7d2e8; background: #fcfcff; max-height: 55vh; overflow-y: auto; }
+.ms-gs-body { padding: 6px 8px 8px; display: flex; flex-direction: column; gap: 8px; font-size: 12px; }
+.ms-gs-name { display: flex; gap: 6px; }
+.ms-gs-name input { flex: 1; min-width: 0; }
+.ms-gs-row { display: flex; align-items: center; gap: 8px; padding: 2px 0; }
+.ms-gs-row .ms-pp-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.ms-gs-row .ms-avatar, .ms-pp-av { width: 28px; height: 28px; flex: 0 0 auto; }
+.ms-gs-add { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; }
+.ms-gs-add .ms-picker { align-self: stretch; }
+
+/* the people picker (New group, Add people) */
+.ms-picker { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
+.ms-pp-search, .ms-newgroup input, .ms-gs-name input { width: 100%; border: 2px inset #fff; padding: 4px 6px; font: inherit; font-size: 12px; }
+.ms-newgroup label, .ms-dialog-body label { display: block; }
+.ms-dialog-body input:not([type]) { width: 100%; margin-top: 4px; border: 2px inset #fff; padding: 4px 6px; font: inherit; font-size: 12px; }
+.ms-pp-chips { display: flex; flex-wrap: wrap; gap: 4px; }
+.ms-pp-chips:empty { display: none; }
+.ms-pp-chip { display: inline-flex; align-items: center; gap: 4px; }
+.ms-pp-x { border: 0; background: none; cursor: pointer; padding: 0 2px; font: inherit; color: #900; }
+.ms-pp-list { max-height: 200px; overflow-y: auto; border: 2px inset #fff; background: #fff; }
+.ms-pp-head { padding: 2px 6px; background: #eef4ff; border-bottom: 1px solid #c7d2e8; color: #003366; font-size: 11px; font-weight: bold; }
+.ms-pp-row { display: flex; align-items: center; gap: 8px; width: 100%; padding: 4px 6px; border: 0; border-bottom: 1px solid #eee; background: transparent; font: inherit; font-size: 12px; text-align: left; cursor: pointer; min-height: 38px; }
+.ms-pp-row:hover { background: #eef4ff; }
+.ms-pp-row.on { background: #fff8e0; }
+.ms-pp-name { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.ms-pp-noav { display: inline-flex; width: 28px; height: 28px; align-items: center; justify-content: center; background: #eef4ff; border: 1px solid #c7d2e8; }
+.ms-pp-note { color: #777; font-size: 10px; }
+.ms-pp-tick { width: 16px; text-align: center; font-weight: bold; color: #1c3f94; }
+
+/* #ourspace: mIRC */
+.ms-irc-topic { padding: 3px 8px; background: #000080; color: #fff; font: 12px/1.3 'Courier New', monospace; }
+.ms-irc-main { display: flex; background: #fff; border: 2px inset #fff; }
+.ms-irc-log { flex: 1 1 auto; min-width: 0; height: min(60vh, 540px); overflow-y: auto; padding: 4px 6px; font: 13px/1.35 'Courier New', Consolas, monospace; overscroll-behavior: contain; }
+.ms-irc-line { overflow-wrap: anywhere; padding: 1px 0; }
+.ms-irc-line.hl { background: #ffffc0; }
+.ms-irc-time { color: #777; }
+.ms-irc-nick { color: #00007f; font-weight: bold; text-decoration: none; }
+.ms-irc-line.me .ms-irc-nick { color: #a00000; }
+.ms-irc-sys { color: #008000; }
+.ms-irc-text .ms-mention { color: #00007f; font-weight: bold; }
+.ms-irc-acts { margin-left: 8px; font-size: 11px; opacity: 0; }
+.ms-irc-acts a { margin-right: 6px; color: #900; }
+.ms-irc-line:hover .ms-irc-acts, .ms-irc-line:focus-within .ms-irc-acts { opacity: 1; }
+@media (hover: none) { .ms-irc-acts { opacity: .8; } }
+.ms-irc-nicks { flex: 0 0 150px; border-left: 1px solid #999; background: #f4f4ff; overflow-y: auto; height: min(60vh, 540px); font: 12px/1.3 'Courier New', Consolas, monospace; }
+.ms-irc-nickhead { padding: 3px 6px; background: #d8d8f0; font-weight: bold; }
+.ms-irc-nickbtn { display: block; width: 100%; padding: 3px 6px; border: 0; background: none; font: inherit; text-align: left; cursor: pointer; overflow: hidden; text-overflow: ellipsis; min-height: 26px; }
+.ms-irc-nickbtn:hover { background: #dde; }
+.ms-irc-nickbtn.me { font-weight: bold; }
+.ms-irc-form { padding: 6px; }
+.ms-irc-send { display: flex; gap: 6px; }
+.ms-irc-send input { flex: 1 1 auto; min-width: 0; border: 2px inset #fff; padding: 5px 6px; font: 13px 'Courier New', Consolas, monospace; }
+.ms-irc-send .btn98 { min-width: 76px; }
+.ms-irc-muted { margin: 0; }
+
+@media (max-width: 760px) {
+    .ms-chatwin, .ms-irc { margin: 4px 0; }
+    .ms-chat-log { height: calc(100dvh - 330px); min-height: 220px; }
+    .ms-irc-log { height: calc(100dvh - 330px); min-height: 220px; }
+    .ms-irc-nicks { display: none; }
+    .ms-irc.nicks-open .ms-irc-main { flex-direction: column; }
+    .ms-irc.nicks-open .ms-irc-nicks { display: block; order: -1; flex: 0 0 auto; width: 100%; height: auto; max-height: 130px; border-left: 0; border-bottom: 1px solid #999; }
+    .ms-chat-form textarea { font-size: 16px; }
+    .ms-irc-send input { font-size: 16px; }
+    .ms-chat-text { font-size: 14px; }
+    .ms-chatmsg > .ms-actions { flex-direction: column; gap: 2px; }
+    .ms-gs-row .btn98 { min-height: 32px; }
+}

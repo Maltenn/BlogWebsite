@@ -1,6 +1,6 @@
 // ourspace-social: one Cloudflare Worker serves the OurSpace pages (public/) AND the API (/api/*), from the same
 // origin, so the login cookie can be HttpOnly + SameSite=Lax and nothing needs CORS. Storage is one D1 database, and
-// one R2 bucket for members' photos.
+// one R2 bucket for members' photos. Live chat goes through one Durable Object per room, which only carries events.
 // Setup and deploy steps: docs/deploy.md; operating it: docs/operations.md. Secrets (set with `wrangler secret put`, never written here):
 //   IP_SALT, TOKEN_KEY                                  required
 //   RESEND_API_KEY, MAIL_FROM                           "forgot my password" emails
@@ -16,7 +16,7 @@
   "assets": {
     "directory": "./public",
     "binding": "ASSETS",
-    // /u/<name>, /inbox, /edit … are client-side routes: any page that isn't a file gets index.html
+    // /u/<name>, /messages, /edit … are client-side routes: any page that isn't a file gets index.html
     "not_found_handling": "single-page-application",
     // the API and uploaded photos always reach the Worker, even if a file with the same path ever existed
     "run_worker_first": ["/api/*", "/media/*"]
@@ -43,8 +43,18 @@
       "bucket_name": "ourspace-social-media"
     }
   ],
+  "durable_objects": {
+    // one object per chat room (#ourspace, each group chat and DM): src/live/room.js, exported from src/index.js. It
+    // owns no data (D1 does) and uses the WebSocket Hibernation API, so idle rooms cost nothing. SQLite-backed, which
+    // the Workers Free plan requires.
+    "bindings": [{ "name": "ROOMS", "class_name": "Room" }]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["Room"] }
+  ],
   "triggers": {
-    // housekeeping: expired sessions, sign-in tickets, reset links, old rate-limit rows, loose photo uploads
+    // housekeeping: expired sessions, sign-in tickets, reset links, old rate-limit rows, loose photo uploads, #ourspace's
+    // rolling window, expired mutes, faded interaction scores
     "crons": ["*/30 * * * *"]
   }
 }
