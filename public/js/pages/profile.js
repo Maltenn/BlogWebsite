@@ -90,7 +90,7 @@ async function drawProfile(root, name, tab) {
     p.mood ? h('div', { class: 'ms-moodline', text: 'Mood: ' + p.mood }) : null,
     p.tag ? h('div', { class: 'ms-tagline', text: '"' + p.tag + '"' }) : null,
     d.latestStatus ? h('div', { class: 'ms-latest' }, h('div', { class: 'ms-latest-label', text: 'Latest status' }),
-      h('div', { class: 'ms-latest-body', text: d.latestStatus.body }), h('div', { class: 'ms-time', text: ago(d.latestStatus.created) })) : null));
+      h('div', { class: 'ms-latest-body', text: d.latestStatus.body || '📷 photo' }), h('div', { class: 'ms-time', text: ago(d.latestStatus.created) })) : null));
   const decor = (p.decor || []).filter(Boolean);
   if (decor.length) left.append(h('div', { class: 'ms-decor ms-about' }, decor.map(src => h('img', { src, alt: '' }))));
 

@@ -54,7 +54,7 @@ See [docs/roadmap.md](docs/roadmap.md) for the placement of each unbuilt feature
 
 - Spotify alternatives (paste a link, Last.fm): `src/music/` (`links.js`, `lastfm.js`).
 - Changing screen names: `src/accounts/names.js`.
-- Uploading pictures: `src/uploads/` (R2 binding, and `/media/*` in `run_worker_first`), with image reports in `src/safety/`.
+- Photos (built): `src/media/` (uploads, `/media/*`, the byte-level sniffer and stripper), with what the other features share in `src/shared/media.js`. A new kind of post that carries photos gets a line in `MEDIA_LIMITS` there and passes `media` to `writePost`; anything that deletes posts or `media` rows deletes their files with `dropObjects`, and leaves photos held as evidence (hidden by a moderator, or on a post a moderator hid) to a moderator's remove (`releaseMedia`).
 - Real-time chat and presence: `src/live/` (a Durable Object that carries events and owns no data) and `public/js/core/live.js`, replacing polling.
 - Email verification: `src/accounts/verify.js`.
 - Terms of service: `public/legal/` (static) and `src/accounts/terms.js`.

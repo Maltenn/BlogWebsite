@@ -5,6 +5,7 @@ import { fail, json, readBody, int } from '../shared/http.js';
 import { text } from '../shared/text.js';
 import { canSeePosts, limit, VISIBLE, SEES } from '../shared/db.js';
 import { notify } from '../shared/notify.js';
+import { claimMedia } from '../shared/media.js';
 import { POST_LIMITS, THREADED_SQL, POST_COLS, POSTS, EXCERPT, NEWEST, LIVE, page, itemById, writePost, dropRepost } from './items.js';
 
 // SQL: the post :id (bound as ?3) stands for: itself, or a repost's original
@@ -50,31 +51,35 @@ function after(res) {
 
 /* --------------------------------------------------- replies, quotes */
 
-// POST /api/posts/:id/replies { body } — a reply (up to 500 characters) in the post's conversation. The author of the
-// post it answers hears about it, and so does anyone it @mentions, if they may see it.
+// POST /api/posts/:id/replies { body, media? } — a reply (up to 500 characters, up to 4 photos: with a photo the words
+// may be left out) in the post's conversation. The author of the post it answers hears about it, and so does anyone it
+// @mentions, if they may see it.
 export async function postReply(c) {
   const parent = await target(c);
   const b = await readBody(c.req);
   const body = text(b.body, 500);
-  if (!body) fail(400, 'say something first.');
+  const media = await claimMedia(c, 'reply', b.media);
+  if (!body && !media.length) fail(400, 'say something first.');
   await limit(c, 'post:' + c.user.id, POST_LIMITS);
   const id = await writePost(c, { kind: 'reply', body, reply_to: parent.id, root_id: parent.root_id || parent.id }, {
-    mentionIn: body, tagIn: body, tell: [['reply', parent.author_id]], on: parent.id,
+    mentionIn: body, tagIn: body, tell: [['reply', parent.author_id]], on: parent.id, media,
     more: [c.env.DB.prepare(`UPDATE posts SET reply_count = reply_count + 1 WHERE id = ? AND deleted = 0 AND hidden = 0`).bind(parent.id)],
   });
   return json({ post: await itemById(c, id) }, 201);
 }
 
-// POST /api/posts/:id/quote { body } — a post of my own (up to 500 characters) with this one in a box under it
+// POST /api/posts/:id/quote { body, media? } — a post of my own (up to 500 characters, up to 4 photos: with a photo
+// the words may be left out) with this one in a box under it
 export async function postQuote(c) {
   const p = await target(c);
   shareable(p);
   const b = await readBody(c.req);
   const body = text(b.body, 500);
-  if (!body) fail(400, 'say something about it (or repost it instead).');
+  const media = await claimMedia(c, 'quote', b.media);
+  if (!body && !media.length) fail(400, 'say something about it (or repost it instead).');
   await limit(c, 'post:' + c.user.id, POST_LIMITS);
   const id = await writePost(c, { kind: 'quote', body, quote_of: p.id }, {
-    mentionIn: body, tagIn: body, tell: [['quote', p.author_id]], on: p.id,
+    mentionIn: body, tagIn: body, tell: [['quote', p.author_id]], on: p.id, media,
     more: [c.env.DB.prepare(`UPDATE posts SET quote_count = quote_count + 1 WHERE id = ? AND deleted = 0 AND hidden = 0`).bind(p.id)],
   });
   return json({ post: await itemById(c, id) }, 201);

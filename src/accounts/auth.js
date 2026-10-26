@@ -12,6 +12,7 @@ import { sunSign } from '../shared/astro.js';
 import { randomToken } from '../shared/seal.js';
 import { sendMail, mailReady } from '../shared/mail.js';
 import { SHOWN, UNREAD } from '../shared/notify.js';
+import { dropObjects, keysIn, releaseMedia } from '../shared/media.js';
 
 const ITERATIONS = 100000;
 const SESSION_DAYS = 30;
@@ -285,7 +286,7 @@ const MOVED = `WITH RECURSIVE up(id, to_id) AS (
 // quotes of its posts stay: a reply keeps pointing at the post it answered (so it says "replying to a deleted account"
 // and stays in its conversation), a quote shows its original as unavailable. A board comment answering one of its
 // comments moves up instead (MOVED), so a thread's tree never has a comment answering nothing. Reports about it keep
-// their snapshot.
+// their snapshot. Its photos (and those on the comments that go with its threads) leave R2.
 export async function deleteAccount(c) {
   const b = await readBody(c.req);
   await limit(c, 'delete:' + c.user.id, [[5, 15 * 60000]]);
@@ -305,7 +306,11 @@ export async function deleteAccount(c) {
       UNION SELECT root_id FROM posts WHERE author_id = ?1 AND kind = 'comment'`).bind(id),
     DB.prepare('SELECT DISTINCT root_id AS id FROM posts WHERE author_id = ? AND kind = \'comment\'').bind(id),
   ]);
-  await DB.batch([
+  const res = await DB.batch([
+    // every photo it uploaded, and the photos on other people's comments in its threads (which go with them); those
+    // held as evidence (hidden by a moderator, or their post was) stay as hidden photos until a moderator removes them
+    ...releaseMedia(DB, `media.owner_id = ?1
+      OR media.post_id IN (SELECT id FROM posts WHERE kind = 'comment' AND root_id IN (SELECT id FROM posts WHERE author_id = ?1 AND kind = 'thread'))`, id),
     DB.prepare('UPDATE posts SET like_count = like_count - 1 WHERE id IN (SELECT post_id FROM likes WHERE user_id = ?)').bind(id),
     DB.prepare(`UPDATE posts SET up_count = up_count - (SELECT COUNT(*) FROM votes v WHERE v.post_id = posts.id AND v.user_id = ?1 AND v.value = 1),
         down_count = down_count - (SELECT COUNT(*) FROM votes v WHERE v.post_id = posts.id AND v.user_id = ?1 AND v.value = -1)
@@ -349,5 +354,6 @@ export async function deleteAccount(c) {
     DB.prepare('UPDATE mod_log SET actor_id = NULL WHERE actor_id = ?').bind(id),
     DB.prepare('DELETE FROM users WHERE id = ?').bind(id),
   ]);
+  await dropObjects(c.env, keysIn(res[0]));
   return json({ ok: true }, 200, { 'Set-Cookie': sessionCookie(c.url, '', 0) });
 }

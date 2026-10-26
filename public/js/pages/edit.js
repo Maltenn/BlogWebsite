@@ -6,6 +6,7 @@ import { toast, oops, pageTitle } from '../core/ui.js';
 import { S, options } from '../core/state.js';
 import { go } from '../core/router.js';
 import { avatarGallery } from '../widgets/auth-forms.js';
+import { prepareImage, readDataUrl } from '../widgets/photos.js';
 
 export async function renderEdit(root) {
   const [opts, d, fr] = await Promise.all([options(), api.get('/users/' + enc(S.me.name)), api.get(`/users/${enc(S.me.name)}/friends`)]);
@@ -31,9 +32,35 @@ export async function renderEdit(root) {
   };
 
   const avNow = h('img', { class: 'cz-avnow', src: draft.avatar, alt: 'your picture' });
-  const picSec = sec('📷 picture', 'pick one of the presets',
+  let loose = null;                                  // the picture you uploaded in this visit and haven't saved (its upload id)
+  const dropLoose = () => { if (loose != null) api.del('/media/' + loose).catch(() => {}); loose = null; };
+  const gallery = avatarGallery(opts.avatars, draft.avatar, f => { dropLoose(); draft.avatar = f; avNow.src = f; });
+  const fileIn = h('input', { type: 'file', accept: 'image/*', hidden: true, 'aria-label': 'choose a picture', tabindex: -1 });
+  const upBtn = h('button', { class: 'btn98', type: 'button', text: '📷 Upload my own picture', onclick: () => fileIn.click() });
+  const upNote = h('span', { class: 'os-hint', text: 'it\'s cropped to a square and shrunk to 300 px.' });
+  fileIn.addEventListener('change', async () => {
+    const file = fileIn.files && fileIn.files[0];
+    fileIn.value = '';
+    if (!file) return;
+    upBtn.disabled = true;
+    upNote.textContent = 'getting it ready…';
+    try {
+      const prep = await prepareImage(file, { avatar: true });
+      avNow.src = await readDataUrl(prep.blob);                    // the crop, as it will look
+      upNote.textContent = 'uploading…';
+      const m = await api.upload('/media?purpose=avatar', prep.blob).then(r => r.media);
+      dropLoose();
+      loose = m.id;
+      draft.avatar = m.url;
+      gallery.querySelectorAll('.su-av').forEach(x => x.classList.remove('sel'));
+      upNote.textContent = 'looking good. save your page to keep it.';
+    } catch (e) { avNow.src = draft.avatar; upNote.textContent = 'it\'s cropped to a square and shrunk to 300 px.'; oops(e); }
+    upBtn.disabled = false;
+  });
+  const picSec = sec('📷 picture', 'pick one of the presets, or upload your own',
     h('div', { class: 'cz-avrow' }, avNow, h('div', { class: 'cz-avside' },
-      avatarGallery(opts.avatars, draft.avatar, f => { draft.avatar = f; avNow.src = f; }))));
+      h('div', { class: 'cz-upload' }, upBtn, fileIn, upNote),
+      gallery)));
 
   const aboutSec = sec('👤 about you', 'all optional',
     h('div', { class: 'cz-fields' },
@@ -121,6 +148,7 @@ export async function renderEdit(root) {
     save.disabled = true;
     try {
       const r = await api.put('/me/profile', draft);
+      loose = null;                                  // saved: the picture is attached now
       S.me.avatar = r.avatar;
       toast('saved! looking good.');
       go(userPath(S.me.name));

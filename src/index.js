@@ -1,10 +1,12 @@
 // ourspace-social — one Worker for the whole site:
 //   /api/*          the JSON API below (accounts, sign-in providers, profiles, follows, posts and the feed, replies,
 //                   likes, reposts, quotes, bookmarks, tags, boards with their threads, comments and votes,
-//                   notifications, messages, Spotify, astrology, blocks, reports, moderation)
+//                   notifications, messages, photo uploads, Spotify, astrology, blocks, reports, moderation)
+//   /media/<key>    uploaded photos, from the R2 bucket MEDIA, to whoever may see them (src/media/media.js)
 //   everything else the static pages in public/ (wrangler.jsonc → assets), with /u/<name> etc. falling back to
 //                   index.html so the page's own router can draw them
-// The cron (every 30 min) clears out expired sessions, sign-in tickets, reset links and old rate-limit rows.
+// The cron (every 30 min) clears out expired sessions, sign-in tickets, reset links, old rate-limit rows, and photo
+// uploads never attached to anything.
 import { HttpError, json } from './shared/http.js';
 import { currentUser, me, signup, login, logout, changePassword, deleteAccount, forgotPassword, resetPassword } from './accounts/auth.js';
 import { oauthStart, oauthCallback, signupPending, signupFinish, providers, account, unlink } from './accounts/oauth.js';
@@ -20,6 +22,7 @@ import { inbox, thread, sendMessage } from './messages/messages.js';
 import { getSpotify, putSpotify, refreshSpotify, deleteSpotify } from './music/spotify.js';
 import { astroSky, astroSign, astroMe } from './horoscope/horoscope.js';
 import { listBlocks, block, unblock, report, adminReports, resolveReport, adminUser, adminContent, adminLog } from './safety/safety.js';
+import { uploadMedia, deleteUpload, serveMedia, moderateMedia, sweepMedia } from './media/media.js';
 
 const OPEN = 0, AUTH = 1, ADMIN = 2;
 
@@ -80,6 +83,8 @@ const ROUTES = [
   ['POST', '/api/posts/:id/bookmark', bookmarkPost, AUTH],
   ['DELETE', '/api/posts/:id/bookmark', unbookmarkPost, AUTH],
   ['GET', '/api/tags/:tag', tagged, OPEN],
+  ['POST', '/api/media', uploadMedia, AUTH],
+  ['DELETE', '/api/media/:id', deleteUpload, AUTH],
 
   ['GET', '/api/boards', boardList, OPEN],
   ['POST', '/api/boards/requests', requestBoard, AUTH],
@@ -115,6 +120,7 @@ const ROUTES = [
   ['POST', '/api/admin/board-requests/:id', decideBoardRequest, ADMIN],
   ['POST', '/api/admin/threads/:id', moderateThread, ADMIN],
   ['POST', '/api/admin/boards/:slug', moderateBoard, ADMIN],
+  ['POST', '/api/admin/media/:id', moderateMedia, ADMIN],
 ].map(([method, path, handler, access, opts = {}]) => ({
   method, handler, access, ...opts,
   keys: [...path.matchAll(/:(\w+)/g)].map(m => m[1]),
@@ -155,12 +161,21 @@ async function api(request, env, ctx, url) {
   return found.route.handler(c);
 }
 
+// /media/<key>: a photo, for whoever may see it (GET or HEAD; the session decides who's asking)
+async function media(request, env, ctx, url) {
+  if (request.method !== 'GET' && request.method !== 'HEAD') return new Response('method not allowed', { status: 405, headers: { Allow: 'GET, HEAD' } });
+  const c = { req: request, env, ctx, url, now: Date.now(), params: {}, user: null };
+  c.user = await currentUser(c);
+  return serveMedia(c, url.pathname.slice('/media/'.length));
+}
+
 export default {
   async fetch(request, env, ctx) {
     const url = new URL(request.url);
-    if (!url.pathname.startsWith('/api/')) return env.ASSETS.fetch(request);
+    const isMedia = url.pathname.startsWith('/media/');
+    if (!url.pathname.startsWith('/api/') && !isMedia) return env.ASSETS.fetch(request);
     try {
-      return await api(request, env, ctx, url);
+      return await (isMedia ? media(request, env, ctx, url) : api(request, env, ctx, url));
     } catch (e) {
       if (e instanceof HttpError) return json({ error: e.message }, e.status, e.cookie ? { 'Set-Cookie': e.cookie } : {});
       console.error((e && e.stack) || e);
@@ -177,5 +192,7 @@ export default {
       env.DB.prepare('DELETE FROM password_resets WHERE expires < ?').bind(now),
       env.DB.prepare('DELETE FROM attempts WHERE created < ?').bind(now - 2 * 86400000),
     ]).catch(e => console.error('cron failed:', (e && e.stack) || e)));
+    // photo uploads loose for a day, and photos whose post went without them: out of the table and R2
+    ctx.waitUntil(sweepMedia(env, now).catch(e => console.error('media sweep failed:', (e && e.stack) || e)));
   },
 };

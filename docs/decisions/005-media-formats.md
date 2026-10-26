@@ -1,5 +1,5 @@
 # 005 — Photos and video: formats and safety
-Status: reference (checked 2026-10-25)
+Status: reference (checked 2026-10-25). Photos built in phase 4 ([architecture.md](../architecture.md#photos)): JPEG, PNG, GIF (animated up to 800 × 800) and WebP, metadata stripped on the server. **Video was dropped by the owner**: the video rows, pipeline and open questions below won't be built.
 
 Scope: members 13+; photos and clips (≤ 60 s, ≤ 50 MB) in statuses and forum posts. Plain JS under CSP `script-src 'self'`; Cloudflare Worker + R2; no ffmpeg. "unverified" = no source below confirmed it.
 
@@ -97,7 +97,7 @@ Origin: serve media from a separate host, ideally a separate registrable domain,
 
 - 18 U.S.C. 2258A ([text](https://www.law.cornell.edu/uscode/text/18/2258A)): once we have actual knowledge of an apparent violation, report to the NCMEC CyberTipline "as soon as reasonably possible" (a). Report contents are optional (b). No duty to monitor or proactively scan (f). Preserve report contents for 1 year after submission (h), changed from 90 days in 2024.
 - No statutory scanning duty. Hash matching is our choice. Staff must not view reported material beyond what the report needs (our recommendation).
-- Cloudflare CSAM Scanning Tool ([docs, updated 2026-05-01](https://developers.cloudflare.com/cache/reference/csam-scanning/)): images only; video is not mentioned. Needs an email; emails daily; attempts a block; places the NCMEC report duty on the site owner. Conflict: [INHOPE](https://inhope.org/EN/articles/cloudflare-simplifying-the-fight-against-csam) says Cloudflare files daily NCMEC reports. Verify before relying on either.
+- Cloudflare CSAM Scanning Tool ([docs, updated 2026-05-01](https://developers.cloudflare.com/cache/reference/csam-scanning/)): images only; video is not mentioned. Needs an email; emails daily; attempts a block; places the NCMEC report duty on the site owner. Conflict: [INHOPE](https://inhope.org/EN/articles/cloudflare-simplifying-the-fight-against-csam) says Cloudflare files daily NCMEC reports. Verify before relying on either. It scans content served through the Cloudflare cache; photos the Worker streams from R2 most likely never enter it (unverified), so as built (phase 4) the tool would see nothing. The detection method is an open owner decision: [deploy.md](../deploy.md#photos-csam-detection-an-owner-decision-before-launch).
 - Video: no tool verified. Candidates to evaluate: Microsoft PhotoDNA, Thorn Safer. Check video coverage, eligibility and cost (unverified).
 - Take It Down Act: FTC enforcement began 2026-05-19. Covered platforms must remove non-consensual intimate images within 48 hours of a valid request ([JD Supra, secondary](https://www.jdsupra.com/legalnews/ftc-s-take-it-down-act-stakeholder-6616558/)). We need a removal route before launch. Applicability to OurSpace is unverified; needs legal review.
 

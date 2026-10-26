@@ -1,6 +1,7 @@
 // `npm run demo`: the whole site running on your own computer, filled with sample people and posts, for looking around
 // and deciding what to change. It never touches the real site, a real database or anybody's real accounts:
-//   · its database lives in .demo/ and is kept between runs (`npm run demo -- --fresh` starts over)
+//   · its database (and the photos people upload) live in .demo/ and are kept between runs (`npm run demo -- --fresh`
+//     starts over)
 //   · "Continue with Google" etc. and "connect Spotify" open labeled pretend pages (test/helpers/mock-providers.mjs)
 //   · "forgot my password" emails are printed in this window instead of being sent
 // Edit files in public/ or src/ while it runs and the server reloads; refresh the browser to see the change.
@@ -13,7 +14,7 @@ import { fileURLToPath } from 'node:url';
 import { RESORT } from '../src/shared/ranking.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const DEMO = path.join(ROOT, '.demo');
+const DEMO = process.env.DEMO_DIR ? path.resolve(process.env.DEMO_DIR) : path.join(ROOT, '.demo');   // (DEMO_DIR: a throwaway demo elsewhere)
 const STATE = path.join(DEMO, 'state');
 const SEEDED = path.join(DEMO, 'seeded');
 const WRANGLER = path.join(ROOT, 'node_modules', 'wrangler', 'bin', 'wrangler.js');
@@ -28,6 +29,7 @@ const say = message => console.log('  ' + message);
 if (Number(process.versions.node.split('.')[0]) < 22) die(`the demo needs Node.js 22 or newer (this is ${process.version}). get it from https://nodejs.org`);
 if (!fs.existsSync(WRANGLER)) die('run `npm install` first.');
 const { startMock } = await import('../test/helpers/mock-providers.mjs');
+const { png } = await import('../test/helpers/images.mjs');
 
 if (process.argv.includes('--fresh')) fs.rmSync(DEMO, { recursive: true, force: true });
 fs.mkdirSync(DEMO, { recursive: true });
@@ -60,8 +62,9 @@ function client() {
   const raw = async (method, url, body) => {
     const headers = {};
     if (jar.size) headers.Cookie = [...jar].map(([k, v]) => `${k}=${v}`).join('; ');
-    if (body !== undefined) headers['Content-Type'] = 'application/json';
-    const res = await fetch(url.startsWith('http') ? url : BASE + url, { method, headers, body: body === undefined ? undefined : JSON.stringify(body), redirect: 'manual' });
+    const bytes = body instanceof Uint8Array;                            // a photo upload (always a PNG here)
+    if (body !== undefined) headers['Content-Type'] = bytes ? 'image/png' : 'application/json';
+    const res = await fetch(url.startsWith('http') ? url : BASE + url, { method, headers, body: body === undefined || bytes ? body : JSON.stringify(body), redirect: 'manual' });
     for (const c of res.headers.getSetCookie()) {
       const [pair] = c.split(';');
       const i = pair.indexOf('=');
@@ -124,6 +127,43 @@ const PEOPLE = [
       theme: 'banana', bgTile: '/assets/bg_stars_tile.gif', decor: [gif('deco_record_dj'), gif('deco_banana_tiny')], badges: [gif('badge_winamp'), gif('badge_midi_files_now')] } },
 ];
 
+// the sample photos, drawn pixel by pixel into small PNGs (no image files to keep or credit)
+// a star here or not: a scattering that looks random but is the same every run
+const star = (x, y, oneIn) => ((Math.imul(x, 73856093) ^ Math.imul(y, 19349663)) >>> 0) % oneIn === 0;
+const HEART = ['..XX...XX..', '.XXXX.XXXX.', 'XXXXXXXXXXX', 'XXXXXXXXXXX', '.XXXXXXXXX.', '..XXXXXXX..', '...XXXXX...', '....XXX....', '.....X.....'];
+const DRAWINGS = {
+  // a pixel-art heart on a grid, 16 px a pixel
+  heart: () => png({ width: 240, height: 192, draw: (x, y) => {
+    const row = HEART[Math.floor(y / 16) - 1] || '', on = row[Math.floor(x / 16) - 2] === 'X';
+    return on ? [220, 30, 60] : (x % 16 === 0 || y % 16 === 0) ? [200, 200, 200] : [240, 240, 240];
+  } }),
+  // a sunset: orange to purple, a sun sinking (lower when `later`), the ground in black
+  sunset: (later = false) => png({ width: 320, height: 200, draw: (x, y) => {
+    const t = y / 200, sunY = later ? 150 : 115;
+    if (y > 160) return [20, 15, 30];
+    if ((x - 210) ** 2 + (y - sunY) ** 2 < 900) return [255, 220, 120];
+    return [255 - t * 120 | 0, 120 - t * 90 | 0, 60 + t * 120 | 0];
+  } }),
+  // a layout preview: a page of stripes in two colours with a lighter box
+  stripes: (dark, light) => png({ width: 200, height: 150, draw: (x, y) => {
+    if (x > 30 && x < 170 && y > 30 && y < 120) return light.map(v => Math.min(255, v + 40));
+    return (Math.floor(y / 6) % 2 ? light : dark);
+  } }),
+  // a full moon over a starry sky (a blog post's cover)
+  sky: () => png({ width: 480, height: 200, draw: (x, y) => {
+    if ((x - 360) ** 2 + (y - 80) ** 2 < 1600) return [250, 245, 210];
+    if (star(x, y, 350)) return [255, 255, 255];
+    return [10, 15, 50 + (y / 4 | 0)];
+  } }),
+  // mia's picture: a golden moon on deep blue, 300 × 300
+  moon: () => png({ width: 300, height: 300, draw: (x, y) => {
+    const d = (x - 150) ** 2 + (y - 150) ** 2;
+    if (d < 90 ** 2 && (x - 185) ** 2 + (y - 130) ** 2 > 80 ** 2) return [255, 205, 70];
+    if (star(x, y, 250)) return [255, 255, 255];
+    return [25, 20, 80];
+  } }),
+};
+
 async function connectSpotify(c, range) {
   mock.next('spotify', { sub: 'spotify-' + c.name.toLowerCase(), email: null, verified: true, name: c.name });
   const start = await c.raw('GET', '/api/oauth/spotify/start?mode=spotify');
@@ -155,12 +195,15 @@ async function seed() {
   for (const p of PEOPLE) await P[p.key].put('/api/me/profile', p.key === 'kat' ? { ...p.profile, top8: [mia.id, jules.id, drew.id, pete.id, you.id] } : p.profile);
   for (const p of PEOPLE) if (p.spotify) await connectSpotify(P[p.key], p.spotify);
 
-  const status = async (c, body) => (await c.post('/api/status', { body })).id;
+  // photos: drawn here as PNGs and uploaded like the page does (POST /api/media), then attached by id
+  const upload = async (c, image, purpose = 'post') => (await c.post(`/api/media?purpose=${purpose}`, image)).media;
+  const shots = async (c, ...images) => Promise.all(images.map(([image, alt]) => upload(c, image).then(m => ({ id: m.id, alt }))));
+  const status = async (c, body, media) => (await c.post('/api/status', { body, ...(media ? { media } : {}) })).id;
   const comment = (from, to, body) => from.post(`/api/users/${encodeURIComponent(to.name)}/comments`, { body });
   const dm = (from, to, body) => from.post('/api/inbox/' + encodeURIComponent(to.name), { body });
   const reply = async (c, to, body) => (await c.post(`/api/posts/${to}/replies`, { body })).post.id;
   const act = (c, what, id) => c.post(`/api/posts/${id}/${what}`);              // like, repost or bookmark
-  const thread = async (c, board, subject, body) => (await c.post(`/api/boards/${board}/threads`, { subject, body })).thread.id;
+  const thread = async (c, board, subject, body, media) => (await c.post(`/api/boards/${board}/threads`, { subject, body, ...(media ? { media } : {}) })).thread.id;
   const chime = async (c, to, body, parent) => (await c.post(`/api/threads/${to}/comments`, parent ? { body, parent } : { body })).comment.id;
   const vote = (value, id, ...who) => Promise.all(who.map(c => c.put(`/api/posts/${id}/vote`, { value })));
   sql(`UPDATE users SET is_admin = 1 WHERE name_key = 'malten'`);            // (so he can pin the house rules)
@@ -168,13 +211,18 @@ async function seed() {
   // the follows so far count as read on your Notifications tab; everything about posts below arrives as new
   const readUpTo = (await you.get('/api/notifications')).items[0].id;
 
-  const marquee = await status(pete, 'debugging my layout at 2am. the marquee won\'t stop. send help #layouts');
+  // mia's own picture instead of a preset (Edit My Page → "Upload my own picture")
+  await mia.put('/api/me/profile', { avatar: (await upload(mia, DRAWINGS.moon(), 'avatar')).url });
+
+  const marquee = await status(pete, 'debugging my layout at 2am. the marquee won\'t stop. send help #layouts',
+    await shots(pete, [DRAWINGS.heart(), 'a pixel-art heart, red on a light grey grid']));
   const offOn = await reply(jules, marquee, 'have u tried turning the marquee off and on again');
   await act(mia, 'like', marquee);
   await comment(jules, kat, 'ur layout is blinding me (compliment)');
   const offButton = await reply(pete, offOn, '@sk8r_jules the marquee IS the off button');
   const survey = await thread(kat, 'random', 'TAKE THIS SURVEY!!! ♥', 'copy, paste, answer!!\n\n1. name: kat\n2. fave color: glitter\n3. last song you heard: misery business\n4. top 8 drama level (1-10): 11\n5. would you rather never use the internet again, or only listen to one song forever?\n\ncomment ur answers!!');
-  const landed = await status(jules, 'landed it!!! (once) (nobody filmed it) #sk8');
+  const landed = await status(jules, 'landed it!!! (once) (nobody filmed it) #sk8',
+    await shots(jules, [DRAWINGS.sunset(), 'the sun going down behind the skate park'], [DRAWINGS.sunset(true), 'same sunset, five minutes later']));
   await act(kat, 'like', landed);
   await reply(jules, offButton, 'respect. leave it on then');
   await act(kat, 'repost', landed);
@@ -183,9 +231,11 @@ async function seed() {
   const moon = await status(mia, 'the moon is in my sign today and i can FEEL it #fullmoon');
   await reply(kat, marquee, 'leave it. marquees are a lifestyle');
   await comment(drew, mia, 'thanks for the tarot reading. the tower card was rude though');
-  const layouts = await thread(pete, 'art-layouts', 'free layouts!!', 'taking layout requests this weekend. tell me your colors and your favorite band. no promises on the marquee. #layouts');
+  const layouts = await thread(pete, 'art-layouts', 'free layouts!!', 'taking layout requests this weekend. tell me your colors and your favorite band. no promises on the marquee. #layouts',
+    await shots(pete, [DRAWINGS.stripes([0, 40, 0], [60, 255, 90]), 'a green CRT-style layout preview'], [DRAWINGS.stripes([20, 0, 20], [255, 105, 180]), 'a pink and black layout preview'],
+      [DRAWINGS.stripes([10, 10, 60], [150, 120, 255]), 'a purple layout preview']));
   await comment(banana, pete, 'ur playlist is decent. jk it\'s elite');
-  const fullMoon = (await mia.post('/api/blog', { title: 'full moon notes', subtitle: 'what i\'m keeping and what i\'m letting go', mood: 'dreamy', body: 'the moon was so bright tonight that i could read without a lamp. i made a list of everything i want to let go of this month and then fell asleep before i finished it, which honestly feels like the point.\n\nthings i\'m keeping: my friends, my playlists, the glow-in-the-dark stars on my ceiling.\n\nthings i\'m letting go of: checking if someone read my message. it\'s a full moon, not a read receipt. #fullmoon' })).id;
+  const fullMoon = (await mia.post('/api/blog', { cover: { id: (await upload(mia, DRAWINGS.sky(), 'cover')).id, alt: 'a full moon over a starry sky' }, title: 'full moon notes', subtitle: 'what i\'m keeping and what i\'m letting go', mood: 'dreamy', body: 'the moon was so bright tonight that i could read without a lamp. i made a list of everything i want to let go of this month and then fell asleep before i finished it, which honestly feels like the point.\n\nthings i\'m keeping: my friends, my playlists, the glow-in-the-dark stars on my ceiling.\n\nthings i\'m letting go of: checking if someone read my message. it\'s a full moon, not a read receipt. #fullmoon' })).id;
   await act(banana, 'like', fullMoon);
   await act(banana, 'like', moon);
   await comment(mia, banana, 'your banana bread mix cured my mercury retrograde');

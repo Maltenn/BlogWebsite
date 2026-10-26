@@ -1,11 +1,13 @@
 // Posts out and in. Out: the item every list and page shows, with what a page of them needs besides their own columns
 // (a repost's or quote's original, the viewer's likes, reposts and bookmarks, @mentions, #tags) fetched for the whole
-// page in one batch. In: a new post together with its @mentions, #tags, counts and notifications, in one batch. Board
+// page in one batch (their photos too). In: a new post together with its photos, @mentions, #tags, counts and
+// notifications, in one batch. Board
 // threads and comments (src/boards/) are items too, with votes instead of likes.
 import { fail, int } from '../shared/http.js';
 import { mentionsIn, tagsIn, clip } from '../shared/text.js';
 import { REF_COLS, ref, lite, NOT_BLOCKED, SEES, SEES_POST, IN_THREAD, REPOSTED, JUST_WRITTEN } from '../shared/db.js';
 import { notify } from '../shared/notify.js';
+import { MEDIA_OF, mediaByPost, attachTo, attachFailed } from '../shared/media.js';
 
 // how much one person may post (statuses, replies, quotes, Friends' Comments, blog posts, threads and comments together)
 export const POST_LIMITS = [[6, 60000], [300, 86400000]];
@@ -59,9 +61,11 @@ export async function mentionsOf(c, ids) {
 // What the items for `rows` need besides their own columns, in one batch: the originals of reposts and quotes (and the
 // post a reposted quote quotes), with whether the viewer may see them (ok: tombstones too, which show as deleted rather
 // than unavailable); the viewer's likes, reposts and bookmarks, and votes on threads and comments;
-// @mentions and #tags. Nothing at all for Friends' Comments.
+// @mentions and #tags; the photos (and blog covers) of all of them and of the posts they quote. Nothing at all for
+// Friends' Comments.
 export async function hydrate(c, rows) {
-  const h = { posts: new Map(), liked: new Set(), reposted: new Set(), bookmarked: new Set(), votes: new Map(), mentions: new Map(), tags: new Map() };
+  const h = { posts: new Map(), liked: new Set(), reposted: new Set(), bookmarked: new Set(), votes: new Map(), mentions: new Map(), tags: new Map(),
+    media: new Map(), covers: new Map() };
   const originals = rows.filter(r => r.kind === 'repost' && r.quote_of).map(r => r.quote_of);
   const targets = [...new Set(rows.filter(r => THREADED.includes(r.kind) || BOARDED.includes(r.kind)).map(r => r.id).concat(originals))];
   if (!targets.length) return h;
@@ -72,6 +76,7 @@ export async function hydrate(c, rows) {
   const q = {
     mentions: DB.prepare(MENTIONS).bind(viewer, list),
     tags: DB.prepare('SELECT post_id, tag FROM post_tags WHERE post_id IN (SELECT value FROM json_each(?))').bind(list),
+    media: DB.prepare(MEDIA_OF).bind(JSON.stringify([...new Set(targets.concat(quoted))])),
   };
   if (quoted.length) {
     q.posts = DB.prepare(`SELECT ${POST_COLS}, (${IN_THREAD} AND ${SEES('a')}) AS ok FROM ${POSTS}
@@ -92,6 +97,7 @@ export async function hydrate(c, rows) {
   for (const r of got.posts || []) h.posts.set(r.id, r);
   for (const r of got.flags || []) h[r.flag].add(r.post_id);
   for (const r of got.votes || []) h.votes.set(r.post_id, r.value);
+  Object.assign(h, mediaByPost(got.media));
   return h;
 }
 
@@ -107,7 +113,9 @@ const UNAVAILABLE = { unavailable: true };
 // account; { id: null, author: null } when it's there but not for this viewer (private, blocked, banned or hidden).
 // A board thread or comment has votes instead: counts { up, down, comments } (a thread's comments however deep, a
 // comment's direct replies) and viewer { vote: 1, -1 or 0 }, plus its board ({ slug, name, icon, archived }: an
-// archived board takes no comments or votes); a thread also says sticky and locked.
+// archived board takes no comments or votes); a thread also says sticky and locked. Every item has its photos, media:
+// [{ id, url, width, height, alt }] (a repost's are its original's, inside quoted; a quote's box has the quoted post's);
+// a blog post also has its cover ({ id, url, width, height, alt } or null).
 export function item(c, r, h, cut = 0) {
   const repost = r.kind === 'repost';
   const board = BOARDED.includes(r.kind);
@@ -121,13 +129,16 @@ export function item(c, r, h, cut = 0) {
     canDelete: !!(c.user && !r.deleted && (r.a_id === c.user.id || c.user.is_admin)),
     replyTo: !r.reply_to ? null : r.r_ok ? { id: r.reply_to, author: ref(r, 'r_') } : { id: r.r_post == null ? r.reply_to : null, author: null },
     rootId: r.root_id,
-    quoted: r.deleted || !(repost || r.kind === 'quote') ? null : !orig || !orig.ok ? UNAVAILABLE : repost ? item(c, orig, h, cut) : lite(orig),
+    quoted: r.deleted || !(repost || r.kind === 'quote') ? null : !orig || !orig.ok ? UNAVAILABLE : repost ? item(c, orig, h, cut)
+      : { ...lite(orig), media: h.media.get(orig.id) || [] },
     counts: board ? { up: r.up_count, down: r.down_count, comments: r.kind === 'thread' ? r.comment_count : r.reply_count }
       : { likes: shown.like_count, replies: shown.reply_count, reposts: shown.repost_count, quotes: shown.quote_count },
     viewer: board ? { vote: h.votes.get(r.id) || 0 }
       : { liked: h.liked.has(shown.id), reposted: h.reposted.has(shown.id), bookmarked: h.bookmarked.has(shown.id) },
     mentions: h.mentions.get(r.id) || [],
     tags: h.tags.get(r.id) || [],
+    media: h.media.get(r.id) || [],
+    ...(r.kind === 'blog' ? { cover: h.covers.get(r.id) || null } : {}),
     deleted: !!r.deleted,
     ...(board ? { board: r.b_slug ? { slug: r.b_slug, name: r.b_name, icon: r.b_icon, archived: !!r.b_archived } : null } : {}),
     ...(r.kind === 'thread' ? { sticky: !!r.sticky, locked: !!r.locked } : {}),
@@ -175,8 +186,9 @@ export const LIVE = id => `EXISTS (SELECT 1 FROM posts lv WHERE lv.id = ${id} AN
 // mention for each person mentioned who wasn't told already. `on`: the id of the post it answers or quotes; if that one
 // was deleted or hidden in the meantime nothing is written at all (the `more` statements must check LIVE themselves) and
 // it's a 404. `guard`: SQL that must hold instead (a comment's: its thread is still open), with the same effect.
-// Answers the new post's id.
-export async function writePost(c, cols, { mentionIn = '', tagIn = '', tell = [], more = [], on = null, guard = null } = {}) {
+// `media`: the writer's uploads to attach, from claimMedia (shared/media.js); if one of them went on another post in the
+// meantime, nothing at all is written and it's a 409. Answers the new post's id.
+export async function writePost(c, cols, { mentionIn = '', tagIn = '', tell = [], more = [], on = null, guard = null, media = [] } = {}) {
   const DB = c.env.DB;
   const people = await mentioned(c, mentionIn);
   const tags = tagsIn(tagIn);
@@ -191,7 +203,11 @@ export async function writePost(c, cols, { mentionIn = '', tagIn = '', tell = []
     tags.length && DB.prepare(`INSERT INTO post_tags (tag, post_id, created) SELECT value, ${fresh}, ?2 FROM json_each(?3) WHERE ${still}`).bind(c.user.id, c.now, JSON.stringify(tags)),
     ...tell.map(([kind, id]) => notify(c, kind, [id], fresh, still)),
     notify(c, 'mention', people.filter(id => !tell.some(t => t[1] === id)), fresh, still),
-  ].filter(Boolean));
+    ...attachTo(DB, c.user.id, c.now, media, fresh, still),
+  ].filter(Boolean)).catch(e => {
+    if (attachFailed(e)) fail(409, 'one of those photos just went on another post. upload it again.');
+    throw e;
+  });
   if (!made.results.length) fail(404, 'that post is gone.');
   return made.results[0].id;
 }

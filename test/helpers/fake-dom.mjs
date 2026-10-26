@@ -118,6 +118,12 @@ const doc = {
   createTextNode: t => new Text(t),
   addEventListener(type, fn) { (this.listeners[type] ||= []).push(fn); },
   removeEventListener(type, fn) { this.listeners[type] = (this.listeners[type] || []).filter(f => f !== fn); },
+  // an event straight to the document's listeners (a key press: dispatch('keydown', { key: 'Escape' }))
+  dispatch(type, extra = {}) {
+    let stopped = false;
+    const ev = { type, preventDefault() {}, stopPropagation() {}, stopImmediatePropagation() { stopped = true; }, ...extra };
+    for (const fn of [...(this.listeners[type] || [])]) { if (stopped) break; fn(ev); }
+  },
   querySelector: sel => doc.body.querySelector(sel),
   querySelectorAll: sel => doc.body.querySelectorAll(sel),
 };

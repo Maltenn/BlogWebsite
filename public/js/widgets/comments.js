@@ -16,6 +16,7 @@ import { rich } from './richtext.js';
 import { voteBar } from './votes.js';
 import { commentBox } from './commentbox.js';
 import { threadPath } from './boardlinks.js';
+import { photoGrid } from './photogrid.js';
 
 export const depthCap = () => (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(max-width: 760px)').matches ? 3 : 6);
 
@@ -99,7 +100,7 @@ export function commentTree(thread, nodes, opts = {}) {
         gone ? null : h('a', { class: 'ms-time', href: `${base}?c=${c.id}`, title: when(c.created), text: ago(c.created) })].flat().filter(Boolean));
       if (gone) { main.replaceChildren(); return; }
       main.replaceChildren(
-        h('div', { class: 'bc-body' }, rich(c.body, c.mentions, { tags: false })),
+        ...[c.body ? h('div', { class: 'bc-body' }, rich(c.body, c.mentions, { tags: false })) : null, photoGrid(c.media, { small: true })].filter(Boolean),
         h('div', { class: 'bc-acts' }, voteBar(c, { locked, archived: !!(thread.board && thread.board.archived) }),
           locked ? null : h('a', { href: '#', class: 'bc-replylink', text: 'Reply', onclick: e => { e.preventDefault(); openReply(); } }),
           postActions(c, r => {

@@ -133,6 +133,19 @@ test('Friends\' Comments link their @mentions but not #tags (the server doesn\'t
   assert.deepEqual(body.querySelectorAll('a').map(a => a.textContent), ['@kat']);
 });
 
+test('a latest status that is only photos shows "📷 photo", not an empty box', async () => {
+  S.me = null;
+  const counts = { followers: 0, following: 0, friends: 0, statuses: 1, replies: 0, blog: 0, comments: 0 };
+  const page = latestStatus => ({ user: { ...pal, online: false, lastSeen: null, joined: 1, banned: false }, profile: { theme: { bg: '#fff', fg: '#000', accent: '#69c' } },
+    age: null, sign: null, spotify: null, counts, top8: [], private: false, canSeePosts: true, latestStatus, blog: [], self: false, relation: null });
+  for (const [body, shown] of [['', '📷 photo'], ['words', 'words']]) {
+    dom.onFetch = serve({ 'GET /users/pal': page({ id: 40, body, created: 1 }), 'GET /users/pal/comments?page=1': { comments: [], total: 0, page: 1, pages: 1 } });
+    const root = document.createElement('main');
+    await renderProfileComments(root, 'pal');
+    assert.equal(root.querySelector('.ms-latest-body').textContent, shown);
+  }
+});
+
 /* ---- boards (phase 3): votes and nested comments ---- */
 const { voteBar } = await import('../public/js/widgets/votes.js');
 const { commentTree } = await import('../public/js/widgets/comments.js');
@@ -283,4 +296,191 @@ test('the board request form suggests the slug the server would make (never endi
   const { slugOf } = await import('../public/js/widgets/boardrequests.js');
   assert.equal(slugOf('Pixel Art & Sprites'), 'pixel-art-sprites');
   assert.equal(slugOf('abcdefghij abcdefghij abcdefg xyz'), 'abcdefghij-abcdefghij-abcdefg', 'cut at 30, then the dash goes (api.test.mjs: the server agrees)');
+});
+
+/* ------------------------------------------------------------ photos (phase 4) */
+
+// a pretend browser for prepareImage: a w × h picture; `sizes` says how big each encoding comes out (bytes)
+const fakeEnv = ({ w, h, alpha = false, sizes = {}, fail = false }) => {
+  const log = { draws: [], encodes: [] };
+  return {
+    log,
+    decode: async () => { if (fail) throw new Error('no'); return { width: w, height: h, close() { log.closed = true; } }; },
+    canvas: (cw, ch) => {
+      log.canvas = [cw, ch];
+      return { getContext: () => ({ drawImage: (...a) => log.draws.push(a), getImageData: () => ({ data: new Uint8ClampedArray(alpha ? [1, 2, 3, 0] : [1, 2, 3, 255]) }), fillRect() {}, set fillStyle(v) {}, set globalCompositeOperation(v) {} }) };
+    },
+    encode: async (c, type, q) => {
+      log.encodes.push([type, q]);
+      if (type === 'image/webp' && sizes[type] === undefined) return { type: 'image/png', size: 9e9 };     // a browser with no WebP encoder answers with a PNG
+      return { type, size: sizes[type] ?? 100000 };
+    },
+  };
+};
+
+test('photo sizes: the long side is at most 1600, never enlarged; a picture is the centred square', async () => {
+  const { fitWithin, centreSquare, isHeic } = await import('../public/js/widgets/photos.js');
+  assert.deepEqual(fitWithin(3200, 2400, 1600), { w: 1600, h: 1200 });
+  assert.deepEqual(fitWithin(1000, 4000, 1600), { w: 400, h: 1600 });
+  assert.deepEqual(fitWithin(800, 600, 1600), { w: 800, h: 600 }, 'small stays small');
+  assert.deepEqual(centreSquare(1200, 800), { sx: 200, sy: 0, side: 800 });
+  assert.deepEqual(centreSquare(500, 900), { sx: 0, sy: 200, side: 500 });
+  assert.equal(isHeic({ type: 'image/heic', name: 'a' }) && isHeic({ type: '', name: 'IMG_1.HEIC' }) && !isHeic({ type: 'image/jpeg', name: 'a.jpg' }), true);
+});
+
+test('prepareImage: a big JPEG is shrunk to 1600 and re-encoded (a fresh JPEG: no EXIF); WebP wins when smaller; a see-through PNG stays PNG', async () => {
+  const { prepareImage } = await import('../public/js/widgets/photos.js');
+  const jpg = { type: 'image/jpeg', size: 5e6, name: 'a.jpg' };
+  let env = fakeEnv({ w: 4000, h: 3000 });
+  let r = await prepareImage(jpg, { env });
+  assert.deepEqual([r.width, r.height, r.mime, r.kept], [1600, 1200, 'image/jpeg', false]);
+  assert.deepEqual(env.log.canvas, [1600, 1200]);
+  assert.equal(env.log.closed, true, 'the decoded picture is let go');
+  env = fakeEnv({ w: 2000, h: 1000, sizes: { 'image/jpeg': 300000, 'image/webp': 200000 } });
+  r = await prepareImage(jpg, { env });
+  assert.equal(r.mime, 'image/webp');
+  env = fakeEnv({ w: 600, h: 400, alpha: true });
+  r = await prepareImage({ type: 'image/png', size: 9e4, name: 'a.png' }, { env });
+  assert.deepEqual([r.mime, r.width], ['image/png', 600], 'transparency keeps PNG');
+  env = fakeEnv({ w: 600, h: 400, alpha: true, sizes: { 'image/png': 3e6 } });
+  r = await prepareImage({ type: 'image/png', size: 3e6, name: 'a.png' }, { env });
+  assert.equal(r.mime, 'image/jpeg', 'a PNG too big for 2 MB is flattened');
+  env = fakeEnv({ w: 3000, h: 3000, sizes: { 'image/jpeg': 3e6 } });
+  await assert.rejects(prepareImage(jpg, { env }), /over 2 MB/);
+  assert.deepEqual(env.log.encodes.filter(([t]) => t === 'image/jpeg').map(([, q]) => q), [0.85, 0.7, 0.55], 'tries lower qualities next');
+});
+
+test('prepareImage: a small GIF goes up as it is, a big one is flattened; a picture is a 300 px centred square; HEIC says to export as JPEG', async () => {
+  const { prepareImage } = await import('../public/js/widgets/photos.js');
+  const gif = { type: 'image/gif', size: 4e5, name: 'a.gif' };
+  let env = fakeEnv({ w: 400, h: 300 });
+  let r = await prepareImage(gif, { env });
+  assert.deepEqual([r.blob === gif, r.kept, r.mime, env.log.encodes.length], [true, true, 'image/gif', 0]);
+  env = fakeEnv({ w: 1200, h: 900 });
+  r = await prepareImage(gif, { env });
+  assert.deepEqual([r.kept, r.mime, r.width], [false, 'image/jpeg', 1200], 'over 800: flattened');
+  env = fakeEnv({ w: 400, h: 300 });
+  r = await prepareImage({ ...gif, size: 3e6 }, { env });
+  assert.equal(r.kept, false, 'over 2 MB: flattened');
+  env = fakeEnv({ w: 1200, h: 800 });
+  r = await prepareImage({ type: 'image/jpeg', size: 1e6, name: 'me.jpg' }, { avatar: true, env });
+  assert.deepEqual([r.width, r.height, env.log.canvas], [300, 300, [300, 300]]);
+  assert.deepEqual(env.log.draws[0].slice(1), [200, 0, 800, 800, 0, 0, 300, 300], 'cut from the centre square, drawn at 300');
+  env = fakeEnv({ w: 100, h: 100 });
+  r = await prepareImage({ type: 'image/jpeg', size: 1e4, name: 'tiny.jpg' }, { avatar: true, env });
+  assert.equal(r.width, 100, 'a small picture isn\'t enlarged');
+  await assert.rejects(prepareImage({ type: 'image/heic', size: 1e6, name: 'IMG.HEIC' }, { env: fakeEnv({ fail: true }) }), /export it as a JPEG/);
+  await assert.rejects(prepareImage({ type: 'text/plain', size: 10, name: 'x.txt' }, { env: fakeEnv({ fail: true }) }), /isn't a picture/);
+});
+
+const badToasts = () => document.querySelector('#toasts').querySelectorAll('.toast').filter(t => t.classList.contains('bad'));
+const pic = (n, o = {}) => ({ id: n, url: `/media/${n}.jpg`, width: 800, height: 600, alt: '', ...o });
+
+test('the photo grid: 1 to 4 photos, room reserved from width and height, lazy, alt text; none draws nothing', async () => {
+  const { photoGrid } = await import('../public/js/widgets/photogrid.js');
+  assert.equal(photoGrid([]), null);
+  assert.equal(photoGrid(undefined), null);
+  const one = photoGrid([pic(1, { width: 1000, height: 500, alt: 'a cat' })]);
+  assert.equal(one.className, 'ph-grid ph-n1');
+  assert.equal(one.style.aspectRatio, '2', 'the photo\'s own shape');
+  const img = one.querySelector('img');
+  assert.deepEqual([img.getAttribute('alt'), img.getAttribute('width'), img.getAttribute('height'), img.loading, img.getAttribute('src')], ['a cat', '1000', '500', 'lazy', '/media/1.jpg']);
+  assert.equal(photoGrid([pic(1, { width: 100, height: 1000 })]).style.aspectRatio, '0.75', 'a tall one is cropped to 3:4 in the feed (the viewer shows it whole)');
+  assert.equal(photoGrid([pic(1), pic(2), pic(3)]).className, 'ph-grid ph-n3');
+  assert.equal(photoGrid([1, 2, 3, 4, 5, 6].map(n => pic(n))).querySelectorAll('img').length, 4, 'four at most');
+  assert.equal(photoGrid([pic(1)]).querySelector('img').getAttribute('alt'), 'photo', 'no description: "photo"');
+  assert.match(photoGrid([pic(1)], { small: true, cover: true }).className, /is-small is-cover/);
+});
+
+test('the picture viewer: opens on the one clicked, ← → go round, Esc closes it (and nothing under it), alt text under the photo', async () => {
+  const { photoGrid } = await import('../public/js/widgets/photogrid.js');
+  const grid = photoGrid([pic(1, { alt: 'first' }), pic(2), pic(3, { alt: 'third' })]);
+  grid.querySelectorAll('.ph-cell')[1].click();
+  const title = () => document.querySelector('.pv-title').textContent;
+  assert.equal(title(), 'Photo 2 of 3');
+  assert.equal(document.querySelector('.pv-img').getAttribute('src'), '/media/2.jpg');
+  assert.equal(document.querySelector('.pv-caption').hidden, true, 'no description, no caption');
+  document.dispatch('keydown', { key: 'ArrowRight' });
+  assert.deepEqual([title(), document.querySelector('.pv-caption').textContent, document.querySelector('.pv-img').getAttribute('alt')], ['Photo 3 of 3', 'third', 'third']);
+  document.dispatch('keydown', { key: 'ArrowRight' });
+  assert.equal(title(), 'Photo 1 of 3', 'round the end');
+  let under = 0;
+  const watch = () => { under++; };
+  document.addEventListener('keydown', watch);
+  document.dispatch('keydown', { key: 'Escape' });
+  document.removeEventListener('keydown', watch);
+  assert.equal(document.querySelector('.pv-modal'), null, 'Esc closed it');
+  assert.equal(under, 0, 'a window under the viewer doesn\'t also get the Esc (the viewer runs first and stops it)');
+  photoGrid([pic(9)]).querySelector('.ph-cell').click();
+  assert.equal(document.querySelector('.pv-window').querySelectorAll('button').filter(b => b.textContent.includes('Back')).length, 0, 'one photo: no ◀ ▶');
+  document.dispatch('keydown', { key: 'Escape' });
+});
+
+test('cards show their photos: a status, a quote\'s quoted photos, a blog cover, a thread; photos alone need no words', () => {
+  S.me = null;
+  const card = postCard(item({ body: '', media: [pic(1), pic(2)] }));
+  assert.equal(card.querySelectorAll('.ph-cell').length, 2);
+  assert.equal(card.querySelectorAll('.ms-feedtext').length, 0, 'no empty text line');
+  const q = postCard(item({ kind: 'quote', body: 'look', quoted: { id: 5, kind: 'status', created: 1, body: 'so cute', author: kat, media: [pic(7)] } }));
+  assert.equal(q.querySelector('.ms-quotebox').querySelector('.ph-grid').className, 'ph-grid ph-n1 is-small');
+  const blog = postCard(item({ kind: 'blog', subject: 'trip', body: 'words words', cover: pic(3, { width: 1600, height: 600 }) }));
+  assert.match(blog.querySelector('.ph-grid').className, /is-cover/);
+  const thread = postCard(threadItem({ media: [pic(4), pic(5), pic(6), pic(8)] }));
+  assert.equal(thread.querySelectorAll('.ph-cell').length, 4);
+  assert.equal(postCard(item({})).querySelectorAll('.ph-grid').length, 0, 'no photos, no grid');
+});
+
+// a photo picker with the shrink / preview / upload steps replaced by the test
+const fakeIo = (log, { failOn = -1 } = {}) => {
+  let n = 0;
+  return {
+    prepare: async f => ({ blob: { size: 10, name: f.name }, width: 10, height: 10, mime: 'image/jpeg' }),
+    preview: async () => 'data:image/jpeg;base64,AA==',
+    upload: async (blob, purpose) => {
+      const i = n++;
+      log.push(['upload', blob.name, purpose]);
+      if (i === failOn) throw Object.assign(new Error('that photo is too big: 2 MB at most.'), { status: 413 });
+      return { id: 100 + i, url: `/media/k${i}.jpg`, width: 10, height: 10 };
+    },
+  };
+};
+
+test('photo picker: up to the limit, ✕ takes an upload back, alt text goes with the id, a failed upload leaves no tile and says why', async () => {
+  const { photoPicker } = await import('../public/js/widgets/photos.js');
+  const calls = [];
+  dom.onFetch = (method, path) => { calls.push(`${method} ${path}`); return answer(200, { ok: true }); };
+  const log = [];
+  let changes = 0;
+  const pick = photoPicker({ max: 2, io: fakeIo(log), onChange: () => changes++ });
+  pick.add([{ name: 'a.jpg' }, { name: 'b.jpg' }, { name: 'c.jpg' }]);
+  assert.ok(badToasts().some(t => /up to 2/.test(t.textContent)), 'a third is refused with a message');
+  assert.equal(pick.busy(), true, 'still uploading');
+  await dom.settle(); await dom.settle();
+  assert.deepEqual([pick.count(), pick.busy(), pick.el.querySelectorAll('.ph-tile').length, pick.el.querySelector('.ph-add').disabled], [2, false, 2, true], 'full: the button is off');
+  assert.deepEqual(log.map(l => l[2]), ['post', 'post']);
+  pick.el.querySelectorAll('.ph-alt')[1].value = '  a dog  ';
+  assert.deepEqual(pick.media(), [100, { id: 101, alt: 'a dog' }], 'an id, or { id, alt } when described');
+  pick.el.querySelectorAll('.ph-x')[0].click();
+  assert.deepEqual([pick.count(), pick.el.querySelector('.ph-add').disabled], [1, false]);
+  assert.ok(calls.includes('DELETE /media/100'), 'taken back from the server');
+  assert.ok(changes > 0);
+  pick.discard();
+  await dom.settle();
+  assert.ok(calls.includes('DELETE /media/101'), 'a cancelled window takes back what it uploaded');
+  assert.equal(pick.el.querySelectorAll('.ph-tile').length, 0);
+  const bad = photoPicker({ max: 2, io: fakeIo([], { failOn: 0 }) });
+  bad.add([{ name: 'big.jpg' }]);
+  await dom.settle(); await dom.settle();
+  assert.deepEqual([bad.count(), bad.busy(), bad.el.querySelectorAll('.ph-tile').length], [0, false, 0]);
+  assert.ok(badToasts().some(t => /2 MB at most/.test(t.textContent)));
+});
+
+test('the status box has a 📷 button for image files, and nothing to post until there are words or a photo', async () => {
+  S.me = ME;
+  const { composer } = await import('../public/js/widgets/composer.js');
+  const form = composer({});
+  assert.equal(form.querySelector('button.go').disabled, true, 'nothing to post');
+  const input = form.querySelector('input');
+  assert.deepEqual([input.getAttribute('type'), input.getAttribute('accept')], ['file', 'image/*']);
+  assert.ok(form.querySelector('.ph-add'), 'a 📷 button');
 });

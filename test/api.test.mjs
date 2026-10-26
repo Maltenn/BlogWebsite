@@ -1,6 +1,6 @@
 // End-to-end API tests: `npm test`. Boots `wrangler dev` on a throwaway local database, with a stand-in for Google,
 // Apple, Microsoft, Discord, GitHub and Spotify (helpers/mock-providers.mjs), then drives the API like a browser does —
-// cookies, redirects, JSON, the lot.
+// cookies, redirects, JSON, photo uploads, the lot. The local R2 bucket is listed through wrangler's local explorer.
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn, execFileSync } from 'node:child_process';
@@ -11,6 +11,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { startMock } from './helpers/mock-providers.mjs';
 import { hot, wilson, RESORT } from '../src/shared/ranking.js';
+import { jpeg, png, gif, webp } from './helpers/images.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 // run wrangler.js through node itself: node_modules/.bin/wrangler is a shell script, which Windows can't spawn
@@ -74,6 +75,8 @@ function client() {
     if (jar.size) h.Cookie = [...jar].map(([k, v]) => `${k}=${v}`).join('; ');
     let payload;
     if (form) { h['Content-Type'] = 'application/x-www-form-urlencoded'; payload = new URLSearchParams(form).toString(); }
+    else if (body instanceof FormData) payload = body;                       // (fetch sets the multipart type)
+    else if (body instanceof Uint8Array) { h['Content-Type'] = h['Content-Type'] || 'application/octet-stream'; payload = body; }
     else if (body !== undefined) { h['Content-Type'] = h['Content-Type'] || 'application/json'; payload = typeof body === 'string' ? body : JSON.stringify(body); }
     const res = await fetch(url.startsWith('http') ? url : BASE + url, { method, headers: h, body: payload, redirect: 'manual' });
     for (const c of res.headers.getSetCookie()) {
@@ -755,7 +758,7 @@ test('reposts and quotes: one repost each, a repost stands for its original, and
   const q = await reader.post(`/api/posts/${id}/quote`, { body: 'so true' });
   assert.equal(q.status, 201, JSON.stringify(q.data));
   const quote = q.data.post;
-  assert.deepEqual(Object.keys(quote.quoted).sort(), ['author', 'body', 'created', 'deleted', 'id', 'kind', 'subject', 'subtitle']);
+  assert.deepEqual(Object.keys(quote.quoted).sort(), ['author', 'body', 'created', 'deleted', 'id', 'kind', 'media', 'subject', 'subtitle']);
   assert.deepEqual([quote.kind, quote.body, quote.quoted.id, quote.quoted.author.name, quote.quoted.body.length], ['quote', 'so true', id, op.name, 281], 'cut at 280 (and a …)');
   assert.equal((await reader.post(`/api/posts/${id}/quote`, { body: ' ' })).status, 400);
   const qq = (await fan.post(`/api/posts/${quote.id}/quote`, { body: 'quoting the quote' })).data.post;
@@ -804,7 +807,7 @@ test('deleting: a post with replies or quotes leaves a tombstone, and every coun
   assert.deepEqual(conv.post.counts, { likes: 0, replies: 1, reposts: 0, quotes: 1 }, 'its likes and reposts went; the reply and the quote stay');
   assert.deepEqual(conv.replies.map(r => [r.id, r.replyTo.id]), [[reply, id]], 'the conversation keeps its shape');
   const q = (await b.get('/api/posts/' + quote)).data.post.quoted;
-  assert.deepEqual(q, { id, kind: 'status', created: q.created, subject: null, subtitle: null, body: '', author: { id: a.id, name: a.name, avatar: q.author.avatar }, deleted: true },
+  assert.deepEqual(q, { id, kind: 'status', created: q.created, subject: null, subtitle: null, body: '', author: { id: a.id, name: a.name, avatar: q.author.avatar }, deleted: true, media: [] },
     'a quote says its original was deleted (not just unavailable)');
   assert.deepEqual(kinds((await b.get(`/api/users/${b.name}/statuses`)).data.items), ['quote'], 'the repost went');
   assert.deepEqual((await b.get('/api/me/bookmarks')).data.items, [], 'and the bookmark');
@@ -1237,7 +1240,7 @@ test('threads: a title and up to 10,000 characters, with @mentions and #tags, on
   assert.deepEqual([page.thread.id, page.thread.body, page.thread.viewer, page.sort, page.comments], [t.id, t.body, { vote: 0 }, 'best', []]);
   const row = (await client().get('/api/boards/cooking?sort=new')).data.items.find(i => i.id === t.id);
   assert.deepEqual(row, { id: t.id, subject: t.subject, excerpt: t.body, author: t.author, created: t.created, sticky: false, locked: false,
-    counts: { up: 0, down: 0, comments: 0 }, lastComment: null, viewer: { vote: 0 } });
+    counts: { up: 0, down: 0, comments: 0 }, lastComment: null, viewer: { vote: 0 }, media: [] });
   assert.ok((await client().get('/api/boards/cooking?sort=new')).data.items.find(i => i.body === undefined && i.excerpt.length === 201), 'a long one is cut at 200 characters');
 
   assert.ok(!(await pal.get('/api/feed')).data.items.some(i => i.kind === 'thread'), 'not in the following feed');
@@ -1892,6 +1895,555 @@ test('deleting an account removes it and frees the name and email', async () => 
   assert.equal(sql(`SELECT (SELECT COUNT(*) FROM likes WHERE user_id = ${c.id}) + (SELECT COUNT(*) FROM bookmarks WHERE user_id = ${c.id})
     + (SELECT COUNT(*) FROM notifications WHERE ${c.id} IN (user_id, actor_id)) AS n`)[0].n, 0);
   assert.equal((await client().post('/api/signup',{ email: c.email, password: PW, name: c.name, birthday: '1995-08-15', rulesOk: true })).status, 201);
+});
+
+/* ------------------------------------------------------------------ photos */
+
+// the keys in the local R2 bucket (wrangler dev's local explorer lists it)
+async function bucket() {
+  const keys = new Set();
+  let cursor = '';
+  for (;;) {
+    const r = await fetch(`${BASE}/cdn-cgi/local/explorer/api/r2/buckets/ourspace-social-media/objects?per_page=1000${cursor ? '&cursor=' + encodeURIComponent(cursor) : ''}`);
+    assert.equal(r.status, 200, 'the local explorer lists the bucket');
+    const j = await r.json();
+    for (const o of j.result) keys.add(o.key);
+    cursor = j.result_info && j.result_info.cursor;
+    if (!cursor) return keys;
+  }
+}
+const keyOf = url => url.replace('/media/', '');
+// one upload: the raw bytes with their type (or a FormData), answering { status, data }
+async function upload(who, bytes, type = 'image/png', purpose) {
+  const res = await who.raw('POST', '/api/media' + (purpose ? `?purpose=${purpose}` : ''), { body: bytes, headers: bytes instanceof FormData ? {} : { 'Content-Type': type } });
+  return { status: res.status, data: await res.json().catch(() => null) };
+}
+async function photo(who, opts = {}, purpose) {
+  const r = await upload(who, png({ width: 40, height: 30, ...opts }), 'image/png', purpose);
+  assert.equal(r.status, 201, JSON.stringify(r.data));
+  return r.data.media;
+}
+// GET /media/<key> as `who`: { status, bytes, headers }
+async function fetchMedia(who, url) {
+  const res = await who.raw('GET', url);
+  return { status: res.status, bytes: Buffer.from(await res.arrayBuffer()), headers: res.headers };
+}
+const has = (bytes, s) => Buffer.from(bytes).includes(Buffer.from(s, 'latin1'));
+const PUBLIC_CACHE = 'public, max-age=300';
+const PRIVATE_CACHE = 'private, no-store';
+
+test('photo uploads: JPEG, PNG, GIF and WebP only, read from their bytes, 2 MB and 4096 px at most, metadata taken out', async () => {
+  const me = await newUser('snap');
+  const other = await newUser('peek');
+  assert.equal((await upload(client(), png())).status, 401, 'members only');
+
+  const dirty = png({ width: 64, height: 48, chunks: [['tEXt', 'Location\0GPS-SECRET'], ['eXIf', 'MM\0*GPS-SECRET']] });
+  const up = await upload(me, dirty);
+  assert.equal(up.status, 201, JSON.stringify(up.data));
+  assert.deepEqual(Object.keys(up.data.media).sort(), ['height', 'id', 'mime', 'url', 'width']);
+  assert.deepEqual([up.data.media.width, up.data.media.height, up.data.media.mime], [64, 48, 'image/png']);
+  assert.match(up.data.media.url, /^\/media\/[0-9a-f]{32}\.png$/, 'a random key, never the file\'s name');
+  assert.ok((await bucket()).has(keyOf(up.data.media.url)), 'it\'s in the bucket');
+
+  const got = await fetchMedia(me, up.data.media.url);
+  assert.equal(got.status, 200);
+  assert.ok(!has(got.bytes, 'GPS-SECRET') && !has(got.bytes, 'tEXt') && !has(got.bytes, 'eXIf'), 'stored without its metadata');
+  assert.ok(got.bytes.length < dirty.length && got.bytes.subarray(0, 8).equals(dirty.subarray(0, 8)));
+  assert.equal(got.headers.get('content-type'), 'image/png');
+  assert.equal(got.headers.get('x-content-type-options'), 'nosniff');
+  assert.equal(got.headers.get('content-disposition'), 'inline');
+  assert.equal(got.headers.get('content-security-policy'), 'default-src \'none\'; sandbox');
+  assert.equal(got.headers.get('cache-control'), PRIVATE_CACHE, 'a loose upload is its owner\'s only');
+  assert.equal((await me.raw('HEAD', up.data.media.url)).status, 200);
+  assert.equal((await fetchMedia(other, up.data.media.url)).status, 404, 'nobody else sees an upload that isn\'t on anything');
+  assert.equal((await fetchMedia(client(), up.data.media.url)).status, 404);
+  assert.equal((await fetchMedia(client(), '/media/' + '0'.repeat(32) + '.png')).status, 404);
+  assert.equal((await fetchMedia(client(), '/media/not-a-key.svg')).status, 404);
+  assert.equal((await me.raw('POST', up.data.media.url)).status, 405);
+
+  // a camera JPEG with a GPS position, an animated GIF, a WebP with EXIF and XMP, a multipart form
+  const j = await upload(me, jpeg({ width: 1600, height: 1200, gps: true, xmp: true, comment: 'GPS-SECRET' }), 'image/jpeg');
+  assert.deepEqual([j.status, j.data.media.width, j.data.media.height, j.data.media.mime], [201, 1600, 1200, 'image/jpeg']);
+  const jb = (await fetchMedia(me, j.data.media.url)).bytes;
+  assert.ok(!has(jb, 'GPS-SECRET') && !has(jb, 'Exif') && !has(jb, 'xmpmeta'), 'the GPS position is gone');
+  const g = await upload(me, gif({ width: 200, height: 150, frames: 4, comment: 'GPS-SECRET' }), 'image/gif');
+  assert.deepEqual([g.status, g.data.media.mime], [201, 'image/gif']);
+  assert.ok(has((await fetchMedia(me, g.data.media.url)).bytes, 'NETSCAPE2.0'), 'it still moves');
+  const w = await upload(me, webp({ kind: 'VP8X', width: 800, height: 600, exif: true, xmp: true }), 'image/webp');
+  assert.deepEqual([w.status, w.data.media.mime], [201, 'image/webp']);
+  assert.ok(!has((await fetchMedia(me, w.data.media.url)).bytes, 'GPS'));
+  const form = new FormData();
+  form.append('file', new Blob([png({ width: 10, height: 10 })], { type: 'image/png' }), 'IMG_0001.png');
+  const f = await upload(me, form);
+  assert.deepEqual([f.status, f.data.media.width], [201, 10], 'a multipart form with one file works too');
+  assert.ok(!f.data.media.url.includes('IMG_0001'));
+
+  // refused: not pictures, lying about their type, cut off, too big, too large, animated and too large, bad purpose
+  const refuse = async (bytes, type, status, re, purpose) => {
+    const r = await upload(me, bytes, type, purpose);
+    assert.equal(r.status, status, JSON.stringify(r.data));
+    if (re) assert.match(r.data.error, re);
+  };
+  await refuse(Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" onload="alert(1)"/>'), 'image/svg+xml', 415, /JPEG, PNG, GIF or WebP/);
+  await refuse(Buffer.from('<svg xmlns="http://www.w3.org/2000/svg" onload="alert(1)"/>'), 'image/png', 415, /SVG/);
+  await refuse(Buffer.from('<!DOCTYPE html><script>alert(1)</script>'), 'image/png', 415, /SVG and web pages/);
+  await refuse(Buffer.from('GIF89a<html><script>alert(1)</script></html>'), 'image/gif', 400, /broken/);
+  await refuse(Buffer.from([0, 0, 0, 0x18, 0x66, 0x74, 0x79, 0x70, 0x68, 0x65, 0x69, 0x63, 0, 0, 0, 0]), 'image/png', 415, /HEIC/);
+  await refuse(png(), 'image/jpeg', 415, /isn't the kind of picture it says/);
+  await refuse(png(), 'text/plain', 415);
+  await refuse(png(), 'application/json', 415);
+  const whole = jpeg({ gps: true });
+  await refuse(whole.subarray(0, whole.length - 20), 'image/jpeg', 400, /cut off/);
+  await refuse(png({ width: 1200, height: 600, draw: () => [Math.random() * 256 | 0, Math.random() * 256 | 0, Math.random() * 256 | 0], stored: true }), 'image/png', 413, /2 MB/);
+  await refuse(png({ width: 4097, height: 2 }), 'image/png', 400, /4096/);
+  await refuse(gif({ width: 900, height: 300, frames: 2 }), 'image/gif', 400, /animated/);
+  assert.equal((await upload(me, gif({ width: 900, height: 300 }), 'image/gif')).status, 201, 'a still GIF may be bigger');
+  await refuse(png({ width: 300, height: 200 }), 'image/png', 400, /square/, 'avatar');
+  await refuse(png({ width: 400, height: 400 }), 'image/png', 400, /300/, 'avatar');
+  await refuse(png(), 'image/png', 400, /purpose/, 'video');
+  await refuse(Buffer.alloc(0), 'image/png', 400);
+
+  // taking back an upload that isn't on anything: out of the table and the bucket; not someone else's
+  assert.equal((await other.del('/api/media/' + up.data.media.id)).status, 404);
+  assert.deepEqual((await me.del('/api/media/' + up.data.media.id)).data, { ok: true });
+  assert.ok(!(await bucket()).has(keyOf(up.data.media.url)));
+  assert.equal((await fetchMedia(me, up.data.media.url)).status, 404);
+  assert.equal((await me.del('/api/media/' + up.data.media.id)).status, 404);
+});
+
+test('photo uploads: 30 an hour and 150 a day, and 200 MB of space per member, with a clear message', async () => {
+  const me = await newUser('busy');
+  sql(`INSERT INTO attempts (k, created) SELECT 'upload:${me.id}', ${Date.now()} FROM (WITH RECURSIVE n(i) AS (SELECT 1 UNION ALL SELECT i + 1 FROM n WHERE i < 30) SELECT i FROM n)`);
+  const r = await upload(me, png());
+  assert.equal(r.status, 429);
+  assert.match(r.data.error, /a lot of photos/);
+  sql(`DELETE FROM attempts WHERE k = 'upload:${me.id}'`);
+  sql(`INSERT INTO media (key, owner_id, purpose, mime, bytes, width, height, created, attached) VALUES ('${'f'.repeat(32)}.png', ${me.id}, 'avatar', 'image/png', ${200 * 1024 * 1024 - 100}, 300, 300, ${Date.now()}, ${Date.now()})`);
+  const full = await upload(me, png());
+  assert.equal(full.status, 413);
+  assert.match(full.data.error, /200 MB of your photo space/);
+  sql(`DELETE FROM media WHERE key = '${'f'.repeat(32)}.png'`);
+  assert.equal((await upload(me, png())).status, 201);
+});
+
+test('photos on posts: up to 4 on statuses, replies, quotes and threads, 1 on a comment, a cover on a blog post; your own unused uploads only, once', async () => {
+  const me = await newUser('poster');
+  const pal = await newUser('palz');
+  const four = [];
+  for (let i = 0; i < 5; i++) four.push(await photo(me, { width: 40 + i, height: 30 }));
+  const fifth = four.pop();
+
+  // a status with 4 photos (alt text optional), in order, in every list with their size for the page to keep room
+  const s = await me.post('/api/status', { body: 'my weekend', media: [{ id: four[0].id, alt: 'the beach at sunset' }, four[1].id, four[2].id, { id: four[3].id, alt: '' }] });
+  assert.equal(s.status, 201, JSON.stringify(s.data));
+  const post = (await me.get('/api/posts/' + s.data.id)).data.post;
+  assert.deepEqual(post.media, [
+    { id: four[0].id, url: four[0].url, width: 40, height: 30, alt: 'the beach at sunset' },
+    { id: four[1].id, url: four[1].url, width: 41, height: 30, alt: '' },
+    { id: four[2].id, url: four[2].url, width: 42, height: 30, alt: '' },
+    { id: four[3].id, url: four[3].url, width: 43, height: 30, alt: '' },
+  ]);
+  assert.equal(post.cover, undefined, 'only blog posts have a cover');
+  assert.deepEqual((await me.get(`/api/users/${me.name}/statuses`)).data.items[0].media.map(m => m.id), four.map(m => m.id));
+  assert.deepEqual((await client().get('/api/feed')).data.items.find(i => i.id === s.data.id).media.length, 4);
+  assert.deepEqual((await fetchMedia(client(), four[0].url)).headers.get('cache-control'), PUBLIC_CACHE, 'an open profile\'s photo is public');
+
+  // not twice, not someone else's, not more than 4, not a cover as a post photo, not in Friends' Comments
+  const tryStatus = async (media, status, re) => {
+    const r = await me.post('/api/status', { body: 'again', media });
+    assert.equal(r.status, status, JSON.stringify(r.data));
+    if (re) assert.match(r.data.error, re);
+  };
+  await tryStatus([four[0].id], 409, /already on another post/);
+  const theirs = await photo(pal);
+  await tryStatus([theirs.id], 400, /isn't a photo you uploaded/);
+  await tryStatus([99999999], 400, /isn't a photo you uploaded/);
+  await tryStatus(['1'], 400);
+  await tryStatus([fifth.id, fifth.id], 400, /twice/);
+  const more = [fifth, await photo(me), await photo(me), await photo(me), await photo(me)];
+  await tryStatus(more.map(m => m.id), 400, /up to 4/);
+  await tryStatus('nope', 400);
+  const cover = await photo(me, {}, 'cover');
+  await tryStatus([cover.id], 400, /isn't a post photo/);
+  await befriend(me, pal);
+  assert.equal((await me.post(`/api/users/${pal.name}/comments`, { body: 'hi', media: [fifth.id] })).status, 400, 'no photos in Friends\' Comments');
+  // an upload a day old (about to be cleaned up) can't be attached any more
+  sql(`UPDATE media SET created = created - ${23.5 * 3600000} WHERE id = ${more[4].id}`);
+  await tryStatus([more[4].id], 410, /expired/);
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM posts WHERE author_id = ${me.id} AND body = 'again'`)[0].n, 0, 'none of those posted anything');
+
+  // a photo with no words is a post; replies, quotes and threads take 4, comments 1
+  const only = await me.post('/api/status', { body: '', media: [fifth.id] });
+  assert.equal(only.status, 201);
+  assert.equal((await me.post('/api/status', { body: '' })).status, 400, 'no words and no photo is nothing');
+  const reply = await pal.post(`/api/posts/${s.data.id}/replies`, { body: 'jealous', media: [(await photo(pal)).id, (await photo(pal)).id] });
+  assert.equal(reply.status, 201);
+  assert.equal(reply.data.post.media.length, 2);
+  const quote = await pal.post(`/api/posts/${s.data.id}/quote`, { body: '', media: [(await photo(pal)).id] });
+  assert.equal(quote.status, 201, 'a quote with a photo and no words');
+  assert.equal(quote.data.post.media.length, 1);
+  assert.equal(quote.data.post.quoted.media.length, 4, 'the quote\'s box shows the quoted post\'s photos');
+  await pal.post(`/api/posts/${s.data.id}/repost`);
+  const repost = (await pal.get(`/api/users/${pal.name}/statuses`)).data.items.find(i => i.kind === 'repost');
+  assert.deepEqual([repost.media, repost.quoted.media.length], [[], 4], 'a repost shows its original\'s photos');
+  const thread = await pal.post('/api/boards/pets/threads', { subject: 'my cat', body: '', media: [(await photo(pal)).id, (await photo(pal)).id, (await photo(pal)).id] });
+  assert.equal(thread.status, 201, JSON.stringify(thread.data));
+  assert.equal(thread.data.thread.media.length, 3);
+  assert.equal((await client().get('/api/boards/pets?sort=new')).data.items.find(i => i.id === thread.data.thread.id).media.length, 3, 'the board\'s list has them too');
+  const two = [(await photo(me)).id, (await photo(me)).id];
+  const tooMany = await me.post(`/api/threads/${thread.data.thread.id}/comments`, { body: 'cute', media: two });
+  assert.equal(tooMany.status, 400);
+  assert.match(tooMany.data.error, /one photo at most/);
+  const comment = await me.post(`/api/threads/${thread.data.thread.id}/comments`, { body: '', media: [two[0]] });
+  assert.equal(comment.status, 201);
+  const shown = (await client().get('/api/threads/' + thread.data.thread.id)).data;
+  assert.equal(shown.thread.media.length, 3);
+  assert.equal(shown.comments[0].item.media[0].id, two[0]);
+
+  // a blog post's cover: one, uploaded as a cover; on the post, the blog index and the feed
+  assert.equal((await me.post('/api/blog', { title: 'trip', body: 'words', cover: two[1] })).status, 400, 'a post photo isn\'t a cover');
+  const b = await me.post('/api/blog', { title: 'trip', body: 'words', cover: { id: cover.id, alt: 'a map' } });
+  assert.equal(b.status, 201);
+  const entry = (await me.get(`/api/users/${me.name}/blog`)).data.entries.find(e => e.id === b.data.id);
+  assert.deepEqual([entry.cover, entry.media], [{ id: cover.id, url: cover.url, width: 40, height: 30, alt: 'a map' }, []]);
+  assert.equal((await client().get('/api/posts/' + b.data.id)).data.post.cover.id, cover.id);
+  assert.equal((await me.get('/api/feed')).data.items.find(i => i.id === b.data.id).cover.alt, 'a map');
+  assert.equal((await me.post('/api/blog', { title: 'trip', body: 'words', media: [cover.id] })).status, 409, 'media: [cover] works too, once');
+});
+
+test('photos on posts: two posts racing for the same upload: one gets it, the other writes nothing at all', async () => {
+  const me = await newUser('racer');
+  const pal = await newUser('target');
+  const parent = (await pal.post('/api/status', { body: 'reply to me' })).data.id;
+  const m = await photo(me);
+  const [a, b] = await Promise.all([
+    me.post(`/api/posts/${parent}/replies`, { body: 'first', media: [m.id] }),
+    me.post(`/api/posts/${parent}/replies`, { body: 'second', media: [m.id] }),
+  ]);
+  assert.deepEqual([a.status, b.status].sort(), [201, 409], JSON.stringify([a.data, b.data]));
+  // (whichever check catches the second: the one before the write, or the database's own in the write batch)
+  assert.match((a.status === 409 ? a : b).data.error, /already on another post|just went on another post/);
+  const conv = (await pal.get('/api/posts/' + parent)).data;
+  assert.deepEqual([conv.post.counts.replies, conv.replies.length], [1, 1], 'one reply, counted once');
+  assert.equal((await notes(pal)).items.filter(n => n.kind === 'reply').length, 1, 'and told once');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM media WHERE id = ${m.id} AND post_id = ${conv.replies[0].id}`)[0].n, 1);
+});
+
+test('photo privacy: a private member\'s photos only for who may see the post, never cached; hidden, deleted or blocked ones are 404', async () => {
+  const shy = await newUser('shyphoto');
+  const fan = await newUser('fanphoto');
+  const stranger = await newUser('strphoto');
+  const mod = await moderator('photomod');
+  await shy.put('/api/me/settings', { followPolicy: 'approve' });
+  await fan.post('/api/follows/' + shy.name);
+  await shy.post('/api/followers/' + fan.name);
+  const m = await photo(shy);
+  const s = await shy.post('/api/status', { body: 'friends only', media: [m.id] });
+  assert.equal(s.status, 201);
+  const seen = await fetchMedia(fan, m.url);
+  assert.equal(seen.status, 200);
+  assert.equal(seen.headers.get('cache-control'), PRIVATE_CACHE);
+  assert.equal((await fetchMedia(shy, m.url)).status, 200);
+  assert.equal((await fetchMedia(mod, m.url)).status, 200, 'moderators see everything');
+  assert.equal((await fetchMedia(stranger, m.url)).status, 404);
+  assert.equal((await fetchMedia(client(), m.url)).status, 404);
+  // losing access loses the photo
+  await shy.del('/api/followers/' + fan.name);
+  assert.equal((await fetchMedia(fan, m.url)).status, 404, 'removed as a follower: gone');
+  // a private member's board thread is a public space
+  const t = await shy.post('/api/boards/pets/threads', { subject: 'the dog', body: 'look', media: [(await photo(shy)).id] });
+  const tm = t.data.thread.media[0];
+  const pub = await fetchMedia(client(), tm.url);
+  assert.deepEqual([pub.status, pub.headers.get('cache-control')], [200, PUBLIC_CACHE]);
+  // blocks hide photos both ways
+  await stranger.post('/api/blocks/' + shy.name);
+  assert.equal((await fetchMedia(stranger, tm.url)).status, 404, 'across a block');
+  // a moderator hides the post: its photos go dark for everyone but moderators; unhiding brings them back
+  assert.equal((await mod.post('/api/admin/content', { type: 'post', id: t.data.thread.id, hidden: true })).status, 200);
+  assert.equal((await fetchMedia(client(), tm.url)).status, 404);
+  assert.equal((await fetchMedia(shy, tm.url)).status, 404, 'its writer too');
+  assert.equal((await fetchMedia(mod, tm.url)).status, 200);
+  await mod.post('/api/admin/content', { type: 'post', id: t.data.thread.id, hidden: false });
+  assert.equal((await fetchMedia(client(), tm.url)).status, 200);
+  // a moderator hides just the photo
+  assert.equal((await fan.post(`/api/admin/media/${tm.id}`, { action: 'hide' })).status, 403, 'moderators only');
+  assert.deepEqual((await mod.post(`/api/admin/media/${tm.id}`, { action: 'hide', note: 'not ok' })).data, { ok: true });
+  assert.equal((await fetchMedia(client(), tm.url)).status, 404);
+  assert.deepEqual((await client().get('/api/threads/' + t.data.thread.id)).data.thread.media, [], 'and it leaves the item');
+  await mod.post(`/api/admin/media/${tm.id}`, { action: 'unhide' });
+  assert.equal((await client().get('/api/threads/' + t.data.thread.id)).data.thread.media.length, 1);
+  // deleting the post deletes its photos, from the bucket too, whether it goes or stays as a tombstone
+  const reply = await shy.post(`/api/posts/${s.data.id}/replies`, { body: 'holding it up' });
+  assert.equal(reply.status, 201);
+  assert.ok((await bucket()).has(keyOf(m.url)));
+  assert.equal((await shy.del('/api/posts/' + s.data.id)).data.tombstone, true);
+  assert.ok(!(await bucket()).has(keyOf(m.url)), 'a tombstone keeps no photos');
+  assert.equal((await fetchMedia(shy, m.url)).status, 404);
+  assert.equal((await shy.del('/api/posts/' + t.data.thread.id)).data.tombstone, false);
+  assert.ok(!(await bucket()).has(keyOf(tm.url)));
+});
+
+test('profile pictures: upload your own (square, up to 300px), use it, change it, and the old one leaves the bucket', async () => {
+  const me = await newUser('selfie');
+  const other = await newUser('copycat');
+  const a = await photo(me, { width: 300, height: 300 }, 'avatar');
+  const notAvatar = await photo(me);
+  assert.equal((await me.put('/api/me/profile', { avatar: notAvatar.url })).status, 400, 'a post photo isn\'t a picture');
+  assert.equal((await other.put('/api/me/profile', { avatar: a.url })).status, 400, 'nor is someone else\'s');
+  assert.equal((await me.put('/api/me/profile', { avatar: '/media/../../evil.svg' })).status, 400);
+  const set = await me.put('/api/me/profile', { avatar: a.url });
+  assert.deepEqual([set.status, set.data.avatar], [200, a.url]);
+  assert.equal((await me.get('/api/me')).data.user.avatar, a.url);
+  assert.equal((await client().get('/api/users/' + me.name)).data.user.avatar, a.url);
+  const pub = await fetchMedia(client(), a.url);
+  assert.deepEqual([pub.status, pub.headers.get('cache-control')], [200, PUBLIC_CACHE], 'pictures are public');
+  assert.equal((await me.put('/api/me/profile', { avatar: a.url, tag: 'same pic' })).status, 200, 'saving it again changes nothing');
+  assert.ok((await bucket()).has(keyOf(a.url)));
+  const b = await photo(me, { width: 120, height: 120 }, 'avatar');
+  assert.equal((await me.put('/api/me/profile', { avatar: b.url })).data.avatar, b.url);
+  let keys = await bucket();
+  assert.ok(!keys.has(keyOf(a.url)) && keys.has(keyOf(b.url)), 'the old picture is deleted');
+  assert.equal((await fetchMedia(client(), a.url)).status, 404);
+  const preset = (await client().get('/api/options')).data.avatars[3].file;
+  assert.equal((await me.put('/api/me/profile', { avatar: preset })).data.avatar, preset, 'presets still work');
+  keys = await bucket();
+  assert.ok(!keys.has(keyOf(b.url)), 'and going back to a preset deletes the upload');
+  assert.equal((await me.put('/api/me/profile', { avatar: b.url })).status, 400, 'it\'s gone');
+});
+
+test('moderators remove a photo at once (a Take It Down request): out of R2, logged; reports on a post list its photos', async () => {
+  const me = await newUser('reported');
+  const reporter = await newUser('reporter');
+  const mod = await moderator('takedown');
+  const p1 = await photo(me), p2 = await photo(me);
+  const s = await me.post('/api/status', { body: 'look', media: [{ id: p1.id, alt: 'one' }, p2.id] });
+  assert.equal((await reporter.post('/api/reports', { type: 'post', id: s.data.id, reason: 'other', details: 'this photo is of me' })).status, 201);
+  const rep = (await mod.get('/api/admin/reports')).data.reports.find(r => r.targetId === s.data.id);
+  assert.deepEqual(rep.snapshot.media.map(m => [m.id, m.url, m.alt]), [[p1.id, p1.url, 'one'], [p2.id, p2.url, '']]);
+  assert.equal((await reporter.post(`/api/admin/media/${p1.id}`, { action: 'remove' })).status, 403);
+  assert.equal((await mod.post(`/api/admin/media/${p1.id}`, { action: 'explode' })).status, 400);
+  assert.deepEqual((await mod.post(`/api/admin/media/${p1.id}`, { action: 'remove', note: 'Take It Down request' })).data, { ok: true });
+  assert.ok(!(await bucket()).has(keyOf(p1.url)));
+  assert.equal((await fetchMedia(mod, p1.url)).status, 404);
+  assert.deepEqual((await client().get('/api/posts/' + s.data.id)).data.post.media.map(m => m.id), [p2.id], 'the post keeps its other photo');
+  assert.equal((await mod.post(`/api/admin/media/${p1.id}`, { action: 'remove' })).status, 404);
+  const log = (await mod.get('/api/admin/log')).data.log.filter(l => l.targetType === 'media' && l.targetId === p1.id);
+  assert.deepEqual(log.map(l => [l.action, l.note]), [['remove_media', 'Take It Down request']], 'logged once');
+  // removing someone's picture puts them back on the default one
+  const pic = await photo(me, { width: 100, height: 100 }, 'avatar');
+  await me.put('/api/me/profile', { avatar: pic.url });
+  await mod.post(`/api/admin/media/${pic.id}`, { action: 'remove' });
+  assert.equal((await me.get('/api/me')).data.user.avatar, (await client().get('/api/options')).data.avatars[0].file);
+  assert.ok(!(await bucket()).has(keyOf(pic.url)));
+});
+
+test('the cron deletes uploads still loose after a day, and photos whose post went without them', async () => {
+  const me = await newUser('loose');
+  const old = await photo(me), fresh = await photo(me), used = await photo(me);
+  await me.post('/api/status', { body: 'kept', media: [used.id] });
+  sql(`UPDATE media SET created = created - ${25 * 3600000} WHERE id IN (${old.id}, ${used.id})`);
+  // (a post that somehow went without taking its photos: post_id falls to NULL)
+  const lost = await photo(me);
+  const lostPost = (await me.post('/api/status', { body: 'lost', media: [lost.id] })).data.id;
+  sql(`DELETE FROM posts WHERE id = ${lostPost}`);
+  // (the local explorer runs the cron, as the dashboard's trigger would)
+  const res = await fetch(`${BASE}/cdn-cgi/local/explorer/api/local/scheduled?worker=${WORKER}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ cron: '*/30 * * * *' }) });
+  assert.equal(res.status, 200, await res.text());
+  for (let i = 0; i < 20 && (await bucket()).has(keyOf(old.url)); i++) await new Promise(r => setTimeout(r, 250));   // (the cron runs in waitUntil)
+  const keys = await bucket();
+  assert.ok(!keys.has(keyOf(old.url)), 'a day-old loose upload is gone');
+  assert.ok(!keys.has(keyOf(lost.url)), 'so is a photo whose post is gone');
+  assert.ok(keys.has(keyOf(fresh.url)) && keys.has(keyOf(used.url)), 'a fresh upload and an attached photo stay');
+  assert.deepEqual(sql(`SELECT id FROM media WHERE owner_id = ${me.id} ORDER BY id`).map(r => r.id), [fresh.id, used.id]);
+});
+
+test('deleting an account deletes every photo it uploaded and those on the comments that go with its threads, from the bucket too', async () => {
+  const me = await newUser('photogone', {});
+  const pal = await newUser('photostays');
+  const pic = await photo(me, { width: 300, height: 300 }, 'avatar');
+  await me.put('/api/me/profile', { avatar: pic.url });
+  const mine = await photo(me), loose = await photo(me);
+  await me.post('/api/status', { body: 'bye', media: [mine.id] });
+  const t = (await me.post('/api/boards/random/threads', { subject: 'last thread', body: 'ok', media: [(await photo(me)).id] })).data.thread;
+  const theirs = await photo(pal);
+  await pal.post(`/api/threads/${t.id}/comments`, { body: 'nice', media: [theirs.id] });
+  const kept = await photo(pal);
+  await pal.post('/api/status', { body: 'still here', media: [kept.id] });
+  const before = await bucket();
+  const gone = [pic, mine, loose, theirs, t.media[0]].map(m => keyOf(m.url));
+  assert.ok(gone.every(k => before.has(k)));
+  assert.equal((await me.del('/api/me', { password: PW })).status, 200);
+  const after = await bucket();
+  assert.deepEqual(gone.filter(k => after.has(k)), [], 'all gone');
+  assert.ok(after.has(keyOf(kept.url)), 'other people\'s photos elsewhere stay');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM media WHERE owner_id = ${me.id}`)[0].n, 0);
+});
+
+// runs the cron through the local explorer and waits for it (it runs in waitUntil) until `done()` holds
+async function runCron(done) {
+  const res = await fetch(`${BASE}/cdn-cgi/local/explorer/api/local/scheduled?worker=${WORKER}`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ cron: '*/30 * * * *' }) });
+  assert.equal(res.status, 200, await res.text());
+  for (let i = 0; i < 20 && !(await done()); i++) await new Promise(r => setTimeout(r, 250));
+}
+
+test('photos a moderator hid, or on a post a moderator hid, are held as evidence: no author action deletes them, only a moderator\'s remove', async () => {
+  const me = await newUser('evidence');
+  const pal = await newUser('evipal');
+  const reporter = await newUser('evirep');
+  const mod = await moderator('evimod');
+  const inBucket = async m => (await bucket()).has(keyOf(m.url));
+  const row = m => sql(`SELECT owner_id, post_id, hidden FROM media WHERE id = ${m.id}`)[0];
+
+  // a photo hidden on its own, then the post deleted: that photo stays (hidden, off the post), the other goes
+  const m1 = await photo(me), m2 = await photo(me);
+  const s1 = (await me.post('/api/status', { body: 'x', media: [m1.id, m2.id] })).data.id;
+  await mod.post(`/api/admin/media/${m1.id}`, { action: 'hide', note: 'evidence' });
+  assert.equal((await me.del('/api/posts/' + s1)).status, 200);
+  assert.deepEqual(row(m1), { owner_id: me.id, post_id: null, hidden: 1 });
+  assert.ok(await inBucket(m1), 'the held photo stays in the bucket');
+  assert.ok(!(await inBucket(m2)), 'the other one goes');
+  assert.equal((await fetchMedia(mod, m1.url)).status, 200, 'moderators can still open it');
+  assert.equal((await fetchMedia(me, m1.url)).status, 404, 'nobody else');
+
+  // a post a moderator hid, deleted by its author (or kept as a tombstone): all its photos are held
+  const m3 = await photo(me);
+  const s2 = (await me.post('/api/status', { body: 'x', media: [m3.id] })).data.id;
+  await mod.post('/api/admin/content', { type: 'post', id: s2, hidden: true, note: 'keep' });
+  await me.del('/api/posts/' + s2);
+  assert.deepEqual(row(m3), { owner_id: me.id, post_id: null, hidden: 1 });
+  assert.equal((await fetchMedia(mod, m3.url)).status, 200);
+  const m4 = await photo(me);
+  const s3 = (await me.post('/api/status', { body: 'x', media: [m4.id] })).data.id;
+  const r3 = (await pal.post(`/api/posts/${s3}/replies`, { body: 'reply' })).data.post.id;
+  await mod.post('/api/admin/content', { type: 'post', id: s3, hidden: true });
+  assert.equal((await me.del('/api/posts/' + s3)).data.tombstone, true);
+  await pal.del('/api/posts/' + r3);
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM posts WHERE id = ${s3}`)[0].n, 0, 'the tombstone is cleared');
+  assert.equal(row(m4).hidden, 1);
+  assert.ok(await inBucket(m4));
+
+  // a report made after a photo was hidden still lists it for the moderators
+  const m5 = await photo(me), m6 = await photo(me);
+  const s4 = (await me.post('/api/status', { body: 'x', media: [m5.id, m6.id] })).data.id;
+  await mod.post(`/api/admin/media/${m5.id}`, { action: 'hide' });
+  await reporter.post('/api/reports', { type: 'post', id: s4, reason: 'other', details: 'this' });
+  const rep = (await mod.get('/api/admin/reports')).data.reports.find(r => r.targetId === s4);
+  assert.deepEqual(rep.snapshot.media.map(m => m.id), [m5.id, m6.id]);
+  await me.del('/api/posts/' + s4);
+  assert.deepEqual(await Promise.all(rep.snapshot.media.map(async m => (await fetchMedia(mod, m.url)).status)), [200, 404], 'the held one still opens from the report');
+
+  // a picture a moderator hid survives its owner changing it
+  const av = await photo(me, { width: 50, height: 50 }, 'avatar');
+  await me.put('/api/me/profile', { avatar: av.url });
+  await mod.post(`/api/admin/media/${av.id}`, { action: 'hide' });
+  const preset = (await client().get('/api/options')).data.avatars[2].file;
+  assert.equal((await me.put('/api/me/profile', { avatar: preset })).data.avatar, preset);
+  assert.equal(row(av).hidden, 1);
+  assert.ok(await inBucket(av));
+
+  // a hidden loose upload can't be taken back by its owner
+  const lo = await photo(me);
+  await mod.post(`/api/admin/media/${lo.id}`, { action: 'hide' });
+  assert.equal((await me.del('/api/media/' + lo.id)).status, 404);
+
+  // the cron leaves them, the account going leaves them (without an owner), and only a moderator's remove deletes them
+  const old = await photo(me);
+  sql(`UPDATE media SET created = created - ${25 * 3600000} WHERE id IN (${lo.id}, ${old.id})`);
+  const plain = await photo(me);
+  await runCron(async () => !(await inBucket(old)));
+  assert.ok(!(await inBucket(old)), 'the cron ran: an old loose upload is gone');
+  assert.ok((await Promise.all([m1, m3, m4, m5, av, lo].map(inBucket))).every(Boolean), 'the cron keeps held photos');
+  assert.equal((await me.del('/api/me', { password: PW })).status, 200);
+  assert.deepEqual(row(m1), { owner_id: null, post_id: null, hidden: 1 });
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM media WHERE id = ${plain.id}`)[0].n, 0, 'their other uploads go');
+  assert.ok(!(await inBucket(plain)));
+  assert.equal((await fetchMedia(mod, m1.url)).status, 200, 'still there for the moderators');
+  for (const m of [m1, m3, m4, m5, av, lo]) assert.deepEqual((await mod.post(`/api/admin/media/${m.id}`, { action: 'remove', note: 'reported, removed' })).data, { ok: true });
+  assert.ok((await Promise.all([m1, m3, m4, m5, av, lo].map(inBucket))).every(x => !x), 'removed: out of the bucket');
+});
+
+test('a board comment\'s photo shows only while its thread and every comment above it show to the viewer, and is never cached', async () => {
+  const op = await newUser('cthread');
+  const cm = await newUser('ccomment');
+  const viewer = await newUser('cview');
+  const mod = await moderator('cmod');
+  const t = (await op.post('/api/boards/music/threads', { subject: 'photo thread', body: 'x' })).data.thread;
+  const parent = (await cm.post(`/api/threads/${t.id}/comments`, { body: 'parent' })).data.comment;
+  const cp = await photo(cm);
+  const child = await cm.post(`/api/threads/${t.id}/comments`, { body: 'child', parent: parent.id, media: [cp.id] });
+  assert.equal(child.status, 201, JSON.stringify(child.data));
+  const seen = await fetchMedia(client(), cp.url);
+  assert.deepEqual([seen.status, seen.headers.get('cache-control')], [200, PRIVATE_CACHE]);
+  const status = async who => (await fetchMedia(who, cp.url)).status;
+  // the thread hidden
+  await mod.post('/api/admin/content', { type: 'post', id: t.id, hidden: true });
+  assert.equal(await status(client()), 404, 'thread hidden');
+  assert.equal(await status(mod), 200);
+  await mod.post('/api/admin/content', { type: 'post', id: t.id, hidden: false });
+  assert.equal(await status(client()), 200);
+  // the comment above it hidden
+  await mod.post('/api/admin/content', { type: 'post', id: parent.id, hidden: true });
+  assert.equal(await status(client()), 404, 'a comment above it hidden');
+  await mod.post('/api/admin/content', { type: 'post', id: parent.id, hidden: false });
+  // a block with the thread's writer, either way
+  await op.post('/api/blocks/' + viewer.name);
+  assert.equal(await status(viewer), 404, 'the thread\'s writer blocked the viewer');
+  await op.del('/api/blocks/' + viewer.name);
+  await viewer.post('/api/blocks/' + op.name);
+  assert.equal(await status(viewer), 404, 'the viewer blocked the thread\'s writer');
+  await viewer.del('/api/blocks/' + op.name);
+  assert.equal(await status(viewer), 200);
+  // the thread's writer banned
+  await mod.post('/api/admin/users/' + op.name, { banned: true });
+  assert.equal(await status(client()), 404, 'the thread\'s writer banned');
+  await mod.post('/api/admin/users/' + op.name, { banned: false });
+  assert.equal(await status(client()), 200);
+  // the thread deleted (it stays as a tombstone for its comments; a ban logged its writer out, so a moderator does it)
+  assert.equal((await mod.del('/api/posts/' + t.id)).data.tombstone, true);
+  assert.equal(await status(client()), 404, 'the thread deleted');
+});
+
+test('public photos are cached for 5 minutes and revalidated by ETag; losing access wins over the cache', async () => {
+  const me = await newUser('etag');
+  const m = await photo(me);
+  await me.post('/api/status', { body: 'public', media: [m.id] });
+  const first = await client().raw('GET', m.url);
+  assert.deepEqual([first.status, first.headers.get('cache-control')], [200, PUBLIC_CACHE]);
+  const etag = first.headers.get('etag');
+  assert.ok(etag);
+  const again = await client().raw('GET', m.url, { headers: { 'If-None-Match': etag } });
+  assert.deepEqual([again.status, again.headers.get('cache-control'), again.headers.get('etag')], [304, PUBLIC_CACHE, etag]);
+  assert.equal((await again.arrayBuffer()).byteLength, 0);
+  const other = await client().raw('GET', m.url, { headers: { 'If-None-Match': '"something-else"' } });
+  assert.equal(other.status, 200);
+  assert.ok(Buffer.from(await other.arrayBuffer()).subarray(0, 8).equals(png().subarray(0, 8)));
+  await me.put('/api/me/settings', { followPolicy: 'approve' });
+  assert.equal((await client().raw('GET', m.url, { headers: { 'If-None-Match': etag } })).status, 404, 'gone private: no 304 any more');
+});
+
+test('photo uploads: image/jpg counts as JPEG, and a multipart part typed application/octet-stream is read from its bytes', async () => {
+  const me = await newUser('jpgtype');
+  const j = await upload(me, jpeg({ width: 20, height: 10 }), 'image/jpg');
+  assert.deepEqual([j.status, j.data.media.mime], [201, 'image/jpeg']);
+  assert.equal((await upload(me, png(), 'image/jpg')).status, 415, 'still has to be a JPEG');
+  const part = (bytes, type) => { const f = new FormData(); f.append('file', new Blob([bytes], { type }), 'x'); return f; };
+  const o = await upload(me, part(png({ width: 12, height: 12 }), 'application/octet-stream'));
+  assert.deepEqual([o.status, o.data.media.mime, o.data.media.width], [201, 'image/png', 12]);
+  assert.equal((await upload(me, part(jpeg(), 'image/jpg'))).status, 201);
+  assert.equal((await upload(me, part(png(), 'image/gif'))).status, 415, 'a part that says another picture type is refused');
+  assert.equal((await upload(me, part(png(), 'text/html'))).status, 415);
+});
+
+test('every photo row has its file in the bucket, and every file in the bucket its row, after everything the tests above did', async () => {
+  const rows = new Set(sql('SELECT key FROM media').map(r => r.key));
+  const files = await bucket();
+  assert.deepEqual([...files].filter(k => !rows.has(k)), [], 'no file left behind');
+  assert.deepEqual([...rows].filter(k => !files.has(k)), [], 'no row without its file');
+  assert.deepEqual(sql(`SELECT post_id, COUNT(*) AS n FROM media m JOIN posts p ON p.id = m.post_id WHERE m.purpose = 'post'
+    GROUP BY post_id HAVING n > CASE p.kind WHEN 'comment' THEN 1 ELSE 4 END`), [], 'no post over its limit');
+  assert.deepEqual(sql(`SELECT id FROM media WHERE (purpose = 'avatar' AND attached IS NOT NULL AND hidden = 0
+      AND NOT EXISTS (SELECT 1 FROM users u WHERE u.id = owner_id AND u.avatar = '/media/' || key))
+    OR (post_id IS NOT NULL AND EXISTS (SELECT 1 FROM posts p WHERE p.id = post_id AND p.deleted = 1))`), [], 'pictures in use, no photos on tombstones');
 });
 
 test('every count and stored sort key in the database matches the rows behind it, after everything the tests above did', () => {

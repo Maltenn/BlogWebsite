@@ -14,6 +14,7 @@ import { voteBar } from '../widgets/votes.js';
 import { commentBox } from '../widgets/commentbox.js';
 import { commentTree } from '../widgets/comments.js';
 import { boardPath, threadPath } from '../widgets/boardlinks.js';
+import { photoGrid } from '../widgets/photogrid.js';
 
 const SORTS = [['best', 'Best'], ['new', 'New'], ['old', 'Old']];
 
@@ -56,7 +57,7 @@ export async function renderBoardThread(root, slug, idText) {
     post.append(
       h('h1', { class: 'bt-title' }, t.sticky ? h('span', { class: 'bt-flag', title: 'pinned by a moderator', text: '📌 ' }) : null, t.locked ? h('span', { class: 'bt-flag', title: 'locked', text: '🔒 ' }) : null, t.subject),
       h('div', { class: 'bt-by' }, avatar(t.author, 32), h('span', null, nameLink(t.author), h('div', { class: 'ms-time', text: when(t.created) }))),
-      h('div', { class: 'bt-body' }, rich(t.body, t.mentions)),
+      ...[t.body ? h('div', { class: 'bt-body' }, rich(t.body, t.mentions)) : null, photoGrid(t.media)].filter(Boolean),
       h('div', { class: 'bt-acts' }, voteBar(t, { locked: t.locked || archived, archived }), countText,
         postActions(t, r => { if (r.tombstone) route(); else go(boardPath(t.board.slug)); })));
     if (S.me && S.me.isAdmin) {

@@ -6,15 +6,17 @@ import { fail, json, readBody, int } from '../shared/http.js';
 import { text, longText, tagKey } from '../shared/text.js';
 import { REF_COLS, ref, refOf, visibleUser, areFriends, canSeePosts, blockedEither, limit, VISIBLE, IN_THREAD, SEES, SEES_POST, REPOST_OK, CLEAR_TOMBSTONES } from '../shared/db.js';
 import { RESORT } from '../shared/ranking.js';
+import { claimMedia, dropObjects, keysIn, releaseMedia } from '../shared/media.js';
 import { POST_LIMITS, THREADED_SQL, POST_COLS, POSTS, EXCERPT, cursor, NEWEST, BEFORE, AFTER, hydrate, item, page, mentionsOf, writePost, dropRepost } from './items.js';
 
 /* ------------------------------------------------------------ posts */
 
 // POST /api/users/:name/comments { body } — a Friends' Comment on somebody's page. Only their friends write here
-// (and the owner, replying). The owner hears about it, and so does anyone it @mentions who may see it.
+// (and the owner, replying). The owner hears about it, and so does anyone it @mentions who may see it. No photos.
 export async function postComment(c) {
   const u = await visibleUser(c, c.params.name);
   const b = await readBody(c.req);
+  if (Array.isArray(b.media) && b.media.length) fail(400, 'photos can\'t go in Friends\' Comments.');
   const body = longText(b.body, 500);
   if (!body) fail(400, 'say something first.');
   const me = c.user.id;
@@ -27,18 +29,21 @@ export async function postComment(c) {
   return json({ id, body }, 201);
 }
 
-// POST /api/status { body } — on my page and in my followers' feeds
+// POST /api/status { body, media? } — on my page and in my followers' feeds. media: up to 4 of my uploads (ids, or
+// { id, alt }); with a photo the words may be left out.
 export async function postStatus(c) {
   const b = await readBody(c.req);
   const body = text(b.body, 500);
-  if (!body) fail(400, 'what\'s on your mind? (you have to type it)');
+  const media = await claimMedia(c, 'status', b.media);
+  if (!body && !media.length) fail(400, 'what\'s on your mind? (you have to type it)');
   await limit(c, 'post:' + c.user.id, POST_LIMITS);
-  const id = await writePost(c, { kind: 'status', body }, { mentionIn: body, tagIn: body });
+  const id = await writePost(c, { kind: 'status', body }, { mentionIn: body, tagIn: body, media });
   return json({ id, body }, 201);
 }
 
-// POST /api/blog { title, subtitle, mood, body } — a long post on my page (with a page of its own) and in my
-// followers' feeds. @mentions and #tags count in the title and the body.
+// POST /api/blog { title, subtitle, mood, body, cover? } — a long post on my page (with a page of its own) and in my
+// followers' feeds. @mentions and #tags count in the title and the body. cover: one of my cover uploads (an id, or
+// { id, alt }; media: [that] works too).
 export async function postBlog(c) {
   const b = await readBody(c.req, 100000);
   const title = text(b.title, 100);
@@ -46,10 +51,11 @@ export async function postBlog(c) {
   const mood = text(b.mood, 40);
   const body = longText(b.body, 20000);
   if (!title || !body) fail(400, 'a blog post needs a title and some words.');
+  const media = await claimMedia(c, 'blog', b.cover == null ? b.media : [b.cover]);
   await limit(c, 'blog:' + c.user.id, [[10, 86400000]], 'that\'s a lot of blogging for one day.');
   await limit(c, 'post:' + c.user.id, POST_LIMITS);
   const words = `${title}\n${body}`;
-  const id = await writePost(c, { kind: 'blog', subject: title, subtitle, mood, body }, { mentionIn: words, tagIn: words });
+  const id = await writePost(c, { kind: 'blog', subject: title, subtitle, mood, body }, { mentionIn: words, tagIn: words, media });
   return json({ id }, 201);
 }
 
@@ -58,8 +64,9 @@ export async function postBlog(c) {
 // conversation and the quotes keep their shape; otherwise it goes. Either way its likes, votes, bookmarks, reposts,
 // mentions, tags and notifications go, and the counts of the post it answered or quoted come down (a board comment's
 // thread also counts one comment fewer and is re-sorted); if that one is a tombstone nothing holds any more, it goes too
-// (and so on up the conversation). Deleting a repost undoes it. Answers { ok, tombstone }: whether it stayed as a
-// tombstone.
+// (and so on up the conversation). Deleting a repost undoes it. Its photos go either way, out of R2 too,
+// except those held as evidence (hidden by a moderator, or the post was): they stay, hidden, for a moderator. Answers
+// { ok, tombstone }: whether it stayed as a tombstone.
 export async function deletePost(c) {
   const id = int(c.params.id);
   const DB = c.env.DB;
@@ -78,6 +85,9 @@ export async function deletePost(c) {
     p.kind === 'quote' && DB.prepare(`UPDATE posts SET quote_count = quote_count - 1 WHERE id = ?2 AND ${live}`).bind(id, p.quote_of),
     DB.prepare('DELETE FROM posts WHERE kind = \'repost\' AND quote_of = ?').bind(id),
     ...['likes', 'votes', 'bookmarks', 'mentions', 'post_tags', 'notifications'].map(t => DB.prepare(`DELETE FROM ${t} WHERE post_id = ?`).bind(id)),
+    // (only the delete that really happens answers the keys: two at once take the files out once; photos held as
+    // evidence, hidden by a moderator or on a post a moderator hid, stay as hidden photos for a moderator's remove)
+    ...releaseMedia(DB, `media.post_id = ?1 AND ${live}`, id),
     DB.prepare(`UPDATE posts SET deleted = 1, subject = NULL, subtitle = NULL, body = '', mood = NULL, quote_of = NULL, like_count = 0, repost_count = 0,
         up_count = 0, down_count = 0
       WHERE id = ?1 AND (EXISTS (SELECT 1 FROM posts WHERE reply_to = ?1) OR EXISTS (SELECT 1 FROM posts WHERE quote_of = ?1 AND kind = 'quote' AND deleted = 0)
@@ -88,6 +98,7 @@ export async function deletePost(c) {
     (p.kind === 'thread' || p.kind === 'comment') && DB.prepare(`UPDATE posts SET ${RESORT} WHERE id IN (?1, ?2)`).bind(id, p.root_id || id),
     DB.prepare('SELECT 1 AS x FROM posts WHERE id = ?').bind(id),
   ].filter(Boolean));
+  await dropObjects(c.env, keysIn(...res));
   if (c.user.is_admin && !mine) {
     await DB.prepare('INSERT INTO mod_log (actor_id, action, target_type, target_id, created) VALUES (?, \'delete\', \'post\', ?, ?)')
       .bind(me, id, c.now).run();

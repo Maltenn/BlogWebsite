@@ -1,5 +1,6 @@
 // ourspace-social: one Cloudflare Worker serves the OurSpace pages (public/) AND the API (/api/*), from the same
-// origin, so the login cookie can be HttpOnly + SameSite=Lax and nothing needs CORS. Storage is one D1 database.
+// origin, so the login cookie can be HttpOnly + SameSite=Lax and nothing needs CORS. Storage is one D1 database, and
+// one R2 bucket for members' photos.
 // Setup and deploy steps: docs/deploy.md; operating it: docs/operations.md. Secrets (set with `wrangler secret put`, never written here):
 //   IP_SALT, TOKEN_KEY                                  required
 //   RESEND_API_KEY, MAIL_FROM                           "forgot my password" emails
@@ -17,8 +18,8 @@
     "binding": "ASSETS",
     // /u/<name>, /inbox, /edit … are client-side routes: any page that isn't a file gets index.html
     "not_found_handling": "single-page-application",
-    // the API always reaches the Worker, even if a file with the same path ever existed
-    "run_worker_first": ["/api/*"]
+    // the API and uploaded photos always reach the Worker, even if a file with the same path ever existed
+    "run_worker_first": ["/api/*", "/media/*"]
   },
   "vars": {
     "MIN_AGE": "13",                     // birthdays below this age can't sign up
@@ -34,8 +35,16 @@
       "migrations_dir": "migrations"
     }
   ],
+  "r2_buckets": [
+    {
+      // members' photos, served by the Worker at /media/<key> (src/media/). Create it once before the first deploy:
+      // `npx wrangler r2 bucket create ourspace-social-media`. Locally (dev, tests, demo) it's emulated in --persist-to.
+      "binding": "MEDIA",
+      "bucket_name": "ourspace-social-media"
+    }
+  ],
   "triggers": {
-    // housekeeping: expired sessions, sign-in tickets, reset links, old rate-limit rows
+    // housekeeping: expired sessions, sign-in tickets, reset links, old rate-limit rows, loose photo uploads
     "crons": ["*/30 * * * *"]
   }
 }

@@ -5,15 +5,17 @@
 ```
 one Cloudflare Worker "ourspace-social" (same origin for pages and API, so the login cookie is HttpOnly + SameSite=Lax)
  ├── public/      the pages: index.html + app.js (single-page app, ES modules), app.css, blog/, assets/   (Workers static assets)
- ├── /api/*       src/index.js → accounts, profiles, follows, social, boards, notifications, messages, safety, music, horoscope
+ ├── /api/*       src/index.js → accounts, profiles, follows, social, boards, notifications, messages, media, safety, music, horoscope
+ ├── /media/*     uploaded photos, through the Worker (src/media/media.js) to whoever may see them
  ├── D1 "ourspace-social-db"   migrations/ (users, profiles, sessions, identities, oauth_states, oauth_signups,
  │                             password_resets, spotify, follows, posts, likes, bookmarks, mentions, post_tags,
- │                             notifications, markers, boards, board_requests, votes, messages, blocks, reports,
- │                             mod_log, attempts)
- └── cron */30    housekeeping: expired sessions, sign-in tickets, reset links, old rate-limit rows
+ │                             notifications, markers, boards, board_requests, votes, media, messages, blocks,
+ │                             reports, mod_log, attempts)
+ ├── R2 "ourspace-social-media" (binding MEDIA)   the photo files, under random keys
+ └── cron */30    housekeeping: expired sessions, sign-in tickets, reset links, old rate-limit rows, loose photo uploads
 ```
 
-`wrangler.jsonc` sends only `/api/*` to the Worker first. Every other path is served from `public/`, and a path that isn't a file gets `index.html`, so `/u/<name>`, `/inbox`, `/edit` and the rest are drawn by the page's own router.
+`wrangler.jsonc` sends only `/api/*` and `/media/*` to the Worker first. Every other path is served from `public/`, and a path that isn't a file gets `index.html`, so `/u/<name>`, `/inbox`, `/edit` and the rest are drawn by the page's own router.
 
 ## File map
 
@@ -22,7 +24,7 @@ src/
   index.js     Worker entry
   shared/      infrastructure; never imports a feature
   catalog/     the choices people have when decorating a page
-  accounts/  profiles/  follows/  social/  boards/  notifications/  messages/  safety/  music/  horoscope/     features
+  accounts/  profiles/  follows/  social/  boards/  notifications/  messages/  media/  safety/  music/  horoscope/     features
 ```
 
 | Path | What |
@@ -31,6 +33,7 @@ src/
 | `src/shared/http.js` | JSON answers, `fail(status, message)` errors, reading JSON bodies, cookies, SHA-256. |
 | `src/shared/db.js` | User lookups, the shape a user takes in every answer, follows (who are friends, who may see a private profile's posts, how two people are connected, the SQL for the followers / following / friends lists), blocks, which posts the viewer may see (`VISIBLE`, `SEES`, `REPOST_OK`), a post in brief (`lite`), and `limit()`, the rate limiter. |
 | `src/shared/notify.js` | Notifications: `notify()`, the statement each feature adds to its write batch (never to yourself, across a block, or about a post the person can't see), and `SHOWN`, which ones still show. |
+| `src/shared/media.js` | Photos as the other features use them: a page of posts' photos in one read (`MEDIA_OF`), checking a post's `media` (`claimMedia`) and the statements that attach it in the post's write batch, a member's own uploaded picture, and deleting files from R2 (`dropObjects`) with the rows that held them. |
 | `src/shared/ranking.js` | The board sort keys of [decisions/001](decisions/001-ranking.md): hot, best (the Wilson bound) and score, with their constants, each as a JS function and as the SQL that stores it (`RESORT`). |
 | `src/shared/text.js` | Text cleaning: invisible characters, links removed, the blocked-word list (whole words). Reading the `@mentions` and `#tags` out of a post. |
 | `src/shared/dates.js` | Birthdays: parsing, the age check, age on a given day. |
@@ -52,6 +55,9 @@ src/
 | `src/boards/requests.js` | Asking for a new board, and the moderators approving or declining. |
 | `src/notifications/notifications.js` | The Notifications tab. |
 | `src/messages/messages.js` | Private messages. |
+| `src/media/media.js` | Photo uploads (checked, stripped, stored in R2), taking back an unused one, serving `/media/<key>` to whoever may see it, the moderators' hide and remove-now, and the cron's sweep of loose uploads. |
+| `src/media/sniff.js` | What an upload really is, from its bytes: JPEG, PNG, GIF or WebP, its size in pixels, whether it moves, and whether it's whole (each format walked from end to end). |
+| `src/media/strip.js` | The same walks, rebuilding the file without its metadata (EXIF and GPS, XMP, ICC, IPTC, comments, text chunks) or anything after the picture's end. |
 | `src/safety/safety.js` | Blocks, reports (with a snapshot of the reported text), the moderation actions and log. |
 | `src/music/spotify.js` | Each person's Spotify: tokens (stored encrypted), their top songs (cached for 6 hours), and previews from iTunes when Spotify has none. |
 | `src/horoscope/horoscope.js` | The words: today's sky, each sign's horoscope, personal readings. |
@@ -60,13 +66,13 @@ src/
 | `public/assets/` | Every image the pages and `src/catalog/` use. Credits are in [CREDITS.md](../public/assets/CREDITS.md), served at `/assets/CREDITS.md`. |
 | `migrations/` | D1 schema, one numbered file per change. |
 | `tools/demo.mjs` | `npm run demo`: the site on your computer with sample content and pretend sign-in pages. |
-| `test/` | `api.test.mjs` (end-to-end, against a throwaway local Worker), `migrations.test.mjs` (a migration applied to a database the earlier ones left), `astro.test.mjs` (the astronomy against known dates), `text.test.mjs` (the `@mention` and `#tag` readers), `ranking.test.mjs` (the board sort keys against worked-out values, and the comment tree), `frontend.test.mjs` (page code from `public/js` on a pretend browser, `helpers/fake-dom.mjs`, with the API answered by the test), `static.test.mjs` (assets and imports), `helpers/mock-providers.mjs` (a stand-in for every sign-in provider, Spotify and iTunes, used by the tests and the demo). |
+| `test/` | `api.test.mjs` (end-to-end, against a throwaway local Worker), `migrations.test.mjs` (a migration applied to a database the earlier ones left), `astro.test.mjs` (the astronomy against known dates), `text.test.mjs` (the `@mention` and `#tag` readers), `media.test.mjs` (the photo sniffers and metadata strippers, on byte-built files with GPS blocks, comments and text chunks, and on the real images in `public/assets`), `ranking.test.mjs` (the board sort keys against worked-out values, and the comment tree), `frontend.test.mjs` (page code from `public/js` on a pretend browser, `helpers/fake-dom.mjs`, with the API answered by the test), `static.test.mjs` (assets and imports), `helpers/mock-providers.mjs` (a stand-in for every sign-in provider, Spotify and iTunes, used by the tests and the demo), `helpers/images.mjs` (small JPEG, PNG, GIF and WebP files built byte by byte, for the photo tests and the demo's sample photos). |
 
 Features import only `shared/` and `catalog/`. The few exceptions are listed in [CONVENTIONS.md](../CONVENTIONS.md).
 
 ## The life of a request
 
-1. `fetch` in `src/index.js` hands anything that isn't under `/api/` to the static assets.
+1. `fetch` in `src/index.js` hands anything that isn't under `/api/` or `/media/` to the static assets. A `/media/<key>` address (GET or HEAD) reads the session and goes to `serveMedia` ([Photos](#photos)).
 2. An `/api/` path is matched against the route table. No match is 404, a known path with the wrong method is 405, and a path that can't be decoded is 400.
 3. **Cross-site check.** Every non-GET request must come from our own pages: if an `Origin` header is present it must match the site, and `Sec-Fetch-Site: cross-site` is refused with 403. The one route that skips this check is the Apple sign-in reply (`crossSite: true` in the table), which arrives as a form post from Apple and is protected by its single-use state instead. Bodies are JSON only (`readBody` refuses anything else), which is the third lock on that door after the check and the `SameSite=Lax` cookie.
 4. **Session.** `currentUser` reads the session cookie and looks up its hash.
@@ -79,7 +85,7 @@ Features import only `shared/` and `catalog/`. The few exceptions are listed in 
    | `ADMIN` | a moderator (`users.is_admin`) | 403 "moderators only." |
 
 6. **The handler** (`verbNoun(c)`) gets one context, `c` (`req`, `env`, `ctx`, `url`, `now`, `params`, `user`), and returns `json(...)`. Problems are thrown with `fail(status, message)`. An `HttpError` becomes a JSON `{ "error": ... }` answer with that status. Anything else is logged and answered with a plain 500, so no internals leak.
-7. **Cron**, every 30 minutes (`*/30 * * * *`): deletes expired sessions, sign-in tickets (`oauth_states`, `oauth_signups`) and reset links, and rate-limit rows (`attempts`) older than two days.
+7. **Cron**, every 30 minutes (`*/30 * * * *`): deletes expired sessions, sign-in tickets (`oauth_states`, `oauth_signups`) and reset links, rate-limit rows (`attempts`) older than two days, and photo uploads never attached to anything within a day or left without their post or owner (with their files in R2; never photos held as evidence).
 
 ## Following, friends and the feed
 
@@ -180,13 +186,15 @@ Every list and page returns posts in one shape:
   viewer: { liked, reposted, bookmarked },        all false when logged out
   mentions: [{ id, name }],           the people the server resolved (banned or blocked ones left out)
   tags: [tag],
-  deleted: bool }                     a tombstone: no words, canDelete false, quoted null
+  media: [{ id, url, width, height, alt }],       its photos in order ([] for none; see Photos)
+  cover: { id, url, width, height, alt } | null,  blog posts only
+  deleted: bool }                     a tombstone: no words, canDelete false, quoted null, no photos
 ```
 
-- A **quote**'s `quoted` is the original in brief: `{ id, kind, created, subject, subtitle, body (cut at 280 characters, with …), author, deleted }` (`deleted: true` and no words for a tombstone: "this post was deleted"), or `{ unavailable: true }` when it's gone, hidden, or not visible to the viewer. Notifications carry their post in the same shape.
+- A **quote**'s `quoted` is the original in brief: `{ id, kind, created, subject, subtitle, body (cut at 280 characters, with …), author, deleted, media }` (`deleted: true` and no words for a tombstone: "this post was deleted"), or `{ unavailable: true }` when it's gone, hidden, or not visible to the viewer. Notifications carry their post in the same shape, without `media`.
 - A **repost**'s `author` is the person who reposted it and its `body` is empty; `quoted` is the original as a whole item (with its own counts, flags, mentions, tags and, for a quote, its own `quoted`). The repost's `counts` and `viewer` are the original's, since acting on a repost acts on the original. Lists leave out reposts of posts the viewer can't see.
 - Blog bodies in lists over 400 characters arrive cut short, with `excerpt: true`.
-- What a page of items needs beyond their own columns (originals, flags, mentions, tags) is fetched for the whole page in one batch (`hydrate()` in `src/social/items.js`).
+- What a page of items needs beyond their own columns (originals, flags, mentions, tags, photos) is fetched for the whole page in one batch (`hydrate()` in `src/social/items.js`).
 
 ### The routes
 
@@ -237,7 +245,7 @@ The bulletin board became topic boards, like a forum: a board (Cooking, Random �
 
 ### The answers
 
-- **A board's thread** (thread-lite): `{ id, subject, excerpt (the words cut at 200 characters, with …), author, created, sticky, locked, counts: { up, down, comments }, lastComment: { created, author } | null, viewer: { vote } }`. `viewer.vote` is 1, -1 or 0.
+- **A board's thread** (thread-lite): `{ id, subject, excerpt (the words cut at 200 characters, with …), author, created, sticky, locked, counts: { up, down, comments }, lastComment: { created, author } | null, viewer: { vote }, media }` (`media` as on an item). `viewer.vote` is 1, -1 or 0.
 - **A thread or comment as an item** (the item of the previous section, with votes instead of likes): `counts: { up, down, comments }` (a thread's comments however deep, a comment's direct replies), `viewer: { vote }`, `board: { slug, name, icon, archived }`; a thread also has `sticky` and `locked`. On a `#tag` page a thread shows as a card with its board, title, a line of its words and its ▲ ▼ 💬 counts (to read), all leading to the thread page. A comment's `replyTo` is the thread or the comment it answers, `rootId` its thread.
 - **A comment tree**: `[{ item, children: [...] }]`, siblings sorted within their parent: `best` (ties: older first), `new` or `old`. One answer holds up to 200 comments, 8 levels and 10 replies per comment (the top level takes the rest of the 200). What's cut is a stub `{ more, parent, after }`: `more` comments under `parent` (a comment, or the thread's id for the top level) after the sibling the cursor `after` names (`<best>:<created>:<id>` in best, `<created>:<id>` in new and old; null: from the first), which `GET /api/threads/:id/comments/:parent?sort=&after=` brings back. The cursor is a place in the sort, not a position, so comments written or deleted in between neither repeat nor go missing (the page also never draws a comment twice). The whole thread is read in one query (its oldest 5,000 comments), the tree is cut in the Worker (`src/boards/tree.js`), and only the comments that show are read in full, with one batch for what their items need.
 
@@ -259,6 +267,54 @@ The bulletin board became topic boards, like a forum: a board (Cooking, Random �
 | `POST /api/admin/threads/:id` | moderator | `{ sticky?, locked? }` → `{ thread: { id, sticky, locked } }` |
 | `POST /api/admin/boards/:slug` | moderator | `{ archived }` → `{ board }` |
 | `GET /api/notifications` | member | A board thread's or comment's `post` adds `board: { slug, name }` and `threadId`; `board_approved` and `board_declined` carry `request: { name, status, board: { slug, name, icon } \| null }` and no post. |
+
+## Photos
+
+Members put photos on statuses, replies, quotes and board threads (up to 4), board comments (1) and blog posts (a cover), and may upload their own profile picture instead of a preset. No video: the owner dropped it ([decisions/005](decisions/005-media-formats.md)). Not in messages or Friends' Comments.
+
+### The pipeline
+
+1. **The browser** decodes the photo (`createImageBitmap(file, { imageOrientation: 'from-image' })`), shrinks it to 1600 px on the long side (a picture: a 300 px square, centre-cropped) and encodes it again (JPEG at about 0.85, PNG for transparency), which drops its EXIF and GPS. An animated GIF up to 2 MB and 800 × 800 goes up as it is.
+2. **`POST /api/media?purpose=post|cover|avatar`** never trusts the browser. It reads what the file really is from its bytes (`src/media/sniff.js`: JPEG, PNG, GIF or WebP; SVG, HTML, HEIC and everything else are refused, whatever the name or the `Content-Type` say, and a declared type that doesn't match is refused too), walks the whole file so a cut-off one or one that only starts like a picture is refused, and checks its size: 2 MB, 4096 px a side, an animated one 800 × 800, a picture square and 300 px at most. Then it takes the metadata out (`src/media/strip.js`) and checks the result again. The body is the raw file (`Content-Type: image/jpeg` (or `image/jpg`), `png`, `gif` or `webp`) or a multipart form with one file (a part typed `application/octet-stream`, or not typed, declares nothing and is read from its bytes alone); both still pass the cross-site check on every write.
+3. **R2** keeps the stripped file under `<32 random hex digits>.<jpg|png|gif|webp>`, never the uploaded name, with the type the server read.
+4. **Attaching**: a post's create call names the uploads in `media`; a picture is set with `PUT /api/me/profile { avatar: '/media/<key>' }`. Until then an upload is loose, seen only by its owner, and the cron deletes it after a day.
+
+What the stripper keeps is an allowlist, each part cut to the size its own fields give it, so nothing rides along inside a kept part: JPEG DQT, DHT, DAC, DRI, SOFn, SOS with its scan data, RSTn, DNL and EOI (DQT or DHT that aren't whole tables make the file broken), a JFIF APP0 cut to its 16-byte header (no thumbnail) and Adobe's APP14 colour marker cut to its 12 bytes; everything else goes (APP1–APP15 with EXIF, GPS, XMP, ICC and IPTC, JFXX thumbnails, COM, JPGn, reserved markers). PNG IHDR, PLTE, IDAT, IEND, tRNS, gAMA, cHRM, sRGB, sBIT, bKGD and pHYs at their proper sizes, and acTL, fcTL, fdAT only in a real APNG (so tEXt, zTXt, iTXt, eXIf, tIME and iCCP go: a colour profile has room for any text, and dropping it can shift colours slightly). GIF graphic control extensions rebuilt at their 4 bytes and the NETSCAPE2.0 / ANIMEXTS1.0 loop at its 3, everything else (comments, plain text, other application extensions, extra sub-blocks) dropped. WebP VP8X (cut to 10 bytes, the EXIF, XMP and ICC flags off), VP8, VP8L, ALPH, ANIM (cut to 6) and ANMF frames holding only their picture chunks; EXIF, XMP, ICCP and anything unknown go. Bytes after the picture's end go too. What no walker can take out is data inside the compressed picture itself (a JPEG scan, a VP8 or VP8L bitstream): only re-encoding clears that, which the browser does before every upload but which the server doesn't redo.
+
+### The data
+
+`migrations/0005_media.sql`:
+
+| Table / column | What |
+|---|---|
+| `media` | `(id, key, owner_id, purpose, mime, bytes, width, height, alt, created, attached, post_id, position, hidden)`. `purpose`: `post`, `cover` or `avatar`. `attached`: when it went on its post (`post_id`, in `position` order, with its `alt` text up to 200 characters) or became its owner's picture; NULL while it's loose. `hidden`: a moderator hid this one photo (it's then held as evidence). `post_id` and `owner_id` are `ON DELETE SET NULL`, so a post or an account that went some other way leaves its photos for the cron (which skips hidden ones). |
+| trigger `media_attach_once` | An upload is attached once: a second attach fails its whole write batch, so two posts racing for the same upload can't both get it (the loser writes nothing at all: no post, counts or notifications). |
+| trigger `media_held_with_post` | A post a moderator hid that's deleted, however it goes, turns its photos into hidden photos first, so they stay held. |
+
+Every path that deletes `media` rows does it with `DELETE … RETURNING key` in the batch that deletes what they were on, then deletes those keys from R2 (`dropObjects`): deleting a post (whether it goes or stays as a tombstone), deleting an account (its uploads, and the photos on other people's comments that go with its threads), changing the picture, a member taking back an upload, a moderator's remove, the cron. Only the batch that really deleted the rows gets their keys, so nothing is deleted twice or missed when two deletes race. Except for a moderator's remove, each of them skips photos held as evidence (see the rules): `releaseMedia` deletes the others and turns the held ones into hidden photos off their post.
+
+### The rules
+
+- **Attaching** (`claimMedia` in `src/shared/media.js`): `media` is a list of upload ids or `{ id, alt }`; only your own uploads of the right purpose (`post`, or `cover` for a blog post), not attached to anything yet and not older than 23 hours, up to the kind's limit, each once. Otherwise 400 (not yours, wrong purpose, too many, twice), 409 (already on another post) or 410 (expired). With a photo, a status, reply, quote, thread or comment may leave out its words (a thread still needs its title).
+- **Who sees a photo** (`GET /media/:key`): moderators, everything; a loose upload, its owner only; a picture, everyone; a post's photo, whoever may see that post: not hidden, not deleted, writer not banned, no block either way, and a private profile's only for its accepted followers (board posts are public spaces). A board comment's photo also needs its thread to show to the viewer (not deleted or hidden, writer not banned, no block either way, like the boards' `THREAD_SHOWN`) and every comment above it (`REACHABLE`: none hidden by a moderator, by someone banned or across a block). Anyone else gets a 404 exactly like a missing key, so following someone's photos stops working the moment they go private, remove you, block you or delete the post. A photo a moderator hid on its own is 404 too.
+- **Headers**: the stored `Content-Type`, `X-Content-Type-Options: nosniff`, `Content-Disposition: inline`, `Content-Security-Policy: default-src 'none'; sandbox`, `Cross-Origin-Resource-Policy: same-origin`, `Referrer-Policy: no-referrer`, an `ETag`. `Cache-Control: public, max-age=300` for public ones (an open profile's posts, board threads, pictures), then revalidated with the `ETag` (`If-None-Match` → 304, after the access check, so a viewer who lost access gets 404, not 304); `private, no-store` for everything else, board comments included. The trade-off: five minutes of caching spares the Worker repeat reads, and a profile going private, a block, a ban, a moderator's hide or remove reaches browsers that already loaded a public photo within those five minutes. (The keys never change, so a year's `immutable` cache would be possible, but it would keep showing a photo from the browser's cache long after access to it was taken away.) Photos are same-origin, so the pages' CSP (`img-src 'self'`) already covers them. A page previewing a file before it's uploaded has to use a `data:` URL, since `blob:` isn't allowed.
+- **Pictures**: `avatar` takes a preset or `/media/<key>` of your own picture upload (not hidden). Changing it (to an upload or a preset) deletes the picture you uploaded before. A moderator removing someone's picture puts them back on the default preset.
+- **Moderators** (`POST /api/admin/media/:id`): `remove` deletes the photo from R2 and the table at once and logs `remove_media` (for Take It Down requests and anything that must go now); `hide` / `unhide` stop and restart it showing anywhere. Hiding a post hides its photos. A report on a post keeps its photos, hidden ones included (`{ id, url, width, height, alt }`), in its snapshot, and moderators can open them whatever their privacy.
+- **Held as evidence**: a photo a moderator hid, or any photo on a post a moderator hid, is held (`HELD` in `src/shared/media.js`). Nothing its owner does deletes it: deleting the post (gone or a tombstone), changing the picture, taking back an upload, deleting the account. Those only take it off its post as a hidden photo (`post_id` NULL; `owner_id` NULL once the account is gone), the cron skips it, and it stays (reachable by moderators, from the report) until a moderator removes it. Unhiding a held photo that's no longer on a post lets the cron delete it.
+- **Limits**: 30 uploads an hour and 150 a day per member, and 200 MB of photos in all (`413 you've used all 200 MB of your photo space …`).
+
+### The routes
+
+| Route | Access | Answer |
+|---|---|---|
+| `POST /api/media?purpose=post\|cover\|avatar` | member | The raw file (`Content-Type: image/…`) or a multipart form with one file → 201 `{ media: { id, url, width, height, mime } }`. 415 not a picture (or not what it says), 400 broken, too large or a picture that isn't a square up to 300 px, 413 over 2 MB or over the 200 MB space, 429 too many. |
+| `DELETE /api/media/:id` | member | Take back your own loose upload → `{ ok }` (404 when it's gone or already attached). |
+| `GET` · `HEAD /media/:key` | anyone | The photo, for whoever may see it (rules above), else 404. |
+| `POST /api/status`, `POST /api/posts/:id/replies`, `POST /api/posts/:id/quote` | member | Also take `media` (up to 4). |
+| `POST /api/boards/:slug/threads` · `POST /api/threads/:id/comments` | member | Also take `media` (up to 4 · 1). |
+| `POST /api/blog` | member | Also takes `cover` (one cover upload: an id or `{ id, alt }`; `media: [that]` works too). |
+| `PUT /api/me/profile` | member | `avatar` also takes `/media/<key>` of your own picture upload; the answer's `avatar` is the one now set. |
+| `POST /api/admin/media/:id` | moderator | `{ action: remove \| hide \| unhide, note }` → `{ ok }`. 404 when it's already gone. |
 
 ## Front end
 
@@ -282,21 +338,24 @@ public/
     auth-forms.js       what join, finish-sign-up and log-in share, the picture gallery, the sign-in error texts
     followbutton.js     the Follow button (Follow / Requested / Following / Friends)
     privatecard.js      what shows instead of a private page's posts
-    composer.js         the "What's on your mind?" status box with its live counter; with a URL it is the reply box
+    composer.js         the "What's on your mind?" status box with its live counter and 📷 button (up to 4 photos); with a URL it is the reply box
+    photos.js           putting photos on a post: prepareImage (the browser half of the pipeline: shrink to 1600 px, JPEG / WebP / PNG, a small GIF as it is, a 300 px square for a picture) and photoPicker (the 📷 button, thumbnails with description, ✕ and progress, the ids for the create call; previews are data: URLs)
+    photogrid.js        a post's photos as a 1–4 grid with the room reserved from width and height, lazy loading; a blog cover is the same as a wide single photo
+    photoviewer.js      the Win98 picture viewer: ◀ ▶ / arrow keys / swipe between a post's photos, Esc, the description underneath
     postcard.js         one post as a card (status, blog, reply, quote, repost, tombstone), in the feed, the profile tabs, a conversation, a tag page and Bookmarks
     reactions.js        the 💬 ↻ ♥ 🔖 row under a post: likes, reposts and bookmarks flip at once and roll back on an error; the ↻ menu
-    postdialog.js       the Reply and Quote windows (500 characters, the post being answered or quoted shown with it)
-    quotebox.js         a post inside a box (under a quote, in the Reply and Quote windows), or "this post is unavailable"
+    postdialog.js       the Reply and Quote windows (500 characters, up to 4 photos, the post being answered or quoted shown with it)
+    quotebox.js         a post inside a box (under a quote, in the Reply and Quote windows) with its photos small, or "this post is unavailable"
     replies.js          the reply box and the replies under a post (flat cards, paged), under a conversation's post and a blog post's Discussion
     richtext.js         a body's @mentions (the ones the server resolved) and #tags as links, by the server's own patterns (no #tag links in Friends' Comments)
     postlinks.js        where a post lives: a blog post's page, or a conversation (/u/name/post/123)
     blogtext.js         a blog post's body (plain text plus a few marks, links inside them) and the teaser for the feed and index
-    blogindex.js        the Blog tab: the write form and the index of posts
+    blogindex.js        the Blog tab: the write form (with a cover photo) and the index of posts (with covers)
     readmarker.js       "pick up where I left off": which cards you've seen and how far you've read
     votes.js            ▲n ▼n under a thread or comment: both counts, your vote pressed; changes at once and puts only the vote back if refused
     comments.js         a thread's nested comments: 14px indent under a rail, [−] / [+n] fold, depth cap 6 (3 on a phone) then "Continue this thread →", "Load more replies (n)", [deleted] tombstones
-    commentbox.js       the comment box (a Win98 window at the top of a thread, a small reply box under a comment), 10,000 characters
-    threaddialog.js     the New Thread window (title 120, words 10,000)
+    commentbox.js       the comment box (a Win98 window at the top of a thread, a small reply box under a comment), 10,000 characters and one photo
+    threaddialog.js     the New Thread window (title 120, words 10,000, up to 4 photos)
     boardlinks.js       where boards and threads live: /boards/cooking, /boards/cooking/42
     boardrequests.js    the board requests on the Moderation page: approve (address, icon, description) or decline
   js/pages/             one module per screen
@@ -315,9 +374,9 @@ public/
     thread.js           a thread: the post, ▲n ▼n, the comment box and the nested comments (?c= opens one comment's replies), Pin and Lock for moderators
     horoscope.js        the daily horoscope, your birth chart and today's sky
     auth.js             sign up, finish a provider sign-up, log in, forgot / reset password
-    edit.js             Edit My Page
+    edit.js             Edit My Page (with "Upload my own picture": cropped to a 300 px square before it goes up)
     settings.js         Settings
-    admin.js            Moderation (moderators only): board requests, reports, the log
+    admin.js            Moderation (moderators only): board requests, reports (with the reported post's photos: Remove photo, Hide photo), the log
     rules.js            House Rules & Privacy
   app.css  _headers  assets/  blog/
 ```

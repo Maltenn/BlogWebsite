@@ -7,6 +7,7 @@ import { AVATARS } from '../catalog/avatars.js';
 import { ageOn } from '../shared/dates.js';
 import { sunSign } from '../shared/astro.js';
 import { profileSpotify } from '../music/spotify.js';
+import { ownAvatar, avatarStatements, dropObjects, keysIn } from '../shared/media.js';
 
 const AVATAR_SET = new Set(AVATARS.map(a => a.file));
 const TILE_SET = new Set(TILES.map(t => t.v));
@@ -103,16 +104,29 @@ export async function saveProfile(c) {
     const friends = new Set(results.map(r => r.id));
     next.top8 = next.top8.filter(id => friends.has(id));
   }
+  // the picture: one of the presets, or one I uploaded as a picture (POST /api/media?purpose=avatar); the one I uploaded
+  // before goes, out of R2 too
   let avatar = c.user.avatar;
-  if (Object.prototype.hasOwnProperty.call(input, 'avatar')) {
-    if (!isAvatar(input.avatar)) fail(400, 'pick one of the pictures.');
+  let upload = null;
+  const changing = Object.prototype.hasOwnProperty.call(input, 'avatar') && input.avatar !== c.user.avatar;
+  if (changing) {
+    if (!isAvatar(input.avatar)) {
+      upload = await ownAvatar(c, input.avatar);
+      if (!upload) fail(400, 'pick one of the pictures, or upload your own.');
+    }
     avatar = input.avatar;
   }
-  await c.env.DB.batch([
-    c.env.DB.prepare('UPDATE profiles SET data = ?, updated = ? WHERE user_id = ?').bind(JSON.stringify(next), c.now, c.user.id),
-    c.env.DB.prepare('UPDATE users SET avatar = ? WHERE id = ?').bind(avatar, c.user.id),
+  const DB = c.env.DB;
+  const res = await DB.batch([
+    DB.prepare('UPDATE profiles SET data = ?, updated = ? WHERE user_id = ?').bind(JSON.stringify(next), c.now, c.user.id),
+    // (an upload taken back or removed in the meantime leaves the picture as it was)
+    DB.prepare('UPDATE users SET avatar = ?1 WHERE id = ?2 AND (?3 = 0 OR EXISTS (SELECT 1 FROM media WHERE id = ?3 AND owner_id = ?2 AND hidden = 0))')
+      .bind(avatar, c.user.id, upload ? upload.id : 0),
+    ...(changing ? avatarStatements(DB, c.user.id, c.now, upload ? upload.id : 0) : []),
+    DB.prepare('SELECT avatar FROM users WHERE id = ?').bind(c.user.id),
   ]);
-  return json({ ok: true, avatar, profile: presentProfile(next) });
+  if (changing) await dropObjects(c.env, keysIn(...res.slice(2, -1)));
+  return json({ ok: true, avatar: res.at(-1).results[0].avatar, profile: presentProfile(next) });
 }
 
 // PUT /api/me/settings — who may follow me (anyone at once, or only people I approve) and who may message me

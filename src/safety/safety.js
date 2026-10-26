@@ -3,6 +3,7 @@ import { fail, json, readBody, int } from '../shared/http.js';
 import { text, longText } from '../shared/text.js';
 import { REF_COLS, ref, refOf, userByName, visibleUser, limit, profileData } from '../shared/db.js';
 import { REPORT_REASONS } from '../catalog/options.js';
+import { ALL_MEDIA_OF, mediaByPost } from '../shared/media.js';
 
 const REASONS = new Set(REPORT_REASONS.map(r => r.v));
 
@@ -41,7 +42,9 @@ export async function unblock(c) {
 /* ----------------------------------------------------------- reports */
 
 // POST /api/reports { type: user|post|message, name | id, reason, details }
-// Stores a snapshot of what was reported, so the evidence survives the author deleting it.
+// Stores a snapshot of what was reported, so the evidence survives the author deleting it. A post's snapshot lists its
+// photos ({ id, url, width, height, alt }): the files themselves go if the post is deleted, unless a moderator hid the
+// post or the photo first (then they're held until a moderator removes them).
 export async function report(c) {
   const b = await readBody(c.req);
   const type = b.type;
@@ -62,7 +65,12 @@ export async function report(c) {
     if (!p) fail(404, 'that post is gone.');
     if (p.author_id === c.user.id) fail(400, 'that\'s your own post — you can delete it instead.');
     targetId = p.id; targetUser = p.author_id;
-    snapshot = { kind: p.kind, author: p.author, subject: p.subject, body: p.body, created: p.created };
+    // its photos too, hidden ones included (moderators can open them, whatever their privacy, and they're kept even if
+    // the author deletes the post once a moderator hid it or them; removing one is POST /api/admin/media/:id)
+    const { results: photos } = await c.env.DB.prepare(ALL_MEDIA_OF).bind(JSON.stringify([p.id])).all();
+    const { media, covers } = mediaByPost(photos);
+    snapshot = { kind: p.kind, author: p.author, subject: p.subject, body: p.body, created: p.created,
+      media: [...(covers.has(p.id) ? [covers.get(p.id)] : []), ...(media.get(p.id) || [])] };
   } else if (type === 'message') {
     const m = await c.env.DB.prepare(`SELECT m.id, m.from_id, m.to_id, m.body, m.created, f.name AS author
       FROM messages m JOIN users f ON f.id = m.from_id WHERE m.id = ?`).bind(int(b.id, 0)).first();

@@ -1,5 +1,5 @@
 # 004 — Cloudflare limits and costs
-Status: reference (checked 2026-10-25)
+Status: reference (checked 2026-10-25). **Video was dropped by the owner** (phase 4 is photos only), so the video lines in the estimates below (0.02 videos a day at 25 MB, presigned uploads for 50 MB clips) no longer apply; photos go through the Worker at 2 MB at most, stored stripped and resized.
 
 Every row links its source. "unverified" = not confirmed on an official page. USD list prices.
 

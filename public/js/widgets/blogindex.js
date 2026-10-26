@@ -8,6 +8,8 @@ import { toast, oops } from '../core/ui.js';
 import { postActions } from './safety.js';
 import { blogBody, teaser } from './blogtext.js';
 import { blogPath } from './postlinks.js';
+import { photoPicker } from './photos.js';
+import { photoGrid } from './photogrid.js';
 
 const BODY_MAX = 20000;
 
@@ -20,6 +22,7 @@ function writer(opts) {
   const count = h('span', { class: 'os-hint', text: `0/${BODY_MAX}` });
   const preview = h('div', { class: 'ms-blogpreview', hidden: true });
   const publish = h('button', { class: 'btn98 go', type: 'submit', text: 'Publish' });
+  const cover = photoPicker({ max: 1, purpose: 'cover', label: '🖼 Cover photo', onChange: () => { publish.disabled = cover.busy(); } });
   const peek = h('button', { class: 'btn98', type: 'button', text: '👁 Preview' });
   body.addEventListener('input', () => { count.textContent = `${body.value.length}/${BODY_MAX}`; if (!preview.hidden) paint(); });
   const paint = () => preview.replaceChildren(h('div', { class: 'ms-previewlabel', text: 'preview' }), title.value ? h('h3', { class: 'ms-previewtitle', text: title.value }) : null, blogBody(body.value, [], { links: false }));
@@ -31,14 +34,20 @@ function writer(opts) {
   });
   const form = h('form', { class: 'ms-blogform', onsubmit: async e => {
     e.preventDefault();
+    if (cover.busy()) return;
     publish.disabled = true;
     try {
-      const r = await api.post('/blog', { title: title.value, subtitle: subtitle.value, mood: mood.value, body: body.value });
+      const payload = { title: title.value, subtitle: subtitle.value, mood: mood.value, body: body.value };
+      const [pic] = cover.media();
+      if (pic != null) payload.cover = pic;
+      const r = await api.post('/blog', payload);
+      cover.reset();
       toast('published!');
       if (opts.onPosted) opts.onPosted(r.id);
     } catch (err) { oops(err); publish.disabled = false; }
   } },
   title, subtitle, h('div', { class: 'row' }, mood),
+  cover.el,
   body, preview,
   h('div', { class: 'ms-blogtips os-hint', text: 'blank line = new paragraph. ## heading · > quote · - list item · **bold** · *italic*' }),
   h('div', { class: 'ms-blogform-btns' }, publish, peek, count));
@@ -60,6 +69,7 @@ export async function blogIndex(box, user, opts = {}) {
     const row = h('div', { class: 'ms-blogrow' },
       h('a', { class: 'ms-blogrow-title', href: blogPath(d.user.name, b.id), text: b.subject }),
       b.subtitle ? h('div', { class: 'ms-blogrow-sub', text: b.subtitle }) : null,
+      b.cover ? photoGrid([b.cover], { cover: true, small: true }) : null,
       h('div', { class: 'ms-blogrow-tease', text: teaser(b.body, 160) }),
       h('div', { class: 'ms-blogrow-meta' }, shortDate(b.created), b.mood ? ` · feeling ${b.mood}` : '',
         b.counts && b.counts.replies ? ` · 💬 ${b.counts.replies}` : '', b.counts && b.counts.likes ? ` · ♥ ${b.counts.likes}` : '',

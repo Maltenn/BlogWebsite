@@ -17,6 +17,7 @@ import { blogPath, postPath } from '../widgets/postlinks.js';
 import { rich } from '../widgets/richtext.js';
 import { reactionRow } from '../widgets/reactions.js';
 import { repliesBlock } from '../widgets/replies.js';
+import { photoGrid } from '../widgets/photogrid.js';
 
 export async function renderBlogPost(root, name, idText) {
   const id = Number(idText);
@@ -79,6 +80,7 @@ export async function renderBlogPost(root, name, idText) {
       h('h1', null, rich(post.subject, post.mentions)),
       post.subtitle ? h('div', { class: 'post-sub', text: post.subtitle }) : null,
       by),
+    post.cover ? photoGrid([post.cover], { cover: true }) : null,
     blogBody(post.body, post.mentions),
     h('div', { class: 'post-reactions' }, reactions),
     foot),

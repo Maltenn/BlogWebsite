@@ -1,6 +1,8 @@
 // Migration tests: `npm test`. Builds a database the way 0001_init.sql left it (friend requests, blocks, "became friends"
 // and "joined" lines in the feed), applies 0002_follows.sql on top, and checks what became of everything; then adds posts
-// and applies 0003_interactions.sql, then adds bulletins and applies 0004_boards.sql. Uses wrangler's local D1 (run through node, like the API tests) on a throwaway folder.
+// and applies 0003_interactions.sql, then adds bulletins and applies 0004_boards.sql, then 0005_media.sql (photos: the
+// attach-once trigger and what happens to photos when their post or owner goes). Uses wrangler's local D1 (run through
+// node, like the API tests) on a throwaway folder.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
@@ -177,4 +179,29 @@ test('0004 makes the boards, moves the bulletins into Random as threads, and add
     `SELECT (SELECT COUNT(*) FROM votes) AS votes, (SELECT COUNT(*) FROM board_requests) AS requests,
       (SELECT COUNT(*) FROM notifications WHERE request_id IS NOT NULL) AS told`);
   assert.deepEqual(left[0], { votes: 1, requests: 0, told: 0 }, 'votes go with their post or their voter (only eve\'s on 30 is left), requests and their answers with the member');
+});
+
+test('0005 adds photos: an upload is attached once, a post or an owner that goes leaves them for the cron, and a hidden post holds them', () => {
+  apply('0005_media.sql');
+  const key = n => `${String(n).repeat(32)}.png`;
+  sql("INSERT INTO users (id, name, name_key, email, avatar, birthdate, created) VALUES (52, 'kim', 'kim', 'kim@example.com', '/a.png', '1990-01-01', 1000), (54, 'lou', 'lou', 'lou@example.com', '/a.png', '1990-01-01', 1000)",
+    "INSERT INTO posts (id, kind, author_id, body, created) VALUES (50, 'status', 52, 'look', 4000)",
+    "INSERT INTO posts (id, kind, author_id, body, created, hidden) VALUES (51, 'status', 52, 'held', 4000, 1)");
+  sql(`INSERT INTO media (id, key, owner_id, purpose, mime, bytes, width, height, created) VALUES
+    (1, '${key(1)}', 52, 'post', 'image/png', 100, 10, 10, 5000), (2, '${key(2)}', 52, 'post', 'image/png', 100, 10, 10, 5000),
+    (3, '${key(3)}', 54, 'avatar', 'image/png', 100, 300, 300, 5000), (4, '${key(4)}', 52, 'post', 'image/png', 100, 10, 10, 5000)`);
+  assert.throws(() => sql(`INSERT INTO media (key, owner_id, purpose, mime, bytes, width, height, created) VALUES ('x.png', 52, 'video', 'video/mp4', 1, 1, 1, 1)`),
+    'photos only: a purpose is post, cover or avatar');
+  sql('UPDATE media SET post_id = 50, attached = 6000, position = 0 WHERE id = 1');
+  assert.throws(() => sql('UPDATE media SET post_id = 50, attached = 7000 WHERE id = 1'), e => /media already attached/.test(String(e.stdout)), 'an upload is attached once');
+  sql('UPDATE media SET alt = \'a cat\' WHERE id = 1', 'UPDATE media SET hidden = 1 WHERE id = 1', 'UPDATE media SET post_id = 51, attached = 6000 WHERE id = 4');
+  const [, , , rows] = sql('DELETE FROM posts WHERE id = 50', 'DELETE FROM posts WHERE id = 51', 'DELETE FROM users WHERE id = 54',
+    'SELECT id, owner_id, post_id, attached, alt, hidden FROM media ORDER BY id');
+  assert.deepEqual(rows, [
+    { id: 1, owner_id: 52, post_id: null, attached: 6000, alt: 'a cat', hidden: 1 },
+    { id: 2, owner_id: 52, post_id: null, attached: null, alt: '', hidden: 0 },
+    { id: 3, owner_id: null, post_id: null, attached: null, alt: '', hidden: 0 },
+    { id: 4, owner_id: 52, post_id: null, attached: 6000, alt: '', hidden: 1 },
+  ], 'post 50 went without taking its photo: post_id falls to NULL (the cron then deletes it); the avatar outlives its owner '
+    + 'only until the cron; the photo on post 51, which a moderator hid, is held as a hidden photo');
 });

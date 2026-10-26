@@ -3,13 +3,44 @@
 import { h, enc } from '../core/dom.js';
 import { api } from '../core/api.js';
 import { when } from '../core/format.js';
-import { toast, oops, pageTitle } from '../core/ui.js';
+import { toast, oops, pageTitle, dialog } from '../core/ui.js';
+import { photoGrid } from '../widgets/photogrid.js';
 import { S, loadMe } from '../core/state.js';
 import { route } from '../core/router.js';
 import { nameLink } from '../widgets/people.js';
 import { boardRequests } from '../widgets/boardrequests.js';
 
 const KIND_LABEL = { wall: 'Friends\' Comment', status: 'status', blog: 'blog post', bulletin: 'bulletin', thread: 'board thread', comment: 'board comment' };   // what a report's post is called
+
+// A reported post's photos, each with Remove photo (deleted from storage now: for Take It Down requests and anything that
+// must go at once) and Hide photo / Unhide photo (kept as evidence, shown nowhere). A moderator may open them whatever the
+// writer's privacy.
+function modPhotos(media) {
+  if (!media.length) return null;
+  const cell = m => {
+    const note = h('span', { class: 'os-hint', text: m.alt ? `description: ${m.alt}` : 'no description' });
+    const row = h('div', { class: 'mod-photo' }, photoGrid([m], { small: true }), h('div', { class: 'mod-photo-side' }, note));
+    const act = async (action, said) => {
+      const why = action === 'unhide' ? '' : (prompt('note for the log (optional):') || '');
+      try { await api.post('/admin/media/' + m.id, { action, note: why }); toast(said); } catch (e) { oops(e); return false; }
+      return true;
+    };
+    const remove = h('button', { class: 'btn98 danger', type: 'button', text: '🗑 Remove photo', title: 'delete the file now', onclick: async () => {
+      if (!await dialog({ title: 'Remove photo', text: 'Delete this photo from storage right now? This can\'t be undone.', icon: '⚠', ok: 'Remove', danger: true })) return;
+      if (await act('remove', 'photo removed.')) row.replaceChildren(h('div', { class: 'ms-gone', text: 'photo removed.' }));
+    } });
+    const hide = h('button', { class: 'btn98', type: 'button', text: '🙈 Hide photo', onclick: async () => {
+      const hidden = hide.dataset.hidden === '1';
+      if (await act(hidden ? 'unhide' : 'hide', hidden ? 'photo visible again.' : 'photo hidden.')) {
+        hide.dataset.hidden = hidden ? '0' : '1';
+        hide.textContent = hidden ? '🙈 Hide photo' : '👁 Unhide photo';
+      }
+    } });
+    row.lastChild.append(remove, hide);
+    return row;
+  };
+  return h('div', { class: 'mod-photos' }, media.map(cell));
+}
 
 let modView = 'open';
 export async function renderAdmin(root) {
@@ -34,6 +65,7 @@ export async function renderAdmin(root) {
       h('div', { class: 'mod-head' }, h('span', { class: 'mod-reason', text: r.reason.replace('_', ' ') }), h('span', { text: what + state }),
         h('span', { class: 'ms-time', text: when(r.created) })),
       h('div', { class: 'mod-snap', text: snapText || '(empty)' }),
+      modPhotos(s.media || []),
       r.details ? h('div', { class: 'mod-meta' }, h('b', { text: 'reporter says: ' }), r.details) : null,
       h('div', { class: 'mod-meta' }, 'reported by ', r.reporter ? nameLink(r.reporter) : '(deleted account)', ' · about ',
         r.target ? nameLink(r.target) : '(deleted account)', r.targetBanned ? ' (banned)' : '', ` · ${r.targetReports} report(s) about this account in total`,

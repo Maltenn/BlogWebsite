@@ -1,6 +1,6 @@
 # Deploy
 
-OurSpace is one Cloudflare Worker with one D1 database. Deploy it with Wrangler, not GitHub Pages: the site needs the Worker for its API, and Pages can't run it. If this repo is replacing the old desktop site at ourspace.page, read [Cutover from the desktop site](#cutover-from-the-desktop-site) before you merge anything.
+OurSpace is one Cloudflare Worker with one D1 database and one R2 bucket (members' photos). Deploy it with Wrangler, not GitHub Pages: the site needs the Worker for its API, and Pages can't run it. If this repo is replacing the old desktop site at ourspace.page, read [Cutover from the desktop site](#cutover-from-the-desktop-site) before you merge anything.
 
 ## First deploy
 
@@ -8,18 +8,31 @@ OurSpace is one Cloudflare Worker with one D1 database. Deploy it with Wrangler,
 npx wrangler login
 npx wrangler d1 create ourspace-social-db                   # paste the printed database_id into wrangler.jsonc
 npm run db:remote                                           # tables on the real database
+npx wrangler r2 bucket create ourspace-social-media         # members' photos (the MEDIA binding in wrangler.jsonc)
 openssl rand -hex 32    | npx wrangler secret put IP_SALT   # salts the IP hashes used for rate limits
 openssl rand -base64 32 | npx wrangler secret put TOKEN_KEY # encrypts stored Spotify tokens. Don't lose or change it
 npm run deploy                                              # prints https://ourspace-social.<account>.workers.dev
 ```
 
-This creates a Worker called `ourspace-social` and a database called `ourspace-social-db`. After that, `npm run deploy` alone ships changes, and `npm run db:remote` applies new files in `migrations/`.
+This creates a Worker called `ourspace-social`, a database called `ourspace-social-db` and a bucket called `ourspace-social-media`. R2 has to be switched on for the account once, on the dashboard's R2 page (it may ask for a payment method even for the free tier). The bucket stays private: the Worker serves its files at `/media/<key>` to whoever may see them, so don't give it a public `r2.dev` address or a custom domain of its own. After that, `npm run deploy` alone ships changes, and `npm run db:remote` applies new files in `migrations/`.
 
 The email sign-up works with just the steps above. Everything below is optional, and each piece switches itself on once its secrets are set.
 
 ## Custom domain
 
 To give the Worker a real address, add a custom domain to it in the Cloudflare dashboard (the Worker's Settings, under Domains & Routes), for example `social.ourspace.page` while you test, or `ourspace.page` itself at the cutover. Cloudflare needs the domain's DNS to be on Cloudflare for this. Do it **before** registering the sign-in apps and Spotify below, because their redirect addresses include the host.
+
+## Photos: CSAM detection (an owner decision before launch)
+
+Members can upload photos, and **nothing checks them against known CSAM yet**. Decide how before photos are open to the public; until then keep test uploads among people you know.
+
+Cloudflare's [CSAM Scanning Tool](https://developers.cloudflare.com/cache/reference/csam-scanning/) checks images *as they enter Cloudflare's cache* on a zone. The Worker streams photos from R2 itself (`GET /media/<key>`, so it can check who may see each one), and those responses most likely never enter the cache, so switching the tool on for the domain would probably scan nothing. That's unverified either way: don't count on it until a test shows otherwise. The options:
+
+1. **Public photos through the cache.** Serve photos that anyone may see (open profiles, boards, pictures) from an [R2 custom domain](https://developers.cloudflare.com/r2/buckets/public-buckets/#custom-domains) on the zone (for example `img.ourspace.page`), which does go through the cache, and turn the tool on for that zone. This needs code: those photos' URLs, the pages' `img-src` in `public/_headers`, and private and loose photos still going through the Worker (they'd stay unscanned). Removing or hiding a photo then also needs a cache purge, and a public bucket domain serves any key it's asked for, so private photos must never be put there.
+2. **A hash-matching service** called on upload (for example Microsoft PhotoDNA or Thorn Safer: eligibility, cost and terms unverified), which covers every photo, private ones included.
+3. **Manual review only**: reports and moderators. The law doesn't require scanning (18 U.S.C. 2258A(f)), but nothing would be caught until someone reports it.
+
+Whatever is chosen, the duties stay the site owner's: report apparent CSAM to NCMEC once you know of it, keep the report for a year, and act on Take It Down requests within 48 hours ([operations.md](operations.md#photos)). Neither the tool nor a vendor files the NCMEC report for you unless their terms say so.
 
 ## Password reset emails
 
@@ -95,9 +108,9 @@ The same list is in the comment at the top of `wrangler.jsonc`; when a feature t
 
 Merging this branch (`claude/intelligent-fermat-keh09f`) into `main` is what retires the desktop site. GitHub Pages deploys `main`'s root, which would then have no `index.html`, and the `CNAME` file (`ourspace.page`) is gone too. So the order matters:
 
-1. **Deploy the Worker** ([First deploy](#first-deploy)) and try it on its `workers.dev` address: sign up, post, log out and in. This creates a new Worker and database and changes nothing about ourspace.page.
+1. **Deploy the Worker** ([First deploy](#first-deploy)) and try it on its `workers.dev` address: sign up, post (a photo too), log out and in. This creates a new Worker, database and bucket and changes nothing about ourspace.page.
 2. **Switch on what you want from day one**: Resend, the sign-in apps and Spotify. Register their redirect addresses with the final host, `https://ourspace.page/api/oauth/<provider>/callback`.
-3. **Point ourspace.page at the Worker.** Add `ourspace.page` as a custom domain on the Worker ([Custom domain](#custom-domain)). If its DNS isn't on Cloudflare yet, move it there first, and remove the DNS records that point at GitHub Pages. Do the same for `www.ourspace.page`: today it is a CNAME to `maltenn.github.io`, so either add it as a second custom domain on the Worker or redirect it to the apex (a Cloudflare redirect rule). Wait until both `https://ourspace.page` and `https://www.ourspace.page` show the new site.
+3. **Point ourspace.page at the Worker.** Add `ourspace.page` as a custom domain on the Worker ([Custom domain](#custom-domain)). If its DNS isn't on Cloudflare yet, move it there first, and remove the DNS records that point at GitHub Pages. Do the same for `www.ourspace.page`: today it is a CNAME to `maltenn.github.io`, so either add it as a second custom domain on the Worker or redirect it to the apex (a Cloudflare redirect rule). Wait until both `https://ourspace.page` and `https://www.ourspace.page` show the new site. Before photos are open to everyone, carry out the owner's choice of [CSAM detection](#photos-csam-detection-an-owner-decision-before-launch).
 4. **Claim `malten`**, then make yourself a moderator ([operations.md](operations.md)).
 5. **Disable GitHub Pages** in the repo's settings (Settings → Pages). Do this after step 3, or the site goes dark in between, and before step 6.
 6. **Merge the branch into `main`.**

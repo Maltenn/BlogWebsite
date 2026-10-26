@@ -18,6 +18,7 @@ import { teaser } from './blogtext.js';
 import { rich } from './richtext.js';
 import { reactionRow } from './reactions.js';
 import { quoteBox } from './quotebox.js';
+import { photoGrid } from './photogrid.js';
 import { postPath, blogPath } from './postlinks.js';
 import { boardPath, threadPath } from './boardlinks.js';
 
@@ -79,6 +80,7 @@ function threadBody(row, t, opts) {
         h('a', { class: 'ms-chip pc-board', href: boardPath(t.board.slug), text: `${t.board.icon} ${t.board.name}` })),
       h('a', { class: 'ms-feedtitle', href: to, text: t.subject }),
       h('div', { class: 'ms-feedtext' }, rich(teaser(t.body), t.mentions)),
+      photoGrid(t.media),
       h('div', { class: 'ms-feedmeta' }, h('a', { class: 'ms-time', href: to, title: when(t.created), text: opts.time === 'clock' ? clock(t.created) : ago(t.created) }),
         postActions(t, r => { if (r.tombstone) { row.replaceChildren(gone(t, opts)); } else row.remove(); if (opts.onDeleted) opts.onDeleted(t, r.tombstone); })),
       h('a', { class: 'pc-threadstats', href: to, 'aria-label': `${n('up', 'like', 'likes')}, ${n('down', 'dislike', 'dislikes')}, ${n('comments', 'comment', 'comments')}: open the thread` },
@@ -107,6 +109,7 @@ function body(row, via, p, opts) {
       h('div', null, nameLink(a), ' wrote a blog post'),
       h('a', { class: 'ms-feedtitle', href: blogPath(a.name, p.id), text: p.subject }),
       p.subtitle ? h('div', { class: 'ms-feedsub', text: p.subtitle }) : null,
+      p.cover ? photoGrid([p.cover], { cover: true }) : null,
       h('div', { class: 'ms-feedtext' }, rich(teaser(p.body), p.mentions)),
       h('a', { class: 'ms-readon', href: blogPath(a.name, p.id), text: 'Continue reading →' }),
     ];
@@ -114,7 +117,8 @@ function body(row, via, p, opts) {
     mid = [
       h('div', null, nameLink(a)),
       replyingTo(p, opts.directTo),
-      h('div', { class: 'ms-feedtext' + (opts.big ? '' : ' is-link'), onclick: opts.big ? null : open }, rich(p.body, p.mentions)),
+      p.body ? h('div', { class: 'ms-feedtext' + (opts.big ? '' : ' is-link'), onclick: opts.big ? null : open }, rich(p.body, p.mentions)) : null,
+      photoGrid(p.media),
       p.kind === 'quote' ? quoteBox(p.quoted) : null,
     ];
   }

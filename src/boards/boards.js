@@ -7,6 +7,7 @@ import { fail, json, readBody, int } from '../shared/http.js';
 import { text, longText, clip } from '../shared/text.js';
 import { REF_COLS, ref, limit, NOT_BLOCKED, VISIBLE, IN_THREAD, REACHABLE } from '../shared/db.js';
 import { hot, RESORT } from '../shared/ranking.js';
+import { claimMedia, MEDIA_OF, mediaByPost } from '../shared/media.js';
 import { POST_LIMITS, POST_COLS, POSTS, hydrate, item, itemById, writePost } from '../social/items.js';
 import { growTree, readCursor } from './tree.js';
 
@@ -79,15 +80,17 @@ export async function board(c) {
   ].filter(Boolean));
   const shown = [...pinned.results, ...rows.results.slice(0, PER)];
   const list = JSON.stringify(shown.map(r => r.id));
-  // the newest comment the viewer may see in each, and the viewer's votes
-  const [last, votes] = shown.length ? await DB.batch([
+  // the newest comment the viewer may see in each, the viewer's votes, and their photos
+  const [last, votes, photos] = shown.length ? await DB.batch([
     DB.prepare(`SELECT * FROM (SELECT c.root_id, c.created, ${REF_COLS('ca', 'l_')},
         ROW_NUMBER() OVER (PARTITION BY c.root_id ORDER BY c.created DESC, c.id DESC) AS n
       FROM posts c JOIN users ca ON ca.id = c.author_id WHERE c.root_id IN (SELECT value FROM json_each(?2)) AND c.kind = 'comment'
         AND c.deleted = 0 AND c.hidden = 0 AND c.created <= ?3 AND ca.banned = 0 AND ${NOT_BLOCKED('c.author_id')}) WHERE n = 1`).bind(viewer, list, c.now),
     DB.prepare('SELECT post_id, value FROM votes WHERE user_id = ?1 AND post_id IN (SELECT value FROM json_each(?2))').bind(viewer, list),
-  ]) : [{ results: [] }, { results: [] }];
+    DB.prepare(MEDIA_OF).bind(list),
+  ]) : [{ results: [] }, { results: [] }, { results: [] }];
   const lastOf = new Map(last.results.map(r => [r.root_id, r]));
+  const { media } = mediaByPost(photos.results);
   const voted = new Map(votes.results.map(r => [r.post_id, r.value]));
   const end = rows.results.length > PER ? rows.results[PER - 1] : null;
   return json({
@@ -98,6 +101,7 @@ export async function board(c) {
         id: r.id, subject: r.subject, excerpt: clip(r.body, EXCERPT) ?? r.body, author: ref(r, 'a_'), created: r.created,
         sticky: !!r.sticky, locked: !!r.locked, counts: { up: r.up_count, down: r.down_count, comments: r.comment_count },
         lastComment: l ? { created: l.created, author: ref(l, 'l_') } : null, viewer: { vote: voted.get(r.id) || 0 },
+        media: media.get(r.id) || [],
       };
     }),
     next: end ? `${end.k}:${end.created}:${end.id}` : null,
@@ -106,20 +110,22 @@ export async function board(c) {
 
 /* ----------------------------------------------------------- threads */
 
-// POST /api/boards/:slug/threads { subject, body } — a new thread: a title up to 120 characters and words up to 10,000.
-// @mentions and #tags count in both. 3 an hour and 10 a day, and they count as posts.
+// POST /api/boards/:slug/threads { subject, body, media? } — a new thread: a title up to 120 characters, words up to
+// 10,000 and up to 4 photos (with a photo the words may be left out). @mentions and #tags count in the title and words.
+// 3 an hour and 10 a day, and they count as posts.
 export async function postThread(c) {
   const b = await boardOf(c);
   if (b.archived) fail(403, 'this board is archived.');
   const x = await readBody(c.req, 100000);
   const subject = text(x.subject, 120);
   const body = longText(x.body, 10000);
-  if (!subject || !body) fail(400, 'a thread needs a title and a message.');
+  const media = await claimMedia(c, 'thread', x.media);
+  if (!subject || (!body && !media.length)) fail(400, 'a thread needs a title and a message.');
   await limit(c, 'thread:' + c.user.id, [[3, 3600000], [10, 86400000]], 'you\'ve started plenty of threads today.');
   await limit(c, 'post:' + c.user.id, POST_LIMITS);
   const words = `${subject}\n${body}`;
   const id = await writePost(c, { kind: 'thread', board_id: b.id, subject, body, hot: hot(0, 0, 0, c.now) }, {
-    mentionIn: words, tagIn: words, guard: `EXISTS (SELECT 1 FROM boards WHERE id = ${b.id} AND archived = 0)`,
+    mentionIn: words, tagIn: words, guard: `EXISTS (SELECT 1 FROM boards WHERE id = ${b.id} AND archived = 0)`, media,
   });
   return json({ thread: await itemById(c, id) }, 201);
 }
@@ -182,7 +188,8 @@ export async function threadComments(c) {
   return json({ parent: parent === t.id ? null : item(c, got.rows.get(parent), got.h), sort, comments: got.nodes });
 }
 
-// POST /api/threads/:id/comments { body, parent? } — a comment (up to 10,000 characters) on the thread, or a reply to
+// POST /api/threads/:id/comments { body, parent?, media? } — a comment (up to 10,000 characters and 1 photo: with the
+// photo the words may be left out) on the thread, or a reply to
 // one of its comments (`parent`). Not in a locked thread or an archived board, and only to a comment the writer can see
 // in the tree (it and every comment above it show to them: REACHABLE). Whoever wrote what it answers is told (as a
 // reply), and so is anyone it @mentions. It counts as a post.
@@ -190,7 +197,8 @@ export async function postThreadComment(c) {
   const t = await threadOf(c);
   const x = await readBody(c.req, 100000);
   const body = longText(x.body, 10000);
-  if (!body) fail(400, 'say something first.');
+  const media = await claimMedia(c, 'comment', x.media);
+  if (!body && !media.length) fail(400, 'say something first.');
   const DB = c.env.DB;
   const parent = x.parent == null || int(x.parent) === t.id ? { id: t.id, author_id: t.a_id }
     : await DB.prepare(`SELECT p.id, p.author_id FROM posts p JOIN users a ON a.id = p.author_id
@@ -200,7 +208,7 @@ export async function postThreadComment(c) {
   if (t.b_archived) fail(403, 'this board is archived.');
   await limit(c, 'post:' + c.user.id, POST_LIMITS);
   const id = await writePost(c, { kind: 'comment', board_id: t.board_id, body, reply_to: parent.id, root_id: t.id }, {
-    mentionIn: body, tell: [['reply', parent.author_id]], guard: OPEN(parent.id),
+    mentionIn: body, tell: [['reply', parent.author_id]], guard: OPEN(parent.id), media,
     more: [
       DB.prepare(`UPDATE posts SET reply_count = reply_count + 1 WHERE id = ?1 AND ${OPEN('?1')}`).bind(parent.id),
       DB.prepare(`UPDATE posts SET comment_count = comment_count + 1 WHERE id = ?2 AND ${OPEN('?1')}`).bind(parent.id, t.id),
