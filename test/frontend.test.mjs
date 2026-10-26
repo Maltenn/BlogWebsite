@@ -484,3 +484,40 @@ test('the status box has a 📷 button for image files, and nothing to post unti
   assert.deepEqual([input.getAttribute('type'), input.getAttribute('accept')], ['file', 'image/*']);
   assert.ok(form.querySelector('.ph-add'), 'a 📷 button');
 });
+
+test('the moderation photo queue: unreviewed ones first, links to where each is, Mark reviewed takes it off the list, show older pages on', async () => {
+  S.me = { ...ME, isAdmin: true };
+  const { photoQueue, whereIs } = await import('../public/js/widgets/photoqueue.js');
+  const { timeLeft } = await import('../public/js/core/format.js');
+  const mk = (id, extra) => ({ id, url: `/media/${id}.jpg`, width: 40, height: 30, alt: '', purpose: 'post', created: Date.now() - 3600000, hidden: false,
+    reviewed: false, reviewedAt: null, reviewedBy: null, uploader: { id: 2, name: 'kat', avatar: kat.avatar, created: Date.now() - 86400000 }, where: { type: 'post', id: 9, author: 'kat', board: null, thread: null }, ...extra });
+  const calls = [];
+  dom.onFetch = (method, path, body) => {
+    calls.push(`${method} ${path}${body ? ' ' + JSON.stringify(body) : ''}`);
+    if (path === '/admin/media?filter=unreviewed') return answer(200, { media: [mk(5, { where: null }), mk(4, { where: { type: 'thread', id: 7, author: 'kat', board: 'pets', thread: 7 } })], next: 4 });
+    if (path === '/admin/media?filter=unreviewed&before=4') return answer(200, { media: [mk(3, { where: { type: 'avatar', author: 'kat' }, purpose: 'avatar' })], next: null });
+    return answer(200, { ok: true });
+  };
+  const box = photoQueue();
+  await dom.settle(); await dom.settle();
+  assert.deepEqual(box.querySelectorAll('.mod-pq-card').map(c => Number(c.dataset.id)), [5, 4]);
+  assert.match(box.textContent, /not on anything yet/);
+  assert.equal(box.querySelectorAll('a').find(a => a.textContent === 'board thread').getAttribute('href'), '/boards/pets/7');
+  assert.deepEqual([whereIs(mk(1, { where: { type: 'post', id: 9, author: 'kat' } })), whereIs(mk(1, { where: { type: 'gone' } }))],
+    [['post', '/u/kat/post/9'], ['a deleted post (held)', null]]);
+  const first = box.querySelector('.mod-pq-card');
+  first.querySelectorAll('button').find(b => /Mark reviewed/.test(b.textContent)).click();
+  await dom.settle(); await dom.settle();
+  assert.ok(calls.includes('POST /admin/media/5 {"action":"reviewed"}'));
+  assert.deepEqual(box.querySelectorAll('.mod-pq-card').map(c => Number(c.dataset.id)), [4], 'reviewed: off the unreviewed list');
+  box.querySelectorAll('button').find(b => /older/.test(b.textContent)).click();
+  await dom.settle(); await dom.settle();
+  assert.ok(calls.includes('GET /admin/media?filter=unreviewed&before=4'));
+  assert.deepEqual(box.querySelectorAll('.mod-pq-card').map(c => Number(c.dataset.id)), [4, 3]);
+  const hide = box.querySelector('.mod-pq-card').querySelectorAll('button').find(b => /Hide/.test(b.textContent));
+  hide.click();
+  await dom.settle(); await dom.settle();
+  assert.ok(calls.includes('POST /admin/media/4 {"action":"hide"}'));
+  assert.match(box.querySelector('.mod-pq-card').textContent, /HIDDEN/);
+  assert.deepEqual([timeLeft(1000 + 3 * 3600000 + 5 * 60000, 1000), timeLeft(1000, 1000 + 90 * 60000)], ['3h 5m left', 'OVERDUE by 1h 30m']);
+});

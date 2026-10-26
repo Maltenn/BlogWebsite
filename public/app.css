@@ -994,6 +994,21 @@ a.ms-time:hover { text-decoration: underline; opacity: 1; }
 .mod-photo { display: flex; gap: 8px; align-items: flex-start; flex-wrap: wrap; padding: 4px; background: #fff; border: 1px solid #c7d2e8; }
 .mod-photo .ph-grid { width: 140px; margin: 0; flex: 0 0 auto; }
 .mod-photo-side { display: flex; flex-direction: column; gap: 4px; align-items: flex-start; min-width: 0; }
+.mod-report.csam { border: 2px solid #c3002f; }
+.mod-report.csam .mod-head { background: #ffe3e8; }
+.mod-clock { margin: 6px 8px; padding: 4px 8px; background: #fff3cd; border: 1px solid #d4a600; font-weight: bold; }
+.mod-clock.overdue { background: #c3002f; border-color: #c3002f; color: #fff; }
+.mod-pq-bar { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; padding: 6px 8px; }
+.mod-pq-bar .os-hint { flex: 1 1 200px; }
+.mod-pq-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; padding: 8px; }
+.mod-pq-card { display: flex; flex-direction: column; gap: 4px; padding: 4px; background: #fff; border: 1px solid #c7d2e8; font-size: 11px; min-width: 0; }
+.mod-pq-card.is-hidden { border-color: #c3002f; background: #fff8f8; }
+.mod-pq-card.is-reviewed { opacity: .8; }
+.mod-pq-thumb { display: block; padding: 0; border: 0; background: #eee; cursor: pointer; }
+.mod-pq-thumb img { display: block; width: 100%; height: 150px; object-fit: cover; }
+.mod-pq-meta { display: flex; flex-direction: column; gap: 2px; overflow-wrap: anywhere; }
+.mod-pq-state { color: #555; }
+.mod-pq-card .mod-btns { padding: 0; }
 
 @media (max-width: 760px) {
     .ph-tile { padding-right: 30px; }

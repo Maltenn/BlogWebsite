@@ -2,13 +2,14 @@
 
 import { h, enc } from '../core/dom.js';
 import { api } from '../core/api.js';
-import { when } from '../core/format.js';
+import { when, ago, timeLeft } from '../core/format.js';
 import { toast, oops, pageTitle, dialog } from '../core/ui.js';
 import { photoGrid } from '../widgets/photogrid.js';
 import { S, loadMe } from '../core/state.js';
 import { route } from '../core/router.js';
 import { nameLink } from '../widgets/people.js';
 import { boardRequests } from '../widgets/boardrequests.js';
+import { photoQueue } from '../widgets/photoqueue.js';
 
 const KIND_LABEL = { wall: 'Friends\' Comment', status: 'status', blog: 'blog post', bulletin: 'bulletin', thread: 'board thread', comment: 'board comment' };   // what a report's post is called
 
@@ -41,6 +42,7 @@ function modPhotos(media) {
   };
   return h('div', { class: 'mod-photos' }, media.map(cell));
 }
+const REASON_LABEL = { csam: 'child sexual abuse material' };   // (the rest read fine with the underscore taken out)
 
 let modView = 'open';
 export async function renderAdmin(root) {
@@ -61,9 +63,15 @@ export async function renderAdmin(root) {
     const what = r.type === 'user' ? `profile of ${s.name || '?'}` : r.type === 'message' ? `private message from ${s.author || '?'}` : `${KIND_LABEL[s.kind] || s.kind || 'post'} by ${s.author || '?'}`;
     const snapText = r.type === 'user' ? [s.tag, s.mood, s.about, s.meet].filter(Boolean).join('\n—\n') : [s.subject, s.body].filter(Boolean).join('\n');
     const state = r.type === 'user' ? '' : r.targetHidden == null ? ' (deleted by its author)' : r.targetHidden ? ' (hidden)' : '';
-    root.append(h('div', { class: 'mod-report' + (r.status === 'open' ? '' : ' closed') },
-      h('div', { class: 'mod-head' }, h('span', { class: 'mod-reason', text: r.reason.replace('_', ' ') }), h('span', { text: what + state }),
+    // a child-safety report, or one marked "intimate image without consent": 48 hours from when it was filed (docs/operations.md)
+    const clock = r.status === 'open' && r.deadline ? h('div', { class: 'mod-clock' + (r.deadline < Date.now() ? ' overdue' : '') },
+      `⏱ filed ${ago(r.created)} · 48-hour deadline: ${timeLeft(r.deadline)}`,
+      r.reason === 'csam' ? ' · its photos are held. don\'t download or share them; report to NCMEC, then remove.' : ' · remove the photo, don\'t just hide it.') : null;
+    root.append(h('div', { class: 'mod-report' + (r.status === 'open' ? '' : ' closed') + (r.reason === 'csam' ? ' csam' : '') },
+      h('div', { class: 'mod-head' }, h('span', { class: 'mod-reason', text: REASON_LABEL[r.reason] || r.reason.replace('_', ' ') }), h('span', { text: what + state }),
+        r.intimate ? h('span', { class: 'mod-reason', text: 'intimate image without consent' }) : null,
         h('span', { class: 'ms-time', text: when(r.created) })),
+      clock,
       h('div', { class: 'mod-snap', text: snapText || '(empty)' }),
       modPhotos(s.media || []),
       r.details ? h('div', { class: 'mod-meta' }, h('b', { text: 'reporter says: ' }), r.details) : null,
@@ -75,9 +83,12 @@ export async function renderAdmin(root) {
         r.status === 'open' && r.target && !r.targetBanned ? h('button', { class: 'btn98 danger', type: 'button', text: '⛔ ban the account', onclick: () => act(r, 'ban') }) : null,
         r.status === 'open' && r.type !== 'user' && r.target && !r.targetBanned ? h('button', { class: 'btn98 danger', type: 'button', text: 'hide + ban', onclick: () => act(r, 'hide_ban') }) : null,
         r.status === 'open' ? h('button', { class: 'btn98', type: 'button', text: '✔ dismiss (no problem)', onclick: () => act(r, 'dismiss') }) : null,
+        r.status === 'open' && r.type !== 'user' && !r.intimate && r.reason !== 'csam' ? h('button', { class: 'btn98', type: 'button', text: '⏱ intimate image without consent', title: 'starts the 48-hour Take It Down clock',
+          onclick: async () => { try { await api.post('/admin/reports/' + r.id, { action: 'intimate' }); toast('marked. the 48-hour clock is running.'); route(); } catch (e) { oops(e); } } }) : null,
         r.target && r.targetBanned ? h('button', { class: 'btn98', type: 'button', text: 'unban', onclick: async () => { try { await api.post('/admin/users/' + enc(r.target.name), { banned: false }); toast('unbanned.'); route(); } catch (e) { oops(e); } } }) : null,
         r.type !== 'user' && r.targetHidden ? h('button', { class: 'btn98', type: 'button', text: 'unhide', onclick: async () => { try { await api.post('/admin/content', { type: r.type, id: r.targetId, hidden: false }); toast('visible again.'); route(); } catch (e) { oops(e); } } }) : null)));
   });
+  root.append(photoQueue());
   root.append(h('div', { class: 'os-panel' }, h('div', { class: 'ms-boxtitle', text: '📜 moderation log' }),
     h('div', { class: 'mod-log' }, log.log.length ? log.log.map(l => h('div', { text: `${when(l.created)} · ${l.actor || '?'} · ${l.action} ${l.targetType} #${l.targetId}${l.note ? ' — ' + l.note : ''}` })) : h('div', { text: 'nothing yet.' }))));
 }

@@ -24,6 +24,12 @@ export function ago(ms) {
   if (s < 86400 * 30) return n(Math.round(s / 86400), 'day');
   return when(ms);
 }
+// a deadline's state: "47h 12m left", or "OVERDUE by 3h 5m" once it's past
+export function timeLeft(deadline, now = Date.now()) {
+  const left = deadline - now, m = Math.floor(Math.abs(left) / 60000);
+  const span = `${Math.floor(m / 60)}h ${m % 60}m`;
+  return left >= 0 ? `${span} left` : `OVERDUE by ${span}`;
+}
 // the reader's own calendar day, for the astrology endpoints
 export function today() {
   const d = new Date();

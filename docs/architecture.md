@@ -283,11 +283,11 @@ What the stripper keeps is an allowlist, each part cut to the size its own field
 
 ### The data
 
-`migrations/0005_media.sql`:
+`migrations/0005_media.sql` (and `0006_media_review.sql`, which adds `media.reviewed_by` / `reviewed_at`, the moderators' review marks, and `reports.intimate`):
 
 | Table / column | What |
 |---|---|
-| `media` | `(id, key, owner_id, purpose, mime, bytes, width, height, alt, created, attached, post_id, position, hidden)`. `purpose`: `post`, `cover` or `avatar`. `attached`: when it went on its post (`post_id`, in `position` order, with its `alt` text up to 200 characters) or became its owner's picture; NULL while it's loose. `hidden`: a moderator hid this one photo (it's then held as evidence). `post_id` and `owner_id` are `ON DELETE SET NULL`, so a post or an account that went some other way leaves its photos for the cron (which skips hidden ones). |
+| `media` | `(id, key, owner_id, purpose, mime, bytes, width, height, alt, created, attached, post_id, position, hidden, reviewed_by, reviewed_at)`. `reviewed_by` / `reviewed_at`: the moderator who marked it seen, and when (NULL until then). `purpose`: `post`, `cover` or `avatar`. `attached`: when it went on its post (`post_id`, in `position` order, with its `alt` text up to 200 characters) or became its owner's picture; NULL while it's loose. `hidden`: a moderator hid this one photo (it's then held as evidence). `post_id` and `owner_id` are `ON DELETE SET NULL`, so a post or an account that went some other way leaves its photos for the cron (which skips hidden ones). |
 | trigger `media_attach_once` | An upload is attached once: a second attach fails its whole write batch, so two posts racing for the same upload can't both get it (the loser writes nothing at all: no post, counts or notifications). |
 | trigger `media_held_with_post` | A post a moderator hid that's deleted, however it goes, turns its photos into hidden photos first, so they stay held. |
 
@@ -299,7 +299,7 @@ Every path that deletes `media` rows does it with `DELETE … RETURNING key` in 
 - **Who sees a photo** (`GET /media/:key`): moderators, everything; a loose upload, its owner only; a picture, everyone; a post's photo, whoever may see that post: not hidden, not deleted, writer not banned, no block either way, and a private profile's only for its accepted followers (board posts are public spaces). A board comment's photo also needs its thread to show to the viewer (not deleted or hidden, writer not banned, no block either way, like the boards' `THREAD_SHOWN`) and every comment above it (`REACHABLE`: none hidden by a moderator, by someone banned or across a block). Anyone else gets a 404 exactly like a missing key, so following someone's photos stops working the moment they go private, remove you, block you or delete the post. A photo a moderator hid on its own is 404 too.
 - **Headers**: the stored `Content-Type`, `X-Content-Type-Options: nosniff`, `Content-Disposition: inline`, `Content-Security-Policy: default-src 'none'; sandbox`, `Cross-Origin-Resource-Policy: same-origin`, `Referrer-Policy: no-referrer`, an `ETag`. `Cache-Control: public, max-age=300` for public ones (an open profile's posts, board threads, pictures), then revalidated with the `ETag` (`If-None-Match` → 304, after the access check, so a viewer who lost access gets 404, not 304); `private, no-store` for everything else, board comments included. The trade-off: five minutes of caching spares the Worker repeat reads, and a profile going private, a block, a ban, a moderator's hide or remove reaches browsers that already loaded a public photo within those five minutes. (The keys never change, so a year's `immutable` cache would be possible, but it would keep showing a photo from the browser's cache long after access to it was taken away.) Photos are same-origin, so the pages' CSP (`img-src 'self'`) already covers them. A page previewing a file before it's uploaded has to use a `data:` URL, since `blob:` isn't allowed.
 - **Pictures**: `avatar` takes a preset or `/media/<key>` of your own picture upload (not hidden). Changing it (to an upload or a preset) deletes the picture you uploaded before. A moderator removing someone's picture puts them back on the default preset.
-- **Moderators** (`POST /api/admin/media/:id`): `remove` deletes the photo from R2 and the table at once and logs `remove_media` (for Take It Down requests and anything that must go now); `hide` / `unhide` stop and restart it showing anywhere. Hiding a post hides its photos. A report on a post keeps its photos, hidden ones included (`{ id, url, width, height, alt }`), in its snapshot, and moderators can open them whatever their privacy.
+- **Moderators** (`POST /api/admin/media/:id`): `remove` deletes the photo from R2 and the table at once and logs `remove_media` (for Take It Down requests and anything that must go now); `hide` / `unhide` stop and restart it showing anywhere. Hiding a post hides its photos. A report on a post keeps its photos, hidden ones included (`{ id, url, width, height, alt }`), in its snapshot, and moderators can open them whatever their privacy. **Review** (launch plan: in-house, no automatic scanning; [deploy.md](deploy.md#photos-csam-detection-launch-in-house-review)): the Photos section of the Moderation page lists every upload through `GET /api/admin/media`, and a moderator marks each seen (`reviewed`). **CSAM reports**: a report with reason `csam` on a post sets `hidden = 1` on its photos at once (served to moderators only, and held through the author deleting the post), lists first in `GET /api/admin/reports`, and carries `deadline` (filed + 48 hours; also on a report a moderator marked `intimate` with `POST /api/admin/reports/:id { action: 'intimate' }`, which leaves it open). The Moderation page shows the time since filing and the time left.
 - **Held as evidence**: a photo a moderator hid, or any photo on a post a moderator hid, is held (`HELD` in `src/shared/media.js`). Nothing its owner does deletes it: deleting the post (gone or a tombstone), changing the picture, taking back an upload, deleting the account. Those only take it off its post as a hidden photo (`post_id` NULL; `owner_id` NULL once the account is gone), the cron skips it, and it stays (reachable by moderators, from the report) until a moderator removes it. Unhiding a held photo that's no longer on a post lets the cron delete it.
 - **Limits**: 30 uploads an hour and 150 a day per member, and 200 MB of photos in all (`413 you've used all 200 MB of your photo space …`).
 
@@ -314,7 +314,8 @@ Every path that deletes `media` rows does it with `DELETE … RETURNING key` in 
 | `POST /api/boards/:slug/threads` · `POST /api/threads/:id/comments` | member | Also take `media` (up to 4 · 1). |
 | `POST /api/blog` | member | Also takes `cover` (one cover upload: an id or `{ id, alt }`; `media: [that]` works too). |
 | `PUT /api/me/profile` | member | `avatar` also takes `/media/<key>` of your own picture upload; the answer's `avatar` is the one now set. |
-| `POST /api/admin/media/:id` | moderator | `{ action: remove \| hide \| unhide, note }` → `{ ok }`. 404 when it's already gone. |
+| `GET /api/admin/media?before=&filter=unreviewed\|all` | moderator | The photo review queue: every upload, attached or loose, newest first, 30 a page → `{ media: [{ id, url, width, height, alt, purpose, created, hidden, reviewed, reviewedAt, reviewedBy, uploader: { id, name, avatar, created } \| null, where }], next }`. `uploader.created` is the account's age; `where` is `null` (loose) or `{ type: avatar \| cover \| post \| thread \| comment \| gone, id, author, board, thread }`; `next` is the `before` for the following page (an id) or `null`. The default filter is `unreviewed`. |
+| `POST /api/admin/media/:id` | moderator | `{ action: reviewed \| remove \| hide \| unhide, note }` → `{ ok }`. `reviewed` records who and when (the first mark stays; not in the moderation log). 404 when it's already gone. |
 
 ## Front end
 
@@ -340,6 +341,7 @@ public/
     privatecard.js      what shows instead of a private page's posts
     composer.js         the "What's on your mind?" status box with its live counter and 📷 button (up to 4 photos); with a URL it is the reply box
     photos.js           putting photos on a post: prepareImage (the browser half of the pipeline: shrink to 1600 px, JPEG / WebP / PNG, a small GIF as it is, a 300 px square for a picture) and photoPicker (the 📷 button, thumbnails with description, ✕ and progress, the ids for the create call; previews are data: URLs)
+    photoqueue.js       the Photos section of the Moderation page: thumbnails newest first (unreviewed by default), uploader and account age, where each is, Mark reviewed / Hide / Remove, "show older photos"
     photogrid.js        a post's photos as a 1–4 grid with the room reserved from width and height, lazy loading; a blog cover is the same as a wide single photo
     photoviewer.js      the Win98 picture viewer: ◀ ▶ / arrow keys / swipe between a post's photos, Esc, the description underneath
     postcard.js         one post as a card (status, blog, reply, quote, repost, tombstone), in the feed, the profile tabs, a conversation, a tag page and Bookmarks
@@ -376,7 +378,7 @@ public/
     auth.js             sign up, finish a provider sign-up, log in, forgot / reset password
     edit.js             Edit My Page (with "Upload my own picture": cropped to a 300 px square before it goes up)
     settings.js         Settings
-    admin.js            Moderation (moderators only): board requests, reports (with the reported post's photos: Remove photo, Hide photo), the log
+    admin.js            Moderation (moderators only): board requests, reports (CSAM ones first, with the 48-hour clock, and the reported post's photos: Remove photo, Hide photo), the Photos review queue, the log
     rules.js            House Rules & Privacy
   app.css  _headers  assets/  blog/
 ```

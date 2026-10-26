@@ -2466,3 +2466,94 @@ test('every count and stored sort key in the database matches the rows behind it
   assert.deepEqual(off, []);
   assert.deepEqual(orphans(), [], 'every comment\'s thread is there, and so is what it answers');
 });
+
+test('the photo review queue: moderators only, newest first, where each photo is, marked reviewed once, and paged', async () => {
+  const me = await newUser('shutter');
+  const other = await newUser('looker');
+  const mod = await moderator('reviewer');
+  assert.equal((await client().get('/api/admin/media')).status, 401);
+  assert.equal((await other.get('/api/admin/media')).status, 403, 'moderators only');
+  assert.equal((await other.post('/api/admin/media/1', { action: 'reviewed' })).status, 403);
+  const loose = await photo(me);
+  const p1 = await photo(me), p2 = await photo(me);
+  const s = await me.post('/api/status', { body: 'new snaps', media: [p1.id] });
+  const t = await me.post('/api/boards/pets/threads', { subject: 'the cat', body: 'look', media: [p2.id] });
+  assert.equal(s.status, 201);
+  const q = (await mod.get('/api/admin/media')).data;
+  const ids = q.media.map(m => m.id);
+  assert.deepEqual(ids, [...ids].sort((a, b) => b - a), 'newest first');
+  const row = id => q.media.find(m => m.id === id);
+  assert.ok(ids.includes(loose.id) && ids.includes(p1.id) && ids.includes(p2.id), 'attached and loose alike');
+  assert.deepEqual([row(loose.id).where, row(p1.id).where.type, row(p1.id).where.id, row(p1.id).where.author], [null, 'post', s.data.id, me.name]);
+  assert.deepEqual([row(p2.id).where.type, row(p2.id).where.board, row(p2.id).where.thread], ['thread', 'pets', t.data.thread.id]);
+  const m1 = row(p1.id);
+  assert.deepEqual([m1.url, m1.reviewed, m1.reviewedAt, m1.hidden, m1.uploader.name, m1.purpose, m1.width], [p1.url, false, null, false, me.name, 'post', 40]);
+  assert.ok(m1.uploader.created > 0 && m1.created > 0, 'the account\'s and the upload\'s times');
+  // marking one reviewed: who and when kept, the first time stays, it leaves the unreviewed view
+  assert.equal((await mod.post('/api/admin/media/999999', { action: 'reviewed' })).status, 404);
+  assert.deepEqual((await mod.post(`/api/admin/media/${p1.id}`, { action: 'reviewed' })).data, { ok: true });
+  const first = sql(`SELECT reviewed_by, reviewed_at FROM media WHERE id = ${p1.id}`)[0];
+  assert.equal(first.reviewed_by, mod.id);
+  const mod2 = await moderator('reviewer2');
+  assert.equal((await mod2.post(`/api/admin/media/${p1.id}`, { action: 'reviewed' })).status, 200);
+  assert.deepEqual(sql(`SELECT reviewed_by, reviewed_at FROM media WHERE id = ${p1.id}`)[0], first, 'marking twice keeps the first');
+  assert.ok(!(await mod.get('/api/admin/media?filter=unreviewed')).data.media.some(m => m.id === p1.id));
+  const all = (await mod.get('/api/admin/media?filter=all')).data.media.find(m => m.id === p1.id);
+  assert.deepEqual([all.reviewed, all.reviewedBy, all.reviewedAt], [true, mod.name, first.reviewed_at]);
+  // paging: `before` is the last id of the page before; `next` is null when there is no more
+  const page = (await mod.get(`/api/admin/media?filter=all&before=${p2.id}`)).data;
+  assert.ok(page.media.every(m => m.id < p2.id));
+  const total = sql('SELECT COUNT(*) AS n FROM media')[0].n;
+  const full = (await mod.get('/api/admin/media?filter=all')).data;
+  assert.equal(full.media.length, Math.min(30, total));
+  assert.equal(full.next, total > 30 ? full.media[full.media.length - 1].id : null);
+  // hide and remove still work, from the same list; a held photo whose post is gone still lists
+  await mod.post(`/api/admin/media/${p2.id}`, { action: 'hide' });
+  assert.equal((await mod.get('/api/admin/media')).data.media.find(m => m.id === p2.id).hidden, true);
+  await me.del('/api/posts/' + t.data.thread.id);
+  assert.equal((await mod.get('/api/admin/media')).data.media.find(m => m.id === p2.id).where.type, 'gone');
+  await mod.post(`/api/admin/media/${p2.id}`, { action: 'remove' });
+  assert.ok(!(await mod.get('/api/admin/media')).data.media.some(m => m.id === p2.id));
+});
+
+test('a child-safety (csam) report holds the post\'s photos at once, comes first in the queue and starts a 48-hour clock', async () => {
+  const author = await newUser('poster');
+  const rep = await newUser('flagger');
+  const mod = await moderator('guardian');
+  assert.ok((await client().get('/api/options')).data.reportReasons.some(r => r.v === 'csam'), 'a reason to pick');
+  const a = await photo(author), b = await photo(author);
+  const old = await author.post('/api/status', { body: 'an ordinary post', media: [b.id] });
+  const s = await author.post('/api/status', { body: 'flagged', media: [a.id] });
+  // an older, ordinary report: the csam one still goes above it
+  assert.equal((await rep.post('/api/reports', { type: 'post', id: old.data.id, reason: 'spam' })).status, 201);
+  assert.equal((await fetchMedia(client(), a.url)).status, 200);
+  assert.equal((await rep.post('/api/reports', { type: 'post', id: s.data.id, reason: 'csam' })).status, 201);
+  assert.equal(sql(`SELECT hidden FROM media WHERE id = ${a.id}`)[0].hidden, 1, 'held');
+  assert.equal(sql(`SELECT hidden FROM media WHERE id = ${b.id}`)[0].hidden, 0, 'other reasons hold nothing');
+  assert.equal((await fetchMedia(client(), a.url)).status, 404, 'the public');
+  assert.equal((await fetchMedia(author, a.url)).status, 404, 'its author');
+  assert.equal((await fetchMedia(rep, a.url)).status, 404, 'the reporter');
+  assert.equal((await fetchMedia(mod, a.url)).status, 200, 'moderators');
+  assert.equal((await fetchMedia(client(), b.url)).status, 200, 'an ordinary report leaves the photos');
+  // it survives the author deleting the post
+  assert.equal((await author.del('/api/posts/' + s.data.id)).status, 200);
+  assert.ok((await bucket()).has(keyOf(a.url)), 'still in storage');
+  assert.equal((await fetchMedia(mod, a.url)).status, 200);
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM media WHERE id = ${a.id}`)[0].n, 1);
+  // the queue: csam first, with the clock; ordinary reports have none
+  const list = (await mod.get('/api/admin/reports')).data.reports;
+  assert.equal(list[0].reason, 'csam');
+  const spam = list.find(r => r.targetId === old.data.id && r.reason === 'spam');
+  assert.ok(list.indexOf(spam) > 0);
+  assert.equal(list[0].deadline, list[0].created + 48 * 3600000);
+  assert.equal(spam.deadline, null, 'no clock for ordinary reports');
+  assert.deepEqual(list[0].snapshot.media.map(m => m.id), [a.id], 'its photos are on the report');
+  // a moderator marking "intimate image without consent" starts the same clock on any open post report
+  assert.equal((await rep.post(`/api/admin/reports/${spam.id}`, { action: 'intimate' })).status, 403);
+  assert.deepEqual((await mod.post(`/api/admin/reports/${spam.id}`, { action: 'intimate' })).data, { ok: true });
+  const marked = (await mod.get('/api/admin/reports')).data.reports.find(r => r.id === spam.id);
+  assert.deepEqual([marked.intimate, marked.status, marked.deadline], [true, 'open', spam.created + 48 * 3600000]);
+  // the moderator finishes it: remove the held photo
+  assert.equal((await mod.post(`/api/admin/media/${a.id}`, { action: 'remove', note: 'NCMEC report filed' })).status, 200);
+  assert.ok(!(await bucket()).has(keyOf(a.url)));
+});

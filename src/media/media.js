@@ -4,7 +4,7 @@
 // that write them. The owner dropped video: photos only. See docs/architecture.md, "Photos".
 import { fail, json, int, readBody } from '../shared/http.js';
 import { text } from '../shared/text.js';
-import { limit, followOf, blockedEither, NOT_BLOCKED, REACHABLE } from '../shared/db.js';
+import { limit, followOf, blockedEither, NOT_BLOCKED, REACHABLE, REF_COLS, ref } from '../shared/db.js';
 import { mediaUrl, dropObjects, keysIn, LOOSE_MS } from '../shared/media.js';
 import { AVATARS } from '../catalog/avatars.js';
 import { sniff, BadImage } from './sniff.js';
@@ -197,16 +197,59 @@ export async function serveMedia(c, key) {
 
 /* -------------------------------------------------------- moderators */
 
-// POST /api/admin/media/:id { action: remove | hide | unhide, note } — remove: the photo is deleted from R2 and its row
-// at once (a Take It Down request, or anything that must not stay up a minute longer); if it was someone's picture,
-// they're back to the default one. hide / unhide: it stops (or starts again) showing anywhere, kept as evidence. Every
-// action lands in the moderation log. Answers { ok }.
+const QUEUE_PAGE = 30;
+
+// GET /api/admin/media?before=<id>&filter=unreviewed|all — the photo review queue: every upload, attached or loose,
+// newest first, 30 a page (`next`: the `before` for the following page, or null). Each is { id, url, width, height, alt,
+// purpose, created, hidden, reviewed, reviewedAt, reviewedBy, uploader: { id, name, avatar, created } | null (the
+// account is gone), where } with `created` the upload's time and the uploader's the account's (its age). `where`: null
+// for a loose upload, else { type: avatar | cover | post | thread | comment | gone, id, author, board, thread }: the post
+// (its author's name, and for board posts the board's slug and the thread's id), or `gone` for a held photo whose post
+// was deleted. The default filter is unreviewed.
+export async function adminMedia(c) {
+  const all = c.url.searchParams.get('filter') === 'all';
+  const before = int(c.url.searchParams.get('before'), 0);
+  const { results } = await c.env.DB.prepare(`SELECT m.id, m.key, m.purpose, m.width, m.height, m.alt, m.created, m.hidden, m.attached, m.post_id,
+      m.reviewed_at, rb.name AS reviewer, ${REF_COLS('o', 'o_')}, o.created AS o_created,
+      p.kind AS p_kind, p.root_id AS p_root, pa.name AS p_author, b.slug AS b_slug
+    FROM media m LEFT JOIN users o ON o.id = m.owner_id LEFT JOIN users rb ON rb.id = m.reviewed_by
+    LEFT JOIN posts p ON p.id = m.post_id LEFT JOIN users pa ON pa.id = p.author_id LEFT JOIN boards b ON b.id = p.board_id
+    WHERE (?1 = 0 OR m.id < ?1) AND (?2 = 0 OR m.reviewed_at IS NULL) ORDER BY m.id DESC LIMIT ?3`)
+    .bind(before, all ? 0 : 1, QUEUE_PAGE + 1).all();
+  const page = results.slice(0, QUEUE_PAGE);
+  const where = m => {
+    if (m.attached == null) return null;
+    if (m.purpose === 'avatar') return { type: 'avatar', author: m.o_name };
+    if (m.post_id == null || m.p_kind == null) return { type: 'gone' };
+    const type = m.p_kind === 'blog' ? 'cover' : m.p_kind === 'thread' || m.p_kind === 'comment' ? m.p_kind : 'post';
+    return { type, id: m.post_id, author: m.p_author, board: m.b_slug || null, thread: m.p_kind === 'comment' ? m.p_root : m.p_kind === 'thread' ? m.post_id : null };
+  };
+  return json({
+    media: page.map(m => ({
+      id: m.id, url: mediaUrl(m.key), width: m.width, height: m.height, alt: m.alt, purpose: m.purpose, created: m.created, hidden: !!m.hidden,
+      reviewed: m.reviewed_at != null, reviewedAt: m.reviewed_at, reviewedBy: m.reviewer || null,
+      uploader: m.o_id == null ? null : { ...ref(m, 'o_'), created: m.o_created }, where: where(m),
+    })),
+    next: results.length > QUEUE_PAGE ? page[page.length - 1].id : null,
+  });
+}
+
+// POST /api/admin/media/:id { action: reviewed | remove | hide | unhide, note } — reviewed: a moderator has seen the photo
+// (who and when are kept; marking one twice keeps the first; not in the moderation log, which is for what changes
+// things). remove: the photo is deleted from R2 and its row at once (a Take It Down request, or anything that must not
+// stay up a minute longer); if it was someone's picture, they're back to the default one. hide / unhide: it stops (or
+// starts again) showing anywhere, kept as evidence. The last three land in the moderation log. Answers { ok }.
 export async function moderateMedia(c) {
   const b = await readBody(c.req);
   const id = int(c.params.id, 0);
   const DB = c.env.DB;
   const action = b.action;
-  if (!['remove', 'hide', 'unhide'].includes(action)) fail(400, 'action is remove, hide or unhide.');
+  if (!['reviewed', 'remove', 'hide', 'unhide'].includes(action)) fail(400, 'action is reviewed, remove, hide or unhide.');
+  if (action === 'reviewed') {
+    const seen = await DB.prepare('UPDATE media SET reviewed_by = ?, reviewed_at = ? WHERE id = ? AND reviewed_at IS NULL RETURNING id').bind(c.user.id, c.now, id).first();
+    if (!seen && !await DB.prepare('SELECT 1 AS x FROM media WHERE id = ?').bind(id).first()) fail(404, 'that photo is already gone.');
+    return json({ ok: true });
+  }
   // (logged only while the photo is there: the log goes first in each batch)
   const log = DB.prepare(`INSERT INTO mod_log (actor_id, action, target_type, target_id, note, created)
     SELECT ?1, ?2, 'media', ?3, ?4, ?5 WHERE EXISTS (SELECT 1 FROM media WHERE id = ?3)`)

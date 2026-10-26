@@ -6,6 +6,7 @@ import { REPORT_REASONS } from '../catalog/options.js';
 import { ALL_MEDIA_OF, mediaByPost } from '../shared/media.js';
 
 const REASONS = new Set(REPORT_REASONS.map(r => r.v));
+export const TAKEDOWN_MS = 48 * 3600000;       // the Take It Down Act's 48 hours (and what we hold ourselves to for CSAM reports)
 
 /* ------------------------------------------------------------ blocks */
 
@@ -44,7 +45,9 @@ export async function unblock(c) {
 // POST /api/reports { type: user|post|message, name | id, reason, details }
 // Stores a snapshot of what was reported, so the evidence survives the author deleting it. A post's snapshot lists its
 // photos ({ id, url, width, height, alt }): the files themselves go if the post is deleted, unless a moderator hid the
-// post or the photo first (then they're held until a moderator removes them).
+// post or the photo first (then they're held until a moderator removes them). A report with reason `csam` on a post holds
+// its photos at once (hidden: served to nobody but moderators, and kept even if the author deletes the post) until a
+// moderator decides.
 export async function report(c) {
   const b = await readBody(c.req);
   const type = b.type;
@@ -87,6 +90,7 @@ export async function report(c) {
     await c.env.DB.prepare(`INSERT INTO reports (reporter_id, target_type, target_id, target_user_id, reason, details, snapshot, created)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`).bind(c.user.id, type, targetId, targetUser, reason, details, JSON.stringify(snapshot), c.now).run();
   }
+  if (reason === 'csam' && type === 'post') await c.env.DB.prepare('UPDATE media SET hidden = 1 WHERE post_id = ?').bind(targetId).run();
   return json({ ok: true }, 201);
 }
 
@@ -115,7 +119,8 @@ async function setHidden(c, type, id, hidden, note) {
   await log(c, hidden ? 'hide' : 'unhide', type, id, note);
 }
 
-// GET /api/admin/reports?status=open|closed
+// GET /api/admin/reports?status=open|closed — open ones: child-safety (csam) reports first, then oldest first. `deadline`:
+// when the 48 hours run out for a csam report or one marked intimate, else null.
 export async function adminReports(c) {
   const open = c.url.searchParams.get('status') !== 'closed';
   const { results } = await c.env.DB.prepare(`
@@ -126,7 +131,7 @@ export async function adminReports(c) {
     FROM reports r LEFT JOIN users rp ON rp.id = r.reporter_id LEFT JOIN users tu ON tu.id = r.target_user_id
     LEFT JOIN users rs ON rs.id = r.resolved_by
     WHERE ${open ? 'r.status = \'open\'' : 'r.status != \'open\''}
-    ORDER BY r.created ${open ? 'ASC' : 'DESC'} LIMIT 100`).all();
+    ORDER BY ${open ? "r.reason != 'csam', r.created ASC" : 'r.created DESC'} LIMIT 100`).all();
   return json({
     reports: results.map(r => {
       let snapshot = {};
@@ -136,19 +141,27 @@ export async function adminReports(c) {
         created: r.created, status: r.status, resolution: r.resolution, resolvedAt: r.resolved_at, resolver: r.resolver,
         reporter: ref(r, 'r_'), target: ref(r, 't_'), targetBanned: !!r.t_banned,
         targetHidden: r.t_hidden == null ? null : !!r.t_hidden,   // null: the post/message was deleted
-        targetReports: r.t_reports,
+        targetReports: r.t_reports, intimate: !!r.intimate,
+        deadline: r.reason === 'csam' || r.intimate ? r.created + TAKEDOWN_MS : null,   // the 48-hour clock
       };
     }),
   });
 }
 
-// POST /api/admin/reports/:id { action: dismiss | hide | ban | hide_ban, note }
+// POST /api/admin/reports/:id { action: dismiss | hide | ban | hide_ban | intimate, note } — intimate: only marks an open
+// report "intimate image without consent" (the 48-hour clock starts from when it was filed) and leaves it open.
 export async function resolveReport(c) {
   const b = await readBody(c.req);
   const r = await c.env.DB.prepare('SELECT * FROM reports WHERE id = ?').bind(int(c.params.id, 0)).first();
   if (!r) fail(404, 'no such report.');
   const action = b.action;
-  if (!['dismiss', 'hide', 'ban', 'hide_ban'].includes(action)) fail(400, 'unknown action.');
+  if (!['dismiss', 'hide', 'ban', 'hide_ban', 'intimate'].includes(action)) fail(400, 'unknown action.');
+  if (action === 'intimate') {
+    if (r.status !== 'open') fail(409, 'that report is already closed.');
+    await c.env.DB.prepare('UPDATE reports SET intimate = 1 WHERE id = ?').bind(r.id).run();
+    await log(c, 'mark_intimate', 'report', r.id, b.note || '');
+    return json({ ok: true });
+  }
   const note = b.note || '';
   if ((action === 'hide' || action === 'hide_ban') && r.target_type !== 'user') {
     try { await setHidden(c, r.target_type, r.target_id, true, note); } catch (e) { if (e.status !== 404) throw e; }

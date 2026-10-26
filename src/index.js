@@ -22,7 +22,7 @@ import { inbox, thread, sendMessage } from './messages/messages.js';
 import { getSpotify, putSpotify, refreshSpotify, deleteSpotify } from './music/spotify.js';
 import { astroSky, astroSign, astroMe } from './horoscope/horoscope.js';
 import { listBlocks, block, unblock, report, adminReports, resolveReport, adminUser, adminContent, adminLog } from './safety/safety.js';
-import { uploadMedia, deleteUpload, serveMedia, moderateMedia, sweepMedia } from './media/media.js';
+import { uploadMedia, deleteUpload, serveMedia, adminMedia, moderateMedia, sweepMedia } from './media/media.js';
 
 const OPEN = 0, AUTH = 1, ADMIN = 2;
 
@@ -120,6 +120,7 @@ const ROUTES = [
   ['POST', '/api/admin/board-requests/:id', decideBoardRequest, ADMIN],
   ['POST', '/api/admin/threads/:id', moderateThread, ADMIN],
   ['POST', '/api/admin/boards/:slug', moderateBoard, ADMIN],
+  ['GET', '/api/admin/media', adminMedia, ADMIN],
   ['POST', '/api/admin/media/:id', moderateMedia, ADMIN],
 ].map(([method, path, handler, access, opts = {}]) => ({
   method, handler, access, ...opts,

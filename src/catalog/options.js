@@ -68,6 +68,7 @@ export const REPORT_REASONS = [
   { v: 'harassment', label: 'harassment or bullying' },
   { v: 'hate', label: 'hate speech' },
   { v: 'sexual', label: 'sexual content' },
+  { v: 'csam', label: 'child sexual abuse material' },   // holds the post's photos at once, and goes first in the queue
   { v: 'violence', label: 'violence or threats' },
   { v: 'self_harm', label: 'self-harm or suicide' },
   { v: 'impersonation', label: 'pretending to be someone else' },
