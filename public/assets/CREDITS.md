@@ -303,7 +303,3 @@ Collection-level credit from the old site credits: "Badges from cyber.dabamos.de
 - `deco_welcome_banner.gif` — welcome banner — GeoCities archive via gifcities.org (collection-level credit) — author unknown — https://gifcities.org
 - `pfp.png` — the site owner's own picture — supplied by the site owner
 - `under_repair_dog.gif` — under-repair dog — textfiles.com (taken to be part of the "Construction GIFs from textfiles.com" collection; no license stated) — https://textfiles.com
-
-## Source unknown (owner to fill in)
-
-- `stars.png` — no credit found in the old site credits or the older credit notes

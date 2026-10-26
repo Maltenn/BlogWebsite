@@ -15,21 +15,7 @@ body {
     margin: 0;
     min-height: 100vh;
 }
-/* the twinkling star wallpaper */
-body::before {
-    content: '';
-    position: fixed;
-    inset: -10%;
-    z-index: -1;
-    background-image: url('/assets/stars.png');
-    background-repeat: repeat;
-    opacity: 0.4;
-    animation: rotate 7s ease-in-out infinite alternate, fade 5s infinite;
-    pointer-events: none;
-}
-@keyframes rotate { 0% { transform: rotate(-9deg) scale(1); } 100% { transform: rotate(9deg) scale(1.05); } }
-@keyframes fade { 0%, 100% { opacity: 0.2; } 50% { opacity: 0.7; } }
-@media (prefers-reduced-motion: reduce) { body::before { animation: none; } .blink, .rainbow-text { animation: none !important; } }
+@media (prefers-reduced-motion: reduce) { .blink, .rainbow-text { animation: none !important; } }
 
 a { color: #003366; }
 img { image-rendering: pixelated; }
@@ -37,12 +23,9 @@ img { image-rendering: pixelated; }
 
 /* ---------- the page frame ---------- */
 #page {
-    width: 980px;
-    max-width: 100%;
-    margin: 0 auto;
+    width: 100%;
     background: #fff;
     min-height: 100vh;
-    box-shadow: 0 0 0 1px #4b2d83, 6px 0 0 rgba(40, 20, 70, .18), -6px 0 0 rgba(40, 20, 70, .18);
     display: flex;
     flex-direction: column;
 }
@@ -556,7 +539,7 @@ img { image-rendering: pixelated; }
 .ms-pager .btn98 { min-width: 28px; padding: 2px 8px; }
 
 /* ---------- the Feed: shell, mode bar, rows ---------- */
-.os-shell { display: grid; grid-template-columns: 620px 336px; gap: 8px; padding: 8px; align-items: start; }
+.os-shell { display: grid; grid-template-columns: minmax(0, 1fr) 336px; gap: 8px; padding: 8px; align-items: start; }
 .os-main { min-width: 0; }
 .os-side { position: sticky; top: 84px; display: flex; flex-direction: column; gap: 8px; }
 .os-side .horo-teaser { padding: 8px; background: linear-gradient(90deg, #2b1a4d, #4b2d83); }
@@ -747,7 +730,7 @@ a.ms-time:hover { text-decoration: underline; opacity: 1; }
 .ms-postdialog-context .os-hint { margin-bottom: 3px; }
 
 /* ---------- a conversation, and the replies under a blog post ---------- */
-.os-shell.os-solo { grid-template-columns: minmax(0, 680px); justify-content: center; }
+.os-shell.os-solo { grid-template-columns: minmax(0, 1fr); }
 .ms-thread-page { border: 1px solid #c7d2e8; min-width: 0; }
 .ms-ancestors .ms-feeditem { position: relative; background: #f4f6fb; border-bottom: 0; }
 .ms-ancestors .ms-feeditem::before { content: ''; position: absolute; left: 27px; top: 50px; bottom: -2px; width: 2px; background: #c7d2e8; }

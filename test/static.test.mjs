@@ -32,7 +32,7 @@ const MEDIA = /.(png|gif|jpe?g|webp|svg|ico|webm)$/;
 const assetFiles = walk(ASSETS).map(f => path.relative(ASSETS, f).split(path.sep).join('/')).filter(f => MEDIA.test(f));
 const CREDITS = path.join(ASSETS, 'CREDITS.md');
 // Images whose source nobody has found yet. Fill in their line in CREDITS.md and take them off this list; it may only shrink.
-const SOURCE_UNKNOWN = ['stars.png'];
+const SOURCE_UNKNOWN = [];
 
 /* ------------------------------------------------------------ assets */
 
