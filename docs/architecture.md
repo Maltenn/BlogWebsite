@@ -5,15 +5,15 @@
 ```
 one Cloudflare Worker "ourspace-social" (same origin for pages and API, so the login cookie is HttpOnly + SameSite=Lax)
  ├── public/      the pages: index.html + app.js (single-page app, ES modules), app.css, blog/, assets/   (Workers static assets)
- ├── /api/*       src/index.js → accounts, profiles, follows, social, boards, notifications, chats, media, safety, music, horoscope
+ ├── /api/*       src/index.js → accounts, profiles, follows, social, boards, browse, notifications, chats, media, safety, music, horoscope
  ├── /api/live/:room   a chat room's WebSocket: checked by the Worker (src/chats/live.js), then handed to the room's
  │                     Durable Object
  ├── /media/*     uploaded photos, through the Worker (src/media/media.js) to whoever may see them
  ├── D1 "ourspace-social-db"   migrations/ (users, profiles, sessions, identities, oauth_states, oauth_signups,
  │                             password_resets, spotify, follows, posts, likes, bookmarks, mentions, post_tags,
  │                             notifications, markers, boards, board_requests, votes, media, conversations,
- │                             conversation_members, chat_messages, chat_mutes, affinity, blocks, reports, mod_log,
- │                             attempts)
+ │                             conversation_members, chat_messages, chat_mutes, affinity, board_terms, browse_hidden,
+ │                             blocks, reports, mod_log, attempts)
  ├── R2 "ourspace-social-media" (binding MEDIA)   the photo files, under random keys
  ├── Durable Objects "Room" (binding ROOMS)   one per chat room (#ourspace, each group, each DM): carries live events to
  │                             the connected sockets, owns no data (src/live/room.js)
@@ -30,7 +30,7 @@ src/
   index.js     Worker entry
   shared/      infrastructure; never imports a feature
   catalog/     the choices people have when decorating a page
-  accounts/  profiles/  follows/  social/  boards/  notifications/  chats/  media/  safety/  music/  horoscope/     features
+  accounts/  profiles/  follows/  social/  boards/  browse/  notifications/  chats/  media/  safety/  music/  horoscope/     features
   live/        the Durable Object behind every chat room (carries events, owns no data)
 ```
 
@@ -38,7 +38,7 @@ src/
 |---|---|
 | `src/index.js` | The route table (one list at the top), the cross-site check on writes, the cron. |
 | `src/shared/http.js` | JSON answers, `fail(status, message)` errors, reading JSON bodies, cookies, SHA-256. |
-| `src/shared/db.js` | User lookups, the shape a user takes in every answer, follows (who are friends, who may see a private profile's posts, how two people are connected, the SQL for the followers / following / friends lists), blocks, which posts the viewer may see (`VISIBLE`, `SEES`, `REPOST_OK`), a post in brief (`lite`), and `limit()`, the rate limiter. |
+| `src/shared/db.js` | `meter()`, which counts the rows D1 reads for a request (the Browse routes), user lookups, the shape a user takes in every answer, follows (who are friends, who may see a private profile's posts, how two people are connected, the SQL for the followers / following / friends lists), blocks, which posts the viewer may see (`VISIBLE`, `SEES`, `REPOST_OK`), a post in brief (`lite`), and `limit()`, the rate limiter. |
 | `src/shared/notify.js` | Notifications: `notify()`, the statement each feature adds to its write batch (never to yourself, across a block, or about a post the person can't see), and `SHOWN`, which ones still show. |
 | `src/shared/media.js` | Photos as the other features use them: a page of posts' photos in one read (`MEDIA_OF`), checking a post's `media` (`claimMedia`) and the statements that attach it in the post's write batch, a member's own uploaded picture, and deleting files from R2 (`dropObjects`) with the rows that held them. |
 | `src/shared/affinity.js` | The interaction score of [decisions/001](decisions/001-ranking.md): weights, the 30-day half-life, closeness, each as JS (unit-tested) and SQL, and `bump()`, the statement every interaction adds to its write batch. |
@@ -63,6 +63,9 @@ src/
 | `src/boards/tree.js` | A thread's comments as a tree, with the caps and the "more" stubs. |
 | `src/boards/votes.js` | Likes and dislikes on threads and comments. |
 | `src/boards/requests.js` | Asking for a new board, and the moderators approving or declining. |
+| `src/browse/browse.js` | Browse: the discovery stream (For you), Mutuals, Boards for you, Who to follow, and "not interested". Bounded, indexed candidate reads; the scoring is `score.js`. |
+| `src/browse/score.js` | Browse's small algorithm as pure, unit-tested functions: interests → boards (phrases, 1–3 word runs, IDF), the mutuals order (Adamic–Adar), the discovery score, its caps and cursor, every "why" string. |
+| `src/browse/terms.js` | The board_terms crosswalk (kept 5 minutes per isolate) and the moderators' routes for a board's terms. |
 | `src/notifications/notifications.js` | The Notifications tab. |
 | `src/chats/chats.js` | Group chats and DMs: the list, a chat, its messages, sending, read positions, making a DM or a group, adding and removing people, leaving (and the owner hand-over), answering invites, renaming, and the group suggestions. |
 | `src/chats/ourspace.js` | #ourspace: its messages (the rolling window), writing (slow mode, mentions), mutes, and the cron's chat housekeeping. |
@@ -80,7 +83,7 @@ src/
 | `public/assets/` | Every image the pages and `src/catalog/` use. Credits are in [CREDITS.md](../public/assets/CREDITS.md), served at `/assets/CREDITS.md`. |
 | `migrations/` | D1 schema, one numbered file per change. |
 | `tools/demo.mjs` | `npm run demo`: the site on your computer with sample content and pretend sign-in pages. |
-| `test/` | `api.test.mjs` (end-to-end, against a throwaway local Worker), `migrations.test.mjs` (a migration applied to a database the earlier ones left), `astro.test.mjs` (the astronomy against known dates), `text.test.mjs` (the `@mention` and `#tag` readers), `media.test.mjs` (the photo sniffers and metadata strippers, on byte-built files with GPS blocks, comments and text chunks, and on the real images in `public/assets`), `ranking.test.mjs` (the board sort keys against worked-out values, and the comment tree), `affinity.test.mjs` (the interaction score's decay and closeness), the WebSocket tests inside `api.test.mjs` (Node's own `WebSocket` against the test `wrangler dev`, with its Durable Objects), `frontend.test.mjs` (page code from `public/js` on a pretend browser, `helpers/fake-dom.mjs`, with the API answered by the test), `static.test.mjs` (assets and imports), `helpers/mock-providers.mjs` (a stand-in for every sign-in provider, Spotify and iTunes, used by the tests and the demo), `helpers/images.mjs` (small JPEG, PNG, GIF and WebP files built byte by byte, for the photo tests and the demo's sample photos). |
+| `test/` | `api.test.mjs` (end-to-end, against a throwaway local Worker), `migrations.test.mjs` (a migration applied to a database the earlier ones left), `astro.test.mjs` (the astronomy against known dates), `text.test.mjs` (the `@mention` and `#tag` readers), `media.test.mjs` (the photo sniffers and metadata strippers, on byte-built files with GPS blocks, comments and text chunks, and on the real images in `public/assets`), `ranking.test.mjs` (the board sort keys against worked-out values, and the comment tree), `browse.test.mjs` (Browse's scoring on fixed fixtures), `affinity.test.mjs` (the interaction score's decay and closeness), the WebSocket tests inside `api.test.mjs` (Node's own `WebSocket` against the test `wrangler dev`, with its Durable Objects), `frontend.test.mjs` (page code from `public/js` on a pretend browser, `helpers/fake-dom.mjs`, with the API answered by the test), `static.test.mjs` (assets and imports), `helpers/mock-providers.mjs` (a stand-in for every sign-in provider, Spotify and iTunes, used by the tests and the demo), `helpers/images.mjs` (small JPEG, PNG, GIF and WebP files built byte by byte, for the photo tests and the demo's sample photos). |
 
 Features import only `shared/` and `catalog/`. The few exceptions are listed in [CONVENTIONS.md](../CONVENTIONS.md).
 
@@ -249,7 +252,7 @@ The bulletin board became topic boards, like a forum: a board (Cooking, Random �
 ### The rules
 
 - **Boards are public spaces.** A thread or comment shows to everyone, logged in or not, even when its writer's profile is private (the privacy hint in Settings says a private member's bulletins are seen by whoever can see them; the front end words it for boards). Everything else that hides a post still hides it: a banned writer, a block either way, a moderator's hide, a deleted post. A comment the viewer can't see is left out of the tree with every reply under it.
-- **Never in the feed.** Board threads aren't in the Following or Everyone feed or on the Posts tab (Browse discovery is phase 6). Their `#tags` have pages like other posts' (`GET /api/tags/:tag`), and `@mentions` work in threads and comments. Comments get `@mentions` only, no `#tags`, like Friends' Comments.
+- **Never in the feed.** Board threads aren't in the Following or Everyone feed or on the Posts tab; Browse's For you suggests them ([Browse](#browse-for-you-mutuals-boards-for-you-who-to-follow)). Their `#tags` have pages like other posts' (`GET /api/tags/:tag`), and `@mentions` work in threads and comments. Comments get `@mentions` only, no `#tags`, like Friends' Comments.
 - **Reach.** A vote or a reply needs its target to be reachable for the writer the way the tree reaches it: the thread and every comment above the target show to them (none hidden, none by someone banned, no block either way; a tombstone on the way is fine). Otherwise it's a 404 and nothing moves. A notification about a comment shows only while that holds for its reader, so hiding a thread or a comment silences what was told about the comments under it.
 - **Votes**: one per person per post, switched or taken back (`value` 0). Never on your own post, a deleted or hidden one, in a locked thread or an archived board. Nobody is told about a vote. A vote checks in its own batch that the voter's vote is still the one it read and that the post still takes votes, so two votes at once or a delete or a lock at the same moment can't move the counts without the vote.
 - **Comments**: nested as deep as people like. A deleted comment that still has replies stays as a tombstone (`deleted: true`, no words, "[deleted]") until nothing holds it, as in phase 2; a deleted thread stays as one while any comment is in it, however deep. When a comment goes with its writer's account, the replies to it move up to the comment (or thread) it answered, so every comment answers a post that's there and every thread holding comments is there. Deleting an account takes its threads with all their comments, its comments elsewhere, and its votes, and puts the counts and keys of everyone else's posts right.
@@ -416,6 +419,68 @@ Client → server: `{"type":"typing"}` and `{"type":"ping"}` (exactly that text,
 
 Close codes: `4001` signed out, `4002` open in too many places (5 per member per room), `4003` not a member any more (left, removed, or a block closed the DM): the page stops for good on these (`public/js/core/live.js`) and says why, as it does when the history answers 401 (signed out) or 403/404 (not in the chat). After `1008` (too many frames) or anything else it reconnects with backoff, polling the history meanwhile (once a minute while the tab is hidden).
 
+## Browse: For you, Mutuals, Boards for you, Who to follow
+
+Phase 6. A very small, explainable algorithm ([decisions/001](decisions/001-ranking.md)): no scroll, dwell, watch-time or impression signals are recorded anywhere, and every suggestion carries the reason it's shown. The Following feed stays newest first. People search stays `GET /api/users`.
+
+### The data
+
+`migrations/0008_browse.sql`:
+
+| Table / index | What |
+|---|---|
+| `board_terms` | `(term, board_id, weight)`, `WITHOUT ROWID`: the curated interests → boards crosswalk. `term` is one to three words, stored cleaned (lower case, no accents or punctuation); both sides are folded the same way when compared (a leading "the" and a trailing "s" on words over 3 letters go). Each board's name and its words count too, without being stored. Seeded for the 14 launch boards (about 240 terms); moderators add and remove terms per board, so boards made from requests can get theirs. |
+| `browse_hidden` | `(user_id, kind, ref_id, created)`: "not interested". `kind` is `person` (out of Mutuals and Who to follow, their posts out of discovery), `board` (out of Boards for you, its threads out of discovery) or `post`. The only thing Browse ever writes, and only when the member asks. |
+| `posts_author_board` | `(author_id, board_id, created) WHERE board_id IS NOT NULL`: "boards you post in" is one short seek per board. |
+| `posts_discover` | `(author_id % 8, created, author_id, kind) WHERE kind IN ('status', 'blog', 'quote', 'thread')`: For you's candidates, each bucket of writers newest first, read off the index alone (it covers the query). |
+| `follows_recent` | `(follower_id, status, accepted, followee_id)`: a member's newest follows, off the index alone (Mutuals, your friends, the follows whose replies count). |
+
+### The rules
+
+- **Who shows.** Discovery shows only posts the viewer may see (`VISIBLE`: not hidden, deleted, dated ahead, by someone banned or with a block either way) and only by **open** profiles: a private member's posts, and their board threads too, are never in discovery. No post with a photo a moderator holds (`media.hidden`), no thread on an archived board or at net -3 or lower. People suggestions skip yourself, anyone banned, anyone with a block either way, anyone you follow or asked to follow, and anyone you hid. A private profile can be suggested as a person (it's in search too), but as its name and picture only.
+- **Ages.** Browse never puts an adult and a 13–17-year-old in front of each other, by the birthday each side gave: not in Mutuals or Who to follow (001, open question 3, "the default here: no"), and not in For you either (the owner's decision in phase 6): an adult's For you shows adults' posts only, a teen's only teens'. Logged out, Browse suggests adults only (For you and Who to follow). The line is `ageCut` in `src/shared/dates.js`, the same rule as `ageOn` (someone born 2010-03-01 is 17 on 2028-02-29). Boards, tag pages, profiles and the Everyone feed aren't split by age: Browse only stops suggesting strangers across the line.
+- **For you** (`discover`). Candidates, each set cut to size before anything is filtered: the writers fall in 8 buckets by id, and each bucket's newest 64 statuses, blog posts, quotes and board threads of the last 7 days are read straight off the `posts_discover` index (512 at most); of those, each writer's newest 3, then the newest 150; only those are read and checked (logged in: not by people you follow, not yourself, not on a board you posted in within 30 days, nothing you hid). So one account posting all day takes 3 places among the candidates (and 2 on a page), and its flood only crowds the writers of its own bucket. Plus the posts that people you follow replied to or commented on this week: your newest 40 follows, each one's newest 2 replies and 2 comments, and of what they answered at most 40 posts that aren't candidates already. Score = hot (a thread's stored `hot`; for the others the same formula with likes + reposts as votes and replies up to 5) + 0.2 per person you follow who replied or commented (up to 3) + 0.3 when friends of yours follow the writer + 0.3 for a thread on a board your interests point to. Then, per page of 20, at most 2 per writer and 4 per board: what a cap holds back rides in the cursor and leads the next page. Reasons, first match wins: `Replied to by kat, who you follow` / `kat and 2 others you follow commented`; `Your friend kat follows zed` / `kat and 2 other friends follow zed`; `Because you listed "kittens" under General`; `Popular in Cooking` / `Popular on OurSpace this week`. Logged out: everybody's open posts, by hot, "popular". **No like-based reason**: who liked what isn't shown anywhere in the app, so "Liked by kat" (001's first reason) would give it away; replies and comments are public already.
+- **Mutuals.** Friends of your friends (friend = both follow each other), in one query: your friends among your newest 100 follows (the newest 25 friendships), each one's newest 20 follows (off the `follows_recent` index, never their whole list) that follow them back, at most 250 pairs. Order: mutual friends, then "follows you", then Adamic–Adar (Σ 1 / ln(2 + d) over the mutual friends, d = their friend count among their newest 20 follows, you included when you're among them), then active in the last 30 days, then the older account. Each with the count and up to 3 mutual friends by name, closest to you first (the interaction score), then A to Z.
+- **Who to follow.** The top mutuals; when there are fewer than asked for, recently active (30 days) open profiles with the most followers (counted up to 25 each, among the first 20 who could be suggested of the 60 members seen most recently). Logged out: adults only.
+- **Boards for you.** Your six interest fields, cut on commas, semicolons, slashes, new lines, "&", "+" and " and " (40 phrases, 60 characters each); every 1–3 word run looked up in the terms; a board scores Σ over distinct matched terms of (1.5 if the field is the board's subject: Music → Music, Movies and Television → Movies & TV, Books → Books & Writing; else 1) × the term's weight × ln(1 + N / df) (N boards, df boards holding the term), and needs 1.0. Never a board you've posted in, one you hid, or an archived one. Then the ladder: boards busy this week (most people posting, among each board's newest 20 posts of the week), then the rest of the index. Logged out: the ladder alone. The terms are read once per isolate and kept 5 minutes.
+- **Paging.** Every cursor is a place in the order, never a position: a post written in between takes its own place in the order and never makes a later page of For you repeat or skip anything (one that scores above where you are waits for a refresh), and people followed in between never shift Mutuals. Each page recomputes the candidates (nothing is cached per member).
+- **Rate limits.** For you, Mutuals and Who to follow recompute everything on each request: 60 a minute and 600 an hour each, per member (logged out, per connection). "Not interested": 300 a day, counted before anything is looked up.
+- **Never cached.** Every Browse answer depends on who asks, so all of them are `Cache-Control: no-store` (as every personalized API answer is: `json()`'s default), never `private, max-age`: a browser shared by two accounts would otherwise show the first one's suggestions to the second.
+
+### The answers
+
+- **A discovery item**: `{ item, reason: 'replied' | 'friends' | 'interest' | 'popular', why, relation }`. `item` is the item every list shows ([above](#the-item)); a thread carries `board: { slug, name, icon, archived }` for "View board". `relation` is to the item's writer, in the profile's shape (`{ following: 'none', followsMe, friends: false, blockedByMe: false, canComment: false, canMessage }`), for the follow button; null when logged out.
+- **A suggested person**: `{ user: { id, name, avatar }, private, relation, mutual: { count, people: [{ id, name, avatar }] (up to 3) } | null, because: 'mutual' | 'popular', why }`, plus `followers` (up to 25: `Followed by 25+ people`) on a popular one. `why`: `Friends with kat, pete and 2 others` (` · follows you` when they do), `Followed by 12 people`, `Active on OurSpace lately`.
+- **A suggested board**: `{ board: { slug, name, description, icon }, because: 'interests' | 'busy' | 'all', terms: [{ term, field }] (interests only), posters (this week), why }`. `why`: `Because you listed "my chemical romance" under Music`, `5 members posted in Music this week`, `Quiet this week: start something`.
+
+### The routes
+
+| Route | Access | Answer |
+|---|---|---|
+| `GET /api/browse/discover?before=` | anyone | `{ items: [discovery item], next }`, 20 a page. `next` is the cursor for `before=` (`<score>:<id>:<held-back ids>`); a cursor that can't be read is 400. |
+| `GET /api/browse/mutuals?before=` | anyone | `{ people: [suggested person], next }`, 20 a page. Logged out: `{ people: [], next: null, prompt }`. |
+| `GET /api/browse/people?limit=3` | anyone | `{ people: [suggested person] }`, 1–10. `Cache-Control: no-store`, like every Browse answer. |
+| `GET /api/browse/boards?limit=5` | anyone | `{ boards: [suggested board], hasInterests }`, 1–10. |
+| `POST` · `DELETE /api/browse/hidden/:kind/:ref` | member | "Not interested", and undoing it: `kind` person (`:ref` their id), board (its slug) or post (its id). → `{ hidden: { kind, id } }` · `{ hidden: null }`. 404 for yourself or a person or board that isn't there; a post id isn't looked up (any id is 200), so the answer never tells whether a private or hidden post exists. |
+| `GET /api/admin/boards/:slug/terms` | moderator | `{ board, terms: [{ term, weight }] }` |
+| `PUT /api/admin/boards/:slug/terms` | moderator | `{ add?: [term \| { term, weight }], remove?: [term] }` (100 each; a term is 1–3 words, 60 characters; weight 0.1–5, default 1) → as GET. Logged (`board_terms`). Other isolates see it within 5 minutes. |
+
+### The row budget
+
+D1 bills rows read, not returned ([decisions/004](decisions/004-cloudflare-limits-and-costs.md)). Besides the session lookup every route does, each answer reads at most:
+
+Every read is cut to a fixed size **before** it is filtered (a `LIMIT` on an index range, per bucket, per friend or per board), so no member's data can make a request read more: a friend following 10,000 people, 10,000 replies by someone you follow, 10,000 private posts or 300 statuses a day by one account all leave the bound where it is.
+
+| Route | Bound | Measured: the demo (the_reviewer · logged out) | Measured: the demo flooded (the_reviewer · logged out) |
+|---|---|---|---|
+| `discover` | ≤ 512 `posts_discover` index rows (8 buckets × 64; the cap per writer and the newest 150 are picked in the Worker, since a window function and sorts in SQL would read them over again); then those 150, and ≤ 40 posts people you follow answered, read and checked by id (a few seeks each); + your newest 40 follows × 4 replies and comments (≤ 400 rows); + your friends (≤ 300) × point lookups for the candidates' writers; + one hydrate batch for 20 items; + the terms (≈ 240 rows, once per isolate per 5 minutes) | 400 (page 2: 308) · 260 (page 2: 157) | 466 (page 2: 374) · 323 (page 2: 220) |
+| `mutuals` | your newest 100 follows (+ 2 seeks each) → 25 friends × their newest 20 follows (+ a seek each) → ≤ 250 pairs → ≤ 250 candidates × a few seeks + the names (≤ 25) | 220 · 0 | 383 · 0 |
+| `people` | the same as mutuals, + (when it falls back) the 60 most recently seen members, the first 20 suggestable × their followers (≤ 25 each) | 220 · 84 | 378 · 107 |
+| `boards` | the boards + each board's newest 20 posts of the week (+ the post and its writer) + one seek per board for "you posted here" + the terms (≈ 240 rows, once per isolate per 5 minutes) | 204 · 188 | 204 · 188 |
+| rate limit | For you, Mutuals and Who to follow count their `attempts` first (≤ 660 rows, outside `X-Rows-Read`) | | |
+
+"Flooded": the demo plus 10,000 replies this week by somebody the_reviewer follows, 10,000 statuses by a private profile, 10,000 people a friend of theirs follows one way who then all follow back, and 300 statuses in a day by one account. The tests read every answer's `X-Rows-Read` (set when the Worker runs with `SHOW_ROWS_READ=1`, as the tests and the demo do; `meter()` in `src/shared/db.js`) and hold every route to 2,000 rows, before and after the same floods (`test/api.test.mjs`, "the row budget under floods"). The price of the caps: Mutuals sees 25 friends' newest 20 follows each, so on a big site a friend of a friend you share through an older friendship can be missed; 001's 6-hour per-member cache isn't built (see the roadmap).
+
 ## Front end
 
 `public/index.html` loads `public/app.js` as an ES module. There is no build step: the files in `public/` are what the browser gets.
@@ -438,6 +503,9 @@ public/
     songs.js            someone's Spotify top songs, with 30-second previews
     auth-forms.js       what join, finish-sign-up and log-in share, the picture gallery, the sign-in error texts
     followbutton.js     the Follow button (Follow / Requested / Following / Friends)
+    discovery.js        a card in Browse > For you: the post or thread with a line saying why it is shown, Follow, View board and ✕
+    suggestions.js      suggested people (Mutuals rows with the friends in common; the Feed sidebar's "Who to follow") and suggested boards (Boards for you rows, the matched words marked)
+    hide.js             the ✕ "not interested" button: hides the card, with a click-to-undo toast (POST / DELETE /api/browse/hidden)
     privatecard.js      what shows instead of a private page's posts
     composer.js         the "What's on your mind?" status box with its live counter and 📷 button (up to 4 photos); with a URL it is the reply box
     photos.js           putting photos on a post: prepareImage (the browser half of the pipeline: shrink to 1600 px, JPEG / WebP / PNG, a small GIF as it is, a 300 px square for a picture) and photoPicker (the 📷 button, thumbnails with description, ✕ and progress, the ids for the create call; previews are data: URLs)
@@ -465,7 +533,7 @@ public/
     newgroup.js         the New group window (name, picker); resolves the new chat
     groupsettings.js    a group's settings under the chat window's title bar: rename, members (the owner removes), invited, Add people, Leave
   js/pages/             one module per screen
-    home.js             Home: a welcome and the latest from everyone, or the Feed
+    home.js             Home: a welcome and the latest from everyone, or the Feed (sidebar: Who to follow, horoscope, who is online)
     profile.js          someone's page, with the Posts, Replies, Blog and Friends' Comments tabs
     blog.js             one blog post on its own page, with its Discussion
     post.js             a conversation: the posts above, the post enlarged, the reply box, the replies
@@ -473,7 +541,7 @@ public/
     bookmarks.js        your bookmarks
     tags.js             a #tag's page
     lists.js            who follows someone, who they follow, and their friends
-    browse.js           find people
+    browse.js           Browse, four tabs (?tab=): For you (discovery stream), Mutuals, Boards for you, Search people (the old people grid; ?q= from the header search lands here)
     requests.js         follow requests, in and out (also reached from Notifications)
     messages.js         the Messages tab: DMs and groups (unread in bold, invites with Accept / Decline at the top), search, New group; looks again every 10 s; also the old /inbox addresses (redirect, /inbox/name opens the DM)
     chat.js             one conversation (/messages/:id) in an AIM / MSN window, live: day separators, buddy pictures, "kat is typing…", who has it open, read ticks, delete / report, load earlier, mark read while visible, group settings, the reason instead of the box when you can't write; an unanswered invite shows Accept / Decline instead

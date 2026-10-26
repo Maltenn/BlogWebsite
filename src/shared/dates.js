@@ -24,6 +24,15 @@ export function ageOn(birth, now = Date.now()) {
   return age;
 }
 
+// The latest birthday ('YYYY-MM-DD') of someone who is `years` old or more on `now`, by ageOn's rule, for comparing with
+// stored birthdates as text: birthdate <= cut ⇔ ageOn(birthdate, now) >= years. It is today's month and day `years`
+// back, kept as written even when that year has no such day: on 2028-02-29 the cut is '2010-02-29', so someone born
+// 2010-02-28 is 18 and someone born 2010-03-01 is 17 (a Date's setUTCFullYear would roll the cut to March 1).
+export function ageCut(years, now = Date.now()) {
+  const t = new Date(now);
+  return iso({ y: t.getUTCFullYear() - years, m: t.getUTCMonth() + 1, d: t.getUTCDate() });
+}
+
 // A birthday from a sign-up form, checked. Too young → 403 (the caller also sets a cookie so the form can't simply be
 // re-tried with another year, which is what the FTC's guidance on age screens asks for).
 export function checkBirthday(input, minAge, now = Date.now()) {

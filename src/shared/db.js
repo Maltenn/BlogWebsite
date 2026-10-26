@@ -190,3 +190,24 @@ export async function profileData(env, userId) {
 }
 
 export const isOnline = (u, now) => u.last_seen != null && u.last_seen > now - ONLINE_MS;
+
+// Counts the rows D1 reads from here on in this request (D1 bills rows read: decisions/004): swaps c.env.DB for a
+// stand-in that adds up meta.rows_read of every statement and batch into c.rowsRead. (Its first() reads through all(),
+// which D1 bills the same.) For the routes that document a row budget, and the tests that hold them to it.
+export function meter(c) {
+  const real = c.env.DB;
+  c.rowsRead = 0;
+  const add = r => { c.rowsRead += (r && r.meta && r.meta.rows_read) || 0; return r; };
+  const wrap = s => ({
+    raw: s,
+    bind: (...v) => wrap(s.bind(...v)),
+    all: async () => add(await s.all()),
+    run: async () => add(await s.run()),
+    first: async col => {
+      const row = add(await s.all()).results[0];
+      return row === undefined ? null : col ? row[col] : row;
+    },
+  });
+  c.env = { ...c.env, DB: { prepare: q => wrap(real.prepare(q)), batch: async list => (await real.batch(list.map(s => s.raw))).map(add) } };
+  return c;
+}

@@ -868,3 +868,99 @@ test('a group invite in Notifications leads to the chat and answers in place; a 
   assert.ok(posted.includes('POST /chats/8/invite {"action":"decline"}'));
   assert.match(rows[0].textContent, /declined/);
 });
+
+/* ------------------------------------------------------------ phase 6: Browse */
+
+const NOREL = { following: 'none', followsMe: false, friends: false, blockedByMe: false, canComment: false, canMessage: true };
+const { discoveryCard } = await import('../public/js/widgets/discovery.js');
+const { suggestedPerson, suggestedBoard } = await import('../public/js/widgets/suggestions.js');
+
+test('a discovery card: the reason on top, the post, Follow and View board, and ✕ hides it with an undo that brings it back', async () => {
+  S.me = ME;
+  const calls = [];
+  dom.onFetch = (m, p) => { calls.push(`${m} ${p}`); return answer(200, p.startsWith('/follows/') ? { relation: { ...NOREL, following: 'following' } } : { hidden: null }); };
+  const card = discoveryCard({ item: threadItem(), reason: 'popular', why: 'Popular in Cooking', relation: NOREL });
+  assert.match(card.querySelector('.ms-whytext').textContent, /^🔥 Popular in Cooking$/);
+  const follow = card.querySelector('.ms-followbtn');
+  assert.equal(follow.textContent, '★ Follow');
+  const view = card.querySelectorAll('a.btn98').find(a => /View board/.test(a.textContent));
+  assert.equal(view.getAttribute('href'), '/boards/cooking');
+  follow.click();
+  await dom.settle();
+  assert.ok(calls.includes('POST /follows/kat'));
+  assert.equal(follow.dataset.state, 'following');
+  card.querySelector('.ms-hidebtn').click();
+  await dom.settle();
+  assert.ok(calls.includes('POST /browse/hidden/post/50'));
+  assert.equal(card.hidden, true);
+  const toast = document.querySelector('#toasts').children.at(-1);
+  assert.match(toast.textContent, /undo/);
+  toast.click();
+  await dom.settle();
+  assert.ok(calls.includes('DELETE /browse/hidden/post/50'));
+  assert.equal(card.hidden, false);
+});
+
+test('a discovery card for a status has no View board, and none to follow on your own post', () => {
+  S.me = ME;
+  const card = discoveryCard({ item: item({ author: ME }), reason: 'friends', why: 'Your friend kat follows me', relation: NOREL });
+  assert.equal(card.querySelectorAll('a.btn98').length, 0);
+  assert.equal(card.querySelector('.ms-followbtn'), null);
+  assert.match(card.querySelector('.ms-whytext').textContent, /^👥/);
+});
+
+test('a suggested person: the friends in common as links with the count, "follows you", and a private page as name + picture only', () => {
+  S.me = ME;
+  const p = { user: pal, private: true, relation: { ...NOREL, followsMe: true }, because: 'mutual', why: 'x', mutual: { count: 4, people: [kat, ME] } };
+  const row = suggestedPerson(p, { hide: true });
+  assert.match(row.querySelector('.ms-suggestwhy').textContent, /friends with kat, me and 2 others · follows you/);
+  assert.deepEqual(row.querySelector('.ms-suggestwhy').querySelectorAll('a').map(a => a.getAttribute('href')), ['/u/kat', '/u/me']);
+  assert.match(row.textContent, /private/);
+  assert.equal(row.querySelector('.ms-followbtn').textContent, '★ Follow back');
+  assert.equal(row.querySelectorAll('.ms-hidebtn').length, 1);
+  const pop = suggestedPerson({ user: kat, private: false, relation: NOREL, because: 'popular', why: 'Followed by 12 people', mutual: null });
+  assert.equal(pop.querySelector('.ms-suggestwhy').textContent, 'Followed by 12 people');
+});
+
+test('a suggested board: the matched words are marked in the reason, with the member count and View board', () => {
+  S.me = ME;
+  const row = suggestedBoard({ board: { slug: 'music', name: 'Music', description: 'bands', icon: '🎵' }, because: 'interests',
+    terms: [{ term: 'my chemical romance', field: 'Music' }], posters: 3, why: 'Because you listed "My Chemical Romance" under Music' }, { hide: true });
+  assert.deepEqual(row.querySelectorAll('mark').map(m => m.textContent), ['My Chemical Romance']);
+  assert.match(row.textContent, /3 members posting this week/);
+  assert.equal(row.querySelector('a.btn98').getAttribute('href'), '/boards/music');
+  assert.equal(row.querySelectorAll('.ms-hidebtn').length, 1);
+});
+
+test('Browse: the four tabs, For you pages on with "show more", and Mutuals logged out shows the prompt', async () => {
+  S.me = null;
+  const { renderBrowse } = await import('../public/js/pages/browse.js');
+  const calls = [];
+  const entry = id => ({ item: item({ id }), reason: 'popular', why: 'Popular on OurSpace this week', relation: null });
+  dom.onFetch = (m, p) => {
+    calls.push(p);
+    if (p === '/browse/discover') return answer(200, { items: [entry(1), entry(2)], next: 'c1' });
+    if (p === '/browse/discover?before=c1') return answer(200, { items: [entry(3)], next: null });
+    if (p === '/browse/mutuals') return answer(200, { people: [], next: null, prompt: 'log in to see friends of your friends.' });
+    return answer(404, { error: 'not here' });
+  };
+  location.search = '';
+  const root = document.createElement('main');
+  await renderBrowse(root);
+  assert.deepEqual(root.querySelectorAll('.ms-browsetabs a').map(a => a.textContent), ['For you', 'Mutuals', 'Boards for you', 'Search people']);
+  assert.equal(root.querySelectorAll('.ms-disc').length, 2);
+  root.querySelector('button.ms-more').click();
+  await dom.settle();
+  assert.equal(root.querySelectorAll('.ms-disc').length, 3);
+  assert.ok(calls.includes('/browse/discover?before=c1'));
+  location.search = '?tab=mutuals';
+  const m = document.createElement('main');
+  await renderBrowse(m);
+  assert.match(m.textContent, /log in to see friends of your friends/);
+  location.search = '?q=pal';
+  dom.onFetch = () => answer(200, { users: [pal], more: false });
+  const s = document.createElement('main');
+  await renderBrowse(s);
+  assert.equal(s.querySelector('.ms-browsetabs a.on').textContent, 'Search people', '?q= lands on Search people');
+  location.search = '';
+});

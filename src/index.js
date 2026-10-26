@@ -1,7 +1,8 @@
 // ourspace-social — one Worker for the whole site:
 //   /api/*          the JSON API below (accounts, sign-in providers, profiles, follows, posts and the feed, replies,
 //                   likes, reposts, quotes, bookmarks, tags, boards with their threads, comments and votes,
-//                   notifications, chat (#ourspace, group chats, DMs), photo uploads, Spotify, astrology, blocks,
+//                   notifications, chat (#ourspace, group chats, DMs), Browse (discovery, mutuals, boards for you, who to
+//                   follow), photo uploads, Spotify, astrology, blocks,
 //                   reports, moderation)
 //   /api/live/:room a chat room's WebSocket, handed to its Durable Object (src/live/room.js, exported below as Room)
 //   /media/<key>    uploaded photos, from the R2 bucket MEDIA, to whoever may see them (src/media/media.js)
@@ -27,6 +28,8 @@ import { liveRoom } from './chats/live.js';
 import { getSpotify, putSpotify, refreshSpotify, deleteSpotify } from './music/spotify.js';
 import { astroSky, astroSign, astroMe } from './horoscope/horoscope.js';
 import { listBlocks, block, unblock, report, adminReports, resolveReport, adminUser, adminContent, adminLog } from './safety/safety.js';
+import { discover, mutuals, people, boardsForYou, hideSuggestion, unhideSuggestion } from './browse/browse.js';
+import { boardTerms, saveBoardTerms } from './browse/terms.js';
 import { uploadMedia, deleteUpload, serveMedia, adminMedia, moderateMedia, sweepMedia } from './media/media.js';
 
 // the Durable Object class behind every chat room (wrangler.jsonc → durable_objects)
@@ -104,6 +107,13 @@ const ROUTES = [
   ['PUT', '/api/posts/:id/vote', votePost, AUTH],
   ['GET', '/api/notifications', notifications, AUTH],
 
+  ['GET', '/api/browse/discover', discover, OPEN],
+  ['GET', '/api/browse/mutuals', mutuals, OPEN],
+  ['GET', '/api/browse/people', people, OPEN],
+  ['GET', '/api/browse/boards', boardsForYou, OPEN],
+  ['POST', '/api/browse/hidden/:kind/:ref', hideSuggestion, AUTH],
+  ['DELETE', '/api/browse/hidden/:kind/:ref', unhideSuggestion, AUTH],
+
   ['GET', '/api/requests', requests, AUTH],
   ['POST', '/api/follows/:name', followUser, AUTH],
   ['DELETE', '/api/follows/:name', unfollowUser, AUTH],
@@ -141,6 +151,8 @@ const ROUTES = [
   ['POST', '/api/admin/board-requests/:id', decideBoardRequest, ADMIN],
   ['POST', '/api/admin/threads/:id', moderateThread, ADMIN],
   ['POST', '/api/admin/boards/:slug', moderateBoard, ADMIN],
+  ['GET', '/api/admin/boards/:slug/terms', boardTerms, ADMIN],
+  ['PUT', '/api/admin/boards/:slug/terms', saveBoardTerms, ADMIN],
   ['GET', '/api/admin/media', adminMedia, ADMIN],
   ['POST', '/api/admin/media/:id', moderateMedia, ADMIN],
   ['POST', '/api/admin/mutes', muteMember, ADMIN],

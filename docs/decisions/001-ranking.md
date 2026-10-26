@@ -70,6 +70,8 @@ All sorts tie-break on `created DESC, id DESC`. Constants: `EPOCH = 1767225600` 
   6. `New to OurSpace`
   7. `Popular on OurSpace this week` (the always-true fallback)
 
+- **Implemented** (phase 6, `src/browse/`): candidates are read in fixed-size index ranges before any filtering (writers in 8 buckets by id, each bucket's newest 64 posts of 7 days; each writer's newest 3; the newest 150 of those), then kept if eligible: statuses, blog posts, quotes and threads by open profiles you don't follow, on your side of the 18 line (the owner's phase 6 decision: adults see adults, teens see teens, logged out sees adults), in boards you don't post in (30 days), plus what people you follow replied to or commented on (your newest 40 follows, 2 replies and 2 comments each); score and caps as above (hot for posts: likes + reposts as votes). Changes: **no "Liked by" source or reason**, since who liked what is shown nowhere else in the app (replies and comments, which are public, take its place: +0.2 per person, max 3); no "new here" slot (open question 7); no +0.4 for boards you joined, because the owner's spec leaves boards you're active in out of discovery; private authors are never shown (not even their board threads); net -3 threads and posts with a photo a moderator holds are left out. The "author is a mutual" boost reads "friends of yours follow the writer" (`Your friend kat follows zed`). Diversity overflow rides in the cursor (40 ids at most) and leads the next page. No sent-ids list: the cursor alone keeps pages apart.
+
 ### Interaction score
 Used for group-chat suggestions and mutual tie-breaks. Directed table `affinity(a, b, score, updated_at)`, primary key `(a, b)`, `WITHOUT ROWID`: what `a` did toward `b`. It is updated on write and decayed on read.
 - **Weights:** reply or wall comment 3 (effort); 1:1 message sent 2; mention 2; follow 2 (so new friends outrank strangers); like 1; group-chat message 0.5 to each other member, only in groups of 8 or fewer (to cap writes). **Zero:** dislikes (disliking is not closeness), profile visits and views (not recorded, privacy).
@@ -91,6 +93,8 @@ Friend = mutual follow, kept in a both-directions `friends(a, b)` table updated 
 - **Cost:** about the sum of my friends' friend counts in rows (10,000 for 100 friends of 100). That is trivial on Paid and about 500 views a day on Free's 5M reads, so cache 6 hours per member on Free.
 - If there are fewer than 5 results, pad with active members of my boards, labeled differently.
 
+- **Implemented** (phase 6, `src/browse/`): as above, with no `friends` table (friends are two accepted follows) and caps that hold every request under 2,000 rows read (architecture.md, the row budget): your friends among your newest 100 follows (the newest 25 friendships), each one's newest 20 follows, 250 pairs; degrees count from the pairs read (so up to 20). Muted people aren't a thing here; blocked, banned, followed or requested, hidden ("not interested") and the other side of the 18 line (open question 3's default) are left out. Private profiles may show, as name and picture. No padding with board members below 5, and no 6-hour cache yet (roadmap). Names: up to 3, by closeness.
+
 ### Board recommendations from interests
 Interests live in the profile JSON, so there is no SQL match. We match in JS against a curated table, with no FTS5 (export blocker) and no embeddings (not researched; revisit only if hand-curation fails).
 1. **Boards carry terms.** `board_terms(board_id, term)` is written by the board owner; the board's name words are added automatically. Load once per Worker isolate, cache 5 minutes (about 2,000 rows).
@@ -99,6 +103,8 @@ Interests live in the profile JSON, so there is no SQL match. We match in JS aga
 4. **Score** `Σ over distinct matched terms: w_field · ln(1 + N/df)`. N = board count, df = boards holding the term, so rare terms count more and generic ones fade. `w_field` = 1.5 if the field matches the board's category (Music for a music board), else 1.
 5. **Keep** score of 1.0 or more, drop joined, muted and adult-flagged boards, show the top 5. Reason: `Because you listed "shoegaze" under Music`.
 6. **Fallback** (no interests, or no match), in order: boards where 2+ people I follow posted in 30 days (`Maya and Jo post here`); boards with 3+ distinct posters in 14 days (`5 members posted this week`); owner-featured starter boards. Never recommend a board with no thread in 30 days.
+
+- **Implemented** (phase 6, `migrations/0008_browse.sql`, `src/browse/`): `board_terms(term, board_id, weight)` curated by moderators (`PUT /api/admin/boards/:slug/terms`), seeded for the 14 launch boards; the name words are added in the Worker; cached 5 minutes per isolate. Normalising as above, also splitting on "+"; terms are at most 3 words. Skipped are boards you posted in and boards you hid. The fallback ladder is the owner's simpler one: boards busy this week (most posters), then the whole index; the "people I follow post here" rung and the 30-day dead-board rule aren't built. Reasons use the words as typed: `Because you listed "my chemical romance" under Music`.
 
 ### Constants (one `src/ranking/constants.js`, with unit tests for `wilson()` and `hot()`)
 | Name | Value | Used for |

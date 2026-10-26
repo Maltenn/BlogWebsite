@@ -56,6 +56,24 @@ export async function sha256Hex(s) {
   return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
+// The network an address belongs to, for rate limits: IPv4 as is; IPv6 by its /64, because one home or phone line
+// is handed a whole /64 and could otherwise rotate through 2^64 addresses to dodge every per-IP limit.
+export function ipGroup(ip) {
+  ip = String(ip || '').trim().toLowerCase().split('%')[0];
+  if (!ip.includes(':')) return ip || '0.0.0.0';
+  if (ip.includes('.')) return ip.slice(ip.lastIndexOf(':') + 1);   // IPv4-mapped (::ffff:1.2.3.4) is really IPv4
+  const [head, tail = ''] = ip.split('::');
+  const h = head ? head.split(':') : [], t = tail ? tail.split(':') : [];
+  const groups = [...h, ...Array(Math.max(0, 8 - h.length - t.length)).fill('0'), ...t];
+  return groups.slice(0, 4).map(g => g.replace(/^0+(?=.)/, '')).join(':') + '::/64';
+}
+
+// the request's network (ipGroup), salted and hashed: the key per-IP rate limits count under
+export async function ipKey(c) {
+  const ip = ipGroup(c.req.headers.get('CF-Connecting-IP'));
+  return (await sha256Hex(`${c.env.IP_SALT || 'ourspace-social'}|${ip}`)).slice(0, 32);
+}
+
 export function int(v, def = null) {
   const n = Number.parseInt(v, 10);
   return Number.isFinite(n) ? n : def;

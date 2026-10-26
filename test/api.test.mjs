@@ -35,7 +35,7 @@ before(async () => {
     GOOGLE_CLIENT_ID: 'g-id', GOOGLE_CLIENT_SECRET: 'g-secret', MICROSOFT_CLIENT_ID: 'm-id', MICROSOFT_CLIENT_SECRET: 'm-secret',
     DISCORD_CLIENT_ID: 'd-id', DISCORD_CLIENT_SECRET: 'd-secret', GITHUB_CLIENT_ID: 'gh-id', GITHUB_CLIENT_SECRET: 'gh-secret',
     APPLE_CLIENT_ID: 'page.ourspace.web', APPLE_TEAM_ID: 'TEAM123', APPLE_KEY_ID: 'KEY123', APPLE_PRIVATE_KEY: appleKey,
-    SPOTIFY_CLIENT_ID: 's-id', SPOTIFY_CLIENT_SECRET: 's-secret',
+    SPOTIFY_CLIENT_ID: 's-id', SPOTIFY_CLIENT_SECRET: 's-secret', SHOW_ROWS_READ: '1',
   };
   execFileSync(process.execPath, [WRANGLER, 'd1', 'migrations', 'apply', 'ourspace-social-db', '--local', '--persist-to', STATE], { cwd: ROOT, stdio: 'pipe' });
   // a unique name: the local explorer is shared by every running `wrangler dev`
@@ -2478,6 +2478,386 @@ test('photo uploads: image/jpg counts as JPEG, and a multipart part typed applic
   assert.equal((await upload(me, part(jpeg(), 'image/jpg'))).status, 201);
   assert.equal((await upload(me, part(png(), 'image/gif'))).status, 415, 'a part that says another picture type is refused');
   assert.equal((await upload(me, part(png(), 'text/html'))).status, 415);
+});
+
+/* ------------------------------------------------------------- Browse */
+
+// GET as `who`, with the rows the request read (X-Rows-Read: the tests run with SHOW_ROWS_READ)
+async function getRows(who, url) {
+  const res = await who.raw('GET', url);
+  return { status: res.status, data: await res.json(), rows: Number(res.headers.get('x-rows-read')), headers: res.headers };
+}
+const ageYearsAgo = n => `${new Date().getUTCFullYear() - n}-01-01`;
+
+test('browse, mutuals: friends of friends by mutual friends, then "follows you", then Adamic–Adar; who you have in common; private ones as name and picture; never followed, requested, blocked, banned, hidden or across the 18 line', async () => {
+  const me = await newUser('mme');
+  const P = {};
+  for (const k of ['a', 'b', 'x', 'y', 'u', 'z', 'p', 'w', 'q', 'r', 's', 't']) P[k] = await newUser('mm' + k);
+  const teen = await newUser('mmteen', { birthday: ageYearsAgo(15) });
+  // a: friends with me, x, y, z, p, q, r, s, t and the teen (10 friends); b: with me, x, u, w (4)
+  for (const [m, n] of [[me, P.a], [me, P.b], [P.a, P.x], [P.b, P.x], [P.a, P.y], [P.b, P.u], [P.a, P.z], [P.a, P.p], [P.b, P.w], [P.a, P.q], [P.a, P.r], [P.a, P.s], [P.a, P.t], [P.a, teen]]) await befriend(m, n);
+  await P.p.put('/api/me/settings', { followPolicy: 'approve', dmPolicy: 'friends' });     // private: shows as a name and a picture
+  await P.q.put('/api/me/settings', { followPolicy: 'approve' });
+  await me.post('/api/follows/' + P.q.name);                                            // requested: out
+  await me.post('/api/follows/' + P.w.name);                                            // followed: out
+  await P.y.post('/api/follows/' + me.name);                                            // follows me
+  await P.r.post('/api/blocks/' + me.name);                                             // a block: out
+  const mod = await moderator('mmmod');
+  await mod.post('/api/admin/users/' + P.s.name, { banned: true });                     // banned: out
+  assert.equal((await me.post(`/api/browse/hidden/person/${P.t.id}`)).status, 200);    // "not interested": out
+
+  const got = await getRows(me, '/api/browse/mutuals');
+  assert.equal(got.status, 200);
+  // x: 2 mutual friends. Then 1 each: y follows me; u's mutual friend (b) has 4 friends, z's and p's (a) 10, so u
+  // comes first (Adamic–Adar); z and p tie on everything and the older account goes first
+  assert.deepEqual(got.data.people.map(o => o.user.id), [P.x.id, P.y.id, P.u.id, P.z.id, P.p.id]);
+  assert.equal(got.data.next, null);
+  const [ox, oy, , , op] = got.data.people;
+  const ab = [P.a, P.b].sort((m, n) => m.name.localeCompare(n.name));
+  assert.deepEqual(ox.mutual, { count: 2, people: ab.map(m => ({ id: m.id, name: m.name, avatar: ox.mutual.people.find(v => v.id === m.id).avatar })) });
+  assert.equal(ox.why, `Friends with ${ab[0].name} and ${ab[1].name}`);
+  assert.equal(ox.because, 'mutual');
+  assert.equal(oy.why, `Friends with ${P.a.name} · follows you`);
+  assert.deepEqual(oy.relation, { following: 'none', followsMe: true, friends: false, blockedByMe: false, canComment: false, canMessage: true });
+  assert.deepEqual(Object.keys(op).sort(), ['because', 'mutual', 'private', 'relation', 'user', 'why'], 'a private profile: nothing but its name and picture');
+  assert.equal(op.private, true);
+  assert.equal(op.relation.canMessage, false, 'its messages are for friends');
+  assert.ok(got.rows > 0 && got.rows < 2000, `bounded: ${got.rows} rows`);
+
+  // a teen never sees adults they don't know, nor adults the teen
+  assert.deepEqual((await me.get('/api/browse/mutuals')).data.people.filter(o => o.user.id === teen.id), []);
+  assert.deepEqual((await teen.get('/api/browse/mutuals')).data.people, [], 'everyone the teen could meet through a is an adult');
+
+  // "not interested" goes both ways; following someone takes them off
+  await me.post(`/api/browse/hidden/person/${P.x.id}`);
+  assert.ok(!(await me.get('/api/browse/mutuals')).data.people.some(o => o.user.id === P.x.id));
+  assert.deepEqual((await me.del(`/api/browse/hidden/person/${P.x.id}`)).data, { hidden: null });
+  assert.ok((await me.get('/api/browse/mutuals')).data.people.some(o => o.user.id === P.x.id));
+  await me.post('/api/follows/' + P.z.name);
+  assert.ok(!(await me.get('/api/browse/mutuals')).data.people.some(o => o.user.id === P.z.id));
+
+  // logged out: nobody, and a prompt
+  const anon = await getRows(client(), '/api/browse/mutuals');
+  assert.deepEqual([anon.data.people, anon.data.next, typeof anon.data.prompt], [[], null, 'string']);
+
+  // Who to follow: the top mutuals first, then recently active open profiles by followers (never private, me or anyone
+  // I follow); logged out, only those
+  const three = await getRows(me, '/api/browse/people?limit=3');
+  assert.deepEqual(three.data.people.map(o => [o.user.id, o.because]), [[P.x.id, 'mutual'], [P.y.id, 'mutual'], [P.u.id, 'mutual']]);
+  assert.equal(three.headers.get('cache-control'), 'no-store', 'yours alone: a browser never keeps it for the next account');
+  const ten = (await me.get('/api/browse/people?limit=10')).data.people;
+  assert.ok(ten.length >= 5 && ten.length <= 10, String(ten.length));
+  assert.deepEqual(ten.slice(0, 4).map(o => o.user.id), [P.x.id, P.y.id, P.u.id, P.p.id]);
+  for (const o of ten.slice(4)) {
+    assert.equal(o.because, 'popular');
+    assert.ok(o.private === false && typeof o.followers === 'number' && o.why);
+    assert.ok(![me.id, P.a.id, P.b.id, P.w.id, P.r.id, P.s.id, P.t.id, teen.id].includes(o.user.id), 'not me, followed, blocked, banned, hidden or a teen');
+  }
+  const out = (await client().get('/api/browse/people?limit=10')).data.people;
+  assert.ok(out.length > 0 && out.every(o => o.because === 'popular' && !o.private && o.relation === null && o.user.id !== P.s.id));
+  assert.ok(three.rows < 2000, `bounded: ${three.rows} rows`);
+});
+
+test('browse, boards for you: interests → boards through board_terms, with the words that matched; never a board you post in or hid; then the busiest, then the rest; logged out, the busiest', async () => {
+  const fan = await newUser('bfan');
+  await fan.put('/api/me/profile', { interests: { General: 'Thrifting', Music: 'My Chemical Romance, paramore!!', Movies: '', Television: 'BUFFY', Books: '', Heroes: '' } });
+  const got = await getRows(fan, '/api/browse/boards');
+  assert.equal(got.status, 200);
+  assert.equal(got.data.hasInterests, true);
+  const top = got.data.boards.slice(0, 3);
+  // Music: two terms under its own field; Movies & TV: one under Television (its field); Fashion: one under General
+  assert.deepEqual(top.map(o => [o.board.slug, o.because]), [['music', 'interests'], ['movies-tv', 'interests'], ['fashion', 'interests']]);
+  assert.deepEqual(top[0].terms, [{ term: 'my chemical romance', field: 'Music' }, { term: 'paramore', field: 'Music' }]);
+  assert.equal(top[0].why, 'Because you listed "my chemical romance" under Music');
+  assert.equal(top[1].why, 'Because you listed "buffy" under Television');
+  assert.equal(top[2].why, 'Because you listed "thrifting" under General');
+  assert.deepEqual(Object.keys(top[0].board).sort(), ['description', 'icon', 'name', 'slug']);
+  assert.equal(got.data.boards.length, 5);
+  assert.ok(got.data.boards.slice(3).every(o => o.because !== 'interests' && o.why));
+  assert.ok(got.rows > 0 && got.rows < 3000, `bounded: ${got.rows} rows`);
+
+  // posting in a board, or hiding one, takes it off
+  await fan.post('/api/boards/music/threads', { subject: 'mcr appreciation', body: 'that is all' });
+  assert.equal((await fan.post('/api/browse/hidden/board/fashion')).status, 200);
+  const after = (await fan.get('/api/browse/boards?limit=10')).data.boards;
+  assert.deepEqual(after.slice(0, 1).map(o => o.board.slug), ['movies-tv']);
+  assert.ok(!after.some(o => ['music', 'fashion'].includes(o.board.slug)));
+  assert.equal(after.length, 10);
+  assert.equal((await fan.get('/api/browse/boards?limit=2')).data.boards.length, 2);
+
+  // no interests: the busiest this week (someone posted), then the quiet ones; logged out the same
+  for (const who of [await newUser('bplain'), client()]) {
+    const { boards, hasInterests } = (await who.get('/api/browse/boards?limit=10')).data;
+    assert.equal(hasInterests, false);
+    const kinds = boards.map(o => o.because);
+    assert.ok(kinds[0] === 'busy' && kinds.every(k => k !== 'interests'), kinds.join());
+    assert.equal(kinds.lastIndexOf('busy') + 1, kinds.indexOf('all') === -1 ? kinds.length : kinds.indexOf('all'), 'busy ones first');
+    const busy = boards.filter(o => o.because === 'busy');
+    assert.ok(busy.every((o, i) => o.posters >= 1 && (i === 0 || busy[i - 1].posters >= o.posters)), 'most people posting first');
+    assert.match(busy[0].why, /^\d+ members? posted in .+ this week$/);
+  }
+});
+
+test('browse, board terms: moderators add and remove them (logged), and they count at once', async () => {
+  const mod = await moderator('termmod');
+  const fan = await newUser('termfan');
+  assert.equal((await fan.get('/api/admin/boards/pets/terms')).status, 403);
+  const before = (await mod.get('/api/admin/boards/pets/terms')).data;
+  assert.equal(before.board.slug, 'pets');
+  assert.ok(before.terms.some(t => t.term === 'hamster'));
+  assert.equal((await mod.put('/api/admin/boards/pets/terms', { add: ['one two three four'] })).status, 400, 'four words');
+  assert.equal((await mod.put('/api/admin/boards/pets/terms', { add: [{ term: 'x', weight: 9 }] })).status, 400, 'weight');
+  assert.equal((await mod.put('/api/admin/boards/nope/terms', { add: ['x'] })).status, 404);
+  const saved = await mod.put('/api/admin/boards/pets/terms', { add: ['Axolotls!', { term: 'pond critters', weight: 2 }], remove: ['hamster'] });
+  assert.equal(saved.status, 200);
+  assert.ok(saved.data.terms.some(t => t.term === 'axolotls' && t.weight === 1));
+  assert.ok(saved.data.terms.some(t => t.term === 'pond critters' && t.weight === 2));
+  assert.ok(!saved.data.terms.some(t => t.term === 'hamster'));
+  assert.equal(sql("SELECT COUNT(*) AS n FROM mod_log WHERE action = 'board_terms'")[0].n >= 1, true);
+  await fan.put('/api/me/profile', { interests: { General: 'my axolotl', Music: '', Movies: '', Television: '', Books: '', Heroes: '' } });
+  const [first] = (await fan.get('/api/browse/boards')).data.boards;
+  assert.deepEqual([first.board.slug, first.why], ['pets', 'Because you listed "axolotl" under General']);
+  await mod.put('/api/admin/boards/pets/terms', { add: ['hamster'], remove: ['axolotls', 'pond critters'] });
+});
+
+test('browse, discovery: open profiles\' recent posts and threads with a reason each; never private, blocked, banned, hidden, deleted, held photos, people I follow, boards I post in or what I hid; 2 per author and 4 per board a page; paging holds still', async () => {
+  const me = await newUser('dme');
+  await me.put('/api/me/profile', { interests: { General: 'kittens', Music: '', Movies: '', Television: '', Books: '', Heroes: '' } });
+  const followed = await newUser('dfol'), pal = await newUser('dpal'), fof = await newUser('dfof');
+  const author = await newUser('dauth'), author2 = await newUser('dautb'), author3 = await newUser('dautc');
+  const priv = await newUser('dpriv'), blocker = await newUser('dblk'), banned = await newUser('dban'), holder = await newUser('dhold');
+  const loud = await newUser('dloud'), muted = await newUser('dmute');
+  const mod = await moderator('dmod');
+  await me.post('/api/follows/' + followed.name);
+  await befriend(me, pal);
+  await pal.post('/api/follows/' + fof.name);
+  await priv.put('/api/me/settings', { followPolicy: 'approve' });
+  const status = async (who, body, media) => (await who.post('/api/status', { body, ...(media ? { media } : {}) })).data.id;
+  const thread = async (who, board, subject) => (await who.post(`/api/boards/${board}/threads`, { subject, body: 'words' })).data.thread.id;
+
+  const s1 = await status(author, 'just a status');
+  await followed.post(`/api/posts/${s1}/replies`, { body: 'nice' });
+  const s2 = await status(fof, 'friend of a friend');
+  const s3 = await status(priv, 'private');
+  const t0 = await thread(priv, 'random', 'a private member\'s thread');
+  const s4 = await status(blocker, 'they blocked me');
+  await blocker.post('/api/blocks/' + me.name);
+  const s5 = await status(banned, 'about to be banned');
+  await mod.post('/api/admin/users/' + banned.name, { banned: true });
+  const s6 = await status(followed, 'someone I follow');
+  const s7 = await status(me, 'my own');
+  const s8 = await status(author2, 'hidden by a moderator');
+  await mod.post('/api/admin/content', { type: 'post', id: s8, hidden: true });
+  const s9 = await status(author2, 'deleted');
+  await author2.del('/api/posts/' + s9);
+  const m = await photo(holder);
+  const s10 = await status(holder, 'a held photo', [m.id]);
+  await mod.post(`/api/admin/media/${m.id}`, { action: 'hide' });
+  const s11 = await status(author2, 'not interested in this one');
+  const s12 = await status(muted, 'not interested in this person');
+  const t1 = await thread(author, 'pets', 'my kitten');                                  // a board my interests point to
+  await thread(me, 'cooking', 'my own thread');                                          // I post in Cooking
+  const t2 = await thread(author3, 'cooking', 'in a board I post in');
+  const t3 = await thread(author3, 'school', 'net -3');
+  for (const v of [followed, pal, holder]) await v.put(`/api/posts/${t3}/vote`, { value: -1 });
+  const t4 = await thread(author3, 'sports', 'in a board I hid');
+  const louds = [await status(loud, 'one'), await status(loud, 'two'), await status(loud, 'three')];
+  await me.post(`/api/browse/hidden/post/${s11}`);
+  await me.post(`/api/browse/hidden/person/${muted.id}`);
+  await me.post('/api/browse/hidden/board/sports');
+
+  // every page: 20 at most, 2 per author, 4 per board, each with its reason; a post written after page 1 takes its own
+  // place in the order (on a later page only if it scores below where page 1 ended) and moves nothing else
+  const all = [];
+  let next = null, fresh = null, rows = 0;
+  for (let n = 0; n < 40; n++) {
+    const r = await getRows(me, '/api/browse/discover' + (next ? '?before=' + encodeURIComponent(next) : ''));
+    assert.equal(r.status, 200);
+    rows = Math.max(rows, r.rows);
+    const items = r.data.items;
+    assert.ok(items.length <= 20);
+    const count = key => items.reduce((acc, o) => acc.set(key(o), (acc.get(key(o)) || 0) + 1), new Map());
+    assert.ok([...count(o => o.item.author.id).values()].every(k => k <= 2), 'two per author');
+    assert.ok([...count(o => o.item.board && o.item.board.slug).entries()].every(([b, k]) => !b || k <= 4), 'four per board');
+    for (const o of items) {
+      assert.ok(['replied', 'friends', 'interest', 'popular'].includes(o.reason) && typeof o.why === 'string' && o.why.length > 5);
+      assert.equal(o.relation.following, 'none');
+    }
+    all.push(...items);
+    if (n === 0) fresh = await status(await newUser('dlate'), 'written after page 1');
+    next = r.data.next;
+    if (!next) break;
+  }
+  const ids = all.map(o => o.item.id);
+  assert.equal(new Set(ids).size, ids.length, 'nothing twice');
+  assert.ok(ids.filter(id => id === fresh).length <= 1);
+  const of = id => all.find(o => o.item.id === id);
+  assert.deepEqual([of(s1).reason, of(s1).why], ['replied', `Replied to by ${followed.name}, who you follow`]);
+  assert.deepEqual([of(s2).reason, of(s2).why], ['friends', `Your friend ${pal.name} follows ${fof.name}`]);
+  assert.deepEqual([of(t1).reason, of(t1).why], ['interest', 'Because you listed "kittens" under General']);
+  assert.equal(of(t1).item.board.slug, 'pets', 'a thread carries its board (for "view board")');
+  assert.ok(all.some(o => o.reason === 'popular' && /^Popular (on OurSpace this week|in .+)$/.test(o.why)));
+  for (const id of louds) assert.ok(ids.includes(id), 'the third waits for the next page, it isn\'t lost');
+  for (const [id, what] of [[s3, 'private'], [t0, 'a private member\'s thread'], [s4, 'blocked'], [s5, 'banned'], [s6, 'followed'], [s7, 'mine'], [s8, 'hidden'],
+    [s9, 'deleted'], [s10, 'held photo'], [s11, 'hidden post'], [s12, 'hidden person'], [t2, 'a board I post in'], [t3, 'net -3'], [t4, 'a board I hid']]) {
+    assert.ok(!ids.includes(id), what);
+  }
+  assert.ok(rows > 0 && rows <= 2000, `bounded: ${rows} rows`);
+
+  // logged out: everybody's open posts (a block of mine doesn't count), still never private, banned or held
+  const out = [];
+  next = null;
+  for (let n = 0; n < 40; n++) {
+    const r = (await client().get('/api/browse/discover' + (next ? '?before=' + encodeURIComponent(next) : ''))).data;
+    out.push(...r.items);
+    next = r.next;
+    if (!next) break;
+  }
+  const outIds = out.map(o => o.item.id);
+  assert.ok([s1, s4, s6, s7, t2].every(id => outIds.includes(id)));
+  assert.ok([s3, t0, s5, s8, s9, s10].every(id => !outIds.includes(id)));
+  assert.ok(out.every(o => o.relation === null && o.reason === 'popular'));
+  assert.equal((await client().get('/api/browse/discover?before=junk')).status, 400);
+});
+
+test('browse, "not interested": person, board or post, only things that exist, never yourself, members only', async () => {
+  const me = await newUser('hide');
+  assert.equal((await client().post(`/api/browse/hidden/person/${me.id}`)).status, 401);
+  assert.equal((await me.post(`/api/browse/hidden/person/${me.id}`)).status, 404, 'yourself');
+  assert.equal((await me.post('/api/browse/hidden/person/999999999')).status, 404);
+  assert.equal((await me.post('/api/browse/hidden/board/no-such-board')).status, 404);
+  assert.equal((await me.post('/api/browse/hidden/post/abc')).status, 404);
+  assert.equal((await me.post('/api/browse/hidden/thing/1')).status, 404);
+  const r = await me.post('/api/browse/hidden/board/Random');
+  assert.equal(r.data.hidden.kind, 'board');
+  assert.equal((await me.post('/api/browse/hidden/board/random')).status, 200, 'twice is fine');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM browse_hidden WHERE user_id = ${me.id}`)[0].n, 1);
+  assert.deepEqual((await me.del('/api/browse/hidden/board/random')).data, { hidden: null });
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM browse_hidden WHERE user_id = ${me.id}`)[0].n, 0);
+});
+
+test('browse, "not interested" in a post: any id, one answer, so it never tells whether a private or hidden post exists; the daily limit counts before anything is looked up', async () => {
+  const me = await newUser('hidp'), shy = await newUser('hidshy'), mod = await moderator('hidmod');
+  await shy.put('/api/me/settings', { followPolicy: 'approve' });
+  const secret = (await shy.post('/api/status', { body: 'for my followers' })).data.id;
+  const open = (await mod.post('/api/status', { body: 'about to be hidden' })).data.id;
+  await mod.post('/api/admin/content', { type: 'post', id: open, hidden: true });
+  const missing = Number(sql('SELECT MAX(id) AS m FROM posts')[0].m) + 1000;
+  const answers = [];
+  for (const id of [secret, open, missing]) {
+    const r = await me.post(`/api/browse/hidden/post/${id}`);
+    answers.push([r.status, r.data]);
+  }
+  assert.deepEqual(answers, [secret, open, missing].map(id => [200, { hidden: { kind: 'post', id } }]), 'private, hidden and missing all look alike');
+  const tries = () => sql(`SELECT COUNT(*) AS n FROM attempts WHERE k = 'hide:${me.id}'`)[0].n;
+  const before = tries();
+  assert.equal((await me.post('/api/browse/hidden/person/999999999')).status, 404);
+  assert.equal((await me.post('/api/browse/hidden/board/no-such-board')).status, 404);
+  assert.equal(tries(), before + 2, 'a miss counts against the 300 a day too');
+});
+
+test('browse: every answer that depends on who is asking is no-store, so a browser never shows one account\'s page to the next', async () => {
+  const me = await newUser('nostore');
+  const routes = ['/api/me', '/api/me/account', '/api/me/bookmarks', '/api/astro/me', '/api/users', `/api/users/${me.name}`, `/api/users/${me.name}/followers`,
+    '/api/feed', '/api/notifications', '/api/requests', '/api/chats', '/api/chats/suggestions', '/api/blocks', '/api/boards', '/api/boards/random',
+    '/api/browse/discover', '/api/browse/mutuals', '/api/browse/people?limit=3', '/api/browse/boards'];
+  for (const url of routes) {
+    for (const who of [me, client()]) {
+      const res = await who.raw('GET', url);
+      if (res.status === 200) assert.equal(res.headers.get('cache-control'), 'no-store', `${url} (${who === me ? 'member' : 'logged out'})`);
+      await res.arrayBuffer();
+    }
+  }
+});
+
+test('browse: For you, Mutuals and Who to follow are rate limited per member (60 a minute)', async () => {
+  const me = await newUser('busy');
+  const got = [];
+  for (let i = 0; i < 61; i++) got.push((await me.get('/api/browse/people?limit=1')).status);
+  assert.deepEqual([got.slice(0, 60).every(s => s === 200), got[60]], [true, 429]);
+  assert.equal((await me.get('/api/browse/discover')).status, 200, 'each route counts on its own');
+});
+
+test('browse, the 18 line: For you and Who to follow never put an adult and a 13–17-year-old in front of each other; logged out, adults only', async () => {
+  const adult = await newUser('agead'), teen = await newUser('ageteen', { birthday: ageYearsAgo(15) }), teen2 = await newUser('ageteenb', { birthday: ageYearsAgo(16) });
+  const grown = await newUser('agegrown');
+  const t = (await teen2.post('/api/status', { body: 'a teen writes' })).data.id;
+  const g = (await grown.post('/api/status', { body: 'an adult writes' })).data.id;
+  const all = async who => {
+    const ids = [];
+    let next = null;
+    for (let n = 0; n < 30; n++) {
+      const r = (await who.get('/api/browse/discover' + (next ? '?before=' + encodeURIComponent(next) : ''))).data;
+      ids.push(...r.items.map(o => o.item.id));
+      if (!(next = r.next)) break;
+    }
+    return ids;
+  };
+  const seenByAdult = await all(adult), seenByTeen = await all(teen), seenLoggedOut = await all(client());
+  assert.ok(seenByAdult.includes(g) && !seenByAdult.includes(t), 'an adult: adults only');
+  assert.ok(seenByTeen.includes(t) && !seenByTeen.includes(g), 'a teen: teens only');
+  assert.ok(seenLoggedOut.includes(g) && !seenLoggedOut.includes(t), 'logged out: adults only');
+  const people = (await client().get('/api/browse/people?limit=10')).data.people.map(o => o.user.id);
+  assert.ok(![teen.id, teen2.id].some(id => people.includes(id)), 'Who to follow, logged out: adults only');
+  const teenPeople = (await teen.get('/api/browse/people?limit=10')).data.people.map(o => o.user.id);
+  assert.ok(!teenPeople.includes(adult.id) && !teenPeople.includes(grown.id), 'a teen is never suggested an adult');
+});
+
+test('browse, the row budget under floods: every route stays under 2,000 rows read whatever one account piles up, and one account can\'t fill For you', async () => {
+  const me = await newUser('flme'), loud = await newUser('flloud'), pal = await newUser('flpal'), shy = await newUser('flshy'), spam = await newUser('flspam');
+  await me.post('/api/follows/' + loud.name);
+  await befriend(me, pal);
+  await shy.put('/api/me/settings', { followPolicy: 'approve' });
+  const target = (await pal.post('/api/status', { body: 'reply to me' })).data.id;
+  const now = Date.now();
+  const many = (n, select) => `WITH RECURSIVE n(i) AS (SELECT 1 UNION ALL SELECT i + 1 FROM n WHERE i < ${n}) ${select}`;
+  const budget = async stage => {
+    const out = {};
+    for (const [who, url] of [[me, '/api/browse/discover'], [client(), '/api/browse/discover'], [me, '/api/browse/mutuals'], [me, '/api/browse/people?limit=10'],
+      [client(), '/api/browse/people?limit=10'], [me, '/api/browse/boards']]) {
+      const r = await getRows(who, url);
+      assert.equal(r.status, 200, `${stage}: ${url}`);
+      assert.ok(r.rows > 0 && r.rows <= 2000, `${stage}: ${url} read ${r.rows} rows`);
+      out[url + (who === me ? '' : ' (logged out)')] = r.rows;
+    }
+    return out;
+  };
+  await budget('before');
+  try {
+    // 10,000 replies this week by somebody I follow
+    sql(many(10000, `INSERT INTO posts (kind, author_id, body, created, reply_to, root_id) SELECT 'reply', ${loud.id}, 'r' || i, ${now} - i * 1000, ${target}, ${target} FROM n`));
+    await budget('10k replies by a followee');
+    // 10,000 statuses this week by a private profile
+    sql(many(10000, `INSERT INTO posts (kind, author_id, body, created) SELECT 'status', ${shy.id}, 'p' || i, ${now} - i * 1000 FROM n`));
+    await budget('10k private statuses');
+    // a friend of mine follows 10,000 people one way, then they all follow back: 10,000 friends of a friend
+    sql(many(10000, `INSERT INTO users (name, name_key, email, avatar, birthdate, created) SELECT 'flbot' || i, 'flbot${now}_' || i, 'flbot${now}_' || i || '@example.com', '/assets/avatars/pic_cd_rainbow.gif', '1990-01-01', ${now} FROM n`));
+    sql(`INSERT INTO follows (follower_id, followee_id, status, created, accepted) SELECT ${pal.id}, id, 'accepted', ${now}, ${now} FROM users WHERE name_key LIKE 'flbot${now}_%'`);
+    await budget('a friend follows 10k one way');
+    sql(`INSERT INTO follows (follower_id, followee_id, status, created, accepted) SELECT id, ${pal.id}, 'accepted', ${now}, ${now} FROM users WHERE name_key LIKE 'flbot${now}_%'`);
+    await budget('10k friends of a friend');
+    const fof = (await me.get('/api/browse/mutuals')).data.people;
+    assert.ok(fof.length > 0 && fof.every(o => o.mutual.people.some(p => p.id === pal.id)), 'Mutuals still works: through the friend, their newest few');
+    // one account posts 300 statuses today (the daily limit): it takes 3 places among the candidates, 2 on a page
+    sql(many(300, `INSERT INTO posts (kind, author_id, body, created) SELECT 'status', ${spam.id}, 'buy followers ' || i, ${now} - i * 200000 FROM n`));
+    await budget('300 statuses by one account');
+    for (const who of [me, client()]) {
+      const first = (await who.get('/api/browse/discover')).data.items;
+      assert.ok(first.filter(o => o.item.author.id === spam.id).length <= 2, 'two a page');
+      assert.ok(new Set(first.map(o => o.item.author.id)).size >= 5, `page 1 keeps its variety: ${first.length} items`);
+      let next = (await who.get('/api/browse/discover')).data.next, theirs = first.filter(o => o.item.author.id === spam.id).length;
+      for (let n = 0; next && n < 30; n++) {
+        const r = (await who.get('/api/browse/discover?before=' + encodeURIComponent(next))).data;
+        theirs += r.items.filter(o => o.item.author.id === spam.id).length;
+        next = r.next;
+      }
+      assert.ok(theirs <= 3, `3 candidates at most, on every page together: ${theirs}`);
+    }
+  } finally {
+    sql(`DELETE FROM posts WHERE author_id IN (${loud.id}, ${shy.id}, ${spam.id})`);
+    sql(`DELETE FROM follows WHERE follower_id IN (SELECT id FROM users WHERE name_key LIKE 'flbot${now}_%') OR followee_id IN (SELECT id FROM users WHERE name_key LIKE 'flbot${now}_%')`);
+    sql(`DELETE FROM users WHERE name_key LIKE 'flbot${now}_%'`);
+  }
 });
 
 test('every photo row has its file in the bucket, and every file in the bucket its row, after everything the tests above did', async () => {

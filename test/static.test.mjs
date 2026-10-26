@@ -139,7 +139,7 @@ test('names imported from our own modules are exported by them', () => {
 // What each part of the code may import (besides packages). See CONVENTIONS.md.
 const SRC = path.join(ROOT, 'src');
 const CROSS_FEATURE = ['accounts/oauth.js → music/spotify.js', 'profiles/profiles.js → music/spotify.js', 'accounts/auth.js → profiles/profiles.js',
-  'boards/boards.js → social/items.js'];
+  'boards/boards.js → social/items.js', 'browse/browse.js → social/items.js'];
 const srcRel = f => path.relative(SRC, f).split(path.sep).join('/');
 function srcArea(f) {
   const parts = path.relative(SRC, f).split(path.sep);

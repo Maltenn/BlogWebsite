@@ -87,10 +87,12 @@ const gif = name => `/assets/${name}.gif`;
 const PEOPLE = [
   { key: 'you', name: 'the_reviewer', email: 'you@example.com', birthday: '1998-04-12', avatar: pic('pic_star_top_hat.gif'),
     profile: { tag: 'just looking around', mood: 'curious', theme: 'classic-purple',
-      about: 'this is your demo account. change anything you like: Edit My Page, Settings, connect the pretend Spotify, post a status. nothing here is real or public.' } },
+      about: 'this is your demo account. change anything you like: Edit My Page, Settings, connect the pretend Spotify, post a status. nothing here is real or public.',
+      interests: { General: 'thrifting, stargazing, baking', Music: 'my chemical romance, paramore', Movies: 'mean girls', Television: 'buffy', Books: 'harry potter', Heroes: '' } } },
   { key: 'malten', name: 'malten', email: 'malten@example.com', birthday: '1995-06-18', avatar: pic('pic_cd_rainbow.gif'),
     profile: { tag: 'i run this place', mood: 'caffeinated', theme: 'ourspace-blue', hereFor: 'Friends, The bulletins',
-      about: 'the site owner and moderator in this demo. log in as me to see the Moderation tab: reports, hiding posts, bans and the log.' } },
+      about: 'the site owner and moderator in this demo. log in as me to see the Moderation tab: reports, hiding posts, bans and the log.',
+      interests: { General: 'html, websites, coding', Music: 'radiohead, weezer', Movies: 'hackers', Television: 'futurama', Books: 'snow crash', Heroes: '' } } },
   { key: 'kat', name: 'xX_glitterkat_Xx', email: 'kat@example.com', birthday: '2001-02-14', avatar: pic('pic_glitter_heart_pink.gif'), spotify: 'short_term',
     profile: { tag: '♥ glitter is a lifestyle ♥', mood: 'sparkly', hometown: 'the mall food court', status: 'Saving myself for my Top 8', hereFor: 'Friends, Glitter, Top 8 drama',
       about: 'hiii!! i\'m kat. i collect glitter gifs, hello kitty everything and way too many layouts. my top 8 changes weekly, don\'t take it personally ♥\n\nleave me a comment!!',
@@ -125,6 +127,22 @@ const PEOPLE = [
       about: 'bedroom DJ. i make mixes for every occasion: road trips, breakups, homework, cleaning your room. requests open!', meet: 'anyone with a better playlist than mine (impossible).',
       interests: { General: 'mixing, vinyl, baking banana bread', Music: 'gorillaz, missy elliott, outkast, daft punk', Movies: 'high fidelity, scott pilgrim', Television: 'yo gabba gabba (ironically)', Books: 'record store price guides', Heroes: 'whoever invented the crossfader' },
       theme: 'banana', bgTile: '/assets/bg_stars_tile.gif', decor: [gif('deco_record_dj'), gif('deco_banana_tiny')], badges: [gif('badge_winamp'), gif('badge_midi_files_now')] } },
+  // friends of your friends, for Browse: Mutuals shows them with who you have in common, For you shows what they post
+  { key: 'rae', name: 'roller_rae', email: 'rae@example.com', birthday: '2000-08-09', avatar: pic('icon_gc_skater_purple.gif'),
+    profile: { tag: 'rink rat since 1999', hometown: 'the roller rink', hereFor: 'Friends, Music',
+      about: 'couples skate is a scam. i skate alone and i skate fast.',
+      interests: { General: 'roller skating, cats, baking', Music: 'avril lavigne, britney spears', Movies: 'she\'s the man', Television: 'gilmore girls', Books: '', Heroes: 'whoever plays the rink dj' } } },
+  { key: 'cam', name: 'cam_the_gamer', email: 'cam@example.com', birthday: '1999-12-01', avatar: pic('icon_gc_frog_pixel.gif'),
+    profile: { tag: 'one more level', hometown: 'player 2', hereFor: 'Friends, Networking',
+      about: 'i will beat your high score and then apologise.',
+      interests: { General: 'video games, pokemon, lan party', Music: 'chiptune', Movies: 'scott pilgrim', Television: '', Books: 'manga', Heroes: 'speedrunners' } } },
+  { key: 'lou', name: 'lou_bakes', email: 'lou@example.com', birthday: '1997-03-03', avatar: pic('icon_gc_hamster_teacup.gif'),
+    profile: { tag: 'flour on everything', hometown: 'the kitchen', hereFor: 'Friends',
+      about: 'i bake when i\'m happy, sad or bored, which is always.',
+      interests: { General: 'baking, banana bread, recipes', Music: 'fleetwood mac', Movies: '', Television: '', Books: '', Heroes: 'my grandma' } } },
+  { key: 'sam', name: 'quiet_sam', email: 'sam@example.com', birthday: '2001-05-20', avatar: pic('icon_gc_doll_goth_red.gif'), settings: { followPolicy: 'approve' },
+    profile: { tag: '...', about: 'private profile. you\'ll see my name and picture in Mutuals, and nothing else until i accept you.',
+      interests: { General: 'tarot, journaling', Music: 'lana del rey', Movies: '', Television: '', Books: '', Heroes: '' } } },
 ];
 
 // the sample photos, drawn pixel by pixel into small PNGs (no image files to keep or credit)
@@ -182,10 +200,11 @@ async function seed() {
     Object.assign(c, { id: r.user.id, name: p.name });
     P[p.key] = c;
   }
-  const { you, malten, kat, jules, drew, pete, mia, banana } = P;
+  const { you, malten, kat, jules, drew, pete, mia, banana, rae, cam, lou, sam } = P;
   const follow = (a, b) => a.post('/api/follows/' + encodeURIComponent(b.name));
   // friends follow each other
-  for (const [a, b] of [[kat, jules], [kat, mia], [kat, drew], [kat, pete], [jules, pete], [pete, banana], [mia, banana], [drew, mia], [kat, you], [pete, you], [mia, you], [malten, you], [malten, kat]]) {
+  for (const [a, b] of [[kat, jules], [kat, mia], [kat, drew], [kat, pete], [jules, pete], [pete, banana], [mia, banana], [drew, mia], [kat, you], [pete, you], [mia, you], [malten, you], [malten, kat],
+    [rae, kat], [rae, mia], [cam, pete], [cam, jules], [lou, banana], [lou, kat], [sam, mia], [sam, kat]]) {
     await follow(a, b); await follow(b, a);
   }
   await follow(jules, you);                                          // two people following you (follow back to be friends)
@@ -309,6 +328,26 @@ async function seed() {
   await chime(pete, kickflip, 'bend your knees more than you think you need to');
   await vote(1, kickflip, pete, kat);
 
+  // Browse → For you: posts and threads by people you don't follow, in boards you don't post in. kat and mia (who you
+  // follow) answer some of them, which is the reason those show up first.
+  sql('DELETE FROM attempts');
+  const rink = await status(rae, 'roller rink tonight!! couples skate is optional (it is not optional for me, i skate alone) #rollerskating');
+  await reply(kat, rink, 'i\'m there!! saving you a spot by the snack bar');
+  const fridge = await thread(rae, 'pets', 'my cat learned to open the fridge', 'she just stares at me while she does it. i have no defense against this.');
+  await vote(1, fridge, kat, mia, lou);
+  await chime(lou, fridge, 'put a cookie sheet in front of it, she\'ll hate the noise');
+  const tonyHawk = await thread(cam, 'games', 'best tony hawk game? (wrong answers only)', 'i\'ll start: the one with the most loading screens');
+  await chime(mia, tonyHawk, 'the one where you can\'t do kickflips. a true test of character');
+  await vote(1, tonyHawk, jules, pete);
+  await status(cam, 'lan party at mine saturday. bring your own ethernet cable and snacks #lanparty');
+  const loaf = await thread(lou, 'cooking', 'banana bread but make it chocolate', 'half a bag of chocolate chips, a spoon of cocoa, same recipe otherwise. trust me.');
+  await vote(1, loaf, banana, kat, rae);
+  await chime(banana, loaf, 'adding this to my baking mix');
+  const third = await status(lou, 'third loaf this week. no regrets #baking');
+  for (const c of [kat, banana, rae]) await act(c, 'like', third);
+  await status(jules, 'filmed cam falling off a curb. it\'s going in the documentary #sk8');
+  await thread(banana, 'music', 'mix request thread', 'tell me a mood and i\'ll make you a mix. no mood is too specific.');
+
   // chat: a group chat you're in (kat's: her friends join at once), a group banana invited you to (you aren't friends
   // yet, so it waits for your answer), and some #ourspace chatter (slow mode: one message every 3 seconds per person,
   // so the second round starts over)
@@ -380,7 +419,7 @@ const vars = {
   DISCORD_CLIENT_ID: 'demo', DISCORD_CLIENT_SECRET: 'demo', GITHUB_CLIENT_ID: 'demo', GITHUB_CLIENT_SECRET: 'demo',
   APPLE_CLIENT_ID: 'page.ourspace.demo', APPLE_TEAM_ID: 'DEMO', APPLE_KEY_ID: 'DEMO',
   APPLE_PRIVATE_KEY: generateKeyPairSync('ec', { namedCurve: 'P-256' }).privateKey.export({ type: 'pkcs8', format: 'der' }).toString('base64'),
-  SPOTIFY_CLIENT_ID: 'demo', SPOTIFY_CLIENT_SECRET: 'demo',
+  SPOTIFY_CLIENT_ID: 'demo', SPOTIFY_CLIENT_SECRET: 'demo', SHOW_ROWS_READ: '1',
 };
 
 say('starting the site…');
@@ -458,7 +497,7 @@ console.log(`
 
   Log in as you:     you@example.com  /  ${PASSWORD}     (screen name the_reviewer, a regular member)
   The moderator:     malten@example.com, same password     (sees the Moderation tab and a sample report)
-  Or anyone else:    kat@, jules@, drew@, pete@, mia@ or banana@example.com, same password
+  Or anyone else:    kat@, jules@, drew@, pete@, mia@, banana@, rae@, cam@, lou@ or sam@example.com, same password
 
   · Everything is fake and stays on this computer. Sign up as many new people as you like.
   · "Other options" (Google, Apple…) and "connect Spotify" open pretend pages.

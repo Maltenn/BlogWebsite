@@ -16,6 +16,7 @@ Rules for changing this repo. Setup and architecture are in [README.md](README.m
   - `profiles` → `music/spotify`
   - `accounts/auth` → `profiles` (`defaultProfile`, `isAvatar`, `DEFAULT_AVATAR`)
   - `boards/boards` → `social/items` (the item, `hydrate`, `writePost`: board threads and comments are posts)
+  - `browse/browse` → `social/items` (the item and `hydrate`: discovery shows posts and threads as every list does)
 - `shared/` never imports a feature.
 - A feature that switches on with secrets exposes `xReady(env)` (like `spotifyReady`, `mailReady`). Its secrets go in [docs/deploy.md](docs/deploy.md) and in the comment at the top of `wrangler.jsonc`.
 

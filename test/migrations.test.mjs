@@ -2,7 +2,7 @@
 // and "joined" lines in the feed), applies 0002_follows.sql on top, and checks what became of everything; then adds posts
 // and applies 0003_interactions.sql, then adds bulletins and applies 0004_boards.sql, then 0005_media.sql (photos: the
 // attach-once trigger and what happens to photos when their post or owner goes), then 0006 and 0007_chat.sql (the 1:1
-// messages become DMs; the 50-member cap of a group). Uses wrangler's local D1 (run through
+// messages become DMs; the 50-member cap of a group), then 0008_browse.sql (the launch boards' interest terms). Uses wrangler's local D1 (run through
 // node, like the API tests) on a throwaway folder.
 import { test, after } from 'node:test';
 import assert from 'node:assert/strict';
@@ -12,6 +12,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { hot } from '../src/shared/ranking.js';
+import { validTerm } from '../src/browse/score.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const WRANGLER = path.join(ROOT, 'node_modules', 'wrangler', 'bin', 'wrangler.js');
@@ -279,4 +280,18 @@ test('0007 turns the 1:1 messages into DMs, keeping ids, times, read state, hidd
   const [left] = sql(`SELECT (SELECT COUNT(*) FROM conversation_members WHERE user_id = 8) + (SELECT COUNT(*) FROM chat_messages WHERE author_id = 8)
     + (SELECT COUNT(*) FROM affinity WHERE 8 IN (from_id, to_id)) AS n`);
   assert.equal(left[0].n, 0);
+});
+
+test('0008 gives each launch board its interest terms (each a term moderators could have typed), and a "not interested" list that goes with its member', () => {
+  apply('0008_browse.sql');
+  const [per, bad, total] = sql("SELECT b.slug, COUNT(t.term) AS n FROM boards b LEFT JOIN board_terms t ON t.board_id = b.id WHERE b.id <= 14 GROUP BY b.id ORDER BY b.position",
+    'SELECT term FROM board_terms WHERE weight != 1', 'SELECT term FROM board_terms');
+  assert.deepEqual(per.map(r => r.slug), ['music', 'movies-tv', 'games', 'art-layouts', 'cooking', 'pets', 'sports', 'tech', 'fashion', 'books-writing', 'astrology', 'school', 'advice', 'random']);
+  assert.ok(per.every(r => r.n >= 7), JSON.stringify(per));
+  assert.deepEqual(bad, [], 'all at weight 1');
+  assert.deepEqual(total.filter(r => validTerm(r.term) !== r.term), [], 'stored the way the admin route stores them');
+  sql("INSERT INTO browse_hidden (user_id, kind, ref_id, created) VALUES (2, 'person', 5, 1), (2, 'board', 1, 1), (5, 'post', 3, 1)");
+  assert.throws(() => sql("INSERT INTO browse_hidden (user_id, kind, ref_id, created) VALUES (2, 'thing', 1, 1)"), 'person, board or post');
+  sql('DELETE FROM users WHERE id = 2');
+  assert.deepEqual(sql('SELECT user_id, kind, ref_id FROM browse_hidden')[0], [{ user_id: 5, kind: 'post', ref_id: 3 }]);
 });

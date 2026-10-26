@@ -12,6 +12,7 @@ import { avatar, nameLink } from '../widgets/people.js';
 import { composer } from '../widgets/composer.js';
 import { postCard } from '../widgets/postcard.js';
 import { readTracker, after } from '../widgets/readmarker.js';
+import { whoToFollowBox } from '../widgets/suggestions.js';
 
 let feedMode = 'latest';          // 'latest' | 'resume' — kept while you click around the site
 let feedScope = 'following';      // 'following' | 'everyone' (Newest only; "pick up" is always the people you follow)
@@ -63,7 +64,7 @@ export async function renderHome(root) {
   if (!S.me) { await publicHome(root); return; }
 
   const main = h('div', { class: 'os-main' });
-  const side = h('aside', { class: 'os-side', 'aria-label': 'extras' }, horoscopeBox(), onlineBox());
+  const side = h('aside', { class: 'os-side', 'aria-label': 'extras' }, whoToFollowBox(), horoscopeBox(), onlineBox());
   const feedBox = h('div', { class: 'ms-feedbox' });
   const bar = h('div', { class: 'ms-feedbar ms-modebar' });
   let unseen = null;              // posts waiting after your marker (people you follow); null = not known yet (only the Following views say)

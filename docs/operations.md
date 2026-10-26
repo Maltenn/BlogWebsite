@@ -87,6 +87,8 @@ They are counted per person unless noted, in the `attempts` table, and old rows 
 | Read positions (`PUT /api/me/markers/feed` and `/notifications`) | 120 a minute |
 | Board threads (also count as posts) | 3 an hour and 10 a day |
 | Board requests | 3 a day |
+| Browse: For you, Mutuals, Who to follow | 60 a minute and 600 an hour each, per member (logged out: per connection) |
+| Browse: "not interested" | 300 a day (a miss counts too) |
 | Photo uploads | 30 an hour and 150 a day (and 200 MB stored per member) |
 | Blog entries (also count as posts) | 10 a day |
 | Reports | 10 an hour and 40 a day |
