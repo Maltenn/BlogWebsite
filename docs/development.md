@@ -12,7 +12,7 @@ npm test               # all tests (they start their own Worker on a fresh datab
 npm run demo           # the whole site with sample people and posts (see below)
 ```
 
-Locally you don't need any secrets to sign up with email. **Forgot my password** prints the reset link in the `npm run dev` terminal instead of sending an email. Secrets for trying real provider keys locally go in `.dev.vars`, which is git-ignored. Apple only accepts https addresses, so it can't be tried on `127.0.0.1`.
+Locally you don't need any secrets to sign up with email. **Forgot my password** prints the reset link in the `npm run dev` terminal instead of sending an email. Secrets for trying real provider keys locally go in `.dev.vars`, which is git-ignored.
 
 To start `npm run dev` over with an empty database, delete `.wrangler/state` and run `npm run db:local` again. (`rm -rf .wrangler/state` in a Unix shell, `Remove-Item -Recurse -Force .wrangler/state` in PowerShell.) The tests and the demo have their own databases and never touch it.
 
@@ -40,7 +40,7 @@ Test-only settings, like `TEST_PROVIDER_BASE` below. **Never set them on a real 
 
 ### TEST_PROVIDER_BASE
 
-`TEST_PROVIDER_BASE` makes the Worker send every sign-in and Spotify request to the server it names instead of to Google, Apple, Spotify and the rest. The tests and the demo use it. **Never set it on a real deployment.** It sends every sign-in to whatever server it names. It is not in `wrangler.jsonc`, and `wrangler secret put` should never be used for it.
+`TEST_PROVIDER_BASE` makes the Worker send every sign-in and Spotify request to the server it names instead of to Google, Discord and Spotify. The tests and the demo use it. **Never set it on a real deployment.** It sends every sign-in to whatever server it names. It is not in `wrangler.jsonc`, and `wrangler secret put` should never be used for it.
 
 ## Migrations locally
 

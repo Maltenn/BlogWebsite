@@ -1,8 +1,8 @@
-// "Other options": sign in with Google, Apple, Microsoft, Discord or GitHub — and connecting Spotify, which uses the
-// same machinery. A provider only appears when its keys are configured (docs/deploy.md → "Other sign-in options").
+// "Other options": sign in with Google or Discord — and connecting Spotify, which uses the same machinery. A provider
+// only appears when its keys are configured (docs/deploy.md → "Other sign-in options").
 //
 //   GET  /api/oauth/:provider/start?mode=login|link|spotify&next=/path   → 303 to the provider
-//   GET  /api/oauth/:provider/callback   (POST for Apple, which answers with a form)   → 303 back into the site
+//   GET  /api/oauth/:provider/callback                                     → 303 back into the site
 //   GET  /api/signup/pending   POST /api/signup/finish                    new people: screen name + birthday first
 //   GET  /api/auth/providers   GET /api/me/account   DELETE /api/me/identities/:provider
 //
@@ -25,35 +25,11 @@ const PROVIDERS = {
     userinfo: 'https://openidconnect.googleapis.com/v1/userinfo', scope: 'openid email profile', params: { prompt: 'select_account' },
     who: u => ({ id: u.sub, email: u.email, verified: u.email_verified === true || u.email_verified === 'true', name: u.given_name || u.name }),
   },
-  apple: {
-    label: 'Apple', env: 'APPLE', pkce: false, formPost: true,
-    authorize: 'https://appleid.apple.com/auth/authorize', token: 'https://appleid.apple.com/auth/token',
-    scope: 'name email', params: { response_mode: 'form_post' },
-    // Apple puts the person in the id_token. We take it straight from Apple's token endpoint over TLS, authenticated
-    // with our own client secret, so its signature doesn't need checking (OpenID Connect Core §3.1.3.7).
-    who: u => ({ id: u.sub, email: u.email, verified: u.email_verified === true || u.email_verified === 'true', name: null }),
-  },
-  microsoft: {
-    label: 'Microsoft', env: 'MICROSOFT', pkce: true,
-    authorize: 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize', token: 'https://login.microsoftonline.com/common/oauth2/v2.0/token',
-    userinfo: 'https://graph.microsoft.com/oidc/userinfo', scope: 'openid email profile', params: { prompt: 'select_account' },
-    // Microsoft doesn't promise the address was checked, so it is never used to recognise anybody
-    who: u => ({ id: u.sub, email: u.email, verified: false, name: u.given_name || u.name }),
-  },
   discord: {
     label: 'Discord', env: 'DISCORD', pkce: true,
     authorize: 'https://discord.com/oauth2/authorize', token: 'https://discord.com/api/oauth2/token',
     userinfo: 'https://discord.com/api/users/@me', scope: 'identify email',
     who: u => ({ id: u.id, email: u.email, verified: !!u.verified, name: u.global_name || u.username }),
-  },
-  github: {
-    label: 'GitHub', env: 'GITHUB', pkce: true,
-    authorize: 'https://github.com/login/oauth/authorize', token: 'https://github.com/login/oauth/access_token',
-    userinfo: 'https://api.github.com/user', emails: 'https://api.github.com/user/emails', scope: 'read:user user:email',
-    who: (u, emails) => {
-      const e = (emails || []).find(x => x.primary && x.verified) || (emails || []).find(x => x.verified);
-      return { id: u.id != null ? String(u.id) : null, email: e ? e.email : null, verified: !!e, name: u.name || u.login };
-    },
   },
   spotify: {
     label: 'Spotify', env: 'SPOTIFY', pkce: true, connectOnly: true, basicAuth: true,
@@ -68,7 +44,6 @@ const url = (env, id, what) => (env.TEST_PROVIDER_BASE ? `${env.TEST_PROVIDER_BA
 function configured(env, id) {
   const p = PROVIDERS[id];
   if (!p || !env[`${p.env}_CLIENT_ID`]) return false;
-  if (id === 'apple') return !!(env.APPLE_TEAM_ID && env.APPLE_KEY_ID && env.APPLE_PRIVATE_KEY);
   if (id === 'spotify') return spotifyReady(env);
   return !!env[`${p.env}_CLIENT_SECRET`];
 }
@@ -76,30 +51,13 @@ export const signInProviders = env => SIGN_IN.filter(id => configured(env, id)).
 const label = id => (PROVIDERS[id] ? PROVIDERS[id].label : id);
 
 const b64url = bytes => btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-const b64urlText = s => b64url(new TextEncoder().encode(s));
-const fromB64url = s => atob(s.replace(/-/g, '+').replace(/_/g, '/').padEnd(Math.ceil(s.length / 4) * 4, '='));
-
-// Apple wants a client secret that is a short-lived JWT signed with your Sign in with Apple key (ES256)
-async function appleSecret(env) {
-  const der = Uint8Array.from(atob(String(env.APPLE_PRIVATE_KEY).replace(/-----[^-]+-----/g, '').replace(/\\n|\s+/g, '')), ch => ch.charCodeAt(0));
-  const key = await crypto.subtle.importKey('pkcs8', der, { name: 'ECDSA', namedCurve: 'P-256' }, false, ['sign']);
-  const now = Math.floor(Date.now() / 1000);
-  const data = b64urlText(JSON.stringify({ alg: 'ES256', kid: env.APPLE_KEY_ID })) + '.' +
-    b64urlText(JSON.stringify({ iss: env.APPLE_TEAM_ID, iat: now, exp: now + 300, aud: 'https://appleid.apple.com', sub: env.APPLE_CLIENT_ID }));
-  const sig = new Uint8Array(await crypto.subtle.sign({ name: 'ECDSA', hash: 'SHA-256' }, key, new TextEncoder().encode(data)));
-  return data + '.' + b64url(sig);
-}
 
 const redirectUri = (c, id) => `${c.url.origin}/api/oauth/${id}/callback`;
 const safeNext = n => (typeof n === 'string' && /^\/(?![/\\])[^\\]*$/.test(n) && n.length < 300 ? n : null);
 const secure = c => (c.url.protocol === 'https:' ? '; Secure' : '');
 
-// The state cookie must survive the trip to the provider and back. Apple comes back with a cross-site POST, which
-// only carries SameSite=None cookies (allowed on https only).
-const stateCookie = (c, id, value, maxAge) => {
-  const site = id === 'apple' && c.url.protocol === 'https:' ? 'None' : 'Lax';
-  return `os_oauth=${value}; Path=/api/oauth; HttpOnly; SameSite=${site}; Max-Age=${maxAge}${secure(c)}`;
-};
+// The state cookie must survive the trip to the provider and back: the return is a top-level GET, which Lax allows
+const stateCookie = (c, value, maxAge) => `os_oauth=${value}; Path=/api/oauth; HttpOnly; SameSite=Lax; Max-Age=${maxAge}${secure(c)}`;
 
 function go(location, cookies = []) {
   const h = new Headers({ Location: location, 'Cache-Control': 'no-store' });
@@ -132,7 +90,7 @@ export async function oauthStart(c) {
     q.set('code_challenge', b64url(digest));
     q.set('code_challenge_method', 'S256');
   }
-  return go(`${url(c.env, id, 'authorize')}?${q}`, [stateCookie(c, id, state, 600)]);
+  return go(`${url(c.env, id, 'authorize')}?${q}`, [stateCookie(c, state, 600)]);
 }
 
 /* --------------------------------------------------------- callback */
@@ -142,7 +100,7 @@ async function exchange(c, id, code, verifier) {
   const body = new URLSearchParams({ grant_type: 'authorization_code', code, redirect_uri: redirectUri(c, id) });
   const headers = { 'Content-Type': 'application/x-www-form-urlencoded', Accept: 'application/json' };
   const clientId = c.env[`${P.env}_CLIENT_ID`];
-  const secret = id === 'apple' ? await appleSecret(c.env) : c.env[`${P.env}_CLIENT_SECRET`];
+  const secret = c.env[`${P.env}_CLIENT_SECRET`];
   if (P.basicAuth) headers.Authorization = 'Basic ' + btoa(`${clientId}:${secret}`);
   else { body.set('client_id', clientId); body.set('client_secret', secret); }
   if (verifier) body.set('code_verifier', verifier);
@@ -152,32 +110,18 @@ async function exchange(c, id, code, verifier) {
   return data;
 }
 
-async function identify(c, id, tokens, params) {
-  const P = PROVIDERS[id];
-  if (id === 'apple') {
-    const claims = JSON.parse(fromB64url(String(tokens.id_token || '').split('.')[1] || ''));
-    const who = P.who(claims);
-    try { const u = JSON.parse(params.get('user') || '{}'); who.name = u.name && u.name.firstName ? u.name.firstName : null; } catch { /* no name */ }
-    return who;
-  }
+async function identify(c, id, tokens) {
   const headers = { Authorization: `Bearer ${tokens.access_token}`, Accept: 'application/json', 'User-Agent': 'ourspace-social' };
   const r = await fetch(url(c.env, id, 'userinfo'), { headers });
   if (!r.ok) throw new Error(`${id} userinfo ${r.status}`);
-  const u = await r.json();
-  let emails = null;
-  if (P.emails) { const e = await fetch(url(c.env, id, 'emails'), { headers }); emails = e.ok ? await e.json() : []; }
-  return P.who(u, emails);
+  return PROVIDERS[id].who(await r.json());
 }
 
-// GET or POST /api/oauth/:provider/callback
+// GET /api/oauth/:provider/callback
 export async function oauthCallback(c) {
   const id = c.params.provider;
-  let params = c.url.searchParams;
-  if (c.req.method === 'POST') {
-    const form = await c.req.formData().catch(() => null);
-    params = new URLSearchParams(form ? [...form].map(([k, v]) => [k, String(v)]) : []);
-  }
-  const clear = stateCookie(c, id, '', 0);
+  const params = c.url.searchParams;
+  const clear = stateCookie(c, '', 0);
   const state = params.get('state') || '';
   const cookie = getCookie(c.req, 'os_oauth') || '';
   const row = state ? await c.env.DB.prepare('SELECT * FROM oauth_states WHERE state_hash = ?').bind(await sha256Hex(state)).first() : null;
@@ -198,7 +142,7 @@ export async function oauthCallback(c) {
   }
 
   let who;
-  try { who = await identify(c, id, tokens, params); } catch (e) { console.error(e.message); return go(`${back}?error=failed${p}`, [clear]); }
+  try { who = await identify(c, id, tokens); } catch (e) { console.error(e.message); return go(`${back}?error=failed${p}`, [clear]); }
   if (!who || !who.id) return go(`${back}?error=failed${p}`, [clear]);
   const email = who.verified && who.email ? String(who.email).trim().toLowerCase() : null;
   const linked = await c.env.DB.prepare('SELECT i.user_id, u.banned FROM identities i JOIN users u ON u.id = i.user_id WHERE i.provider = ? AND i.subject = ?')
@@ -263,8 +207,8 @@ export async function signupFinish(c) {
   const name = String(b.name ?? '').trim();
   await nameAndEmailFree(c, name, row.email);
   // row.email is only ever an address the provider says it verified (see the callback). It passes the throwaway list
-  // and counts toward the email-domain signals like any sign-up's. No verified address (Microsoft, which never promises
-  // one; a GitHub or Discord account without one): the sign-up goes ahead, but held for a moderator
+  // and counts toward the email-domain signals like any sign-up's. No verified address (a Discord account without
+  // one): the sign-up goes ahead, but held for a moderator
   // (no_verified_email), and the moderator's approval stands in for the confirmation link (trust/moderation.js).
   const screened = await screenSignup(c, b, { purpose: 'finish', email: row.email, vouched: true });
   const screen = row.email ? screened : { ...screened, hold: true, reasons: [...screened.reasons, 'no_verified_email'] };

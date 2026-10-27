@@ -1,5 +1,5 @@
 // Accounts: sign-up (email + password), log in / out, sessions, forgotten passwords, password changes, deleting an
-// account. Signing in with Google, Apple & co. is oauth.js; it shares createUser() and startSession() from here.
+// account. Signing in with Google or Discord is oauth.js; it shares createUser() and startSession() from here.
 // Passwords are hashed with PBKDF2-SHA256 (100k iterations, the most Workers allows) and a per-user salt. A session
 // is a random token in an HttpOnly, SameSite=Lax cookie; the database only keeps its SHA-256.
 import { HttpError, fail, json, readBody, getCookie, sessionCookie, sha256Hex, ipKey } from '../shared/http.js';

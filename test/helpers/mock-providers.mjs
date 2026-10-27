@@ -1,4 +1,4 @@
-// A stand-in for Google, Apple, Microsoft, Discord, GitHub, Spotify and iTunes Search, and for Cloudflare Turnstile's
+// A stand-in for Google, Discord, Spotify and iTunes Search, and for Cloudflare Turnstile's
 // siteverify and DNS-over-HTTPS (MX lookups), for the tests and the demo (the Worker talks to it when
 // TEST_PROVIDER_BASE, TURNSTILE_VERIFY_URL and DOH_URL point here), so nothing reaches the internet. It approves every sign-in at once. Who signs in is decided by the test:
 // mock.next(provider, { sub, email, verified, name, notAllowlisted }) sets the identity the next authorize returns.
@@ -41,12 +41,6 @@ export async function startMock(port = 0, { pretend = false } = {}) {
       if (!id && pretend && what === 'authorize') return pretendPage(res, provider, q);
       id = id || (what === 'approve' ? typed(provider, q) : fallback(provider));
       const code = b64url(JSON.stringify({ ...id, challenge: q.get('code_challenge') || null, client: q.get('client_id') }));
-      if (q.get('response_mode') === 'form_post') {           // Apple: an auto-submitting form back to the site
-        res.writeHead(200, { 'Content-Type': 'text/html' });
-        res.end(`<form method="post" action="${q.get('redirect_uri')}"><input name="code" value="${code}"><input name="state" value="${q.get('state')}">` +
-          `<input name="user" value='${JSON.stringify({ name: { firstName: id.name || 'Apple' } })}'></form><script>document.forms[0].submit()</script>`);
-        return;
-      }
       const back = new URL(q.get('redirect_uri'));
       back.searchParams.set('code', code);
       back.searchParams.set('state', q.get('state'));
@@ -67,9 +61,6 @@ export async function startMock(port = 0, { pretend = false } = {}) {
       try { id = JSON.parse(unb64url(form.get('code'))); } catch { return send(res, 400, { error: 'invalid_grant' }); }
       if (id.challenge && !form.get('code_verifier')) return send(res, 400, { error: 'invalid_request', error_description: 'PKCE verifier missing' });
       const tokens = { access_token: 'at.' + form.get('code'), refresh_token: 'rt.' + form.get('code'), expires_in: 3600, token_type: 'Bearer' };
-      if (provider === 'apple') {
-        tokens.id_token = `${b64url('{"alg":"none"}')}.${b64url(JSON.stringify({ sub: id.sub, email: id.email, email_verified: id.verified ? 'true' : 'false' }))}.x`;
-      }
       return send(res, 200, tokens);
     }
 
@@ -77,12 +68,7 @@ export async function startMock(port = 0, { pretend = false } = {}) {
       const id = who(req);
       if (!id) return send(res, 401, { error: 'no token' });
       if (provider === 'discord') return send(res, 200, { id: id.sub, username: id.name, global_name: id.name, email: id.email, verified: !!id.verified });
-      if (provider === 'github') return send(res, 200, { id: Number(String(id.sub).replace(/\D/g, '')) || 4242, login: id.name, name: id.name });
       return send(res, 200, { sub: id.sub, email: id.email, email_verified: !!id.verified, name: id.name, given_name: id.name });
-    }
-    if (what === 'emails' && provider === 'github') {
-      const id = who(req);
-      return send(res, 200, id && id.email ? [{ email: id.email, primary: true, verified: !!id.verified }] : []);
     }
 
     if (provider === 'spotify' && what === 'v1') {
@@ -178,7 +164,7 @@ function demoTracks(sub, range) {
   }));
 }
 
-const LABELS = { google: 'Google', apple: 'Apple', microsoft: 'Microsoft', discord: 'Discord', github: 'GitHub', spotify: 'Spotify' };
+const LABELS = { google: 'Google', discord: 'Discord', spotify: 'Spotify' };
 const esc = s => String(s).replace(/[&<>"']/g, ch => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[ch]);
 
 // the page that stands in for "Sign in with Google" etc. in the local demo

@@ -24,7 +24,7 @@ export function providerButtons(mode, next) {
   return h('div', { class: 'oauth-list' }, list.map(p => h('a', {
     class: 'btn98 oauth-btn oauth-' + p.id,
     href: `/api/oauth/${p.id}/start?mode=${mode}${next ? '&next=' + enc(next) : ''}`,
-  }, h('span', { class: 'oauth-mark', text: { google: 'G', apple: 'A', microsoft: '⊞', discord: '◉', github: '⌥' }[p.id] || '→' }), `Continue with ${p.label}`)));
+  }, h('span', { class: 'oauth-mark', text: { google: 'G', discord: '◉' }[p.id] || '→' }), `Continue with ${p.label}`)));
 }
 
 function randomName() {

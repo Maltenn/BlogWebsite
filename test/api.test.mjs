@@ -1,10 +1,9 @@
 // End-to-end API tests: `npm test`. Boots `wrangler dev` on a throwaway local database, with a stand-in for Google,
-// Apple, Microsoft, Discord, GitHub and Spotify (helpers/mock-providers.mjs), then drives the API like a browser does —
+// Discord and Spotify (helpers/mock-providers.mjs), then drives the API like a browser does —
 // cookies, redirects, JSON, photo uploads, the lot. The local R2 bucket is listed through wrangler's local explorer.
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn, execFileSync } from 'node:child_process';
-import { generateKeyPairSync } from 'node:crypto';
 import fs from 'node:fs';
 import http from 'node:http';
 import os from 'node:os';
@@ -31,12 +30,9 @@ const sql = command => JSON.parse(execFileSync(process.execPath, [WRANGLER, 'd1'
 
 before(async () => {
   mock = await startMock();
-  const appleKey = generateKeyPairSync('ec', { namedCurve: 'P-256' }).privateKey.export({ type: 'pkcs8', format: 'der' }).toString('base64');
   const vars = {
     SIGNUPS_PER_IP_PER_HOUR: '1000', SIGNUPS_PER_DAY: '1000', TEST_PROVIDER_BASE: mock.base, TOKEN_KEY: Buffer.alloc(32, 7).toString('base64'),
-    GOOGLE_CLIENT_ID: 'g-id', GOOGLE_CLIENT_SECRET: 'g-secret', MICROSOFT_CLIENT_ID: 'm-id', MICROSOFT_CLIENT_SECRET: 'm-secret',
-    DISCORD_CLIENT_ID: 'd-id', DISCORD_CLIENT_SECRET: 'd-secret', GITHUB_CLIENT_ID: 'gh-id', GITHUB_CLIENT_SECRET: 'gh-secret',
-    APPLE_CLIENT_ID: 'page.ourspace.web', APPLE_TEAM_ID: 'TEAM123', APPLE_KEY_ID: 'KEY123', APPLE_PRIVATE_KEY: appleKey,
+    GOOGLE_CLIENT_ID: 'g-id', GOOGLE_CLIENT_SECRET: 'g-secret', DISCORD_CLIENT_ID: 'd-id', DISCORD_CLIENT_SECRET: 'd-secret',
     SPOTIFY_CLIENT_ID: 's-id', SPOTIFY_CLIENT_SECRET: 's-secret', SHOW_ROWS_READ: '1',
     // phase 7: Cloudflare's Turnstile test keys against the stand-in siteverify, MX lookups from the stand-in DoH, an
     // easy proof of work and short form times, request.cf from X-Test-Cf, the mock AI detector in shadow mode
@@ -157,15 +153,8 @@ async function viaProvider(c, provider, identity, mode = 'login') {
   const authorize = new URL(start.headers.get('location'));
   if (!authorize.href.startsWith(mock.base)) return { location: authorize.pathname + authorize.search, authorize };
   const a = await fetch(authorize, { redirect: 'manual' });
-  let done;
-  if (provider === 'apple') {
-    const html = await a.text();
-    const field = k => (html.match(new RegExp(`name="${k}" value="([^"]*)"`)) || [])[1];
-    done = await c.raw('POST', '/api/oauth/apple/callback', { form: { code: field('code'), state: field('state'), user: '{"name":{"firstName":"Appley"}}' }, headers: { Origin: 'https://appleid.apple.com' } });
-  } else {
-    const back = new URL(a.headers.get('location'));
-    done = await c.raw('GET', back.pathname + back.search);
-  }
+  const back = new URL(a.headers.get('location'));
+  const done = await c.raw('GET', back.pathname + back.search);
   assert.equal(done.status, 303);
   return { location: done.headers.get('location').replace(BASE, ''), authorize };
 }
@@ -178,7 +167,7 @@ test('public pages work logged out, and there are no bots', async () => {
   assert.ok(opts.data.avatars.length > 100 && opts.data.themes.length === 10);
   assert.ok(!opts.data.badges.some(b => /Guest/i.test(b)), 'the guestbook button is gone');
   const prov = await c.get('/api/auth/providers');
-  assert.deepEqual(prov.data.signIn.map(p => p.id).sort(), ['apple', 'discord', 'github', 'google', 'microsoft']);
+  assert.deepEqual(prov.data.signIn.map(p => p.id).sort(), ['discord', 'google']);
   assert.equal(prov.data.spotify, true);
   assert.equal((await c.get('/api/users')).data.users.length, 0, 'nobody lives here until people sign up');
   assert.equal((await c.get('/api/users/todd')).status, 404);
@@ -1842,24 +1831,24 @@ test('a provider can\'t take over an existing account just because the email mat
   const owner = await newUser('owner');
   const r = await viaProvider(client(), 'google', { sub: 'g-' + uniq(), email: owner.email, verified: true });
   assert.equal(r.location, '/login?error=email_in_use&provider=google');
-  // Microsoft doesn't promise the address is verified: it's never matched or stored
-  const ms = client();
-  assert.equal((await viaProvider(ms, 'microsoft', { sub: 'm-' + uniq(), email: owner.email, verified: true })).location, '/join/finish');
-  assert.equal((await ms.get('/api/signup/pending')).data.email, null);
+  // an address the provider hasn't verified is never matched or stored
+  const unchecked = client();
+  assert.equal((await viaProvider(unchecked, 'discord', { sub: 'd-' + uniq(), email: owner.email, verified: false })).location, '/join/finish');
+  assert.equal((await unchecked.get('/api/signup/pending')).data.email, null);
 });
 
-test('connect GitHub from Settings, log in with it, and disconnect rules', async () => {
+test('connect Discord from Settings, log in with it, and disconnect rules', async () => {
   const me = await newUser('linker');
   const sub = String(100000 + n++);
-  const linked = await viaProvider(me, 'github', { sub, email: `gh${sub}@example.com`, verified: true, name: 'octo' }, 'link');
-  assert.equal(linked.location, '/settings?linked=github');
-  assert.deepEqual((await me.get('/api/me/account')).data.identities.map(i => i.provider), ['github']);
+  const linked = await viaProvider(me, 'discord', { sub, email: `dc${sub}@example.com`, verified: true, name: 'disco' }, 'link');
+  assert.equal(linked.location, '/settings?linked=discord');
+  assert.deepEqual((await me.get('/api/me/account')).data.identities.map(i => i.provider), ['discord']);
   const elsewhere = client();
-  assert.equal((await viaProvider(elsewhere, 'github', { sub, verified: true })).location, '/');
+  assert.equal((await viaProvider(elsewhere, 'discord', { sub, verified: true })).location, '/');
   assert.equal((await elsewhere.get('/api/me')).data.user.name, me.name);
   const other = await newUser('thief');
-  assert.equal((await viaProvider(other, 'github', { sub, verified: true }, 'link')).location, '/settings?error=identity_taken&provider=github');
-  assert.equal((await me.del('/api/me/identities/github')).status, 200, 'fine: there\'s still a password');
+  assert.equal((await viaProvider(other, 'discord', { sub, verified: true }, 'link')).location, '/settings?error=identity_taken&provider=discord');
+  assert.equal((await me.del('/api/me/identities/discord')).status, 200, 'fine: there\'s still a password');
 });
 
 test('an account that only uses Discord must keep a way in', async () => {
@@ -1873,18 +1862,9 @@ test('an account that only uses Discord must keep a way in', async () => {
   assert.equal((await client().post('/api/login', { login: name, password: 'set-it-now-1' })).status, 200);
 });
 
-test('Sign in with Apple answers with a form POST from appleid.apple.com', async () => {
-  const c = client();
-  const sub = 'apple.' + uniq();
-  const r = await viaProvider(c, 'apple', { sub, email: `${sub}@privaterelay.appleid.com`, verified: true });
-  assert.equal(r.location, '/join/finish');
-  assert.equal(r.authorize.searchParams.get('response_mode'), 'form_post');
-  const secret = mock.log.filter(l => l.provider === 'apple').at(-1).form.client_secret;
-  const [header, payload] = secret.split('.').slice(0, 2).map(s => JSON.parse(Buffer.from(s, 'base64url').toString()));
-  assert.equal(header.alg, 'ES256');
-  assert.equal(payload.iss, 'TEAM123');
-  assert.equal((await c.get('/api/signup/pending')).data.nameHint, 'Appley');
-  assert.equal((await c.post('/api/signup/finish', { name: 'apple_' + uniq(), birthday: '1990-12-25', rulesOk: true })).status, 201);
+test('the provider callback only answers GET: a form POST back to it is not a route', async () => {
+  const r = await client().raw('POST', '/api/oauth/google/callback', { form: { code: 'x', state: 'y' }, headers: { Origin: 'https://evil.example' } });
+  assert.equal(r.status, 405);
 });
 
 test('sign-in state is single use and tied to the browser', async () => {
@@ -3991,21 +3971,21 @@ test('finishing a sign-up through a provider: its email passes the throwaway lis
   const sig = sql(`SELECT email_domain, reasons FROM signup_signals WHERE user_id IN (${ids}) ORDER BY user_id`);
   assert.deepEqual(sig.map(s => s.email_domain), [dom, dom, dom]);
   assert.ok(JSON.parse(sig[2].reasons).includes('domain_burst'));
-  // Microsoft never promises a verified address: allowed, but held, and nothing to confirm by email
+  // no verified address from the provider: allowed, but held, and nothing to confirm by email
   const ms = client();
-  await viaProvider(ms, 'microsoft', { sub: 'm-' + uniq(), email: `ms.${uniq()}@outlook.com`, verified: true });
-  const name = 'msft_' + uniq();
+  await viaProvider(ms, 'discord', { sub: 'd-' + uniq(), email: `dc.${uniq()}@outlook.com`, verified: false });
+  const name = 'dsc_' + uniq();
   const fin = await ms.post('/api/signup/finish', { name, birthday: '1990-01-01', rulesOk: true });
   assert.deepEqual([fin.status, fin.data.held], [201, true]);
   assert.deepEqual((await ms.get('/api/me')).data.account, { verified: true, held: true, timeoutUntil: null, strikes: 0 });
   assert.equal(sql(`SELECT email_verified_at FROM users WHERE id = ${fin.data.user.id}`)[0].email_verified_at, null);
-  const blocked = await ms.post('/api/status', { body: 'hello from microsoft' });
+  const blocked = await ms.post('/api/status', { body: 'hello from discord' });
   assert.deepEqual([blocked.status, blocked.data.code], [403, 'held'], 'the held message, not "confirm your email"');
   const mod = await moderator();
   const row = (await mod.get('/api/admin/held')).data.accounts.find(a => a.user.name === name);
   assert.ok(row.reasons.includes('no_verified_email'));
   assert.equal((await mod.post('/api/admin/held/' + name, { action: 'approve' })).status, 200);
-  assert.equal((await ms.post('/api/status', { body: 'hello from microsoft' })).status, 201, 'the approval stands in for the link');
+  assert.equal((await ms.post('/api/status', { body: 'hello from discord' })).status, 201, 'the approval stands in for the link');
 });
 
 test('a held account is unlisted: a 404 to everyone but itself and moderators, and left out of search, follows and messages until approved', async () => {

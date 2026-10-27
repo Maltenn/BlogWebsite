@@ -43,7 +43,7 @@ npx wrangler secret put RESEND_API_KEY     # re_…
 npx wrangler secret put MAIL_FROM          # OurSpace <no-reply@ourspace.page>
 ```
 
-Every new email account gets a "confirm your OurSpace email" link and can't post, comment, message or follow until it's confirmed, so **email sign-ups are refused (503) until these are set**; sign-ups through Google & co. still work (the provider vouched for the address; one that vouches for none, like Microsoft, is held for a moderator). Without them the forgot-password page also says email isn't set up. It never pretends a message went out. Resend's free tier (100 emails a day, 3,000 a month at the time of writing) covers the 200-a-day sign-up cap only if a good share of sign-ups use the providers; check the current limits.
+Every new email account gets a "confirm your OurSpace email" link and can't post, comment, message or follow until it's confirmed, so **email sign-ups are refused (503) until these are set**; sign-ups through Google & co. still work (the provider vouched for the address; a Discord account that vouches for none is held for a moderator). Without them the forgot-password page also says email isn't set up. It never pretends a message went out. Resend's free tier (100 emails a day, 3,000 a month at the time of writing) covers the 200-a-day sign-up cap only if a good share of sign-ups use the providers; check the current limits.
 
 ## The human check: Cloudflare Turnstile
 
@@ -85,14 +85,11 @@ https://<your host>/api/oauth/<provider>/callback      e.g. https://ourspace.pag
 | Provider | Where | Secrets |
 |---|---|---|
 | Google | [Google Cloud console](https://console.cloud.google.com/apis/credentials). Set up the OAuth consent screen, then create an OAuth client ID of type *Web application* with the redirect address above. | `GOOGLE_CLIENT_ID`, `GOOGLE_CLIENT_SECRET` |
-| Microsoft | [Entra admin center → App registrations](https://entra.microsoft.com/). Pick *any organizational directory and personal Microsoft accounts*, add a *Web* redirect, then create a client secret under *Certificates & secrets*. It expires, so put a renewal in the calendar. | `MICROSOFT_CLIENT_ID`, `MICROSOFT_CLIENT_SECRET` |
 | Discord | [Discord Developer Portal](https://discord.com/developers/applications). New application, then OAuth2, then add the redirect. | `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET` |
-| GitHub | [Settings → Developer settings → OAuth Apps](https://github.com/settings/developers). An OAuth app has one callback address, so make a second app for local testing. | `GITHUB_CLIENT_ID`, `GITHUB_CLIENT_SECRET` |
-| Apple | Needs the paid Apple Developer Program. In [Certificates, Identifiers & Profiles](https://developer.apple.com/account/resources/identifiers/list), create an App ID with *Sign in with Apple*, then a **Services ID** (this is the client ID) with your domain and the return URL. Then create a **key** with Sign in with Apple and download the `.p8`. Apple only accepts https addresses, so it can't be tried on `127.0.0.1`. | `APPLE_CLIENT_ID` (the Services ID), `APPLE_TEAM_ID`, `APPLE_KEY_ID`, `APPLE_PRIVATE_KEY` (the whole `.p8` file) |
 
-Set each with `npx wrangler secret put NAME`. For the Apple key, use `npx wrangler secret put APPLE_PRIVATE_KEY < AuthKey_XXXX.p8`.
+Set each with `npx wrangler secret put NAME`.
 
-**Branding rules.** Before launch, check each company's button branding rules ([Google](https://developers.google.com/identity/branding-guidelines), [Apple](https://developer.apple.com/design/human-interface-guidelines/sign-in-with-apple), [Microsoft](https://learn.microsoft.com/entra/identity-platform/howto-add-branding-in-apps)). The buttons here are styled to match the site and use a letter instead of each company's logo. Google and Apple in particular expect their own logos and wording.
+**Branding rules.** Before launch, check each company's button branding rules ([Google](https://developers.google.com/identity/branding-guidelines), [Discord](https://discord.com/branding)). The buttons here are styled to match the site and use a letter instead of each company's logo. Google in particular expects its own logo and wording.
 
 How accounts and providers fit together is in [security.md](security.md).
 
@@ -138,7 +135,7 @@ Secrets are set with `npx wrangler secret put NAME`, never written to a file in 
 | `TURNSTILE_SECRET_KEY` | The human check (sign-ups and resets are refused without it). |
 | `PANGRAM_API_KEY` or `GPTZERO_API_KEY` | An AI-writing detector, if `AI_DETECTOR` names it. |
 | `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` | Spotify. |
-| `GOOGLE_*`, `MICROSOFT_*`, `DISCORD_*`, `GITHUB_*` (`CLIENT_ID`, `CLIENT_SECRET`), `APPLE_CLIENT_ID`, `APPLE_TEAM_ID`, `APPLE_KEY_ID`, `APPLE_PRIVATE_KEY` | Other sign-in options. |
+| `GOOGLE_*`, `DISCORD_*` (`CLIENT_ID`, `CLIENT_SECRET`) | Other sign-in options. |
 
 The same list is in the comment at the top of `wrangler.jsonc`; when a feature that needs new secrets is added, update both. `TEST_PROVIDER_BASE` is not a setting: it is for the tests and the demo, and must never be set on a real deployment ([development.md](development.md)). The same goes for `TEST_SIGNALS` (it lets a request claim its own address and network with `X-Test-Ip` / `X-Test-Cf`, and its AI enforcement mode with `X-Test-Enforcement`), `TURNSTILE_VERIFY_URL` and `DOH_URL`.
 

@@ -65,7 +65,6 @@ const ROUTES = [
   ['GET', '/api/auth/providers', providers, OPEN],
   ['GET', '/api/oauth/:provider/start', oauthStart, OPEN],
   ['GET', '/api/oauth/:provider/callback', oauthCallback, OPEN],
-  ['POST', '/api/oauth/:provider/callback', oauthCallback, OPEN, { crossSite: true }],   // Apple answers with a form POST
   ['GET', '/api/signup/pending', signupPending, OPEN],
   ['POST', '/api/signup/finish', signupFinish, OPEN, { net: true }],
 
@@ -208,9 +207,8 @@ async function api(request, env, ctx, url) {
   if (!found.route) return json({ error: found.status === 405 ? 'method not allowed' : found.status === 400 ? 'bad address' : 'not found' }, found.status);
 
   // Changes only from our own pages: a browser always sends Origin on these requests, and another site's would not
-  // match. (SameSite=Lax cookies and JSON-only bodies are the other two locks on that door.) The one exception is the
-  // sign-in provider posting back to us, which is protected by its single-use state instead.
-  if (request.method !== 'GET' && !found.route.crossSite) {
+  // match. (SameSite=Lax cookies and JSON-only bodies are the other two locks on that door.)
+  if (request.method !== 'GET') {
     const origin = request.headers.get('Origin');
     const site = request.headers.get('Sec-Fetch-Site');
     if ((origin && origin !== url.origin) || site === 'cross-site') return json({ error: 'cross-site request refused' }, 403);

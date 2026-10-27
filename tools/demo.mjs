@@ -7,7 +7,7 @@
 //   · the human checks run against stand-ins: Turnstile's test keys, a pretend DNS for the email check, the mock AI detector
 // Edit files in public/ or src/ while it runs and the server reloads; refresh the browser to see the change.
 import { spawn, execFileSync } from 'node:child_process';
-import { generateKeyPairSync, randomBytes } from 'node:crypto';
+import { randomBytes } from 'node:crypto';
 import fs from 'node:fs';
 import net from 'node:net';
 import path from 'node:path';
@@ -444,10 +444,7 @@ const keyFile = path.join(DEMO, 'token-key');
 if (!fs.existsSync(keyFile)) fs.writeFileSync(keyFile, randomBytes(32).toString('base64'));
 const vars = {
   TEST_PROVIDER_BASE: mock.base, TOKEN_KEY: fs.readFileSync(keyFile, 'utf8').trim(), SIGNUPS_PER_IP_PER_HOUR: '1000',
-  GOOGLE_CLIENT_ID: 'demo', GOOGLE_CLIENT_SECRET: 'demo', MICROSOFT_CLIENT_ID: 'demo', MICROSOFT_CLIENT_SECRET: 'demo',
-  DISCORD_CLIENT_ID: 'demo', DISCORD_CLIENT_SECRET: 'demo', GITHUB_CLIENT_ID: 'demo', GITHUB_CLIENT_SECRET: 'demo',
-  APPLE_CLIENT_ID: 'page.ourspace.demo', APPLE_TEAM_ID: 'DEMO', APPLE_KEY_ID: 'DEMO',
-  APPLE_PRIVATE_KEY: generateKeyPairSync('ec', { namedCurve: 'P-256' }).privateKey.export({ type: 'pkcs8', format: 'der' }).toString('base64'),
+  GOOGLE_CLIENT_ID: 'demo', GOOGLE_CLIENT_SECRET: 'demo', DISCORD_CLIENT_ID: 'demo', DISCORD_CLIENT_SECRET: 'demo',
   SPOTIFY_CLIENT_ID: 'demo', SPOTIFY_CLIENT_SECRET: 'demo', SHOW_ROWS_READ: '1',
   // phase 7: Cloudflare's Turnstile test keys (the widget itself still loads from challenges.cloudflare.com in your
   // browser; the check is answered by the pretend siteverify), MX lookups from the pretend DNS, the sign-up signals
@@ -535,7 +532,7 @@ console.log(`
   Or anyone else:    kat@, jules@, drew@, pete@, mia@, banana@, rae@, cam@, lou@ or sam@example.com, same password
 
   · Everything is fake and stays on this computer. Sign up as many new people as you like.
-  · "Other options" (Google, Apple…) and "connect Spotify" open pretend pages.
+  · "Other options" (Google, Discord) and "connect Spotify" open pretend pages.
     Type any name there; the same name brings back the same pretend account.
   · "forgot my password" and "confirm your email" emails show up in this window instead of being sent
     (a new account confirms its email before it can post: open the /verify#token=… link printed here).

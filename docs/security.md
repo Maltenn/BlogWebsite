@@ -8,14 +8,13 @@
   - The state is single-use, expires in 10 minutes, is stored server-side and is tied to the browser by a cookie.
   - PKCE is used wherever the provider supports it.
   - Accounts are never merged by email (see below).
-  - Apple's client secret is a short-lived ES256 token signed on the server.
 - **Spotify tokens:** encrypted with AES-256-GCM before they reach the database. Only the `user-top-read` permission is asked for.
 - **Reset links:** single-use, valid for 1 hour, and kept in the URL fragment so they never reach server logs. The forgot-password page gives the same answer whether or not the address has an account.
 - **Birthdays:** never shown. Pages show age and sign only if the person allows it.
 - **Adults and teens:** Browse never suggests a 13–17-year-old to an adult or an adult to a 13–17-year-old: not as a person (Mutuals, Who to follow) and not as a post in For you. Logged out, Browse suggests adults only. The line is drawn from the birthdays both gave, by the same rule as the age shown on a profile (`ageCut` / `ageOn` in `src/shared/dates.js`, leap days included). Boards, tag pages and profiles aren't split: this is about who gets put in front of whom by the site itself. See [architecture.md](architecture.md#browse-for-you-mutuals-boards-for-you-who-to-follow).
 - **Caching:** every API answer that depends on who's asking is `Cache-Control: no-store` (the default of `json()` in `src/shared/http.js`), so a browser shared by two accounts never shows one the other's feed, suggestions or settings. Only answers that are the same for everybody may be cached: the editor's options and the sign-in providers (`public`, 5 minutes), the sky and sign horoscopes (by date, `private`, 10 minutes) and public photos. A test (`test/api.test.mjs`, "every answer that depends on who is asking is no-store") holds the personalized routes to it.
 - **"Not interested":** hiding a post takes any post id without looking it up, so its answer never tells whether a private or moderator-hidden post exists; the daily limit counts before anything is looked up.
-- **Writes:** refused from other sites (Origin and Sec-Fetch-Site checks), JSON only. The one exception is Apple's sign-in reply, which arrives as a form post and is checked against its single-use state. See [the life of a request](architecture.md#the-life-of-a-request).
+- **Writes:** refused from other sites (Origin and Sec-Fetch-Site checks), JSON only. No exceptions: the providers come back with a plain GET. See [the life of a request](architecture.md#the-life-of-a-request).
 - **Pages:** strict Content-Security-Policy (scripts and styles from the site only, images also from Spotify's CDN, audio previews from Apple), no framing. Nothing people type is ever inserted as HTML.
 - **Photos:** the server reads each upload's type from its bytes (JPEG, PNG, GIF or WebP only; never SVG or HTML), refuses broken or cut-off files and takes out the metadata, GPS position included, whatever the browser did. Files get random keys and are served by the Worker with their real type, `nosniff`, `Content-Disposition: inline` and `Content-Security-Policy: default-src 'none'; sandbox`, and only to whoever may see the post they're on (a private profile's to its followers). See [architecture.md](architecture.md#photos).
 - **Profiles:** every look setting must come from the lists in `src/catalog/options.js`, so nobody can inject CSS or image URLs.
@@ -59,7 +58,7 @@ The Worker itself (not the pages) calls out to: `challenges.cloudflare.com/turns
 
 - **First time with a provider:** the person picks a screen name and enters their birthday (`/join/finish`), the same as an email sign-up.
 - **Already a member:** they connect more ways in under **Settings → sign-in methods**, and can remove any of them as long as one is left (a password counts as one).
-- **No automatic merging by email.** If a provider says the address already belongs to an account, the person is told to log in with that account and connect the provider from Settings. That stops anyone from taking over an account by registering its email address with another service. Microsoft addresses are never trusted for this, because Microsoft doesn't promise they were checked.
+- **No automatic merging by email.** If a provider says the address already belongs to an account, the person is told to log in with that account and connect the provider from Settings. That stops anyone from taking over an account by registering its email address with another service. An address the provider hasn't verified is never used for this, or kept.
 - **Accounts without a password:** they log in only through their providers. To delete the account, they type their screen name to confirm.
 
 Setting the providers up is in [deploy.md](deploy.md).

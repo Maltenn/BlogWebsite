@@ -418,10 +418,7 @@ img { image-rendering: pixelated; }
 .oauth-btn { display: flex; align-items: center; gap: 10px; padding: 7px 12px; font-size: 13px; font-weight: bold; background: #fff; text-align: left; }
 .oauth-mark { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 3px; color: #fff; font-size: 13px; background: #555; }
 .oauth-google .oauth-mark { background: #4285f4; }
-.oauth-apple .oauth-mark { background: #000; }
-.oauth-microsoft .oauth-mark { background: #2f6fd6; }
 .oauth-discord .oauth-mark { background: #5865f2; }
-.oauth-github .oauth-mark { background: #24292f; }
 .os-sub { display: flex; flex-direction: column; gap: 6px; padding-bottom: 8px; border-bottom: 1px dotted #c7d2e8; }
 .os-sub label { font-weight: bold; color: #003366; display: flex; flex-direction: column; gap: 3px; max-width: 360px; }
 .cz-checks { display: flex; flex-wrap: wrap; gap: 4px 16px; margin-bottom: 4px; }

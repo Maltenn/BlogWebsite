@@ -8,8 +8,7 @@
 //                                                       public TURNSTILE_SITE_KEY below); sign-ups are refused until set
 //   PANGRAM_API_KEY or GPTZERO_API_KEY                  an AI-writing detector, if AI_DETECTOR names one (see below)
 //   SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET            Spotify connections
-//   GOOGLE_ / MICROSOFT_ / DISCORD_ / GITHUB_ CLIENT_ID + CLIENT_SECRET, APPLE_CLIENT_ID + APPLE_TEAM_ID +
-//   APPLE_KEY_ID + APPLE_PRIVATE_KEY                    "other options" sign-in (each appears once it's set)
+//   GOOGLE_ / DISCORD_ CLIENT_ID + CLIENT_SECRET        "other options" sign-in (each appears once it's set)
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "ourspace-social",

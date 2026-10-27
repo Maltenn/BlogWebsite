@@ -27,7 +27,7 @@ export async function renderRules(root) {
     h('ul', null,
       li('Your email, your birthday, a hashed password, your page, and what you post or send.'),
       li('Your birthday stays private. Your page shows your age and star sign, and you can hide either one.'),
-      li('If you sign in with Google, Apple, Microsoft, Discord or GitHub: their id for you and the email they share. We never see your password there.'),
+      li('If you sign in with Google or Discord: their id for you and the email they share. We never see your password there.'),
       li('If you connect Spotify: an encrypted key that lets us read your top tracks, and the tracks themselves. Nothing else.'),
       li('A salted hash of your IP address, used only to stop spam (rate limits). We never store the address itself.'),
       li('No ads, no tracking scripts. Song previews stream from Apple only when you press play.'),

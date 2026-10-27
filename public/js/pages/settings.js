@@ -16,7 +16,7 @@ const SPOTIFY_ERRORS = {
   failed: 'that Spotify connection didn\'t work. try again in a minute.',
   busy: 'Spotify is busy right now. we\'ll try again later.',
 };
-const providerName = id => ({ google: 'Google', apple: 'Apple', microsoft: 'Microsoft', discord: 'Discord', github: 'GitHub', spotify: 'Spotify' })[id] || id;
+const providerName = id => ({ google: 'Google', discord: 'Discord', spotify: 'Spotify' })[id] || id;
 
 export async function renderSettings(root) {
   const params = new URLSearchParams(location.search);
