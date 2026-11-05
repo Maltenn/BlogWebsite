@@ -317,9 +317,13 @@ img { image-rendering: pixelated; }
 .cz-tileprev { display: inline-block; width: 16px; height: 16px; border: 1px solid #888; background-size: 16px 16px; }
 .cz-gifgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 4px; margin-top: 4px; }
 .cz-gifgrid.cz-badges { grid-template-columns: repeat(auto-fill, minmax(96px, 1fr)); }
-.cz-gif { height: 54px; padding: 2px; background: #fff; border: 2px outset #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: hidden; }
-.cz-badges .cz-gif { height: 39px; }
-.cz-gif img { max-width: 100%; max-height: 100%; }
+/* --cz-inner is the content box: the height above, less 2px padding and 2px border each side. The picker's tiles are
+   <button>s, and a percentage max-height on a child has to resolve against a button's content box, which WebKit does
+   inconsistently depending on when layout runs: the same tile came out 46, 54 or 58px tall between loads. Stating the
+   height outright resolves nothing, so every engine draws the 46px the percentage was always meant to mean. */
+.cz-gif { --cz-inner: 46px; height: 54px; padding: 2px; background: #fff; border: 2px outset #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+.cz-badges .cz-gif { --cz-inner: 31px; height: 39px; }
+.cz-gif img { max-width: 100%; max-height: var(--cz-inner); }
 .cz-gif.sel { border: 2px solid #ff6600; outline: 2px solid #ffcc00; background: #fff8e0; }
 .cz-count { font-size: 10px; color: #666; }
 .cz-top8 { display: flex; flex-wrap: wrap; gap: 6px; }
