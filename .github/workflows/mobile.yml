@@ -110,7 +110,6 @@ jobs:
       # the fonts of the machine that captured the baseline and can run on a Linux runner. See docs/mobile/harness.md.
       - name: The tab bar's spec describes the web bar exactly (0 pixels, chromium + webkit)
         id: tabbar
-        continue-on-error: true      # TEMPORARY, for the first iOS compile only: remove once this check is green on Linux
         run: npm run tabbar:check
       # The check writes web / spec / diff PNGs for every case that differs. Without this they die with the runner.
       - name: Keep the tab bar's diff PNGs when the check fails
@@ -138,6 +137,8 @@ jobs:
           distribution: temurin
           java-version: 21                       # Capacitor 8's Android build targets Java 21
       - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # v3.2.2
+        with:
+          packages: platform-tools               # (the default list also asks for `tools`, which the SDK repository has dropped)
       - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4.4.3
 
       - name: Copy the web bundle into the Android project
@@ -262,6 +263,8 @@ jobs:
           distribution: temurin
           java-version: 21
       - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # v3.2.2
+        with:
+          packages: platform-tools               # (the default list also asks for `tools`, which the SDK repository has dropped)
       - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4.4.3
 
       # sync with the RELEASE variables (the workflow-level env), then refuse to go on if anything in the result is a placeholder

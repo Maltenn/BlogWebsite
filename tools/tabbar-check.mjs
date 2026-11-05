@@ -89,6 +89,10 @@ const bar = document.getElementById('bar');
 const px = n => n + 'px';
 bar.style.width = px(spec.w);
 bar.style.height = px(spec.h + (spec.rule ? spec.rule.h : 0));
+// A bar that scrolls is a real scroller here too, as it is on the page (\`overflow-x: auto\`) and in the shells (a scroll
+// view). \`overflow: hidden\` draws the same boxes, but an engine may raster a scroller's contents separately: on a Linux
+// runner chromium's badge pills came out a few levels apart on their curved corners, and only on the bars that scroll.
+if (spec.scrolls) Object.assign(bar.style, { overflowX: 'auto', overflowY: 'hidden', scrollbarWidth: 'none' });
 // the generic keywords must NOT be quoted: "sans-serif" in quotes asks for a family with that name, which changes
 // which font the engine falls back to (and therefore where an emoji glyph lands). The \`font\` shorthand also resets
 // line-height, so line-height is forced back to 0 after it, in the probe and in the run alike — with a zero-height
