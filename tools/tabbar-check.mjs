@@ -17,7 +17,7 @@
 //   node tools/tabbar-check.mjs                     every engine, viewport and case
 //   node tools/tabbar-check.mjs --engines webkit --viewports 390x844 --cases in
 //   node tools/tabbar-check.mjs --out DIR           where the PNGs go (default .tabbar-work/)
-//   node tools/tabbar-check.mjs --keep              keep the PNGs even when everything passed
+//   node tools/tabbar-check.mjs --keep              write the PNGs and the spec JSON for every case, and keep them
 //
 // Exit status: 0 every case at 0 pixels; 1 anything differs, or the run failed.
 import fs from 'node:fs';
@@ -89,10 +89,6 @@ const bar = document.getElementById('bar');
 const px = n => n + 'px';
 bar.style.width = px(spec.w);
 bar.style.height = px(spec.h + (spec.rule ? spec.rule.h : 0));
-// A bar that scrolls is a real scroller here too, as it is on the page (\`overflow-x: auto\`) and in the shells (a scroll
-// view). \`overflow: hidden\` draws the same boxes, but an engine may raster a scroller's contents separately: on a Linux
-// runner chromium's badge pills came out a few levels apart on their curved corners, and only on the bars that scroll.
-if (spec.scrolls) Object.assign(bar.style, { overflowX: 'auto', overflowY: 'hidden', scrollbarWidth: 'none' });
 // the generic keywords must NOT be quoted: "sans-serif" in quotes asks for a family with that name, which changes
 // which font the engine falls back to (and therefore where an emoji glyph lands). The \`font\` shorthand also resets
 // line-height, so line-height is forced back to 0 after it, in the probe and in the run alike — with a zero-height
@@ -230,9 +226,10 @@ async function main() {
 
           const file = path.join(out, `${eng}-${vp}-${key}.png`);
           const r = diff(web, replica, file.replace(/\.png$/, '-diff.png'));
-          if (r.n) {
+          if (r.n || A.keep) {
             fs.writeFileSync(file.replace(/\.png$/, '-web.png'), PNG.sync.write(web));
             fs.writeFileSync(file.replace(/\.png$/, '-spec.png'), PNG.sync.write(replica));
+            fs.writeFileSync(file.replace(/\.png$/, '-spec.json'), JSON.stringify(spec, null, 1));
           }
           rows.push({ eng, vp, key, ...r, items: spec.items.length, h: spec.h, contentW: spec.contentW, scrolls: spec.scrolls });
           worst = Math.max(worst, r.n);

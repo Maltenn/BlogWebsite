@@ -1,6 +1,7 @@
 # The OurSpace apps (mobile/): a Capacitor shell around the unmodified public/ bundle. See docs/mobile/shells.md.
 #
 #   bridge           public/js/core/native.js against a fake Capacitor and a fake API, in Chromium.   (every run)
+#   tabbar           the tab bar's spec against the web bar, at 0 pixels, in both engines.             (every run)
 #   android          a debug APK.                                                                      (every run, no secrets)
 #   ios              an UNSIGNED archive (pod install + xcodebuild).                                   (every run, no secrets)
 #   android-release  a signed AAB and a Play upload.   TAGS ONLY (mobile-v*), in the `release` environment.
@@ -103,24 +104,38 @@ jobs:
       # NOTE: the rest of the root suite (292 tests) still runs nowhere. That gap is bigger than this workflow.
       - name: The web bundle's imports and layering (test/static.test.mjs)
         run: node --test test/static.test.mjs
-      # The native tab bar's metrics are MEASURED from the page's own .ms-tabs (public/js/core/tabspec.js) and the shells
-      # draw what that measurement says. This rebuilds the bar from nothing but the measurement and requires a 0-pixel
-      # difference, in both engines (chromium = the Android WebView, webkit = iOS WKWebView) at every plate viewport.
-      # Unlike `plates:check` it compares two renders made in the SAME browser on the SAME machine, so it is not tied to
-      # the fonts of the machine that captured the baseline and can run on a Linux runner. See docs/mobile/harness.md.
+      - name: Build inputs are consistent (placeholders are only notes here; the release jobs make them failures)
+        run: npm run check --prefix mobile
+
+  # The native tab bar's metrics are MEASURED from the page's own .ms-tabs (public/js/core/tabspec.js) and the shells
+  # draw what that measurement says. This rebuilds the bar from nothing but the measurement and requires a 0-pixel
+  # difference, in both engines (chromium = the Android WebView, webkit = iOS WKWebView) at every plate viewport.
+  # Unlike `plates:check` it compares two renders made in the SAME browser on the SAME machine, so it does not need a
+  # baseline from another machine. See docs/mobile/harness.md.
+  # Its own job, so that a pixel difference is a red check without stopping android and ios from building. The release
+  # jobs do need it.
+  tabbar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - name: Install
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium webkit
       - name: The tab bar's spec describes the web bar exactly (0 pixels, chromium + webkit)
-        id: tabbar
-        run: npm run tabbar:check
-      # The check writes web / spec / diff PNGs for every case that differs. Without this they die with the runner.
-      - name: Keep the tab bar's diff PNGs when the check fails
-        if: steps.tabbar.outcome == 'failure'
+        run: npm run tabbar:check -- --keep
+      - name: Keep the PNGs and specs when the check fails
+        if: failure()
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: tabbar-diffs
           path: .tabbar-work/
           include-hidden-files: true
-      - name: Build inputs are consistent (placeholders are only notes here; the release jobs make them failures)
-        run: npm run check --prefix mobile
 
   android:
     runs-on: ubuntu-latest
@@ -239,7 +254,7 @@ jobs:
   android-release:
     if: ${{ startsWith(github.ref, 'refs/tags/mobile-v') && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.release)) }}
     runs-on: ubuntu-latest
-    needs: [bridge, android]
+    needs: [bridge, tabbar, android]
     environment: release
     env:
       HAVE_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' && secrets.ANDROID_KEYSTORE_PASSWORD != '' && secrets.ANDROID_KEY_ALIAS != '' && secrets.ANDROID_KEY_PASSWORD != '' }}
@@ -331,7 +346,7 @@ jobs:
   ios-release:
     if: ${{ startsWith(github.ref, 'refs/tags/mobile-v') && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.release)) }}
     runs-on: ${{ vars.IOS_RUNNER || 'macos-15' }}
-    needs: [bridge, ios]
+    needs: [bridge, tabbar, ios]
     environment: release
     env:
       HAVE_SIGNING: ${{ secrets.IOS_TEAM_ID != '' && secrets.IOS_DIST_CERT_P12_BASE64 != '' && secrets.IOS_DIST_CERT_PASSWORD != '' && secrets.IOS_PROVISIONING_PROFILE_BASE64 != '' }}

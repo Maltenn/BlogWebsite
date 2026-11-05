@@ -138,9 +138,7 @@ function badgeSpec(el, barRect, win) {
   const s = el.textContent || '';
   // the pill's own text is centred by `text-align: center`; the shell is given the x the web view really put it at, read
   // off the text itself, so it never has to measure a string to centre it (its own advance width could differ by a
-  // fraction of a pixel). Working that x out as (pill - text) / 2 is not the same number: on a pill shrink-wrapped to its
-  // text it lands a sliver beside the padding edge, enough to move the last glyph to another sub-pixel.
-  // tools/tabbar-check.mjs caught that on a Linux runner as the `+` of `99+`, and nothing else in the bar.
+  // fraction of a pixel)
   const rg = el.ownerDocument.createRange();
   rg.selectNodeContents(el);
   const text = rg.getBoundingClientRect();
