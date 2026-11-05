@@ -45,7 +45,9 @@ public class MainActivity extends BridgeActivity {
         registerPlugin(ShellPlugin.class);
         super.onCreate(savedInstanceState);
         allowCleartextInDebug();
-        paintBands();
+        // Posted, not called: Capacitor's SystemBars queues a repaint of the decor view while super.onCreate loads it, and
+        // that would land after a direct call and leave the whole decor navy. This queues behind it.
+        new Handler(Looper.getMainLooper()).post(this::paintBands);
         addTabBar();
         showSplash();
         // if the page never says it has drawn (the bridge failed to start), the splash must not be permanent
