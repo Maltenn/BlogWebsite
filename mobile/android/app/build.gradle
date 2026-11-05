@@ -16,7 +16,7 @@ android {
         applicationId (System.getenv('OURSPACE_APP_ID') ?: ourspace.appId)
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode (System.getenv('OURSPACE_VERSION_CODE') ?: '1').toInteger()
+        versionCode((System.getenv('OURSPACE_VERSION_CODE') ?: '1').toInteger())
         versionName System.getenv('OURSPACE_VERSION_NAME') ?: '1.0.0'
         manifestPlaceholders = [ourspaceHost: linkHost]
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"

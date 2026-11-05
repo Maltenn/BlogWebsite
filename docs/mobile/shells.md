@@ -4,12 +4,23 @@
 `public/` bundle (`webDir: ../public`). The apps are the site plus one script, `public/js/core/native.js`, which does nothing in
 a browser. Read [contract.md](contract.md) first; this page is how to build against it.
 
-**Honest status.** Everything on this page was written and checked on a Windows machine with no Android SDK, no Xcode, and no
+**Honest status.** This page was first written and checked on a Windows machine with no Android SDK, no Xcode, and no
 Apple or Google account. What *has* been run: `cap add android`, `cap add ios`, `cap sync` (the Gradle and Xcode projects are
 generated and consistent), `make-splash.mjs`, and `mobile/test/bridge.test.mjs` (the JavaScript bridge in Chromium against a fake
-Capacitor and a fake API). What has **not** been run anywhere: a Gradle build, an Xcode build, either app on a device or
-simulator, push, universal links, the real Keychain/Keystore plugin. The CI workflow is how those first run; treat its first green
+Capacitor and a fake API). What has **not** been run anywhere: an Xcode build, the iOS app on anything, either app on a real
+phone, push, universal links, the iOS Keychain. The CI workflow is how the iOS build first runs; treat its first green
 run as the first evidence, and a device as the second. See "What cannot be verified yet" at the end.
+
+**Android, 2026-11-05: first real run.** `assembleDebug` builds (JDK 21, Gradle 8.14.3, AGP 8.13, platform 36). The debug app runs on
+the Android 17 emulator against the local demo: password sign-in through Turnstile's test key, the session stored through the
+secure-storage plugin, and private photos loaded with the bearer token. The first build also found a bug no earlier check could see:
+`versionCode (…).toInteger()` parsed as a call on the result of `versionCode(…)`, which failed every Android build. Fixed.
+
+**Found and fixed in that run.** The app's CSP has no `'unsafe-inline'` in `style-src`, so `setAttribute('style', …)` is refused, and
+`core/tabbar.js` and `core/tabspec.js` both used it: `.ms-tabs` stayed in the page (against D3), and the baseline strut measured
+wrong, which clipped the native bar's labels. Both now use `.style.cssText`, which the policy allows. On the emulator that gave 0 CSP
+violations, a working native tab tap and correct badges, and `test/static.test.mjs` now refuses the old call. `tabbar:check` could
+not have seen this, because its pages carry no CSP.
 
 ## Layout
 
@@ -99,6 +110,13 @@ and runs and simply cannot receive push.
 ## iOS: needs a Mac
 
 Needs: macOS, **Xcode 26** (Capacitor 8), CocoaPods, Node 22+.
+
+**A macOS virtual machine on a Windows PC is not a way round this** (looked at 2026-11-05, for VirtualBox on a Ryzen desktop, and
+not built). VirtualBox gives a macOS guest no Metal, which the Simulator expects and the WKWebView checks here depend on. macOS has
+never shipped for AMD processors, so it would also need third-party kernel patches. Xcode 27 installs only on Apple silicon, and App
+Store uploads are reported to need it from April 2027, so an x86 guest would be a dead end within months. And the macOS licence
+limits it to Apple-branded hardware (the newest text checked was older than Tahoe; confirm against apple.com/legal). Use CI's `ios`
+job, a cloud Mac, or a real Mac.
 
 ```
 cd mobile
@@ -196,7 +214,7 @@ These are not in `mobile/`'s hands; each is also in the report that came with th
   `not_found_handling: single-page-application`. It must not be added to `run_worker_first`.
 - **Photos** (contract §12): the server now sends CORP `cross-origin` only on public photos. The app does not depend on that: signed in, `native.js` fetches EVERY `/media/` image with the bearer token (CORS fetch) and shows a `blob:` URL, which is why the app's CSP has `img-src … blob:` (the site's does not need it). Deviation D21 has the costs; the tests are in `bridge.test.mjs`. The Worker must keep answering CORS preflight for `GET /media/*` with `Authorization` allowed.
 - **Turnstile** (checklist 6): the widget must be allowed on the hostname `localhost` in the Cloudflare dashboard, and may refuse
-  to render when the parent origin is `capacitor://localhost`. Unverified; the human check on sign-up and login is the first thing to
+  to render when the parent origin is `capacitor://localhost`. Unverified on iOS and with real keys (on the Android emulator, parent `https://localhost`, the widget rendered and returned a token with the test key); the human check on sign-up and login is the first thing to
   try on a device.
 
 ## What cannot be verified yet
@@ -204,7 +222,7 @@ These are not in `mobile/`'s hands; each is also in the report that came with th
 | Needs | Cannot be verified without it |
 |---|---|
 | A Mac with Xcode 26 | that the Swift compiles; the shell's layout (bands, keyboard guide, splash overlay); `ASWebAuthenticationSession`; status-bar tap; the unsigned archive. CI's `ios` job will say whether it compiles, nothing says whether it looks right except a simulator and then a phone |
-| An Android SDK / emulator | that the Java and Gradle changes compile; the bands and splash overlay; Custom Tab sign-in and the `ourspace://` return; the back button; the photo picker |
+| A walk through the Android emulator | the build and password sign-in are done (see the top of this page). Still unchecked: the bands and splash overlay; Custom Tab sign-in and the `ourspace://` return; the back button; the photo picker |
 | An Apple Developer account | signing, the Push Notifications and Associated Domains capabilities, universal links (needs the real team id in the AASA), APNs delivery, TestFlight |
 | A Play Console + Firebase | App Links (needs the Play signing fingerprint in `assetlinks.json`), FCM delivery, the internal track |
 | A real phone of each kind | the pixel diff (checklist 21, 23), the splash seam (D7), haptics, the camera, push taps warm and **cold** (checklist 8, 9), the Keychain surviving a restart and not a reinstall (1, 2), Turnstile (6), GIF memory (19) |

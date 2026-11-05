@@ -173,6 +173,11 @@ test('front end layering: js/core/ imports only core; js/widgets/ never imports 
   assert.deepEqual(bad, []);
 });
 
+test('no page code sets the style attribute: `style-src` refuses setAttribute(\'style\', …) without a word, and `.style.cssText` is the form it allows', () => {
+  const bad = pageFiles.filter(f => f.endsWith('.js') && /setAttribute\(\s*['"`]style['"`]/.test(read(f))).map(rel);
+  assert.deepEqual(bad, []);
+});
+
 test('the CSP lets the live chat\'s socket reach the site (wss:, and ws: to the local machine for wrangler dev), and Turnstile\'s script and frame load from Cloudflare, and nothing else loosens', () => {
   const csp = read(path.join(PUBLIC, '_headers')).match(/Content-Security-Policy: (.*)/)[1].trim();
   const directives = Object.fromEntries(csp.split(';').map(d => d.trim().split(/\s+/)).map(([k, ...v]) => [k, v]));

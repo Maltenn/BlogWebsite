@@ -42,7 +42,7 @@ export function wireTabBar(shell, doc = document) {
   let stopped = false;
 
   const show = () => { if (hidden) { bar.removeAttribute('style'); hidden = false; } };
-  const hide = width => { bar.setAttribute('style', hiddenStyle(width)); hidden = true; };
+  const hide = width => { bar.style.cssText = hiddenStyle(width); hidden = true; };    // (cssText, not the attribute: the app's CSP refuses that)
 
   /* Put the bar back in the flow, measure it, and if it is already out of the flow put it straight back — all in one
      synchronous run, so a bar that is hidden is never painted visible in between. */

@@ -103,7 +103,7 @@ function partsOf(el, barRect, win) {
   const cs = win.getComputedStyle(el);
   const r = el.getBoundingClientRect();
   const strut = el.ownerDocument.createElement('i');
-  strut.setAttribute('style', STRUT);
+  strut.style.cssText = STRUT;
   el.appendChild(strut);
   const baseline = strut.getBoundingClientRect().top - barRect.top;
   strut.remove();
@@ -131,7 +131,7 @@ function badgeSpec(el, barRect, win) {
   const cs = win.getComputedStyle(el);
   const r = el.getBoundingClientRect();
   const strut = el.ownerDocument.createElement('i');
-  strut.setAttribute('style', STRUT);
+  strut.style.cssText = STRUT;
   el.appendChild(strut);
   const baseline = strut.getBoundingClientRect().top - barRect.top;
   strut.remove();
