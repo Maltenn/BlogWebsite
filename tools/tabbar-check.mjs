@@ -89,6 +89,10 @@ const bar = document.getElementById('bar');
 const px = n => n + 'px';
 bar.style.width = px(spec.w);
 bar.style.height = px(spec.h + (spec.rule ? spec.rule.h : 0));
+// A bar that scrolls is a real scroller with the bar's background on the scroller itself, as it is on the page and in
+// the shells (a scroll view over the bar's colour). Without that background chromium draws a badge's curved corners a few
+// levels differently from the page, at some x positions only, so the check failed or passed by where the fonts put a badge.
+if (spec.scrolls) Object.assign(bar.style, { overflowX: 'auto', overflowY: 'hidden', scrollbarWidth: 'none', background: spec.bg });
 // the generic keywords must NOT be quoted: "sans-serif" in quotes asks for a family with that name, which changes
 // which font the engine falls back to (and therefore where an emoji glyph lands). The \`font\` shorthand also resets
 // line-height, so line-height is forced back to 0 after it, in the probe and in the run alike — with a zero-height
@@ -127,7 +131,12 @@ const run = (s, x, baseline, f, fg) => {
   const el = document.createElement('span');
   el.className = 't';
   el.textContent = s;
-  Object.assign(el.style, { left: px(x), top: px(baseline - kFor(f)), color: fg, ...face(f) });
+  // CSS stores a length in 1/64px, and webkit centres a badge's text in finer steps than that, so \`left\` alone would
+  // round the spec's x down. The shells take x as a double, so the replica must too: the remainder goes in a transform.
+  // Dropping it moved the \`+\` of a \`99+\` across a quarter-pixel boundary while the digits before it stayed put.
+  const grid = Math.floor(x * 64) / 64;
+  Object.assign(el.style, { left: px(grid), top: px(baseline - kFor(f)), color: fg, ...face(f) });
+  if (x > grid) el.style.transform = 'translateX(' + (x - grid) + 'px)';
   bar.appendChild(el);
 };
 for (const it of spec.items) {

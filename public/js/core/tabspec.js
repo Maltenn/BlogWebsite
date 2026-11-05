@@ -136,14 +136,11 @@ function badgeSpec(el, barRect, win) {
   const baseline = strut.getBoundingClientRect().top - barRect.top;
   strut.remove();
   const s = el.textContent || '';
-  // the pill's own text is centred by `text-align: center`; the shell is given the x the web view really put it at, read
-  // off the text itself, so it never has to measure a string to centre it (its own advance width could differ by a
-  // fraction of a pixel)
+  // the pill's own text is centred by `text-align: center`; the shell is given the x the web view puts it at, so it
+  // never has to measure a string to centre it (its own advance width could differ by a fraction of a pixel)
   const rg = el.ownerDocument.createRange();
   rg.selectNodeContents(el);
-  const text = rg.getBoundingClientRect();
-  const textW = s ? text.width : 0;
-  const textLeft = s ? text.left : r.left + r.width / 2;
+  const textW = s ? rg.getBoundingClientRect().width : 0;
   rg.detach?.();
   const radius = Math.min(num(cs.borderTopLeftRadius), r.height / 2);
   return {
@@ -151,7 +148,7 @@ function badgeSpec(el, barRect, win) {
     x: r2(r.left - barRect.left), y: r2(r.top - barRect.top), w: r2(r.width), h: r2(r.height), r: r2(radius),
     bg: hex(cs.backgroundColor), fg: hex(cs.color),
     font: { families: families(cs.fontFamily), size: r2(num(cs.fontSize)), weight: num(cs.fontWeight) || 400, italic: cs.fontStyle === 'italic' },
-    textX: r2(textLeft - barRect.left),
+    textX: r2(r.left - barRect.left + (r.width - textW) / 2),
     textW: r2(textW),
     baseline: r2(baseline),
   };
