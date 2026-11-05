@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <!-- The app after launch. The site has one look (light), so the app has one: no day/night switch, no forced dark.
+         windowBackground is what Capacitor's SystemBars paints behind the bars; MainActivity.paintBands() replaces it
+         with the two bands (status #1c3f94, home #eef4ff) once the activity is up. -->
+    <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/ourspace_status_band</item>
+        <item name="android:forceDarkAllowed">false</item>
+    </style>
+
+    <!-- The launch window: plain white with a blank icon. Android 12+ draws its own splash from these two items and cannot
+         draw an image there; the page-shaped splash is MainActivity's overlay (docs/mobile/deviations.md). -->
+    <style name="AppTheme.NoActionBarLaunch" parent="Theme.SplashScreen">
+        <item name="android:background">@color/ourspace_splash</item>
+        <item name="windowSplashScreenBackground">@color/ourspace_splash</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_icon_blank</item>
+        <item name="postSplashScreenTheme">@style/AppTheme.NoActionBar</item>
+    </style>
+</resources>

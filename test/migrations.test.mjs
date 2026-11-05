@@ -311,3 +311,34 @@ test('0009 counts everyone already there as verified and not held, and its table
   const [signals, strikes, timeouts] = sql('SELECT COUNT(*) AS n FROM signup_signals', 'SELECT COUNT(*) AS n FROM ai_strikes', 'SELECT COUNT(*) AS n FROM posting_timeouts');
   assert.deepEqual([signals[0].n, strikes[0].n, timeouts[0].n], [0, 0, 0]);
 });
+
+test('0010 writes a push line for each notification of someone with a device (and only them), and a device goes with its session or account', () => {
+  apply('0010_devices.sql');
+  sql(`INSERT INTO users (id, name, name_key, avatar, birthdate, created) VALUES
+      (3001, 'ann', 'ann_t', '/a.png', '1990-01-01', 1), (3002, 'ben', 'ben_t', '/a.png', '1990-01-01', 1), (3003, 'cat', 'cat_t', '/a.png', '1990-01-01', 1)`,
+    `INSERT INTO sessions (token_hash, user_id, created, expires) VALUES ('s-ann-1', 3001, 1, 9e12), ('s-ann-2', 3001, 1, 9e12), ('s-cat', 3003, 1, 9e12)`,
+    `INSERT INTO devices (user_id, token_hash, platform, label, push_token, push_provider, created, last_seen) VALUES
+      (3001, 's-ann-1', 'ios', 'phone', 'tok-ann', 'apns', 1, 1), (3001, 's-ann-2', 'android', 'tablet', NULL, NULL, 1, 1), (3003, 's-cat', 'ios', 'cat phone', 'tok-cat', 'apns', 1, 1)`,
+    `INSERT INTO posts (id, kind, author_id, body, created) VALUES (3101, 'status', 3001, 'hello', 5)`,
+    `INSERT INTO notifications (user_id, kind, actor_id, post_id, created) VALUES (3001, 'like', 3002, 3101, 10), (3002, 'like', 3001, 3101, 11)`,
+    `INSERT INTO notifications (user_id, kind, actor_id, created) VALUES (3001, 'follow', 3002, 12), (3001, 'follow_request', 3002, 13), (3003, 'follow', 3002, 14)`);
+  const [lines] = sql('SELECT user_id, kind, title, body, url, created, attempts FROM push_outbox ORDER BY id');
+  assert.deepEqual(lines, [
+    { user_id: 3001, kind: 'like', title: 'ben', body: 'liked your post', url: '/u/ann/post/3101', created: 10, attempts: 0 },
+    { user_id: 3001, kind: 'follow', title: 'ben', body: 'started following you', url: '/u/ben', created: 12, attempts: 0 },
+    { user_id: 3001, kind: 'follow_request', title: 'ben', body: 'wants to follow you', url: '/requests', created: 13, attempts: 0 },
+    { user_id: 3003, kind: 'follow', title: 'ben', body: 'started following you', url: '/u/ben', created: 14, attempts: 0 },
+  ], 'ben has no device: nothing for ann\'s like of his; the tablet has no push token but the phone does');
+  // a revoked device or a token the service dropped no longer counts
+  sql("UPDATE devices SET push_token = NULL, push_provider = NULL WHERE user_id = 3003", "UPDATE devices SET revoked = 1 WHERE token_hash = 's-ann-1'",
+    "INSERT INTO notifications (user_id, kind, actor_id, created) VALUES (3003, 'follow', 3002, 20), (3001, 'follow', 3002, 21)");
+  assert.equal(sql('SELECT COUNT(*) AS n FROM push_outbox')[0][0].n, 4, 'no new lines');
+  assert.throws(() => sql("INSERT INTO devices (user_id, token_hash, platform, label, created, last_seen) VALUES (3002, 'nope', 'ios', 'x', 1, 1)"), 'a device needs a session');
+  assert.throws(() => sql("INSERT INTO devices (user_id, token_hash, platform, label, push_token, created, last_seen) VALUES (3002, 's-ann-1', 'ios', 'x', 't', 1, 1)"), 'a token needs its provider, and a session has one device');
+  // the session ending takes its device; the account takes the rest and its outbox
+  sql("DELETE FROM sessions WHERE token_hash = 's-ann-2'");
+  assert.deepEqual(sql('SELECT token_hash FROM devices ORDER BY id')[0].map(r => r.token_hash), ['s-ann-1', 's-cat']);
+  sql('DELETE FROM users WHERE id = 3001');
+  const [devices, outbox, states] = sql('SELECT user_id FROM devices', 'SELECT DISTINCT user_id FROM push_outbox', "SELECT name FROM pragma_table_info('oauth_states') WHERE name = 'client'");
+  assert.deepEqual([devices, outbox, states], [[{ user_id: 3003 }], [{ user_id: 3003 }], [{ name: 'client' }]]);
+});

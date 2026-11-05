@@ -3,6 +3,7 @@
 // TEST_PROVIDER_BASE, TURNSTILE_VERIFY_URL and DOH_URL point here), so nothing reaches the internet. It approves every sign-in at once. Who signs in is decided by the test:
 // mock.next(provider, { sub, email, verified, name, notAllowlisted }) sets the identity the next authorize returns.
 import http from 'node:http';
+import { verify } from 'node:crypto';
 import { pathToFileURL } from 'node:url';
 
 const b64url = s => Buffer.from(s).toString('base64url');
@@ -21,6 +22,20 @@ export async function startMock(port = 0, { pretend = false } = {}) {
     return { sub: `${p}-${slug}`, email: `${slug}@example.com`, verified: true, name, notAllowlisted: q.get('demo_not_allowlisted') === 'on' };
   };
 
+  const push = { apns: [], fcm: [], tokens: [], fail: [], keys: {} };
+  const takeFailure = to => { const i = push.fail.findIndex(f => f.to === to); return i < 0 ? null : push.fail.splice(i, 1)[0]; };
+  // a JWT's header and claims, and whether its signature holds against `key` (a public KeyObject): ES256 is the raw r||s form
+  const checkJwt = (jwt, key, alg) => {
+    const [h, c, s] = String(jwt).split('.');
+    try {
+      const header = JSON.parse(unb64url(h)), claims = JSON.parse(unb64url(c));
+      const signature = Buffer.from(s, 'base64url');
+      const ok = !!key && header.alg === alg && (alg === 'ES256'
+        ? verify('sha256', Buffer.from(`${h}.${c}`), { key, dsaEncoding: 'ieee-p1363' }, signature)
+        : verify('RSA-SHA256', Buffer.from(`${h}.${c}`), key, signature));
+      return { header, claims, ok };
+    } catch { return { header: null, claims: null, ok: false }; }
+  };
   const body = req => new Promise(res => { let s = ''; req.on('data', d => { s += d; }); req.on('end', () => res(s)); });
   const send = (res, status, data, headers = {}) => {
     res.writeHead(status, { 'Content-Type': 'application/json', ...headers });
@@ -130,6 +145,29 @@ export async function startMock(port = 0, { pretend = false } = {}) {
       return send(res, 200, { Status: 0, Answer: [{ name, type: 15, TTL: 300, data: `10 mx.${name}.` }] });
     }
 
+    // APNs (TEST_PUSH_BASE/apns/3/device/<token>), Google's token exchange (the service account's token_uri) and FCM v1
+    // (TEST_PUSH_BASE/fcm/v1/projects/<id>/messages:send): every call is kept in mock.push, with its JWT checked against
+    // the public keys the test gave (mock.push.keys = { apns, fcm }). A test can queue failures: mock.push.fail.push({ to:
+    // 'apns' | 'fcm', status, body }) answers the next call to that service with it.
+    if (url.pathname.startsWith('/apns/3/device/') && req.method === 'POST') {
+      const jwt = String(req.headers.authorization || '').replace(/^bearer /i, '');
+      const failure = takeFailure('apns');
+      push.apns.push({ token: decodeURIComponent(url.pathname.split('/').pop()), headers: req.headers, body: JSON.parse(await body(req) || '{}'), jwt: checkJwt(jwt, push.keys.apns, 'ES256') });
+      if (failure) return send(res, failure.status, failure.body || {});
+      return send(res, 200, {});
+    }
+    if (url.pathname === '/fcm-token' && req.method === 'POST') {
+      const form = new URLSearchParams(await body(req));
+      push.tokens.push({ grant: form.get('grant_type'), jwt: checkJwt(form.get('assertion') || '', push.keys.fcm, 'RS256') });
+      return send(res, 200, { access_token: 'fcm-access-' + push.tokens.length, expires_in: 3600, token_type: 'Bearer' });
+    }
+    if (url.pathname.startsWith('/fcm/v1/projects/') && url.pathname.endsWith('/messages:send') && req.method === 'POST') {
+      const failure = takeFailure('fcm');
+      push.fcm.push({ project: url.pathname.split('/')[4], auth: req.headers.authorization || null, message: JSON.parse(await body(req) || '{}').message });
+      if (failure) return send(res, failure.status, failure.body || {});
+      return send(res, 200, { name: 'projects/test/messages/1' });
+    }
+
     send(res, 404, { error: 'mock: no such endpoint ' + url.pathname });
   });
 
@@ -141,6 +179,7 @@ export async function startMock(port = 0, { pretend = false } = {}) {
     next(provider, identity) { (queue[provider] = queue[provider] || []).push(identity); },
     turnstile(answer) { turnstileQueue.push(answer); },
     turnstileLog,
+    push,
     log,
     close: () => new Promise(r => server.close(r)),
   };

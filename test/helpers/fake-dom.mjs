@@ -143,7 +143,7 @@ const doc = {
 // play what the server does; .sent is what the page sent. Put it in place with globalThis.WebSocket = FakeSocket.
 export class FakeSocket {
   static all = [];
-  constructor(url) { this.url = url; this.readyState = 0; this.sent = []; FakeSocket.all.push(this); }
+  constructor(url, protocols) { this.url = url; this.protocols = protocols; this.readyState = 0; this.sent = []; FakeSocket.all.push(this); }
   send(data) { this.sent.push(data); }
   close(code) { this.shut(code); }
   open() { this.readyState = 1; this.onopen && this.onopen(); }

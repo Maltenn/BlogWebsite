@@ -23,6 +23,7 @@
 //   4003 not a member any more: left or removed
 //   1008 too many frames: more than about one a second, sustained (pings that the auto-response answers don't count)
 import { DurableObject } from 'cloudflare:workers';
+import { echoProtocol } from '../shared/app.js';
 
 export const SIGNED_OUT = 4001, TOO_MANY = 4002, REMOVED = 4003, FLOOD = 1008;
 const TYPING_MS = 2000;
@@ -110,7 +111,11 @@ export class Room extends DurableObject {
     const me = server.deserializeAttachment();
     send(server, { type: 'presence', online: this.visibleTo(me, this.people()) });
     await this.soon();
-    return new Response(null, { status: 101, webSocket: client });
+    // A client with no cookie offered a room ticket as a subprotocol, and the fixed `ourspace.live` beside it: the
+    // handshake selects THAT one. Whatever a handshake selects the browser publishes as `socket.protocol`, so echoing
+    // the credential is what put the session token in reach of any script in the page (redteam R8, contract §7).
+    const proto = echoProtocol(request);
+    return new Response(null, { status: 101, webSocket: client, ...(proto ? { headers: { 'Sec-WebSocket-Protocol': proto } } : {}) });
   }
 
   // who `me` sees here: everyone connected, each once, minus people with a block

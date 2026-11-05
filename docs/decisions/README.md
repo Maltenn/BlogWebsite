@@ -11,3 +11,4 @@ when one is decided, change its `Status:` line and note the answer there rather 
 | [004](004-cloudflare-limits-and-costs.md) | Cloudflare limits and costs, with a cost model per member count | all phases |
 | [005](005-media-formats.md) | Photos and video: formats, metadata stripping, serving uploads safely, CSAM obligations | phase 4 |
 | [006](006-twitter-shape-ux.md) | Twitter shape, OurSpace look: page shell, profile, feed and "pick up where I left off", blog, Friends' Comments | phases 1–3 |
+| [007](007-mobile-apps.md) | iOS and Android apps: bundling `public/` into a native shell, token sessions, CORS, push, and how pixel-identity is measured | mobile |

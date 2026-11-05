@@ -3,7 +3,52 @@
 // connected (and knows who they are). Everything here is best effort: a message is stored before it is told, and a page
 // whose socket failed polls the history instead, so a room that can't be reached never fails a write.
 
+import { sha256Hex } from './http.js';
+import { randomToken } from './seal.js';
+import { ticketProtocol } from './app.js';
+
 export const OURSPACE = 'ourspace';
+
+/* ------------------------------------------------- the pass a cookieless client opens a socket with
+
+A browser WebSocket can set no headers, so the apps have to put their credential in the subprotocol — and a handshake
+publishes the subprotocol it selects on the live socket as `socket.protocol`. That is why it is a ticket and not the
+session token (docs/mobile/redteam.md R8, docs/mobile/contract.md §7, migrations/0013_live_tickets.sql): hashed at rest,
+single use, one room, half a minute. */
+
+// A ticket's life. The only thing between POST /api/live/ticket and the handshake it is for is one more round trip from
+// the same page, so this is already generous; it is this short because the window is all an attacker who reads the
+// ticket gets, and all they can do in it is open a socket to a room they are in already.
+export const TICKET_MS = 30000;
+
+// Mints one for `room` ('ourspace' or a conversation id), for the session this request is on. The caller has already
+// checked that this member may open that room (src/chats/live.js). → the raw ticket, which is never stored.
+export async function mintTicket(c, room) {
+  const ticket = randomToken();
+  await c.env.DB.prepare('INSERT INTO live_tickets (ticket_hash, room, user_id, token_hash, created, expires) VALUES (?, ?, ?, ?, ?, ?)')
+    .bind(await sha256Hex(ticket), String(room), c.user.id, c.user.tokenHash, c.now, c.now + TICKET_MS).run();
+  return { ticket, expires: c.now + TICKET_MS };
+}
+
+// The one address a ticket is a credential at. Everything else — every other route, /media/*, the ticket route itself —
+// takes a session and nothing else, so a stolen ticket is worth one room's socket and NOT one request as its owner.
+// (Without this, any route at all would accept it from a request that simply added an `Upgrade: websocket` header.)
+const SOCKET_PATH = '/api/live/';
+
+// The ticket this upgrade offers, spent: → { room, user_id, token_hash } or null. Single use whatever happens next —
+// the row is DELETEd and only the request that removed it may go on, so a replay, or whoever read the ticket off
+// `socket.protocol` racing the page that minted it, finds nothing. An expired one is consumed and refused.
+// `room` is not checked here: the caller compares it with the room actually asked for (src/chats/live.js).
+export async function claimTicket(c) {
+  if (!c.url.pathname.startsWith(SOCKET_PATH)) return null;
+  const raw = ticketProtocol(c.req);
+  if (!raw || raw.length > 100) return null;
+  const hash = await sha256Hex(raw);
+  const row = await c.env.DB.prepare('SELECT room, user_id, token_hash, expires FROM live_tickets WHERE ticket_hash = ?').bind(hash).first();
+  if (!row) return null;
+  const claimed = (await c.env.DB.prepare('DELETE FROM live_tickets WHERE ticket_hash = ?').bind(hash).run()).meta.changes === 1;
+  return claimed && row.expires > c.now ? row : null;
+}
 
 const stub = (env, room) => env.ROOMS.get(env.ROOMS.idFromName(room === OURSPACE ? OURSPACE : 'c:' + room));
 

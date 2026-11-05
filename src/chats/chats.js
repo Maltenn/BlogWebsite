@@ -10,6 +10,7 @@ import { REF_COLS, ref, refOf, visibleUser, userByName, areFriends, blockedBy, b
 import { CHAT_OPEN, CHAT_LISTED, UNREAD_IN, HANDOVER } from '../shared/chat.js';
 import { ADD, DECAYED, CLOSENESS, W, GROUP_CAP } from '../shared/affinity.js';
 import { tell, kick } from '../shared/live.js';
+import { pushReady, pushChat } from '../push/push.js';
 import { BODY_MAX, MSG_SHOWN, messagePage, blockedIds } from './messages.js';
 
 export const MAX_MEMBERS = 50;
@@ -162,7 +163,15 @@ export async function sendChatMessage(c) {
   ]);
   if (!made.results.length) fail(404, 'that chat isn\'t there.');
   const message = { id: made.results[0].id, chatId: id, room: null, body, created: c.now, author: refOf(c.user) };
-  await tell(c.env, id, { type: 'message', message }, await blockedIds(c));
+  const apart = await blockedIds(c);
+  await tell(c.env, id, { type: 'message', message }, apart);
+  // The phones of the other members hear it at once, not with the minute's outbox (silent when push isn't set up).
+  // Neither the message nor the group's name is passed: a push says who sent it and nothing they wrote, because the
+  // payload reaches Apple and Google in the clear (the invariant at the top of src/push/push.js, contract §9).
+  if (pushReady(c.env)) {
+    c.ctx.waitUntil(pushChat(c.env, { chatId: id, kind: m.kind, from: refOf(c.user), skip: apart, now: c.now })
+      .catch(e => console.error('push: a chat message failed:', (e && e.stack) || e)));
+  }
   return json({ message: { ...message, mine: true } }, 201);
 }
 

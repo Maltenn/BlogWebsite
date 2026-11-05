@@ -1,0 +1,10 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.ourspace.app",
+      "sha256_cert_fingerprints": ["REPLACE:WITH:THE:SHA256:FINGERPRINT:OF:THE:PLAY:APP:SIGNING:CERTIFICATE:00:00:00:00:00:00:00:00:00"]
+    }
+  }
+]

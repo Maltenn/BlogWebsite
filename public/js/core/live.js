@@ -10,7 +10,11 @@
      reconnect, and, once the socket has failed three times in a row, every few seconds as a fallback (state 'polling')
      until it comes back (once a minute while the tab is hidden). state: 'connecting' | 'live' | 'polling' | 'closed';
      onState(state) hears the changes.
-   · The room is closed when the page is left (onLeave). */
+   · The room is closed when the page is left (onLeave).
+   · useLiveTickets(fn) — a client that can't send our cookie (the iOS / Android shells, core/native.js) registers a
+     function here, and every connect waits for `await fn(room)` to hand back the subprotocols to offer. That is where
+     the one-room pass comes from (POST /api/live/ticket, docs/mobile/contract.md §7). In a browser nothing is
+     registered, nothing is awaited, and the socket opens exactly as it always did. */
 
 import { enc } from './dom.js';
 import { onLeave } from './router.js';
@@ -24,13 +28,18 @@ const FAILS_BEFORE_POLLING = 3;
 const HIDDEN_POLL_MS = 60000;   // polling while the tab is hidden: once a minute
 const open = new Set();     // the rooms that are open right now (dropSockets uses it)
 
+// How a cookieless client gets into a room: async (room) => [subprotocols]. null in a browser (see the header).
+// A rejection with `status` 401/403/404 ends the room for good, the same way a rejected history fetch does.
+let ticketFor = null;
+export function useLiveTickets(fn) { ticketFor = typeof fn === 'function' ? fn : null; }
+
 export function liveUrl(room, loc = location) {
   return (loc.protocol === 'https:' ? 'wss:' : 'ws:') + '//' + loc.host + '/api/live/' + enc(room);
 }
 
 export function openRoom(room, { onEvent = () => {}, onState = () => {}, sync = null, pollMs = 4000, WS = globalThis.WebSocket } = {}) {
   let ws = null, closed = false, fails = 0, everOpen = false, state = 'connecting';
-  let retry = null, ping = null, poll = null, syncing = false, lastSync = 0;
+  let retry = null, ping = null, poll = null, syncing = false, lastSync = 0, gen = 0;
   const set = s => { if (s !== state) { state = s; onState(s); } };
   // the end, for good: nothing more is tried, and the page hears why
   const finish = why => { if (closed) return; close(); onEvent({ type: why }); };
@@ -46,11 +55,26 @@ export function openRoom(room, { onEvent = () => {}, onState = () => {}, sync = 
   // a polling round: every few seconds, or once a minute while nobody is looking
   const pollTick = () => { if (!document.hidden || Date.now() - lastSync >= HIDDEN_POLL_MS) runSync(); };
   const stopPoll = () => { if (poll) { clearInterval(poll); poll = null; } };
+  // Without a ticket function the socket opens in this tick, as it always has. With one, this connect waits for the
+  // pass for this room — a single-use one, so every attempt asks again — and a refusal that means "not you, not here"
+  // ends the room instead of retrying.
   const connect = () => {
     if (closed) return;
     clearTimeout(retry);
+    if (!ticketFor) { start([]); return; }
+    const mine = ++gen;                       // a pass that arrives after another attempt started is thrown away
+    let got;
+    try { got = ticketFor(room); } catch (e) { refused(e, mine); return; }
+    Promise.resolve(got).then(list => { if (!closed && mine === gen) start(Array.isArray(list) ? list : []); }, e => refused(e, mine));
+  };
+  const refused = (e, mine) => {
+    if (closed || mine !== gen) return;
+    const why = e && FINAL_STATUS[e.status];
+    if (why) finish(why); else lost();
+  };
+  const start = protocols => {
     let sock;
-    try { sock = new WS(liveUrl(room)); } catch { lost(); return; }
+    try { sock = protocols.length ? new WS(liveUrl(room), protocols) : new WS(liveUrl(room)); } catch { lost(); return; }
     ws = sock;
     sock.onopen = () => {
       if (sock !== ws) return;

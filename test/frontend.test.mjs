@@ -636,6 +636,42 @@ test('live: a 401 from the history ends it as "signedout", a 403 or 404 as "remo
   room.close();
 });
 
+test('live: a cookieless client gets a one-room pass before every handshake, and a refused pass ends the room', async () => {
+  const { openRoom, useLiveTickets } = await import('../public/js/core/live.js');
+  try {
+    // what core/native.js registers in the apps: a pass per connect, offered next to the fixed name, and no token
+    const asked = [];
+    useLiveTickets(async r => { asked.push(r); return ['ourspace.live', 'ourspace.bearer.pass-' + asked.length]; });
+    const room = openRoom('ourspace', {});
+    await wait(5);
+    assert.deepEqual(asked, ['ourspace']);
+    assert.deepEqual(lastSocket().protocols, ['ourspace.live', 'ourspace.bearer.pass-1']);
+    lastSocket().open();
+    room.reconnect();                                   // single use: every attempt asks for its own
+    await wait(5);
+    assert.deepEqual(asked, ['ourspace', 'ourspace']);
+    assert.deepEqual(lastSocket().protocols, ['ourspace.live', 'ourspace.bearer.pass-2']);
+    room.close();
+
+    // a pass refused for good ends the room, the same way a refused history fetch does
+    for (const [status, why] of [[401, 'signedout'], [403, 'removed'], [404, 'removed']]) {
+      const seen = [];
+      useLiveTickets(async () => { throw Object.assign(new Error('no'), { status }); });
+      const r = openRoom('9', { onEvent: e => seen.push(e.type) });
+      await wait(5);
+      assert.deepEqual([seen, r.state], [[why], 'closed'], 'a ' + status);
+    }
+    // anything else is just a connection that didn't happen: no socket, and it keeps trying
+    const before = FakeSocket.all.length;
+    useLiveTickets(async () => { throw Object.assign(new Error('offline'), { status: 500 }); });
+    const down = openRoom('9', { pollMs: 10, sync: async () => {} });
+    await wait(5);
+    assert.equal(FakeSocket.all.length, before, 'no handshake without a pass');
+    assert.notEqual(down.state, 'closed');
+    down.close();
+  } finally { useLiveTickets(null); }
+});
+
 test('live: polling slows to once a minute while the tab is hidden', async () => {
   const { openRoom } = await import('../public/js/core/live.js');
   let syncs = 0;

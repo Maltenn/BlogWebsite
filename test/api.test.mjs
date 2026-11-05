@@ -4,6 +4,7 @@
 import { test, before, after } from 'node:test';
 import assert from 'node:assert/strict';
 import { spawn, execFileSync } from 'node:child_process';
+import { generateKeyPairSync, createHash } from 'node:crypto';
 import fs from 'node:fs';
 import http from 'node:http';
 import os from 'node:os';
@@ -23,6 +24,11 @@ const BASE = `http://127.0.0.1:${PORT}`;
 const WORKER = `ourspace-social-test-${PORT}`;
 const STATE = fs.mkdtempSync(path.join(os.tmpdir(), 'ourspace-test-'));
 let server, mock;
+// the keys the push tests sign with: the Worker gets the private halves as its secrets, the stand-in APNs/FCM the public
+// halves, to check every token it is sent
+const APNS_KEYS = generateKeyPairSync('ec', { namedCurve: 'P-256' });
+const FCM_KEYS = generateKeyPairSync('rsa', { modulusLength: 2048 });
+const pem = k => k.export({ type: 'pkcs8', format: 'pem' }).toString();
 let serverLog = '';
 
 const sql = command => JSON.parse(execFileSync(process.execPath, [WRANGLER, 'd1', 'execute', 'ourspace-social-db', '--local', '--persist-to', STATE, '--json', '--command', command],
@@ -30,6 +36,7 @@ const sql = command => JSON.parse(execFileSync(process.execPath, [WRANGLER, 'd1'
 
 before(async () => {
   mock = await startMock();
+  mock.push.keys = { apns: APNS_KEYS.publicKey, fcm: FCM_KEYS.publicKey };
   const vars = {
     SIGNUPS_PER_IP_PER_HOUR: '1000', SIGNUPS_PER_DAY: '1000', TEST_PROVIDER_BASE: mock.base, TOKEN_KEY: Buffer.alloc(32, 7).toString('base64'),
     GOOGLE_CLIENT_ID: 'g-id', GOOGLE_CLIENT_SECRET: 'g-secret', DISCORD_CLIENT_ID: 'd-id', DISCORD_CLIENT_SECRET: 'd-secret',
@@ -39,6 +46,9 @@ before(async () => {
     TURNSTILE_SITE_KEY: '1x00000000000000000000AA', TURNSTILE_SECRET_KEY: '1x0000000000000000000000000000000AA',
     TURNSTILE_VERIFY_URL: mock.base + '/turnstile/v0/siteverify', DOH_URL: mock.base + '/dns-query',
     POW_BITS: '8', SIGNUP_MIN_MS: '100', SIGNUP_SOFT_MS: '200', TEST_SIGNALS: '1', AI_DETECTOR: 'mock', AI_ENFORCEMENT: 'shadow',
+    // the mobile apps' push: both services on, pointed at the stand-in (the APNs key as one line with literal \n, as a pasted secret often is)
+    TEST_PUSH_BASE: mock.base, APNS_KEY_P8: pem(APNS_KEYS.privateKey).replace(/\n/g, '\\n'), APNS_KEY_ID: 'TESTKEY123', APNS_TEAM_ID: 'TESTTEAM12', APNS_TOPIC: 'page.ourspace.app',
+    FCM_SERVICE_ACCOUNT_JSON: JSON.stringify({ client_email: 'push@ourspace-test.iam.example', private_key: pem(FCM_KEYS.privateKey), private_key_id: 'fcmkey1', project_id: 'ourspace-test', token_uri: mock.base + '/fcm-token' }),
   };
   execFileSync(process.execPath, [WRANGLER, 'd1', 'migrations', 'apply', 'ourspace-social-db', '--local', '--persist-to', STATE], { cwd: ROOT, stdio: 'pipe' });
   // a unique name: the local explorer is shared by every running `wrangler dev`
@@ -120,14 +130,17 @@ function client() {
 let n = 0;
 const uniq = () => `${Date.now().toString(36).slice(-4)}${n++}`;
 const PW = 'correct-horse-9';
-// the confirmation link the server printed for `email` (waits for the log to catch up)
+// The confirmation link the server printed for `email`, waiting for the log to catch up. The budget is deliberately
+// generous: the log is scanned from the start and grows all run, so on a busy machine a late test waits much longer
+// than an early one. At 3 s this was flaky under the full suite while passing alone — the worst kind of gate.
+const VERIFY_WAIT_MS = 15000, VERIFY_POLL_MS = 30;
 async function verifyToken(email) {
-  for (let i = 0; i < 100; i++) {
+  for (let i = 0; i < VERIFY_WAIT_MS / VERIFY_POLL_MS; i++) {
     const t = verifyTokenIn(serverLog, email);
     if (t) return t;
-    await new Promise(r => setTimeout(r, 30));
+    await new Promise(r => setTimeout(r, VERIFY_POLL_MS));
   }
-  throw new Error('no confirmation email for ' + email);
+  throw new Error(`no confirmation email for ${email} after ${VERIFY_WAIT_MS} ms`);
 }
 
 // a member: signed up (through the form, the proof of work and Turnstile) and, unless { verify: false }, with the
@@ -4145,4 +4158,708 @@ test('the bot simulator: floods without the checks are refused, a datacenter flo
   // the first two copies stay up (nobody's earlier post is ever held: a moderator has the alert); every later one waits
   assert.deepEqual([res.duplicate_spam.public, res.duplicate_spam.held, res.duplicate_spam.stillPublic], [2, 3, 2]);
   assert.deepEqual(res.real_person, { signedUp: true, held: false, verified: true, posted: true, pass: true });
+});
+
+/* ------------------------------------------------------------------ */
+/* the mobile apps (docs/mobile/contract.md): bearer sessions, CORS, devices, the socket, push */
+
+const APP = { 'X-OurSpace-Client': 'app/ios/1.0.0' };
+const APP_ORIGIN = 'capacitor://localhost';
+const DAY = 86400000;
+const hashOf = t => createHash('sha256').update(t).digest('hex');
+// a request the way an app sends it: no cookie, the bearer token if it has one, one of the three app origins
+async function app(method, url, { token, body, headers = {}, origin = APP_ORIGIN, client = APP } = {}) {
+  const h = { ...client, ...(origin ? { Origin: origin } : {}), ...(token ? { Authorization: 'Bearer ' + token } : {}), ...headers };
+  let payload;
+  if (body !== undefined) { h['Content-Type'] = 'application/json'; payload = JSON.stringify(body); }
+  const res = await fetch(BASE + url, { method, headers: h, body: payload, redirect: 'manual' });
+  return { status: res.status, headers: res.headers, data: await res.json().catch(() => null) };
+}
+// an app logs in: the answer has the session
+const appLogin = who => app('POST', '/api/login', { body: { login: who.email, password: PW, turnstile: TURNSTILE_TEST_TOKEN } });
+const appToken = async who => { const r = await appLogin(who); assert.equal(r.status, 200, JSON.stringify(r.data)); return r.data.session.token; };
+const sessionRow = token => sql(`SELECT created, expires FROM sessions WHERE token_hash = '${hashOf(token)}'`)[0];
+// contract §6: an app's provider sign-in mints a verifier, keeps it, and sends SHA-256(verifier) as the challenge
+const b64url = b => b.toString('base64').replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+const challengeFor = v => b64url(createHash('sha256').update(v).digest());
+const newVerifier = () => 'v-' + createHash('sha256').update(uniq() + Math.random()).digest('hex');
+const eventually = async (ok, ms = 8000) => {
+  for (const end = Date.now() + ms; Date.now() < end;) { const v = await ok(); if (v) return v; await new Promise(r => setTimeout(r, 100)); }
+  return ok();
+};
+
+test('mobile: an app that says so is handed its session token (90 days); a browser\'s answers are exactly what they were', async () => {
+  const u = await newUser('appy');
+  const login = { login: u.email, password: PW, turnstile: TURNSTILE_TEST_TOKEN };
+  const web = await client().raw('POST', '/api/login', { body: login });
+  const webBody = await web.json();
+  assert.deepEqual(Object.keys(webBody), ['user'], 'a browser gets no token');
+  assert.match(web.headers.get('set-cookie'), /^os_sid=[\w-]+; Path=\/; HttpOnly; SameSite=Lax; Max-Age=2592000$/);
+
+  const r = await appLogin(u);
+  assert.equal(r.status, 200);
+  assert.deepEqual(Object.keys(r.data).sort(), ['session', 'user']);
+  assert.deepEqual(Object.keys(r.data.session).sort(), ['expires', 'token']);
+  assert.deepEqual({ ...r.data, session: undefined }, { ...webBody, session: undefined }, 'the rest of the answer is the same');
+  const row = sessionRow(r.data.session.token);
+  assert.equal(row.expires, r.data.session.expires);
+  assert.equal(row.expires - row.created, 90 * DAY, 'a device session lasts 90 days');
+  const webToken = web.headers.get('set-cookie').match(/os_sid=([\w-]+)/)[1];
+  assert.equal((sessionRow(webToken).expires - sessionRow(webToken).created), 30 * DAY, 'a web session, 30');
+
+  // only a header that names an app counts
+  for (const client of [{ 'X-OurSpace-Client': 'bogus' }, { 'X-OurSpace-Client': 'app/windows/1' }, { 'X-OurSpace-Client': 'web/ios/1.0' }, {}]) {
+    const b = await app('POST', '/api/login', { body: login, client, origin: null });
+    assert.deepEqual(Object.keys(b.data), ['user'], JSON.stringify(client));
+  }
+
+  // sign-up and finishing a provider sign-up hand over a token too, and the confirmation link doesn't (it is no login)
+  const mine = person('appsu');
+  const su = await signupWith(client(), mine, {}, APP);
+  assert.equal(su.status, 201, JSON.stringify(su.data));
+  assert.equal(sessionRow(su.data.session.token).expires - sessionRow(su.data.session.token).created, 90 * DAY);
+  assert.equal((await app('GET', '/api/me', { token: su.data.session.token })).data.user.name, mine.name);
+  const webSu = await signupWith(client(), person('websu'));
+  assert.deepEqual(Object.keys(webSu.data).sort(), ['held', 'user', 'verification']);
+  const verified = await app('POST', '/api/verify', { body: { token: await verifyToken(mine.email) } });
+  assert.deepEqual([verified.status, Object.keys(verified.data).sort()], [200, ['name', 'ok', 'verified']]);
+
+  // a password reset signs the app in, and everything else out
+  const w = await newUser('appreset');
+  const old = await appToken(w);
+  assert.equal((await app('POST', '/api/password/forgot', { body: { email: w.email, turnstile: TURNSTILE_TEST_TOKEN }, headers: { 'CF-Connecting-IP': randomIp() } })).status, 200);
+  const reset = await eventually(() => [...serverLog.matchAll(/\/reset#token=([\w-]+)/g)].map(m => m[1]).pop());
+  const done = await app('POST', '/api/password/reset', { body: { token: reset, password: 'a-new-app-pass-4' }, headers: { 'CF-Connecting-IP': randomIp() } });
+  assert.equal(done.status, 200, JSON.stringify(done.data));
+  assert.deepEqual(Object.keys(done.data).sort(), ['session', 'user']);
+  assert.equal((await app('GET', '/api/me', { token: old })).data.user, null, 'the earlier token is gone');
+  assert.equal((await app('GET', '/api/me', { token: done.data.session.token })).data.user.name, w.name);
+});
+
+test('mobile: Authorization: Bearer is the session; a bad token is no session, and the cookie is not tried instead', async () => {
+  const u = await newUser('bearer');
+  const token = await appToken(u);
+  assert.equal((await app('GET', '/api/me', { token })).data.user.name, u.name);
+  assert.equal((await app('GET', '/api/me')).data.user, null, 'no token, no session');
+  assert.equal((await app('GET', '/api/me', { token: 'not-a-token' })).data.user, null);
+  assert.equal((await app('GET', '/api/me', { token: 'x'.repeat(200) })).data.user, null);
+  assert.equal((await app('GET', '/api/chats', { token: 'nope' })).status, 401);
+  // a good cookie next to a bad bearer: the bearer was asked for, and it is wrong
+  const cookie = u.jar.get('os_sid');
+  const both = await fetch(BASE + '/api/me', { headers: { Cookie: 'os_sid=' + cookie, Authorization: 'Bearer nope' } });
+  assert.equal((await both.json()).user, null);
+  const onlyCookie = await fetch(BASE + '/api/me', { headers: { Cookie: 'os_sid=' + cookie } });
+  assert.equal((await onlyCookie.json()).user.name, u.name, 'the cookie path is as it was');
+  // another kind of Authorization header is ignored
+  const basic = await fetch(BASE + '/api/me', { headers: { Cookie: 'os_sid=' + cookie, Authorization: 'Basic abc' } });
+  assert.equal((await basic.json()).user.name, u.name);
+
+  assert.equal((await app('POST', '/api/logout', { token })).status, 200);
+  assert.equal((await app('GET', '/api/me', { token })).data.user, null, 'logging out ends that session');
+  assert.equal((await u.get('/api/me')).data.user.name, u.name, 'and no other');
+});
+
+test('mobile: the cross-site check skips only requests whose credentials are not ambient', async () => {
+  const u = await newUser('csrf');
+  const token = await appToken(u);
+  const cookie = u.jar.get('os_sid');
+  const post = (extra, origin) => fetch(BASE + '/api/status', { method: 'POST', body: JSON.stringify({ body: 'from somewhere ' + uniq() }),
+    headers: { 'Content-Type': 'application/json', ...(origin ? { Origin: origin } : {}), ...extra } }).then(r => r.status);
+  assert.equal(await post({ Authorization: 'Bearer ' + token }, APP_ORIGIN), 201, 'an app');
+  assert.equal(await post({ Authorization: 'Bearer ' + token }, 'https://localhost'), 201);
+  assert.equal(await post({ Authorization: 'Bearer ' + token }, 'https://evil.example'), 201, 'a token is not ambient: nothing for a hostile page to ride');
+  assert.equal(await post({ Authorization: 'Bearer ' + token, 'Sec-Fetch-Site': 'cross-site' }, APP_ORIGIN), 201);
+  // the cookie is: with one, the check stands, bearer or not
+  assert.equal(await post({ Cookie: 'os_sid=' + cookie }, 'https://evil.example'), 403);
+  assert.equal(await post({ Cookie: 'os_sid=' + cookie }, APP_ORIGIN), 403, 'an app origin is not ours either');
+  assert.equal(await post({ Cookie: 'os_sid=' + cookie, Authorization: 'Bearer ' + token }, 'https://evil.example'), 403);
+  assert.equal(await post({ Cookie: 'os_sid=' + cookie, 'Sec-Fetch-Site': 'cross-site' }), 403);
+  assert.equal(await post({ Cookie: 'os_sid=' + cookie }, BASE), 201, 'our own page');
+  assert.equal(await post({ Cookie: 'os_sid=' + cookie }), 201, 'no Origin at all (not a browser)');
+  // and a page that merely claims an app origin, with neither token nor app header, is refused
+  const noHeader = await fetch(BASE + '/api/login', { method: 'POST', body: '{}', headers: { 'Content-Type': 'application/json', Origin: APP_ORIGIN } });
+  assert.equal(noHeader.status, 403);
+  // an app signing in has no token yet: its X-OurSpace-Client header is what it has
+  assert.notEqual((await app('POST', '/api/login', { body: { login: 'nobody', password: 'nothing', turnstile: TURNSTILE_TEST_TOKEN } })).status, 403);
+});
+
+test('mobile: CORS answers the three app origins and nobody else, and never allows credentials', async () => {
+  for (const origin of ['capacitor://localhost', 'http://localhost', 'https://localhost']) {
+    for (const path of ['/api/me/devices', '/api/login', '/api/live/ourspace', '/media/x']) {
+      const res = await fetch(BASE + path, { method: 'OPTIONS', headers: { Origin: origin, 'Access-Control-Request-Method': 'POST', 'Access-Control-Request-Headers': 'authorization, content-type' } });
+      assert.equal(res.status, 204, origin + ' ' + path);
+      assert.deepEqual(Object.fromEntries([...res.headers].filter(([k]) => k.startsWith('access-control') || k === 'vary')), {
+        'access-control-allow-origin': origin,
+        'access-control-allow-methods': 'GET, POST, PUT, DELETE, OPTIONS',
+        'access-control-allow-headers': 'Authorization, Content-Type, X-OurSpace-Client, X-OurSpace-Ticket',
+        'access-control-max-age': '600',
+        vary: 'Origin',
+      });
+      assert.equal(res.headers.get('access-control-allow-credentials'), null);
+    }
+  }
+  for (const origin of ['https://evil.example', 'http://localhost:8080', 'capacitor://evil', 'null', 'https://localhost.evil.example', undefined]) {
+    const res = await fetch(BASE + '/api/me', { method: 'OPTIONS', headers: origin ? { Origin: origin, 'Access-Control-Request-Method': 'GET' } : {} });
+    assert.equal(res.status, 405, String(origin));
+    assert.equal(res.headers.get('access-control-allow-origin'), null);
+  }
+  // the real answers carry the origin too (an app can't read them otherwise), errors included
+  for (const [path, status] of [['/api/options', 200], ['/api/chats', 401], ['/api/nope', 404]]) {
+    const res = await fetch(BASE + path, { headers: { Origin: APP_ORIGIN, ...APP } });
+    assert.equal(res.status, status);
+    assert.equal(res.headers.get('access-control-allow-origin'), APP_ORIGIN);
+    assert.match(res.headers.get('vary'), /Origin/);
+    assert.equal(res.headers.get('access-control-allow-credentials'), null);
+  }
+  const plain = await fetch(BASE + '/api/options');
+  assert.equal(plain.headers.get('access-control-allow-origin'), null, 'a browser sees none of it');
+  assert.doesNotMatch(plain.headers.get('vary') || '', /Origin/);
+  assert.equal((await fetch(BASE + '/api/options', { headers: { Origin: 'https://evil.example' } })).headers.get('access-control-allow-origin'), null);
+});
+
+test('mobile: a device session lives 90 days from its last use; a web session is not stretched by a bearer', async () => {
+  const u = await newUser('slide');
+  const token = await appToken(u);
+  const h = hashOf(token);
+  assert.equal((await app('POST', '/api/me/devices', { token, body: { platform: 'ios', label: 'Test phone' } })).status, 200);
+  // eighty days on: ten left
+  sql(`UPDATE sessions SET created = created - ${80 * DAY}, expires = ${Date.now() + 10 * DAY} WHERE token_hash = '${h}'; UPDATE devices SET last_seen = 1 WHERE token_hash = '${h}'`);
+  assert.equal((await app('GET', '/api/me', { token })).data.user.name, u.name);
+  const slid = await eventually(() => { const r = sessionRow(token); return r.expires > Date.now() + 89 * DAY && r; });
+  assert.ok(slid, 'pushed forward to 90 days from now');
+  assert.ok(sql(`SELECT last_seen FROM devices WHERE token_hash = '${h}'`)[0].last_seen > Date.now() - 60000, 'and the device was seen');
+  // used again at once: no more writes (it moves at most hourly)
+  const again = sessionRow(token).expires;
+  await app('GET', '/api/me', { token });
+  assert.equal(sessionRow(token).expires, again);
+  // a web session (30 days) used with a bearer header, or its cookie, stays what it was
+  const web = u.jar.get('os_sid');
+  sql(`UPDATE sessions SET expires = ${Date.now() + DAY} WHERE token_hash = '${hashOf(web)}'`);
+  await app('GET', '/api/me', { token: web });
+  await fetch(BASE + '/api/me', { headers: { Cookie: 'os_sid=' + web } });
+  await new Promise(r => setTimeout(r, 500));
+  assert.ok(sessionRow(web).expires < Date.now() + 2 * DAY);
+  // an expired one is no session
+  sql(`UPDATE sessions SET expires = ${Date.now() - 1000} WHERE token_hash = '${h}'`);
+  assert.equal((await app('GET', '/api/me', { token })).data.user, null);
+});
+
+test('mobile: devices: register, list, update, move a push token, revoke (which signs that device out)', async () => {
+  const u = await newUser('devs'); const other = await newUser('devother');
+  const t1 = await appToken(u), t2 = await appToken(u), tOther = await appToken(other);
+  const TOKEN_A = 'abcd1234'.repeat(8), TOKEN_B = 'fcm:' + 'z'.repeat(100);
+  assert.equal((await app('GET', '/api/me/devices')).status, 401);
+  assert.deepEqual((await app('GET', '/api/me/devices', { token: t1 })).data, { devices: [] });
+  for (const bad of [{}, { platform: 'windows' }, { platform: 'ios', pushToken: 'short' }, { platform: 'ios', pushToken: 'has spaces in it ok' }, { platform: 'ios', pushToken: 5 }]) {
+    assert.equal((await app('POST', '/api/me/devices', { token: t1, body: bad })).status, 400, JSON.stringify(bad));
+  }
+  const made = await app('POST', '/api/me/devices', { token: t1, body: { platform: 'ios', label: '  Marco\'s iPhone  ', pushToken: TOKEN_A } });
+  assert.equal(made.status, 200);
+  assert.deepEqual(Object.keys(made.data.device).sort(), ['created', 'current', 'id', 'label', 'lastSeen', 'platform', 'push']);
+  assert.deepEqual([made.data.device.platform, made.data.device.label, made.data.device.push, made.data.device.current], ['ios', 'Marco\'s iPhone', true, true]);
+  assert.ok(!JSON.stringify(made.data).includes(TOKEN_A), 'the push token is never sent back');
+  const row = () => sql(`SELECT push_token, push_provider, label FROM devices WHERE id = ${made.data.device.id}`)[0];
+  assert.deepEqual(row(), { push_token: TOKEN_A, push_provider: 'apns', label: 'Marco\'s iPhone' });
+
+  // registering again updates the same device (one per session); a token left out stays, null forgets it
+  const again = await app('POST', '/api/me/devices', { token: t1, body: { platform: 'ios', label: 'Renamed' } });
+  assert.equal(again.data.device.id, made.data.device.id);
+  assert.deepEqual(row(), { push_token: TOKEN_A, push_provider: 'apns', label: 'Renamed' });
+  const off = await app('POST', '/api/me/devices', { token: t1, body: { platform: 'ios', label: 'Renamed', pushToken: null } });
+  assert.equal(off.data.device.push, false);
+  assert.deepEqual(row(), { push_token: null, push_provider: null, label: 'Renamed' });
+  await app('POST', '/api/me/devices', { token: t1, body: { platform: 'ios', label: 'Renamed', pushToken: TOKEN_A } });
+
+  // a second device, Android; a token belongs to one device at a time
+  const second = await app('POST', '/api/me/devices', { token: t2, body: { platform: 'android', label: 'Pixel', pushToken: TOKEN_A } });
+  assert.deepEqual(row(), { push_token: null, push_provider: null, label: 'Renamed' }, 'the token moved to the newest device');
+  assert.equal(sql(`SELECT push_provider FROM devices WHERE id = ${second.data.device.id}`)[0].push_provider, 'fcm');
+  await app('POST', '/api/me/devices', { token: t2, body: { platform: 'android', label: 'Pixel', pushToken: TOKEN_B } });
+
+  const list = (await app('GET', '/api/me/devices', { token: t1 })).data.devices;
+  assert.deepEqual(list.map(d => [d.id, d.current]).sort(), [[made.data.device.id, true], [second.data.device.id, false]].sort());
+  assert.equal((await app('GET', '/api/me/devices', { token: tOther })).data.devices.length, 0, 'nobody else\'s');
+  assert.ok(!JSON.stringify(list).includes(TOKEN_B));
+
+  // revoking: not someone else's, not one that isn't there
+  assert.equal((await app('DELETE', '/api/me/devices/' + second.data.device.id, { token: tOther })).status, 404);
+  assert.equal((await app('DELETE', '/api/me/devices/99999999', { token: t1 })).status, 404);
+  assert.equal((await app('DELETE', '/api/me/devices/abc', { token: t1 })).status, 404);
+  assert.equal((await app('GET', '/api/me', { token: t2 })).data.user.name, u.name);
+  const gone = await app('DELETE', '/api/me/devices/' + second.data.device.id, { token: t1 });
+  assert.deepEqual(gone.data, { ok: true, current: false });
+  assert.equal((await app('GET', '/api/me', { token: t2 })).data.user, null, 'its session is gone');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM devices WHERE id = ${second.data.device.id}`)[0].n, 0);
+  assert.equal((await app('GET', '/api/me', { token: t1 })).data.user.name, u.name, 'the other device is untouched');
+  // the device asking may revoke itself
+  const self = await app('DELETE', '/api/me/devices/' + made.data.device.id, { token: t1 });
+  assert.deepEqual(self.data, { ok: true, current: true });
+  assert.equal((await app('GET', '/api/me', { token: t1 })).data.user, null);
+
+  // logging out, or a new password, takes the device with it
+  const t3 = await appToken(u), t4 = await appToken(u);
+  for (const t of [t3, t4]) await app('POST', '/api/me/devices', { token: t, body: { platform: 'ios', label: 'x', pushToken: 'tok' + t.slice(0, 40) } });
+  await app('POST', '/api/logout', { token: t3 });
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM devices WHERE user_id = ${u.id}`)[0].n, 1);
+  await u.post('/api/me/password', { current: PW, next: 'devs-new-pass-3' });
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM devices WHERE user_id = ${u.id}`)[0].n, 0, 'a password change signs the other devices out');
+});
+
+// a WebSocket upgrade of any address, offering `protocols`: the status (with the body, for a refusal), and the
+// subprotocol the answer echoes
+function upgradeAt(path, headers) {
+  return new Promise((res, rej) => {
+    const req = http.request({ host: '127.0.0.1', port: PORT, path, headers: {
+      Connection: 'Upgrade', Upgrade: 'websocket', 'Sec-WebSocket-Key': 'dGhlIHNhbXBsZSBub25jZQ==', 'Sec-WebSocket-Version': '13', ...headers } });
+    req.on('response', r => { let body = ''; r.on('data', d => { body += d; }); r.on('end', () => res({ status: r.statusCode, body })); });
+    req.on('upgrade', (r, sock) => { sock.destroy(); res({ status: 101, protocol: r.headers['sec-websocket-protocol'] }); });
+    req.on('error', rej);
+    req.end();
+  });
+}
+const upgradeWith = (room, headers) => upgradeAt('/api/live/' + room, headers);
+
+// POST /api/live/ticket, as an app asks for it: the pass for one room's handshake
+const passFor = (token, room) => app('POST', '/api/live/ticket', { token, body: { room: String(room) } });
+const livePass = t => `ourspace.live, ourspace.bearer.${t}`;
+const passRows = t => sql(`SELECT room, user_id FROM live_tickets WHERE ticket_hash = '${hashOf(t)}'`);
+
+test('mobile: the chat socket is opened with a one-room pass (redteam R8), never the session token, and the handshake echoes no secret', async () => {
+  const a = await newUser('wsapp_a'); const b = await newUser('wsapp_b');
+  await befriend(a, b);
+  const g = await chatOf(a, [b]);
+  const ta = await appToken(a);
+
+  // What R8 was: the raw session token as the subprotocol, echoed back in the 101, and from there on every page
+  // `socket.protocol` for any script to read. The handshake does not take a session token at all any more.
+  assert.equal((await upgradeWith(g.id, { 'Sec-WebSocket-Protocol': 'ourspace.bearer.' + ta, Origin: APP_ORIGIN })).status, 401,
+    'the session token buys no handshake');
+  assert.equal((await upgradeWith(g.id, { 'Sec-WebSocket-Protocol': livePass(ta) })).status, 401);
+  assert.equal((await upgradeWith(g.id, { Origin: APP_ORIGIN })).status, 401, 'nor does nothing at all');
+  assert.equal((await upgradeWith(g.id, { Authorization: 'Bearer ' + ta })).status, 101, 'a client that can send headers still may');
+
+  // the pass: hashed at rest, scoped to this room, half a minute
+  const p = await passFor(ta, g.id);
+  assert.equal(p.status, 200, JSON.stringify(p.data));
+  assert.deepEqual(Object.keys(p.data).sort(), ['expires', 'ms', 'ticket']);
+  assert.equal(p.data.ms, 30000);
+  assert.ok(p.data.expires > Date.now() && p.data.expires <= Date.now() + 30000, 'about 30 seconds: ' + (p.data.expires - Date.now()));
+  assert.deepEqual(passRows(p.data.ticket), [{ room: String(g.id), user_id: a.id }], 'stored as its SHA-256');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM live_tickets WHERE ticket_hash = '${p.data.ticket}'`)[0].n, 0, 'the raw pass is not in the table');
+
+  // the handshake takes it — and answers with the fixed name the client also offered, so nothing secret is echoed
+  assert.deepEqual(await upgradeWith(g.id, { 'Sec-WebSocket-Protocol': livePass(p.data.ticket), Origin: APP_ORIGIN }),
+    { status: 101, protocol: 'ourspace.live' }, 'the fixed name comes back, not the pass');
+  assert.equal(passRows(p.data.ticket).length, 0, 'and the pass is gone: single use');
+  assert.equal((await upgradeWith(g.id, { 'Sec-WebSocket-Protocol': livePass(p.data.ticket), Origin: APP_ORIGIN })).status, 401,
+    'a second handshake with the same pass is nobody');
+
+  // a client that offers only the pass gets no subprotocol back at all (which the spec allows: "none of yours")
+  const bare = await passFor(ta, g.id);
+  assert.deepEqual(await upgradeWith(g.id, { 'Sec-WebSocket-Protocol': 'ourspace.bearer.' + bare.data.ticket }),
+    { status: 101, protocol: undefined });
+
+  // one room, and only that one
+  const mine = await passFor(ta, 'ourspace');
+  assert.equal(mine.status, 200);
+  assert.equal((await upgradeWith(g.id, { 'Sec-WebSocket-Protocol': livePass(mine.data.ticket) })).status, 403, '#ourspace\'s pass opens no group chat');
+  assert.equal(passRows(mine.data.ticket).length, 0, 'and trying spends it');
+  const other = await chatOf(a, [b]);
+  const forOther = await passFor(ta, other.id);
+  assert.equal((await upgradeWith(g.id, { 'Sec-WebSocket-Protocol': livePass(forOther.data.ticket) })).status, 403, 'nor another chat\'s');
+
+  // half a minute and no longer — and an expired one is spent by the attempt, not left lying about
+  const stale = await passFor(ta, g.id);
+  sql(`UPDATE live_tickets SET expires = ${Date.now() - 1} WHERE ticket_hash = '${hashOf(stale.data.ticket)}'`);
+  assert.equal((await upgradeWith(g.id, { 'Sec-WebSocket-Protocol': livePass(stale.data.ticket) })).status, 401, 'expired');
+  assert.equal(passRows(stale.data.ticket).length, 0);
+  assert.equal((await upgradeWith(g.id, { 'Sec-WebSocket-Protocol': 'ourspace.live, ourspace.bearer.not-a-pass' })).status, 401, 'invented');
+
+  // a pass is only for a room you could open anyway, and nobody gets one for free
+  const out = await newUser('wsapp_out');
+  assert.equal((await passFor(await appToken(out), g.id)).status, 404, 'not a member: no pass');
+  assert.equal((await passFor(ta, 'nope')).status, 404);
+  assert.equal((await app('POST', '/api/live/ticket', { token: ta, body: {} })).status, 404, 'no room named');
+  assert.equal((await app('POST', '/api/live/ticket', { body: { room: 'ourspace' } })).status, 401, 'logged out');
+
+  // the pass is the proof, so an app (which has no page of ours) needs no Origin — but with a cookie in play the
+  // Origin check stands, exactly as before
+  const anywhere = await passFor(ta, g.id);
+  assert.equal((await upgradeWith(g.id, { 'Sec-WebSocket-Protocol': livePass(anywhere.data.ticket), Origin: 'https://evil.example' })).status, 101);
+  const both = await passFor(ta, g.id);
+  assert.equal((await upgradeWith(g.id, { 'Sec-WebSocket-Protocol': livePass(both.data.ticket), Cookie: cookieOf(a), Origin: 'https://evil.example' })).status, 403);
+
+  // A pass is a credential at the socket address and NOWHERE else. Any route would otherwise take it from a request
+  // that simply added an Upgrade header, which would make a stolen pass worth one request as its owner instead of one
+  // room's socket. Off that address it is not even looked at, so it is not spent either.
+  const elsewhere = await passFor(ta, g.id);
+  const asPass = { 'Sec-WebSocket-Protocol': livePass(elsewhere.data.ticket) };
+  for (const path of ['/api/chats', '/api/me/devices', `/api/chats/${g.id}/messages`, '/api/notifications']) {
+    assert.equal((await upgradeAt(path, asPass)).status, 401, path + ' does not take a room pass');
+  }
+  assert.deepEqual(JSON.parse((await upgradeAt('/api/me', asPass)).body).user, null, 'nor /api/me, which answers logged out');
+  assert.equal(passRows(elsewhere.data.ticket).length, 1, 'untouched: only the socket address ever claims one');
+  assert.deepEqual(await upgradeWith(g.id, asPass), { status: 101, protocol: 'ourspace.live' }, 'and it still works where it belongs');
+  // the mint route read as a room name is just a room nobody is in (GET /api/live/ticket -> GET /api/live/:room)
+  const named = await passFor(ta, g.id);
+  assert.equal((await upgradeAt('/api/live/ticket', { 'Sec-WebSocket-Protocol': livePass(named.data.ticket) })).status, 404);
+
+  // logging out takes the session's unspent passes with it (the row is the session's, ON DELETE CASCADE)
+  const tb = await appToken(b);
+  const bPass = await passFor(tb, g.id);
+  assert.equal(passRows(bPass.data.ticket).length, 1);
+  await app('POST', '/api/logout', { token: tb });
+  assert.equal(passRows(bPass.data.ticket).length, 0, 'gone with the session');
+
+  // a real socket, as the app's WebView opens it: it hears the room, and `socket.protocol` holds no secret
+  const real = await passFor(ta, g.id);
+  const ws = new WebSocket(`ws://127.0.0.1:${PORT}/api/live/${g.id}`, { protocols: ['ourspace.live', 'ourspace.bearer.' + real.data.ticket], headers: { Origin: APP_ORIGIN } });
+  const events = [];
+  ws.addEventListener('message', e => events.push(JSON.parse(e.data)));
+  await new Promise((res, rej) => { ws.addEventListener('open', res); ws.addEventListener('error', () => rej(new Error('the socket was refused'))); });
+  assert.equal(ws.protocol, 'ourspace.live');
+  assert.ok(!ws.protocol.includes(ta) && !ws.protocol.includes(real.data.ticket), 'nothing to steal off the socket');
+  const sb = live(b, g.id);
+  await sb.opened;
+  await say(b, g.id, 'hello app');
+  assert.ok(await eventually(() => events.find(e => e.type === 'message' && e.message.body === 'hello app')), 'the app hears the room');
+  ws.close();
+  sb.close();
+});
+
+test('live: our own pages still open the socket with the cookie alone, offering and getting no subprotocol', async () => {
+  const a = await newUser('wscook_a'); const b = await newUser('wscook_b');
+  await befriend(a, b);
+  const g = await chatOf(a, [b]);
+  assert.deepEqual(await upgradeWith(g.id, { Cookie: cookieOf(a), Origin: BASE }), { status: 101, protocol: undefined });
+  // and a page may ask for a pass as well (the route is AUTH, not app-only): the same one-room, single-use thing
+  const p = await a.post('/api/live/ticket', { room: g.id });
+  assert.equal(p.status, 200);
+  assert.deepEqual(passRows(p.data.ticket), [{ room: String(g.id), user_id: a.id }]);
+  assert.deepEqual(await upgradeWith(g.id, { 'Sec-WebSocket-Protocol': livePass(p.data.ticket) }), { status: 101, protocol: 'ourspace.live' });
+  assert.equal(passRows(p.data.ticket).length, 0);
+  assert.equal((await a.post('/api/live/ticket', { room: 'ourspace' })).status, 200, '#ourspace too');
+  assert.equal((await b.post('/api/live/ticket', { room: 999999 })).status, 404);
+});
+
+test('mobile: signing in with Google from an app ends in its own scheme with a ONE-TIME CODE — never a token, never a ticket — and only the verifier spends it', async () => {
+  // someone who already has an account with Google
+  const sub = 'g-app-' + uniq(), name = 'gapp_' + uniq();
+  const web = client();
+  assert.equal((await viaProvider(web, 'google', { sub, email: `${name}@gmail.com`, verified: true, name: 'G' })).location, '/join/finish');
+  assert.equal((await web.post('/api/signup/finish', { name, birthday: '1990-01-01', rulesOk: true })).status, 201);
+
+  const trip = async (c, identity, { verifier, query = '' } = {}) => {
+    if (identity) mock.next('google', identity);
+    const challenge = verifier === null ? '' : `&challenge=${encodeURIComponent(challengeFor(verifier))}`;
+    const start = await c.raw('GET', `/api/oauth/google/start?mode=login&client=app${challenge}${query}`, { headers: { 'CF-Connecting-IP': c.ip } });
+    assert.equal(start.status, 303);
+    const authorize = new URL(start.headers.get('location'));
+    if (!authorize.href.startsWith(mock.base)) return { location: start.headers.get('location'), setCookie: [] };
+    const back = new URL((await fetch(authorize, { redirect: 'manual' })).headers.get('location'));
+    const done = await c.raw('GET', back.pathname + back.search);
+    assert.equal(done.status, 303);
+    return { location: done.headers.get('location'), setCookie: done.headers.getSetCookie() };
+  };
+  const exchange = (code, verifier, extra = {}) => app('POST', '/api/oauth/exchange', { body: { code, verifier }, ...extra });
+  const codeIn = location => {
+    const u = new URL(location);
+    assert.equal(location.startsWith('ourspace://auth?code='), true, location);
+    assert.deepEqual([...u.searchParams.keys()], ['code'], 'nothing else rides the scheme');
+    assert.ok(!/token|ticket/.test(location), location);
+    return u.searchParams.get('code');
+  };
+
+  // an app that offers no challenge has nowhere safe to be answered, so it is not started at all
+  assert.equal((await trip(client(), null, { verifier: null })).location, 'ourspace://auth?error=failed');
+  for (const bad of ['short', 'x'.repeat(43) + '=', 'a/b' + 'x'.repeat(40)]) {
+    assert.equal((await client().raw('GET', `/api/oauth/google/start?mode=login&client=app&challenge=${encodeURIComponent(bad)}`)).headers.get('location'),
+      'ourspace://auth?error=failed', bad);
+  }
+
+  const phone = client(), v1 = newVerifier();
+  const sessionsBefore = sql('SELECT COUNT(*) AS n FROM sessions')[0].n;
+  const back = await trip(phone, { sub, email: `${name}@gmail.com`, verified: true, name: 'G' }, { verifier: v1 });
+  const code = codeIn(back.location);
+  assert.ok(!back.setCookie.some(c => c.startsWith('os_sid=') && !/Max-Age=0/.test(c)), 'no cookie: the sheet is not where the app lives');
+  assert.equal(sql('SELECT COUNT(*) AS n FROM sessions')[0].n, sessionsBefore, 'and no session exists yet: a code nobody collects leaves nothing behind');
+  const codeRow = sql('SELECT kind, user_id, challenge, expires - created AS life FROM oauth_app_codes ORDER BY created DESC LIMIT 1')[0];
+  assert.deepEqual([codeRow.kind, codeRow.life, codeRow.challenge], ['session', 90000, challengeFor(v1)]);
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM oauth_app_codes WHERE code_hash = '${hashOf(code)}'`)[0].n, 1, 'only the hash is stored');
+
+  // the code alone is worthless: this is what a scheme-hijacking app on Android gets to try
+  assert.equal((await exchange(code, newVerifier())).status, 400, 'the wrong verifier');
+  assert.equal((await exchange(code, v1)).status, 400, 'and that one try spent the code');
+
+  // the app that started the sign-in, with the verifier it kept in memory
+  const second = await trip(phone, { sub, email: `${name}@gmail.com`, verified: true, name: 'G' }, { verifier: v1 });
+  const ok = await exchange(codeIn(second.location), v1);
+  assert.equal(ok.status, 200, JSON.stringify(ok.data));
+  assert.deepEqual(Object.keys(ok.data), ['session']);
+  assert.deepEqual(Object.keys(ok.data.session).sort(), ['expires', 'token']);
+  const token = ok.data.session.token;
+  assert.equal((await app('GET', '/api/me', { token })).data.user.name, name);
+  const row = sessionRow(token);
+  assert.equal(row.expires - row.created, 90 * DAY);
+  assert.equal(row.expires, ok.data.session.expires);
+
+  // a browser cannot reach the exchange at all, and nothing is handed out twice
+  const third = await trip(phone, { sub, email: `${name}@gmail.com`, verified: true, name: 'G' }, { verifier: v1 });
+  const code3 = codeIn(third.location);
+  assert.equal((await exchange(code3, v1, { client: {}, origin: null })).status, 404, 'apps only');
+  assert.equal((await exchange(code3, v1, { client: {} })).status, 403, 'and a browser on an app origin is cross-site, as ever');
+  assert.equal((await client().raw('POST', '/api/oauth/exchange', { body: { code: code3, verifier: v1 } })).status, 404);
+  assert.equal((await exchange(code3, v1)).status, 200, 'a refused caller did not spend it');
+  assert.equal((await exchange(code3, v1)).status, 400, 'but the app did: single use');
+  assert.equal((await exchange('never-minted-' + uniq(), v1)).status, 400);
+
+  // and a code past its 90 seconds is gone
+  const fourth = await trip(phone, { sub, email: `${name}@gmail.com`, verified: true, name: 'G' }, { verifier: v1 });
+  const code4 = codeIn(fourth.location);
+  sql(`UPDATE oauth_app_codes SET expires = 1 WHERE code_hash = '${hashOf(code4)}'`);
+  assert.equal((await exchange(code4, v1)).status, 400, 'expired');
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM oauth_app_codes WHERE code_hash = '${hashOf(code4)}'`)[0].n, 0, 'and claimed anyway');
+
+  // somebody new: a code as well. The sign-up ticket — whoever holds it owns the account this verified identity lands
+  // in — comes out of the exchange, and the raw ticket the callback made is never handed to anyone.
+  const brandNew = client(), newSub = 'g-new-' + uniq(), v2 = newVerifier();
+  const join = await trip(brandNew, { sub: newSub, email: `${newSub}@gmail.com`, verified: true, name: 'Newbie' }, { verifier: v2 });
+  const joinCode = codeIn(join.location);
+  assert.ok(!join.setCookie.some(c => c.startsWith('os_signup=') && !/Max-Age=0/.test(c)));
+  assert.equal(sql('SELECT kind FROM oauth_app_codes ORDER BY created DESC LIMIT 1')[0].kind, 'signup');
+  assert.equal((await exchange(joinCode, newVerifier())).status, 400, 'the wrong verifier buys no ticket either');
+  const joinAgain = await trip(brandNew, { sub: newSub, email: `${newSub}@gmail.com`, verified: true, name: 'Newbie' }, { verifier: v2 });
+  const got = await exchange(codeIn(joinAgain.location), v2);
+  assert.equal(got.status, 200, JSON.stringify(got.data));
+  assert.deepEqual(Object.keys(got.data), ['ticket']);
+  const ticket = got.data.ticket;
+  assert.equal(sql(`SELECT COUNT(*) AS n FROM oauth_signups WHERE ticket_hash = '${hashOf(ticket)}'`)[0].n, 1, 'the ticket it was handed is the row\'s');
+
+  assert.equal((await app('GET', '/api/signup/pending')).status, 404, 'no ticket');
+  assert.equal((await app('GET', '/api/signup/pending', { headers: { 'X-OurSpace-Ticket': 'nope' } })).status, 404);
+  assert.equal((await app('GET', '/api/signup/pending', { client: {}, headers: { 'X-OurSpace-Ticket': ticket } })).status, 404, 'only an app may');
+  const pending = await app('GET', '/api/signup/pending', { headers: { 'X-OurSpace-Ticket': ticket } });
+  assert.deepEqual([pending.status, pending.data.provider, pending.data.nameHint], [200, 'google', 'Newbie']);
+  const finalName = 'newbie_' + uniq();
+  const fin = await brandNew.post('/api/signup/finish', { name: finalName, birthday: '1992-02-02', rulesOk: true }, { ...APP, 'X-OurSpace-Ticket': ticket });
+  assert.equal(fin.status, 201, JSON.stringify(fin.data));
+  assert.equal(fin.data.user.name, finalName);
+  assert.equal((await app('GET', '/api/me', { token: fin.data.session.token })).data.user.name, finalName);
+  assert.equal((await app('GET', '/api/signup/pending', { headers: { 'X-OurSpace-Ticket': ticket } })).status, 404, 'the ticket was used');
+
+  // the reasons it can't: a refusal at the provider, a link or Spotify (which start from a page with the cookie), an expired sign-in
+  const refused = client();
+  const start = await refused.raw('GET', `/api/oauth/google/start?mode=login&client=app&challenge=${challengeFor(newVerifier())}`, { headers: { 'CF-Connecting-IP': refused.ip } });
+  const state = new URL(start.headers.get('location')).searchParams.get('state');
+  const cancelled = await refused.raw('GET', `/api/oauth/google/callback?error=access_denied&state=${state}`);
+  assert.equal(cancelled.headers.get('location'), 'ourspace://auth?error=cancelled');
+  assert.equal((await client().raw('GET', '/api/oauth/google/callback?code=x&state=unknown')).headers.get('location'), '/login?error=expired', 'a sign-in we never saw can\'t know it was an app\'s');
+  assert.equal((await client().raw('GET', '/api/oauth/google/start?mode=link&client=app')).headers.get('location'), 'ourspace://auth?error=failed');
+  assert.equal((await client().raw('GET', '/api/oauth/spotify/start?mode=spotify&client=app')).headers.get('location'), 'ourspace://auth?error=failed');
+  assert.equal((await client().raw('GET', '/api/oauth/nope/start?mode=login&client=app')).headers.get('location'), 'ourspace://auth?error=unavailable');
+  // a web sign-in is what it was: no challenge, no code, a page and a cookie
+  assert.equal((await client().raw('GET', '/api/oauth/nope/start?mode=login')).headers.get('location'), '/login?error=unavailable&provider=nope');
+  assert.equal((await viaProvider(client(), 'google', { sub, email: `${name}@gmail.com`, verified: true, name: 'G' })).location, '/');
+  assert.equal(sql('SELECT COUNT(*) AS n FROM oauth_states WHERE challenge IS NOT NULL AND client IS NULL')[0].n, 0, 'a challenge is an app\'s business only');
+});
+
+/* -- push: the trigger fills the outbox, the cron drains it, chat messages go at once */
+
+test('push: a notification reaches the phones through the outbox and the cron; chat messages go at once; dead tokens are forgotten; no device, no work', async () => {
+  const push = mock.push;
+  const alice = await newUser('pushee'); const bob = await newUser('pusher'); const carol = await newUser('pushpal'); const dave = await newUser('pushfan');
+  await befriend(alice, bob); await befriend(alice, carol); await befriend(bob, carol);
+  const IOS = 'ab12cd34'.repeat(8), DROID = 'fcm:' + 'q'.repeat(120);
+  const t1 = await appToken(alice), t2 = await appToken(alice);
+  await app('POST', '/api/me/devices', { token: t1, body: { platform: 'ios', label: 'iPhone', pushToken: IOS } });
+  const outbox = who => sql(`SELECT kind, title, body, url, attempts FROM push_outbox WHERE user_id = ${who.id} ORDER BY id`);
+
+  // somebody with no device being told things costs nothing
+  const mine = (await bob.post('/api/status', { body: 'a post for the likes' })).data;
+  assert.equal((await alice.post(`/api/posts/${mine.id}/like`)).status, 200);
+  assert.deepEqual(outbox(bob), [], 'no device, no outbox row');
+
+  // alice has a phone: the trigger turns each notification into a line, with the address its tap opens
+  const post = (await alice.post('/api/status', { body: 'alice posts something' })).data;
+  assert.equal((await bob.post(`/api/posts/${post.id}/like`)).status, 200);
+  assert.deepEqual(outbox(alice), [{ kind: 'like', title: bob.name, body: 'liked your post', url: `/u/${alice.name}/post/${post.id}`, attempts: 0 }]);
+  const reply = (await bob.post(`/api/posts/${post.id}/replies`, { body: 'bob replies to alice' })).data.post;
+  const wall = await carol.post(`/api/users/${alice.name}/comments`, { body: 'hi on your page' });
+  assert.equal(wall.status, 201, JSON.stringify(wall.data));
+  assert.equal((await dave.post('/api/follows/' + alice.name)).status, 200);
+  const thread = (await alice.post('/api/boards/random/threads', { subject: 'a thread for push', body: 'talk to me' })).data.thread;
+  const comment = await bob.post(`/api/threads/${thread.id}/comments`, { body: 'a board comment' });
+  assert.equal(comment.status, 201, JSON.stringify(comment.data));
+  const lines = outbox(alice);
+  const byKind = k => lines.filter(l => l.kind === k);
+  assert.equal(byKind('reply')[0].url, `/u/${bob.name}/post/${reply.id}`);
+  assert.deepEqual([byKind('comment')[0].body, byKind('comment')[0].url], ['left a comment on your page', `/u/${alice.name}`]);
+  assert.deepEqual([byKind('follow')[0].title, byKind('follow')[0].url], [dave.name, `/u/${dave.name}`]);
+  assert.ok(lines.some(l => l.url === `/boards/random/${thread.id}`), 'a comment on a board thread opens the thread: ' + JSON.stringify(lines));
+  assert.ok(lines.every(l => l.title && l.body && l.url.startsWith('/')));
+
+  // the second device (Android) too
+  await app('POST', '/api/me/devices', { token: t2, body: { platform: 'android', label: 'Pixel', pushToken: DROID } });
+  const one = (await bob.post(`/api/posts/${post.id}/repost`));
+  assert.equal(one.status, 200, JSON.stringify(one.data));
+
+  // the cron sends them
+  const waiting = outbox(alice).length;
+  const before = { apns: push.apns.length, fcm: push.fcm.length };
+  const sentTo = (list, tokenOf, token) => list.filter(p => tokenOf(p) === token);
+  await runCronAs('* * * * *', async () => outbox(alice).length === 0);
+  assert.deepEqual(outbox(alice), [], 'drained');
+  const iosGot = sentTo(push.apns.slice(before.apns), p => p.token, IOS);
+  assert.equal(iosGot.length, waiting, 'one push per line to the iPhone');
+  const like = iosGot.find(p => p.body.aps.alert.body === 'liked your post');
+  assert.deepEqual(like.body.aps.alert, { title: bob.name, body: 'liked your post' });
+  assert.equal(like.body.url, `/u/${alice.name}/post/${post.id}`);
+  assert.equal(like.headers['apns-topic'], 'page.ourspace.app');
+  assert.equal(like.headers['apns-push-type'], 'alert');
+  assert.deepEqual([like.jwt.ok, like.jwt.header.alg, like.jwt.header.kid, like.jwt.claims.iss], [true, 'ES256', 'TESTKEY123', 'TESTTEAM12'], 'a valid ES256 provider token');
+  assert.ok(Math.abs(like.jwt.claims.iat * 1000 - Date.now()) < 120000);
+  // (a line goes to every device the person has when the cron runs, so the Android phone, added later, has them all)
+  const droidGot = push.fcm.slice(before.fcm).filter(p => p.message.token === DROID);
+  assert.equal(droidGot.length, waiting);
+  const repost = droidGot.find(p => p.message.notification.body === 'reposted your post');
+  assert.deepEqual([repost.project, repost.message.notification, repost.message.data.url], ['ourspace-test', { title: bob.name, body: 'reposted your post' }, `/u/${alice.name}/post/${post.id}`]);
+  assert.match(repost.auth, /^Bearer fcm-access-\d+$/);
+  const exchange = push.tokens[push.tokens.length - 1];
+  assert.deepEqual([exchange.grant, exchange.jwt.ok, exchange.jwt.header.alg, exchange.jwt.claims.iss, exchange.jwt.claims.scope, exchange.jwt.claims.aud],
+    ['urn:ietf:params:oauth:grant-type:jwt-bearer', true, 'RS256', 'push@ourspace-test.iam.example', 'https://www.googleapis.com/auth/firebase.messaging', mock.base + '/fcm-token']);
+  assert.ok(exchange.jwt.claims.exp - exchange.jwt.claims.iat <= 3600);
+
+  // a chat message goes at once, to every device of the others in it (no cron)
+  const dm = (await bob.post('/api/chats', { dm: alice.name })).data.chat;
+  await say(bob, dm.id, 'hello phone');
+  // A push says who and what kind and nothing a member wrote (the invariant at the top of src/push/push.js), so a DM is
+  // found by its address and its fixed phrase, never by the message: "<sender> / sent you a message".
+  const isDm = p => p.body.url === `/messages/${dm.id}` && p.body.aps.alert.body === 'sent you a message';
+  const isDmFcm = p => p.message.data.url === `/messages/${dm.id}` && p.message.notification.body === 'sent you a message';
+  const direct = await eventually(() => push.apns.find(isDm) && push.fcm.find(isDmFcm) && true);
+  assert.ok(direct, 'both phones heard it');
+  const dmApns = push.apns.find(isDm);
+  assert.deepEqual([dmApns.token, dmApns.body.aps.alert.title, dmApns.body.url, dmApns.body.kind], [IOS, bob.name, `/messages/${dm.id}`, 'chat_message']);
+  assert.equal(push.fcm.find(isDmFcm).message.data.url, `/messages/${dm.id}`);
+  assert.ok(!JSON.stringify(dmApns.body).includes('hello phone'), 'and not a word of the message itself');
+  assert.equal(push.apns.some(p => isDm(p) && p.token !== IOS), false);
+  // a group says whose message it is and where to open it, never the text or the group's name (members choose that
+  // too); the sender isn't told about their own; a block keeps a message from its blocker's phone
+  const grp = await chatOf(bob, [alice, carol], 'book club');
+  await alice.post('/api/blocks/' + bob.name);
+  await say(bob, grp.id, 'words alice must not be pushed');
+  await say(carol, grp.id, 'words alice is pushed');
+  const inGroup = (p, who) => p.body.url === `/messages/${grp.id}` && p.body.aps.alert.title === who.name;
+  const grpPush = await eventually(() => push.apns.find(p => inGroup(p, carol)));
+  assert.deepEqual([grpPush.body.aps.alert.title, grpPush.body.url, grpPush.body.aps.alert.body],
+    [carol.name, `/messages/${grp.id}`, 'sent a message in a group chat']);
+  assert.ok(!/book club|words alice/.test(JSON.stringify(grpPush.body)), 'neither the message nor the group\'s name');
+  assert.equal(push.apns.some(p => inGroup(p, bob)), false, 'blocked either way: not told');
+  await alice.del('/api/blocks/' + bob.name);
+
+  // a token the service says is dead is forgotten (the other phone stays)
+  push.fail.push({ to: 'apns', status: 410, body: { reason: 'Unregistered' } });
+  await say(bob, dm.id, 'is anyone there');
+  const forgotten = await eventually(async () => (await app('GET', '/api/me/devices', { token: t1 })).data.devices.find(d => d.platform === 'ios').push === false);
+  assert.ok(forgotten, 'the iPhone\'s token was dropped');
+  assert.equal((await app('GET', '/api/me/devices', { token: t1 })).data.devices.find(d => d.platform === 'android').push, true);
+  // a failure to try again later keeps the line, with an attempt counted; a day-old one is dropped
+  await app('POST', '/api/me/devices', { token: t1, body: { platform: 'ios', label: 'iPhone', pushToken: IOS } });
+  push.fail.push({ to: 'apns', status: 503, body: { reason: 'ServiceUnavailable' } });
+  const quote = await bob.post(`/api/posts/${post.id}/quote`, { body: 'quoting alice for the retry' });
+  assert.equal(quote.status, 201, JSON.stringify(quote.data));
+  assert.equal(outbox(alice).length, 1);
+  await runCronAs('* * * * *', async () => push.fail.length === 0);
+  await new Promise(r => setTimeout(r, 700));
+  assert.deepEqual(outbox(alice).map(l => l.attempts), [1], 'the line the service couldn\'t take is kept, with a try counted');
+  await runCronAs('* * * * *', async () => outbox(alice).length === 0);
+  assert.deepEqual(outbox(alice), [], 'and sent the next minute');
+  sql(`INSERT INTO push_outbox (user_id, kind, title, body, url, created) VALUES (${alice.id}, 'like', 'old', 'news', '/', ${Date.now() - 2 * DAY})`);
+  await runCronAs('* * * * *', async () => outbox(alice).length === 0);
+  assert.equal(push.apns.some(p => p.body.aps.alert.title === 'old'), false, 'stale news is not sent');
+
+  // revoking the phone stops everything for it; no device with a token, no outbox rows
+  await app('DELETE', '/api/me/devices/' + sql(`SELECT id FROM devices WHERE token_hash = '${hashOf(t1)}'`)[0].id, { token: t1 });
+  await app('DELETE', '/api/me/devices/' + sql(`SELECT id FROM devices WHERE token_hash = '${hashOf(t2)}'`)[0].id, { token: t2 });
+  const nothing = { apns: push.apns.length, fcm: push.fcm.length };
+  const last = (await alice.post('/api/status', { body: 'alice posts once more' })).data;
+  assert.equal((await bob.post(`/api/posts/${last.id}/like`)).status, 200);
+  assert.deepEqual(outbox(alice), []);
+  await runCronAs('* * * * *', async () => true);
+  await new Promise(r => setTimeout(r, 400));
+  assert.deepEqual({ apns: push.apns.length, fcm: push.fcm.length }, nothing);
+});
+
+/* -- the parity gate: the app sees the same API as the web */
+
+test('parity: every authenticated route answers the same under Authorization: Bearer as under the os_sid cookie', async () => {
+  // The route table, read from src/index.js. Every AUTH and ADMIN route is tried as an ordinary member and as a
+  // moderator, once with the cookie and once with the bearer token: the same session either way (the cookie holds the
+  // token the app was given), so the answers have to be the same, status and body. Writes send an empty JSON body, so
+  // most answer with their validation error: that is part of the contract too.
+  const routes = routeTable().filter(r => r.access !== 'OPEN');
+  assert.ok(routes.length > 70, `${routes.length} routes`);
+  assert.ok(routes.some(r => r.handler === 'registerDevice') && routes.some(r => r.access === 'ADMIN'));
+  routes.sort((x, y) => (x.handler === 'deleteAccount') - (y.handler === 'deleteAccount'));
+  const member = await newUser('parity');
+  const boss = await moderator('parityboss');
+  const tokens = { member: await appToken(member), boss: await appToken(boss) };
+  const ask = async (r, how, token) => {
+    const write = r.method !== 'GET';
+    const res = await fetch(BASE + fill(r.path) + (r.handler === 'uploadMedia' ? '?purpose=post' : ''), {
+      method: r.method,
+      headers: { ...(how === 'cookie' ? { Cookie: 'os_sid=' + token } : { Authorization: 'Bearer ' + token }), ...(write ? { 'Content-Type': 'application/json' } : {}) },
+      body: write ? '{}' : undefined,
+    });
+    return { status: res.status, body: await res.text() };
+  };
+  const seen = new Map();
+  for (const [who, token] of Object.entries(tokens)) {
+    for (const r of routes) {
+      const viaCookie = await ask(r, 'cookie', token);
+      const viaBearer = await ask(r, 'bearer', token);
+      assert.deepEqual(viaBearer, viaCookie, `${r.method} ${r.path} as ${who}`);
+      assert.ok(viaCookie.status < 500, `${r.method} ${r.path} as ${who}: ${viaCookie.status} ${viaCookie.body}`);
+      seen.set(viaCookie.status, (seen.get(viaCookie.status) || 0) + 1);
+    }
+  }
+  // (not a vacuous pass: real answers, refusals and validation errors all came back)
+  assert.ok((seen.get(200) || 0) >= 20, 'answers: ' + JSON.stringify([...seen]));
+  assert.ok(seen.has(400) && seen.has(403) && seen.has(404), 'refusals too: ' + JSON.stringify([...seen]));
+  // and logged out, a bad bearer is exactly like no cookie
+  for (const r of routes.filter(r => r.method === 'GET')) {
+    const a = await fetch(BASE + fill(r.path));
+    const b = await fetch(BASE + fill(r.path), { headers: { Authorization: 'Bearer not-a-session' } });
+    assert.deepEqual([b.status, await b.text()], [a.status, await a.text()], `${r.path} logged out`);
+    assert.equal(a.status, 401);
+  }
+});
+
+test('mobile: a public photo can be embedded by the apps\' pages (Cross-Origin-Resource-Policy: cross-origin); one only its viewer may see stays same-origin', async () => {
+  const me = await newUser('corp');
+  const pic = await photo(me, { width: 64, height: 64 }, 'avatar');       // a picture is public to anyone
+  assert.equal((await me.put('/api/me/profile', { avatar: pic.url })).status, 200);
+  const loose = await photo(me);                                           // an upload on nothing: its owner only
+  const policy = r => r.headers.get('cross-origin-resource-policy');
+  // a browser, and an app (whose <img> sends no token but is a cross-site no-cors request from its own origin)
+  for (const headers of [{}, { Origin: APP_ORIGIN, 'Sec-Fetch-Site': 'cross-site', 'Sec-Fetch-Mode': 'no-cors', 'Sec-Fetch-Dest': 'image' }, { ...APP, Origin: 'https://localhost' }]) {
+    const res = await fetch(BASE + pic.url, { headers });
+    assert.equal(res.status, 200);
+    assert.equal(policy(res), 'cross-origin', JSON.stringify(headers));
+    assert.equal(res.headers.get('x-content-type-options'), 'nosniff');
+    assert.equal(res.headers.get('cache-control'), 'public, max-age=300');
+    const again = await fetch(BASE + pic.url, { headers: { ...headers, 'If-None-Match': res.headers.get('etag') } });
+    assert.deepEqual([again.status, policy(again)], [304, 'cross-origin'], 'revalidating too');
+  }
+  // the private one: same-origin whoever asks, and an app reads it by fetch with its token (CORS mode, which CORP doesn't govern)
+  const token = await appToken(me);
+  for (const [headers, label] of [[{ Cookie: cookieOf(me) }, 'browser'], [{ ...APP, Origin: APP_ORIGIN, Authorization: 'Bearer ' + token }, 'app']]) {
+    const res = await fetch(BASE + loose.url, { headers });
+    assert.equal(res.status, 200, label);
+    assert.equal(policy(res), 'same-origin', label);
+    assert.equal(res.headers.get('cache-control'), 'private, no-store');
+    if (label === 'app') assert.equal(res.headers.get('access-control-allow-origin'), APP_ORIGIN);
+  }
+  const stranger = await fetch(BASE + loose.url);
+  assert.deepEqual([stranger.status, policy(stranger)], [404, 'same-origin']);
 });

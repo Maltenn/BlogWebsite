@@ -139,26 +139,40 @@ const COMMENT_SHOWN = `SELECT 1 AS ok FROM posts p WHERE p.id = ?3 AND EXISTS (S
 // Who may see photo row `m` (with its post's and people's columns): 'public' (anyone, cacheable for a few minutes),
 // 'private' (this viewer only: no-store) or null (404, exactly like a photo that doesn't exist). Moderators see
 // everything (privately), held evidence included. Loose uploads: their owner only. A picture: anyone while it's
-// somebody's picture. A post's photo: whoever may see the post (not hidden, not deleted, not dated ahead, writer not
-// banned, no block either way, and a private profile's only for its accepted followers; board posts are public spaces,
-// but a board comment's also needs its thread and every comment above it to show to the viewer, so it's never cached),
-// and not hidden on its own by a moderator.
+// somebody's current picture (below). A post's photo: whoever may see the post (not hidden, not deleted, not dated ahead,
+// writer and page owner not banned, no block either way with either, and a private profile's only for its accepted
+// followers; board posts are public spaces, but a board comment's also needs its thread and every comment above it to
+// show to the viewer, so it's never cached), and not hidden on its own by a moderator.
+//
+// "The page owner" is `o = COALESCE(p.target_id, p.author_id)`, exactly as notify() and the Notifications rule (SHOWN)
+// have it: a Friends' Comment on someone's page is written by one member but lives on another's, and whether the page is
+// private is the page owner's setting, not the writer's. (This used to look at the writer alone, which would have served
+// a photo on a private page to the world the day `wall` was added to MEDIA_LIMITS in src/shared/media.js.)
 async function access(c, m) {
   const viewer = c.user;
   if (viewer && viewer.is_admin) return 'private';
   if (m.hidden || m.owner_id == null || m.owner_banned) return null;
   if (m.attached == null) return viewer && viewer.id === m.owner_id ? 'private' : null;
-  if (m.purpose === 'avatar') return 'public';
-  if (m.post_id == null || m.p_id == null || m.p_deleted || m.p_hidden || m.p_created > c.now || m.a_banned) return null;
+  // A profile picture is PUBLIC ON PURPOSE, before any block or privacy check: it is the one photo the site shows to
+  // people with no account and no relationship (GET /api/users/:name answers with it for every profile, a private one
+  // too, and boards and lists show it). Serving it 'public' means anyone with the address may fetch it and, since the
+  // apps' pages (capacitor://localhost) must embed it, that any website may too (CORP cross-origin, serveMedia). What that adds to "anyone may fetch it" is hotlinking
+  // and the Spectre-era side channel, for an image that is already public and has a 128-bit unguessable name. What must
+  // not stay public is a picture that is no longer the member's: changing it deletes the old file in the same batch
+  // (avatarStatements), but this does not lean on that: only the picture that is the owner's avatar right now is served,
+  // so a leftover is a 404 and cannot be hotlinked for ever. (docs/mobile/redteam.md R10)
+  if (m.purpose === 'avatar') return m.owner_avatar === mediaUrl(m.key) ? 'public' : null;
+  if (m.post_id == null || m.p_id == null || m.p_deleted || m.p_hidden || m.p_created > c.now || m.a_banned || m.po_banned) return null;
   if (viewer && viewer.id !== m.p_author && await blockedEither(c.env, viewer.id, m.p_author)) return null;
+  if (viewer && m.po_id !== m.p_author && viewer.id !== m.po_id && await blockedEither(c.env, viewer.id, m.po_id)) return null;
   if (m.p_kind === 'comment') {
     const shown = await c.env.DB.prepare(COMMENT_SHOWN).bind(viewer ? viewer.id : 0, c.now, m.p_id).first();
     return shown ? 'private' : null;
   }
-  if (m.p_board != null || m.a_policy !== 'approve') return 'public';
+  if (m.p_board != null || m.po_policy !== 'approve') return 'public';
   if (!viewer) return null;
-  if (viewer.id === m.p_author) return 'private';
-  const f = await followOf(c.env, viewer.id, m.p_author);
+  if (viewer.id === m.p_author || viewer.id === m.po_id) return 'private';
+  const f = await followOf(c.env, viewer.id, m.po_id);
   return f && f.status === 'accepted' ? 'private' : null;
 }
 
@@ -169,23 +183,29 @@ export async function serveMedia(c, key) {
   if (!/^[0-9a-f]{32}\.(jpg|png|gif|webp)$/.test(key)) return notFound();
   const m = await c.env.DB.prepare(`SELECT m.id, m.owner_id, m.purpose, m.mime, m.attached, m.post_id, m.hidden, o.banned AS owner_banned,
       p.id AS p_id, p.kind AS p_kind, p.author_id AS p_author, p.deleted AS p_deleted, p.hidden AS p_hidden, p.created AS p_created,
-      p.board_id AS p_board, a.banned AS a_banned, a.follow_policy AS a_policy
+      p.board_id AS p_board, a.banned AS a_banned, o.avatar AS owner_avatar, m.key,
+      po.id AS po_id, po.banned AS po_banned, po.follow_policy AS po_policy
     FROM media m LEFT JOIN users o ON o.id = m.owner_id LEFT JOIN posts p ON p.id = m.post_id LEFT JOIN users a ON a.id = p.author_id
+    LEFT JOIN users po ON po.id = COALESCE(p.target_id, p.author_id)
     WHERE m.key = ?`).bind(key).first();
   const seen = m && await access(c, m);
   if (!seen) return notFound();
   const cache = seen === 'public' ? PUBLIC : PRIVATE;
+  // A public photo is readable by anyone with no credentials at all, so keeping other sites from embedding it protects
+  // nothing, and the apps (pages from capacitor://localhost, https://localhost) embed it: cross-origin. A private one (this
+  // viewer's session decided) stays same-origin; an app reads those with fetch and its token, which CORP doesn't govern.
+  const base = seen === 'public' ? { ...BASE_HEADERS, 'Cross-Origin-Resource-Policy': 'cross-origin' } : BASE_HEADERS;
   const asked = seen === 'public' && c.req.headers.get('If-None-Match');
   const obj = c.req.method === 'HEAD' || asked ? await c.env.MEDIA.head(key) : await c.env.MEDIA.get(key);
   if (!obj) return notFound();
   if (asked && asked.split(',').map(t => t.trim().replace(/^W\//, '')).includes(obj.httpEtag)) {
-    return new Response(null, { status: 304, headers: { ...BASE_HEADERS, 'Cache-Control': cache, ETag: obj.httpEtag } });
+    return new Response(null, { status: 304, headers: { ...base, 'Cache-Control': cache, ETag: obj.httpEtag } });
   }
   const body = c.req.method === 'HEAD' ? null : asked ? (await c.env.MEDIA.get(key))?.body : obj.body;
   if (body === undefined) return notFound();
   return new Response(body, {
     headers: {
-      ...BASE_HEADERS,
+      ...base,
       'Content-Type': m.mime,
       'Content-Length': String(obj.size),
       'Content-Disposition': 'inline',

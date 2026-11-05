@@ -141,7 +141,7 @@ const SRC = path.join(ROOT, 'src');
 const CROSS_FEATURE = ['accounts/oauth.js → music/spotify.js', 'profiles/profiles.js → music/spotify.js', 'accounts/auth.js → profiles/profiles.js',
   'boards/boards.js → social/items.js', 'browse/browse.js → social/items.js',
   'accounts/auth.js → trust/signup.js', 'accounts/auth.js → trust/turnstile.js', 'accounts/oauth.js → trust/signup.js',
-  'social/items.js → trust/duplicates.js', 'social/items.js → ai/scan.js'];
+  'social/items.js → trust/duplicates.js', 'social/items.js → ai/scan.js', 'chats/chats.js → push/push.js'];
 const srcRel = f => path.relative(SRC, f).split(path.sep).join('/');
 function srcArea(f) {
   const parts = path.relative(SRC, f).split(path.sep);

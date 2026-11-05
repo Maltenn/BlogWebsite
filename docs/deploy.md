@@ -136,6 +136,13 @@ Secrets are set with `npx wrangler secret put NAME`, never written to a file in 
 | `PANGRAM_API_KEY` or `GPTZERO_API_KEY` | An AI-writing detector, if `AI_DETECTOR` names it. |
 | `SPOTIFY_CLIENT_ID`, `SPOTIFY_CLIENT_SECRET` | Spotify. |
 | `GOOGLE_*`, `DISCORD_*` (`CLIENT_ID`, `CLIENT_SECRET`) | Other sign-in options. |
+| `APNS_KEY_P8`, `APNS_KEY_ID`, `APNS_TEAM_ID`, `APNS_TOPIC` | Push to the iOS app. All four, or push stays off and silent. |
+| `FCM_SERVICE_ACCOUNT_JSON` | Push to the Android app. Without it, push stays off and silent. |
+
+Push needs the whole set before `pushReady(env)` turns it on; until then the outbox is emptied
+each minute and nothing is sent. `APNS_SANDBOX=1` (a var, not a secret) points at Apple's
+sandbox, which is what a build straight from Xcode needs, while TestFlight and the store use
+production. The apps themselves are [docs/mobile/](mobile/README.md).
 
 The same list is in the comment at the top of `wrangler.jsonc`; when a feature that needs new secrets is added, update both. `TEST_PROVIDER_BASE` is not a setting: it is for the tests and the demo, and must never be set on a real deployment ([development.md](development.md)). The same goes for `TEST_SIGNALS` (it lets a request claim its own address and network with `X-Test-Ip` / `X-Test-Cf`, and its AI enforcement mode with `X-Test-Enforcement`), `TURNSTILE_VERIFY_URL` and `DOH_URL`.
 

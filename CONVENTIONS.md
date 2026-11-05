@@ -20,6 +20,7 @@ Rules for changing this repo. Setup and architecture are in [README.md](README.m
   - `browse/browse` → `social/items` (the item and `hydrate`: discovery shows posts and threads as every list does)
   - `accounts/auth`, `accounts/oauth` → `trust/signup` (`screenSignup`, `recordSignup`: every sign-up passes the human checks), and `accounts/auth` → `trust/turnstile` (`checkTurnstile` on log in and password reset)
   - `social/items` → `trust/duplicates` (`screenPost`, `fingerprintStatement`, `holdCopies`) and `ai/scan` (`scanLater`): `writePost` is the one door every public post goes through
+  - `chats/chats` → `push/push` (`pushReady`, `pushChat`): a chat message is pushed to the phones straight from `sendChatMessage`, a minute is too slow for the outbox
 - `shared/` never imports a feature.
 - A feature that switches on with secrets exposes `xReady(env)` (like `spotifyReady`, `mailReady`). Its secrets go in [docs/deploy.md](docs/deploy.md) and in the comment at the top of `wrangler.jsonc`.
 
@@ -64,3 +65,4 @@ See [docs/roadmap.md](docs/roadmap.md) for the placement of each unbuilt feature
 - Terms of service: `public/legal/` (static) and `src/accounts/terms.js`.
 - Invite codes: `src/accounts/invites.js`. Ban-evasion signals: `src/safety/`.
 - Unread threads on the boards (`thread_reads`): `src/boards/reads.js`.
+- The mobile apps (built): their way in (bearer tokens in `currentUser`, `session` in the sign-in answers, CORS for the three app origins, the chat socket's one-room ticket, which the subprotocol carries instead of the session token) is `src/shared/app.js` with `src/accounts/auth.js` and `src/shared/live.js`; their devices and push notifications are `src/push/` (`devices.js` the routes, `push.js` the outbox cron and direct chat push, `apns.js`/`fcm.js` the services). Everything about it is in [docs/mobile/server.md](docs/mobile/server.md), built to [docs/mobile/contract.md](docs/mobile/contract.md).

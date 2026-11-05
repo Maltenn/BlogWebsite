@@ -5,16 +5,19 @@
 //                   follow), photo uploads, Spotify, astrology, blocks,
 //                   reports, moderation)
 //   /api/live/:room a chat room's WebSocket, handed to its Durable Object (src/live/room.js, exported below as Room)
+//                   (a client with no cookie opens it with a one-room pass from POST /api/live/ticket)
 //   /media/<key>    uploaded photos, from the R2 bucket MEDIA, to whoever may see them (src/media/media.js)
 //   everything else the static pages in public/ (wrangler.jsonc → assets), with /u/<name> etc. falling back to
 //                   index.html so the page's own router can draw them
-// The cron (every 30 min) clears out expired sessions, sign-in tickets, reset links, old rate-limit rows, photo uploads
+// The mobile apps use the same API with a bearer token instead of the cookie, from three origins that CORS answers (and
+// no others): src/shared/app.js, src/accounts/auth.js, docs/mobile/contract.md. Their devices and push: src/push/.
+// The cron (every minute) sends the push notifications waiting in the outbox. The cron (every 30 min) clears out expired sessions, sign-in tickets, chat-socket passes, reset links, old rate-limit rows, photo uploads
 // never attached to anything, #ourspace messages past its rolling window, expired mutes and faded interaction scores,
 // and the trust data past its time (sign-up signals and AI scores after 90 days); a nightly one looks for clusters of
 // accounts for the moderators (src/trust/clusters.js).
 import { HttpError, json, netLimit } from './shared/http.js';
 import { currentUser, me, signup, login, logout, changePassword, deleteAccount, forgotPassword, resetPassword } from './accounts/auth.js';
-import { oauthStart, oauthCallback, signupPending, signupFinish, providers, account, unlink } from './accounts/oauth.js';
+import { oauthStart, oauthCallback, oauthExchange, signupPending, signupFinish, providers, account, unlink } from './accounts/oauth.js';
 import { options, profile, browse, saveProfile, saveSettings } from './profiles/profiles.js';
 import { followUser, unfollowUser, acceptFollower, removeFollower, requests, followersOf, followingOf, friendsOf } from './follows/follows.js';
 import { postComment, postStatus, postBlog, deletePost, feed, saveMarker, blogOf, statusesOf, repliesOf, commentsOf, onePost, tagged } from './social/social.js';
@@ -26,7 +29,7 @@ import { notifications } from './notifications/notifications.js';
 import { chatList, oneChat, chatMessages, sendChatMessage, readChat, createChat, addMembers, removeMember, leaveChat, answerInvite, renameChat, chatSuggestions } from './chats/chats.js';
 import { deleteChatMessage } from './chats/messages.js';
 import { ourspaceMessages, postOurspace, muteMember, sweepChat } from './chats/ourspace.js';
-import { liveRoom } from './chats/live.js';
+import { liveRoom, liveTicket } from './chats/live.js';
 import { getSpotify, putSpotify, refreshSpotify, deleteSpotify } from './music/spotify.js';
 import { astroSky, astroSign, astroMe } from './horoscope/horoscope.js';
 import { listBlocks, block, unblock, report, adminReports, resolveReport, adminUser, adminContent, adminLog } from './safety/safety.js';
@@ -40,12 +43,16 @@ import { findClusters, sweepTrust } from './trust/clusters.js';
 import { myStrikes, appealStrike, adminAppeals, decideStrike, adminScans } from './ai/strikes.js';
 import { sweepStrikes } from './ai/scan.js';
 import { checkGate } from './shared/gate.js';
+import { tokenRequest, corsFor, preflight, withCors } from './shared/app.js';
+import { myDevices, registerDevice, revokeDevice } from './push/devices.js';
+import { drainPush } from './push/push.js';
 
 // the Durable Object class behind every chat room (wrangler.jsonc → durable_objects)
 export { Room } from './live/room.js';
 
 const OPEN = 0, AUTH = 1, ADMIN = 2;
 const NIGHTLY = '17 3 * * *';
+const EVERY_MINUTE = '* * * * *';
 
 // Every write a member makes (AUTH, not GET) passes the gate in src/shared/gate.js: a confirmed email and not held for
 // review; `gate: 'post'` adds "no posting timeout" (public posting and commenting). A write that needs neither (account
@@ -65,6 +72,7 @@ const ROUTES = [
   ['GET', '/api/auth/providers', providers, OPEN],
   ['GET', '/api/oauth/:provider/start', oauthStart, OPEN],
   ['GET', '/api/oauth/:provider/callback', oauthCallback, OPEN],
+  ['POST', '/api/oauth/exchange', oauthExchange, OPEN],
   ['GET', '/api/signup/pending', signupPending, OPEN],
   ['POST', '/api/signup/finish', signupFinish, OPEN, { net: true }],
 
@@ -74,6 +82,9 @@ const ROUTES = [
   ['PUT', '/api/me/settings', saveSettings, AUTH, { free: 'privacy settings' }],
   ['PUT', '/api/me/markers/:name', saveMarker, AUTH, { free: 'private: how far you read' }],
   ['GET', '/api/me/bookmarks', bookmarks, AUTH],
+  ['GET', '/api/me/devices', myDevices, AUTH],
+  ['POST', '/api/me/devices', registerDevice, AUTH, { free: 'your own devices' }],
+  ['DELETE', '/api/me/devices/:id', revokeDevice, AUTH, { free: 'your own devices' }],
   ['POST', '/api/me/password', changePassword, AUTH, { free: 'account' }],
   ['DELETE', '/api/me', deleteAccount, AUTH, { free: 'account' }],
   ['POST', '/api/me/verify/resend', resendVerification, AUTH, { free: 'the way to get verified' }],
@@ -154,6 +165,7 @@ const ROUTES = [
   ['DELETE', '/api/chat-messages/:id', deleteChatMessage, AUTH, { free: 'deleting your own message' }],
   ['GET', '/api/ourspace/messages', ourspaceMessages, AUTH],
   ['POST', '/api/ourspace/messages', postOurspace, AUTH],
+  ['POST', '/api/live/ticket', liveTicket, AUTH, { free: 'the pass for a chat socket, which is a GET' }],
   ['GET', '/api/live/:room', liveRoom, AUTH],
 
   ['GET', '/api/blocks', listBlocks, AUTH],
@@ -207,8 +219,10 @@ async function api(request, env, ctx, url) {
   if (!found.route) return json({ error: found.status === 405 ? 'method not allowed' : found.status === 400 ? 'bad address' : 'not found' }, found.status);
 
   // Changes only from our own pages: a browser always sends Origin on these requests, and another site's would not
-  // match. (SameSite=Lax cookies and JSON-only bodies are the other two locks on that door.)
-  if (request.method !== 'GET') {
+  // match. (SameSite=Lax cookies and JSON-only bodies are the other two locks on that door.) Not for an app's request
+  // (a bearer token, or X-OurSpace-Client, and no os_sid cookie): it has no ambient credentials for a hostile page to
+  // ride, and the headers are ones no hostile page can make a browser send (src/shared/app.js).
+  if (request.method !== 'GET' && !tokenRequest(request)) {
     const origin = request.headers.get('Origin');
     const site = request.headers.get('Sec-Fetch-Site');
     if ((origin && origin !== url.origin) || site === 'cross-site') return json({ error: 'cross-site request refused' }, 403);
@@ -239,17 +253,29 @@ export default {
     const url = new URL(request.url);
     const isMedia = url.pathname.startsWith('/media/');
     if (!url.pathname.startsWith('/api/') && !isMedia) return env.ASSETS.fetch(request);
+    // CORS: only the apps' three origins ever get an answer (src/shared/app.js); everyone else's OPTIONS is a 405 as before
+    const origin = corsFor(request);
+    if (origin && request.method === 'OPTIONS') return preflight(origin);
+    let res;
     try {
-      return await (isMedia ? media(request, env, ctx, url) : api(request, env, ctx, url));
+      res = await (isMedia ? media(request, env, ctx, url) : api(request, env, ctx, url));
     } catch (e) {
-      if (e instanceof HttpError) return json({ ...(e.extra || {}), error: e.message }, e.status, e.cookie ? { 'Set-Cookie': e.cookie } : {});
-      console.error((e && e.stack) || e);
-      return json({ error: 'something broke on our end. try again in a minute.' }, 500);
+      if (e instanceof HttpError) res = json({ ...(e.extra || {}), error: e.message }, e.status, e.cookie ? { 'Set-Cookie': e.cookie } : {});
+      else {
+        console.error((e && e.stack) || e);
+        res = json({ error: 'something broke on our end. try again in a minute.' }, 500);
+      }
     }
+    return origin ? withCors(res, origin) : res;
   },
 
   async scheduled(event, env, ctx) {
     const now = Date.now();
+    // every minute: the push notifications waiting in the outbox (src/push/push.js). Nothing else runs this often.
+    if (event.cron === EVERY_MINUTE) {
+      ctx.waitUntil(drainPush(env, now).catch(e => console.error('push drain failed:', (e && e.stack) || e)));
+      return;
+    }
     // nightly (wrangler.jsonc: '17 3 * * *'): look for accounts that came together, for the moderators. Never bans.
     if (event.cron === NIGHTLY) {
       ctx.waitUntil(findClusters(env, now).catch(e => console.error('cluster check failed:', (e && e.stack) || e)));
@@ -259,6 +285,8 @@ export default {
       env.DB.prepare('DELETE FROM sessions WHERE expires < ?').bind(now),
       env.DB.prepare('DELETE FROM oauth_states WHERE expires < ?').bind(now),
       env.DB.prepare('DELETE FROM oauth_signups WHERE expires < ?').bind(now),
+      env.DB.prepare('DELETE FROM oauth_app_codes WHERE expires < ?').bind(now),
+      env.DB.prepare('DELETE FROM live_tickets WHERE expires < ?').bind(now),
       env.DB.prepare('DELETE FROM password_resets WHERE expires < ?').bind(now),
       env.DB.prepare('DELETE FROM attempts WHERE created < ?').bind(now - 2 * 86400000),
     ]).catch(e => console.error('cron failed:', (e && e.stack) || e)));

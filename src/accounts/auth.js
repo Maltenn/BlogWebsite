@@ -1,7 +1,9 @@
 // Accounts: sign-up (email + password), log in / out, sessions, forgotten passwords, password changes, deleting an
 // account. Signing in with Google or Discord is oauth.js; it shares createUser() and startSession() from here.
 // Passwords are hashed with PBKDF2-SHA256 (100k iterations, the most Workers allows) and a per-user salt. A session
-// is a random token in an HttpOnly, SameSite=Lax cookie; the database only keeps its SHA-256.
+// is a random token in an HttpOnly, SameSite=Lax cookie; the database only keeps its SHA-256. The mobile apps hold the
+// same token themselves and send it as `Authorization: Bearer` (docs/mobile/contract.md): their sessions last 90 days
+// and stay alive while they are used, but end 180 days after sign-in however busy (DEVICE_MAX_DAYS).
 import { HttpError, fail, json, readBody, getCookie, sessionCookie, sha256Hex, ipKey } from '../shared/http.js';
 import { nameProblem } from '../shared/text.js';
 import { limit, CLEAR_TOMBSTONES } from '../shared/db.js';
@@ -14,7 +16,8 @@ import { sendMail, mailReady } from '../shared/mail.js';
 import { SHOWN, UNREAD } from '../shared/notify.js';
 import { UNREAD_CHATS, HANDOVER } from '../shared/chat.js';
 import { dropObjects, keysIn, releaseMedia } from '../shared/media.js';
-import { signOut, roomsOf } from '../shared/live.js';
+import { signOut, roomsOf, claimTicket } from '../shared/live.js';
+import { appClient, bearerToken } from '../shared/app.js';
 import { TIMEOUT_UNTIL } from '../shared/gate.js';
 import { screenSignup, recordSignup } from '../trust/signup.js';
 import { checkTurnstile } from '../trust/turnstile.js';
@@ -22,6 +25,14 @@ import { sendVerification } from './verify.js';
 
 const ITERATIONS = 100000;
 const SESSION_DAYS = 30;
+const DEVICE_DAYS = 90;                        // an app's session; its expiry moves forward whenever it is used
+// ... but never past this many days after it began, however busy it is (docs/mobile/redteam.md R7). A token read off a
+// phone once (a backup, a debugger, a lost-and-recovered device) must not stay good forever just because the thief keeps
+// using it. 180 days: the owner signs in again twice a year, which on a phone (password manager, "continue with Google")
+// is a few seconds, while a stolen token's life is cut from unbounded to six months; 365 would make that a year for
+// the sake of one fewer sign-in. Revoking a device or changing the password ends a session at once, whatever this says.
+export const DEVICE_MAX_DAYS = 180;
+const SLIDE_MS = 3600000;                      // ... at most once an hour (one write, not one per request)
 const enc = new TextEncoder();
 const b64 = bytes => btoa(String.fromCharCode(...bytes));
 const unb64 = s => Uint8Array.from(atob(s), ch => ch.charCodeAt(0));
@@ -67,12 +78,21 @@ export function cleanEmail(raw) {
 // (the per-IP rate-limit keys live in shared/http.js, where Browse uses them too)
 export { ipGroup, ipKey } from '../shared/http.js';
 
-export async function startSession(c, userId) {
+// Starts a session and answers the Set-Cookie for it. The raw token and expiry are left on `c.session`, for the apps
+// (withSession). `device`: a 90-day session for an app; by default whoever sent X-OurSpace-Client gets one.
+export async function startSession(c, userId, { device = !!appClient(c.req) } = {}) {
   const token = randomToken();
+  const days = device ? DEVICE_DAYS : SESSION_DAYS;
+  const expires = c.now + days * 86400000;
   await c.env.DB.prepare('INSERT INTO sessions (token_hash, user_id, created, expires) VALUES (?, ?, ?, ?)')
-    .bind(await sha256Hex(token), userId, c.now, c.now + SESSION_DAYS * 86400000).run();
-  return sessionCookie(c.url, token, SESSION_DAYS * 86400);
+    .bind(await sha256Hex(token), userId, c.now, expires).run();
+  c.session = { token, expires };
+  return sessionCookie(c.url, token, days * 86400);
 }
+
+// `body` with the session just started ({ token, expires }) in it, but only for an app (X-OurSpace-Client names one): a
+// browser's answer stays exactly what it was.
+export const withSession = (c, body) => (c.session && appClient(c.req) ? { ...body, session: c.session } : body);
 
 // The age check. Too young → refused, and a cookie stops the same browser from simply trying another year for a day.
 const AGE_COOKIE = 'os_agegate';
@@ -128,18 +148,48 @@ export const userOut = u => {
   return { id: u.id, name: u.name, avatar: u.avatar, isAdmin: !!u.is_admin, sign: { key: s.key, name: s.name, glyph: s.glyph } };
 };
 
-// The logged-in user for this request, or null. Banned accounts are logged out.
+// The logged-in user for this request, or null. Banned accounts are logged out. The session is the `Authorization:
+// Bearer` token if the request has one (an app; `c.viaBearer` is then true, and a bad token is no session at all: the
+// cookie is not tried), else the cookie, exactly as it always was. An app's 90-day session moves forward when used.
+//
+// One request can carry neither, because a browser WebSocket can set no headers: a chat socket from a cookieless client
+// offers a room ticket as its subprotocol instead (docs/mobile/contract.md §7). The ticket is spent here and names the
+// session that minted it, so from this line on such a request is that session like any other — and `c.liveTicket` says
+// which room it bought, which src/chats/live.js holds it to.
 export async function currentUser(c) {
-  const token = getCookie(c.req, 'os_sid');
-  if (!token || token.length > 100) return null;
-  const tokenHash = await sha256Hex(token);
-  const u = await c.env.DB.prepare(`
+  const bearer = bearerToken(c.req);
+  c.viaBearer = bearer != null;
+  const token = bearer ?? getCookie(c.req, 'os_sid');
+  let tokenHash;
+  if (!token) {
+    const pass = await claimTicket(c);
+    if (!pass) return null;
+    c.viaBearer = true;                        // no cookie either: the same not-ambient credential a bearer token is
+    c.liveTicket = pass;
+    tokenHash = pass.token_hash;
+  } else {
+    if (token.length > 100) return null;
+    tokenHash = await sha256Hex(token);
+  }
+  const row = await c.env.DB.prepare(`
     SELECT u.id, u.name, u.email, u.avatar, u.birthdate, u.is_admin, u.banned, u.follow_policy, u.dm_policy, u.last_seen, u.pass_hash,
-      u.created, u.email_verified_at, u.held, u.ai_exempt_until, s.expires
+      u.created, u.email_verified_at, u.held, u.ai_exempt_until, s.expires, s.created AS session_created
     FROM sessions s JOIN users u ON u.id = s.user_id WHERE s.token_hash = ?`).bind(tokenHash).first();
-  if (!u || u.expires < c.now || u.banned) return null;
+  if (!row || row.expires < c.now || row.banned) return null;
+  const { session_created, ...u } = row;
   if (!u.last_seen || u.last_seen < c.now - 60000) {
     c.ctx.waitUntil(c.env.DB.prepare('UPDATE users SET last_seen = ? WHERE id = ?').bind(c.now, u.id).run());
+  }
+  // a device session (made longer than a web one) lives on while its app uses it, to DEVICE_MAX_DAYS after it began and
+  // no further. (A web session never slides, so the cap does not touch it.) At the cap slideTo equals the expiry the
+  // session already has, so there is nothing left to write.
+  const slideTo = Math.min(c.now + DEVICE_DAYS * 86400000, session_created + DEVICE_MAX_DAYS * 86400000);
+  if (c.viaBearer && u.expires - session_created > SESSION_DAYS * 86400000 && slideTo - u.expires > SLIDE_MS) {
+    u.expires = slideTo;
+    c.ctx.waitUntil(c.env.DB.batch([
+      c.env.DB.prepare('UPDATE sessions SET expires = ? WHERE token_hash = ? AND expires < ?').bind(u.expires, tokenHash, u.expires),
+      c.env.DB.prepare('UPDATE devices SET last_seen = ? WHERE token_hash = ?').bind(c.now, tokenHash),
+    ]).catch(e => console.error('keeping a device session alive failed:', (e && e.stack) || e)));
   }
   return { ...u, tokenHash };
 }
@@ -173,7 +223,7 @@ export async function me(c) {
 // form, pow and the honeypot's name come from GET /api/form/signup (src/trust/form.js); turnstile is the widget's
 // token. The checks (trust/signup.js) refuse a bot outright or hold a suspicious sign-up for a moderator; either way a
 // person gets a clear message. The account starts unverified: we email a link (/verify#token=…).
-// → 201 { user, verification: 'sent' | 'failed', held }
+// → 201 { user, verification: 'sent' | 'failed', held } (an app also gets session: { token, expires })
 export async function signup(c) {
   const b = await readBody(c.req);
   if (b.rulesOk !== true) fail(400, 'please read and agree to the house rules.');
@@ -191,7 +241,8 @@ export async function signup(c) {
   const user = await createUser(c, { name, email, passHash: await hashPassword(b.password), birthdate, avatar: b.avatar, held: screen.hold ? screen.reasons : null });
   await c.env.DB.batch(recordSignup(c.env, user.id, screen, c.now));
   const verification = await sendVerification(c, user);
-  return json({ user: userOut(user), verification, held: screen.hold }, 201, { 'Set-Cookie': await startSession(c, user.id) });
+  const cookie = await startSession(c, user.id);
+  return json(withSession(c, { user: userOut(user), verification, held: screen.hold }), 201, { 'Set-Cookie': cookie });
 }
 
 // POST /api/login { login (email or screen name), password, turnstile } — turnstile: the widget's token (action login).
@@ -223,7 +274,8 @@ export async function login(c) {
   }
   if (u.banned) fail(403, 'this account has been suspended for breaking the house rules.');
   await c.env.DB.prepare('UPDATE users SET last_seen = ? WHERE id = ?').bind(c.now, u.id).run();
-  return json({ user: userOut(u) }, 200, { 'Set-Cookie': await startSession(c, u.id) });
+  const cookie = await startSession(c, u.id);
+  return json(withSession(c, { user: userOut(u) }), 200, { 'Set-Cookie': cookie });
 }
 
 // POST /api/logout — this session ends, and its chat sockets close (code 4001)
@@ -275,7 +327,8 @@ export async function resetPassword(c) {
     c.env.DB.prepare('DELETE FROM sessions WHERE user_id = ?').bind(r.user_id),
   ]);
   await signOut(c.env, r.user_id);
-  return json({ user: userOut({ ...r, id: r.user_id }) }, 200, { 'Set-Cookie': await startSession(c, r.user_id) });
+  const cookie = await startSession(c, r.user_id);
+  return json(withSession(c, { user: userOut({ ...r, id: r.user_id }) }), 200, { 'Set-Cookie': cookie });
 }
 
 // POST /api/me/password { current, next } — change it, or set one on an account that only used Google & co.

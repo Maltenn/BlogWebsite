@@ -8,6 +8,7 @@
    This file holds the route table and starts everything up.
    ============================================================ */
 
+import './js/core/native.js';   // the iOS / Android bridge; does nothing in a browser
 import { $, enc } from './js/core/dom.js';
 import { api } from './js/core/api.js';
 import { toast } from './js/core/ui.js';

@@ -1,0 +1,17 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["REPLACE_APPLE_TEAM_ID.com.ourspace.app"],
+        "components": [
+          { "/": "/api/*", "exclude": true },
+          { "/": "/media/*", "exclude": true },
+          { "/": "/*" }
+        ]
+      }
+    ]
+  },
+  "webcredentials": {
+    "apps": ["REPLACE_APPLE_TEAM_ID.com.ourspace.app"]
+  }
+}

@@ -9,7 +9,7 @@ import { toast, pageTitle, errorCard } from './ui.js';
 import { S } from './state.js';
 
 // real files and the API (sign-in redirects): the browser loads these itself
-const STATIC_PREFIXES = ['/blog/', '/assets/', '/media/', '/api/'];
+const STATIC_PREFIXES = ['/blog/', '/assets/', '/media/', '/api/', '/.well-known/'];
 let routes = [];                  // [regex, render(root, arg), needs login?], from start()
 let beforeEach = null;            // runs at the start of every route(), from start()
 const leaving = [];               // one-shot cleanups for the page being left
