@@ -10,9 +10,15 @@
     "dev": "wrangler dev",
     "demo": "node tools/demo.mjs",
     "deploy": "wrangler deploy",
-    "test": "node --test test/*.test.mjs"
+    "test": "node --test test/*.test.mjs",
+    "plates": "node tools/plates.mjs",
+    "plates:check": "node tools/pixeldiff.mjs",
+    "tabbar:check": "node tools/tabbar-check.mjs"
   },
   "devDependencies": {
+    "pixelmatch": "^8.0.0",
+    "playwright": "^1.64.1",
+    "pngjs": "^7.0.0",
     "wrangler": "^4.152.0"
   },
   "dependencies": {

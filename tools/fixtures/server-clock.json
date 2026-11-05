@@ -1,0 +1,922 @@
+{
+ "note": "Answers from the API that are worked out from the SERVER's clock, captured once. context.clock in tools/plates.mjs freezes only the browser, so without these the plates stop matching within days of being taken: 48 of 464 failed on 2026-11-05 against a 2026-10-31 baseline with no code change at all. Two causes: the horoscope day comes from c.now (src/horoscope/horoscope.js dayOf -> localDay, and localDay discards a client date more than 2.5 days off the server's), and #ourspace keeps only the last 24 hours (src/chats/ourspace.js WINDOW, m.created > c.now - KEEP_MS). Keyed on pathname; the query is ignored. Regenerating these means deliberately re-baselining the horoscope, home--in and ourspace--in plates. docs/mobile/harness.md.",
+ "capturedFrom": "a freshly seeded demo (DEMO_DIR, --fresh), as the member `the_reviewer`",
+ "capturedAt": "2026-11-05T14:08:04.399Z",
+ "horoscopeDate": "2026-11-05",
+ "ourspaceMessages": 8,
+ "responses": {
+  "/api/astro/sky": {
+   "date": "2026-11-05",
+   "sky": {
+    "planets": [
+     {
+      "body": "Sun",
+      "glyph": "☉",
+      "sign": "scorpio",
+      "degree": 13,
+      "retrograde": false
+     },
+     {
+      "body": "Moon",
+      "glyph": "☽",
+      "sign": "virgo",
+      "degree": 28,
+      "retrograde": false,
+      "ingress": {
+       "from": "virgo",
+       "to": "libra",
+       "at": 1793889491618
+      }
+     },
+     {
+      "body": "Mercury",
+      "glyph": "☿",
+      "sign": "scorpio",
+      "degree": 11,
+      "retrograde": true,
+      "directOn": 1794585176587
+     },
+     {
+      "body": "Venus",
+      "glyph": "♀",
+      "sign": "libra",
+      "degree": 24,
+      "retrograde": true,
+      "directOn": 1794615659692
+     },
+     {
+      "body": "Mars",
+      "glyph": "♂",
+      "sign": "leo",
+      "degree": 20,
+      "retrograde": false
+     },
+     {
+      "body": "Jupiter",
+      "glyph": "♃",
+      "sign": "leo",
+      "degree": 24,
+      "retrograde": false
+     },
+     {
+      "body": "Saturn",
+      "glyph": "♄",
+      "sign": "aries",
+      "degree": 9,
+      "retrograde": true,
+      "directOn": 1796945004272
+     },
+     {
+      "body": "Uranus",
+      "glyph": "♅",
+      "sign": "gemini",
+      "degree": 4,
+      "retrograde": true,
+      "directOn": 1802089391528
+     },
+     {
+      "body": "Neptune",
+      "glyph": "♆",
+      "sign": "aries",
+      "degree": 1,
+      "retrograde": true,
+      "directOn": 1797113614526
+     },
+     {
+      "body": "Pluto",
+      "glyph": "♇",
+      "sign": "aquarius",
+      "degree": 3,
+      "retrograde": false
+     }
+    ],
+    "moon": {
+     "phase": "waning-crescent",
+     "name": "Waning Crescent",
+     "emoji": "🌘",
+     "angle": 315.5,
+     "illumination": 14,
+     "waxing": false,
+     "sign": "virgo",
+     "event": null
+    },
+    "aspects": [
+     {
+      "a": "Moon",
+      "b": "Pluto",
+      "aspect": "trine",
+      "glyph": "△",
+      "orb": 4.61,
+      "exactToday": true,
+      "at": 1793910496605
+     },
+     {
+      "a": "Moon",
+      "b": "Uranus",
+      "aspect": "trine",
+      "glyph": "△",
+      "orb": 5.95,
+      "exactToday": true,
+      "at": 1793919266156
+     },
+     {
+      "a": "Venus",
+      "b": "Jupiter",
+      "aspect": "sextile",
+      "glyph": "⚹",
+      "orb": 0.51,
+      "exactToday": false,
+      "at": null
+     }
+    ]
+   },
+   "summary": [
+    {
+     "kind": "moon",
+     "text": "The Moon is waning crescent (14% lit) in Virgo: tidy up, fix something, make a list."
+    },
+    {
+     "kind": "sun",
+     "text": "The Sun is in Scorpio: a season of going deep, getting real and transforming."
+    },
+    {
+     "kind": "retrograde",
+     "until": 1794585176587,
+     "body": "Mercury",
+     "text": "Mercury is retrograde in Scorpio: double-check plans, back up your files, re-read before you send. Exes and old friends tend to text."
+    },
+    {
+     "kind": "retrograde",
+     "until": 1794615659692,
+     "body": "Venus",
+     "text": "Venus is retrograde in Libra: old feelings resurface. Rethink what (and who) you really value."
+    },
+    {
+     "kind": "retrograde",
+     "until": 1796945004272,
+     "body": "Saturn",
+     "text": "Saturn is retrograde in Aries: review your commitments and fix the foundations."
+    },
+    {
+     "kind": "retrograde",
+     "until": 1802089391528,
+     "body": "Uranus",
+     "text": "Uranus is retrograde in Gemini: quiet rebellion. Changes brew under the surface."
+    },
+    {
+     "kind": "retrograde",
+     "until": 1797113614526,
+     "body": "Neptune",
+     "text": "Neptune is retrograde in Aries: the fog lifts a little. See people as they really are."
+    },
+    {
+     "kind": "aspect",
+     "at": 1793910496605,
+     "text": "Moon flows easily with Pluto: Feelings and transformation cooperate, so things in these areas come easily."
+    },
+    {
+     "kind": "aspect",
+     "at": 1793919266156,
+     "text": "Moon flows easily with Uranus: Feelings and surprises cooperate, so things in these areas come easily."
+    },
+    {
+     "kind": "aspect",
+     "at": null,
+     "text": "Venus gives a friendly nod to Jupiter: Love and luck open a small, easy door. Knock on it."
+    }
+   ],
+   "signs": [
+    {
+     "key": "aries",
+     "name": "Aries",
+     "glyph": "♈",
+     "dates": "Mar 21 – Apr 19",
+     "element": "fire"
+    },
+    {
+     "key": "taurus",
+     "name": "Taurus",
+     "glyph": "♉",
+     "dates": "Apr 20 – May 20",
+     "element": "earth"
+    },
+    {
+     "key": "gemini",
+     "name": "Gemini",
+     "glyph": "♊",
+     "dates": "May 21 – Jun 20",
+     "element": "air"
+    },
+    {
+     "key": "cancer",
+     "name": "Cancer",
+     "glyph": "♋",
+     "dates": "Jun 21 – Jul 22",
+     "element": "water"
+    },
+    {
+     "key": "leo",
+     "name": "Leo",
+     "glyph": "♌",
+     "dates": "Jul 23 – Aug 22",
+     "element": "fire"
+    },
+    {
+     "key": "virgo",
+     "name": "Virgo",
+     "glyph": "♍",
+     "dates": "Aug 23 – Sep 22",
+     "element": "earth"
+    },
+    {
+     "key": "libra",
+     "name": "Libra",
+     "glyph": "♎",
+     "dates": "Sep 23 – Oct 22",
+     "element": "air"
+    },
+    {
+     "key": "scorpio",
+     "name": "Scorpio",
+     "glyph": "♏",
+     "dates": "Oct 23 – Nov 21",
+     "element": "water"
+    },
+    {
+     "key": "sagittarius",
+     "name": "Sagittarius",
+     "glyph": "♐",
+     "dates": "Nov 22 – Dec 21",
+     "element": "fire"
+    },
+    {
+     "key": "capricorn",
+     "name": "Capricorn",
+     "glyph": "♑",
+     "dates": "Dec 22 – Jan 19",
+     "element": "earth"
+    },
+    {
+     "key": "aquarius",
+     "name": "Aquarius",
+     "glyph": "♒",
+     "dates": "Jan 20 – Feb 18",
+     "element": "air"
+    },
+    {
+     "key": "pisces",
+     "name": "Pisces",
+     "glyph": "♓",
+     "dates": "Feb 19 – Mar 20",
+     "element": "water"
+    }
+   ]
+  },
+  "/api/astro/me": {
+   "reading": {
+    "sign": {
+     "key": "aries",
+     "name": "Aries",
+     "glyph": "♈",
+     "element": "fire",
+     "dates": "Mar 21 – Apr 19",
+     "ruler": "Mars"
+    },
+    "date": "2026-11-05",
+    "headline": "magnetic — today is about your routine",
+    "focus": {
+     "house": 6,
+     "area": "routines, chores, work and your health"
+    },
+    "paragraphs": [
+     "A good day to get organized. Knock out one annoying task and you'll feel lighter by tonight. The Moon is fading toward new. Rest, reflect, recharge. Later today the Moon moves into Libra, and your focus shifts to your people.",
+     "This month goes deep: trust, shared stuff, and letting go of what's done. Mercury is retrograde, so re-read, re-check and re-think anything to do with trust, shared things, secrets and deep talks. Old friends may resurface.",
+     "Venus gives a friendly nod to Jupiter today, connecting your partnership and romance zones: love and luck open a small, easy door. Knock on it."
+    ],
+    "transits": [],
+    "ratings": {
+     "love": 3,
+     "friends": 3,
+     "work": 4,
+     "energy": 2
+    },
+    "do": "Do: do the chore you keep dodging. Drink some water.",
+    "avoid": "Avoid: the 2 AM overthinking spiral.",
+    "lucky": {
+     "number": 62,
+     "color": "sunshine yellow",
+     "time": "around 1 PM"
+    }
+   },
+   "chart": [
+    {
+     "body": "Sun",
+     "glyph": "☉",
+     "sign": "aries",
+     "alt": null,
+     "degree": 22
+    },
+    {
+     "body": "Moon",
+     "glyph": "☽",
+     "sign": "libra",
+     "alt": "scorpio",
+     "degree": 28
+    },
+    {
+     "body": "Mercury",
+     "glyph": "☿",
+     "sign": "aries",
+     "alt": null,
+     "degree": 12
+    },
+    {
+     "body": "Venus",
+     "glyph": "♀",
+     "sign": "pisces",
+     "alt": null,
+     "degree": 6
+    },
+    {
+     "body": "Mars",
+     "glyph": "♂",
+     "sign": "aries",
+     "alt": null,
+     "degree": 29
+    },
+    {
+     "body": "Jupiter",
+     "glyph": "♃",
+     "sign": "pisces",
+     "alt": null,
+     "degree": 15
+    },
+    {
+     "body": "Saturn",
+     "glyph": "♄",
+     "sign": "aries",
+     "alt": null,
+     "degree": 23
+    }
+   ],
+   "cusp": null
+  },
+  "/api/ourspace/messages": {
+   "messages": [
+    {
+     "id": 11,
+     "chatId": null,
+     "room": "ourspace",
+     "body": "hiii #ourspace!! who's online",
+     "created": 1793885509349,
+     "author": {
+      "id": 3,
+      "name": "xX_glitterkat_Xx",
+      "avatar": "/assets/avatars/pic_glitter_heart_pink.gif"
+     },
+     "mine": false
+    },
+    {
+     "id": 12,
+     "chatId": null,
+     "room": "ourspace",
+     "body": "me. compiling. always compiling",
+     "created": 1793885809349,
+     "author": {
+      "id": 6,
+      "name": "pixelpete",
+      "avatar": "/assets/avatars/pic_computer_beige.gif"
+     },
+     "mine": false
+    },
+    {
+     "id": 13,
+     "chatId": null,
+     "room": "ourspace",
+     "body": "new mix dropping tonight, songs to do homework to (you won't)",
+     "created": 1793886109349,
+     "author": {
+      "id": 8,
+      "name": "dj_bananabread",
+      "avatar": "/assets/avatars/pic_headphones_neon.gif"
+     },
+     "mine": false
+    },
+    {
+     "id": 14,
+     "chatId": null,
+     "room": "ourspace",
+     "body": "happy full moon everyone ✩",
+     "created": 1793886409349,
+     "author": {
+      "id": 7,
+      "name": "starlight_mia",
+      "avatar": "/media/545db3327b315760d94db02e30a8d998.png"
+     },
+     "mine": false
+    },
+    {
+     "id": 15,
+     "chatId": null,
+     "room": "ourspace",
+     "body": "anyone skating later? the 7-eleven lot is dry",
+     "created": 1793886709349,
+     "author": {
+      "id": 4,
+      "name": "sk8r_jules",
+      "avatar": "/assets/avatars/icon_gc_skater_kickflip.gif"
+     },
+     "mine": false
+    },
+    {
+     "id": 16,
+     "chatId": null,
+     "room": "ourspace",
+     "body": "@pixelpete fix my marquee pls",
+     "created": 1793887009349,
+     "author": {
+      "id": 3,
+      "name": "xX_glitterkat_Xx",
+      "avatar": "/assets/avatars/pic_glitter_heart_pink.gif"
+     },
+     "mine": false
+    },
+    {
+     "id": 17,
+     "chatId": null,
+     "room": "ourspace",
+     "body": "the marquee is a feature",
+     "created": 1793887309349,
+     "author": {
+      "id": 6,
+      "name": "pixelpete",
+      "avatar": "/assets/avatars/pic_computer_beige.gif"
+     },
+     "mine": false
+    },
+    {
+     "id": 18,
+     "chatId": null,
+     "room": "ourspace",
+     "body": "it's raining here. obviously",
+     "created": 1793887609349,
+     "author": {
+      "id": 5,
+      "name": "emo_drew",
+      "avatar": "/assets/avatars/pic_heart_skull.gif"
+     },
+     "mine": false
+    }
+   ],
+   "next": null,
+   "online": [],
+   "mutedUntil": null,
+   "slowMode": {
+    "seconds": 3,
+    "perMinute": 20
+   }
+  },
+  "/api/astro/sign/aries": {
+   "reading": {
+    "sign": {
+     "key": "aries",
+     "name": "Aries",
+     "glyph": "♈",
+     "element": "fire",
+     "dates": "Mar 21 – Apr 19",
+     "ruler": "Mars"
+    },
+    "date": "2026-11-05",
+    "headline": "lucky — today is about your routine",
+    "focus": {
+     "house": 6,
+     "area": "routines, chores, work and your health"
+    },
+    "paragraphs": [
+     "A good day to get organized. Knock out one annoying task and you'll feel lighter by tonight. The Moon is fading toward new. Rest, reflect, recharge. Later today the Moon moves into Libra, and your focus shifts to your people.",
+     "This month goes deep: trust, shared stuff, and letting go of what's done. Mercury is retrograde, so re-read, re-check and re-think anything to do with trust, shared things, secrets and deep talks. Old friends may resurface.",
+     "Venus gives a friendly nod to Jupiter today, connecting your partnership and romance zones: love and luck open a small, easy door. Knock on it."
+    ],
+    "transits": [],
+    "ratings": {
+     "love": 4,
+     "friends": 4,
+     "work": 4,
+     "energy": 2
+    },
+    "do": "Do: do the chore you keep dodging. Drink some water.",
+    "avoid": "Avoid: the 2 AM overthinking spiral.",
+    "lucky": {
+     "number": 62,
+     "color": "black (obviously)",
+     "time": "around 1 PM"
+    }
+   }
+  },
+  "/api/astro/sign/taurus": {
+   "reading": {
+    "sign": {
+     "key": "taurus",
+     "name": "Taurus",
+     "glyph": "♉",
+     "element": "earth",
+     "dates": "Apr 20 – May 20",
+     "ruler": "Venus"
+    },
+    "date": "2026-11-05",
+    "headline": "magnetic — today is about fun & romance",
+    "focus": {
+     "house": 5,
+     "area": "fun, crushes, hobbies and creative projects"
+    },
+    "paragraphs": [
+     "A playful, flirty, creative kind of day. Make something, or make plans with someone you like. The Moon is fading toward new. Rest, reflect, recharge. Later today the Moon moves into Libra, and your focus shifts to your routine.",
+     "This month is about partnerships. Who you team up with now matters. Mercury is retrograde, so re-read, re-check and re-think anything to do with partners, best friends and one-on-one time. Old friends may resurface.",
+     "Venus gives a friendly nod to Jupiter today, connecting your routine and home zones: love and luck open a small, easy door. Knock on it."
+    ],
+    "transits": [],
+    "ratings": {
+     "love": 4,
+     "friends": 3,
+     "work": 3,
+     "energy": 2
+    },
+    "do": "Do: make something just for fun: a playlist, a drawing, a layout.",
+    "avoid": "Avoid: reading old messages for clues.",
+    "lucky": {
+     "number": 68,
+     "color": "teal",
+     "time": "around 10 AM"
+    }
+   }
+  },
+  "/api/astro/sign/gemini": {
+   "reading": {
+    "sign": {
+     "key": "gemini",
+     "name": "Gemini",
+     "glyph": "♊",
+     "element": "air",
+     "dates": "May 21 – Jun 20",
+     "ruler": "Mercury"
+    },
+    "date": "2026-11-05",
+    "headline": "thoughtful — today is about home",
+    "focus": {
+     "house": 4,
+     "area": "home, family and your comfort zone"
+    },
+    "paragraphs": [
+     "You'll want to nest today. Home, family and familiar things recharge you. The Moon is fading toward new. Rest, reflect, recharge. Later today the Moon moves into Libra, and your focus shifts to fun & romance.",
+     "This month is for getting your life together. Habits, health, the boring stuff that pays off. Mercury is retrograde, so re-read, re-check and re-think anything to do with routines, chores, work and your health. Old friends may resurface."
+    ],
+    "transits": [],
+    "ratings": {
+     "love": 4,
+     "friends": 3,
+     "work": 2,
+     "energy": 3
+    },
+    "do": "Do: clean your room, cook something, call home.",
+    "avoid": "Avoid: comparing your Top 8 to anybody else's.",
+    "lucky": {
+     "number": 80,
+     "color": "cobalt",
+     "time": "around 8 PM"
+    }
+   }
+  },
+  "/api/astro/sign/cancer": {
+   "reading": {
+    "sign": {
+     "key": "cancer",
+     "name": "Cancer",
+     "glyph": "♋",
+     "element": "water",
+     "dates": "Jun 21 – Jul 22",
+     "ruler": "Moon"
+    },
+    "date": "2026-11-05",
+    "headline": "magnetic — today is about talking",
+    "focus": {
+     "house": 3,
+     "area": "texts, calls, siblings and your neighborhood"
+    },
+    "paragraphs": [
+     "Your mind is busy and so is your inbox. Answer the message you've been putting off. The Moon is fading toward new. Rest, reflect, recharge. Later today the Moon moves into Libra, and your focus shifts to home.",
+     "This month is your fun season: romance, hobbies, and showing off what you're good at. Mercury is retrograde, so re-read, re-check and re-think anything to do with fun, crushes, hobbies and creative projects. Old friends may resurface.",
+     "Venus gives a friendly nod to Jupiter today, connecting your home and money zones: love and luck open a small, easy door. Knock on it."
+    ],
+    "transits": [],
+    "ratings": {
+     "love": 4,
+     "friends": 4,
+     "work": 4,
+     "energy": 2
+    },
+    "do": "Do: message the friend you keep meaning to message.",
+    "avoid": "Avoid: comparing your Top 8 to anybody else's.",
+    "lucky": {
+     "number": 4,
+     "color": "teal",
+     "time": "around 5 PM"
+    }
+   }
+  },
+  "/api/astro/sign/leo": {
+   "reading": {
+    "sign": {
+     "key": "leo",
+     "name": "Leo",
+     "glyph": "♌",
+     "element": "fire",
+     "dates": "Jul 23 – Aug 22",
+     "ruler": "Sun"
+    },
+    "date": "2026-11-05",
+    "headline": "lucky — today is about money",
+    "focus": {
+     "house": 2,
+     "area": "money, your stuff and what you value"
+    },
+    "paragraphs": [
+     "Today's mood is tied to comfort and security. A small treat helps more than a big purchase. The Moon is fading toward new. Rest, reflect, recharge. Later today the Moon moves into Libra, and your focus shifts to talking.",
+     "This month pulls you home. Family stuff and your space need some love. Mercury is retrograde, so re-read, re-check and re-think anything to do with home, family and your comfort zone. Old friends may resurface.",
+     "Venus gives a friendly nod to Jupiter today, connecting your communication and self zones: love and luck open a small, easy door. Knock on it."
+    ],
+    "transits": [],
+    "ratings": {
+     "love": 2,
+     "friends": 3,
+     "work": 3,
+     "energy": 2
+    },
+    "do": "Do: look at your budget. Just look at it.",
+    "avoid": "Avoid: the 2 AM overthinking spiral.",
+    "lucky": {
+     "number": 43,
+     "color": "cobalt",
+     "time": "around 10 PM"
+    }
+   }
+  },
+  "/api/astro/sign/virgo": {
+   "reading": {
+    "sign": {
+     "key": "virgo",
+     "name": "Virgo",
+     "glyph": "♍",
+     "element": "earth",
+     "dates": "Aug 23 – Sep 22",
+     "ruler": "Mercury"
+    },
+    "date": "2026-11-05",
+    "headline": "steady — today is about you",
+    "focus": {
+     "house": 1,
+     "area": "your image and how you come across"
+    },
+    "paragraphs": [
+     "The Moon is in your sign today, so your feelings sit right on the surface. You're more noticeable than usual — dress for it. The Moon is fading toward new. Rest, reflect, recharge. Later today the Moon moves into Libra, and your focus shifts to money.",
+     "This month, words are power. Write, message, pitch, learn. Mercury is retrograde, so re-read, re-check and re-think anything to do with texts, calls, siblings and your neighborhood. Old friends may resurface."
+    ],
+    "transits": [],
+    "ratings": {
+     "love": 2,
+     "friends": 3,
+     "work": 2,
+     "energy": 2
+    },
+    "do": "Do: try a new look, a new picture, a new font on your page.",
+    "avoid": "Avoid: checking who looked at your page.",
+    "lucky": {
+     "number": 29,
+     "color": "black (obviously)",
+     "time": "around 11 PM"
+    }
+   }
+  },
+  "/api/astro/sign/libra": {
+   "reading": {
+    "sign": {
+     "key": "libra",
+     "name": "Libra",
+     "glyph": "♎",
+     "element": "air",
+     "dates": "Sep 23 – Oct 22",
+     "ruler": "Venus"
+    },
+    "date": "2026-11-05",
+    "headline": "golden — today is about rest",
+    "focus": {
+     "house": 12,
+     "area": "rest, dreams, alone time and letting go"
+    },
+    "paragraphs": [
+     "Low-battery day. Rest, journal, sleep in if you can: your intuition is louder when it's quiet. The Moon is fading toward new. Rest, reflect, recharge. Later today the Moon moves into Libra, and your focus shifts to you.",
+     "This month is about money and self-worth. Know what you're worth and act like it. Mercury is retrograde, so re-read, re-check and re-think anything to do with money, your stuff and what you value. Old friends may resurface.",
+     "Venus gives a friendly nod to Jupiter today, connecting your self and friendship zones: love and luck open a small, easy door. Knock on it."
+    ],
+    "transits": [],
+    "ratings": {
+     "love": 4,
+     "friends": 2,
+     "work": 3,
+     "energy": 1
+    },
+    "do": "Do: go to bed early and write down your dreams.",
+    "avoid": "Avoid: the 2 AM overthinking spiral.",
+    "lucky": {
+     "number": 76,
+     "color": "teal",
+     "time": "around 8 AM"
+    }
+   }
+  },
+  "/api/astro/sign/scorpio": {
+   "reading": {
+    "sign": {
+     "key": "scorpio",
+     "name": "Scorpio",
+     "glyph": "♏",
+     "element": "water",
+     "dates": "Oct 23 – Nov 21",
+     "ruler": "Mars"
+    },
+    "date": "2026-11-05",
+    "headline": "magnetic — today is about friends",
+    "focus": {
+     "house": 11,
+     "area": "friends, groups, online life and future plans"
+    },
+    "paragraphs": [
+     "Your friends are your medicine today. Say yes to the group plan. The Moon is fading toward new. Rest, reflect, recharge. Later today the Moon moves into Libra, and your focus shifts to rest.",
+     "It's your season: birthday energy. Start things, change your look, put yourself first. Mercury is retrograde, so re-read, re-check and re-think anything to do with your image and how you come across. Old friends may resurface.",
+     "Venus gives a friendly nod to Jupiter today, connecting your rest and career zones: love and luck open a small, easy door. Knock on it."
+    ],
+    "transits": [],
+    "ratings": {
+     "love": 3,
+     "friends": 4,
+     "work": 2,
+     "energy": 1
+    },
+    "do": "Do: say yes to the group plan. Update your Top 8.",
+    "avoid": "Avoid: reading old messages for clues.",
+    "lucky": {
+     "number": 37,
+     "color": "mint",
+     "time": "around 11 AM"
+    }
+   }
+  },
+  "/api/astro/sign/sagittarius": {
+   "reading": {
+    "sign": {
+     "key": "sagittarius",
+     "name": "Sagittarius",
+     "glyph": "♐",
+     "element": "fire",
+     "dates": "Nov 22 – Dec 21",
+     "ruler": "Jupiter"
+    },
+    "date": "2026-11-05",
+    "headline": "golden — today is about your goals",
+    "focus": {
+     "house": 10,
+     "area": "school, work, goals and your reputation"
+    },
+    "paragraphs": [
+     "Eyes on your goals. Someone in charge is paying attention, so show up and show off a little. The Moon is fading toward new. Rest, reflect, recharge. Later today the Moon moves into Libra, and your focus shifts to friends.",
+     "This month is a quiet recharge before your birthday season. Rest and wrap things up. Mercury is retrograde, so re-read, re-check and re-think anything to do with rest, dreams, alone time and letting go. Old friends may resurface.",
+     "Venus gives a friendly nod to Jupiter today, connecting your friendship and adventure zones: love and luck open a small, easy door. Knock on it."
+    ],
+    "transits": [],
+    "ratings": {
+     "love": 3,
+     "friends": 3,
+     "work": 4,
+     "energy": 1
+    },
+    "do": "Do: work on the thing that would impress future you.",
+    "avoid": "Avoid: comparing your Top 8 to anybody else's.",
+    "lucky": {
+     "number": 69,
+     "color": "teal",
+     "time": "around 1 PM"
+    }
+   }
+  },
+  "/api/astro/sign/capricorn": {
+   "reading": {
+    "sign": {
+     "key": "capricorn",
+     "name": "Capricorn",
+     "glyph": "♑",
+     "element": "earth",
+     "dates": "Dec 22 – Jan 19",
+     "ruler": "Saturn"
+    },
+    "date": "2026-11-05",
+    "headline": "magnetic — today is about big ideas",
+    "focus": {
+     "house": 9,
+     "area": "learning, travel, beliefs and big ideas"
+    },
+    "paragraphs": [
+     "Restless? Feed it. Learn something, plan a trip, or wander somewhere you've never been. The Moon is fading toward new. Rest, reflect, recharge. Later today the Moon moves into Libra, and your focus shifts to your goals.",
+     "This month is social: friends, groups, and dreaming up what's next. Mercury is retrograde, so re-read, re-check and re-think anything to do with friends, groups, online life and future plans. Old friends may resurface.",
+     "Venus gives a friendly nod to Jupiter today, connecting your career and intimacy zones: love and luck open a small, easy door. Knock on it."
+    ],
+    "transits": [],
+    "ratings": {
+     "love": 3,
+     "friends": 3,
+     "work": 3,
+     "energy": 1
+    },
+    "do": "Do: read, watch or listen to something that teaches you something.",
+    "avoid": "Avoid: skipping breakfast.",
+    "lucky": {
+     "number": 14,
+     "color": "cobalt",
+     "time": "around 12 PM"
+    }
+   }
+  },
+  "/api/astro/sign/aquarius": {
+   "reading": {
+    "sign": {
+     "key": "aquarius",
+     "name": "Aquarius",
+     "glyph": "♒",
+     "element": "air",
+     "dates": "Jan 20 – Feb 18",
+     "ruler": "Saturn"
+    },
+    "date": "2026-11-05",
+    "headline": "magnetic — today is about the deep stuff",
+    "focus": {
+     "house": 8,
+     "area": "trust, shared things, secrets and deep talks"
+    },
+    "paragraphs": [
+     "Feelings run deep today. A real conversation beats small talk, and a secret might slip out. The Moon is fading toward new. Rest, reflect, recharge. Later today the Moon moves into Libra, and your focus shifts to big ideas.",
+     "This month is goals season. Your hard work gets noticed. Mercury is retrograde, so re-read, re-check and re-think anything to do with school, work, goals and your reputation. Old friends may resurface.",
+     "Venus gives a friendly nod to Jupiter today, connecting your adventure and partnership zones: love and luck open a small, easy door. Knock on it."
+    ],
+    "transits": [],
+    "ratings": {
+     "love": 4,
+     "friends": 2,
+     "work": 4,
+     "energy": 2
+    },
+    "do": "Do: have the real conversation. Ask the real question.",
+    "avoid": "Avoid: checking who looked at your page.",
+    "lucky": {
+     "number": 71,
+     "color": "glitter silver",
+     "time": "around 3 PM"
+    }
+   }
+  },
+  "/api/astro/sign/pisces": {
+   "reading": {
+    "sign": {
+     "key": "pisces",
+     "name": "Pisces",
+     "glyph": "♓",
+     "element": "water",
+     "dates": "Feb 19 – Mar 20",
+     "ruler": "Jupiter"
+    },
+    "date": "2026-11-05",
+    "headline": "golden — today is about your people",
+    "focus": {
+     "house": 7,
+     "area": "partners, best friends and one-on-one time"
+    },
+    "paragraphs": [
+     "Other people take center stage. One-on-one time matters more than the group chat today. The Moon is fading toward new. Rest, reflect, recharge. Later today the Moon moves into Libra, and your focus shifts to the deep stuff.",
+     "This month wants adventure and big ideas. Say yes to learning something new. Mercury is retrograde, so re-read, re-check and re-think anything to do with learning, travel, beliefs and big ideas. Old friends may resurface.",
+     "Venus gives a friendly nod to Jupiter today, connecting your intimacy and routine zones: love and luck open a small, easy door. Knock on it."
+    ],
+    "transits": [],
+    "ratings": {
+     "love": 5,
+     "friends": 3,
+     "work": 3,
+     "energy": 2
+    },
+    "do": "Do: plan one-on-one time with someone who matters.",
+    "avoid": "Avoid: checking who looked at your page.",
+    "lucky": {
+     "number": 84,
+     "color": "bubblegum",
+     "time": "around 5 PM"
+    }
+   }
+  }
+ }
+}
