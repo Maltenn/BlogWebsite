@@ -126,7 +126,7 @@ verbatim would have repaired a working gate and left the hole open. Findings wer
 to be marked CONFIRMED or PLAUSIBLE, and each was re-verified before anything was changed.
 
 ## Open questions for the owner
-- **No Mac.** Development is on Windows 11; Xcode is macOS-only. Cloud runner (`macos-14`) or your
+- **No Mac.** Development is on Windows 11; Xcode is macOS-only. A macOS VM on the PC was looked at and ruled out (`docs/mobile/shells.md`, under iOS). Cloud runner (`macos-15`) or your
   own machine?
 - **No production origin.** The D1 id in `wrangler.jsonc` is still
   `00000000-0000-0000-0000-000000000000`, so the app has no server to point at and universal links
