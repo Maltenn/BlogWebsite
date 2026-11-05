@@ -33,9 +33,18 @@ ten plugins in `mobile/package.json`. There are no hits. What does appear and is
 `@capacitor/ios` and `CapacitorCordova` ship their own manifests, and both are empty, which agrees. The red-team report (R4) expected
 `UserDefaults` CA92.1, `FileTimestamp` C617.1 and `DiskSpace` E174.1; none of those is used by this dependency set (older Capacitor
 versions used `UserDefaults`; 8.6.0 does not), and declaring an API the binary never calls is an inaccurate manifest too.
-**Not read here:** the two CocoaPods dependencies that are not on disk without `pod install`, `KeychainSwift` (its source uses only
-`SecItem*`) and `IONCameraLib` (its README says it ships its own manifest). The `ios` CI job prints any required-reason symbol it finds
-in the built app and frameworks; on the first Mac build read that output, and re-read it after every plugin upgrade.
+**Not read here:** the source of the two CocoaPods dependencies that are not on disk without `pod install`, `KeychainSwift` (its source
+uses only `SecItem*`) and `IONCameraLib`.
+
+**Open: `IONCameraLib` is not covered.** The first CI build (2026-11-05, `IONCameraLib` 2.0.x) contradicts what was assumed here: the
+built framework imports `NSURLCreationDateKey`, a file-timestamp API, and it contains no privacy manifest, despite its README saying it
+ships one. So the empty list above may not survive the first upload (ITMS-91053). Before that upload, find out what the library uses
+it for, then either add the matching `NSPrivacyAccessedAPICategoryFileTimestamp` reason to the app's manifest or get a version that
+ships its own. Do not guess the reason code.
+
+The `ios` CI job has a step that is meant to print any required-reason symbol in the built app and frameworks, but on that build it
+printed "no required-reason API references found", which is wrong: the symbol is in the file. The cause is not known. Until that is
+fixed, check the archive by searching the binaries for the same names, and do it again after every plugin upgrade.
 
 **Collected data: all "linked to the user", all for App Functionality, none for tracking.** (Fraud prevention and security count as App
 Functionality in Apple's definitions.) Each line is the code it was inferred from:

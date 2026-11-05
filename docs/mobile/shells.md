@@ -7,9 +7,9 @@ a browser. Read [contract.md](contract.md) first; this page is how to build agai
 **Honest status.** This page was first written and checked on a Windows machine with no Android SDK, no Xcode, and no
 Apple or Google account. What *has* been run: `cap add android`, `cap add ios`, `cap sync` (the Gradle and Xcode projects are
 generated and consistent), `make-splash.mjs`, and `mobile/test/bridge.test.mjs` (the JavaScript bridge in Chromium against a fake
-Capacitor and a fake API). What has **not** been run anywhere: an Xcode build, the iOS app on anything, either app on a real
-phone, push, universal links, the iOS Keychain. The CI workflow is how the iOS build first runs; treat its first green
-run as the first evidence, and a device as the second. See "What cannot be verified yet" at the end.
+Capacitor and a fake API). What has **not** been run anywhere: the iOS app on anything (simulator or phone), either app on a real
+phone, push, universal links, the iOS Keychain. CI has now compiled the iOS app (below), which is the first evidence for iOS and
+proves compilation only; a device is the second. See "What cannot be verified yet" at the end.
 
 **Android, 2026-11-05: first real run.** `assembleDebug` builds (JDK 21, Gradle 8.14.3, AGP 8.13, platform 36). The debug app runs on
 the Android 17 emulator against the local demo: password sign-in through Turnstile's test key, the session stored through the
@@ -21,6 +21,19 @@ secure-storage plugin, and private photos loaded with the bearer token. The firs
 wrong, which clipped the native bar's labels. Both now use `.style.cssText`, which the policy allows. On the emulator that gave 0 CSP
 violations, a working native tab tap and correct badges, and `test/static.test.mjs` now refuses the old call. `tabbar:check` could
 not have seen this, because its pages carry no CSP.
+
+**iOS, 2026-11-05: first compile, and nothing more.** CI's `ios` job (macOS 15.8, Xcode 26.3, CocoaPods 1.17, no secrets) ran
+`pod install` and an unsigned `xcodebuild archive`. It passed the first time it ran, with no compiler warnings from
+`AppDelegate.swift`, `SceneDelegate.swift` or `TabBar.swift`. The archive was unpacked and checked by hand: an arm64 `App.app`, all
+14 frameworks embedded, the 364-file `public/` bundle, `PrivacyInfo.xcprivacy` in the bundle, no signature. So the Swift compiles
+against Capacitor 8.6.0, the hand-edited `project.pbxproj` builds, and the Podfile resolves. **That is all it proves.** The app has
+never been launched, so nothing here shows how it looks or behaves on iOS: the layout, the tab bar's Core Text drawing, sign-in, the
+Keychain and push are all untested. An unsigned archive cannot be installed on a phone; that needs an Apple Developer account.
+
+**Open from that run: a required-reason API no manifest declares.** `IONCameraLib` (pulled in by `@capacitor/camera`) imports
+`NSURLCreationDateKey`, a file-timestamp API, and the built framework has no privacy manifest. The job's informational step printed
+"no required-reason API references found", which is wrong, so do not rely on it yet; its cause is not known. See
+[store.md](store.md#the-ios-privacy-manifest) before the first upload.
 
 ## Layout
 
@@ -148,8 +161,8 @@ UIScrollView of UIControls drawn with Core Text from the measured spec),
 hand. What it could not do here, and CI/a Mac must: `pod install` (CocoaPods is not installed, so `ios/App/Pods/` and
 `Podfile.lock` do not exist) and `xcodebuild`. Hand edits to the generated project: `CODE_SIGN_ENTITLEMENTS` in both build
 configurations of `project.pbxproj`, the privacy manifest's entry in the Resources build phase, and the Debug-only ATS build phase, and the files above.
-None of the `project.pbxproj` edits could be opened in Xcode here: the first thing to do on a Mac is open the project and confirm
-`PrivacyInfo.xcprivacy` sits in *App > Build Phases > Copy Bundle Resources*. No new source file had to be added to the Xcode project: the Swift
+The `project.pbxproj` edits have still never been opened in Xcode's editor, but `xcodebuild` builds them, and the privacy manifest
+does reach the built app (CI's archive, 2026-11-05). No new source file had to be added to the Xcode project: the Swift
 types live in `SceneDelegate.swift` (already a target member), and the images are in an existing asset catalog. If you split them
 into files, add the files to the target in Xcode.
 
@@ -221,7 +234,7 @@ These are not in `mobile/`'s hands; each is also in the report that came with th
 
 | Needs | Cannot be verified without it |
 |---|---|
-| A Mac with Xcode 26 | that the Swift compiles; the shell's layout (bands, keyboard guide, splash overlay); `ASWebAuthenticationSession`; status-bar tap; the unsigned archive. CI's `ios` job will say whether it compiles, nothing says whether it looks right except a simulator and then a phone |
+| A Mac with Xcode 26 | the shell's layout (bands, keyboard guide, splash overlay); `ASWebAuthenticationSession`; status-bar tap. CI's `ios` job has shown that it compiles and archives (see the top of this page); nothing says whether it looks right except a simulator and then a phone |
 | A walk through the Android emulator | the build and password sign-in are done (see the top of this page). Still unchecked: the bands and splash overlay; Custom Tab sign-in and the `ourspace://` return; the back button; the photo picker |
 | An Apple Developer account | signing, the Push Notifications and Associated Domains capabilities, universal links (needs the real team id in the AASA), APNs delivery, TestFlight |
 | A Play Console + Firebase | App Links (needs the Play signing fingerprint in `assetlinks.json`), FCM delivery, the internal track |
