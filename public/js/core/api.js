@@ -1,12 +1,15 @@
 /* core/api.js — the JSON API (/api/*, the Worker in src/). A failed call throws
    an Error with the server's message, .status and the server's .code (and .until for a posting timeout). A write the
    gate refuses (403 unverified / held / timeout) carries a clear message, so any page that shows the error shows that.
-   A new post that was held for a quick review (the answer says held: true) says so in a toast. */
+   A new post that was held for a quick review (the answer says held: true) says so in a toast. A call that gets no
+   answer at all throws NO_ANSWER with .offline set: fetch's own words differ by browser and mean nothing to a person. */
 
 import { toast } from './ui.js';
 import { when } from './format.js';
 
 const HELD_POST = 'your post is held for a quick review. a moderator will look at it, usually within a day.';
+const NO_ANSWER = 'can\'t reach ourspace right now. check your connection and try again.';
+const reach = (url, init) => fetch(url, init).catch(() => { const e = new Error(NO_ANSWER); e.offline = true; throw e; });
 export function gateMessage(code, until, fallback) {
   if (code === 'unverified') return 'confirm your email first: we sent you a link when you signed up. use "send it again" in the yellow bar at the top if it never came.';
   if (code === 'held') return 'a moderator will take a quick look at your new account, usually within a day. until then you can set up your page and look around.';
@@ -16,7 +19,7 @@ export function gateMessage(code, until, fallback) {
 
 export const api = {
   async call(method, path, body) {
-    const res = await fetch('/api' + path, {
+    const res = await reach('/api' + path, {
       method,
       credentials: 'same-origin',
       headers: body !== undefined ? { 'Content-Type': 'application/json' } : {},

@@ -11,10 +11,14 @@
 
     <!-- The app after launch. The site has one look (light), so the app has one: no day/night switch, no forced dark.
          windowBackground is what Capacitor's SystemBars paints behind the bars; MainActivity.paintBands() replaces it
-         with the two bands (status #1c3f94, home #eef4ff) once the activity is up. -->
+         with the two bands (status #1c3f94, home #eef4ff) once the activity is up.
+         android:background is cleared because Capacitor's setTheme layers this over the launch theme rather than replacing
+         it: left alone, the launch theme's white reaches every view with no background of its own, dialogs included, and
+         the native photo sheet draws a white screen where the dimmed page should show. -->
     <style name="AppTheme.NoActionBar" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
+        <item name="android:background">@null</item>
         <item name="android:windowBackground">@color/ourspace_status_band</item>
         <item name="android:forceDarkAllowed">false</item>
     </style>

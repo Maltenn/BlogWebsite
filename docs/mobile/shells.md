@@ -50,6 +50,19 @@ wrong, which clipped the native bar's labels. Both now use `.style.cssText`, whi
 violations, a working native tab tap and correct badges, and `test/static.test.mjs` now refuses the old call. `tabbar:check` could
 not have seen this, because its pages carry no CSP.
 
+**Android, 2026-11-05: the walkthrough.** Everything in [checklist.md](checklist.md) an emulator can reach was run on the Android 17
+image against the demo: items 1-3, 4, 5, 12-14, 16-20, 23b and 23c, the splash frame by frame, the photo picker, and a real photo
+upload that came back at full size. It found four bugs, all fixed: Back left a dialog open and changed
+the page underneath it; a call with no answer showed the browser's own "Failed to fetch"; SystemBars painted over the bottom band on
+every launch, so D2 only held after a rotation; and the launch theme's `android:background` leaked into dialogs, drawing a white
+screen behind the photo sheet.
+
+Two of those passes are narrower than the checklist asks. Item 4 revoked the app's own device, not one device from another. Item 5
+followed the sign-in the app had armed from the host and sent the resulting `ourspace://` link to the app, where forged and replayed
+codes were refused, because Chrome's first-run screen needs a person to accept its terms, so the Custom Tab's own page has not been
+driven. Also, a revoked session on a page of public data keeps its header until the next signed-in request or the next return to the
+app.
+
 ## Layout
 
 | Path | What |
@@ -251,7 +264,7 @@ These are not in `mobile/`'s hands; each is also in the report that came with th
 | Needs | Cannot be verified without it |
 |---|---|
 | A Mac with Xcode 26 | the shell's layout (bands, keyboard guide, splash overlay); `ASWebAuthenticationSession`; status-bar tap. CI's `ios` job has shown that it compiles and archives (see the top of this page); nothing says whether it looks right except a simulator and then a phone |
-| A walk through the Android emulator | the build and password sign-in are done (see the top of this page). Still unchecked: the bands and splash overlay; Custom Tab sign-in and the `ourspace://` return; the back button; the photo picker |
+| A person at the emulator | the Custom Tab's own page during sign-in, once they accept Chrome's first-run terms (the return to the app is done; see the top of this page), and "take a photo" with the emulator's camera |
 | An Apple Developer account | signing, the Push Notifications and Associated Domains capabilities, universal links (needs the real team id in the AASA), APNs delivery, TestFlight |
 | A Play Console + Firebase | App Links (needs the Play signing fingerprint in `assetlinks.json`), FCM delivery, the internal track |
 | A real phone of each kind | the pixel diff (checklist 21, 23), the splash seam (D7), haptics, the camera, push taps warm and **cold** (checklist 8, 9), the Keychain surviving a restart and not a reinstall (1, 2), Turnstile (6), GIF memory (19) |

@@ -145,7 +145,7 @@ const fakeCapacitor = ({ launchUrl = null, pushTap = null, platform = 'ios', aut
         internalSetItem: async o => { await window.__keychain('set', o.prefixedKey, o.data); window.__calls.push(['SecureStorage.set', o.prefixedKey]); return {}; },
         internalRemoveItem: async o => { await window.__keychain('del', o.prefixedKey); return {}; },
       }),
-      App: plugin('App', { getInfo: async () => ({ version: '1.2.3' }), getLaunchUrl: async () => (${JSON.stringify(launchUrl)} ? { url: ${JSON.stringify(launchUrl)} } : undefined), addListener: async (e, f) => { (window.__appListeners ||= {})[e] = f; return {}; } }),
+      App: plugin('App', { getInfo: async () => ({ version: '1.2.3' }), getLaunchUrl: async () => (${JSON.stringify(launchUrl)} ? { url: ${JSON.stringify(launchUrl)} } : undefined), addListener: async (e, f) => { (window.__appListeners ||= {})[e] = f; return {}; }, exitApp: async () => {} }),
       PushNotifications: plugin('Push', {
         addListener: async (e, f) => { if (e === 'pushNotificationActionPerformed' && ${JSON.stringify(pushTap)}) f({ notification: { data: { url: ${JSON.stringify(pushTap)} } } }); (window.__pushListeners ||= {})[e] = f; return {}; },
         checkPermissions: async () => ({ receive: 'prompt' }), requestPermissions: async () => ({ receive: 'granted' }),
@@ -738,3 +738,61 @@ test('the camera button is only on the cards that ask for a picture', async () =
   assert.equal(await page.locator('.os-nativepic').count(), 0);
   await ctx.close();
 });
+
+/* ---- Android's Back: what is on top goes first ----
+
+   A listener on the App plugin's backButton replaces Capacitor's own handling, which only walks the web view's history:
+   with a dialog open it changed the page underneath and left the dialog up (found on the emulator, 2026-11-05). */
+
+const pressBack = (page, canGoBack) => page.evaluate(c => {
+  history.back = () => window.__calls.push(['history.back']);
+  window.__appListeners.backButton({ canGoBack: c });
+}, canGoBack);
+const openDialog = (page, title) => page.evaluate(async t => {
+  const { dialog } = await import('/js/core/ui.js');
+  dialog({ title: t, text: 'x' }).then(v => window.__calls.push(['closed', t, v]));
+}, title);
+
+test('Back closes the dialog on top and only that one, and neither moves the page nor leaves the app', async () => {
+  fresh();
+  const { ctx, page } = await open();
+  await openDialog(page, 'under');
+  await openDialog(page, 'over');
+  assert.equal(await page.locator('.ms-modal').count(), 2);
+  await pressBack(page, true);
+  assert.equal(await page.locator('.ms-modal').count(), 1);
+  assert.deepEqual(await calls(page, 'closed'), ['over']);
+  await pressBack(page, true);
+  assert.equal(await page.locator('.ms-modal').count(), 0);
+  assert.equal((await calls(page, 'history.back')).length, 0);
+  assert.equal((await calls(page, 'App.exitApp')).length, 0);
+  await ctx.close();
+});
+
+test('with nothing open, Back walks the router, and at the first page it leaves the app', async () => {
+  fresh();
+  const { ctx, page } = await open();
+  await pressBack(page, true);
+  assert.equal((await calls(page, 'history.back')).length, 1);
+  assert.equal((await calls(page, 'App.exitApp')).length, 0);
+  await pressBack(page, false);
+  assert.equal((await calls(page, 'history.back')).length, 1);
+  assert.equal((await calls(page, 'App.exitApp')).length, 1);
+  await ctx.close();
+});
+
+/* ---- a call with no answer at all ---- */
+
+for (const app of [false, true]) {
+  test(`no answer from the server is said in the site's words, not the browser's (${app ? 'app' : 'browser'})`, async () => {
+    fresh();
+    const { ctx, page } = await open({}, { app });
+    await page.route('**/api/**', r => r.abort());
+    const said = await page.evaluate(async () => {
+      const { api } = await import('/js/core/api.js');
+      try { await api.get('/boards'); return 'no error'; } catch (e) { return e.message; }
+    });
+    assert.match(said, /can't reach ourspace/);
+    await ctx.close();
+  });
+}

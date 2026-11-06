@@ -695,6 +695,16 @@ async function wireNetwork() {
   });
 }
 
+/* Android's Back button. Listening for it switches off Capacitor's own handling, which only walks the web view's history:
+   with a dialog open that changed the page underneath and left the dialog up. So what is on top goes first, closed the way
+   its ✕ closes it, and otherwise this does what Capacitor did. iOS has no such button, and never fires this. */
+function onBack({ canGoBack }) {
+  const close = [...document.querySelectorAll('.ms-modal')].pop()?.querySelector('[aria-label="close"]');
+  if (close) close.click();
+  else if (canGoBack) history.back();
+  else plugin('App').exitApp();
+}
+
 /* ------------------------------------------------------------ start-up */
 
 async function boot() {
@@ -738,6 +748,7 @@ async function boot() {
     await app.addListener('appUrlOpen', ev => onAppUrl(ev.url));
     try { const launch = await app.getLaunchUrl(); if (launch && launch.url) await onAppUrl(launch.url); } catch { /* none */ }
     app.addListener('appStateChange', st => { if (st.isActive && token) { registerDevice(false); if (S.me) loadMe().catch(() => {}); } });
+    app.addListener('backButton', ev => onBack(ev));
   }
   await setupPush();
   wireNetwork();

@@ -46,7 +46,7 @@ get to judge whether it matters.
 | 17 | Network drops mid-request | Throttle to offline during a post | Post fails visibly and is not silently lost |
 | 18 | Chat WebSocket reconnects | Background 2 min, return | Reconnects, no duplicate messages |
 | 19 | Memory holds with GIF avatars | 20 route transitions on a GIF-heavy profile | No monotonic growth; survives on a 2019 mid-range Android |
-| 20 | Back button (Android) | Hardware back through 5 routes | Follows the SPA router, does not exit the app |
+| 20 | Back button (Android) | Hardware back through 5 routes; then open a dialog and press back | Follows the SPA router, does not exit the app; with a dialog open it closes the dialog and the page stays where it is |
 
 ## The aesthetic
 
@@ -58,6 +58,7 @@ get to judge whether it matters.
 | 23a | **The native tab bar, against the web one** | On a device: launch, screenshot the bar. Then open the same page in the phone's own browser at the same width, screenshot `.ms-tabs`, and compare the two crops | Identical: same height, same tab widths and x positions, same label and badge positions, same colours. `npm run tabbar:check` has already proved the SPEC describes the web bar at 0 pixels in both engines; this is the only check of whether Core Text / `Canvas.drawText` draw it the same way the web view does (deviations.md D3) |
 | 23b | **The tab bar's dynamic set** | Signed out, then signed in, then as a moderator; then open Messages so a badge clears | The items change with the chrome, the pink counters match the web bar's, a 99+ badge is the right width, and the active tab is the white one. Flick the bar: it scrolls with the system's own physics and the active tab is brought into view |
 | 23c | **The page under the native bar** | Scroll to the bottom of a long page; open a composer; rotate | Nothing is hidden behind the bar; `.ms-fab` and `.ms-resumebar` sit on top of it, not behind it; the keyboard covers it (iOS) or hides it (Android) and the composer is visible (deviations.md D22) |
+| 23d | **The bands on a plain launch** | Launch and do NOT rotate: rotating repaints them, which is how this hid. Read the pixel under the gesture bar | `#eef4ff`, and `#1c3f94` under the status bar |
 | 24 | Keyboard does not cover the composer | Open the composer, focus the input | Composer visible above the keyboard |
 
 ## Honesty
