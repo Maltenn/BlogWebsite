@@ -8,7 +8,9 @@
   Tracking: none. No advertising, no analytics SDK, no cross-app identifier, no data broker.
   Required-reason APIs: none declared. None of the app's own Swift, Capacitor 8.6 core, or the ten plugins' Swift uses one
   (UserDefaults, file timestamps, disk space, boot time, active keyboards); @capacitor/ios ships its own (empty) manifest.
-  If a plugin upgrade changes that, the CI privacy step on the macOS runner is where it shows.
+  IONCameraLib does use one, and that is declared in the manifest inside its own framework: Apple wants each dynamic
+  library's bundle to carry the manifest that covers it, so it does not belong here (ios/App/IONCameraLib.podspec.json).
+  If a plugin upgrade changes any of that, the CI privacy step on the macOS runner is where it shows.
 -->
 <plist version="1.0">
 <dict>

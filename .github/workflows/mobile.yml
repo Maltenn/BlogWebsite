@@ -222,21 +222,30 @@ jobs:
           path: OurSpace-unsigned.xcarchive.zip
           if-no-files-found: error
 
-      # Informational, never fails the build. Apple rejects an upload (ITMS-91053) when the binary calls a "required reason" API
-      # that PrivacyInfo.xcprivacy does not declare. The manifest declares none (docs/mobile/store.md): this lists what the
-      # built app and its frameworks reference, so a plugin upgrade that starts using one shows up here, not at upload.
+      # Informational, never fails the build. Apple rejects an upload (ITMS-91053) when a binary uses a "required reason" API
+      # that no privacy manifest declares, and each dynamic library's own bundle must carry the manifest that covers it. So this
+      # lists what the built app and its frameworks reference and warns when a binary that references one has no manifest in its
+      # own bundle. A plugin upgrade that starts using one shows up here, not at upload. It does not read what a manifest says.
       - name: Required-reason API references (informational)
         continue-on-error: true
         run: |
           app="$RUNNER_TEMP/OurSpace.xcarchive/Products/Applications/App.app"
+          names='NSUserDefaults|systemUptime|activeInputModes|NSFileCreationDate|NSFileModificationDate|fileModificationDate|NSURLContentModificationDateKey|NSURLCreationDateKey|NSURLVolumeAvailableCapacity[A-Za-z]*Key|NSURLVolumeTotalCapacityKey|NSFileSystemFreeSize|NSFileSystemSize'
+          calls='stat|lstat|fstat|fstatat|getattrlist|getattrlistbulk|fgetattrlist|getattrlistat|statfs|statvfs|fstatfs|fstatvfs|mach_absolute_time'
           found=0
           for f in "$app/App" "$app"/Frameworks/*.framework/*; do
-            [ -f "$f" ] || continue
-            hits=$( { nm -u "$f" 2>/dev/null | grep -E ' _(stat|lstat|fstat|getattrlist|fgetattrlist|getattrlistat|statfs|statvfs|fstatfs|fstatvfs|mach_absolute_time)$'; \
-                      strings -a "$f" | grep -E 'NSUserDefaults|systemUptime|NSURLContentModificationDateKey|NSURLCreationDateKey|NSFileCreationDate|NSFileModificationDate|volumeAvailableCapacity|activeInputModes'; } | sort -u | tr '\n' ' ')
-            if [ -n "$hits" ]; then found=1; echo "::warning::$(basename "$f") references: $hits(check it against mobile/ios/App/App/PrivacyInfo.xcprivacy)"; fi
+            [ -f "$f" ] && file -b "$f" | grep -q 'Mach-O' || continue
+            hits=$( { LC_ALL=C grep -aoE "$names" "$f"; nm -u "$f" 2>/dev/null | grep -E "(^|[[:space:]])_($calls)\$" | awk '{print $NF}'; } | sort -u | tr '\n' ' ')
+            [ -n "$hits" ] || continue
+            found=1
+            if [ "$f" = "$app/App" ]; then manifest="$app/PrivacyInfo.xcprivacy"; else manifest=$(find "$(dirname "$f")" -name PrivacyInfo.xcprivacy | head -1); fi
+            if [ -f "$manifest" ]; then echo "$(basename "$f") references: $hits(manifest: ${manifest#"$app"/})"
+            else echo "::warning::$(basename "$f") references: $hits(no privacy manifest in its bundle)"; fi
           done
           [ "$found" = 0 ] && echo "no required-reason API references found in the app or its frameworks"
+          # TEMPORARY: why the old version of this step missed IONCameraLib. Comes out in the next commit.
+          ion="$app/Frameworks/IONCameraLib.framework/IONCameraLib"
+          echo "diag: strings -a lines=$(strings -a "$ion" | wc -l) hits=$(strings -a "$ion" | grep -c NSURLCreationDateKey); nm -u hits=$(nm -u "$ion" | grep -c NSURLCreationDateKey) sample=[$(nm -u "$ion" | head -2 | tr '\n' '|')]; which strings=$(command -v strings)"
           exit 0
 
       - name: Summary

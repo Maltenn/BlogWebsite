@@ -26,6 +26,11 @@ end
 target 'App' do
   capacitor_pods
   # Add your Pods here
+
+  # IONCameraLib's published podspec leaves out the library's own PrivacyInfo.xcprivacy, so a CocoaPods build loses it.
+  # This is that same 2.0.0 podspec with the manifest added to `resources`, which puts it at the framework's root, where
+  # Apple wants it. Delete this line and the file once a release of IONCameraLib ships the manifest. docs/mobile/store.md.
+  pod 'IONCameraLib', :podspec => 'IONCameraLib.podspec.json'
 end
 
 post_install do |installer|
