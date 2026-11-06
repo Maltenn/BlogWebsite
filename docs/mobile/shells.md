@@ -11,17 +11,6 @@ Capacitor and a fake API). What has **not** been run anywhere: the iOS app on an
 phone, push, universal links, the iOS Keychain. CI has now compiled the iOS app (below), which is the first evidence for iOS and
 proves compilation only; a device is the second. See "What cannot be verified yet" at the end.
 
-**Android, 2026-11-05: first real run.** `assembleDebug` builds (JDK 21, Gradle 8.14.3, AGP 8.13, platform 36). The debug app runs on
-the Android 17 emulator against the local demo: password sign-in through Turnstile's test key, the session stored through the
-secure-storage plugin, and private photos loaded with the bearer token. The first build also found a bug no earlier check could see:
-`versionCode (…).toInteger()` parsed as a call on the result of `versionCode(…)`, which failed every Android build. Fixed.
-
-**Found and fixed in that run.** The app's CSP has no `'unsafe-inline'` in `style-src`, so `setAttribute('style', …)` is refused, and
-`core/tabbar.js` and `core/tabspec.js` both used it: `.ms-tabs` stayed in the page (against D3), and the baseline strut measured
-wrong, which clipped the native bar's labels. Both now use `.style.cssText`, which the policy allows. On the emulator that gave 0 CSP
-violations, a working native tab tap and correct badges, and `test/static.test.mjs` now refuses the old call. `tabbar:check` could
-not have seen this, because its pages carry no CSP.
-
 **iOS, 2026-11-05: first compile, and nothing more.** CI's `ios` job (macOS 15.8, Xcode 26.3, CocoaPods 1.17, no secrets) ran
 `pod install` and an unsigned `xcodebuild archive`. It passed the first time it ran, with no compiler warnings from
 `AppDelegate.swift`, `SceneDelegate.swift` or `TabBar.swift`. The archive was unpacked and checked by hand: an arm64 `App.app`, all
@@ -34,6 +23,32 @@ Keychain and push are all untested. An unsigned archive cannot be installed on a
 `NSURLCreationDateKey`, a file-timestamp API, and the built framework has no privacy manifest. The job's informational step printed
 "no required-reason API references found", which is wrong, so do not rely on it yet; its cause is not known. See
 [store.md](store.md#the-ios-privacy-manifest) before the first upload.
+
+**CI, 2026-11-05: what the first runs found.** Run 5 of `mobile.yml` (commit `8fd5419`) was the first fully green one: `bridge`,
+`tabbar`, `android` and `ios`. Neither thing that stood in the way was in the apps' own code:
+
+- `android` stopped during setup, because `setup-android`'s default package list asks for `tools`, which the SDK repository has
+  dropped. It now asks for `platform-tools`, and CI builds the debug APK as well.
+- `tabbar:check` failed 8 of 48 cases on the Linux runner, by 3-17 pixels. Both faults were in the check's replica, not in the spec.
+  **Chromium:** a badge's curved corners rendered differently at some x positions unless the replica's scroller had the bar's
+  background on the scroller itself, as the page's does. That is not specific to Linux: it reproduces on Windows with the bar shifted
+  to the same x. Across 32 sub-pixel positions the old replica failed at 11 and the new one at none. **WebKit:** CSS `left` stores
+  1/64px, so the replica dropped the last fraction of a centred badge's x, which moved the `+` of `99+` across a quarter-pixel
+  boundary. That explanation rests on the Linux numbers and on the fix taking the runner to 48/48. It never reproduced on Windows.
+
+`tabbar` is now its own job: a difference is a red check that does not stop `android` and `ios` from building, and the release jobs
+require it.
+
+**Android, 2026-11-05: first real run.** `assembleDebug` builds (JDK 21, Gradle 8.14.3, AGP 8.13, platform 36). The debug app runs on
+the Android 17 emulator against the local demo: password sign-in through Turnstile's test key, the session stored through the
+secure-storage plugin, and private photos loaded with the bearer token. The first build also found a bug no earlier check could see:
+`versionCode (…).toInteger()` parsed as a call on the result of `versionCode(…)`, which failed every Android build. Fixed.
+
+**Found and fixed in that run.** The app's CSP has no `'unsafe-inline'` in `style-src`, so `setAttribute('style', …)` is refused, and
+`core/tabbar.js` and `core/tabspec.js` both used it: `.ms-tabs` stayed in the page (against D3), and the baseline strut measured
+wrong, which clipped the native bar's labels. Both now use `.style.cssText`, which the policy allows. On the emulator that gave 0 CSP
+violations, a working native tab tap and correct badges, and `test/static.test.mjs` now refuses the old call. `tabbar:check` could
+not have seen this, because its pages carry no CSP.
 
 ## Layout
 
@@ -180,9 +195,10 @@ into files, add the files to the target in Xcode.
 
 ## CI
 
-`.github/workflows/mobile.yml`. Five jobs:
+`.github/workflows/mobile.yml`. Six jobs:
 
 - `bridge` (every run): `native.js` against a fake Capacitor and a fake API, plus `npm run check` (placeholders are notes).
+- `tabbar` (every run): `npm run tabbar:check`, at 0 pixels in both engines. On a failure it uploads every case's PNGs and spec.
 - `android` (ubuntu-latest, JDK 21, **no secrets**): `cap sync android`, `assembleDebug`, uploads the debug APK.
 - `ios` (**macos-15**, not macos-14: Capacitor 8 needs Xcode 26, which macOS 14 cannot run; override with the `IOS_RUNNER`
   variable; **no secrets**): `cap sync ios`, `pod install`, an unsigned `xcodebuild archive` uploaded as an artifact, and an

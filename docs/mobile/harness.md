@@ -331,8 +331,9 @@ that. So "does the native bar match?" splits in two:
 Two things it does differently from the plates, both deliberate:
 
 - **It is machine-independent.** It compares two renders made in the *same* browser on the *same* machine, seconds
-  apart, so it does not depend on which fonts this Windows box has. That is why it runs in CI (the `bridge` job) and
-  the plates do not.
+  apart, so it needs no baseline from another machine. That is why it runs in CI (the `tabbar` job) and the plates do
+  not. Fonts still decide where things land, though, so a new machine tests new positions: the first Linux run failed
+  on two faults in the replica that Windows had never reached ([shells.md](shells.md)).
 - **The threshold is zero, not 0.1%.** There is no reason to allow any difference: both images come out of the same
   rasteriser. It has already earned that: rounding the measured positions to two decimals, which looked harmless,
   moved `Boards` from 145.359375px to 145.36px and changed its antialiasing — 98 differing pixels in one word, on one
