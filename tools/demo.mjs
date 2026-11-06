@@ -1,0 +1,544 @@
+// `npm run demo`: the whole site running on your own computer, filled with sample people and posts, for looking around
+// and deciding what to change. It never touches the real site, a real database or anybody's real accounts:
+//   · its database (and the photos people upload) live in .demo/ and are kept between runs (`npm run demo -- --fresh`
+//     starts over)
+//   · "Continue with Google" etc. and "connect Spotify" open labeled pretend pages (test/helpers/mock-providers.mjs)
+//   · "forgot my password" and "confirm your email" emails are printed in this window instead of being sent
+//   · the human checks run against stand-ins: Turnstile's test keys, a pretend DNS for the email check, the mock AI detector
+// Edit files in public/ or src/ while it runs and the server reloads; refresh the browser to see the change.
+import { spawn, execFileSync } from 'node:child_process';
+import { randomBytes } from 'node:crypto';
+import fs from 'node:fs';
+import net from 'node:net';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { RESORT } from '../src/shared/ranking.js';
+
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const DEMO = process.env.DEMO_DIR ? path.resolve(process.env.DEMO_DIR) : path.join(ROOT, '.demo');   // (DEMO_DIR: a throwaway demo elsewhere)
+const STATE = path.join(DEMO, 'state');
+const SEEDED = path.join(DEMO, 'seeded');
+const WRANGLER = path.join(ROOT, 'node_modules', 'wrangler', 'bin', 'wrangler.js');
+const PASSWORD = 'ourspace-demo';
+
+function die(message) {
+  console.error('\n  ✖ ' + message + '\n');
+  process.exit(1);
+}
+const say = message => console.log('  ' + message);
+
+if (Number(process.versions.node.split('.')[0]) < 22) die(`the demo needs Node.js 22 or newer (this is ${process.version}). get it from https://nodejs.org`);
+if (!fs.existsSync(WRANGLER)) die('run `npm install` first.');
+const { startMock } = await import('../test/helpers/mock-providers.mjs');
+const { png } = await import('../test/helpers/images.mjs');
+const { fillForm, BROWSER } = await import('../test/helpers/human.mjs');
+
+if (process.argv.includes('--fresh')) fs.rmSync(DEMO, { recursive: true, force: true });
+fs.mkdirSync(DEMO, { recursive: true });
+
+// the first free port at or after `from`, so a server you already have running doesn't get in the way
+async function freePort(from) {
+  for (let p = from; p < from + 50; p++) {
+    const free = await new Promise(res => {
+      const s = net.createServer().once('error', () => res(false)).listen(p, '127.0.0.1', () => s.close(() => res(true)));
+    });
+    if (free) return p;
+  }
+  die(`couldn't find a free port near ${from}.`);
+}
+
+function wrangler(args) {
+  try {
+    return execFileSync(process.execPath, [WRANGLER, ...args], { cwd: ROOT, stdio: 'pipe' }).toString();
+  } catch (e) {
+    die(`wrangler ${args[0]} failed:\n${e.stderr || ''}${e.stdout || ''}`);
+  }
+}
+const sql = command => wrangler(['d1', 'execute', 'ourspace-social-db', '--local', '--persist-to', STATE, '--command', command]);
+
+/* ------------------------------------------------------------ the sample */
+
+// a tiny browser: a cookie jar, JSON in and out, redirects left for the caller
+function client() {
+  const jar = new Map();
+  const raw = async (method, url, body, extra = {}) => {
+    const headers = { ...extra };
+    if (jar.size) headers.Cookie = [...jar].map(([k, v]) => `${k}=${v}`).join('; ');
+    const bytes = body instanceof Uint8Array;                            // a photo upload (always a PNG here)
+    if (body !== undefined) headers['Content-Type'] = bytes ? 'image/png' : 'application/json';
+    const res = await fetch(url.startsWith('http') ? url : BASE + url, { method, headers, body: body === undefined || bytes ? body : JSON.stringify(body), redirect: 'manual' });
+    for (const c of res.headers.getSetCookie()) {
+      const [pair] = c.split(';');
+      const i = pair.indexOf('=');
+      if (/Max-Age=0/i.test(c) || i === pair.length - 1) jar.delete(pair.slice(0, i)); else jar.set(pair.slice(0, i), pair.slice(i + 1));
+    }
+    return res;
+  };
+  const call = async (method, url, body, extra) => {
+    const res = await raw(method, url, body, extra);
+    const data = await res.json().catch(() => null);
+    if (res.status >= 400) throw new Error(`${method} ${url} → ${res.status} ${data && data.error}`);
+    return data;
+  };
+  return { raw, get: u => call('GET', u), post: (u, b, h) => call('POST', u, b ?? {}, h), put: (u, b) => call('PUT', u, b) };
+}
+
+// Signing up as the page does (phase 7): a fresh form, its proof of work, the Turnstile test token, the form's minimum
+// time; `headers` say which network it comes from (TEST_SIGNALS is on in the demo).
+async function signUp(c, fields, headers) {
+  const form = await c.get('/api/form/signup');
+  const at = Date.now();
+  return c.post('/api/signup', await fillForm(form, fields, { fetchedAt: at, extraMs: 4500 }), { ...BROWSER, ...headers });
+}
+
+const pic = file => '/assets/avatars/' + file;
+const gif = name => `/assets/${name}.gif`;
+
+const PEOPLE = [
+  { key: 'you', name: 'the_reviewer', email: 'you@example.com', birthday: '1998-04-12', avatar: pic('pic_star_top_hat.gif'),
+    profile: { tag: 'just looking around', mood: 'curious', theme: 'classic-purple',
+      about: 'this is your demo account. change anything you like: Edit My Page, Settings, connect the pretend Spotify, post a status. nothing here is real or public.',
+      interests: { General: 'thrifting, stargazing, baking', Music: 'my chemical romance, paramore', Movies: 'mean girls', Television: 'buffy', Books: 'harry potter', Heroes: '' } } },
+  { key: 'malten', name: 'malten', email: 'malten@example.com', birthday: '1995-06-18', avatar: pic('pic_cd_rainbow.gif'),
+    profile: { tag: 'i run this place', mood: 'caffeinated', theme: 'ourspace-blue', hereFor: 'Friends, The bulletins',
+      about: 'the site owner and moderator in this demo. log in as me to see the Moderation tab: reports, hiding posts, bans and the log.',
+      interests: { General: 'html, websites, coding', Music: 'radiohead, weezer', Movies: 'hackers', Television: 'futurama', Books: 'snow crash', Heroes: '' } } },
+  { key: 'kat', name: 'xX_glitterkat_Xx', email: 'kat@example.com', birthday: '2001-02-14', avatar: pic('pic_glitter_heart_pink.gif'), spotify: 'short_term',
+    profile: { tag: '♥ glitter is a lifestyle ♥', mood: 'sparkly', hometown: 'the mall food court', status: 'Saving myself for my Top 8', hereFor: 'Friends, Glitter, Top 8 drama',
+      about: 'hiii!! i\'m kat. i collect glitter gifs, hello kitty everything and way too many layouts. my top 8 changes weekly, don\'t take it personally ♥\n\nleave me a comment!!',
+      meet: 'anyone who still makes mix CDs.',
+      interests: { General: 'glitter gifs, sleepovers, photo booths, layouts', Music: 'paramore, avril, the killers, britney (forever)', Movies: 'mean girls, she\'s the man, aquamarine', Television: 'laguna beach, the OC', Books: 'the princess diaries', Heroes: 'whoever invented the sparkle cursor' },
+      theme: 'bubblegum', bgTile: '/assets/tiles/tile_hearts.png', font: '"Comic Sans MS", cursive',
+      decor: [gif('deco_sparkle_bunny'), gif('deco_hearts_bar')], badges: [gif('badge_hello_kitty'), gif('badge_aim'), gif('badge_blink')] } },
+  { key: 'jules', name: 'sk8r_jules', email: 'jules@example.com', birthday: '1999-07-04', avatar: pic('icon_gc_skater_kickflip.gif'),
+    profile: { tag: 'landed my first kickflip 4 real', mood: 'stoked', hometown: 'behind the 7-eleven', status: 'Engaged to my Xbox', hereFor: 'Friends, Music',
+      about: 'skate, eat, sleep, repeat. i film my friends falling off stuff and call it a documentary.', meet: 'someone who can fix a snapped deck.',
+      interests: { General: 'skating, tony hawk games, bmx videos', Music: 'blink-182, yellowcard, sum 41', Movies: 'lords of dogtown', Television: 'rob & big', Books: 'thrasher (does that count)', Heroes: 'my older cousin' },
+      theme: 'sk8r-blue', bgTile: '/assets/tiles/tile_checker.png', font: 'Verdana, sans-serif', badges: [gif('badge_8bit'), gif('badge_winamp')] } },
+  { key: 'drew', name: 'emo_drew', email: 'drew@example.com', birthday: '1997-11-08', avatar: pic('pic_heart_skull.gif'), settings: { followPolicy: 'approve' },
+    profile: { tag: 'the night is my diary', mood: 'misunderstood', hometown: 'a basement show', status: 'It\'s Complicated', hereFor: 'Pen pals', showAge: false,
+      about: 'i write poems in the margins of my chemistry notes. eyeliner is self-expression. replies may be slow, i\'m probably at a show.', meet: 'whoever keeps requesting MCR at the roller rink.',
+      interests: { General: 'poetry, band tees, thrift stores', Music: 'my chemical romance, taking back sunday, dashboard confessional', Movies: 'donnie darko', Television: 'buffy', Books: 'the perks of being a wallflower', Heroes: 'anyone who finishes their poems' },
+      theme: 'scene-queen', bgTile: '/assets/tiles/tile_skulls.png', font: '"Lucida Console", monospace',
+      decor: [gif('deco_skull'), gif('deco_moon')], badges: [gif('badge_coffee')], blogTitle: 'rain, mostly' } },
+  { key: 'pete', name: 'pixelpete', email: 'pete@example.com', birthday: '1994-05-30', avatar: pic('pic_computer_beige.gif'), spotify: 'medium_term',
+    profile: { tag: 'it works on my machine', mood: 'compiling', hometown: 'the computer lab', status: 'Married to my Wacom', hereFor: 'Networking, Free layouts',
+      about: 'i make layouts, pixel art and the occasional website that only works in one browser. ask me for a layout, i might say yes.', meet: 'someone who remembers their AIM password.',
+      interests: { General: 'pixel art, html, retro games', Music: 'daft punk, the postal service, chiptune', Movies: 'hackers, the matrix', Television: 'futurama', Books: 'snow crash', Heroes: 'whoever made geocities' },
+      theme: 'crt-green', font: '"Courier New", monospace',
+      badges: [gif('badge_built_with_microsoft_notepad'), gif('badge_netscape'), gif('badge_geocities'), gif('badge_best_viewed_with_eyes')] } },
+  { key: 'mia', name: 'starlight_mia', email: 'mia@example.com', birthday: '2003-09-27', avatar: pic('pic_moon_golden.gif'),
+    profile: { tag: '✩ written in the stars ✩', mood: 'cosmic', hometown: 'somewhere under the full moon', status: 'Swiss (neutral)', hereFor: 'Friends, The bulletins',
+      about: 'libra sun, always reading everyone\'s horoscope before my own. i will absolutely ask for your birthday.', meet: 'a fellow air sign who answers texts.',
+      interests: { General: 'astrology, stargazing, journaling, tarot (for fun)', Music: 'florence + the machine, fleetwood mac, lana del rey', Movies: 'practical magic, stardust', Television: 'charmed', Books: 'the little prince', Heroes: 'every astronomer ever' },
+      theme: 'nightcore', bgTile: '/assets/tiles/tile_stars_neon.png', font: 'Georgia, serif', decor: [gif('deco_moon'), gif('deco_fairy')], blogTitle: 'notes from orbit' } },
+  { key: 'banana', name: 'dj_bananabread', email: 'banana@example.com', birthday: '1996-03-21', avatar: pic('pic_headphones_neon.gif'), spotify: 'long_term',
+    profile: { tag: 'mixtapes baked fresh daily', mood: 'bouncy', hometown: 'the aux cord', status: 'Single', hereFor: 'Music, Networking',
+      about: 'bedroom DJ. i make mixes for every occasion: road trips, breakups, homework, cleaning your room. requests open!', meet: 'anyone with a better playlist than mine (impossible).',
+      interests: { General: 'mixing, vinyl, baking banana bread', Music: 'gorillaz, missy elliott, outkast, daft punk', Movies: 'high fidelity, scott pilgrim', Television: 'yo gabba gabba (ironically)', Books: 'record store price guides', Heroes: 'whoever invented the crossfader' },
+      theme: 'banana', bgTile: '/assets/bg_stars_tile.gif', decor: [gif('deco_record_dj'), gif('deco_banana_tiny')], badges: [gif('badge_winamp'), gif('badge_midi_files_now')] } },
+  // friends of your friends, for Browse: Mutuals shows them with who you have in common, For you shows what they post
+  { key: 'rae', name: 'roller_rae', email: 'rae@example.com', birthday: '2000-08-09', avatar: pic('icon_gc_skater_purple.gif'),
+    profile: { tag: 'rink rat since 1999', hometown: 'the roller rink', hereFor: 'Friends, Music',
+      about: 'couples skate is a scam. i skate alone and i skate fast.',
+      interests: { General: 'roller skating, cats, baking', Music: 'avril lavigne, britney spears', Movies: 'she\'s the man', Television: 'gilmore girls', Books: '', Heroes: 'whoever plays the rink dj' } } },
+  { key: 'cam', name: 'cam_the_gamer', email: 'cam@example.com', birthday: '1999-12-01', avatar: pic('icon_gc_frog_pixel.gif'),
+    profile: { tag: 'one more level', hometown: 'player 2', hereFor: 'Friends, Networking',
+      about: 'i will beat your high score and then apologise.',
+      interests: { General: 'video games, pokemon, lan party', Music: 'chiptune', Movies: 'scott pilgrim', Television: '', Books: 'manga', Heroes: 'speedrunners' } } },
+  { key: 'lou', name: 'lou_bakes', email: 'lou@example.com', birthday: '1997-03-03', avatar: pic('icon_gc_hamster_teacup.gif'),
+    profile: { tag: 'flour on everything', hometown: 'the kitchen', hereFor: 'Friends',
+      about: 'i bake when i\'m happy, sad or bored, which is always.',
+      interests: { General: 'baking, banana bread, recipes', Music: 'fleetwood mac', Movies: '', Television: '', Books: '', Heroes: 'my grandma' } } },
+  { key: 'sam', name: 'quiet_sam', email: 'sam@example.com', birthday: '2001-05-20', avatar: pic('icon_gc_doll_goth_red.gif'), settings: { followPolicy: 'approve' },
+    profile: { tag: '...', about: 'private profile. you\'ll see my name and picture in Mutuals, and nothing else until i accept you.',
+      interests: { General: 'tarot, journaling', Music: 'lana del rey', Movies: '', Television: '', Books: '', Heroes: '' } } },
+];
+
+// the sample photos, drawn pixel by pixel into small PNGs (no image files to keep or credit)
+// a star here or not: a scattering that looks random but is the same every run
+const star = (x, y, oneIn) => ((Math.imul(x, 73856093) ^ Math.imul(y, 19349663)) >>> 0) % oneIn === 0;
+const HEART = ['..XX...XX..', '.XXXX.XXXX.', 'XXXXXXXXXXX', 'XXXXXXXXXXX', '.XXXXXXXXX.', '..XXXXXXX..', '...XXXXX...', '....XXX....', '.....X.....'];
+const DRAWINGS = {
+  // a pixel-art heart on a grid, 16 px a pixel
+  heart: () => png({ width: 240, height: 192, draw: (x, y) => {
+    const row = HEART[Math.floor(y / 16) - 1] || '', on = row[Math.floor(x / 16) - 2] === 'X';
+    return on ? [220, 30, 60] : (x % 16 === 0 || y % 16 === 0) ? [200, 200, 200] : [240, 240, 240];
+  } }),
+  // a sunset: orange to purple, a sun sinking (lower when `later`), the ground in black
+  sunset: (later = false) => png({ width: 320, height: 200, draw: (x, y) => {
+    const t = y / 200, sunY = later ? 150 : 115;
+    if (y > 160) return [20, 15, 30];
+    if ((x - 210) ** 2 + (y - sunY) ** 2 < 900) return [255, 220, 120];
+    return [255 - t * 120 | 0, 120 - t * 90 | 0, 60 + t * 120 | 0];
+  } }),
+  // a layout preview: a page of stripes in two colours with a lighter box
+  stripes: (dark, light) => png({ width: 200, height: 150, draw: (x, y) => {
+    if (x > 30 && x < 170 && y > 30 && y < 120) return light.map(v => Math.min(255, v + 40));
+    return (Math.floor(y / 6) % 2 ? light : dark);
+  } }),
+  // a full moon over a starry sky (a blog post's cover)
+  sky: () => png({ width: 480, height: 200, draw: (x, y) => {
+    if ((x - 360) ** 2 + (y - 80) ** 2 < 1600) return [250, 245, 210];
+    if (star(x, y, 350)) return [255, 255, 255];
+    return [10, 15, 50 + (y / 4 | 0)];
+  } }),
+  // mia's picture: a golden moon on deep blue, 300 × 300
+  moon: () => png({ width: 300, height: 300, draw: (x, y) => {
+    const d = (x - 150) ** 2 + (y - 150) ** 2;
+    if (d < 90 ** 2 && (x - 185) ** 2 + (y - 130) ** 2 > 80 ** 2) return [255, 205, 70];
+    if (star(x, y, 250)) return [255, 255, 255];
+    return [25, 20, 80];
+  } }),
+};
+
+async function connectSpotify(c, range) {
+  mock.next('spotify', { sub: 'spotify-' + c.name.toLowerCase(), email: null, verified: true, name: c.name });
+  const start = await c.raw('GET', '/api/oauth/spotify/start?mode=spotify');
+  const authorize = await fetch(start.headers.get('location'), { redirect: 'manual' });
+  const back = new URL(authorize.headers.get('location'));
+  const done = await c.raw('GET', back.pathname + back.search);
+  if (!/spotify=connected/.test(done.headers.get('location') || '')) throw new Error('connecting the pretend Spotify failed');
+  if (range !== 'short_term') await c.put('/api/me/spotify', { timeRange: range, show: true });
+}
+
+async function seed() {
+  const P = {};
+  // everyone signs up at once (each from a home network of their own), then their emails count as confirmed (and
+  // nobody among them waits for a moderator, whatever twelve sign-ups in a few seconds look like)
+  await Promise.all(PEOPLE.map(async (p, i) => {
+    const c = client();
+    const r = await signUp(c, { email: p.email, password: PASSWORD, name: p.name, birthday: p.birthday, avatar: p.avatar, rulesOk: true }, { 'X-Test-Ip': `10.20.${i}.7` });
+    Object.assign(c, { id: r.user.id, name: p.name });
+    P[p.key] = c;
+  }));
+  sql(`UPDATE users SET email_verified_at = ${Date.now()}, held = 0, held_reason = NULL; DELETE FROM mod_alerts; DELETE FROM signup_signals`);
+  const { you, malten, kat, jules, drew, pete, mia, banana, rae, cam, lou, sam } = P;
+  const follow = (a, b) => a.post('/api/follows/' + encodeURIComponent(b.name));
+  // friends follow each other
+  for (const [a, b] of [[kat, jules], [kat, mia], [kat, drew], [kat, pete], [jules, pete], [pete, banana], [mia, banana], [drew, mia], [kat, you], [pete, you], [mia, you], [malten, you], [malten, kat],
+    [rae, kat], [rae, mia], [cam, pete], [cam, jules], [lou, banana], [lou, kat], [sam, mia], [sam, kat]]) {
+    await follow(a, b); await follow(b, a);
+  }
+  await follow(jules, you);                                          // two people following you (follow back to be friends)
+  await follow(banana, you);
+  for (const p of PEOPLE) if (p.settings) await P[p.key].put('/api/me/settings', p.settings);   // drew goes private; his friends stay
+  await follow(you, drew);                                           // so your follow waits for him to accept it
+  for (const p of PEOPLE) await P[p.key].put('/api/me/profile', p.key === 'kat' ? { ...p.profile, top8: [mia.id, jules.id, drew.id, pete.id, you.id] } : p.profile);
+  for (const p of PEOPLE) if (p.spotify) await connectSpotify(P[p.key], p.spotify);
+
+  // photos: drawn here as PNGs and uploaded like the page does (POST /api/media), then attached by id
+  const upload = async (c, image, purpose = 'post') => (await c.post(`/api/media?purpose=${purpose}`, image)).media;
+  const shots = async (c, ...images) => Promise.all(images.map(([image, alt]) => upload(c, image).then(m => ({ id: m.id, alt }))));
+  const status = async (c, body, media) => (await c.post('/api/status', { body, ...(media ? { media } : {}) })).id;
+  const comment = (from, to, body) => from.post(`/api/users/${encodeURIComponent(to.name)}/comments`, { body });
+  // a DM: the pair's conversation, opened (or made) by whoever writes first
+  const dms = new Map();
+  const dm = async (from, to, body) => {
+    const pair = [from.id, to.id].sort((x, y) => x - y).join(':');
+    if (!dms.has(pair)) dms.set(pair, (await from.post('/api/chats', { dm: to.name })).chat.id);
+    return from.post(`/api/chats/${dms.get(pair)}/messages`, { body });
+  };
+  const say = (c, chat, body) => c.post(`/api/chats/${chat}/messages`, { body });
+  const room = (c, body) => c.post('/api/ourspace/messages', { body });
+  const reply = async (c, to, body) => (await c.post(`/api/posts/${to}/replies`, { body })).post.id;
+  const act = (c, what, id) => c.post(`/api/posts/${id}/${what}`);              // like, repost or bookmark
+  const thread = async (c, board, subject, body, media) => (await c.post(`/api/boards/${board}/threads`, { subject, body, ...(media ? { media } : {}) })).thread.id;
+  const chime = async (c, to, body, parent) => (await c.post(`/api/threads/${to}/comments`, parent ? { body, parent } : { body })).comment.id;
+  const vote = (value, id, ...who) => Promise.all(who.map(c => c.put(`/api/posts/${id}/vote`, { value })));
+  sql(`UPDATE users SET is_admin = 1 WHERE name_key = 'malten'`);            // (so he can pin the house rules)
+
+  // the follows so far count as read on your Notifications tab; everything about posts below arrives as new
+  const readUpTo = (await you.get('/api/notifications')).items[0].id;
+
+  // mia's own picture instead of a preset (Edit My Page → "Upload my own picture")
+  await mia.put('/api/me/profile', { avatar: (await upload(mia, DRAWINGS.moon(), 'avatar')).url });
+
+  const marquee = await status(pete, 'debugging my layout at 2am. the marquee won\'t stop. send help #layouts',
+    await shots(pete, [DRAWINGS.heart(), 'a pixel-art heart, red on a light grey grid']));
+  const offOn = await reply(jules, marquee, 'have u tried turning the marquee off and on again');
+  await act(mia, 'like', marquee);
+  await comment(jules, kat, 'ur layout is blinding me (compliment)');
+  const offButton = await reply(pete, offOn, '@sk8r_jules the marquee IS the off button');
+  const survey = await thread(kat, 'random', 'TAKE THIS SURVEY!!! ♥', 'copy, paste, answer!!\n\n1. name: kat\n2. fave color: glitter\n3. last song you heard: misery business\n4. top 8 drama level (1-10): 11\n5. would you rather never use the internet again, or only listen to one song forever?\n\ncomment ur answers!!');
+  const landed = await status(jules, 'landed it!!! (once) (nobody filmed it) #sk8',
+    await shots(jules, [DRAWINGS.sunset(), 'the sun going down behind the skate park'], [DRAWINGS.sunset(true), 'same sunset, five minutes later']));
+  await act(kat, 'like', landed);
+  await reply(jules, offButton, 'respect. leave it on then');
+  await act(kat, 'repost', landed);
+  await drew.post('/api/blog', { title: 'rain, again', subtitle: 'a poem from the back of the bus', mood: 'melancholy', body: 'the bus window is a painting\nthat only knows one color\n\ni count the drops\nthe way other people count sheep\n\nsomeone in the back is playing\nthe same song as my headphones\nand for one stop\nwe are a band' });
+  const peteComment = await comment(pete, kat, 'nice layout. the sparkle cursor is a choice');
+  const moon = await status(mia, 'the moon is in my sign today and i can FEEL it #fullmoon');
+  await reply(kat, marquee, 'leave it. marquees are a lifestyle');
+  await comment(drew, mia, 'thanks for the tarot reading. the tower card was rude though');
+  const layouts = await thread(pete, 'art-layouts', 'free layouts!!', 'taking layout requests this weekend. tell me your colors and your favorite band. no promises on the marquee. #layouts',
+    await shots(pete, [DRAWINGS.stripes([0, 40, 0], [60, 255, 90]), 'a green CRT-style layout preview'], [DRAWINGS.stripes([20, 0, 20], [255, 105, 180]), 'a pink and black layout preview'],
+      [DRAWINGS.stripes([10, 10, 60], [150, 120, 255]), 'a purple layout preview']));
+  await comment(banana, pete, 'ur playlist is decent. jk it\'s elite');
+  const fullMoon = (await mia.post('/api/blog', { cover: { id: (await upload(mia, DRAWINGS.sky(), 'cover')).id, alt: 'a full moon over a starry sky' }, title: 'full moon notes', subtitle: 'what i\'m keeping and what i\'m letting go', mood: 'dreamy', body: 'the moon was so bright tonight that i could read without a lamp. i made a list of everything i want to let go of this month and then fell asleep before i finished it, which honestly feels like the point.\n\nthings i\'m keeping: my friends, my playlists, the glow-in-the-dark stars on my ceiling.\n\nthings i\'m letting go of: checking if someone read my message. it\'s a full moon, not a read receipt. #fullmoon' })).id;
+  await act(banana, 'like', fullMoon);
+  await act(banana, 'like', moon);
+  await comment(mia, banana, 'your banana bread mix cured my mercury retrograde');
+  const mix = await thread(banana, 'music', 'new mix out', '"songs to clean your room to" vol. 2 is done. 14 tracks, zero skips. message me for the tracklist. #mixtape');
+  await comment(kat, jules, 'film me next time, i wanna be in the documentary');
+  await status(drew, 'new poem on my blog. it\'s about rain. it\'s always about rain');
+  await dm(drew, mia, 'did you mean it about the tower card');
+  await dm(mia, drew, 'it means change!! good change. probably');
+  await status(banana, 'new mix: songs to clean your room to. it\'s on the Music board #mixtape');
+  const hello = await status(you, 'just joined!! still figuring out where all the buttons are #newhere');
+  await act(kat, 'like', hello);
+  await reply(pete, hello, 'welcome!! the buttons are mostly decorative');
+  await comment(kat, you, 'hiii welcome to ourspace!!! ur page needs more glitter tho ♥ add me to ur top 8 or else (jk) (unless?)');
+  await act(mia, 'repost', hello);
+  await dm(pete, you, 'hey, saw you joined. want a layout? i have a green one with a marquee');
+  await dm(you, pete, 'maybe! what colors do you have?');
+  await jules.post(`/api/posts/${hello}/quote`, { body: 'everyone say hi to @the_reviewer!! #newhere' });
+  await comment(mia, you, 'what\'s your sign?? wait never mind, it\'s on your page. ARIES. that explains the confidence ✩');
+  await status(banana, 'making a welcome mix for @the_reviewer. requests?? #mixtape');
+  const layout = await status(kat, 'new layout!!! tell me what u think ♥ #layouts');
+  for (const c of [jules, pete, mia]) await act(c, 'like', layout);
+  await act(you, 'bookmark', fullMoon);
+  await dm(pete, you, 'green. also green. (i can do purple too)');
+  await dm(kat, you, 'omg hi!! welcome!! did u see my survey in Random?? take it!!!');
+  await kat.post('/api/reports', { type: 'post', id: peteComment.id, reason: 'harassment', details: 'he\'s being mean about my sparkle cursor (jk, i\'m testing the report button)' });
+
+  // the boards: threads in several of them, comments under comments, likes and dislikes, and the house rules pinned
+  // in Random. (The sample people post faster than a real person may, so their rate limits start over first.)
+  sql('DELETE FROM attempts');
+  const rules = await thread(malten, 'random', 'house rules (read me!!)', '1. be nice. real people live here.\n2. no spam, and no "repost this or bad luck forever" threats.\n3. keep each board on its topic. Random is for everything else.\n4. see something gross? report it and a moderator will take a look.\n\nhave fun!! ♥');
+  await malten.post(`/api/admin/threads/${rules}`, { sticky: true });
+  await vote(1, rules, kat, jules, pete, mia, banana, you);
+  const miaSurvey = await chime(mia, survey, '1. mia\n2. midnight blue\n3. landslide\n4. a solid 3, i\'m a libra\n5. one song forever. obviously.');
+  const whichSong = await chime(kat, survey, 'ONE SONG?? which one tho', miaSurvey);
+  await chime(mia, survey, 'dreams by fleetwood mac. don\'t @ me', whichSong);
+  const julesSurvey = await chime(jules, survey, '4. top 8 drama level: kat IS the drama');
+  await chime(kat, survey, 'rude. accurate, but rude', julesSurvey);
+  await vote(1, survey, mia, jules, pete, you);
+  await vote(-1, survey, drew);
+  await vote(1, miaSurvey, kat, jules, banana);
+  const katLayout = await chime(kat, layouts, 'me me me!! pink and black, paramore');
+  await chime(pete, layouts, 'pink and paramore. say less', katLayout);
+  const purple = await chime(you, layouts, 'can i get a purple one?');
+  await chime(pete, layouts, '@the_reviewer purple is my second favorite green', purple);
+  await vote(1, layouts, kat, mia, you, banana);
+  await chime(mia, mix, 'track 7 is perfect for folding laundry');
+  const blink = await chime(jules, mix, 'needs more blink-182');
+  const two = await chime(banana, mix, 'there are TWO blink songs on it', blink);
+  await chime(jules, mix, 'needs THREE', two);
+  await vote(1, mix, mia, jules, kat);
+  await vote(-1, mix, pete);
+  await vote(1, blink, pete, kat);
+  await vote(-1, blink, banana);
+  const retro = await thread(mia, 'astrology', 'mercury retrograde survival guide', 'back up your files, don\'t text your ex, and read every message twice before you hit send. it ends on the 13th. we\'ll make it. #mercuryretrograde');
+  const rhyme = await chime(drew, retro, 'is that why my poem won\'t rhyme');
+  await chime(mia, retro, 'yes. 100%. blame mercury', rhyme);
+  await vote(1, retro, drew, kat, banana);
+  const lines = await thread(drew, 'books-writing', 'share a line from your notebook', 'just one line. no context. i\'ll go first: "the streetlights hum the songs we never finished."');
+  const nightlight = await chime(mia, lines, 'the moon is a nightlight for people who forgot to sleep');
+  await chime(drew, lines, '...ok that one is good', nightlight);
+  await vote(1, lines, mia, pete);
+  const kickflip = await thread(jules, 'sports', 'kickflip tips??', 'i landed one (once). how do i land two');
+  await chime(pete, kickflip, 'bend your knees more than you think you need to');
+  await vote(1, kickflip, pete, kat);
+
+  // Browse → For you: posts and threads by people you don't follow, in boards you don't post in. kat and mia (who you
+  // follow) answer some of them, which is the reason those show up first.
+  sql('DELETE FROM attempts');
+  const rink = await status(rae, 'roller rink tonight!! couples skate is optional (it is not optional for me, i skate alone) #rollerskating');
+  await reply(kat, rink, 'i\'m there!! saving you a spot by the snack bar');
+  const fridge = await thread(rae, 'pets', 'my cat learned to open the fridge', 'she just stares at me while she does it. i have no defense against this.');
+  await vote(1, fridge, kat, mia, lou);
+  await chime(lou, fridge, 'put a cookie sheet in front of it, she\'ll hate the noise');
+  const tonyHawk = await thread(cam, 'games', 'best tony hawk game? (wrong answers only)', 'i\'ll start: the one with the most loading screens');
+  await chime(mia, tonyHawk, 'the one where you can\'t do kickflips. a true test of character');
+  await vote(1, tonyHawk, jules, pete);
+  await status(cam, 'lan party at mine saturday. bring your own ethernet cable and snacks #lanparty');
+  const loaf = await thread(lou, 'cooking', 'banana bread but make it chocolate', 'half a bag of chocolate chips, a spoon of cocoa, same recipe otherwise. trust me.');
+  await vote(1, loaf, banana, kat, rae);
+  await chime(banana, loaf, 'adding this to my baking mix');
+  const third = await status(lou, 'third loaf this week. no regrets #baking');
+  for (const c of [kat, banana, rae]) await act(c, 'like', third);
+  await status(jules, 'filmed cam falling off a curb. it\'s going in the documentary #sk8');
+  await thread(banana, 'music', 'mix request thread', 'tell me a mood and i\'ll make you a mix. no mood is too specific.');
+
+  // chat: a group chat you're in (kat's: her friends join at once), a group banana invited you to (you aren't friends
+  // yet, so it waits for your answer), and some #ourspace chatter (slow mode: one message every 3 seconds per person,
+  // so the second round starts over)
+  const crew = (await kat.post('/api/chats', { members: [you.name, mia.name, jules.name], title: 'top 8 crew ♥' })).chat.id;
+  await say(kat, crew, 'welcome to the group chat!! this is where the real top 8 drama happens');
+  await say(jules, crew, 'there is no drama. kat IS the drama');
+  await say(mia, crew, 'mercury is retrograde, so technically all drama is excused this week ✩');
+  await say(kat, crew, `@${you.name} say hi!!`);
+  await banana.post('/api/chats', { members: [pete.name, you.name], title: 'mixtape club' });
+  await room(kat, 'hiii #ourspace!! who\'s online');
+  await room(pete, 'me. compiling. always compiling');
+  await room(banana, 'new mix dropping tonight, songs to do homework to (you won\'t)');
+  await room(mia, 'happy full moon everyone ✩');
+  await room(jules, 'anyone skating later? the 7-eleven lot is dry');
+  sql('DELETE FROM attempts WHERE k LIKE \'ourspace:%\'');
+  await room(kat, `@${pete.name} fix my marquee pls`);
+  await room(pete, 'the marquee is a feature');
+  await room(drew, 'it\'s raining here. obviously');
+
+  // spread it all over the last day or so, so the feed and inbox read like a real afternoon, not one second
+  const now = Date.now();
+  sql(`UPDATE posts SET created = ${now} - ((SELECT MAX(id) FROM posts) - id) * 1500000 - 240000`);
+  // DMs and group messages over the afternoon, #ourspace over the last hour (its scrollback is a day), and each
+  // conversation started at its first message (an invite when it was sent)
+  sql([
+    `UPDATE chat_messages SET created = ${now} - ((SELECT MAX(id) FROM chat_messages WHERE room IS NULL) - id) * 1200000 - 120000 WHERE room IS NULL`,
+    `UPDATE chat_messages SET created = ${now} - ((SELECT MAX(id) FROM chat_messages WHERE room IS NOT NULL) - id) * 300000 - 60000 WHERE room IS NOT NULL`,
+    `UPDATE conversations SET created = COALESCE((SELECT MIN(created) FROM chat_messages WHERE conversation_id = conversations.id), ${now} - 3600000),
+      last_message_at = (SELECT MAX(created) FROM chat_messages WHERE conversation_id = conversations.id)`,
+    'UPDATE conversation_members SET joined = (SELECT created FROM conversations WHERE id = conversation_id)',
+  ].join(';\n'));
+  // the follows came first (or "pick up where I left off", which skips posts from before a follow, would be empty)
+  sql(`UPDATE follows SET created = ${now} - 86400000, accepted = CASE WHEN status = 'accepted' THEN ${now} - 86400000 END`);
+  // what hangs off a post follows it: a tag has its post's time, a like, vote or bookmark comes two minutes later, a
+  // notification when what it's about happened (follows: a day back), and a thread's hot is worked out again from its
+  // new time. Then your Notifications tab is read up to the follows.
+  sql([
+    'UPDATE post_tags SET created = (SELECT created FROM posts WHERE id = post_id)',
+    'UPDATE likes SET created = (SELECT created FROM posts WHERE id = post_id) + 120000',
+    'UPDATE bookmarks SET created = (SELECT created FROM posts WHERE id = post_id) + 120000',
+    'UPDATE votes SET created = (SELECT created FROM posts WHERE id = post_id) + 120000',
+    `UPDATE posts SET ${RESORT} WHERE kind IN ('thread', 'comment')`,                // hot counts from the thread's new time
+    `UPDATE notifications SET created = CASE kind
+      WHEN 'like' THEN (SELECT created FROM posts WHERE id = post_id) + 120000
+      WHEN 'repost' THEN (SELECT created FROM posts WHERE kind = 'repost' AND author_id = actor_id AND quote_of = post_id)
+      WHEN 'group_invite' THEN (SELECT created FROM conversations WHERE id = conversation_id)
+      WHEN 'chat_mention' THEN (SELECT created FROM chat_messages WHERE id = message_id)
+      ELSE COALESCE((SELECT created FROM posts WHERE id = post_id), ${now} - 86400000) END`,
+    `INSERT INTO markers (user_id, name, last_created, last_id, updated) SELECT user_id, 'notifications', created, id, ${now} FROM notifications WHERE id = ${readUpTo}`,
+  ].join(';\n'));
+  sql(`UPDATE users SET created = ${now} - ((SELECT MAX(id) FROM users) - id + 2) * 86400000`);   // they joined over the past week or so
+  sql('UPDATE users SET email_verified_at = created');
+
+  // phase 7, for the moderator: three bot-looking sign-ups from one cloud network (held for review, with their alerts)
+  // and the nightly cluster check run once; and two long posts the mock AI detector scored (shadow mode: no strikes)
+  const cloud = { 'X-Test-Ip': '2001:db8:dead:beef::1', 'X-Test-Cf': JSON.stringify({ asn: 14061, asOrganization: 'DigitalOcean, LLC', country: 'NL', httpProtocol: 'HTTP/1.1' }) };
+  for (const n of [1, 2, 3]) {
+    await signUp(client(), { email: `followers${n}@growfast.example`, password: PASSWORD, name: `free_followers_${n}`, birthday: '2000-01-01', rulesOk: true, avatar: pic('pic_cd_rainbow.gif') }, cloud);
+  }
+  for (let i = 0; i < 10; i++) {                      // (the local explorer can answer 502 while the server settles)
+    const nightly = await fetch(`${BASE}/cdn-cgi/local/explorer/api/local/scheduled?worker=ourspace-social-demo`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ cron: '17 3 * * *' }) });
+    if (nightly.ok) break;
+    await new Promise(r => setTimeout(r, 1000));
+  }
+  sql('DELETE FROM attempts');
+  await thread(cam, 'games', 'an honest look at the tony hawk remaster', 'The long-awaited remaster delivers a vibrant and nostalgic experience that resonates with longtime fans while welcoming a new generation of players. Furthermore, the updated visuals showcase intricate attention to detail, and the soundtrack serves as a testament to the era. It is important to note that the controls feel seamless and robust, fostering a sense of mastery from the very first session. Moreover, the career mode offers a multifaceted journey through iconic levels, each one meticulously reimagined. Additionally, the online features unlock new ways to connect with friends and elevate the competitive landscape. While some may find the difficulty curve steep, it ultimately underscores the game\'s commitment to rewarding practice. In conclusion, this remaster is a pivotal moment for the series and a must-play for anyone who has ever dreamed of landing a perfect combo.');
+  await thread(lou, 'cooking', 'my nan\'s scone recipe (it\'s not really a recipe)', 'ok so my nan never measured anything in her life and she would be horrified that i wrote this down. you rub cold butter into self raising flour until it looks like sand, roughly a fist of butter to two big mugs of flour. pinch of salt, spoon of sugar. then milk, but not all at once, she always said the dough should feel like a baby\'s cheek which is honestly a weird thing to say about dough. pat it out thick, don\'t roll it, don\'t twist the cutter. hot oven, like as hot as it goes, twelve minutes. they never come out the same twice and that\'s fine. eat them warm with too much jam. if anyone tries this tell me how badly it went');
+}
+
+/* ---------------------------------------------------------------- start */
+
+say('setting up the demo database…');
+wrangler(['d1', 'migrations', 'apply', 'ourspace-social-db', '--local', '--persist-to', STATE]);
+
+const mock = await startMock(await freePort(8899), { pretend: true });
+const PORT = await freePort(Number(process.env.PORT) || 8787);
+const BASE = `http://127.0.0.1:${PORT}`;
+
+// the key that encrypts stored Spotify tokens has to stay the same between runs
+const keyFile = path.join(DEMO, 'token-key');
+if (!fs.existsSync(keyFile)) fs.writeFileSync(keyFile, randomBytes(32).toString('base64'));
+const vars = {
+  TEST_PROVIDER_BASE: mock.base, TOKEN_KEY: fs.readFileSync(keyFile, 'utf8').trim(), SIGNUPS_PER_IP_PER_HOUR: '1000',
+  GOOGLE_CLIENT_ID: 'demo', GOOGLE_CLIENT_SECRET: 'demo', DISCORD_CLIENT_ID: 'demo', DISCORD_CLIENT_SECRET: 'demo',
+  SPOTIFY_CLIENT_ID: 'demo', SPOTIFY_CLIENT_SECRET: 'demo', SHOW_ROWS_READ: '1',
+  // phase 7: Cloudflare's Turnstile test keys (the widget itself still loads from challenges.cloudflare.com in your
+  // browser; the check is answered by the pretend siteverify), MX lookups from the pretend DNS, the sign-up signals
+  // the seeding sends (TEST_SIGNALS), and the mock AI detector in shadow mode
+  TURNSTILE_SITE_KEY: '1x00000000000000000000AA', TURNSTILE_SECRET_KEY: '1x0000000000000000000000000000000AA',
+  TURNSTILE_VERIFY_URL: mock.base + '/turnstile/v0/siteverify', DOH_URL: mock.base + '/dns-query', TEST_SIGNALS: '1',
+  AI_DETECTOR: 'mock', AI_ENFORCEMENT: 'shadow',
+};
+
+say('starting the site…');
+let stopping = false;
+const server = spawn(process.execPath, [WRANGLER, 'dev', '--name', 'ourspace-social-demo', '--port', String(PORT), '--ip', '127.0.0.1',
+  '--persist-to', STATE, ...Object.entries(vars).flatMap(([k, v]) => ['--var', `${k}:${v}`])],
+{ cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'], env: { ...process.env, FORCE_COLOR: '0', NO_COLOR: '1' } });
+
+// wrangler is chatty: before the site is up its output is kept (and shown only if it fails); after, everything but
+// request logs and known noise is passed through, which is how the password-reset emails reach you
+let ready = false;
+let early = '';
+let blank = true;                                     // (so stray blank lines before any output are skipped)
+const NOISE = [/^\[wrangler:info\] (GET|POST|PUT|PATCH|DELETE|HEAD|OPTIONS) /, /Request\.cf/, /^Error: Request was cancelled/, /^\s+at /,
+  /Parsed \d+ valid header/, /Reloading local server/, /Proxy environment variables/, /dev session is running in an AI agent/,
+  /Local Explorer API|Useful routes|cdn-cgi\/local/];
+function relay(chunk) {
+  const text = chunk.toString().replace(/\x1b\[[0-9;]*m/g, '');
+  if (!ready) { early += text; return; }
+  for (const line of text.split(/\r?\n/)) {
+    if (NOISE.some(re => re.test(line))) continue;
+    if (/Local server updated and ready/.test(line)) { say('↻ reloaded with your changes (refresh the page)'); continue; }
+    if (!line.trim()) { if (!blank) console.log('  │'); blank = true; continue; }
+    blank = false;
+    console.log('  │ ' + line);
+  }
+}
+server.stdout.on('data', relay);
+server.stderr.on('data', relay);
+server.on('exit', code => {
+  if (stopping) return;
+  console.error(ready ? '\n  ✖ the site stopped.' : '\n  ✖ the site didn\'t start. what wrangler said:\n\n' + early);
+  mock.close().finally(() => process.exit(code || 1));
+});
+
+async function stop() {
+  if (stopping) return;
+  stopping = true;
+  console.log('\n  stopping the demo…');
+  server.kill();
+  await mock.close();
+  process.exit(0);
+}
+process.on('SIGINT', stop);
+process.on('SIGTERM', stop);
+
+async function fail(message) {
+  stopping = true;
+  server.kill();
+  await mock.close();
+  die(message);
+}
+
+for (let i = 0; ; i++) {
+  try { if ((await fetch(BASE + '/api/options')).ok) break; } catch { /* not up yet */ }
+  if (i > 240) await fail('the site took too long to start. what wrangler said:\n\n' + early);
+  await new Promise(r => setTimeout(r, 500));
+}
+ready = true;
+
+if (!fs.existsSync(SEEDED)) {
+  say('adding the sample people and posts (first run only)…');
+  try {
+    await seed();
+  } catch (e) {
+    await fail('adding the sample content failed: ' + e.message + '\n  try again with: npm run demo -- --fresh');
+  }
+  fs.writeFileSync(SEEDED, new Date().toISOString());
+}
+
+console.log(`
+  ┌──────────────────────────────────────────────────────────────────────────┐
+     ourspace demo is running:   ${BASE}
+  └──────────────────────────────────────────────────────────────────────────┘
+
+  Log in as you:     you@example.com  /  ${PASSWORD}     (screen name the_reviewer, a regular member)
+  The moderator:     malten@example.com, same password     (sees the Moderation tab and a sample report)
+  Or anyone else:    kat@, jules@, drew@, pete@, mia@, banana@, rae@, cam@, lou@ or sam@example.com, same password
+
+  · Everything is fake and stays on this computer. Sign up as many new people as you like.
+  · "Other options" (Google, Discord) and "connect Spotify" open pretend pages.
+    Type any name there; the same name brings back the same pretend account.
+  · "forgot my password" and "confirm your email" emails show up in this window instead of being sent
+    (a new account confirms its email before it can post: open the /verify#token=… link printed here).
+  · Sign-up runs the real checks: the "verify you are human" box (Cloudflare's always-pass test key) and a
+    second or two of "checking…" in your browser. As malten, the Moderation tab has three held bot sign-ups,
+    the alerts they raised, and two posts the pretend AI detector scored (shadow mode: nobody gets a strike).
+  · Edit files in public/ or src/ and refresh the page to see the change.
+  · Start over with:  npm run demo -- --fresh        Stop with:  Ctrl+C
+`);

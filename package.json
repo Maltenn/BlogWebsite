@@ -1,0 +1,27 @@
+{
+  "name": "ourspace-social",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "OurSpace as a real social network: email or provider sign-in, public profiles, Spotify top songs, daily horoscopes, block and report. One Cloudflare Worker serves the pages and the API.",
+  "scripts": {
+    "db:local": "wrangler d1 migrations apply ourspace-social-db --local",
+    "db:remote": "wrangler d1 migrations apply ourspace-social-db --remote",
+    "dev": "wrangler dev",
+    "demo": "node tools/demo.mjs",
+    "deploy": "wrangler deploy",
+    "test": "node --test test/*.test.mjs",
+    "plates": "node tools/plates.mjs",
+    "plates:check": "node tools/pixeldiff.mjs",
+    "tabbar:check": "node tools/tabbar-check.mjs"
+  },
+  "devDependencies": {
+    "pixelmatch": "^8.0.0",
+    "playwright": "^1.64.1",
+    "pngjs": "^7.0.0",
+    "wrangler": "^4.152.0"
+  },
+  "dependencies": {
+    "astronomy-engine": "^2.1.19"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "_about": "Build-time settings for the OurSpace apps. Nothing here is read by a page module: scripts/after-copy.mjs writes the result into the app's web assets as native-config.json, and public/js/core/native.js reads it once at start-up. The env vars OURSPACE_ORIGIN, OURSPACE_APP_ID and OURSPACE_APP_NAME override this file.",
+  "origin": "http://localhost:8787",
+  "appId": "com.ourspace.app",
+  "appName": "OurSpace",
+  "_origin": "The deployed Worker origin, no trailing slash, e.g. https://ourspace.example. NOT KNOWN YET (the D1 id in wrangler.jsonc is still a placeholder), so it defaults to the local demo. The Android emulator cannot see the host as localhost: build with OURSPACE_ORIGIN=http://10.0.2.2:8787.",
+  "_appId": "PLACEHOLDER bundle / application id. Nobody has registered the real one; it must match public/.well-known/*, the APNs topic and the Play listing."
+}

@@ -1,14 +1,20 @@
 # Dependencies
 node_modules/
 
-# Secrets — never commit these
+# Secrets — never commit these (Worker secrets go in with `wrangler secret put`; local ones in .dev.vars)
+.dev.vars*
 .env
 .env.*
-*tokens.json
+*.p8
 
-# Local data (guestbook store, old sqlite files)
-db.json
-*.db
+# Local state: wrangler's local database and the `npm run demo` database
+.wrangler/
+.demo/
+
+# The plate harness: its throwaway demo databases and captures (the baseline PNGs in plates/ ARE tracked; the diffs are not)
+.plates-work/
+.tabbar-work/
+plates/diff/
 
 # Local Claude settings (launch.json is shared on purpose)
 .claude/settings.local.json
@@ -20,6 +26,25 @@ Thumbs.db
 desktop.ini
 *.log
 
-# Cloudflare Worker (worker/): local secrets + wrangler state
-.dev.vars
-.wrangler/
+# The apps (mobile/): files `cap sync` GENERATES inside the platform projects. They are rebuilt from mobile/capacitor.config.js and
+# ../public on every sync and must never be committed: a stale copy can carry debug-only settings (webContentsDebuggingEnabled,
+# allowMixedContent, a live-reload server.url) or a dev origin into a release. `npm run check:release --prefix mobile` reads them.
+# (mobile/android/.gitignore and mobile/ios/.gitignore say the same; this is the belt to their braces.)
+mobile/android/app/src/main/assets/capacitor.config.json
+mobile/android/app/src/main/assets/capacitor.plugins.json
+mobile/android/app/src/main/assets/public/
+mobile/android/app/src/main/res/xml/config.xml
+mobile/ios/App/App/capacitor.config.json
+mobile/ios/App/App/config.xml
+mobile/ios/App/App/public/
+mobile/ios/App/Pods/
+mobile/android/capacitor-cordova-android-plugins/
+mobile/ios/capacitor-cordova-ios-plugins/
+
+# Signing material and push credentials: never in the repository (CI gets them from secrets)
+*.p12
+*.mobileprovision
+*.keystore
+*.jks
+google-services.json
+GoogleService-Info.plist

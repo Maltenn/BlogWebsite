@@ -1,0 +1,278 @@
+# Building and running the apps
+
+`mobile/` is a Capacitor 8 project with its own `package.json` (the repo root's belongs to the Worker). It wraps the unmodified
+`public/` bundle (`webDir: ../public`). The apps are the site plus one script, `public/js/core/native.js`, which does nothing in
+a browser. Read [contract.md](contract.md) first; this page is how to build against it.
+
+**Honest status.** This page was first written and checked on a Windows machine with no Android SDK, no Xcode, and no
+Apple or Google account. What *has* been run: `cap add android`, `cap add ios`, `cap sync` (the Gradle and Xcode projects are
+generated and consistent), `make-splash.mjs`, and `mobile/test/bridge.test.mjs` (the JavaScript bridge in Chromium against a fake
+Capacitor and a fake API). What has **not** been run anywhere: the iOS app on anything (simulator or phone), either app on a real
+phone, push, universal links, the iOS Keychain. CI has now compiled the iOS app (below), which is the first evidence for iOS and
+proves compilation only; a device is the second. See "What cannot be verified yet" at the end.
+
+**iOS, 2026-11-05: first compile, and nothing more.** CI's `ios` job (macOS 15.8, Xcode 26.3, CocoaPods 1.17, no secrets) ran
+`pod install` and an unsigned `xcodebuild archive`. It passed the first time it ran, with no compiler warnings from
+`AppDelegate.swift`, `SceneDelegate.swift` or `TabBar.swift`. The archive was unpacked and checked by hand: an arm64 `App.app`, all
+14 frameworks embedded, the 364-file `public/` bundle, `PrivacyInfo.xcprivacy` in the bundle, no signature. So the Swift compiles
+against Capacitor 8.6.0, the hand-edited `project.pbxproj` builds, and the Podfile resolves. **That is all it proves.** The app has
+never been launched, so nothing here shows how it looks or behaves on iOS: the layout, the tab bar's Core Text drawing, sign-in, the
+Keychain and push are all untested. An unsigned archive cannot be installed on a phone; that needs an Apple Developer account.
+
+**Open from that run: a required-reason API no manifest declares.** `IONCameraLib` (pulled in by `@capacitor/camera`) imports
+`NSURLCreationDateKey`, a file-timestamp API, and the built framework has no privacy manifest. The job's informational step printed
+"no required-reason API references found", which is wrong, so do not rely on it yet; its cause is not known. See
+[store.md](store.md#the-ios-privacy-manifest) before the first upload.
+
+**CI, 2026-11-05: what the first runs found.** Run 5 of `mobile.yml` (commit `8fd5419`) was the first fully green one: `bridge`,
+`tabbar`, `android` and `ios`. Neither thing that stood in the way was in the apps' own code:
+
+- `android` stopped during setup, because `setup-android`'s default package list asks for `tools`, which the SDK repository has
+  dropped. It now asks for `platform-tools`, and CI builds the debug APK as well.
+- `tabbar:check` failed 8 of 48 cases on the Linux runner, by 3-17 pixels. Both faults were in the check's replica, not in the spec.
+  **Chromium:** a badge's curved corners rendered differently at some x positions unless the replica's scroller had the bar's
+  background on the scroller itself, as the page's does. That is not specific to Linux: it reproduces on Windows with the bar shifted
+  to the same x. Across 32 sub-pixel positions the old replica failed at 11 and the new one at none. **WebKit:** CSS `left` stores
+  1/64px, so the replica dropped the last fraction of a centred badge's x, which moved the `+` of `99+` across a quarter-pixel
+  boundary. That explanation rests on the Linux numbers and on the fix taking the runner to 48/48. It never reproduced on Windows.
+
+`tabbar` is now its own job: a difference is a red check that does not stop `android` and `ios` from building, and the release jobs
+require it.
+
+**Android, 2026-11-05: first real run.** `assembleDebug` builds (JDK 21, Gradle 8.14.3, AGP 8.13, platform 36). The debug app runs on
+the Android 17 emulator against the local demo: password sign-in through Turnstile's test key, the session stored through the
+secure-storage plugin, and private photos loaded with the bearer token. The first build also found a bug no earlier check could see:
+`versionCode (…).toInteger()` parsed as a call on the result of `versionCode(…)`, which failed every Android build. Fixed.
+
+**Found and fixed in that run.** The app's CSP has no `'unsafe-inline'` in `style-src`, so `setAttribute('style', …)` is refused, and
+`core/tabbar.js` and `core/tabspec.js` both used it: `.ms-tabs` stayed in the page (against D3), and the baseline strut measured
+wrong, which clipped the native bar's labels. Both now use `.style.cssText`, which the policy allows. On the emulator that gave 0 CSP
+violations, a working native tab tap and correct badges, and `test/static.test.mjs` now refuses the old call. `tabbar:check` could
+not have seen this, because its pages carry no CSP.
+
+**Android, 2026-11-05: the walkthrough.** Everything in [checklist.md](checklist.md) an emulator can reach was run on the Android 17
+image against the demo: items 1-3, 4, 5, 12-14, 16-20, 23b and 23c, the splash frame by frame, the photo picker, and a real photo
+upload that came back at full size. It found four bugs, all fixed: Back left a dialog open and changed
+the page underneath it; a call with no answer showed the browser's own "Failed to fetch"; SystemBars painted over the bottom band on
+every launch, so D2 only held after a rotation; and the launch theme's `android:background` leaked into dialogs, drawing a white
+screen behind the photo sheet.
+
+Two of those passes are narrower than the checklist asks. Item 4 revoked the app's own device, not one device from another. Item 5
+followed the sign-in the app had armed from the host and sent the resulting `ourspace://` link to the app, where forged and replayed
+codes were refused, because Chrome's first-run screen needs a person to accept its terms, so the Custom Tab's own page has not been
+driven. Also, a revoked session on a page of public data keeps its header until the next signed-in request or the next return to the
+app.
+
+## Layout
+
+| Path | What |
+|---|---|
+| `mobile/ourspace.config.json` | build-time settings: `origin`, `appId`, `appName` |
+| `mobile/capacitor.config.js` | Capacitor config (reads the settings above) |
+| `mobile/scripts/after-copy.mjs` | runs after every `cap copy/sync`: writes `native-config.json` and the CSP `<meta>` into the platform copies, and `App.entitlements` |
+| `mobile/scripts/make-splash.mjs` | renders the splash bitmaps and the icons (`npm run assets`); output is committed |
+| `mobile/scripts/check.mjs` | `npm run check` / `npm run check:release` |
+| `mobile/test/bridge.test.mjs` | `npm test`: `native.js` in Chromium against a fake Capacitor and a fake API (needs `npm ci` at the repo root and `npx playwright install chromium`) |
+| `mobile/android/`, `mobile/ios/` | the native projects (generated by `cap add`, then edited; committed). The copies of `public/` inside them are git-ignored |
+| `public/js/core/native.js` | the bridge: does nothing in a browser (`isApp = false`) |
+| `public/js/core/tabspec.js` | measures the page's own `.ms-tabs` into the numbers the native tab bar is drawn from. Pure, runs in a browser, tested by `tools/tabbar-check.mjs` |
+| `public/js/core/tabbar.js` | app only: takes the web tab bar out of the flow and keeps the native one in step with the chrome |
+| `public/js/core/joinphoto.js` | app only: the camera button on the sign-up card ([deviations.md](deviations.md) D24) |
+| `tools/tabbar-check.mjs` | `npm run tabbar:check`: the tab bar's spec against the web bar, at 0 pixels, in both engines |
+| `docs/mobile/review-notes.md` | what goes to App Review; `check:release` fails while its placeholders are in |
+| `public/.well-known/` | `apple-app-site-association`, `assetlinks.json` (placeholders: [deviations.md](deviations.md) D18-D19) |
+| `.github/workflows/mobile.yml` | the CI build |
+
+## The one setting: `OURSPACE_ORIGIN`
+
+The deployed Worker's origin, no trailing slash and no path. **It is not known yet**, so it defaults to the demo,
+`http://localhost:8787`. Set it, in this order of precedence:
+
+1. the environment variable `OURSPACE_ORIGIN` (CI: the repository variable of the same name),
+2. `origin` in `mobile/ourspace.config.json`.
+
+`OURSPACE_APP_ID` / `appId` and `OURSPACE_APP_NAME` / `appName` work the same way. After changing any of them run `npx cap sync`
+in `mobile/`. It is baked into, and only into:
+
+| Where | Used for |
+|---|---|
+| `native-config.json` in each platform's web copy | `native.js` reads it once at start-up; this is the only way a page script learns the origin (no page module has it) |
+| the `<meta http-equiv="Content-Security-Policy">` in each platform's copy of `index.html` | `connect-src`, `img-src`, `media-src` |
+| `app/build.gradle` (`manifestPlaceholders`) | the Android App Link host; a dev (http/localhost) origin gets `ourspace.invalid`, which matches nothing |
+| `ios/App/App/App.entitlements` | `applinks:<host>` and `webcredentials:<host>`, only for a real https host |
+| `capacitor.config.js` | nothing about debugging or mixed content: those two settings are **deliberately absent** (see below) |
+
+A **release** build must have an `https` origin; `npm run check:release` fails otherwise, naming the variable (CI runs it in the two
+release jobs straight after `cap sync`, so a tag can never upload an app that points at `http://localhost:8787`). Android's emulator cannot reach the
+host as `localhost`: use `OURSPACE_ORIGIN=http://10.0.2.2:8787`. The iOS simulator can use `http://localhost:8787` (the Info.plist
+gets `NSAllowsLocalNetworking` from a Debug-only build phase; see below). Run the Worker with `npm run demo` or `npm run dev` at the repo root; it answers CORS for
+`https://localhost` and `capacitor://localhost` ([server.md](server.md)).
+
+### Debug-only settings never reach a release
+
+`cap sync` writes `capacitor.config.json` into each platform project, and the next APK / AAB / IPA ships whatever it wrote, so a
+value there cannot depend on the build type. Three settings are therefore kept out of it entirely and switched on by the *build type*:
+
+| setting | release | debug |
+|---|---|---|
+| WebView debugging (`chrome://inspect`, which reads the session token straight out of the page) | Capacitor's own default: off for a non-debuggable APK. `capacitor.config.js` does not set `webContentsDebuggingEnabled` | on, by the same default, because a debug APK is debuggable |
+| mixed content (an `http://` dev Worker from the `https://localhost` page) | off (Capacitor's default; `allowMixedContent` is not set) | `MainActivity.allowCleartextInDebug()`, only when `FLAG_DEBUGGABLE` is set |
+| iOS App Transport Security `NSAllowsLocalNetworking` | not in `Info.plist`: the system default (https only) | the build phase "Debug-only App Transport Security exception" adds it to the *built* `Info.plist` when `CONFIGURATION=Debug` |
+
+`npm run check:release` fails if a synced platform `capacitor.config.json` says `true` to either of the first two, or carries a
+live-reload `server.url`. `app/build.gradle` also refuses `assembleRelease` / `bundleRelease` unless the origin is https and not
+localhost. The generated platform files (`capacitor.config.json`, `capacitor.plugins.json`, the web copies, `Pods/`) are git-ignored
+in the root `.gitignore` as well as in `android/.gitignore` / `ios/.gitignore`.
+
+## Android
+
+Needs: Node 22+, **JDK 21** (Capacitor 8 compiles for Java 21; a JDK 17 will not do), the Android SDK with platform 36 and
+build-tools (Android Studio installs them), `ANDROID_HOME` set.
+
+```
+cd mobile
+npm ci
+npx cap sync android                       # copies ../public, runs scripts/after-copy.mjs
+cd android && ./gradlew assembleDebug      # → app/build/outputs/apk/debug/app-debug.apk
+# or: npx cap run android                  # to a connected device / emulator
+```
+
+Build pieces that are ours, in `mobile/android/app/`: `MainActivity.java` (status/home bands, splash overlay), `ShellPlugin.java`
+(`hideSplash`, `setTabs`, and the `tabTap` event), `TabBar.java` (the native tab bar: a HorizontalScrollView of clickable Views
+drawn from a spec `public/js/core/tabspec.js` measured off the page's own `.ms-tabs`), `AndroidManifest.xml` (the `ourspace://` scheme, the https App Link, camera and notification permissions),
+`build.gradle` (config and signing from the environment; refuses a release build for a non-https origin), `src/debug/` (cleartext HTTP in
+debug builds only).
+
+Release: `ANDROID_KEYSTORE_FILE` (a path), `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, `ANDROID_KEY_PASSWORD` in the
+environment, then `./gradlew bundleRelease`. Without them the release artifact is unsigned. Push needs the Firebase project's
+`google-services.json` at `mobile/android/app/` (git-ignored; CI writes it from `GOOGLE_SERVICES_JSON`); without it the app builds
+and runs and simply cannot receive push.
+
+## iOS: needs a Mac
+
+Needs: macOS, **Xcode 26** (Capacitor 8), CocoaPods, Node 22+.
+
+**A macOS virtual machine on a Windows PC is not a way round this** (looked at 2026-11-05, for VirtualBox on a Ryzen desktop, and
+not built). VirtualBox gives a macOS guest no Metal, which the Simulator expects and the WKWebView checks here depend on. macOS has
+never shipped for AMD processors, so it would also need third-party kernel patches. Xcode 27 installs only on Apple silicon, and App
+Store uploads are reported to need it from April 2027, so an x86 guest would be a dead end within months. And the macOS licence
+limits it to Apple-branded hardware (the newest text checked was older than Tahoe; confirm against apple.com/legal). Use CI's `ios`
+job, a cloud Mac, or a real Mac.
+
+```
+cd mobile
+npm ci
+npx cap sync ios                           # copies ../public, runs after-copy.mjs, then pod install
+open ios/App/App.xcworkspace               # the WORKSPACE, not the .xcodeproj
+```
+
+Choose a simulator and run, or set a Team under Signing & Capabilities for a device (the Push Notifications and Associated Domains
+capabilities, and `App.entitlements`, are already declared). Unsigned archive, as CI does it:
+
+```
+cd ios/App && pod install
+xcodebuild archive -workspace App.xcworkspace -scheme App -configuration Release -destination 'generic/platform=iOS' \
+  -archivePath build/OurSpace.xcarchive CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=""
+```
+
+Ours, in `mobile/ios/App/App/`: `SceneDelegate.swift` (the shell view controller that insets the web view and paints the bands,
+the splash overlay, status-bar-tap scroll-to-top, the native tab bar's place in the layout, and the `OurSpaceShell`
+plugin with `ASWebAuthenticationSession`, `setTabs` and the `tabTap` event), `TabBar.swift` (the bar itself: a
+UIScrollView of UIControls drawn with Core Text from the measured spec),
+`AppDelegate.swift` (APNs token hand-off), `Info.plist` (the `ourspace` scheme, camera and photo strings, background push),
+`PrivacyInfo.xcprivacy` (the privacy manifest: what it declares and why is in [store.md](store.md)),
+`App.entitlements` (generated), `Assets.xcassets` (icons, launch image, `SplashTop<W>` / `SplashFoot<W>`).
+
+### What was done by hand because this was written on Windows
+
+`npx cap add ios --packagemanager CocoaPods` **worked on Windows**; nothing was scaffolded from the `@capacitor/ios` template by
+hand. What it could not do here, and CI/a Mac must: `pod install` (CocoaPods is not installed, so `ios/App/Pods/` and
+`Podfile.lock` do not exist) and `xcodebuild`. Hand edits to the generated project: `CODE_SIGN_ENTITLEMENTS` in both build
+configurations of `project.pbxproj`, the privacy manifest's entry in the Resources build phase, and the Debug-only ATS build phase, and the files above.
+The `project.pbxproj` edits have still never been opened in Xcode's editor, but `xcodebuild` builds them, and the privacy manifest
+does reach the built app (CI's archive, 2026-11-05). No new source file had to be added to the Xcode project: the Swift
+types live in `SceneDelegate.swift` (already a target member), and the images are in an existing asset catalog. If you split them
+into files, add the files to the target in Xcode.
+
+## Signing, push and links: what to fill in when the accounts exist
+
+| Thing | Where | Who has it |
+|---|---|---|
+| Bundle / application id | `mobile/ourspace.config.json` (`appId`), then `public/.well-known/*` | decided with the store listings |
+| Apple Team ID | `public/.well-known/apple-app-site-association` (`REPLACE_APPLE_TEAM_ID`) and the signing config | Apple Developer account |
+| Play App Signing SHA-256 | `public/.well-known/assetlinks.json` | Play Console > App integrity (not the upload key's) |
+| Deployed origin | `OURSPACE_ORIGIN` | after the first `wrangler deploy` |
+| APNs key (`APNS_KEY_P8`, `APNS_KEY_ID`, `APNS_TEAM_ID`, `APNS_TOPIC` = the bundle id) | Worker secrets, not the app | Apple Developer account |
+| FCM service account (`FCM_SERVICE_ACCOUNT_JSON`) and `google-services.json` | Worker secret; and the app build | Firebase project |
+| CI secrets | the list at the top of `.github/workflows/mobile.yml` | all of the above |
+
+## CI
+
+`.github/workflows/mobile.yml`. Six jobs:
+
+- `bridge` (every run): `native.js` against a fake Capacitor and a fake API, plus `npm run check` (placeholders are notes).
+- `tabbar` (every run): `npm run tabbar:check`, at 0 pixels in both engines. On a failure it uploads every case's PNGs and spec.
+- `android` (ubuntu-latest, JDK 21, **no secrets**): `cap sync android`, `assembleDebug`, uploads the debug APK.
+- `ios` (**macos-15**, not macos-14: Capacitor 8 needs Xcode 26, which macOS 14 cannot run; override with the `IOS_RUNNER`
+  variable; **no secrets**): `cap sync ios`, `pod install`, an unsigned `xcodebuild archive` uploaded as an artifact, and an
+  informational scan for required-reason API references. With `IOS_RUNNER` set, a pull request from a fork does not run it.
+- `android-release` and `ios-release`: **only for a `mobile-v*` tag** (a tag push, or a manual run chosen *on* the tag with "release"
+  ticked; a manual run on a branch does nothing), only when the tagged commit is on `main`, and in the `release` **environment**.
+  Each syncs with the release variables and then runs `npm run check:release -- --platform <android|ios>` *before anything is built
+  or signed*, so a missing or placeholder `OURSPACE_ORIGIN` / `OURSPACE_APP_ID`, a `.well-known` placeholder, or a debug-only setting
+  in the synced config **fails the job** with the variable named. Signing and upload steps still skip, with a summary line, when
+  their secrets are absent. The iOS job removes its keychain, certificate, profile and App Store Connect key in an `if: always()`
+  step; the Android job removes its keystore and `google-services.json` the same way.
+
+Every `uses:` is pinned to a commit SHA with its version in a comment (`r0adkll/upload-google-play` receives the Play service-account
+JSON, so a movable tag there is a supply-chain hole). **One-time repository setup the workflow cannot do:** create the environment
+`release` (Settings > Environments) with required reviewers and a deployment rule that allows only the tag pattern `mobile-v*`, and
+move the signing / upload secrets into it. Until that exists the `environment: release` key creates an unprotected environment, and
+the only gates are the tag rule and the on-`main` check. The workflow has been parsed as YAML and its shell steps checked with
+`bash -n`; it has not run.
+
+## Regenerating the splash and icons
+
+`cd mobile && npm run assets` (needs the repo root's `npm ci` and `npx playwright install chromium webkit`). Run it whenever
+`public/index.html` or `public/app.css` changes the header or footer, then commit the images. The script renders the real files; the
+only thing it adds is the font the phone resolves (D4 in the register).
+
+## What the other pieces must do for the apps to work
+
+These are not in `mobile/`'s hands; each is also in the report that came with this change.
+
+- **`public/_headers` does not need its CSP changed.** The CSP there is an HTTP header on the Worker's responses. The app's pages
+  come off the device with no headers, so that policy never applies to them and cannot block the app. The app enforces its own, the
+  site's policy with the app's origins named, as a `<meta>` written by `after-copy.mjs` (see `csp()` in `scripts/config.cjs`).
+  Calls from the app to the Worker are governed by that meta (`connect-src`) and by the Worker's CORS, not by `_headers`.
+- **`public/_headers` should gain** a rule so Apple gets JSON from the extension-less file (the asset server types by extension):
+  ```
+  /.well-known/apple-app-site-association
+    Content-Type: application/json
+  ```
+  Check with `curl -sI https://<origin>/.well-known/apple-app-site-association` after deploying.
+- **`wrangler.jsonc` needs nothing for `/.well-known/*`**: Wrangler's asset upload ignores only `.assetsignore`, `_headers` and
+  `_redirects` (checked in `wrangler-dist`), so `public/.well-known/` is uploaded, and a real file wins over
+  `not_found_handling: single-page-application`. It must not be added to `run_worker_first`.
+- **Photos** (contract §12): the server now sends CORP `cross-origin` only on public photos. The app does not depend on that: signed in, `native.js` fetches EVERY `/media/` image with the bearer token (CORS fetch) and shows a `blob:` URL, which is why the app's CSP has `img-src … blob:` (the site's does not need it). Deviation D21 has the costs; the tests are in `bridge.test.mjs`. The Worker must keep answering CORS preflight for `GET /media/*` with `Authorization` allowed.
+- **Turnstile** (checklist 6): the widget must be allowed on the hostname `localhost` in the Cloudflare dashboard, and may refuse
+  to render when the parent origin is `capacitor://localhost`. Unverified on iOS and with real keys (on the Android emulator, parent `https://localhost`, the widget rendered and returned a token with the test key); the human check on sign-up and login is the first thing to
+  try on a device.
+
+## What cannot be verified yet
+
+| Needs | Cannot be verified without it |
+|---|---|
+| A Mac with Xcode 26 | the shell's layout (bands, keyboard guide, splash overlay); `ASWebAuthenticationSession`; status-bar tap. CI's `ios` job has shown that it compiles and archives (see the top of this page); nothing says whether it looks right except a simulator and then a phone |
+| A person at the emulator | the Custom Tab's own page during sign-in, once they accept Chrome's first-run terms (the return to the app is done; see the top of this page), and "take a photo" with the emulator's camera |
+| An Apple Developer account | signing, the Push Notifications and Associated Domains capabilities, universal links (needs the real team id in the AASA), APNs delivery, TestFlight |
+| A Play Console + Firebase | App Links (needs the Play signing fingerprint in `assetlinks.json`), FCM delivery, the internal track |
+| A real phone of each kind | the pixel diff (checklist 21, 23), the splash seam (D7), haptics, the camera, push taps warm and **cold** (checklist 8, 9), the Keychain surviving a restart and not a reinstall (1, 2), Turnstile (6), GIF memory (19) |
+| The deployed Worker | the real origin, the CSP meta against real requests, CORS from the two app origins, a WebSocket with the subprotocol over the internet |
+
+What **was** exercised, and by what: the JavaScript bridge, by `mobile/test/bridge.test.mjs` (Chromium, fake plugins): the no-op in
+a browser; headers and the origin rewrite; the token in (fake) secure storage and not in `localStorage`; reinstall dropping it;
+`/media/` rewriting; the socket's subprotocol; cold-start deep links from a launch URL and from a push tap, and a foreign URL
+refused; Google sign-in through the shell and the token coming back; the sign-up ticket header; haptics; share; the photo picker
+filling the page's own file input. That proves `native.js` does what it says **given** plugins that behave as documented. It proves
+nothing about the plugins themselves.

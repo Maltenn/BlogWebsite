@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- #1c3f94: the first colour of .ms-header's gradient. The band behind the status bar. -->
+    <color name="ourspace_status_band">#1c3f94</color>
+    <!-- #eef4ff: .os-foot. The band behind the gesture bar. -->
+    <color name="ourspace_home_band">#eef4ff</color>
+    <color name="ourspace_splash">#ffffff</color>
+</resources>

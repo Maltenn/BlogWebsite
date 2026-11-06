@@ -1,0 +1,494 @@
+# The OurSpace apps (mobile/): a Capacitor shell around the unmodified public/ bundle. See docs/mobile/shells.md.
+#
+#   bridge           public/js/core/native.js against a fake Capacitor and a fake API, in Chromium.   (every run)
+#   tabbar           the tab bar's spec against the web bar, at 0 pixels, in both engines.             (every run)
+#   android          a debug APK.                                                                      (every run, no secrets)
+#   ios              an UNSIGNED archive (pod install + xcodebuild).                                   (every run, no secrets)
+#   android-release  a signed AAB and a Play upload.   TAGS ONLY (mobile-v*), in the `release` environment.
+#   ios-release      a signed IPA and a TestFlight upload.   TAGS ONLY (mobile-v*), in the `release` environment.
+#
+# THE RELEASE PATH CANNOT SHIP PLACEHOLDERS. Both release jobs run `npm run check:release` straight after `cap sync` and before
+# anything is built or signed. It fails, naming the exact variable, when OURSPACE_ORIGIN is unset / empty / not https / localhost,
+# when OURSPACE_APP_ID is unset or still com.ourspace.app, when public/.well-known still has its placeholders, or when the synced
+# platform project carries a debug-only setting (webContentsDebuggingEnabled, allowMixedContent, a live-reload server.url).
+# A release run therefore FAILS on a placeholder; it never uploads an app that points at http://localhost:8787.
+#
+# Nothing else fails because a secret is missing: the signed steps simply do not run, and the job summary says so.
+#
+# ONE-TIME SETUP in the repository settings (the workflow cannot do this itself):
+#   Settings > Environments > New environment "release"
+#     - Required reviewers: yes (so a person approves every store upload)
+#     - Deployment branches and tags: "Selected", add the tag rule  mobile-v*
+#     - Move the signing / upload secrets listed below from "Repository secrets" to this environment's secrets, so no other job
+#       (and no workflow_dispatch of some other ref) can read them.
+# Repository variables (Settings > Secrets and variables > Actions > Variables):
+#   OURSPACE_ORIGIN        REQUIRED for a release: the deployed Worker origin, https, e.g. https://ourspace.example
+#   OURSPACE_APP_ID        REQUIRED for a release: the bundle / application id registered with Apple and Google
+#   OURSPACE_VERSION_NAME  marketing version, e.g. 1.0.0                                (default 1.0.0)
+#   IOS_RUNNER             macOS runner label                                           (default macos-15)
+#   XCODE_VERSION          setup-xcode version                                          (default latest-stable)
+# Secrets (environment `release`), all optional:
+#   Android signing  ANDROID_KEYSTORE_BASE64  ANDROID_KEYSTORE_PASSWORD  ANDROID_KEY_ALIAS  ANDROID_KEY_PASSWORD
+#   Android push     GOOGLE_SERVICES_JSON     (the Firebase project's google-services.json, whole file)
+#   Play upload      PLAY_SERVICE_ACCOUNT_JSON
+#   iOS signing      IOS_TEAM_ID  IOS_DIST_CERT_P12_BASE64  IOS_DIST_CERT_PASSWORD  IOS_PROVISIONING_PROFILE_BASE64
+#   TestFlight       APPSTORE_API_KEY_ID  APPSTORE_API_ISSUER_ID  APPSTORE_API_KEY_P8
+#
+# Every `uses:` is pinned to a commit SHA (the tag it was resolved from is in the comment). A tag can be moved; a SHA cannot.
+# To update: resolve the new tag with `git ls-remote --tags https://github.com/<owner>/<repo>`, check the diff, change both.
+#
+# NO JOB HERE READS THE PIXEL PLATES (plates/, `npm run plates:check`), on purpose, so no checkout below sets `lfs: true`:
+#   - the 464 PNGs (74 MB) are in Git LFS; a checkout without `lfs: true` gets ~130-byte pointer files, and the diff then fails
+#     looking like every plate is corrupt. Any future plates job MUST use `actions/checkout` with `lfs: true`.
+#   - they were captured on Windows with its fonts and its Chromium/WebKit builds; a Linux runner renders different glyphs, so the
+#     job would fail on every plate until a Linux baseline exists (a separate, deliberate re-baseline).
+#   - it needs ~11 minutes on a quiet 16-core machine plus both browsers, and every run would pull 74 MB of LFS bandwidth.
+#   See docs/mobile/harness.md. Run plates:check locally before merging anything that touches public/.
+#
+# Self-hosted macOS (IOS_RUNNER): the unsigned `ios` job skips pull requests from forks (their code must never run on your Mac),
+# and ios-release only ever runs for a tag in this repository. The signing step removes its keychain, certificate and profile
+# afterwards, even when it fails.
+
+name: mobile
+
+on:
+  push:
+    branches: [main]
+    tags: ['mobile-v*']
+    paths: ['mobile/**', 'public/**', '.github/workflows/mobile.yml']
+  pull_request:
+    paths: ['mobile/**', 'public/**', '.github/workflows/mobile.yml']
+  workflow_dispatch:
+    inputs:
+      release:
+        description: Sign and upload. Only does anything when this run is on a mobile-v* TAG (choose the tag under "Use workflow from")
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: mobile-${{ github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}      # (never cancel a release half-way through an upload)
+
+env:
+  OURSPACE_ORIGIN: ${{ vars.OURSPACE_ORIGIN }}
+  OURSPACE_APP_ID: ${{ vars.OURSPACE_APP_ID }}
+  OURSPACE_VERSION_NAME: ${{ vars.OURSPACE_VERSION_NAME || '1.0.0' }}
+  OURSPACE_VERSION_CODE: ${{ github.run_number }}
+
+jobs:
+  bridge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            mobile/package-lock.json
+      - name: "Install (repo root for Playwright, mobile for Capacitor)"
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium webkit
+          npm ci --prefix mobile
+      - name: native.js against a fake Capacitor and a fake API
+        run: npm test --prefix mobile
+      # This workflow already runs on every `public/**` change, and test/static.test.mjs is the test that guards
+      # public/'s structure: every relative import resolves, every imported name is really exported, and the
+      # CONVENTIONS.md layering holds (js/core/ imports nothing above it). It caught a real break the day the app-only
+      # modules were added — core/joinphoto.js reaching up into widgets/photos.js — and nothing in CI would have.
+      # NOTE: the rest of the root suite (292 tests) still runs nowhere. That gap is bigger than this workflow.
+      - name: The web bundle's imports and layering (test/static.test.mjs)
+        run: node --test test/static.test.mjs
+      - name: Build inputs are consistent (placeholders are only notes here; the release jobs make them failures)
+        run: npm run check --prefix mobile
+
+  # The native tab bar's metrics are MEASURED from the page's own .ms-tabs (public/js/core/tabspec.js) and the shells
+  # draw what that measurement says. This rebuilds the bar from nothing but the measurement and requires a 0-pixel
+  # difference, in both engines (chromium = the Android WebView, webkit = iOS WKWebView) at every plate viewport.
+  # Unlike `plates:check` it compares two renders made in the SAME browser on the SAME machine, so it does not need a
+  # baseline from another machine. See docs/mobile/harness.md.
+  # Its own job, so that a pixel difference is a red check without stopping android and ios from building. The release
+  # jobs do need it.
+  tabbar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: package-lock.json
+      - name: Install
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium webkit
+      - name: The tab bar's spec describes the web bar exactly (0 pixels, chromium + webkit)
+        run: npm run tabbar:check -- --keep
+      - name: Keep the PNGs and specs when the check fails
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: tabbar-diffs
+          path: .tabbar-work/
+          include-hidden-files: true
+
+  android:
+    runs-on: ubuntu-latest
+    needs: bridge
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4.9.1
+        with:
+          distribution: temurin
+          java-version: 21                       # Capacitor 8's Android build targets Java 21
+      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # v3.2.2
+        with:
+          packages: platform-tools               # (the default list also asks for `tools`, which the SDK repository has dropped)
+      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4.4.3
+
+      - name: Copy the web bundle into the Android project
+        working-directory: mobile
+        run: |
+          npm ci
+          npx cap sync android
+
+      - name: Debug APK
+        working-directory: mobile/android
+        run: |
+          chmod +x gradlew
+          ./gradlew --no-daemon assembleDebug
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ourspace-android-debug
+          path: mobile/android/app/build/outputs/apk/debug/*.apk
+          if-no-files-found: error
+
+  ios:
+    # Capacitor 8 needs Xcode 26, which macOS 14 cannot run: macos-15 (set the IOS_RUNNER variable to use another).
+    # On a self-hosted runner a fork's pull request must not run at all.
+    if: ${{ vars.IOS_RUNNER == '' || github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository }}
+    runs-on: ${{ vars.IOS_RUNNER || 'macos-15' }}
+    needs: bridge
+    env:
+      APP_ID: ${{ vars.OURSPACE_APP_ID || 'com.ourspace.app' }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+      - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
+        with:
+          xcode-version: ${{ vars.XCODE_VERSION || 'latest-stable' }}
+      - name: Toolchain
+        run: |
+          xcodebuild -version
+          pod --version
+          major=$(xcodebuild -version | awk 'NR==1{split($2,v,"."); print v[1]}')
+          if [ "$major" -lt 26 ]; then echo "::error::Capacitor 8 needs Xcode 26 or newer, this runner has Xcode $major. Set IOS_RUNNER / XCODE_VERSION."; exit 1; fi
+
+      - name: Copy the web bundle into the iOS project, pod install
+        working-directory: mobile
+        run: |
+          npm ci
+          npx cap sync ios
+          cd ios/App && pod install
+
+      - name: Unsigned archive
+        working-directory: mobile/ios/App
+        run: |
+          xcodebuild archive \
+            -workspace App.xcworkspace -scheme App -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/OurSpace.xcarchive" \
+            PRODUCT_BUNDLE_IDENTIFIER="$APP_ID" \
+            MARKETING_VERSION="$OURSPACE_VERSION_NAME" CURRENT_PROJECT_VERSION="$OURSPACE_VERSION_CODE" \
+            CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" -quiet
+          cd "$RUNNER_TEMP" && zip -qry "$GITHUB_WORKSPACE/OurSpace-unsigned.xcarchive.zip" OurSpace.xcarchive
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ourspace-ios-unsigned-archive
+          path: OurSpace-unsigned.xcarchive.zip
+          if-no-files-found: error
+
+      # Informational, never fails the build. Apple rejects an upload (ITMS-91053) when a binary uses a "required reason" API
+      # that no privacy manifest declares, and each dynamic library's own bundle must carry the manifest that covers it. So this
+      # lists what the built app and its frameworks reference and warns when a binary that references one has no manifest in its
+      # own bundle. A plugin upgrade that starts using one shows up here, not at upload. It does not read what a manifest says.
+      - name: Required-reason API references (informational)
+        continue-on-error: true
+        run: |
+          app="$RUNNER_TEMP/OurSpace.xcarchive/Products/Applications/App.app"
+          names='NSUserDefaults|systemUptime|activeInputModes|NSFileCreationDate|NSFileModificationDate|fileModificationDate|NSURLContentModificationDateKey|NSURLCreationDateKey|NSURLVolumeAvailableCapacity[A-Za-z]*Key|NSURLVolumeTotalCapacityKey|NSFileSystemFreeSize|NSFileSystemSize'
+          calls='stat|lstat|fstat|fstatat|getattrlist|getattrlistbulk|fgetattrlist|getattrlistat|statfs|statvfs|fstatfs|fstatvfs|mach_absolute_time'
+          found=0
+          for f in "$app/App" "$app"/Frameworks/*.framework/*; do
+            [ -f "$f" ] && file -b "$f" | grep -q 'Mach-O' || continue
+            hits=$( { LC_ALL=C grep -aoE "$names" "$f"; nm -u "$f" 2>/dev/null | grep -E "(^|[[:space:]])_($calls)\$" | awk '{print $NF}'; } | sort -u | tr '\n' ' ')
+            [ -n "$hits" ] || continue
+            found=1
+            if [ "$f" = "$app/App" ]; then manifest="$app/PrivacyInfo.xcprivacy"; else manifest=$(find "$(dirname "$f")" -name PrivacyInfo.xcprivacy | head -1); fi
+            if [ -f "$manifest" ]; then echo "$(basename "$f") references: $hits(manifest: ${manifest#"$app"/})"
+            else echo "::warning::$(basename "$f") references: $hits(no privacy manifest in its bundle)"; fi
+          done
+          [ "$found" = 0 ] && echo "no required-reason API references found in the app or its frameworks"
+          # TEMPORARY: why the old version of this step missed IONCameraLib. Comes out in the next commit.
+          ion="$app/Frameworks/IONCameraLib.framework/IONCameraLib"
+          echo "diag: strings -a lines=$(strings -a "$ion" | wc -l) hits=$(strings -a "$ion" | grep -c NSURLCreationDateKey); nm -u hits=$(nm -u "$ion" | grep -c NSURLCreationDateKey) sample=[$(nm -u "$ion" | head -2 | tr '\n' '|')]; which strings=$(command -v strings)"
+          exit 0
+
+      - name: Summary
+        run: |
+          {
+            echo "### iOS"
+            echo "- unsigned archive: built (pod install + xcodebuild archive)"
+            echo "- signed IPA / TestFlight: only for a mobile-v* tag, in the release environment (job ios-release)"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  # -------------------------------------------------------------------------------------------------------------------------
+  # Release jobs. They run for a mobile-v* TAG only: a push of the tag, or a manual run chosen ON the tag with "release" ticked.
+  # A manual run on a branch never gets here. `environment: release` is where the required reviewer and the tag rule live.
+  # -------------------------------------------------------------------------------------------------------------------------
+  android-release:
+    if: ${{ startsWith(github.ref, 'refs/tags/mobile-v') && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.release)) }}
+    runs-on: ubuntu-latest
+    needs: [bridge, tabbar, android]
+    environment: release
+    env:
+      HAVE_KEYSTORE: ${{ secrets.ANDROID_KEYSTORE_BASE64 != '' && secrets.ANDROID_KEYSTORE_PASSWORD != '' && secrets.ANDROID_KEY_ALIAS != '' && secrets.ANDROID_KEY_PASSWORD != '' }}
+      HAVE_PLAY: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON != '' }}
+      HAVE_FIREBASE: ${{ secrets.GOOGLE_SERVICES_JSON != '' }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0                          # (to prove the tag is on main)
+      - name: The tagged commit is on main
+        run: |
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main || { echo "::error::$GITHUB_REF_NAME is not on main. A store build is cut from main only."; exit 1; }
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3 # v4.9.1
+        with:
+          distribution: temurin
+          java-version: 21
+      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407 # v3.2.2
+        with:
+          packages: platform-tools               # (the default list also asks for `tools`, which the SDK repository has dropped)
+      - uses: gradle/actions/setup-gradle@ed408507eac070d1f99cc633dbcf757c94c7933a # v4.4.3
+
+      # sync with the RELEASE variables (the workflow-level env), then refuse to go on if anything in the result is a placeholder
+      - name: Copy the web bundle into the Android project
+        working-directory: mobile
+        run: |
+          npm ci
+          npx cap sync android
+      - name: Release preflight (no placeholders, no debug-only settings)
+        working-directory: mobile
+        run: npm run check:release -- --platform android
+
+      - name: Firebase config (push) from a secret
+        if: env.HAVE_FIREBASE == 'true'
+        env:
+          GOOGLE_SERVICES_JSON: ${{ secrets.GOOGLE_SERVICES_JSON }}
+        run: printf '%s' "$GOOGLE_SERVICES_JSON" > mobile/android/app/google-services.json
+
+      - name: Release AAB (signed)
+        if: env.HAVE_KEYSTORE == 'true'
+        working-directory: mobile/android
+        env:
+          KEYSTORE_B64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
+        run: |
+          chmod +x gradlew
+          echo "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/upload.keystore"
+          export ANDROID_KEYSTORE_FILE="$RUNNER_TEMP/upload.keystore"
+          ./gradlew --no-daemon bundleRelease
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: env.HAVE_KEYSTORE == 'true'
+        with:
+          name: ourspace-android-release
+          path: mobile/android/app/build/outputs/bundle/release/*.aab
+          if-no-files-found: error
+
+      - name: Play Console (internal track, as a draft)
+        if: env.HAVE_KEYSTORE == 'true' && env.HAVE_PLAY == 'true'
+        uses: r0adkll/upload-google-play@e738b9dd8f2476ea806d921b64aacd24f34515a5 # v1.1.5
+        with:
+          serviceAccountJsonPlainText: ${{ secrets.PLAY_SERVICE_ACCOUNT_JSON }}
+          packageName: ${{ vars.OURSPACE_APP_ID }}
+          releaseFiles: mobile/android/app/build/outputs/bundle/release/*.aab
+          track: internal
+          status: draft
+
+      - name: Remove signing material
+        if: always()
+        run: rm -f "$RUNNER_TEMP/upload.keystore" mobile/android/app/google-services.json
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### Android release (origin ${OURSPACE_ORIGIN:-NOT SET}, app id ${OURSPACE_APP_ID:-NOT SET})"
+            if [ "$HAVE_KEYSTORE" != "true" ]; then echo "- release AAB: SKIPPED, ANDROID_KEYSTORE_* secrets are not set";
+            else echo "- release AAB: signed"; fi
+            if [ "$HAVE_PLAY" != "true" ]; then echo "- Play upload: SKIPPED, PLAY_SERVICE_ACCOUNT_JSON is not set"; fi
+            if [ "$HAVE_FIREBASE" != "true" ]; then echo "- push: GOOGLE_SERVICES_JSON is not set, so this build cannot receive push"; fi
+          } >> "$GITHUB_STEP_SUMMARY"
+
+  ios-release:
+    if: ${{ startsWith(github.ref, 'refs/tags/mobile-v') && (github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && inputs.release)) }}
+    runs-on: ${{ vars.IOS_RUNNER || 'macos-15' }}
+    needs: [bridge, tabbar, ios]
+    environment: release
+    env:
+      HAVE_SIGNING: ${{ secrets.IOS_TEAM_ID != '' && secrets.IOS_DIST_CERT_P12_BASE64 != '' && secrets.IOS_DIST_CERT_PASSWORD != '' && secrets.IOS_PROVISIONING_PROFILE_BASE64 != '' }}
+      HAVE_TESTFLIGHT: ${{ secrets.APPSTORE_API_KEY_ID != '' && secrets.APPSTORE_API_ISSUER_ID != '' && secrets.APPSTORE_API_KEY_P8 != '' }}
+      APP_ID: ${{ vars.OURSPACE_APP_ID }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          fetch-depth: 0                          # (to prove the tag is on main)
+      - name: The tagged commit is on main
+        run: |
+          git fetch --no-tags origin main
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main || { echo "::error::$GITHUB_REF_NAME is not on main. A store build is cut from main only."; exit 1; }
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+      - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
+        with:
+          xcode-version: ${{ vars.XCODE_VERSION || 'latest-stable' }}
+      - name: Toolchain
+        run: |
+          xcodebuild -version
+          pod --version
+          major=$(xcodebuild -version | awk 'NR==1{split($2,v,"."); print v[1]}')
+          if [ "$major" -lt 26 ]; then echo "::error::Capacitor 8 needs Xcode 26 or newer, this runner has Xcode $major. Set IOS_RUNNER / XCODE_VERSION."; exit 1; fi
+
+      # sync with the RELEASE variables (the workflow-level env), then refuse to go on if anything in the result is a placeholder
+      - name: Copy the web bundle into the iOS project, pod install
+        working-directory: mobile
+        run: |
+          npm ci
+          npx cap sync ios
+          cd ios/App && pod install
+      - name: Release preflight (no placeholders, no debug-only settings, privacy manifest present)
+        working-directory: mobile
+        env:
+          IOS_TEAM_ID: ${{ secrets.IOS_TEAM_ID }}          # (when set, the .well-known file must name <team>.<app id>)
+        run: npm run check:release -- --platform ios
+
+      - name: Signed IPA
+        if: env.HAVE_SIGNING == 'true'
+        working-directory: mobile/ios/App
+        env:
+          IOS_TEAM_ID: ${{ secrets.IOS_TEAM_ID }}
+          CERT_P12_B64: ${{ secrets.IOS_DIST_CERT_P12_BASE64 }}
+          CERT_PASSWORD: ${{ secrets.IOS_DIST_CERT_PASSWORD }}
+          PROFILE_B64: ${{ secrets.IOS_PROVISIONING_PROFILE_BASE64 }}
+        run: |
+          set -euo pipefail
+          KEYCHAIN="$RUNNER_TEMP/build.keychain-db"; KEYCHAIN_PW="$(uuidgen)"
+          # remember the user's keychain search list, so the cleanup step can put it back (matters on a self-hosted Mac)
+          security list-keychains -d user | sed 's/^[[:space:]]*"//; s/"[[:space:]]*$//' > "$RUNNER_TEMP/keychains.orig"
+          security create-keychain -p "$KEYCHAIN_PW" "$KEYCHAIN"
+          security set-keychain-settings -lut 21600 "$KEYCHAIN"
+          security unlock-keychain -p "$KEYCHAIN_PW" "$KEYCHAIN"
+          echo "$CERT_P12_B64" | base64 -d > "$RUNNER_TEMP/dist.p12"
+          security import "$RUNNER_TEMP/dist.p12" -P "$CERT_PASSWORD" -A -t cert -f pkcs12 -k "$KEYCHAIN"
+          security set-key-partition-list -S apple-tool:,apple: -k "$KEYCHAIN_PW" "$KEYCHAIN"
+          security list-keychains -d user -s "$KEYCHAIN" login.keychain-db
+          mkdir -p "$HOME/Library/MobileDevice/Provisioning Profiles"
+          echo "$PROFILE_B64" | base64 -d > "$RUNNER_TEMP/app.mobileprovision"
+          PROFILE_NAME=$(security cms -D -i "$RUNNER_TEMP/app.mobileprovision" | plutil -extract Name raw -)
+          PROFILE_UUID=$(security cms -D -i "$RUNNER_TEMP/app.mobileprovision" | plutil -extract UUID raw -)
+          echo "PROFILE_UUID=$PROFILE_UUID" >> "$GITHUB_ENV"                # (so the cleanup step can delete the installed copy)
+          cp "$RUNNER_TEMP/app.mobileprovision" "$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_UUID.mobileprovision"
+
+          xcodebuild archive \
+            -workspace App.xcworkspace -scheme App -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/Signed.xcarchive" \
+            PRODUCT_BUNDLE_IDENTIFIER="$APP_ID" \
+            MARKETING_VERSION="$OURSPACE_VERSION_NAME" CURRENT_PROJECT_VERSION="$OURSPACE_VERSION_CODE" \
+            CODE_SIGN_STYLE=Manual DEVELOPMENT_TEAM="$IOS_TEAM_ID" \
+            CODE_SIGN_IDENTITY="Apple Distribution" PROVISIONING_PROFILE_SPECIFIER="$PROFILE_NAME" -quiet
+
+          cat > "$RUNNER_TEMP/export.plist" <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>method</key><string>app-store-connect</string>
+            <key>teamID</key><string>$IOS_TEAM_ID</string>
+            <key>signingStyle</key><string>manual</string>
+            <key>provisioningProfiles</key><dict><key>$APP_ID</key><string>$PROFILE_NAME</string></dict>
+          </dict></plist>
+          PLIST
+          xcodebuild -exportArchive -archivePath "$RUNNER_TEMP/Signed.xcarchive" \
+            -exportOptionsPlist "$RUNNER_TEMP/export.plist" -exportPath "$RUNNER_TEMP/export"
+          cp "$RUNNER_TEMP/export/"*.ipa "$GITHUB_WORKSPACE/OurSpace.ipa"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        if: env.HAVE_SIGNING == 'true'
+        with:
+          name: ourspace-ios-ipa
+          path: OurSpace.ipa
+          if-no-files-found: error
+
+      - name: TestFlight
+        if: env.HAVE_SIGNING == 'true' && env.HAVE_TESTFLIGHT == 'true'
+        env:
+          KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
+          ISSUER_ID: ${{ secrets.APPSTORE_API_ISSUER_ID }}
+          KEY_P8: ${{ secrets.APPSTORE_API_KEY_P8 }}
+        run: |
+          mkdir -p "$HOME/.appstoreconnect/private_keys"
+          printf '%s' "$KEY_P8" > "$HOME/.appstoreconnect/private_keys/AuthKey_${KEY_ID}.p8"
+          xcrun altool --upload-app -f OurSpace.ipa -t ios --apiKey "$KEY_ID" --apiIssuer "$ISSUER_ID"
+
+      # Runs even when a step above failed or the job was cancelled. On a GitHub-hosted runner the VM is thrown away anyway; on a
+      # self-hosted Mac (IOS_RUNNER) this is what stops the distribution certificate, the profile and the App Store Connect key
+      # outliving the job.
+      - name: Remove signing material
+        if: always()
+        env:
+          KEY_ID: ${{ secrets.APPSTORE_API_KEY_ID }}
+        run: |
+          security delete-keychain "$RUNNER_TEMP/build.keychain-db" 2>/dev/null || true
+          if [ -s "$RUNNER_TEMP/keychains.orig" ]; then
+            args=(); while IFS= read -r k; do [ -n "$k" ] && args+=("$k"); done < "$RUNNER_TEMP/keychains.orig"
+            if [ "${#args[@]}" -gt 0 ]; then security list-keychains -d user -s "${args[@]}" || true; fi
+          fi
+          rm -f "$RUNNER_TEMP/dist.p12" "$RUNNER_TEMP/app.mobileprovision" "$RUNNER_TEMP/export.plist" "$RUNNER_TEMP/keychains.orig"
+          if [ -n "${PROFILE_UUID:-}" ]; then rm -f "$HOME/Library/MobileDevice/Provisioning Profiles/$PROFILE_UUID.mobileprovision"; fi
+          if [ -n "${KEY_ID:-}" ]; then rm -f "$HOME/.appstoreconnect/private_keys/AuthKey_${KEY_ID}.p8"; fi
+          rm -rf "$RUNNER_TEMP/Signed.xcarchive" "$RUNNER_TEMP/export" "$GITHUB_WORKSPACE/OurSpace.ipa"
+          exit 0
+
+      - name: Summary
+        if: always()
+        run: |
+          {
+            echo "### iOS release (origin ${OURSPACE_ORIGIN:-NOT SET}, app id ${OURSPACE_APP_ID:-NOT SET})"
+            if [ "$HAVE_SIGNING" != "true" ]; then echo "- signed IPA: SKIPPED, IOS_TEAM_ID / IOS_DIST_CERT_* / IOS_PROVISIONING_PROFILE_BASE64 are not all set";
+            elif [ "$HAVE_TESTFLIGHT" != "true" ]; then echo "- signed IPA: built; TestFlight upload SKIPPED, APPSTORE_API_* secrets are not set";
+            else echo "- signed IPA: built and uploaded to TestFlight"; fi
+          } >> "$GITHUB_STEP_SUMMARY"
