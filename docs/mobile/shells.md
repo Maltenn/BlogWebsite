@@ -19,10 +19,10 @@ against Capacitor 8.6.0, the hand-edited `project.pbxproj` builds, and the Podfi
 never been launched, so nothing here shows how it looks or behaves on iOS: the layout, the tab bar's Core Text drawing, sign-in, the
 Keychain and push are all untested. An unsigned archive cannot be installed on a phone; that needs an Apple Developer account.
 
-**Open from that run: a required-reason API no manifest declares.** `IONCameraLib` (pulled in by `@capacitor/camera`) imports
-`NSURLCreationDateKey`, a file-timestamp API, and the built framework has no privacy manifest. The job's informational step printed
-"no required-reason API references found", which is wrong, so do not rely on it yet; its cause is not known. See
-[store.md](store.md#the-ios-privacy-manifest) before the first upload.
+**Found by that run: a privacy manifest CocoaPods was dropping.** `IONCameraLib` (pulled in by `@capacitor/camera`) uses a file-timestamp
+API, and its podspec leaves out the manifest that declares it. `mobile/ios/App/IONCameraLib.podspec.json` puts it back, and CI's archive
+at `08650a0` (2026-11-07) has it at the framework's root, byte-identical to the library's own. **Apple's validation is still unproven:**
+nothing has been uploaded, so App Store Connect has not seen it. See [store.md](store.md#the-ios-privacy-manifest).
 
 **CI, 2026-11-05: what the first runs found.** Run 5 of `mobile.yml` (commit `8fd5419`) was the first fully green one: `bridge`,
 `tabbar`, `android` and `ios`. Neither thing that stood in the way was in the apps' own code:
@@ -189,6 +189,7 @@ UIScrollView of UIControls drawn with Core Text from the measured spec),
 hand. What it could not do here, and CI/a Mac must: `pod install` (CocoaPods is not installed, so `ios/App/Pods/` and
 `Podfile.lock` do not exist) and `xcodebuild`. Hand edits to the generated project: `CODE_SIGN_ENTITLEMENTS` in both build
 configurations of `project.pbxproj`, the privacy manifest's entry in the Resources build phase, and the Debug-only ATS build phase, and the files above.
+The Podfile also has one line of its own, which `cap sync` leaves alone: the `IONCameraLib` override ([store.md](store.md#the-ios-privacy-manifest)).
 The `project.pbxproj` edits have still never been opened in Xcode's editor, but `xcodebuild` builds them, and the privacy manifest
 does reach the built app (CI's archive, 2026-11-05). No new source file had to be added to the Xcode project: the Swift
 types live in `SceneDelegate.swift` (already a target member), and the images are in an existing asset catalog. If you split them

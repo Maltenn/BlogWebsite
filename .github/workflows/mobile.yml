@@ -243,9 +243,6 @@ jobs:
             else echo "::warning::$(basename "$f") references: $hits(no privacy manifest in its bundle)"; fi
           done
           [ "$found" = 0 ] && echo "no required-reason API references found in the app or its frameworks"
-          # TEMPORARY: why the old version of this step missed IONCameraLib. Comes out in the next commit.
-          ion="$app/Frameworks/IONCameraLib.framework/IONCameraLib"
-          echo "diag: strings -a lines=$(strings -a "$ion" | wc -l) hits=$(strings -a "$ion" | grep -c NSURLCreationDateKey); nm -u hits=$(nm -u "$ion" | grep -c NSURLCreationDateKey) sample=[$(nm -u "$ion" | head -2 | tr '\n' '|')]; which strings=$(command -v strings)"
           exit 0
 
       - name: Summary

@@ -25,26 +25,36 @@ rejects the upload (ITMS-91053) before any human sees it. It was written from th
 **Tracking: none.** `NSPrivacyTracking` false, `NSPrivacyTrackingDomains` empty. There is no advertising SDK, no analytics SDK
 and no cross-app identifier anywhere in `public/`, `mobile/` or `src/`.
 
-**Required-reason APIs: none declared** (`NSPrivacyAccessedAPITypes` is an empty array). The five categories Apple lists are
+**Required-reason APIs: none declared in the app's manifest** (`NSPrivacyAccessedAPITypes` is an empty array). The five categories Apple lists are
 `UserDefaults`, file timestamps, system boot time, disk space and active keyboards. I searched for every API in all five categories in:
 the app's own Swift (`AppDelegate.swift`, `SceneDelegate.swift`), `@capacitor/ios` 8.6.0 core and CapacitorCordova, and the iOS Swift of the
 ten plugins in `mobile/package.json`. There are no hits. What does appear and is *not* on the list: `FileManager.fileExists`,
 `URLResourceKey.fileSizeKey` (`WebViewAssetHandler.swift`), `task_info` for memory (`@capacitor/device`), `sysctlbyname("hw.machine")`.
 `@capacitor/ios` and `CapacitorCordova` ship their own manifests, and both are empty, which agrees. The red-team report (R4) expected
-`UserDefaults` CA92.1, `FileTimestamp` C617.1 and `DiskSpace` E174.1; none of those is used by this dependency set (older Capacitor
-versions used `UserDefaults`; 8.6.0 does not), and declaring an API the binary never calls is an inaccurate manifest too.
-**Not read here:** the source of the two CocoaPods dependencies that are not on disk without `pod install`, `KeychainSwift` (its source
-uses only `SecItem*`) and `IONCameraLib`.
+`UserDefaults` CA92.1, `FileTimestamp` C617.1 and `DiskSpace` E174.1. Neither `UserDefaults` nor disk space is used by this dependency
+set (older Capacitor versions used `UserDefaults`; 8.6.0 does not), and declaring an API the binary never calls is an inaccurate
+manifest too. File timestamps are used by one dependency, `IONCameraLib`, which is covered below.
 
-**Open: `IONCameraLib` is not covered.** The first CI build (2026-11-05, `IONCameraLib` 2.0.x) contradicts what was assumed here: the
-built framework imports `NSURLCreationDateKey`, a file-timestamp API, and it contains no privacy manifest, despite its README saying it
-ships one. So the empty list above may not survive the first upload (ITMS-91053). Before that upload, find out what the library uses
-it for, then either add the matching `NSPrivacyAccessedAPICategoryFileTimestamp` reason to the app's manifest or get a version that
-ships its own. Do not guess the reason code.
+**`IONCameraLib` uses a file-timestamp API, and its own manifest declares it.** `URL.metadata` in its `URL+Transformations.swift` reads
+`URLResourceKey.creationDateKey`, which the built framework imports as `NSURLCreationDateKey`. Its repository has a manifest declaring
+that (`NSPrivacyAccessedAPICategoryFileTimestamp`, reasons `C617.1` and `3B52.1`), but its podspec leaves the file out, at the 2.0.0 tag
+and on `main` as of 2026-11-06, so a CocoaPods build loses it. The app's manifest is the wrong place to make up for that. Apple says
+"the bundle that includes the executable or dynamic library needs to include a privacy manifest file that reports the API", and this
+is a dynamic framework. So `mobile/ios/App/IONCameraLib.podspec.json` is the published 2.0.0 podspec with that file added to
+`resources`, and the Podfile points at it. Delete both once a release of the library ships the manifest. If the camera plugin ever
+requires a different major or minor version, `pod install` stops with an error rather than losing the manifest quietly.
 
-The `ios` CI job has a step that is meant to print any required-reason symbol in the built app and frameworks, but on that build it
-printed "no required-reason API references found", which is wrong: the symbol is in the file. The cause is not known. Until that is
-fixed, check the archive by searching the binaries for the same names, and do it again after every plugin upgrade.
+CI's archive at `08650a0` (2026-11-07) has `IONCameraLib.framework/PrivacyInfo.xcprivacy`, at the framework's root as Apple asks, and
+it is byte-identical to the file in the library's 2.0.0 tag. The same build found no other binary referencing an API on Apple's list.
+
+**Not proven:** nothing has been uploaded, so App Store Connect has never validated this build. What is shown is that the file is
+where Apple's documentation says it goes. ITMS-91053 could still appear at the first upload, and only that upload settles it.
+
+**The `ios` CI job checks this on every build.** Its required-reason step lists what each built binary references from Apple's list, and
+warns when one has no privacy manifest in its own bundle, so a plugin upgrade that starts using one shows up there, not at upload.
+It does not read what a manifest says, so after a plugin upgrade check the reasons by hand. The step's first version wrongly printed
+"no required-reason API references found": `strings -a` did not show this symbol, although `nm -u` did, and the step's `nm` pattern
+expected a leading space that `nm -u` does not print, so that half could never match.
 
 **Collected data: all "linked to the user", all for App Functionality, none for tracking.** (Fraud prevention and security count as App
 Functionality in Apple's definitions.) Each line is the code it was inferred from:
