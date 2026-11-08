@@ -1,6 +1,6 @@
 {
  "schema": 1,
- "generatedAt": "2026-11-05T14:47:59.237Z",
+ "generatedAt": "2026-11-07T23:38:28.000Z",
  "host": {
   "platform": "win32",
   "release": "10.0.26200",
@@ -75,7 +75,7 @@
   "dmName": "xX_glitterkat_Xx",
   "sign": "libra"
  },
- "clientRoutes": 37,
+ "clientRoutes": 39,
  "routes": {
   "home": {
    "path": "/",
@@ -319,6 +319,20 @@
     "out",
     "in"
    ]
+  },
+  "terms": {
+   "path": "/terms",
+   "states": [
+    "out",
+    "in"
+   ]
+  },
+  "privacy": {
+   "path": "/privacy",
+   "states": [
+    "out",
+    "in"
+   ]
   }
  },
  "skipped": [],
@@ -326,27 +340,27 @@
   "checked": true,
   "ok": true,
   "runs": 2,
-  "captures": 64,
+  "captures": 56,
   "perEngine": {
    "chromium": {
-    "captures": 32,
-    "identical": 32,
+    "captures": 28,
+    "identical": 28,
     "differing": 0,
     "differingPixels": 0
    },
    "webkit": {
-    "captures": 32,
-    "identical": 32,
+    "captures": 28,
+    "identical": 28,
     "differing": 0,
     "differingPixels": 0
    }
   },
   "flaky": [],
-  "note": "a slice run: a slice run: a slice run: "
+  "note": "a slice run: a slice run: a slice run: a slice run: "
  },
  "totals": {
-  "count": 464,
-  "bytes": 75310301
+  "count": 496,
+  "bytes": 90690777
  },
  "plates": {
   "chromium/1280x900/admin--admin": {
@@ -360,8 +374,8 @@
    "file": "chromium/1280x900/admin--admin.png",
    "width": 1280,
    "height": 2518,
-   "bytes": 402241,
-   "sha256": "656825e05e99f4b50e5021042e7dab79775060a87284a778d3b8125a166f854d"
+   "bytes": 403505,
+   "sha256": "fe8529be8263959cd9eec2801629e809f04b1d5e83c68b2d4071b23727c0fdea"
   },
   "chromium/1280x900/boards--in": {
    "engine": "chromium",
@@ -783,6 +797,34 @@
    "bytes": 71980,
    "sha256": "cf4362aa7b325daa5eab11eb1089394ae4b96e8d005fec4ad51f35c6dd80fda7"
   },
+  "chromium/1280x900/privacy--in": {
+   "engine": "chromium",
+   "viewport": "1280x900",
+   "route": "privacy",
+   "state": "in",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "chromium/1280x900/privacy--in.png",
+   "width": 1280,
+   "height": 3414,
+   "bytes": 761945,
+   "sha256": "763cc01a24bafbb9e153dd92053fe6634fe9ca928413290c81c54174d96f1ac2"
+  },
+  "chromium/1280x900/privacy--out": {
+   "engine": "chromium",
+   "viewport": "1280x900",
+   "route": "privacy",
+   "state": "out",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "chromium/1280x900/privacy--out.png",
+   "width": 1280,
+   "height": 3414,
+   "bytes": 750815,
+   "sha256": "9c119b424778efa5aa6b788253b81d46f524799da0b1f00b147032d68b7f5d68"
+  },
   "chromium/1280x900/profile--in": {
    "engine": "chromium",
    "viewport": "1280x900",
@@ -1073,9 +1115,9 @@
    "finalPath": "/rules",
    "file": "chromium/1280x900/rules--in.png",
    "width": 1280,
-   "height": 987,
-   "bytes": 201010,
-   "sha256": "5f2b4b004cfe786f4fffbe23854a049aa089c1c530b86c43dd702c7bec59ea23"
+   "height": 1375,
+   "bytes": 258893,
+   "sha256": "641c124848387ab99946f060498abf0257d22f85df0c79d9bcf166dde703297e"
   },
   "chromium/1280x900/rules--out": {
    "engine": "chromium",
@@ -1087,9 +1129,9 @@
    "finalPath": "/rules",
    "file": "chromium/1280x900/rules--out.png",
    "width": 1280,
-   "height": 987,
-   "bytes": 190649,
-   "sha256": "4cbc5438f50aafc2c7d4d3d7389693409e581fd9eae200101f8c41a034bdcadb"
+   "height": 1375,
+   "bytes": 249950,
+   "sha256": "168ae2e035a0c3aefae56394a2cccc97894afc18976447aa1c46d4122a2d5c36"
   },
   "chromium/1280x900/settings--in": {
    "engine": "chromium",
@@ -1133,6 +1175,34 @@
    "bytes": 108576,
    "sha256": "76c0ae88b15e1147c36e96cc4c2c1a4c742b91f38df54a23cae8a4cf09651880"
   },
+  "chromium/1280x900/terms--in": {
+   "engine": "chromium",
+   "viewport": "1280x900",
+   "route": "terms",
+   "state": "in",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "chromium/1280x900/terms--in.png",
+   "width": 1280,
+   "height": 1820,
+   "bytes": 381109,
+   "sha256": "b696ea9747bebcdf5d7ed4a60a3b6d320f8c64ca5ad1ee9f97b92f5d913a3916"
+  },
+  "chromium/1280x900/terms--out": {
+   "engine": "chromium",
+   "viewport": "1280x900",
+   "route": "terms",
+   "state": "out",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "chromium/1280x900/terms--out.png",
+   "width": 1280,
+   "height": 1820,
+   "bytes": 371884,
+   "sha256": "707eb85932352d617aeb44ab2f6acdfb534ba4e8433906838a19b0a09165aaae"
+  },
   "chromium/1280x900/verify--in": {
    "engine": "chromium",
    "viewport": "1280x900",
@@ -1172,8 +1242,8 @@
    "file": "chromium/390x844/admin--admin.png",
    "width": 390,
    "height": 4000,
-   "bytes": 339169,
-   "sha256": "8622c15f44d95e9df649b9a57e626c9b153114964983f3d9693c88e196ed63f8"
+   "bytes": 339842,
+   "sha256": "66e2df012e1fb1aca3211f05638e7e66d8870c23746e3a101cfc9d46fb1d7331"
   },
   "chromium/390x844/boards--in": {
    "engine": "chromium",
@@ -1595,6 +1665,34 @@
    "bytes": 50611,
    "sha256": "871665a574ae10d873ac264253c08c847bf03e0f76094557713aa52d4dbdfcfd"
   },
+  "chromium/390x844/privacy--in": {
+   "engine": "chromium",
+   "viewport": "390x844",
+   "route": "privacy",
+   "state": "in",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "chromium/390x844/privacy--in.png",
+   "width": 390,
+   "height": 4000,
+   "bytes": 520781,
+   "sha256": "806a5e24c7f9517c43b7f4c58d860bdcabf8f651093870ae47bdf7d732ed7b09"
+  },
+  "chromium/390x844/privacy--out": {
+   "engine": "chromium",
+   "viewport": "390x844",
+   "route": "privacy",
+   "state": "out",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "chromium/390x844/privacy--out.png",
+   "width": 390,
+   "height": 4000,
+   "bytes": 519451,
+   "sha256": "be6a936dfb0417c6f8159b01f155ad6e863138d401965b2075dc2ae8f3184a26"
+  },
   "chromium/390x844/profile--in": {
    "engine": "chromium",
    "viewport": "390x844",
@@ -1885,9 +1983,9 @@
    "finalPath": "/rules",
    "file": "chromium/390x844/rules--in.png",
    "width": 390,
-   "height": 1387,
-   "bytes": 171762,
-   "sha256": "78afe0e7b8c48e7cd7f319311f86d44c462b50e45eb8727d3dc8ff4953375c06"
+   "height": 1896,
+   "bytes": 227214,
+   "sha256": "ade3d119af7b61407393fbfc4c858de35168831fae29d10b814f3e9431aa43a4"
   },
   "chromium/390x844/rules--out": {
    "engine": "chromium",
@@ -1899,9 +1997,9 @@
    "finalPath": "/rules",
    "file": "chromium/390x844/rules--out.png",
    "width": 390,
-   "height": 1379,
-   "bytes": 166482,
-   "sha256": "367d317b61800cde8cdb3c148fe6ad8fad7dac4486d37af38e63a1fc9be543be"
+   "height": 1888,
+   "bytes": 222586,
+   "sha256": "52ab9f4f428c99c4079befb266ae1f38e610eaf4d9fc330ee91befb9fec9531d"
   },
   "chromium/390x844/settings--in": {
    "engine": "chromium",
@@ -1945,6 +2043,34 @@
    "bytes": 82643,
    "sha256": "57a437d69dbb100daa7d993d9a297933025cd8ac0c914a6b9fbba071cb0e9f67"
   },
+  "chromium/390x844/terms--in": {
+   "engine": "chromium",
+   "viewport": "390x844",
+   "route": "terms",
+   "state": "in",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "chromium/390x844/terms--in.png",
+   "width": 390,
+   "height": 2825,
+   "bytes": 348076,
+   "sha256": "04fca72ec640f44e365ef5c4151d81f3b22f09038fa277e723663b207dbdabda"
+  },
+  "chromium/390x844/terms--out": {
+   "engine": "chromium",
+   "viewport": "390x844",
+   "route": "terms",
+   "state": "out",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "chromium/390x844/terms--out.png",
+   "width": 390,
+   "height": 2817,
+   "bytes": 345342,
+   "sha256": "8483ce7022b061d07c6b9965b1415e96fa320e0dfe0fd8e3b78c39b6e7621f27"
+  },
   "chromium/390x844/verify--in": {
    "engine": "chromium",
    "viewport": "390x844",
@@ -1983,9 +2109,9 @@
    "finalPath": "/admin",
    "file": "chromium/430x932/admin--admin.png",
    "width": 430,
-   "height": 3663,
-   "bytes": 369300,
-   "sha256": "114e1669c57640366e75d86a26ac69dd0ed9f3a91bf982398817f96ce4cc3a57"
+   "height": 3701,
+   "bytes": 370715,
+   "sha256": "dfdd8cbf6f3e5762d60c1a50f4eed304f594af18af13f743bdc9dfebb707ac51"
   },
   "chromium/430x932/boards--in": {
    "engine": "chromium",
@@ -2407,6 +2533,34 @@
    "bytes": 54345,
    "sha256": "84bd413bd16ae753290948c95961177acb060f67d1ddbbf25b34894b61ad48f2"
   },
+  "chromium/430x932/privacy--in": {
+   "engine": "chromium",
+   "viewport": "430x932",
+   "route": "privacy",
+   "state": "in",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "chromium/430x932/privacy--in.png",
+   "width": 430,
+   "height": 4000,
+   "bytes": 575628,
+   "sha256": "eb13c77bd5311e6d3f1c3d38ac2615c95f5143590aaf3515527bd219fbab71ce"
+  },
+  "chromium/430x932/privacy--out": {
+   "engine": "chromium",
+   "viewport": "430x932",
+   "route": "privacy",
+   "state": "out",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "chromium/430x932/privacy--out.png",
+   "width": 430,
+   "height": 4000,
+   "bytes": 568835,
+   "sha256": "eeb380db99264468cdeec4910224b001676d3042553852fe8d042bd3b48eaa18"
+  },
   "chromium/430x932/profile--in": {
    "engine": "chromium",
    "viewport": "430x932",
@@ -2697,9 +2851,9 @@
    "finalPath": "/rules",
    "file": "chromium/430x932/rules--in.png",
    "width": 430,
-   "height": 1327,
-   "bytes": 175768,
-   "sha256": "bd8930ce465eab5c935fb7ab5192cc0582cc7fa3e89dde6bf75a680d24b10ec4"
+   "height": 1876,
+   "bytes": 233511,
+   "sha256": "c46ff29c4d0e842c05482429a9010f989db0e1e60da38838ec4c289de2755cef"
   },
   "chromium/430x932/rules--out": {
    "engine": "chromium",
@@ -2711,9 +2865,9 @@
    "finalPath": "/rules",
    "file": "chromium/430x932/rules--out.png",
    "width": 430,
-   "height": 1319,
-   "bytes": 169942,
-   "sha256": "75a76ed3fde82b84bd58456eccef79b6724a3058e1ffa56fcb2cf9833a36e58c"
+   "height": 1868,
+   "bytes": 226673,
+   "sha256": "9f44b9af960c3ae73c204a9f67bad566dff5ea932c3a274e9e1dc31bd7704c2a"
   },
   "chromium/430x932/settings--in": {
    "engine": "chromium",
@@ -2757,6 +2911,34 @@
    "bytes": 85414,
    "sha256": "8fbb17fbb658593d43e81702d27c30511491d422aba891da1c74854d9bb12771"
   },
+  "chromium/430x932/terms--in": {
+   "engine": "chromium",
+   "viewport": "430x932",
+   "route": "terms",
+   "state": "in",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "chromium/430x932/terms--in.png",
+   "width": 430,
+   "height": 2644,
+   "bytes": 353408,
+   "sha256": "c640ef6f0630f49c23b15e3cae5693f0956ec8dbef2e69e7adfd37180686ea00"
+  },
+  "chromium/430x932/terms--out": {
+   "engine": "chromium",
+   "viewport": "430x932",
+   "route": "terms",
+   "state": "out",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "chromium/430x932/terms--out.png",
+   "width": 430,
+   "height": 2636,
+   "bytes": 346711,
+   "sha256": "44675cfd5a1fa7a841788d2f89540e8ef7a93f1f8e9c8c9f3025cc974692eefa"
+  },
   "chromium/430x932/verify--in": {
    "engine": "chromium",
    "viewport": "430x932",
@@ -2795,9 +2977,9 @@
    "finalPath": "/admin",
    "file": "chromium/768x1024/admin--admin.png",
    "width": 768,
-   "height": 2846,
-   "bytes": 374351,
-   "sha256": "1f6de86226ca5b8756586045391ab3b118117b4e0e45f70ac41b01f6f00ad8b7"
+   "height": 2874,
+   "bytes": 376576,
+   "sha256": "690b9670b9b3ece66d6c7eaf8a0e42a3b10f295b96d66aff1afd3e9c32b1348d"
   },
   "chromium/768x1024/boards--in": {
    "engine": "chromium",
@@ -3219,6 +3401,34 @@
    "bytes": 52646,
    "sha256": "9fefbe2b0bdcc97191dd5948c8c7f092f0b61a87969a52ed4c909fbef8449f90"
   },
+  "chromium/768x1024/privacy--in": {
+   "engine": "chromium",
+   "viewport": "768x1024",
+   "route": "privacy",
+   "state": "in",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "chromium/768x1024/privacy--in.png",
+   "width": 768,
+   "height": 3414,
+   "bytes": 724316,
+   "sha256": "00760a7cefa6a4751e626d9a83d15474cb667e09ab372095f840a9054cf235e2"
+  },
+  "chromium/768x1024/privacy--out": {
+   "engine": "chromium",
+   "viewport": "768x1024",
+   "route": "privacy",
+   "state": "out",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "chromium/768x1024/privacy--out.png",
+   "width": 768,
+   "height": 3414,
+   "bytes": 715925,
+   "sha256": "446fb05adebbc775061b8422c462eca79043d7204ca0d7185bf12a5a71e22862"
+  },
   "chromium/768x1024/profile--in": {
    "engine": "chromium",
    "viewport": "768x1024",
@@ -3509,9 +3719,9 @@
    "finalPath": "/rules",
    "file": "chromium/768x1024/rules--in.png",
    "width": 768,
-   "height": 1024,
-   "bytes": 176109,
-   "sha256": "8f495ad51d8e1536aa3a5a772dce38ee81f4a203366222d981a34267fa6bb63b"
+   "height": 1375,
+   "bytes": 234951,
+   "sha256": "7f3c2b2917299dcced48d3926a9f2da1b49697ef3965193fd7520afb6c87c184"
   },
   "chromium/768x1024/rules--out": {
    "engine": "chromium",
@@ -3523,9 +3733,9 @@
    "finalPath": "/rules",
    "file": "chromium/768x1024/rules--out.png",
    "width": 768,
-   "height": 1024,
-   "bytes": 168615,
-   "sha256": "88e4dd91c0965e9aeb70ffc2edd1a3d9b5f2f42957152437645f580b77bc25d1"
+   "height": 1375,
+   "bytes": 225490,
+   "sha256": "ac32cc3ffed5bfc47a38837eb792f7fc051152d1a8b9bf580672b188dc54b364"
   },
   "chromium/768x1024/settings--in": {
    "engine": "chromium",
@@ -3569,6 +3779,34 @@
    "bytes": 87591,
    "sha256": "12e7e603663119d755439b4e8f89312da610c7e34cdbb0f7baa565088f84d331"
   },
+  "chromium/768x1024/terms--in": {
+   "engine": "chromium",
+   "viewport": "768x1024",
+   "route": "terms",
+   "state": "in",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "chromium/768x1024/terms--in.png",
+   "width": 768,
+   "height": 1820,
+   "bytes": 354658,
+   "sha256": "cc4821536ae4cc57f715d4501aa8714e92ea287ebbb4b0ff302aa65e504dd6b9"
+  },
+  "chromium/768x1024/terms--out": {
+   "engine": "chromium",
+   "viewport": "768x1024",
+   "route": "terms",
+   "state": "out",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "chromium/768x1024/terms--out.png",
+   "width": 768,
+   "height": 1820,
+   "bytes": 345217,
+   "sha256": "6be3789bcef97ec1f4dc2b5963ce50c825b0edb1f2ce22a80bd0e3d61eb10a4e"
+  },
   "chromium/768x1024/verify--in": {
    "engine": "chromium",
    "viewport": "768x1024",
@@ -3608,8 +3846,8 @@
    "file": "webkit/1280x900/admin--admin.png",
    "width": 1280,
    "height": 2584,
-   "bytes": 316804,
-   "sha256": "db48857d916ccb63c67aba0937c831e383f5cee693d7d8e3ab5f11ca0b670f5c"
+   "bytes": 318869,
+   "sha256": "8cb533c92287528099b831fdc8eb5df89e8da34974fb0856d7006b31697b57c3"
   },
   "webkit/1280x900/boards--in": {
    "engine": "webkit",
@@ -4031,6 +4269,34 @@
    "bytes": 30398,
    "sha256": "4bb5800033f0884cf7eb18e27292d08fb8e0fa96bdeab97c38eeefeac5b3488c"
   },
+  "webkit/1280x900/privacy--in": {
+   "engine": "webkit",
+   "viewport": "1280x900",
+   "route": "privacy",
+   "state": "in",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "webkit/1280x900/privacy--in.png",
+   "width": 1280,
+   "height": 3439,
+   "bytes": 629846,
+   "sha256": "7e74fa84836b41d5290e277a2eb25eeafab374ba2ff7f8d6fd6f7e79f4c64240"
+  },
+  "webkit/1280x900/privacy--out": {
+   "engine": "webkit",
+   "viewport": "1280x900",
+   "route": "privacy",
+   "state": "out",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "webkit/1280x900/privacy--out.png",
+   "width": 1280,
+   "height": 3439,
+   "bytes": 622427,
+   "sha256": "8852f4cb680d50b907676afa08cb456fc656aa3f68d13c953af9709369a828a0"
+  },
   "webkit/1280x900/profile--in": {
    "engine": "webkit",
    "viewport": "1280x900",
@@ -4321,9 +4587,9 @@
    "finalPath": "/rules",
    "file": "webkit/1280x900/rules--in.png",
    "width": 1280,
-   "height": 991,
-   "bytes": 139096,
-   "sha256": "ecd649244ad9993df2b34b9bc60df33f61d7072c67aca9d8f59a4d3b2c283a13"
+   "height": 1379,
+   "bytes": 188631,
+   "sha256": "1e581fd9f1ee07970ec362f7d90279e56aed9bf92a7e596ec4f1e3425a773d17"
   },
   "webkit/1280x900/rules--out": {
    "engine": "webkit",
@@ -4335,9 +4601,9 @@
    "finalPath": "/rules",
    "file": "webkit/1280x900/rules--out.png",
    "width": 1280,
-   "height": 991,
-   "bytes": 130481,
-   "sha256": "4e8203b46c7801570c8442378d3c30b6707264ec7547bb6a10a5b599631ca52a"
+   "height": 1379,
+   "bytes": 180749,
+   "sha256": "e6397db59d6569e3be89de13a62e1308d71fea766222a6c949bd9e52a5ddf92d"
   },
   "webkit/1280x900/settings--in": {
    "engine": "webkit",
@@ -4381,6 +4647,34 @@
    "bytes": 64428,
    "sha256": "20afd149944c97fb6748969b51f28b7a2d1eacf3bc5b87c19bdb96f715d3d049"
   },
+  "webkit/1280x900/terms--in": {
+   "engine": "webkit",
+   "viewport": "1280x900",
+   "route": "terms",
+   "state": "in",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "webkit/1280x900/terms--in.png",
+   "width": 1280,
+   "height": 1845,
+   "bytes": 294352,
+   "sha256": "42a4ce7f4cb34e9eda5a7c34f528b785064dfcf124061d4eb4c136dab16f43c9"
+  },
+  "webkit/1280x900/terms--out": {
+   "engine": "webkit",
+   "viewport": "1280x900",
+   "route": "terms",
+   "state": "out",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "webkit/1280x900/terms--out.png",
+   "width": 1280,
+   "height": 1845,
+   "bytes": 287514,
+   "sha256": "e0808ff899fa4a56badfde37904dbda38cb42e5099082525b71d3ad4f748d45b"
+  },
   "webkit/1280x900/verify--in": {
    "engine": "webkit",
    "viewport": "1280x900",
@@ -4420,8 +4714,8 @@
    "file": "webkit/390x844/admin--admin.png",
    "width": 390,
    "height": 4000,
-   "bytes": 270259,
-   "sha256": "179e634faacdb561985e8ee7c64b8dfc373bafa84559ef1a26bcd938cc94fa2c"
+   "bytes": 271174,
+   "sha256": "839e0342c733fcbdcb04fba628f1a9808d55bd785785724e0a3839bd7e23e5f1"
   },
   "webkit/390x844/boards--in": {
    "engine": "webkit",
@@ -4843,6 +5137,34 @@
    "bytes": 25364,
    "sha256": "fd306caf4d515b7bfc2a367edc0e576a2adb0874f5ad4b50117afef1812590d6"
   },
+  "webkit/390x844/privacy--in": {
+   "engine": "webkit",
+   "viewport": "390x844",
+   "route": "privacy",
+   "state": "in",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "webkit/390x844/privacy--in.png",
+   "width": 390,
+   "height": 4000,
+   "bytes": 434938,
+   "sha256": "124445a40814c313884fc66bb7a14600712280c861bfa091d72fe10f38c6f8a0"
+  },
+  "webkit/390x844/privacy--out": {
+   "engine": "webkit",
+   "viewport": "390x844",
+   "route": "privacy",
+   "state": "out",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "webkit/390x844/privacy--out.png",
+   "width": 390,
+   "height": 4000,
+   "bytes": 433774,
+   "sha256": "9a40752341417242a5b6d39fa2b747dbc5d4f34b0f11e00c2365f45a8e292cac"
+  },
   "webkit/390x844/profile--in": {
    "engine": "webkit",
    "viewport": "390x844",
@@ -5133,9 +5455,9 @@
    "finalPath": "/rules",
    "file": "webkit/390x844/rules--in.png",
    "width": 390,
-   "height": 1433,
-   "bytes": 125702,
-   "sha256": "f85bb2c712024246277e71d79924692dc1de2624a5f728eb3f70ab15ed77324a"
+   "height": 1962,
+   "bytes": 173047,
+   "sha256": "948292b5fb05ca98f857f0f4f7b0b87f5182196cff3d32fc97c7491d3c625a14"
   },
   "webkit/390x844/rules--out": {
    "engine": "webkit",
@@ -5147,9 +5469,9 @@
    "finalPath": "/rules",
    "file": "webkit/390x844/rules--out.png",
    "width": 390,
-   "height": 1426,
-   "bytes": 124486,
-   "sha256": "d8104413ee0f3e13fdd5bee78e2dc7f90194c706e9dd9cfe0c053d71a8d831f3"
+   "height": 1955,
+   "bytes": 171848,
+   "sha256": "5c6b5d733b4092c94e378c5e42a69942f78fa330178e07c71e12ec49e322fa44"
   },
   "webkit/390x844/settings--in": {
    "engine": "webkit",
@@ -5193,6 +5515,34 @@
    "bytes": 54743,
    "sha256": "aae8c963b0b4ca4042294b0de62eada7bc6f0e42f30c5cb15baaf145b2d0fe53"
   },
+  "webkit/390x844/terms--in": {
+   "engine": "webkit",
+   "viewport": "390x844",
+   "route": "terms",
+   "state": "in",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "webkit/390x844/terms--in.png",
+   "width": 390,
+   "height": 2856,
+   "bytes": 277397,
+   "sha256": "c2132109f1bc7e5b400999b9b809cde5a799fe30e033154859ba949c7abff3e6"
+  },
+  "webkit/390x844/terms--out": {
+   "engine": "webkit",
+   "viewport": "390x844",
+   "route": "terms",
+   "state": "out",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "webkit/390x844/terms--out.png",
+   "width": 390,
+   "height": 2849,
+   "bytes": 276301,
+   "sha256": "bb58ff41eef2f66214b82c1e1b2e9abd0fed649d5066d8fb755f0f33a46af55a"
+  },
   "webkit/390x844/verify--in": {
    "engine": "webkit",
    "viewport": "390x844",
@@ -5231,9 +5581,9 @@
    "finalPath": "/admin",
    "file": "webkit/430x932/admin--admin.png",
    "width": 430,
-   "height": 3746,
-   "bytes": 296459,
-   "sha256": "efc0e8f59af1ae58388fe9e007a56bd3f4442eb42566fe3c6d48b2bc65aeb399"
+   "height": 3784,
+   "bytes": 297856,
+   "sha256": "082e4788ef00117cf1288fe4d5e3a9ff38d48fa9324abf0009436eff8f37d38d"
   },
   "webkit/430x932/boards--in": {
    "engine": "webkit",
@@ -5655,6 +6005,34 @@
    "bytes": 26429,
    "sha256": "2533f48247458e4929fa9f66835b4c04754ba0d6633fa5921cad1f996168df9c"
   },
+  "webkit/430x932/privacy--in": {
+   "engine": "webkit",
+   "viewport": "430x932",
+   "route": "privacy",
+   "state": "in",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "webkit/430x932/privacy--in.png",
+   "width": 430,
+   "height": 4000,
+   "bytes": 476202,
+   "sha256": "1cc0ab04f16e6ecd17f23814d155363b9110aec48bd18624328c7770f04d155f"
+  },
+  "webkit/430x932/privacy--out": {
+   "engine": "webkit",
+   "viewport": "430x932",
+   "route": "privacy",
+   "state": "out",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "webkit/430x932/privacy--out.png",
+   "width": 430,
+   "height": 4000,
+   "bytes": 475034,
+   "sha256": "3093ef10c1d7c700c75950690d680620fdadfed64e78ac6baf4ab4d301efe244"
+  },
   "webkit/430x932/profile--in": {
    "engine": "webkit",
    "viewport": "430x932",
@@ -5945,9 +6323,9 @@
    "finalPath": "/rules",
    "file": "webkit/430x932/rules--in.png",
    "width": 430,
-   "height": 1333,
-   "bytes": 126837,
-   "sha256": "55ca9ba5db07d0712a923508f7c5831d7a59719ce1579cba0c0c4efae512c7bb"
+   "height": 1882,
+   "bytes": 175035,
+   "sha256": "3173f0eecfa1efb995b1121eeff7b7d9142ca432db844732b6097b07a5904e2b"
   },
   "webkit/430x932/rules--out": {
    "engine": "webkit",
@@ -5959,9 +6337,9 @@
    "finalPath": "/rules",
    "file": "webkit/430x932/rules--out.png",
    "width": 430,
-   "height": 1326,
-   "bytes": 125576,
-   "sha256": "6f8b9ddcfa45059265e87e1df2632bff8151293b957eedde436ea32a25e3797b"
+   "height": 1875,
+   "bytes": 173863,
+   "sha256": "1a2750c0e83f63db48810e76d020b6c471d7dc4ef4efb6d480e99eae49964e86"
   },
   "webkit/430x932/settings--in": {
    "engine": "webkit",
@@ -6005,6 +6383,34 @@
    "bytes": 56032,
    "sha256": "7eee4003a5c28ddf0de953f0eeb8b85fbbe3c6f1e0be5cd3772e75d36d1f8a7d"
   },
+  "webkit/430x932/terms--in": {
+   "engine": "webkit",
+   "viewport": "430x932",
+   "route": "terms",
+   "state": "in",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "webkit/430x932/terms--in.png",
+   "width": 430,
+   "height": 2670,
+   "bytes": 277815,
+   "sha256": "6a610129a37846ff68c7a4f96e833263fa57af32cd875d549e1d3c3d883e9f88"
+  },
+  "webkit/430x932/terms--out": {
+   "engine": "webkit",
+   "viewport": "430x932",
+   "route": "terms",
+   "state": "out",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "webkit/430x932/terms--out.png",
+   "width": 430,
+   "height": 2663,
+   "bytes": 276547,
+   "sha256": "39d9193051bed971b3c58c40958cfe8ed48c3371311de772c4a4334e3590bcaf"
+  },
   "webkit/430x932/verify--in": {
    "engine": "webkit",
    "viewport": "430x932",
@@ -6043,9 +6449,9 @@
    "finalPath": "/admin",
    "file": "webkit/768x1024/admin--admin.png",
    "width": 768,
-   "height": 2905,
-   "bytes": 306033,
-   "sha256": "1eb3c13e75c04fa2e63215f60c531a194d6127a76fe806730ad6e4677d4491e5"
+   "height": 2933,
+   "bytes": 307118,
+   "sha256": "e04bd26505605a9b4ec2634194b7aa942abd2de1567841ceb83af51e3c53a727"
   },
   "webkit/768x1024/boards--in": {
    "engine": "webkit",
@@ -6467,6 +6873,34 @@
    "bytes": 28525,
    "sha256": "12137220a95cd1a43eecc8f91bcacd4f338ee8d0dd12b999eb1684675a46ae9c"
   },
+  "webkit/768x1024/privacy--in": {
+   "engine": "webkit",
+   "viewport": "768x1024",
+   "route": "privacy",
+   "state": "in",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "webkit/768x1024/privacy--in.png",
+   "width": 768,
+   "height": 3463,
+   "bytes": 611066,
+   "sha256": "e8234930ab027e17423ae975391a198b2ae8f69238f15d8220225893f29d6141"
+  },
+  "webkit/768x1024/privacy--out": {
+   "engine": "webkit",
+   "viewport": "768x1024",
+   "route": "privacy",
+   "state": "out",
+   "path": "/privacy",
+   "url": "http://127.0.0.1:8810/privacy",
+   "finalPath": "/privacy",
+   "file": "webkit/768x1024/privacy--out.png",
+   "width": 768,
+   "height": 3439,
+   "bytes": 603858,
+   "sha256": "b71e256ebd17d0c491f6db153c8f933a0cb95aa72ce789acb8714c81ff6323ba"
+  },
   "webkit/768x1024/profile--in": {
    "engine": "webkit",
    "viewport": "768x1024",
@@ -6757,9 +7191,9 @@
    "finalPath": "/rules",
    "file": "webkit/768x1024/rules--in.png",
    "width": 768,
-   "height": 1024,
-   "bytes": 133654,
-   "sha256": "56953718197697029f38e2468cde2ae75abc36cb69e23e6c669f8b450fde8481"
+   "height": 1403,
+   "bytes": 182215,
+   "sha256": "63d124f35a0013c7ec134c20862c5bc758433e2777097a9cb65a10f5f4b889ce"
   },
   "webkit/768x1024/rules--out": {
    "engine": "webkit",
@@ -6771,9 +7205,9 @@
    "finalPath": "/rules",
    "file": "webkit/768x1024/rules--out.png",
    "width": 768,
-   "height": 1024,
-   "bytes": 126231,
-   "sha256": "b054cb5f47c07eafba5d4f8ba358ab61b5cad4a4bba4e31738d1a7d3804b17ab"
+   "height": 1379,
+   "bytes": 173162,
+   "sha256": "f7a244a52cad81c5cd4d256a9aa03dee537294175b6a18ba5b80dab40ceb7b0b"
   },
   "webkit/768x1024/settings--in": {
    "engine": "webkit",
@@ -6816,6 +7250,34 @@
    "height": 1191,
    "bytes": 59457,
    "sha256": "959874e4150d1ca1f4b3f64904935d0e86a17ddee11b2b34ef129572024b01bb"
+  },
+  "webkit/768x1024/terms--in": {
+   "engine": "webkit",
+   "viewport": "768x1024",
+   "route": "terms",
+   "state": "in",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "webkit/768x1024/terms--in.png",
+   "width": 768,
+   "height": 1869,
+   "bytes": 285021,
+   "sha256": "891e34e8b04c219a8823c7f982da5a71334835326272ef3d1c8d4f5bea544b56"
+  },
+  "webkit/768x1024/terms--out": {
+   "engine": "webkit",
+   "viewport": "768x1024",
+   "route": "terms",
+   "state": "out",
+   "path": "/terms",
+   "url": "http://127.0.0.1:8810/terms",
+   "finalPath": "/terms",
+   "file": "webkit/768x1024/terms--out.png",
+   "width": 768,
+   "height": 1845,
+   "bytes": 277826,
+   "sha256": "8f5f66b086f3ebfea11268f47eceac4d3f6390cdc3f4e110b5ba53c39eca5e08"
   },
   "webkit/768x1024/verify--in": {
    "engine": "webkit",
