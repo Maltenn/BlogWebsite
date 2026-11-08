@@ -13,8 +13,9 @@
 // no others): src/shared/app.js, src/accounts/auth.js, docs/mobile/contract.md. Their devices and push: src/push/.
 // The cron (every minute) sends the push notifications waiting in the outbox. The cron (every 30 min) clears out expired sessions, sign-in tickets, chat-socket passes, reset links, old rate-limit rows, photo uploads
 // never attached to anything, #ourspace messages past its rolling window, expired mutes and faded interaction scores,
-// and the trust data past its time (sign-up signals and AI scores after 90 days); a nightly one looks for clusters of
-// accounts for the moderators (src/trust/clusters.js).
+// and the trust data past its time (sign-up signals and AI scores after 90 days, an account under a child-safety hold's
+// excepted), and what a hold kept once it ends; a nightly one looks for clusters of accounts for the moderators
+// (src/trust/clusters.js).
 import { HttpError, json, netLimit } from './shared/http.js';
 import { currentUser, me, signup, login, logout, changePassword, deleteAccount, forgotPassword, resetPassword } from './accounts/auth.js';
 import { oauthStart, oauthCallback, oauthExchange, signupPending, signupFinish, providers, account, unlink } from './accounts/oauth.js';
@@ -32,7 +33,7 @@ import { ourspaceMessages, postOurspace, muteMember, sweepChat } from './chats/o
 import { liveRoom, liveTicket } from './chats/live.js';
 import { getSpotify, putSpotify, refreshSpotify, deleteSpotify } from './music/spotify.js';
 import { astroSky, astroSign, astroMe } from './horoscope/horoscope.js';
-import { listBlocks, block, unblock, report, adminReports, resolveReport, adminUser, adminContent, adminLog } from './safety/safety.js';
+import { listBlocks, block, unblock, report, adminReports, resolveReport, adminUser, adminContent, adminLog, sweepEvidence } from './safety/safety.js';
 import { discover, mutuals, people, boardsForYou, hideSuggestion, unhideSuggestion } from './browse/browse.js';
 import { boardTerms, saveBoardTerms } from './browse/terms.js';
 import { uploadMedia, deleteUpload, serveMedia, adminMedia, moderateMedia, sweepMedia } from './media/media.js';
@@ -298,5 +299,7 @@ export default {
     // strikes past their 90 clean days, old flagged text, AI scan scores (90 days)
     ctx.waitUntil(sweepTrust(env, now).catch(e => console.error('trust sweep failed:', (e && e.stack) || e)));
     ctx.waitUntil(sweepStrikes(env, now).catch(e => console.error('strike sweep failed:', (e && e.stack) || e)));
+    // what a child-safety hold kept, once the hold has ended
+    ctx.waitUntil(sweepEvidence(env).catch(e => console.error('evidence sweep failed:', (e && e.stack) || e)));
   },
 };

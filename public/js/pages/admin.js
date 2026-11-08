@@ -9,36 +9,41 @@ import { S, loadMe } from '../core/state.js';
 import { route } from '../core/router.js';
 import { nameLink } from '../widgets/people.js';
 import { boardRequests } from '../widgets/boardrequests.js';
-import { photoQueue } from '../widgets/photoqueue.js';
+import { photoQueue, moderatePhoto } from '../widgets/photoqueue.js';
 import { modQueues } from '../widgets/modqueues.js';
 
 const KIND_LABEL = { wall: 'Friends\' Comment', status: 'status', blog: 'blog post', bulletin: 'bulletin', thread: 'board thread', comment: 'board comment' };   // what a report's post is called
 
-// A reported post's photos, each with Remove photo (deleted from storage now: for Take It Down requests and anything that
-// must go at once) and Hide photo / Unhide photo (kept as evidence, shown nowhere). A moderator may open them whatever the
-// writer's privacy.
+// A report's photos, each with Remove photo (deleted from storage now: for Take It Down requests and anything that must go
+// at once) and Hide photo / Unhide photo (kept as evidence, shown nowhere), as they stand now. A moderator may open them
+// whatever the writer's privacy. A photo a child-safety report holds says so, and the server refuses both without an
+// override (moderatePhoto).
 function modPhotos(media) {
   if (!media.length) return null;
   const cell = m => {
+    if (m.gone) return h('div', { class: 'ms-gone', text: 'photo removed.' });
     const note = h('span', { class: 'os-hint', text: m.alt ? `description: ${m.alt}` : 'no description' });
-    const row = h('div', { class: 'mod-photo' }, photoGrid([m], { small: true }), h('div', { class: 'mod-photo-side' }, note));
+    const held = m.held ? h('span', { class: 'os-hint', text: 'held for a child-safety report: leave it held.' }) : null;
+    const side = h('div', { class: 'mod-photo-side' }, note, held);
+    const row = h('div', { class: 'mod-photo' }, photoGrid([m], { small: true }), side);
     const act = async (action, said) => {
       const why = action === 'unhide' ? '' : (prompt('note for the log (optional):') || '');
-      try { await api.post('/admin/media/' + m.id, { action, note: why }); toast(said); } catch (e) { oops(e); return false; }
+      if (!await moderatePhoto(m.id, { action, note: why })) return false;
+      toast(said);
       return true;
     };
     const remove = h('button', { class: 'btn98 danger', type: 'button', text: '🗑 Remove photo', title: 'delete the file now', onclick: async () => {
       if (!await dialog({ title: 'Remove photo', text: 'Delete this photo from storage right now? This can\'t be undone.', icon: '⚠', ok: 'Remove', danger: true })) return;
       if (await act('remove', 'photo removed.')) row.replaceChildren(h('div', { class: 'ms-gone', text: 'photo removed.' }));
     } });
-    const hide = h('button', { class: 'btn98', type: 'button', text: '🙈 Hide photo', onclick: async () => {
+    const hide = h('button', { class: 'btn98', type: 'button', text: m.hidden ? '👁 Unhide photo' : '🙈 Hide photo', dataset: { hidden: m.hidden ? '1' : '0' }, onclick: async () => {
       const hidden = hide.dataset.hidden === '1';
       if (await act(hidden ? 'unhide' : 'hide', hidden ? 'photo visible again.' : 'photo hidden.')) {
         hide.dataset.hidden = hidden ? '0' : '1';
         hide.textContent = hidden ? '🙈 Hide photo' : '👁 Unhide photo';
       }
     } });
-    row.lastChild.append(remove, hide);
+    side.append(remove, hide);
     return row;
   };
   return h('div', { class: 'mod-photos' }, media.map(cell));
@@ -56,8 +61,17 @@ export async function renderAdmin(root) {
   root.append(boardRequests(asked.requests, () => route()));
   root.append(modQueues());                                   // held sign-ups, alerts, strike appeals, AI scans (phase 7)
   if (!d.reports.length) root.append(h('div', { class: 'ms-empty', text: modView === 'open' ? 'no open reports. ✨' : 'nothing closed yet.' }));
+  // a child-safety decision takes a reason; the server refuses it without one
+  const MUST_SAY = {
+    confirm: 'confirm apparent CSAM: this bans the account and keeps its data until you release the hold. the NCMEC report number, and what you saw (required):',
+    dismiss: 'dismiss: its photos are shown again. why isn\'t this child sexual abuse material? (required)',
+    release: 'release the hold: the confirmed photos are deleted, and what was kept for the account within the hour. why, and on whose word? (required)',
+  };
   const act = async (r, action) => {
-    const note = action === 'dismiss' ? '' : (prompt('note for the log (optional):') || '');
+    const required = r.reason === 'csam' && MUST_SAY[action];
+    const asked = required ? prompt(required) : action === 'dismiss' ? '' : prompt('note for the log (optional):');
+    const note = (asked || '').trim();
+    if (required && !note) { toast('that needs a note. nothing changed.'); return; }
     try { await api.post('/admin/reports/' + r.id, { action, note }); toast('done.'); await loadMe(); route(); } catch (e) { oops(e); }
   };
   d.reports.forEach(r => {
@@ -65,10 +79,14 @@ export async function renderAdmin(root) {
     const what = r.type === 'user' ? `profile of ${s.name || '?'}` : r.type === 'message' ? `private message from ${s.author || '?'}` : `${KIND_LABEL[s.kind] || s.kind || 'post'} by ${s.author || '?'}`;
     const snapText = r.type === 'user' ? [s.tag, s.mood, s.about, s.meet].filter(Boolean).join('\n—\n') : [s.subject, s.body].filter(Boolean).join('\n');
     const state = r.type === 'user' ? '' : r.targetHidden == null ? ' (deleted by its author)' : r.targetHidden ? ' (hidden)' : '';
+    const held = (s.media || []).filter(m => m.held && m.hidden && !m.gone).length;   // a banner a moderator acts on says only what is true now
     // a child-safety report, or one marked "intimate image without consent": 48 hours from when it was filed (docs/operations.md)
     const clock = r.status === 'open' && r.deadline ? h('div', { class: 'mod-clock' + (r.deadline < Date.now() ? ' overdue' : '') },
       `⏱ filed ${ago(r.created)} · 48-hour deadline: ${timeLeft(r.deadline)}`,
-      r.reason === 'csam' ? ' · its photos are held. don\'t download or share them; report to NCMEC, then remove.' : ' · remove the photo, don\'t just hide it.') : null;
+      r.reason !== 'csam' ? ' · if the person shown may be under 18, this is CSAM: don\'t remove it. press "may be under 18", report it to NCMEC and confirm it. only if they are clearly an adult: remove the photo, don\'t just hide it.'
+        : (held ? ` · ${held === 1 ? 'its photo is' : 'its photos are'} held. don't download or share ${held === 1 ? 'it' : 'them'}.`
+          : ' · no photo is held on this report (its reporter couldn\'t see one, or is new). don\'t download or share anything it shows.')
+          + ' if it is apparent CSAM: report it to NCMEC, then confirm it with the report number (that bans the account and keeps its data). if it isn\'t: dismiss it (docs/operations.md).') : null;
     root.append(h('div', { class: 'mod-report' + (r.status === 'open' ? '' : ' closed') + (r.reason === 'csam' ? ' csam' : '') },
       h('div', { class: 'mod-head' }, h('span', { class: 'mod-reason', text: REASON_LABEL[r.reason] || r.reason.replace('_', ' ') }), h('span', { text: what + state }),
         r.intimate ? h('span', { class: 'mod-reason', text: 'intimate image without consent' }) : null,
@@ -79,12 +97,17 @@ export async function renderAdmin(root) {
       r.details ? h('div', { class: 'mod-meta' }, h('b', { text: 'reporter says: ' }), r.details) : null,
       h('div', { class: 'mod-meta' }, 'reported by ', r.reporter ? nameLink(r.reporter) : '(deleted account)', ' · about ',
         r.target ? nameLink(r.target) : '(deleted account)', r.targetBanned ? ' (banned)' : '', ` · ${r.targetReports} report(s) about this account in total`,
+        r.preserved ? ` · ${r.preserved} item(s) preserved until the hold ends` : '',
         r.status !== 'open' ? ` · ${r.status} (${r.resolution}) by ${r.resolver || '?'} ${r.resolvedAt ? when(r.resolvedAt) : ''}` : ''),
       h('div', { class: 'mod-btns' },
-        r.status === 'open' && r.type !== 'user' ? h('button', { class: 'btn98', type: 'button', text: '🙈 hide it', onclick: () => act(r, 'hide') }) : null,
-        r.status === 'open' && r.target && !r.targetBanned ? h('button', { class: 'btn98 danger', type: 'button', text: '⛔ ban the account', onclick: () => act(r, 'ban') }) : null,
-        r.status === 'open' && r.type !== 'user' && r.target && !r.targetBanned ? h('button', { class: 'btn98 danger', type: 'button', text: 'hide + ban', onclick: () => act(r, 'hide_ban') }) : null,
-        r.status === 'open' ? h('button', { class: 'btn98', type: 'button', text: '✔ dismiss (no problem)', onclick: () => act(r, 'dismiss') }) : null,
+        // (a child-safety report is confirmed or dismissed, nothing else: confirming bans the account too)
+        r.status === 'open' && r.reason === 'csam' ? h('button', { class: 'btn98 danger', type: 'button', text: '⚠ confirm: apparent CSAM', title: 'after reporting it to NCMEC: holds the account and its data, and bans it', onclick: () => act(r, 'confirm') }) : null,
+        r.status === 'open' && r.reason !== 'csam' && r.type !== 'user' ? h('button', { class: 'btn98', type: 'button', text: '🙈 hide it', onclick: () => act(r, 'hide') }) : null,
+        r.status === 'open' && r.reason !== 'csam' && r.target && !r.targetBanned ? h('button', { class: 'btn98 danger', type: 'button', text: '⛔ ban the account', onclick: () => act(r, 'ban') }) : null,
+        r.status === 'open' && r.reason !== 'csam' && r.type !== 'user' && r.target && !r.targetBanned ? h('button', { class: 'btn98 danger', type: 'button', text: 'hide + ban', onclick: () => act(r, 'hide_ban') }) : null,
+        r.status === 'open' ? h('button', { class: 'btn98', type: 'button', text: r.reason === 'csam' ? '✔ dismiss (not CSAM)' : '✔ dismiss (no problem)', onclick: () => act(r, 'dismiss') }) : null,
+        r.status === 'open' && r.reason !== 'csam' ? h('button', { class: 'btn98 danger', type: 'button', text: '⚠ may be under 18', title: 'treat it as child sexual abuse material: hides its photos, and Remove stops working', onclick: () => act(r, 'csam') }) : null,
+        r.status === 'confirmed' && r.reason === 'csam' ? h('button', { class: 'btn98', type: 'button', text: 'release hold', title: 'only when the year is over or a lawyer says so: deletes the confirmed photos', onclick: () => act(r, 'release') }) : null,
         r.status === 'open' && r.type !== 'user' && !r.intimate && r.reason !== 'csam' ? h('button', { class: 'btn98', type: 'button', text: '⏱ intimate image without consent', title: 'starts the 48-hour Take It Down clock',
           onclick: async () => { try { await api.post('/admin/reports/' + r.id, { action: 'intimate' }); toast('marked. the 48-hour clock is running.'); route(); } catch (e) { oops(e); } } }) : null,
         r.target && r.targetBanned ? h('button', { class: 'btn98', type: 'button', text: 'unban', onclick: async () => { try { await api.post('/admin/users/' + enc(r.target.name), { banned: false }); toast('unbanned.'); route(); } catch (e) { oops(e); } } }) : null,

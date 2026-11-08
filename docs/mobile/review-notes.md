@@ -8,7 +8,11 @@ invented item in it turns one rejection into two — it is how `store.md` claime
 built), and every line must be reachable by the taps it names, from a cold launch, on the account below.
 
 Every `REPLACE_…` below is checked by `npm run check:release`, so a store build cannot be cut while one is still
-here.
+here, with one exception: **`REPLACE_DEMO_PASSWORD` stays in this file for good.** This repository is public, so the real
+password is never committed. Paste it into App Store Connect and Play Console yourself, in place of the placeholder, when you
+fill their forms. `check:release` instead needs the password in the `REVIEW_DEMO_PASSWORD` environment variable (a secret of
+the GitHub `release` environment; it is only compared, never printed), and fails if that value, or any other password, turns
+up in this file.
 
 ---
 
@@ -60,7 +64,7 @@ behind a code.
 > 6. **It works offline.** Turn on Airplane Mode and relaunch: the app still opens, still draws its chrome, and says
 >    which parts need a connection.
 > 7. **The session is in the Keychain**, never in web storage.
-> 8. **Deleting the account** is Settings → "delete my account", three taps from the tab bar, and it really deletes.
+> 8. **Deleting the account** is the Settings button in the header → "Delete my account", and it really deletes.
 >
 > Reporting, blocking and the house rules are all in the app: a report is the "report" link on any post, profile or
 > message; blocking is on any profile; the rules are linked from the footer of every page.

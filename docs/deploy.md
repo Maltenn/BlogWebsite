@@ -2,6 +2,12 @@
 
 OurSpace is one Cloudflare Worker with one D1 database and one R2 bucket (members' photos). Deploy it with Wrangler, not GitHub Pages: the site needs the Worker for its API, and Pages can't run it. If this repo is replacing the old desktop site at ourspace.page, read [Cutover from the desktop site](#cutover-from-the-desktop-site) before you merge anything.
 
+## Before you start: plan, and what needs you in person
+
+- **Use Workers Paid ($5/month) from day one.** Sign-up and log-in hash passwords with PBKDF2 (100,000 iterations, about 23 ms of CPU where we measured it) and the Free plan allows 10 ms of CPU per request; the every-minute push cron, the nightly cluster check and a Free D1 that stops answering at its daily caps are the other reasons. The evidence is in [decisions/004](decisions/004-cloudflare-limits-and-costs.md#free-or-paid-for-ourspace-checked-2026-11-07).
+- **R2 must be switched on first**, by you, on the dashboard's R2 page (it asks for a payment method even for the free allowance). Until then `wrangler r2 bucket create` and the deploy both fail with "Please enable R2 through the Cloudflare Dashboard" (code 10042).
+- Run [`npm run preflight`](#preflight) before and after each step below.
+
 ## First deploy
 
 ```bash
@@ -14,9 +20,15 @@ openssl rand -base64 32 | npx wrangler secret put TOKEN_KEY # encrypts stored Sp
 npm run deploy                                              # prints https://ourspace-social.<account>.workers.dev
 ```
 
-This creates a Worker called `ourspace-social`, a database called `ourspace-social-db` and a bucket called `ourspace-social-media`. R2 has to be switched on for the account once, on the dashboard's R2 page (it may ask for a payment method even for the free tier). The bucket stays private: the Worker serves its files at `/media/<key>` to whoever may see them, so don't give it a public `r2.dev` address or a custom domain of its own. After that, `npm run deploy` alone ships changes, and `npm run db:remote` applies new files in `migrations/`.
+This creates a Worker called `ourspace-social`, a database called `ourspace-social-db` and a bucket called `ourspace-social-media`. R2 has to be switched on for the account once (above). `wrangler secret put` on a Worker that doesn't exist yet asks whether to create it; answer yes (not re-run here: if your Wrangler version refuses, deploy first and set the two secrets straight after, before anyone visits). The bucket stays private: the Worker serves its files at `/media/<key>` to whoever may see them, so don't give it a public `r2.dev` address or a custom domain of its own. After that, `npm run deploy` alone ships changes, and `npm run db:remote` applies new files in `migrations/`.
 
-The email sign-up works with just the steps above. Everything below is optional, and each piece switches itself on once its secrets are set.
+The steps above give you a Worker that runs and logs in existing accounts, but **nobody can sign up yet**: email sign-ups need Resend ([Emails](#emails-confirming-new-accounts-password-resets)) and every sign-up needs Turnstile ([The human check](#the-human-check-cloudflare-turnstile)); both are refused until set. The rest below is optional, and each piece switches itself on once its secrets are set.
+
+## Preflight
+
+`npm run preflight` (`tools/preflight.mjs`) is a read-only readiness check. It prints one `PASS`, `FAIL` or `TODO` line per check and exits 1 if anything is `FAIL`. `TODO` means not done yet or not checkable yet (a placeholder, no login, no Worker yet) and is normal before the first deploy; `--strict` makes `TODO` fail too, for the last run before going live; `--offline` skips the Cloudflare checks. About 15 seconds.
+
+It checks: the D1 id in `wrangler.jsonc` isn't the all-zeros placeholder; no test-only setting (`TEST_PROVIDER_BASE`, `TEST_PUSH_BASE`, `TEST_SIGNALS`, `TEST_SECRETS`, `TURNSTILE_VERIFY_URL`, `DOH_URL`, any `TEST_*`, `AI_DETECTOR=mock`) is in `wrangler.jsonc`; `TURNSTILE_SITE_KEY` is set and isn't one of Cloudflare's published test keys; `CONTACT_EMAIL` is a usable address (empty is a `TODO`, so `--strict` fails it) and `MIN_AGE` is 13 or more; the static assets fit the plan's file limits; the migrations are in sequence and apply to a fresh local database in a temp folder; the Worker bundles with `wrangler deploy --dry-run` and fits the size limit; and, only when `wrangler whoami` says you're logged in and the Worker exists, that `IP_SALT` and `TOKEN_KEY` are set (and, as `TODO`, the sign-up secrets) and that no test switch (`TEST_*`, `TURNSTILE_VERIFY_URL`, `DOH_URL`) is stored as a secret, from `wrangler secret list`, which shows names only. It never creates, changes or deletes anything on Cloudflare. It can't tell whether a secret's value is right.
 
 ## Custom domain
 
@@ -32,7 +44,7 @@ Cloudflare's [CSAM Scanning Tool](https://developers.cloudflare.com/cache/refere
 2. **A hash-matching service** called on upload (for example Microsoft PhotoDNA or Thorn Safer: eligibility, cost and terms unverified), which covers every photo, private ones included.
 3. **Manual review only**: reports and moderators. The law doesn't require scanning (18 U.S.C. 2258A(f)), but nothing would be caught until someone reports it.
 
-Whatever is chosen, the duties stay the site owner's: report apparent CSAM to NCMEC once you know of it, keep the report for a year, and act on Take It Down requests within 48 hours ([operations.md](operations.md#photos)). Neither the tool nor a vendor files the NCMEC report for you unless their terms say so.
+Whatever is chosen, the duties stay the site owner's: report apparent CSAM to NCMEC as soon as reasonably possible once you know of it, preserve it and related data securely for a year (never by downloading it), and act on Take It Down requests within 48 hours ([operations.md](operations.md#photos)). Neither the tool nor a vendor files the NCMEC report for you unless their terms say so.
 
 ## Emails: confirming new accounts, password resets
 
@@ -120,6 +132,7 @@ Vars are plain settings in `wrangler.jsonc`:
 | `SIGNUPS_PER_IP_PER_HOUR` | `5` | Per connection. |
 | `TURNSTILE_SITE_KEY` | empty | Turnstile's public site key. Empty: sign-ups and password resets are refused on a real server. |
 | `TURNSTILE_HOSTNAMES` | the request's host | The hostnames a Turnstile answer may name (comma-separated). |
+| `CONTACT_EMAIL` | empty | The public contact address shown on `/rules`, `/terms` and `/privacy`, and sent to the apps, so changing it needs no app release. **Set it before launch.** Empty or invalid: no address is shown, and someone with no account has no way to send a Take It Down request, because reports need a login. Use an inbox a moderator checks daily. An emailed request's 48 hours are tracked by hand ([operations.md](operations.md#photos)). |
 | `POW_BITS` | `18` | The sign-up proof of work's difficulty. |
 | `SIGNUP_MIN_MS`, `SIGNUP_SOFT_MS` | `2000`, `6000` | A sign-up form sent sooner is refused / gets a risk point. |
 | `AI_DETECTOR` | `off` | `off`, `workersai`, `pangram` or `gptzero` (`mock` is for the tests and the demo). |
@@ -150,11 +163,11 @@ The same list is in the comment at the top of `wrangler.jsonc`; when a feature t
 
 Merging this branch (`claude/intelligent-fermat-keh09f`) into `main` is what retires the desktop site. GitHub Pages deploys `main`'s root, which would then have no `index.html`, and the `CNAME` file (`ourspace.page`) is gone too. So the order matters:
 
-1. **Deploy the Worker** ([First deploy](#first-deploy)) and try it on its `workers.dev` address: sign up, post (a photo too), log out and in. This creates a new Worker, database and bucket and changes nothing about ourspace.page.
-2. **Switch on what you want from day one**: Resend, the sign-in apps and Spotify. Register their redirect addresses with the final host, `https://ourspace.page/api/oauth/<provider>/callback`.
-3. **Point ourspace.page at the Worker.** Add `ourspace.page` as a custom domain on the Worker ([Custom domain](#custom-domain)). If its DNS isn't on Cloudflare yet, move it there first, and remove the DNS records that point at GitHub Pages. Do the same for `www.ourspace.page`: today it is a CNAME to `maltenn.github.io`, so either add it as a second custom domain on the Worker or redirect it to the apex (a Cloudflare redirect rule). Wait until both `https://ourspace.page` and `https://www.ourspace.page` show the new site. Photos launch with [in-house review](#photos-csam-detection-launch-in-house-review): make sure a moderator is signed up and knows the [daily routine](operations.md#daily-routine).
-4. **Claim `malten`**, then make yourself a moderator ([operations.md](operations.md)).
-5. **Disable GitHub Pages** in the repo's settings (Settings → Pages). Do this after step 3, or the site goes dark in between, and before step 6.
+1. **Deploy the Worker** ([First deploy](#first-deploy)). This creates a new Worker, database and bucket and changes nothing about ourspace.page.
+2. **Switch on what you need, and what you want from day one.** Resend and Turnstile are needed first: a sign-up needs a confirmation email and the human check, so nothing can be tried without them. Then, if you want them, the sign-in apps and Spotify. Register their redirect addresses with the final host, `https://ourspace.page/api/oauth/<provider>/callback`.
+3. **Try it on its `workers.dev` address, and claim `malten`.** Sign up (the first working sign-up should be `malten`: a stranger who gets the name first would be the one the moderator command promotes), confirm the email, post (a photo too), log out and in. Then check that `malten` is your account and make it a moderator ([operations.md](operations.md)).
+4. **Point ourspace.page at the Worker.** Add `ourspace.page` as a custom domain on the Worker ([Custom domain](#custom-domain)). If its DNS isn't on Cloudflare yet, move it there first, and remove the DNS records that point at GitHub Pages. Do the same for `www.ourspace.page`: today it is a CNAME to `maltenn.github.io`, so either add it as a second custom domain on the Worker or redirect it to the apex (a Cloudflare redirect rule). Wait until both `https://ourspace.page` and `https://www.ourspace.page` show the new site. Photos launch with [in-house review](#photos-csam-detection-launch-in-house-review): make sure a moderator is signed up and knows the [daily routine](operations.md#daily-routine).
+5. **Disable GitHub Pages** in the repo's settings (Settings → Pages). Do this after step 4, or the site goes dark in between, and before step 6.
 6. **Merge the branch into `main`.**
 7. **Old backends stay up.** The old `ourspace-api` Worker and `ourspace-db` D1 database (the old site's guestbook) keep running until you remove them separately in the Cloudflare dashboard. Nothing in this repo uses them any more.
 8. **Rotate the Spotify client secret.** It appeared in the old site's pre-rebuild git history (a local-only branch). Make a new one in the Spotify developer dashboard, then `npx wrangler secret put SPOTIFY_CLIENT_SECRET`. The old `ourspace-api` Worker refreshes its own Spotify token with the same secret, so rotating breaks the desktop site's Top Songs: do it once that Worker is retired, or also run `npx wrangler secret put SPOTIFY_CLIENT_SECRET --name ourspace-api`.

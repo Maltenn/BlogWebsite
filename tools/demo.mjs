@@ -10,6 +10,7 @@ import { spawn, execFileSync } from 'node:child_process';
 import { randomBytes } from 'node:crypto';
 import fs from 'node:fs';
 import net from 'node:net';
+import os from 'node:os';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { RESORT } from '../src/shared/ranking.js';
@@ -34,6 +35,13 @@ const { png } = await import('../test/helpers/images.mjs');
 const { fillForm, BROWSER } = await import('../test/helpers/human.mjs');
 
 if (process.argv.includes('--fresh')) fs.rmSync(DEMO, { recursive: true, force: true });
+// --lan: reachable from other devices on this network, for trying it on a real phone (docs/mobile/iphone-testing.md). Off by
+// default, because the demo runs with test switches on, and those are only safe where nobody else can reach them.
+// With --lan wrangler's Local Explorer (raw SQL on the database, the photo store) is switched off, X_LOCAL_EXPLORER=false: its
+// only guard is the Host header, which anyone on the network can fake. That also takes away the nightly check the seeding
+// runs through it, so a --lan demo starts without the cluster alerts. The three held sign-ups are still there.
+const LAN = process.argv.includes('--lan');
+const lanAddress = () => Object.values(os.networkInterfaces()).flat().find(i => i && i.family === 'IPv4' && !i.internal && /^(192\.168\.|10\.|172\.(1[6-9]|2\d|3[01])\.)/.test(i.address))?.address;
 fs.mkdirSync(DEMO, { recursive: true });
 
 // the first free port at or after `from`, so a server you already have running doesn't get in the way
@@ -420,7 +428,7 @@ async function seed() {
   for (const n of [1, 2, 3]) {
     await signUp(client(), { email: `followers${n}@growfast.example`, password: PASSWORD, name: `free_followers_${n}`, birthday: '2000-01-01', rulesOk: true, avatar: pic('pic_cd_rainbow.gif') }, cloud);
   }
-  for (let i = 0; i < 10; i++) {                      // (the local explorer can answer 502 while the server settles)
+  for (let i = 0; i < (LAN ? 0 : 10); i++) {          // (the local explorer can answer 502 while the server settles; with --lan it is off)
     const nightly = await fetch(`${BASE}/cdn-cgi/local/explorer/api/local/scheduled?worker=ourspace-social-demo`, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ cron: '17 3 * * *' }) });
     if (nightly.ok) break;
     await new Promise(r => setTimeout(r, 1000));
@@ -456,9 +464,9 @@ const vars = {
 
 say('starting the site…');
 let stopping = false;
-const server = spawn(process.execPath, [WRANGLER, 'dev', '--name', 'ourspace-social-demo', '--port', String(PORT), '--ip', '127.0.0.1',
+const server = spawn(process.execPath, [WRANGLER, 'dev', '--name', 'ourspace-social-demo', '--port', String(PORT), '--ip', LAN ? '0.0.0.0' : '127.0.0.1',
   '--persist-to', STATE, ...Object.entries(vars).flatMap(([k, v]) => ['--var', `${k}:${v}`])],
-{ cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'], env: { ...process.env, FORCE_COLOR: '0', NO_COLOR: '1' } });
+{ cwd: ROOT, stdio: ['ignore', 'pipe', 'pipe'], env: { ...process.env, FORCE_COLOR: '0', NO_COLOR: '1', ...(LAN ? { X_LOCAL_EXPLORER: 'false' } : {}) } });
 
 // wrangler is chatty: before the site is up its output is kept (and shown only if it fails); after, everything but
 // request logs and known noise is passed through, which is how the password-reset emails reach you
@@ -524,7 +532,8 @@ if (!fs.existsSync(SEEDED)) {
 
 console.log(`
   ┌──────────────────────────────────────────────────────────────────────────┐
-     ourspace demo is running:   ${BASE}
+     ourspace demo is running:   ${BASE}${LAN ? `
+     on this Wi-Fi:              http://${lanAddress() || '<this computer>'}:${PORT}` : ''}
   └──────────────────────────────────────────────────────────────────────────┘
 
   Log in as you:     you@example.com  /  ${PASSWORD}     (screen name the_reviewer, a regular member)

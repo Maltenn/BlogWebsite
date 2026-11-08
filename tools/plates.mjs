@@ -36,19 +36,43 @@ export const TURNSTILE_TEST_TOKEN = 'XXXX.DUMMY.TOKEN.XXXX';            // test/
 const IDENTITIES = { in: 'you@example.com', admin: 'malten@example.com' };   // the demo's regular member and its moderator
 
 /* Answers the Worker works out from ITS OWN clock, served from a fixture instead.
-   context.clock below freezes the browser's clock; it cannot touch the server's, and two routes read it:
+   context.clock below freezes the browser's clock; it cannot touch the server's, and these routes read it:
      - the horoscope's day (src/horoscope/horoscope.js, dayOf -> localDay(..., c.now)). The page does send the frozen
        date, but localDay discards a client date more than 2.5 days from the server's own, as a guard against nonsense
        input, so the frozen date was silently dropped.
      - #ourspace's rolling window (src/chats/ourspace.js, WINDOW: m.created > c.now - KEEP_MS, 24 hours), which hides
        the seeded messages once they are a day old. Its scroll pane has a fixed height, so the page did not even change
        size when the messages went.
+     - Browse's "For you" (GET /api/browse/discover, src/browse/score.js WINDOW: only posts from the last 7 days), which
+       says "nothing to suggest right now" once the seed is a week old, and "Who to follow" on the home page (GET
+       /api/browse/people: when you have fewer than three mutuals it falls back to people seen in the last 30 days, ACTIVE).
+       Those two answer differently signed out and signed in, so they are pinned per identity (byIdentity in the fixture).
    So a baseline stopped matching within days of being taken, with nothing in the code changed: on 2026-11-05, 48 of
    464 plates failed against a 2026-10-31 baseline (horoscope, horoscope-sign, home--in for its horoscope teaser, and
-   ourspace--in). A gate that goes red on its own is worse than no gate, so these answers are pinned. The cost: those
-   plates test the pages' layout, not that the astrology or the chat query is right. Regenerating the fixture means
-   deliberately re-baselining exactly those plates. docs/mobile/harness.md. */
-const FROZEN_API = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools', 'fixtures', 'server-clock.json'), 'utf8')).responses;
+   ourspace--in), and on 2026-11-07 the 16 browse plates, the seed's 7th day. This list was once "two routes": it was
+   wrong, and it will be wrong again, so the fixture also carries a `reads` table of every clock read that reaches a plate
+   (pinned or not, with its window), test/static.test.mjs keeps that table honest, and capturePass warns, naming the
+   routes, about an unpinned one the seed has outgrown. A gate that goes red on its own is worse than no gate, so these
+   answers are pinned. The cost: those plates test the pages' layout, not that the astrology, the chat query or the
+   ranking is right. Regenerating the fixture means deliberately re-baselining exactly those plates
+   (tools/pin-server-clock.mjs for the per-identity ones). docs/mobile/harness.md. */
+const CLOCK = JSON.parse(fs.readFileSync(path.join(ROOT, 'tools', 'fixtures', 'server-clock.json'), 'utf8'));
+const FROZEN_API = CLOCK.responses;
+const BY_IDENTITY = CLOCK.byIdentity || {};                                // path -> { out, in, admin }: one answer per viewer
+const MEDIA_DIR = path.join(ROOT, 'tools', 'fixtures', 'server-clock-media');   // the photos those answers point at (tools/pin-server-clock.mjs)
+const MEDIA_TYPES = { png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', webp: 'image/webp' };
+export const CLOCK_READS = CLOCK.reads || [];
+
+/** Epoch-millisecond fields moved by `by`, so a pinned answer's "3m ago" is the same on any seed (the page counts from the frozen clock, which follows the seed). */
+const shifted = (v, by) => Array.isArray(v) ? v.map(x => shifted(x, by))
+  : v && typeof v === 'object' ? Object.fromEntries(Object.entries(v).map(([k, x]) => [k, shifted(x, by)]))
+  : typeof v === 'number' && v > 1e12 ? v + by : v;
+
+/** What a seed this old gets wrong, among the clock reads that are NOT pinned: a window it has outgrown ('expires') or one it has not yet reached ('matures'). */
+export function clockWarnings(seedAgeMs) {
+  return CLOCK_READS.filter(r => r.plated !== false && !r.pinned && r.ms && (r.kind === 'matures' ? seedAgeMs < r.ms : seedAgeMs > r.ms))
+    .map(r => `the seed is ${Math.round(seedAgeMs / 60000)} min old and ${r.what} (${r.file}, ${r.kind === 'matures' ? 'needs a seed older than' : 'only holds for'} ${r.ms / 60000} min), which changes: ${r.routes.join(', ')}`);
+}
 
 /* The capture server's port is printed on the page, so it has to be made constant.
    The profile's "OurSpace URL:" box renders location.origin + the path (public/js/pages/profile.js:124), and
@@ -111,6 +135,8 @@ export const ROUTE_SPECS = [
   { key: 'verify', states: both, url: () => '/verify' },
   { key: 'admin', states: ['admin'], url: () => '/admin' },
   { key: 'rules', states: both, url: () => '/rules' },
+  { key: 'terms', states: both, url: () => '/terms' },
+  { key: 'privacy', states: both, url: () => '/privacy' },
 ];
 const enc = encodeURIComponent;
 export const plateKey = (route, state) => `${route}--${state}`;       // the file name (minus .png) and the manifest key
@@ -177,7 +203,7 @@ const FREEZE_CSS = `*,*::before,*::after{animation-play-state:paused!important;a
  * Everything non-deterministic, switched off, on one browser context: the clock, Math.random, animations, GIF motion,
  * writes, and any request that leaves the site (Turnstile, fonts…). App shell capture scripts call this too.
  */
-export async function freezeContext(context, { base, now }) {
+export async function freezeContext(context, { base, now, state }) {   // state: out | in | admin, which byIdentity answer to serve
   await context.clock.setFixedTime(now);                                     // Date.now() / new Date() stay put (timers still run).
   //                                                                        NOT the Worker's clock: see FROZEN_API above.
   await context.addInitScript(({ css, seed }) => {
@@ -204,6 +230,14 @@ export async function freezeContext(context, { base, now }) {
     }
     if (FROZEN_API[url.pathname]) {                                          // the server's clock, kept out of the plates (above)
       return route.fulfill({ status: 200, contentType: 'application/json; charset=utf-8', body: JSON.stringify(FROZEN_API[url.pathname]) });
+    }
+    const photo = url.pathname.startsWith('/media/') && path.join(MEDIA_DIR, path.basename(url.pathname));
+    if (photo && fs.existsSync(photo)) {
+      return route.fulfill({ status: 200, contentType: MEDIA_TYPES[path.extname(photo).slice(1)] || 'application/octet-stream', body: fs.readFileSync(photo) });
+    }
+    const mine = BY_IDENTITY[url.pathname] && BY_IDENTITY[url.pathname][state];   // the server's clock again, but this viewer's answer
+    if (mine) {
+      return route.fulfill({ status: 200, contentType: 'application/json; charset=utf-8', body: JSON.stringify(shifted(mine, now - CLOCK.identityClock)) });
     }
     if (/\.gif$/i.test(url.pathname)) {
       if (!gifs.has(url.href)) {
@@ -536,6 +570,7 @@ export async function capturePass(outDir, opts) {
     }
     const d = await discover(base, cookies.in);
     const now = frozenNow(d, nowOverride);
+    for (const w of clockWarnings(Date.now() - (frozenNow(d) - 5 * 60000))) log('  WARNING: ' + w);   // (the demo seeds 2 min before the newest message, the plates are taken 5 min after)
     const { plan, skipped } = planFor(d, { routes, states });
     assertCoverage(ROUTE_SPECS.map(s => s.url(fakeParams)));
     log(`  clock frozen at ${new Date(now).toISOString()}; ${plan.length} captures per engine and viewport; ${skipped.length} route(s) skipped`);
@@ -559,7 +594,7 @@ export async function capturePass(outDir, opts) {
           locale: 'en-US', timezoneId: 'UTC', colorScheme: 'light', reducedMotion: 'no-preference', serviceWorkers: 'block', acceptDownloads: false,
         });
         if (cookies[state]) await context.addCookies([{ name: 'os_sid', value: cookies[state], url: base }]);
-        await freezeContext(context, { base, now });
+        await freezeContext(context, { base, now, state });
         fs.mkdirSync(path.join(outDir, engine, vp.name), { recursive: true });
         for (const item of items) {
           const key = plateKey(item.route, item.state);

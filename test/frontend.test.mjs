@@ -1324,3 +1324,69 @@ test('Moderation: held sign-ups (approve; refuse needs a reason), alerts, strike
   assert.equal(rows[0].querySelectorAll('a').find(a => a.textContent === 'open').getAttribute('href'), '/u/kat/post/11');
   S.me = ME;
 });
+
+/* ------------------------------------------------------------ the legal pages: /rules, /terms, /privacy */
+
+const { renderRules } = await import('../public/js/pages/rules.js');
+const { renderTerms } = await import('../public/js/pages/terms.js');
+const { renderPrivacy } = await import('../public/js/pages/privacy.js');
+const { contactEmail } = await import('../src/shared/contact.js');
+
+const draw = async render => { const root = document.createElement('main'); await render(root); return root; };
+const mailtos = root => root.querySelectorAll('a').filter(a => (a.getAttribute('href') || '').startsWith('mailto:'));
+
+test('the contact address is only ever the one that was set: unset or not an address is null', () => {
+  assert.equal(contactEmail({}), null);
+  assert.equal(contactEmail({ CONTACT_EMAIL: '' }), null);
+  assert.equal(contactEmail({ CONTACT_EMAIL: '   ' }), null);
+  assert.equal(contactEmail({ CONTACT_EMAIL: 'not an address' }), null);
+  assert.equal(contactEmail({ CONTACT_EMAIL: 'a@b' }), null);
+  assert.equal(contactEmail({ CONTACT_EMAIL: 'x@y.org, z@y.org' }), null);
+  assert.equal(contactEmail({ CONTACT_EMAIL: ' help@example.org ' }), 'help@example.org');
+});
+
+test('/rules, /terms and /privacy show no address (and nothing that needs one) while none is set, and still read whole', async () => {
+  S.me = null; S.contact = null; S.minAge = 13;
+  for (const render of [renderRules, renderTerms, renderPrivacy]) {
+    const root = await draw(render);
+    assert.equal(mailtos(root).length, 0);
+    assert.doesNotMatch(root.textContent, /@[a-z0-9-]+\.[a-z]{2,}/i, 'no address of any kind');
+    assert.match(root.textContent, /contact/);
+    assert.match(root.textContent, /Report/);
+  }
+  const rules = (await draw(renderRules)).textContent;
+  assert.match(rules, /taking down an intimate image/);
+  assert.match(rules, /within 48 hours/);
+  assert.doesNotMatch(rules, /With or without an account/, 'the no-account route appears only with an address');
+});
+
+test('once an address is set, every legal page links it, and the Take It Down notice tells someone without an account how to ask', async () => {
+  S.me = null; S.contact = 'help@example.org'; S.minAge = 13;
+  for (const render of [renderRules, renderTerms, renderPrivacy]) {
+    const root = await draw(render);
+    const links = mailtos(root);
+    assert.ok(links.length >= 1);
+    assert.ok(links.every(a => a.getAttribute('href') === 'mailto:help@example.org' && a.textContent === 'help@example.org'));
+  }
+  const rules = (await draw(renderRules)).textContent;
+  assert.match(rules, /With or without an account: write to help@example\.org/);
+  assert.match(rules, /within 48 hours/);
+  S.contact = null;
+});
+
+test('the minimum age on the legal pages is the server\'s setting, never a number written in the text', async () => {
+  S.me = null; S.contact = null;
+  for (const age of [13, 16]) {
+    S.minAge = age;
+    for (const render of [renderRules, renderTerms, renderPrivacy]) assert.match((await draw(render)).textContent, new RegExp(`${age} or older`));
+  }
+  S.minAge = 13;
+});
+
+test('/terms and /privacy name no company, governing law or court', async () => {
+  S.me = null; S.contact = null;
+  for (const render of [renderTerms, renderPrivacy]) {
+    const text = (await draw(render)).textContent;
+    assert.doesNotMatch(text, /\b(inc\.?|llc|ltd|gmbh|governed by|governing law|jurisdiction|courts? of)\b/i);
+  }
+});

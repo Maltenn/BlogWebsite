@@ -29,6 +29,9 @@
   },
   "vars": {
     "MIN_AGE": "13",                     // birthdays below this age can't sign up
+    // The public contact address the legal pages show (/rules, /terms, /privacy): where anyone, member or not, can write
+    // for a Take It Down request or a question. Empty = the pages show no address (src/shared/contact.js). Not a secret.
+    "CONTACT_EMAIL": "",
     "SIGNUPS_PER_DAY": "200",            // site-wide cap on new accounts per day (spam brake while the site is small)
     "SIGNUPS_PER_IP_PER_HOUR": "5",
     // Cloudflare Turnstile's public site key (dashboard → Turnstile → add the site); empty = sign-ups refused on a real

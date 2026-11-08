@@ -10,7 +10,8 @@
 //                   new accounts are already held at the time: duplicates.js)
 //
 // Also the retention sweep (every 30 minutes): sign-up signals 90 days, post fingerprints 7, spent form nonces and
-// email links when they expire, resolved alerts 90 days.
+// email links when they expire, resolved alerts 90 days. Nothing tied to an account under a child-safety hold goes
+// (the view held_accounts, migrations/0014): it stays until a moderator ends the hold.
 import { HOSTING_ASNS } from './risk.js';
 import { CONSUMER } from './disposable.js';
 import { nearDuplicate, bands } from './minhash.js';
@@ -93,11 +94,13 @@ export async function findClusters(env, now) {
 
 // the retention sweep (every 30 minutes)
 export async function sweepTrust(env, now) {
+  const free = 'user_id NOT IN (SELECT user_id FROM held_accounts)';
   await env.DB.batch([
-    env.DB.prepare('DELETE FROM signup_signals WHERE created < ?').bind(now - SIGNALS_KEPT),
-    env.DB.prepare('DELETE FROM post_fingerprints WHERE created < ?').bind(now - 7 * D),
+    env.DB.prepare(`DELETE FROM signup_signals WHERE created < ? AND ${free}`).bind(now - SIGNALS_KEPT),
+    env.DB.prepare(`DELETE FROM post_fingerprints WHERE created < ? AND ${free}`).bind(now - 7 * D),
     env.DB.prepare('DELETE FROM spent_nonces WHERE expires < ?').bind(now),
     env.DB.prepare('DELETE FROM email_tokens WHERE expires < ?').bind(now),
-    env.DB.prepare('DELETE FROM mod_alerts WHERE resolved_at IS NOT NULL AND resolved_at < ?').bind(now - SIGNALS_KEPT),
+    env.DB.prepare(`DELETE FROM mod_alerts WHERE resolved_at IS NOT NULL AND resolved_at < ? AND NOT EXISTS (
+      SELECT 1 FROM json_each(CASE WHEN json_valid(payload) THEN payload ELSE '{}' END, '$.users') u WHERE u.value IN (SELECT user_id FROM held_accounts))`).bind(now - SIGNALS_KEPT),
   ]);
 }

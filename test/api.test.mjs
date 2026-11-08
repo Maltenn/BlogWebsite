@@ -41,6 +41,7 @@ before(async () => {
     SIGNUPS_PER_IP_PER_HOUR: '1000', SIGNUPS_PER_DAY: '1000', TEST_PROVIDER_BASE: mock.base, TOKEN_KEY: Buffer.alloc(32, 7).toString('base64'),
     GOOGLE_CLIENT_ID: 'g-id', GOOGLE_CLIENT_SECRET: 'g-secret', DISCORD_CLIENT_ID: 'd-id', DISCORD_CLIENT_SECRET: 'd-secret',
     SPOTIFY_CLIENT_ID: 's-id', SPOTIFY_CLIENT_SECRET: 's-secret', SHOW_ROWS_READ: '1',
+    CONTACT_EMAIL: 'help@example.org',   // (a reserved example domain: /api/me hands it to the pages)
     // phase 7: Cloudflare's Turnstile test keys against the stand-in siteverify, MX lookups from the stand-in DoH, an
     // easy proof of work and short form times, request.cf from X-Test-Cf, the mock AI detector in shadow mode
     TURNSTILE_SITE_KEY: '1x00000000000000000000AA', TURNSTILE_SECRET_KEY: '1x0000000000000000000000000000000AA',
@@ -188,6 +189,18 @@ test('public pages work logged out, and there are no bots', async () => {
   assert.equal((await c.get('/api/chats')).status, 401);
   assert.equal((await c.get('/api/inbox')).status, 404, 'the old inbox is gone');
   assert.equal((await c.get('/api/requests')).status, 401);
+});
+
+test('/api/me hands the pages the public contact address (CONTACT_EMAIL), logged out and in', async () => {
+  assert.equal((await client().get('/api/me')).data.contact, 'help@example.org');
+  const u = await newUser('contact');
+  assert.equal((await u.get('/api/me')).data.contact, 'help@example.org');
+  // the legal pages are client-side routes: the Worker answers them with the app shell, like /rules
+  for (const p of ['/rules', '/terms', '/privacy']) {
+    const r = await client().raw('GET', p);
+    assert.equal(r.status, 200);
+    assert.match(await r.text(), /src="\/app\.js"/);
+  }
 });
 
 test('sign-up: email, password, screen name, birthday', async () => {
@@ -3009,9 +3022,9 @@ test('a child-safety (csam) report holds the post\'s photos at once, comes first
   assert.deepEqual((await mod.post(`/api/admin/reports/${spam.id}`, { action: 'intimate' })).data, { ok: true });
   const marked = (await mod.get('/api/admin/reports')).data.reports.find(r => r.id === spam.id);
   assert.deepEqual([marked.intimate, marked.status, marked.deadline], [true, 'open', spam.created + 48 * 3600000]);
-  // the moderator finishes it: remove the held photo
-  assert.equal((await mod.post(`/api/admin/media/${a.id}`, { action: 'remove', note: 'NCMEC report filed' })).status, 200);
-  assert.ok(!(await bucket()).has(keyOf(a.url)));
+  // the moderator reports it and leaves it held: a plain Remove is refused (test/child-safety.test.mjs has the rest)
+  assert.equal((await mod.post(`/api/admin/media/${a.id}`, { action: 'remove', note: 'NCMEC report filed' })).status, 409);
+  assert.ok((await bucket()).has(keyOf(a.url)));
 });
 
 /* ---------------------------------------------------- live chat: groups, DMs, #ourspace, the interaction score */

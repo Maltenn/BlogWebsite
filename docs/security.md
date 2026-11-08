@@ -19,7 +19,7 @@
 - **Photos:** the server reads each upload's type from its bytes (JPEG, PNG, GIF or WebP only; never SVG or HTML), refuses broken or cut-off files and takes out the metadata, GPS position included, whatever the browser did. Files get random keys and are served by the Worker with their real type, `nosniff`, `Content-Disposition: inline` and `Content-Security-Policy: default-src 'none'; sandbox`, and only to whoever may see the post they're on (a private profile's to its followers). See [architecture.md](architecture.md#photos).
 - **Profiles:** every look setting must come from the lists in `src/catalog/options.js`, so nobody can inject CSS or image URLs.
 - **Text:** invisible and direction-flipping characters stripped, links removed, blocked words starred.
-- **Blocks and reports:** a block hides both people from each other and stops all contact. Reports keep a snapshot, so the evidence survives a delete.
+- **Blocks and reports:** a block hides both people from each other and stops all contact. Reports keep a snapshot, so the evidence survives a delete. A child-safety (`csam`) report also holds the photos and accounts it is about until a moderator ends the hold (below).
 - **Verifying humans** (phase 7, [architecture.md](architecture.md#verifying-humans-anti-spam-and-ai-writing-strikes)): Cloudflare Turnstile on sign-up, log in and "forgot my password" (checked on our side for `success`, `action` and `hostname`); a signed, single-use sign-up form with a honeypot and a minimum time; a proof of work on every sign-up; throwaway email domains refused; an emailed confirmation link (POST from a page, single use, 24 hours, kept in the URL fragment) before posting, commenting, messaging or following; suspicious sign-ups held for a moderator. Nothing bans anybody automatically: clusters and duplicates raise alerts, a 5th AI-writing strike goes to a moderator.
 - **The write gate:** every member write in the route table passes `src/shared/gate.js` (email confirmed, not held; public posting also no posting timeout) unless the table marks it `free` with the reason (account, page set-up, privacy, undoing, blocks and reports). `test/api.test.mjs` reads the table and tries every gated route, so a new route can't skip it by accident.
 
@@ -36,6 +36,20 @@
 | Never stored | raw IP addresses, full User-Agents, Turnstile tokens, device fingerprints, mouse or keyboard data | — |
 
 The privacy summary on `/rules` should say: Cloudflare runs the "verify you are human" check (it sees the IP address and browser signals, as Cloudflare's processor terms describe); we keep a salted hash of your network, your network provider's name, your email's domain and how long the form took for 90 days to spot bot sign-ups; public posts of 100+ words (150 for blog posts) may be scored for AI writing (when switched on), and a scored text that earns a strike is kept so you can appeal it. (The page itself is the front end's to update.)
+
+### What a child-safety hold keeps, and for how long
+
+A member's `csam` report only hides the reported thing's own photos, if its reporter is verified and can see them, until a moderator dismisses or confirms it. Only a moderator's **confirmation**, after reporting to NCMEC, holds an account, and it bans the account in the same step ([architecture.md](architecture.md#child-safety-holds), [operations.md](operations.md)). 18 U.S.C. 2258A(h) asks a provider that reports to NCMEC to keep what it reported, and reasonably accessible related data, for a year, securely.
+
+| Data | For whom | Kept |
+|---|---|---|
+| A reported photo a member's report listed or hid (hidden: served to moderators only) | the reported account | until a moderator dismisses (shown again; if its owner deleted it meanwhile, then deleted) or confirms the report |
+| A confirmed report's photos | the confirmed account | until a moderator releases the hold, then deleted, never shown again |
+| A held account's photos, own posts, messages, profile, account row (no password), sign-in identities, sign-up signals and AI scores, once they would go | only confirmed accounts | until released, then deleted within the hour |
+| One DM with a held account, both sides, when the other member deletes their account (their id only, nothing else of theirs) | that other member | the same |
+| Sign-up signals, AI scores, strike text, fingerprints, resolved alerts and loose uploads past their dates | only confirmed accounts | the dated sweeps skip them until the hold ends |
+
+Nothing is kept for anyone not under a hold, and nothing ends a hold by a date. Not yet confirmed by a lawyer: keeping data past a deletion request, and keeping a third person's DM; whether this meets Apple's and Google's account-deletion rules; how long to keep it (a year from the NCMEC report is the statute's minimum); whether D1 and R2 with database access for moderators is the "secure location" 2258A(h)(3) and the NIST framework (h)(6) ask for ([decisions/008](decisions/008-launch-legal.md), section 4).
 
 ### External origins
 

@@ -3,7 +3,8 @@
 //   shadow (the default)  every score is recorded for moderators; nobody gets a strike
 //   enforce               the owner's ladder (ladder.js) applies: switch to it only after the evaluation harness
 //                         (tools/eval-detector.mjs) measured the human false-positive rate at ≤ 1% (95% upper bound)
-// Also the cron's part: strikes past their 90 clean days stop counting, old flagged text is cleared, scans go after 90 days.
+// Also the cron's part: strikes past their 90 clean days stop counting, old flagged text is cleared, scans go after 90
+// days, except an account's under a child-safety hold (the view held_accounts, migrations/0014).
 import { sha256Hex } from '../shared/http.js';
 import { detect, detectorName } from './detect.js';
 import { eligible } from './clean.js';
@@ -77,10 +78,11 @@ async function giveStrike(env, { userId, postId, scanId, res, cleaned, now }) {
 
 // the cron (every 30 minutes): expiry, old text, old scans
 export async function sweepStrikes(env, now) {
+  const free = 'user_id NOT IN (SELECT user_id FROM held_accounts)';
   await env.DB.batch([
     env.DB.prepare('UPDATE ai_strikes SET status = \'expired\' WHERE status IN (\'active\', \'appealed\') AND expires <= ?').bind(now),
     env.DB.prepare('DELETE FROM posting_timeouts WHERE until < ?').bind(now - DAY),
-    env.DB.prepare('UPDATE ai_strikes SET text = \'\' WHERE status IN (\'removed\', \'expired\') AND text != \'\' AND COALESCE(decided_at, expires) < ?').bind(now - 30 * DAY),
-    env.DB.prepare('DELETE FROM ai_scans WHERE created < ?').bind(now - 90 * DAY),
+    env.DB.prepare(`UPDATE ai_strikes SET text = '' WHERE status IN ('removed', 'expired') AND text != '' AND COALESCE(decided_at, expires) < ? AND ${free}`).bind(now - 30 * DAY),
+    env.DB.prepare(`DELETE FROM ai_scans WHERE created < ? AND ${free}`).bind(now - 90 * DAY),
   ]);
 }

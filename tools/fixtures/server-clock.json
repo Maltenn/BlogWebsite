@@ -918,5 +918,1596 @@
     }
    }
   }
- }
+ },
+ "identityClock": 1794082349911,
+ "identityCapturedAt": "2026-11-07T20:14:56.552Z",
+ "byIdentity": {
+  "/api/browse/discover": {
+   "out": {
+    "items": [
+     {
+      "item": {
+       "id": 59,
+       "kind": "thread",
+       "created": 1794075809911,
+       "subject": "banana bread but make it chocolate",
+       "subtitle": null,
+       "body": "half a bag of chocolate chips, a spoon of cocoa, same recipe otherwise. trust me.",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 12,
+        "name": "lou_bakes",
+        "avatar": "/assets/avatars/icon_gc_hamster_teacup.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 3,
+        "down": 0,
+        "comments": 1
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "cooking",
+        "name": "Cooking",
+        "icon": "🍳",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "popular",
+      "why": "Popular in Cooking",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 54,
+       "kind": "thread",
+       "created": 1794068309911,
+       "subject": "my cat learned to open the fridge",
+       "subtitle": null,
+       "body": "she just stares at me while she does it. i have no defense against this.",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 9,
+        "name": "roller_rae",
+        "avatar": "/assets/avatars/icon_gc_skater_purple.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 3,
+        "down": 0,
+        "comments": 1
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "pets",
+        "name": "Pets",
+        "icon": "🐾",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "popular",
+      "why": "Popular in Pets",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 61,
+       "kind": "status",
+       "created": 1794078809911,
+       "subject": null,
+       "subtitle": null,
+       "body": "third loaf this week. no regrets #baking",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 12,
+        "name": "lou_bakes",
+        "avatar": "/assets/avatars/icon_gc_hamster_teacup.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "likes": 3,
+        "replies": 0,
+        "reposts": 0,
+        "quotes": 0
+       },
+       "viewer": {
+        "liked": false,
+        "reposted": false,
+        "bookmarked": false
+       },
+       "mentions": [],
+       "tags": [
+        "baking"
+       ],
+       "media": [],
+       "deleted": false
+      },
+      "reason": "popular",
+      "why": "Popular on OurSpace this week",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 30,
+       "kind": "thread",
+       "created": 1794032309911,
+       "subject": "house rules (read me!!)",
+       "subtitle": null,
+       "body": "1. be nice. real people live here.\n2. no spam, and no \"repost this or bad luck forever\" threats.\n3. keep each board on its topic. Random is for everything else.\n4. see something gross? report it and a moderator will take a look.\n\nhave fun!! ♥",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 2,
+        "name": "malten",
+        "avatar": "/assets/avatars/pic_cd_rainbow.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 6,
+        "down": 0,
+        "comments": 0
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "random",
+        "name": "Random",
+        "icon": "🎲",
+        "archived": false
+       },
+       "sticky": true,
+       "locked": false
+      },
+      "reason": "popular",
+      "why": "Popular in Random",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 56,
+       "kind": "thread",
+       "created": 1794071309911,
+       "subject": "best tony hawk game? (wrong answers only)",
+       "subtitle": null,
+       "body": "i'll start: the one with the most loading screens",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 10,
+        "name": "cam_the_gamer",
+        "avatar": "/assets/avatars/icon_gc_frog_pixel.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 2,
+        "down": 0,
+        "comments": 1
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "games",
+        "name": "Games",
+        "icon": "🎮",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "popular",
+      "why": "Popular in Games",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 44,
+       "kind": "thread",
+       "created": 1794053309911,
+       "subject": "mercury retrograde survival guide",
+       "subtitle": null,
+       "body": "back up your files, don't text your ex, and read every message twice before you hit send. it ends on the 13th. we'll make it. #mercuryretrograde",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 7,
+        "name": "starlight_mia",
+        "avatar": "/media/9c63ca49a1d8501394df33770b9b2beb.png"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 3,
+        "down": 0,
+        "comments": 2
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [
+        "mercuryretrograde"
+       ],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "astrology",
+        "name": "Astrology",
+        "icon": "🔮",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "popular",
+      "why": "Popular in Astrology",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 50,
+       "kind": "thread",
+       "created": 1794062309911,
+       "subject": "kickflip tips??",
+       "subtitle": null,
+       "body": "i landed one (once). how do i land two",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 4,
+        "name": "sk8r_jules",
+        "avatar": "/assets/avatars/icon_gc_skater_kickflip.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 2,
+        "down": 0,
+        "comments": 1
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "sports",
+        "name": "Sports",
+        "icon": "⚽",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "popular",
+      "why": "Popular in Sports",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 14,
+       "kind": "thread",
+       "created": 1794008309911,
+       "subject": "free layouts!!",
+       "subtitle": null,
+       "body": "taking layout requests this weekend. tell me your colors and your favorite band. no promises on the marquee. #layouts",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 6,
+        "name": "pixelpete",
+        "avatar": "/assets/avatars/pic_computer_beige.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 4,
+        "down": 0,
+        "comments": 4
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [
+        "layouts"
+       ],
+       "media": [
+        {
+         "id": 5,
+         "url": "/media/9d340cc94d02dadfbe2fcb2d0057f303.png",
+         "width": 200,
+         "height": 150,
+         "alt": "a green CRT-style layout preview"
+        },
+        {
+         "id": 6,
+         "url": "/media/1fd48c8b74a2e5846ad3cc81b6d69d61.png",
+         "width": 200,
+         "height": 150,
+         "alt": "a pink and black layout preview"
+        },
+        {
+         "id": 7,
+         "url": "/media/f38fac1365cad8164d8642a0ca2cb412.png",
+         "width": 200,
+         "height": 150,
+         "alt": "a purple layout preview"
+        }
+       ],
+       "deleted": false,
+       "board": {
+        "slug": "art-layouts",
+        "name": "Art & Layouts",
+        "icon": "🎨",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "popular",
+      "why": "Popular in Art & Layouts",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 5,
+       "kind": "thread",
+       "created": 1793994809911,
+       "subject": "TAKE THIS SURVEY!!! ♥",
+       "subtitle": null,
+       "body": "copy, paste, answer!!\n\n1. name: kat\n2. fave color: glitter\n3. last song you heard: misery business\n4. top 8 drama level (1-10): 11\n5. would you rather never use the internet again, or only listen to one song forever?\n\ncomment ur answers!!",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 3,
+        "name": "xX_glitterkat_Xx",
+        "avatar": "/assets/avatars/pic_glitter_heart_pink.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 4,
+        "down": 1,
+        "comments": 5
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "random",
+        "name": "Random",
+        "icon": "🎲",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "popular",
+      "why": "Popular in Random",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 29,
+       "kind": "status",
+       "created": 1794030809911,
+       "subject": null,
+       "subtitle": null,
+       "body": "new layout!!! tell me what u think ♥ #layouts",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 3,
+        "name": "xX_glitterkat_Xx",
+        "avatar": "/assets/avatars/pic_glitter_heart_pink.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "likes": 3,
+        "replies": 0,
+        "reposts": 0,
+        "quotes": 0
+       },
+       "viewer": {
+        "liked": false,
+        "reposted": false,
+        "bookmarked": false
+       },
+       "mentions": [],
+       "tags": [
+        "layouts"
+       ],
+       "media": [],
+       "deleted": false
+      },
+      "reason": "popular",
+      "why": "Popular on OurSpace this week",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 22,
+       "kind": "status",
+       "created": 1794020309911,
+       "subject": null,
+       "subtitle": null,
+       "body": "just joined!! still figuring out where all the buttons are #newhere",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 1,
+        "name": "the_reviewer",
+        "avatar": "/assets/avatars/pic_star_top_hat.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "likes": 1,
+        "replies": 1,
+        "reposts": 1,
+        "quotes": 1
+       },
+       "viewer": {
+        "liked": false,
+        "reposted": false,
+        "bookmarked": false
+       },
+       "mentions": [],
+       "tags": [
+        "newhere"
+       ],
+       "media": [],
+       "deleted": false
+      },
+      "reason": "popular",
+      "why": "Popular on OurSpace this week",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 52,
+       "kind": "status",
+       "created": 1794065309911,
+       "subject": null,
+       "subtitle": null,
+       "body": "roller rink tonight!! couples skate is optional (it is not optional for me, i skate alone) #rollerskating",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 9,
+        "name": "roller_rae",
+        "avatar": "/assets/avatars/icon_gc_skater_purple.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "likes": 0,
+        "replies": 1,
+        "reposts": 0,
+        "quotes": 0
+       },
+       "viewer": {
+        "liked": false,
+        "reposted": false,
+        "bookmarked": false
+       },
+       "mentions": [],
+       "tags": [
+        "rollerskating"
+       ],
+       "media": [],
+       "deleted": false
+      },
+      "reason": "popular",
+      "why": "Popular on OurSpace this week",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 1,
+       "kind": "status",
+       "created": 1793988809911,
+       "subject": null,
+       "subtitle": null,
+       "body": "debugging my layout at 2am. the marquee won't stop. send help #layouts",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 6,
+        "name": "pixelpete",
+        "avatar": "/assets/avatars/pic_computer_beige.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "likes": 1,
+        "replies": 2,
+        "reposts": 0,
+        "quotes": 0
+       },
+       "viewer": {
+        "liked": false,
+        "reposted": false,
+        "bookmarked": false
+       },
+       "mentions": [],
+       "tags": [
+        "layouts"
+       ],
+       "media": [
+        {
+         "id": 2,
+         "url": "/media/a0c7da6c8ef23630ef6dc540b8b33be2.png",
+         "width": 240,
+         "height": 192,
+         "alt": "a pixel-art heart, red on a light grey grid"
+        }
+       ],
+       "deleted": false
+      },
+      "reason": "popular",
+      "why": "Popular on OurSpace this week",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 64,
+       "kind": "thread",
+       "created": 1794082076504,
+       "subject": "an honest look at the tony hawk remaster",
+       "subtitle": null,
+       "body": "The long-awaited remaster delivers a vibrant and nostalgic experience that resonates with longtime fans while welcoming a new generation of players. Furthermore, the updated visuals showcase intricate attention to detail, and the soundtrack serves as a testament to the era. It is important to note that the controls feel seamless and robust, fostering a sense of mastery from the very first session.…",
+       "excerpt": true,
+       "mood": null,
+       "author": {
+        "id": 10,
+        "name": "cam_the_gamer",
+        "avatar": "/assets/avatars/icon_gc_frog_pixel.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 0,
+        "down": 0,
+        "comments": 0
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "games",
+        "name": "Games",
+        "icon": "🎮",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "popular",
+      "why": "Popular in Games",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 63,
+       "kind": "thread",
+       "created": 1794081809911,
+       "subject": "mix request thread",
+       "subtitle": null,
+       "body": "tell me a mood and i'll make you a mix. no mood is too specific.",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 8,
+        "name": "dj_bananabread",
+        "avatar": "/assets/avatars/pic_headphones_neon.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 0,
+        "down": 0,
+        "comments": 0
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "music",
+        "name": "Music",
+        "icon": "🎵",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "popular",
+      "why": "Popular in Music",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 62,
+       "kind": "status",
+       "created": 1794080309911,
+       "subject": null,
+       "subtitle": null,
+       "body": "filmed cam falling off a curb. it's going in the documentary #sk8",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 4,
+        "name": "sk8r_jules",
+        "avatar": "/assets/avatars/icon_gc_skater_kickflip.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "likes": 0,
+        "replies": 0,
+        "reposts": 0,
+        "quotes": 0
+       },
+       "viewer": {
+        "liked": false,
+        "reposted": false,
+        "bookmarked": false
+       },
+       "mentions": [],
+       "tags": [
+        "sk8"
+       ],
+       "media": [],
+       "deleted": false
+      },
+      "reason": "popular",
+      "why": "Popular on OurSpace this week",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 16,
+       "kind": "blog",
+       "created": 1794011309911,
+       "subject": "full moon notes",
+       "subtitle": "what i'm keeping and what i'm letting go",
+       "body": "the moon was so bright tonight that i could read without a lamp. i made a list of everything i want to let go of this month and then fell asleep before i finished it, which honestly feels like the point.\n\nthings i'm keeping: my friends, my playlists, the glow-in-the-dark stars on my ceiling.\n\nthings i'm letting go of: checking if someone read my message. it's a full moon, not a read receipt. #full…",
+       "excerpt": true,
+       "mood": "dreamy",
+       "author": {
+        "id": 7,
+        "name": "starlight_mia",
+        "avatar": "/media/9c63ca49a1d8501394df33770b9b2beb.png"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "likes": 1,
+        "replies": 0,
+        "reposts": 0,
+        "quotes": 0
+       },
+       "viewer": {
+        "liked": false,
+        "reposted": false,
+        "bookmarked": false
+       },
+       "mentions": [],
+       "tags": [
+        "fullmoon"
+       ],
+       "media": [],
+       "cover": {
+        "id": 8,
+        "url": "/media/e9115e08045148d91f00b467a96ade14.png",
+        "width": 480,
+        "height": 200,
+        "alt": "a full moon over a starry sky"
+       },
+       "deleted": false
+      },
+      "reason": "popular",
+      "why": "Popular on OurSpace this week",
+      "relation": null
+     },
+     {
+      "item": {
+       "id": 28,
+       "kind": "status",
+       "created": 1794029309911,
+       "subject": null,
+       "subtitle": null,
+       "body": "making a welcome mix for @the_reviewer. requests?? #mixtape",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 8,
+        "name": "dj_bananabread",
+        "avatar": "/assets/avatars/pic_headphones_neon.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "likes": 0,
+        "replies": 0,
+        "reposts": 0,
+        "quotes": 0
+       },
+       "viewer": {
+        "liked": false,
+        "reposted": false,
+        "bookmarked": false
+       },
+       "mentions": [
+        {
+         "id": 1,
+         "name": "the_reviewer"
+        }
+       ],
+       "tags": [
+        "mixtape"
+       ],
+       "media": [],
+       "deleted": false
+      },
+      "reason": "popular",
+      "why": "Popular on OurSpace this week",
+      "relation": null
+     }
+    ],
+    "next": "155.05329809606488:21:65.58.11.26.21"
+   },
+   "in": {
+    "items": [
+     {
+      "item": {
+       "id": 59,
+       "kind": "thread",
+       "created": 1794075809911,
+       "subject": "banana bread but make it chocolate",
+       "subtitle": null,
+       "body": "half a bag of chocolate chips, a spoon of cocoa, same recipe otherwise. trust me.",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 12,
+        "name": "lou_bakes",
+        "avatar": "/assets/avatars/icon_gc_hamster_teacup.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 3,
+        "down": 0,
+        "comments": 1
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "cooking",
+        "name": "Cooking",
+        "icon": "🍳",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "friends",
+      "why": "Your friend xX_glitterkat_Xx follows lou_bakes",
+      "relation": {
+       "following": "none",
+       "followsMe": false,
+       "friends": false,
+       "blockedByMe": false,
+       "canComment": false,
+       "canMessage": true
+      }
+     },
+     {
+      "item": {
+       "id": 56,
+       "kind": "thread",
+       "created": 1794071309911,
+       "subject": "best tony hawk game? (wrong answers only)",
+       "subtitle": null,
+       "body": "i'll start: the one with the most loading screens",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 10,
+        "name": "cam_the_gamer",
+        "avatar": "/assets/avatars/icon_gc_frog_pixel.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 2,
+        "down": 0,
+        "comments": 1
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "games",
+        "name": "Games",
+        "icon": "🎮",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "replied",
+      "why": "starlight_mia, who you follow, commented",
+      "relation": {
+       "following": "none",
+       "followsMe": false,
+       "friends": false,
+       "blockedByMe": false,
+       "canComment": false,
+       "canMessage": true
+      }
+     },
+     {
+      "item": {
+       "id": 50,
+       "kind": "thread",
+       "created": 1794062309911,
+       "subject": "kickflip tips??",
+       "subtitle": null,
+       "body": "i landed one (once). how do i land two",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 4,
+        "name": "sk8r_jules",
+        "avatar": "/assets/avatars/icon_gc_skater_kickflip.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 2,
+        "down": 0,
+        "comments": 1
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "sports",
+        "name": "Sports",
+        "icon": "⚽",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "replied",
+      "why": "pixelpete, who you follow, commented",
+      "relation": {
+       "following": "none",
+       "followsMe": true,
+       "friends": false,
+       "blockedByMe": false,
+       "canComment": false,
+       "canMessage": true
+      }
+     },
+     {
+      "item": {
+       "id": 54,
+       "kind": "thread",
+       "created": 1794068309911,
+       "subject": "my cat learned to open the fridge",
+       "subtitle": null,
+       "body": "she just stares at me while she does it. i have no defense against this.",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 9,
+        "name": "roller_rae",
+        "avatar": "/assets/avatars/icon_gc_skater_purple.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 3,
+        "down": 0,
+        "comments": 1
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "pets",
+        "name": "Pets",
+        "icon": "🐾",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "friends",
+      "why": "starlight_mia and 1 other friend follow roller_rae",
+      "relation": {
+       "following": "none",
+       "followsMe": false,
+       "friends": false,
+       "blockedByMe": false,
+       "canComment": false,
+       "canMessage": true
+      }
+     },
+     {
+      "item": {
+       "id": 61,
+       "kind": "status",
+       "created": 1794078809911,
+       "subject": null,
+       "subtitle": null,
+       "body": "third loaf this week. no regrets #baking",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 12,
+        "name": "lou_bakes",
+        "avatar": "/assets/avatars/icon_gc_hamster_teacup.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "likes": 3,
+        "replies": 0,
+        "reposts": 0,
+        "quotes": 0
+       },
+       "viewer": {
+        "liked": false,
+        "reposted": false,
+        "bookmarked": false
+       },
+       "mentions": [],
+       "tags": [
+        "baking"
+       ],
+       "media": [],
+       "deleted": false
+      },
+      "reason": "friends",
+      "why": "Your friend xX_glitterkat_Xx follows lou_bakes",
+      "relation": {
+       "following": "none",
+       "followsMe": false,
+       "friends": false,
+       "blockedByMe": false,
+       "canComment": false,
+       "canMessage": true
+      }
+     },
+     {
+      "item": {
+       "id": 52,
+       "kind": "status",
+       "created": 1794065309911,
+       "subject": null,
+       "subtitle": null,
+       "body": "roller rink tonight!! couples skate is optional (it is not optional for me, i skate alone) #rollerskating",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 9,
+        "name": "roller_rae",
+        "avatar": "/assets/avatars/icon_gc_skater_purple.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "likes": 0,
+        "replies": 1,
+        "reposts": 0,
+        "quotes": 0
+       },
+       "viewer": {
+        "liked": false,
+        "reposted": false,
+        "bookmarked": false
+       },
+       "mentions": [],
+       "tags": [
+        "rollerskating"
+       ],
+       "media": [],
+       "deleted": false
+      },
+      "reason": "replied",
+      "why": "Replied to by xX_glitterkat_Xx, who you follow",
+      "relation": {
+       "following": "none",
+       "followsMe": false,
+       "friends": false,
+       "blockedByMe": false,
+       "canComment": false,
+       "canMessage": true
+      }
+     },
+     {
+      "item": {
+       "id": 63,
+       "kind": "thread",
+       "created": 1794081809911,
+       "subject": "mix request thread",
+       "subtitle": null,
+       "body": "tell me a mood and i'll make you a mix. no mood is too specific.",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 8,
+        "name": "dj_bananabread",
+        "avatar": "/assets/avatars/pic_headphones_neon.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 0,
+        "down": 0,
+        "comments": 0
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "music",
+        "name": "Music",
+        "icon": "🎵",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "friends",
+      "why": "pixelpete and 1 other friend follow dj_bananabread",
+      "relation": {
+       "following": "none",
+       "followsMe": true,
+       "friends": false,
+       "blockedByMe": false,
+       "canComment": false,
+       "canMessage": true
+      }
+     },
+     {
+      "item": {
+       "id": 64,
+       "kind": "thread",
+       "created": 1794082076504,
+       "subject": "an honest look at the tony hawk remaster",
+       "subtitle": null,
+       "body": "The long-awaited remaster delivers a vibrant and nostalgic experience that resonates with longtime fans while welcoming a new generation of players. Furthermore, the updated visuals showcase intricate attention to detail, and the soundtrack serves as a testament to the era. It is important to note that the controls feel seamless and robust, fostering a sense of mastery from the very first session.…",
+       "excerpt": true,
+       "mood": null,
+       "author": {
+        "id": 10,
+        "name": "cam_the_gamer",
+        "avatar": "/assets/avatars/icon_gc_frog_pixel.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "up": 0,
+        "down": 0,
+        "comments": 0
+       },
+       "viewer": {
+        "vote": 0
+       },
+       "mentions": [],
+       "tags": [],
+       "media": [],
+       "deleted": false,
+       "board": {
+        "slug": "games",
+        "name": "Games",
+        "icon": "🎮",
+        "archived": false
+       },
+       "sticky": false,
+       "locked": false
+      },
+      "reason": "friends",
+      "why": "Your friend pixelpete follows cam_the_gamer",
+      "relation": {
+       "following": "none",
+       "followsMe": false,
+       "friends": false,
+       "blockedByMe": false,
+       "canComment": false,
+       "canMessage": true
+      }
+     },
+     {
+      "item": {
+       "id": 62,
+       "kind": "status",
+       "created": 1794080309911,
+       "subject": null,
+       "subtitle": null,
+       "body": "filmed cam falling off a curb. it's going in the documentary #sk8",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 4,
+        "name": "sk8r_jules",
+        "avatar": "/assets/avatars/icon_gc_skater_kickflip.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "likes": 0,
+        "replies": 0,
+        "reposts": 0,
+        "quotes": 0
+       },
+       "viewer": {
+        "liked": false,
+        "reposted": false,
+        "bookmarked": false
+       },
+       "mentions": [],
+       "tags": [
+        "sk8"
+       ],
+       "media": [],
+       "deleted": false
+      },
+      "reason": "friends",
+      "why": "pixelpete and 1 other friend follow sk8r_jules",
+      "relation": {
+       "following": "none",
+       "followsMe": true,
+       "friends": false,
+       "blockedByMe": false,
+       "canComment": false,
+       "canMessage": true
+      }
+     },
+     {
+      "item": {
+       "id": 28,
+       "kind": "status",
+       "created": 1794029309911,
+       "subject": null,
+       "subtitle": null,
+       "body": "making a welcome mix for @the_reviewer. requests?? #mixtape",
+       "excerpt": false,
+       "mood": null,
+       "author": {
+        "id": 8,
+        "name": "dj_bananabread",
+        "avatar": "/assets/avatars/pic_headphones_neon.gif"
+       },
+       "canDelete": false,
+       "replyTo": null,
+       "rootId": null,
+       "quoted": null,
+       "counts": {
+        "likes": 0,
+        "replies": 0,
+        "reposts": 0,
+        "quotes": 0
+       },
+       "viewer": {
+        "liked": false,
+        "reposted": false,
+        "bookmarked": false
+       },
+       "mentions": [
+        {
+         "id": 1,
+         "name": "the_reviewer"
+        }
+       ],
+       "tags": [
+        "mixtape"
+       ],
+       "media": [],
+       "deleted": false
+      },
+      "reason": "friends",
+      "why": "pixelpete and 1 other friend follow dj_bananabread",
+      "relation": {
+       "following": "none",
+       "followsMe": true,
+       "friends": false,
+       "blockedByMe": false,
+       "canComment": false,
+       "canMessage": true
+      }
+     }
+    ],
+    "next": "155.3532980960649:21:65.58.26.21"
+   }
+  },
+  "/api/browse/people": {
+   "out": {
+    "people": [
+     {
+      "user": {
+       "id": 3,
+       "name": "xX_glitterkat_Xx",
+       "avatar": "/assets/avatars/pic_glitter_heart_pink.gif"
+      },
+      "private": false,
+      "relation": null,
+      "mutual": null,
+      "followers": 9,
+      "because": "popular",
+      "why": "Followed by 9 people"
+     },
+     {
+      "user": {
+       "id": 1,
+       "name": "the_reviewer",
+       "avatar": "/assets/avatars/pic_star_top_hat.gif"
+      },
+      "private": false,
+      "relation": null,
+      "mutual": null,
+      "followers": 6,
+      "because": "popular",
+      "why": "Followed by 6 people"
+     },
+     {
+      "user": {
+       "id": 7,
+       "name": "starlight_mia",
+       "avatar": "/media/9c63ca49a1d8501394df33770b9b2beb.png"
+      },
+      "private": false,
+      "relation": null,
+      "mutual": null,
+      "followers": 6,
+      "because": "popular",
+      "why": "Followed by 6 people"
+     }
+    ]
+   },
+   "in": {
+    "people": [
+     {
+      "user": {
+       "id": 8,
+       "name": "dj_bananabread",
+       "avatar": "/assets/avatars/pic_headphones_neon.gif"
+      },
+      "private": false,
+      "relation": {
+       "following": "none",
+       "followsMe": true,
+       "friends": false,
+       "blockedByMe": false,
+       "canComment": false,
+       "canMessage": true
+      },
+      "mutual": {
+       "count": 2,
+       "people": [
+        {
+         "id": 6,
+         "name": "pixelpete",
+         "avatar": "/assets/avatars/pic_computer_beige.gif"
+        },
+        {
+         "id": 7,
+         "name": "starlight_mia",
+         "avatar": "/media/9c63ca49a1d8501394df33770b9b2beb.png"
+        }
+       ]
+      },
+      "because": "mutual",
+      "why": "Friends with pixelpete and starlight_mia · follows you"
+     },
+     {
+      "user": {
+       "id": 4,
+       "name": "sk8r_jules",
+       "avatar": "/assets/avatars/icon_gc_skater_kickflip.gif"
+      },
+      "private": false,
+      "relation": {
+       "following": "none",
+       "followsMe": true,
+       "friends": false,
+       "blockedByMe": false,
+       "canComment": false,
+       "canMessage": true
+      },
+      "mutual": {
+       "count": 2,
+       "people": [
+        {
+         "id": 6,
+         "name": "pixelpete",
+         "avatar": "/assets/avatars/pic_computer_beige.gif"
+        },
+        {
+         "id": 3,
+         "name": "xX_glitterkat_Xx",
+         "avatar": "/assets/avatars/pic_glitter_heart_pink.gif"
+        }
+       ]
+      },
+      "because": "mutual",
+      "why": "Friends with pixelpete and xX_glitterkat_Xx · follows you"
+     },
+     {
+      "user": {
+       "id": 9,
+       "name": "roller_rae",
+       "avatar": "/assets/avatars/icon_gc_skater_purple.gif"
+      },
+      "private": false,
+      "relation": {
+       "following": "none",
+       "followsMe": false,
+       "friends": false,
+       "blockedByMe": false,
+       "canComment": false,
+       "canMessage": true
+      },
+      "mutual": {
+       "count": 2,
+       "people": [
+        {
+         "id": 7,
+         "name": "starlight_mia",
+         "avatar": "/media/9c63ca49a1d8501394df33770b9b2beb.png"
+        },
+        {
+         "id": 3,
+         "name": "xX_glitterkat_Xx",
+         "avatar": "/assets/avatars/pic_glitter_heart_pink.gif"
+        }
+       ]
+      },
+      "because": "mutual",
+      "why": "Friends with starlight_mia and xX_glitterkat_Xx"
+     }
+    ]
+   }
+  }
+ },
+ "reads": [
+  {
+   "what": "Browse \"For you\" keeps only posts from the last 7 days",
+   "file": "src/browse/score.js",
+   "pattern": "WINDOW = 7 \\* DAY",
+   "kind": "expires",
+   "ms": 604800000,
+   "routes": [
+    "browse"
+   ],
+   "pinned": [
+    "/api/browse/discover"
+   ]
+  },
+  {
+   "what": "people \"seen in the last 30 days\" (Who to follow falls back to them)",
+   "file": "src/browse/score.js",
+   "pattern": "ACTIVE = 30 \\* DAY",
+   "kind": "expires",
+   "ms": 2592000000,
+   "routes": [
+    "home"
+   ],
+   "pinned": [
+    "/api/browse/people"
+   ]
+  },
+  {
+   "what": "#ourspace keeps the last 24 hours",
+   "file": "src/chats/ourspace.js",
+   "pattern": "KEEP_MS = 24 \\* 3600000",
+   "kind": "expires",
+   "ms": 86400000,
+   "routes": [
+    "ourspace"
+   ],
+   "pinned": [
+    "/api/ourspace/messages"
+   ]
+  },
+  {
+   "what": "localDay drops a client date more than 2.5 days off the server's",
+   "file": "src/shared/astro.js",
+   "pattern": "2\\.5 \\* DAY",
+   "kind": "expires",
+   "ms": 216000000,
+   "routes": [
+    "home",
+    "horoscope",
+    "horoscope-sign"
+   ],
+   "pinned": [
+    "/api/astro/sky",
+    "/api/astro/me",
+    "/api/astro/sign/aries"
+   ]
+  },
+  {
+   "what": "a member is \"online\" for 5 minutes after the last request (a seed younger than that has everyone online)",
+   "file": "src/shared/db.js",
+   "pattern": "ONLINE_MS = 5 \\* 60 \\* 1000",
+   "kind": "matures",
+   "ms": 300000,
+   "routes": [
+    "home",
+    "profile",
+    "profile-followers",
+    "profile-following",
+    "profile-friends"
+   ],
+   "pinned": false
+  },
+  {
+   "what": "a profile's \"N years old\" counts to the server's today (the plates show xX_glitterkat_Xx, born 2001-02-14, and starlight_mia, born 2003-09-27)",
+   "file": "src/shared/dates.js",
+   "pattern": "export function ageOn",
+   "kind": "birthday",
+   "expires": "2027-02-14",
+   "routes": [
+    "profile",
+    "profile-blog",
+    "profile-blog-post"
+   ],
+   "pinned": false
+  },
+  {
+   "what": "the three-day lookback of \"pick up where I left off\" with no marker",
+   "file": "src/social/social.js",
+   "pattern": "RESUME_BACK = 3 \\* 86400000",
+   "plated": false,
+   "why": "only after a click on that button",
+   "pinned": false
+  },
+  {
+   "what": "Browse tabs Mutuals and Boards for you (WINDOW and ACTIVE again)",
+   "file": "src/browse/browse.js",
+   "pattern": "c\\.now - ACTIVE",
+   "plated": false,
+   "why": "the plate is the default tab",
+   "pinned": false
+  },
+  {
+   "what": "affinity decays with a 30 day half-life (mutuals order, the new-chat picker)",
+   "file": "src/shared/affinity.js",
+   "pattern": "HALF_LIFE = 30 \\* 86400000",
+   "plated": false,
+   "why": "ordering inside lists the plates barely show",
+   "pinned": false
+  }
+ ]
 }

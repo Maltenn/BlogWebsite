@@ -134,12 +134,21 @@ if (process.env.IOS_TEAM_ID) {
 
 // The App Review notes. A submission without a working demo account is a rejection on its own (Guideline 2.1), and the
 // notes are where the Guideline 4.2 case is actually made, so a release may not be cut while the placeholders are in.
+// The demo account's PASSWORD is the one exception, and the reverse: this repository is public, so the password must never be
+// in the file (REPLACE_DEMO_PASSWORD stays in it, and the real one is pasted into App Store Connect and Play Console). The gate
+// is the REVIEW_DEMO_PASSWORD environment variable instead: a release needs it set (a release-environment secret that proves the
+// account exists), and any run fails if that value, or a filled-in "Password:" line, is found in the committed file.
 const notesFile = join(root, '..', 'docs', 'mobile', 'review-notes.md');
 if (!existsSync(notesFile)) {
   problems.push('docs/mobile/review-notes.md is missing: it is what goes in App Review Information → Notes');
 } else {
-  const left = [...new Set(readFileSync(notesFile, 'utf8').match(/REPLACE_[A-Z_]+/g) || [])];
+  const notesText = readFileSync(notesFile, 'utf8');
+  const left = [...new Set(notesText.match(/REPLACE_[A-Z_]+/g) || [])].filter(p => p !== 'REPLACE_DEMO_PASSWORD');
   forRelease(left.length > 0, `docs/mobile/review-notes.md still has ${left.join(', ')}: make the demo account on ${cfg.origin} and fill them in before submitting (Guideline 2.1)`);
+  const demoPassword = process.env.REVIEW_DEMO_PASSWORD || '';
+  forRelease(demoPassword.length < 8, 'REVIEW_DEMO_PASSWORD is not set (or is under 8 characters): make the demo account on ' + cfg.origin + ', then set the password as the REVIEW_DEMO_PASSWORD secret of the release environment. It is only checked here; paste it into App Store Connect and Play Console yourself, never into the repository (Guideline 2.1)');
+  need(!demoPassword || !notesText.includes(demoPassword), 'docs/mobile/review-notes.md contains the demo account password (REVIEW_DEMO_PASSWORD). This repository is public: remove it, and change the password, because it has been exposed');
+  need(!(/^\s*Password:/m.test(notesText) && !/^\s*Password:\s+REPLACE_DEMO_PASSWORD\s*$/m.test(notesText)), 'docs/mobile/review-notes.md has a "Password:" line with something other than REPLACE_DEMO_PASSWORD: this repository is public, so a password must never be written there');
 }
 
 // The app icon. The placeholder was a letter set in a system font; what ships now is drawn (mobile/scripts/make-splash.mjs).

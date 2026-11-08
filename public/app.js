@@ -32,8 +32,10 @@ import { renderOurspace } from './js/pages/ourspace.js';
 import { renderPost } from './js/pages/post.js';
 import { renderProfile, renderProfileReplies, renderProfileBlog, renderProfileComments } from './js/pages/profile.js';
 import { renderRequests } from './js/pages/requests.js';
+import { renderPrivacy } from './js/pages/privacy.js';
 import { renderRules } from './js/pages/rules.js';
 import { renderSettings } from './js/pages/settings.js';
+import { renderTerms } from './js/pages/terms.js';
 import { renderStrikes } from './js/pages/strikes.js';
 import { renderVerify } from './js/pages/verify.js';
 import { renderTag } from './js/pages/tags.js';
@@ -79,6 +81,8 @@ const ROUTES = [
   [/^\/verify$/, renderVerify],                            // the link in the confirmation email: /verify#token=…
   [/^\/admin$/, renderAdmin, true],
   [/^\/rules$/, renderRules],
+  [/^\/terms$/, renderTerms],
+  [/^\/privacy$/, renderPrivacy],
 ];
 
 onMeChange(paintChrome);                       // every loadMe() repaints the header and tabs

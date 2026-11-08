@@ -74,7 +74,7 @@
 				<string>NSPrivacyCollectedDataTypePurposeAppFunctionality</string>
 			</array>
 		</dict>
-		<!-- direct and group chat messages: src/chats/, and the first 140 characters travel in the APNs / FCM payload (src/push/push.js) -->
+		<!-- direct and group chat messages: src/chats/. They never travel in a push: APNs and FCM get a fixed phrase only (src/push/push.js) -->
 		<dict>
 			<key>NSPrivacyCollectedDataType</key>
 			<string>NSPrivacyCollectedDataTypeEmailsOrTextMessages</string>

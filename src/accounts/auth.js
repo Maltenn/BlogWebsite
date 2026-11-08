@@ -13,6 +13,7 @@ import { checkBirthday } from '../shared/dates.js';
 import { sunSign } from '../shared/astro.js';
 import { randomToken } from '../shared/seal.js';
 import { sendMail, mailReady } from '../shared/mail.js';
+import { contactEmail } from '../shared/contact.js';
 import { SHOWN, UNREAD } from '../shared/notify.js';
 import { UNREAD_CHATS, HANDOVER } from '../shared/chat.js';
 import { dropObjects, keysIn, releaseMedia } from '../shared/media.js';
@@ -198,8 +199,9 @@ export async function currentUser(c) {
 // with unread messages, up to 99), and where the account stands: account { verified (email confirmed, or no email to confirm), held (waiting
 // for a moderator), timeoutUntil (a posting timeout from an AI-writing strike, or null), strikes (the ones that
 // count) }. Logged out it says whether the human check is on: turnstile { siteKey } or null.
+// Both say the public contact address, `contact` (CONTACT_EMAIL, src/shared/contact.js), or null while none is set.
 export async function me(c) {
-  if (!c.user) return json({ user: null, minAge: Number(c.env.MIN_AGE || 13), turnstile: c.env.TURNSTILE_SITE_KEY ? { siteKey: c.env.TURNSTILE_SITE_KEY } : null });
+  if (!c.user) return json({ user: null, minAge: Number(c.env.MIN_AGE || 13), contact: contactEmail(c.env), turnstile: c.env.TURNSTILE_SITE_KEY ? { siteKey: c.env.TURNSTILE_SITE_KEY } : null });
   const id = c.user.id;
   const counts = await c.env.DB.prepare(`
     SELECT
@@ -216,6 +218,7 @@ export async function me(c) {
     settings: { followPolicy: c.user.follow_policy, dmPolicy: c.user.dm_policy },
     account: { verified: !!c.user.email_verified_at || !c.user.email, held: !!c.user.held, timeoutUntil: counts.timeout_until || null, strikes: counts.strikes },
     minAge: Number(c.env.MIN_AGE || 13),
+    contact: contactEmail(c.env),
   });
 }
 
@@ -364,6 +367,10 @@ const MOVED = `WITH RECURSIVE up(id, to_id) AS (
 // and stays in its conversation), a quote shows its original as unavailable. A board comment answering one of its
 // comments moves up instead (MOVED), so a thread's tree never has a comment answering nothing. Reports about it keep
 // their snapshot. Its photos (and those on the comments that go with its threads) leave R2.
+// An account under a child-safety hold is deleted the same way, in this one transaction, and nothing here tells it apart
+// (an answer, an error or a delay would tell a suspect a report exists): its sign-in and page go at once, and its name and
+// email are free. What it leaves behind is a private copy until a moderator ends the hold: the triggers in
+// migrations/0014 copy its rows as they go, and releaseMedia keeps its photos, hidden (HELD in src/shared/media.js).
 export async function deleteAccount(c) {
   const b = await readBody(c.req);
   await limit(c, 'delete:' + c.user.id, [[5, 15 * 60000]]);

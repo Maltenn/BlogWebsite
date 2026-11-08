@@ -12,6 +12,7 @@ construction. The reasoning is in [decision 007](../decisions/007-mobile-apps.md
 | [deviations.md](deviations.md) | Every forced departure from the web CSS, with its reason. An empty register is a claim the diff has to back up |
 | [checklist.md](checklist.md) | Killer items, run on every build, never from memory — and what a green list still cannot see |
 | [redteam.md](redteam.md) | The adversarial pass. Findings ranked, each marked CONFIRMED or PLAUSIBLE |
+| [iphone-testing.md](iphone-testing.md) | Trying the app on your own iPhone with no Mac and no paid account: Safari over Wi-Fi, then a sideloaded build |
 | [store.md](store.md) | App Store and Play requirements, and what is still blocked on credentials |
 | [review-notes.md](review-notes.md) | What goes in App Review Information → Notes: the demo account, and the native behaviour with the taps to reach it |
 

@@ -10,6 +10,7 @@
     "dev": "wrangler dev",
     "demo": "node tools/demo.mjs",
     "deploy": "wrangler deploy",
+    "preflight": "node tools/preflight.mjs",
     "test": "node --test test/*.test.mjs",
     "plates": "node tools/plates.mjs",
     "plates:check": "node tools/pixeldiff.mjs",

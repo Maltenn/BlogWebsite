@@ -132,7 +132,7 @@ to be marked CONFIRMED or PLAUSIBLE, and each was re-verified before anything wa
   `00000000-0000-0000-0000-000000000000`, so the app has no server to point at and universal links
   cannot be configured.
 - **Age rating.** `MIN_AGE` is 13, but a social network with unfiltered user content usually rates
-  17+ on the App Store unless the moderation in `src/ai/` and `src/trust/` is argued successfully.
+  16+ or 18+ on the App Store (Apple replaced 17+ in 2025) unless the moderation in `src/ai/` and `src/trust/` is argued successfully.
 - **Sign in with Apple** may be requested alongside Google and Discord under Guideline 4.8;
   email + password probably satisfies it, unconfirmed.
 - **Credentials.** Nothing ships without an Apple Developer Program membership, a Play Console, an

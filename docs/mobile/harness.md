@@ -202,10 +202,13 @@ Worth reading before you trust a green run, because this one was invisible from 
 
 On 2026-11-05 a full `plates:check` failed **48 of 464** against a baseline taken on 2026-10-31,
 with nothing in the site changed. Six keys, across both engines and all four viewports:
-`horoscope--in/out`, `horoscope-sign--in/out`, `home--in` and `ourspace--in`.
+`horoscope--in/out`, `horoscope-sign--in/out`, `home--in` and `ourspace--in`. On 2026-11-07, the
+seed's seventh day, it failed **16** more: `browse--in` and `browse--out`, all eight engine and viewport
+combinations. This section used to say "two routes read the server's clock". That was wrong, and the
+second failure is the proof.
 
 `context.clock.setFixedTime` freezes the **browser's** clock. It cannot touch the **Worker's**, and
-two routes are computed from it:
+these routes are computed from it:
 
 - **The horoscope.** `dayOf` in `src/horoscope/horoscope.js` reads `c.now`. The page does send the
   frozen date (`/astro/sky?` + `today()`), but `localDay` in `src/shared/astro.js` throws away a
@@ -216,19 +219,66 @@ two routes are computed from it:
   The seeded messages aged out of it. The log's scroll pane has a fixed height, so the page did not
   even change size when they went — which is why that plate showed ~6,000 changed pixels with
   identical dimensions.
+- **Browse, "For you".** `GET /api/browse/discover` reads only posts from the last **7 days**
+  (`WINDOW` in `src/browse/score.js`). Past that the page says "nothing to suggest right now" and
+  is a different height, so every pixel below the header differs (45-78%).
+- **Home, "Who to follow".** `GET /api/browse/people?limit=3` fills up with people whose `last_seen`
+  is within **30 days** (`ACTIVE`, same file) when a viewer has fewer than three mutuals. Signed out
+  that is all of it; when it empties the box removes itself. This one would have gone red around
+  **2026-11-30** (`home--out`), a month after the seed.
 
 A gate that turns red on its own is worse than no gate: the obvious response is to re-baseline,
 which bakes in that day's content and breaks again tomorrow.
 
-**The fix.** `tools/fixtures/server-clock.json` holds those 15 answers, captured once from a freshly
-seeded demo, and `freezeContext` serves them from the catch-all route before anything reaches the
-Worker (`FROZEN_API` in `tools/plates.mjs`). Shifting the seed's timestamps instead cannot work: the
-server wants messages inside 24 hours of the *real* clock, while the browser renders their absolute
-times, so the pixels drift whichever way you lean.
+**The fix.** `tools/fixtures/server-clock.json` holds those answers, captured from a freshly seeded
+demo, and `freezeContext` serves them from the catch-all route before anything reaches the Worker
+(`FROZEN_API` and `BY_IDENTITY` in `tools/plates.mjs`). Shifting the seed's timestamps instead
+cannot work: the server wants messages inside 24 hours of the *real* clock, while the browser
+renders their absolute times, so the pixels drift whichever way you lean.
 
-**What it costs.** Those plates now check the pages' **layout**, not that the astrology or the chat
-query is right. Same trade the harness already makes for Turnstile and the proof of work. Changing
-the fixture means deliberately re-baselining `home`, `horoscope`, `horoscope-sign` and `ourspace`.
+- `responses` — 15 answers that are the same for everyone (`/api/astro/sky`, `/api/astro/me`,
+  `/api/astro/sign/<12>`, `/api/ourspace/messages`), keyed on pathname, query ignored.
+- `byIdentity` — answers that differ by viewer: `/api/browse/discover` and `/api/browse/people`, each
+  as `out` and `in` (the mechanism also takes `admin`; no plate needs it, the admin plate is only
+  `/admin`). `freezeContext` is told the state of its context and serves that viewer's answer.
+  `pixeldiff` and `capturePass` pass it; a shell that calls `freezeContext` itself must pass `state`
+  too, or it gets the live answer.
+- Two things in a pinned answer would otherwise be wrong on another seed, and are handled: every
+  epoch-millisecond number is moved by the difference between the plates' frozen clock and the
+  fixture's (`identityClock`), so "5 hours ago" reads the same on any seed; and the photos the
+  answers point at live under random `/media/<key>` names that differ per seed, so their bytes are
+  kept in `tools/fixtures/server-clock-media/` and served under those same urls.
+- `reads` — every clock read that reaches a plate, with its window, the routes it touches and
+  whether it is pinned. `test/static.test.mjs` fails if one of those lines stops matching its source
+  (someone changed a window), or if a module the plates visit starts reading `c.now - SOMETHING` with
+  no line here. `capturePass` prints a `WARNING` naming the routes when the seed is on the wrong side
+  of an unpinned window.
+
+Regenerate the per-identity answers with a fresh demo left running:
+`DEMO_DIR=<new folder> PORT=8840 node tools/demo.mjs --fresh`, then `node tools/pin-server-clock.mjs`.
+It rewrites only `byIdentity`, `identityClock` and the media folder.
+
+**What it costs.** Those plates now check the pages' **layout**, not that the astrology, the chat
+query or the discovery ranking is right: `browse` (For you, both viewers), `home` (Who to follow, the
+horoscope teaser), `horoscope`, `horoscope-sign` and `ourspace`. Same trade the harness already makes
+for Turnstile and the proof of work. Changing the fixture means deliberately re-baselining exactly
+those plates.
+
+**What is not pinned**, and when it bites:
+
+- A profile's "N years old" (`ageOn`, `src/shared/dates.js`) counts to the server's today. The plates
+  show `xX_glitterkat_Xx` (born 2001-02-14) and `starlight_mia` (2003-09-27): `profile*` goes red on
+  **2027-02-14**, `profile-blog*` on **2027-09-27**. It is one `age` field inside a per-name profile
+  answer that carries much else, so pinning it would pin the whole profile page.
+- "Online now" is five minutes after the last request (`ONLINE_MS`, `src/shared/db.js`). This one
+  fails in the other direction: a seed younger than five minutes has every member online, so a first
+  run that seeds and captures at once differs from the baseline by the green pips. The harness warns.
+- Not on any plate, so not pinned: the Mutuals and Boards-for-you tabs of Browse (the plate is the
+  default tab), "pick up where I left off" (a click), the affinity half-life (list order).
+- One post in the seed is written after the demo spreads its timestamps, so its age is a few seconds
+  off from one seed to another: `browse` shows it as "5 minutes ago" on a fresh seed where the baseline
+  has "4". About 15-21 pixels (0.002%), far under the 0.1% bar, but it is why `browse` is not
+  byte-identical.
 
 ### A fractional pane, and 26 pixels
 

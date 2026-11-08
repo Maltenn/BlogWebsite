@@ -4,8 +4,8 @@
 // that write them. The owner dropped video: photos only. See docs/architecture.md, "Photos".
 import { fail, json, int, readBody } from '../shared/http.js';
 import { text } from '../shared/text.js';
-import { limit, followOf, blockedEither, NOT_BLOCKED, REACHABLE, REF_COLS, ref } from '../shared/db.js';
-import { mediaUrl, dropObjects, keysIn, LOOSE_MS } from '../shared/media.js';
+import { limit, REF_COLS, ref } from '../shared/db.js';
+import { mediaUrl, dropObjects, keysIn, keepForHold, photoAccess, PHOTO_ROWS, LOOSE_MS } from '../shared/media.js';
 import { AVATARS } from '../catalog/avatars.js';
 import { sniff, BadImage } from './sniff.js';
 import { strip } from './strip.js';
@@ -90,7 +90,10 @@ export async function uploadMedia(c) {
   if (info.width > MAX_SIDE || info.height > MAX_SIDE) fail(400, `that picture is too large: ${MAX_SIDE} pixels a side at most.`);
   if (info.animated && (info.width > MAX_MOVING || info.height > MAX_MOVING)) fail(400, `animated pictures can be ${MAX_MOVING} × ${MAX_MOVING} at most.`);
   if (purpose === 'avatar' && (info.width !== info.height || info.width > AVATAR_SIDE)) fail(400, `a profile picture is square, ${AVATAR_SIDE} × ${AVATAR_SIDE} at most.`);
-  const used = await c.env.DB.prepare('SELECT COALESCE(SUM(bytes), 0) AS n FROM media WHERE owner_id = ?').bind(c.user.id).first();
+  // (photos a child-safety hold or report keeps after their owner let them go aren't theirs to count: the limit mustn't
+  // hint at it)
+  const used = await c.env.DB.prepare('SELECT COALESCE(SUM(bytes), 0) AS n FROM media WHERE owner_id = ? AND NOT (hold_hidden = 1 AND post_id IS NULL)')
+    .bind(c.user.id).first();
   if (used.n + clean.length > STORAGE_CAP) fail(413, 'you\'ve used all 200 MB of your photo space. delete some posts with photos to make room.');
   const key = `${randomKey()}.${info.ext}`;
   await c.env.MEDIA.put(key, clean, { httpMetadata: { contentType: info.mime } });
@@ -106,11 +109,15 @@ export async function uploadMedia(c) {
 }
 
 // DELETE /api/media/:id — take back an upload of mine that isn't on anything yet (the ✕ in a composer). Answers { ok }.
+// Under a child-safety hold it is kept, hidden, instead (keepForHold), with the same answer.
 export async function deleteUpload(c) {
-  const gone = await c.env.DB.prepare('DELETE FROM media WHERE id = ? AND owner_id = ? AND attached IS NULL AND hidden = 0 RETURNING key')
-    .bind(int(c.params.id, 0), c.user.id).first();
-  if (!gone) fail(404, 'that upload is gone (or already on a post).');
-  await dropObjects(c.env, [gone.key]);
+  const DB = c.env.DB;
+  const mine = 'media.id = ?1 AND media.owner_id = ?2 AND media.attached IS NULL AND media.hidden = 0';
+  const id = int(c.params.id, 0);
+  const res = await DB.batch([...keepForHold(DB, mine, id, c.user.id), DB.prepare(`DELETE FROM media WHERE ${mine} RETURNING key`).bind(id, c.user.id)]);
+  const gone = keysIn(res[3]);
+  if (!res[1].results.length && !res[2].results.length && !gone.length) fail(404, 'that upload is gone (or already on a post).');
+  await dropObjects(c.env, gone);
   return json({ ok: true });
 }
 
@@ -129,66 +136,15 @@ const BASE_HEADERS = {
 };
 const notFound = () => new Response('not found', { status: 404, headers: { ...BASE_HEADERS, 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' } });
 
-// SQL: board comment ?3 shows to viewer ?1 at ?2: its thread is there (not deleted or hidden, writer not banned, no
-// block either way: the boards' THREAD_SHOWN) and so is every comment above it (REACHABLE: none hidden by a moderator,
-// by someone banned or across a block)
-const COMMENT_SHOWN = `SELECT 1 AS ok FROM posts p WHERE p.id = ?3 AND EXISTS (SELECT 1 FROM posts st JOIN users sa ON sa.id = st.author_id
-    WHERE st.id = p.root_id AND st.deleted = 0 AND st.hidden = 0 AND sa.banned = 0 AND ${NOT_BLOCKED('st.author_id')})
-  AND ${REACHABLE('p.id')}`;
-
-// Who may see photo row `m` (with its post's and people's columns): 'public' (anyone, cacheable for a few minutes),
-// 'private' (this viewer only: no-store) or null (404, exactly like a photo that doesn't exist). Moderators see
-// everything (privately), held evidence included. Loose uploads: their owner only. A picture: anyone while it's
-// somebody's current picture (below). A post's photo: whoever may see the post (not hidden, not deleted, not dated ahead,
-// writer and page owner not banned, no block either way with either, and a private profile's only for its accepted
-// followers; board posts are public spaces, but a board comment's also needs its thread and every comment above it to
-// show to the viewer, so it's never cached), and not hidden on its own by a moderator.
-//
-// "The page owner" is `o = COALESCE(p.target_id, p.author_id)`, exactly as notify() and the Notifications rule (SHOWN)
-// have it: a Friends' Comment on someone's page is written by one member but lives on another's, and whether the page is
-// private is the page owner's setting, not the writer's. (This used to look at the writer alone, which would have served
-// a photo on a private page to the world the day `wall` was added to MEDIA_LIMITS in src/shared/media.js.)
-async function access(c, m) {
-  const viewer = c.user;
-  if (viewer && viewer.is_admin) return 'private';
-  if (m.hidden || m.owner_id == null || m.owner_banned) return null;
-  if (m.attached == null) return viewer && viewer.id === m.owner_id ? 'private' : null;
-  // A profile picture is PUBLIC ON PURPOSE, before any block or privacy check: it is the one photo the site shows to
-  // people with no account and no relationship (GET /api/users/:name answers with it for every profile, a private one
-  // too, and boards and lists show it). Serving it 'public' means anyone with the address may fetch it and, since the
-  // apps' pages (capacitor://localhost) must embed it, that any website may too (CORP cross-origin, serveMedia). What that adds to "anyone may fetch it" is hotlinking
-  // and the Spectre-era side channel, for an image that is already public and has a 128-bit unguessable name. What must
-  // not stay public is a picture that is no longer the member's: changing it deletes the old file in the same batch
-  // (avatarStatements), but this does not lean on that: only the picture that is the owner's avatar right now is served,
-  // so a leftover is a 404 and cannot be hotlinked for ever. (docs/mobile/redteam.md R10)
-  if (m.purpose === 'avatar') return m.owner_avatar === mediaUrl(m.key) ? 'public' : null;
-  if (m.post_id == null || m.p_id == null || m.p_deleted || m.p_hidden || m.p_created > c.now || m.a_banned || m.po_banned) return null;
-  if (viewer && viewer.id !== m.p_author && await blockedEither(c.env, viewer.id, m.p_author)) return null;
-  if (viewer && m.po_id !== m.p_author && viewer.id !== m.po_id && await blockedEither(c.env, viewer.id, m.po_id)) return null;
-  if (m.p_kind === 'comment') {
-    const shown = await c.env.DB.prepare(COMMENT_SHOWN).bind(viewer ? viewer.id : 0, c.now, m.p_id).first();
-    return shown ? 'private' : null;
-  }
-  if (m.p_board != null || m.po_policy !== 'approve') return 'public';
-  if (!viewer) return null;
-  if (viewer.id === m.p_author || viewer.id === m.po_id) return 'private';
-  const f = await followOf(c.env, viewer.id, m.po_id);
-  return f && f.status === 'accepted' ? 'private' : null;
-}
+// Who may see a photo: photoAccess in src/shared/media.js (a child-safety report asks it too).
 
 // GET (or HEAD) /media/:key — the photo, with the type the server read from it, nosniff, inline, and a CSP that lets
 // nothing in it run. Public ones are cached for 5 minutes, then revalidated with their ETag (304 while the viewer may
 // still see it); private ones never.
 export async function serveMedia(c, key) {
   if (!/^[0-9a-f]{32}\.(jpg|png|gif|webp)$/.test(key)) return notFound();
-  const m = await c.env.DB.prepare(`SELECT m.id, m.owner_id, m.purpose, m.mime, m.attached, m.post_id, m.hidden, o.banned AS owner_banned,
-      p.id AS p_id, p.kind AS p_kind, p.author_id AS p_author, p.deleted AS p_deleted, p.hidden AS p_hidden, p.created AS p_created,
-      p.board_id AS p_board, a.banned AS a_banned, o.avatar AS owner_avatar, m.key,
-      po.id AS po_id, po.banned AS po_banned, po.follow_policy AS po_policy
-    FROM media m LEFT JOIN users o ON o.id = m.owner_id LEFT JOIN posts p ON p.id = m.post_id LEFT JOIN users a ON a.id = p.author_id
-    LEFT JOIN users po ON po.id = COALESCE(p.target_id, p.author_id)
-    WHERE m.key = ?`).bind(key).first();
-  const seen = m && await access(c, m);
+  const m = await c.env.DB.prepare(`${PHOTO_ROWS} WHERE m.key = ?`).bind(key).first();
+  const seen = m && await photoAccess(c, m);
   if (!seen) return notFound();
   const cache = seen === 'public' ? PUBLIC : PRIVATE;
   // A public photo is readable by anyone with no credentials at all, so keeping other sites from embedding it protects
@@ -222,7 +178,8 @@ const QUEUE_PAGE = 30;
 // GET /api/admin/media?before=<id>&filter=unreviewed|all — the photo review queue: every upload, attached or loose,
 // newest first, 30 a page (`next`: the `before` for the following page, or null). Each is { id, url, width, height, alt,
 // purpose, created, hidden, reviewed, reviewedAt, reviewedBy, uploader: { id, name, avatar, created } | null (the
-// account is gone), where } with `created` the upload's time and the uploader's the account's (its age). `where`: null
+// account is gone), where, held } with `created` the upload's time and the uploader's the account's (its age). held:
+// a child-safety hold keeps it (moderateMedia refuses Remove and Unhide). `where`: null
 // for a loose upload, else { type: avatar | cover | post | thread | comment | gone, id, author, board, thread }: the post
 // (its author's name, and for board posts the board's slug and the thread's id), or `gone` for a held photo whose post
 // was deleted. The default filter is unreviewed.
@@ -230,7 +187,7 @@ export async function adminMedia(c) {
   const all = c.url.searchParams.get('filter') === 'all';
   const before = int(c.url.searchParams.get('before'), 0);
   const { results } = await c.env.DB.prepare(`SELECT m.id, m.key, m.purpose, m.width, m.height, m.alt, m.created, m.hidden, m.attached, m.post_id,
-      m.reviewed_at, rb.name AS reviewer, ${REF_COLS('o', 'o_')}, o.created AS o_created,
+      m.id IN (SELECT media_id FROM held_photos) AS held, m.reviewed_at, rb.name AS reviewer, ${REF_COLS('o', 'o_')}, o.created AS o_created,
       p.kind AS p_kind, p.root_id AS p_root, pa.name AS p_author, b.slug AS b_slug
     FROM media m LEFT JOIN users o ON o.id = m.owner_id LEFT JOIN users rb ON rb.id = m.reviewed_by
     LEFT JOIN posts p ON p.id = m.post_id LEFT JOIN users pa ON pa.id = p.author_id LEFT JOIN boards b ON b.id = p.board_id
@@ -246,7 +203,7 @@ export async function adminMedia(c) {
   };
   return json({
     media: page.map(m => ({
-      id: m.id, url: mediaUrl(m.key), width: m.width, height: m.height, alt: m.alt, purpose: m.purpose, created: m.created, hidden: !!m.hidden,
+      id: m.id, url: mediaUrl(m.key), width: m.width, height: m.height, alt: m.alt, purpose: m.purpose, created: m.created, hidden: !!m.hidden, held: !!m.held,
       reviewed: m.reviewed_at != null, reviewedAt: m.reviewed_at, reviewedBy: m.reviewer || null,
       uploader: m.o_id == null ? null : { ...ref(m, 'o_'), created: m.o_created }, where: where(m),
     })),
@@ -259,6 +216,12 @@ export async function adminMedia(c) {
 // things). remove: the photo is deleted from R2 and its row at once (a Take It Down request, or anything that must not
 // stay up a minute longer); if it was someone's picture, they're back to the default one. hide / unhide: it stops (or
 // starts again) showing anywhere, kept as evidence. The last three land in the moderation log. Answers { ok }.
+// A photo under a child-safety hold (the view held_photos: an open or confirmed csam report lists it, or a confirmed hold
+// keeps it) can't be removed or unhidden: that destroys or republishes what we must keep (docs/operations.md). 409 code
+// child_safety_hold, unless the request says { override: true } with a note, which logs remove_media_override or
+// unhide_override. The check is part of the batch that acts, so a report filed at the same moment can't slip between
+// them. A moderator's hide is the moderator's own (hold_hidden 0): a report or hold ending leaves it alone. A plain
+// Remove stays what a Take It Down request needs: nothing here touches a photo no child-safety report holds.
 export async function moderateMedia(c) {
   const b = await readBody(c.req);
   const id = int(c.params.id, 0);
@@ -270,25 +233,45 @@ export async function moderateMedia(c) {
     if (!seen && !await DB.prepare('SELECT 1 AS x FROM media WHERE id = ?').bind(id).first()) fail(404, 'that photo is already gone.');
     return json({ ok: true });
   }
-  // (logged only while the photo is there: the log goes first in each batch)
+  const note = text(b.note, 300);
+  const override = b.override === true;
+  if (override && !note) fail(400, 'overriding a child-safety hold needs a note: why, and on whose word.');
+  // SQL: photo `p` (a placeholder) is held: a hold or report has it, or (for an unhide) a moderator confirmed it as
+  // apparent CSAM, which only an override may ever show again
+  const guarded = p => `(EXISTS (SELECT 1 FROM held_photos WHERE media_id = ${p})${action === 'unhide' ? ` OR EXISTS (SELECT 1 FROM media cm WHERE cm.id = ${p} AND cm.csam_confirmed = 1)` : ''})`;
+  // SQL: nothing holds it, or this request may act anyway (an override; a hide). Either way it reads `p`, so every
+  // statement binds what it names.
+  const free = p => (override || action === 'hide' ? `${p} IS NOT NULL` : `NOT ${guarded(p)}`);
+  const held = guarded('?3');
+  // (logged only while the photo is there and the action goes ahead: the log goes first in each batch)
   const log = DB.prepare(`INSERT INTO mod_log (actor_id, action, target_type, target_id, note, created)
-    SELECT ?1, ?2, 'media', ?3, ?4, ?5 WHERE EXISTS (SELECT 1 FROM media WHERE id = ?3)`)
-    .bind(c.user.id, action === 'remove' ? 'remove_media' : action, id, text(b.note, 300), c.now);
+    SELECT ?1, ?2 || CASE WHEN ?6 = 1 AND ${held} THEN '_override' ELSE '' END, 'media', ?3, ?4, ?5
+    WHERE EXISTS (SELECT 1 FROM media WHERE id = ?3) AND ${free('?3')}`)
+    .bind(c.user.id, action === 'remove' ? 'remove_media' : action, id, note, c.now, override && action !== 'hide' ? 1 : 0);
+  const refused = async () => {
+    if (await DB.prepare('SELECT 1 AS x FROM media WHERE id = ?').bind(id).first()) {
+      fail(409, 'this photo is held for a child-safety report: leave it held. only a lawyer or law enforcement should change that.', { code: 'child_safety_hold' });
+    }
+    fail(404, 'that photo is already gone.');
+  };
   if (action === 'remove') {
     const m = await DB.prepare('SELECT key, owner_id FROM media WHERE id = ?').bind(id).first();
     if (!m) fail(404, 'that photo is already gone.');
     const res = await DB.batch([
       log,
-      DB.prepare('UPDATE users SET avatar = ? WHERE id = ? AND avatar = ?').bind(AVATARS[0].file, m.owner_id, mediaUrl(m.key)),
-      DB.prepare('DELETE FROM media WHERE id = ? RETURNING key').bind(id),
+      DB.prepare(`UPDATE users SET avatar = ?1 WHERE id = ?2 AND avatar = ?3 AND ${free('?4')}`).bind(AVATARS[0].file, m.owner_id, mediaUrl(m.key), id),
+      DB.prepare(`DELETE FROM media WHERE id = ?1 AND ${free('?1')} RETURNING key`).bind(id),
     ]);
     const keys = keysIn(res[2]);
-    if (!keys.length) fail(404, 'that photo is already gone.');
+    if (!keys.length) await refused();
     await dropObjects(c.env, keys);
     return json({ ok: true });
   }
-  const [, r] = await DB.batch([log, DB.prepare('UPDATE media SET hidden = ? WHERE id = ? RETURNING id').bind(action === 'hide' ? 1 : 0, id)]);
-  if (!r.results.length) fail(404, 'that photo is already gone.');
+  // (a moderator's hide or unhide is the moderator's own: hold_hidden 0; an unhide that got this far also lifts a
+  // confirmation, which took an override)
+  const [, r] = await DB.batch([log, DB.prepare(`UPDATE media SET hidden = ?2, hold_hidden = 0, csam_confirmed = CASE WHEN ?2 = 0 THEN 0 ELSE csam_confirmed END
+    WHERE id = ?1 AND ${free('?1')} RETURNING id`).bind(id, action === 'hide' ? 1 : 0)]);
+  if (!r.results.length) await refused();
   return json({ ok: true });
 }
 
@@ -296,12 +279,18 @@ export async function moderateMedia(c) {
 
 // The cron's part: uploads still loose after a day, photos whose post went without them (post_id fell to NULL) and
 // photos whose owner's account went without them (owner_id fell to NULL) leave the table and R2. Hidden ones are held
-// as evidence and stay until a moderator removes them (or unhides them, which lets them go here).
+// as evidence and stay until a moderator removes them (or unhides them, which lets them go here). Those of an account
+// under a child-safety hold are kept the way its own deletes are (keepForHold): hidden, so that to their owner they're
+// gone like anyone's, and kept until the hold ends.
 export async function sweepMedia(env, now) {
-  const res = await env.DB.batch([
-    env.DB.prepare('DELETE FROM media WHERE attached IS NULL AND created < ? AND hidden = 0 RETURNING key').bind(now - LOOSE_MS),
-    env.DB.prepare(`DELETE FROM media WHERE hidden = 0 AND ((attached IS NOT NULL AND post_id IS NULL AND purpose != 'avatar') OR owner_id IS NULL)
-      RETURNING key`),
+  const DB = env.DB;
+  const loose = 'media.attached IS NULL AND media.created < ?1 AND media.hidden = 0';
+  const orphan = `media.hidden = 0 AND ((media.attached IS NOT NULL AND media.post_id IS NULL AND media.purpose != 'avatar') OR media.owner_id IS NULL)`;
+  const res = await DB.batch([
+    ...keepForHold(DB, loose, now - LOOSE_MS),
+    DB.prepare(`DELETE FROM media WHERE ${loose} RETURNING key`).bind(now - LOOSE_MS),
+    ...keepForHold(DB, orphan),
+    DB.prepare(`DELETE FROM media WHERE ${orphan} RETURNING key`),
   ]);
-  await dropObjects(env, keysIn(...res));
+  await dropObjects(env, keysIn(res[3], res[7]));
 }

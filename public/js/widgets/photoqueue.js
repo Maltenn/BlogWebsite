@@ -1,6 +1,7 @@
 /* widgets/photoqueue.js — the Photos section of the Moderation page: every upload, newest first, as a grid of thumbnails
    (unreviewed ones by default). Each says who uploaded it (and how old the account is), where it is, and has Mark
-   reviewed, Hide / Unhide and Remove. GET /api/admin/media pages with `next`. */
+   reviewed, Hide / Unhide and Remove. GET /api/admin/media pages with `next`. The server refuses Remove and Unhide on a photo
+   a child-safety report holds: moderatePhoto shows why and takes the override, which the Moderation page shares. */
 
 import { h, userPath } from '../core/dom.js';
 import { api } from '../core/api.js';
@@ -23,6 +24,31 @@ export function whereIs(m) {
   return ['post', postPath({ id: w.id, kind: 'status', author: by })];
 }
 
+// POST /admin/media/:id with `body`. Answers whether it went through. A photo under a child-safety hold is refused (409
+// child_safety_hold): the moderator is told why, and may override it with a note, which the moderation log keeps.
+export async function moderatePhoto(id, body) {
+  const send = extra => api.post('/admin/media/' + id, { ...body, ...extra });
+  try {
+    try {
+      await send();
+      return true;
+    } catch (e) {
+      if (e.code !== 'child_safety_hold') throw e;
+    }
+    const why = h('textarea', { class: 'os-input', rows: 3, maxLength: 300, 'aria-label': 'why, and on whose word' });
+    const go = await dialog({ title: 'Held for a child-safety report', icon: '⛔', ok: 'Override', danger: true, body: why,
+      text: `This photo is held for a child-safety report and must stay held. ${body.action === 'remove' ? 'Removing it destroys it for good.' : 'Unhiding it can put it back in public, or let the cron delete it.'} Only override it if a lawyer or law enforcement told you to, or for an adult's Take It Down request. Say why, and on whose word: the moderation log keeps it.` });
+    if (!go) return false;
+    const note = why.value.trim();
+    if (!note) { toast('an override needs a note. nothing changed.'); return false; }
+    await send({ note, override: true });
+    return true;
+  } catch (e) {
+    oops(e);
+    return false;
+  }
+}
+
 // Returns an element that loads and pages itself.
 export function photoQueue() {
   let filter = 'unreviewed';
@@ -38,12 +64,13 @@ export function photoQueue() {
     const [label, href] = whereIs(m);
     const state = h('span', { class: 'mod-pq-state' });
     const paint = () => {
-      state.textContent = [m.hidden ? 'HIDDEN' : '', m.reviewed ? `reviewed by ${m.reviewedBy || '?'} ${ago(m.reviewedAt)}` : 'not reviewed'].filter(Boolean).join(' · ');
+      state.textContent = [m.held ? 'HELD: child safety' : '', m.hidden ? 'HIDDEN' : '', m.reviewed ? `reviewed by ${m.reviewedBy || '?'} ${ago(m.reviewedAt)}` : 'not reviewed'].filter(Boolean).join(' · ');
       el.classList.toggle('is-hidden', m.hidden);
       el.classList.toggle('is-reviewed', m.reviewed);
     };
     const act = async (action, said) => {
-      try { await api.post('/admin/media/' + m.id, { action }); toast(said); } catch (e) { oops(e); return false; }
+      if (!await moderatePhoto(m.id, { action })) return false;
+      toast(said);
       return true;
     };
     const gone = text => el.replaceChildren(h('div', { class: 'ms-gone', text }));

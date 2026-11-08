@@ -4,6 +4,7 @@
 #   tabbar           the tab bar's spec against the web bar, at 0 pixels, in both engines.             (every run)
 #   android          a debug APK.                                                                      (every run, no secrets)
 #   ios              an UNSIGNED archive (pod install + xcodebuild).                                   (every run, no secrets)
+#   ios-sideload     a Debug IPA for the owner's own iPhone.     ONLY when the IOS_SIDELOAD_ORIGIN variable is set, no secrets
 #   android-release  a signed AAB and a Play upload.   TAGS ONLY (mobile-v*), in the `release` environment.
 #   ios-release      a signed IPA and a TestFlight upload.   TAGS ONLY (mobile-v*), in the `release` environment.
 #
@@ -26,6 +27,7 @@
 #   OURSPACE_APP_ID        REQUIRED for a release: the bundle / application id registered with Apple and Google
 #   OURSPACE_VERSION_NAME  marketing version, e.g. 1.0.0                                (default 1.0.0)
 #   IOS_RUNNER             macOS runner label                                           (default macos-15)
+#   IOS_SIDELOAD_ORIGIN    the origin an ios-sideload build talks to, e.g. http://192.168.1.189:8787. Unset: that job is skipped
 #   XCODE_VERSION          setup-xcode version                                          (default latest-stable)
 # Secrets (environment `release`), all optional:
 #   Android signing  ANDROID_KEYSTORE_BASE64  ANDROID_KEYSTORE_PASSWORD  ANDROID_KEY_ALIAS  ANDROID_KEY_PASSWORD
@@ -33,6 +35,7 @@
 #   Play upload      PLAY_SERVICE_ACCOUNT_JSON
 #   iOS signing      IOS_TEAM_ID  IOS_DIST_CERT_P12_BASE64  IOS_DIST_CERT_PASSWORD  IOS_PROVISIONING_PROFILE_BASE64
 #   TestFlight       APPSTORE_API_KEY_ID  APPSTORE_API_ISSUER_ID  APPSTORE_API_KEY_P8
+#   Review           REVIEW_DEMO_PASSWORD     (the store reviewers' demo account. Never in the repo: it is public. check:release needs it)
 #
 # Every `uses:` is pinned to a commit SHA (the tag it was resolved from is in the comment). A tag can be moved; a SHA cannot.
 # To update: resolve the new tag with `git ls-remote --tags https://github.com/<owner>/<repo>`, check the diff, change both.
@@ -253,6 +256,56 @@ jobs:
             echo "- signed IPA / TestFlight: only for a mobile-v* tag, in the release environment (job ios-release)"
           } >> "$GITHUB_STEP_SUMMARY"
 
+  # A build for trying the app on the owner's own iPhone with no Mac and no paid account: docs/mobile/iphone-testing.md.
+  # Debug, because that is the one configuration whose App Transport Security allows a dev server on the local network. The
+  # entitlements are left out because a free Apple ID refuses Push and Associated Domains. It is unsigned: the sideloading
+  # tool signs it. It can never reach a store: nothing here uploads it, and the release jobs build their own.
+  ios-sideload:
+    if: ${{ vars.IOS_SIDELOAD_ORIGIN != '' && (github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository) }}
+    runs-on: ${{ vars.IOS_RUNNER || 'macos-15' }}
+    needs: bridge
+    env:
+      OURSPACE_ORIGIN: ${{ vars.IOS_SIDELOAD_ORIGIN }}
+      APP_ID: ${{ vars.OURSPACE_APP_ID || 'com.ourspace.app' }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: mobile/package-lock.json
+      - uses: maxim-lobanov/setup-xcode@ed7a3b1fda3918c0306d1b724322adc0b8cc0a90 # v1.7.0
+        with:
+          xcode-version: ${{ vars.XCODE_VERSION || 'latest-stable' }}
+
+      - name: Copy the web bundle into the iOS project, pod install
+        working-directory: mobile
+        run: |
+          npm ci
+          npx cap sync ios
+          cd ios/App && pod install
+
+      - name: Unsigned Debug build
+        working-directory: mobile/ios/App
+        run: |
+          xcodebuild build             -workspace App.xcworkspace -scheme App -configuration Debug             -destination 'generic/platform=iOS'             -derivedDataPath "$RUNNER_TEMP/dd"             PRODUCT_BUNDLE_IDENTIFIER="$APP_ID"             MARKETING_VERSION="$OURSPACE_VERSION_NAME" CURRENT_PROJECT_VERSION="$OURSPACE_VERSION_CODE"             CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" -quiet
+
+      - name: Package the IPA
+        run: |
+          mkdir "$RUNNER_TEMP/ipa" && cd "$RUNNER_TEMP/ipa" && mkdir Payload
+          cp -R "$RUNNER_TEMP/dd/Build/Products/Debug-iphoneos/App.app" Payload/
+          # iOS asks before an app reaches the local network, and this says why. Only here: no other build needs it
+          /usr/libexec/PlistBuddy -c "Add :NSLocalNetworkUsageDescription string 'OurSpace test builds reach the demo server on your computer.'" Payload/App.app/Info.plist
+          /usr/libexec/PlistBuddy -c 'Print :NSAppTransportSecurity' Payload/App.app/Info.plist
+          zip -qry "$GITHUB_WORKSPACE/OurSpace-sideload.ipa" Payload
+          ls -la "$GITHUB_WORKSPACE/OurSpace-sideload.ipa"
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ourspace-ios-sideload-ipa
+          path: OurSpace-sideload.ipa
+          if-no-files-found: error
+          retention-days: 7
+
   # -------------------------------------------------------------------------------------------------------------------------
   # Release jobs. They run for a mobile-v* TAG only: a push of the tag, or a manual run chosen ON the tag with "release" ticked.
   # A manual run on a branch never gets here. `environment: release` is where the required reviewer and the tag rule live.
@@ -296,6 +349,8 @@ jobs:
           npx cap sync android
       - name: Release preflight (no placeholders, no debug-only settings)
         working-directory: mobile
+        env:
+          REVIEW_DEMO_PASSWORD: ${{ secrets.REVIEW_DEMO_PASSWORD }}
         run: npm run check:release -- --platform android
 
       - name: Firebase config (push) from a secret
@@ -392,6 +447,8 @@ jobs:
         working-directory: mobile
         env:
           IOS_TEAM_ID: ${{ secrets.IOS_TEAM_ID }}          # (when set, the .well-known file must name <team>.<app id>)
+        env:
+          REVIEW_DEMO_PASSWORD: ${{ secrets.REVIEW_DEMO_PASSWORD }}
         run: npm run check:release -- --platform ios
 
       - name: Signed IPA

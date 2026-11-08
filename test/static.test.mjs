@@ -189,3 +189,27 @@ test('the CSP lets the live chat\'s socket reach the site (wss:, and ws: to the 
   assert.deepEqual(directives['default-src'], ["'self'"]);
   assert.deepEqual(directives['style-src'], ["'self'"], 'no inline styles');
 });
+
+/* ------------------------------------------------------------ the pixel gate and the server's clock */
+
+// The plates freeze the browser's clock, never the Worker's. tools/fixtures/server-clock.json lists, in `reads`, every
+// clock read that reaches a plate (and the ones that do not), with what pins it. The harness's own comment once said
+// "two routes", and a third and fourth turned up when the seed was a week old: a read added or changed without a line
+// here is how the gate goes red by itself again.
+test('the pixel gate: every read of the server\'s clock that reaches a plate is listed in server-clock.json, and the pins are really there', () => {
+  const fx = JSON.parse(read(path.join(ROOT, 'tools', 'fixtures', 'server-clock.json')));
+  const pinned = new Set([...Object.keys(fx.responses), ...Object.keys(fx.byIdentity || {})]);
+  const bad = [];
+  for (const r of fx.reads) {
+    const file = path.join(ROOT, r.file);
+    if (!fs.existsSync(file) || !new RegExp(r.pattern).test(read(file))) bad.push(`${r.file}: /${r.pattern}/ is gone or changed; update the window in server-clock.json (and the plates it pins)`);
+    for (const p of Array.isArray(r.pinned) ? r.pinned : []) if (!pinned.has(p)) bad.push(`${r.file}: says ${p} is pinned, the fixture has no answer for it`);
+    if (r.plated !== false && !r.pinned && !(r.ms || r.expires)) bad.push(`${r.file}: an unpinned read on a plate needs its window (ms) or its date (expires)`);
+  }
+  // a window written against c.now by name (`c.now - WINDOW`) in the modules whose routes the plates visit must be in the table
+  const listed = new Set(fx.reads.map(r => r.file));
+  for (const f of srcFiles.filter(f => /src\/(browse|social|boards|follows|profiles|chats)\//.test(rel(f)))) {
+    if (/c\.now\s*-\s*[A-Z][A-Z_]{2,}/.test(read(f)) && !listed.has(rel(f))) bad.push(`${rel(f)}: reads c.now against a named window; add it to \`reads\` in tools/fixtures/server-clock.json (pinned, or plated: false with why)`);
+  }
+  assert.deepEqual(bad, []);
+});
