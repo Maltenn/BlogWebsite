@@ -1,0 +1,14 @@
+# Security headers for every page and file the Worker serves from public/ (Workers static assets read this file).
+# The API sets its own headers in src/shared/http.js.
+/*
+  Content-Security-Policy: default-src 'self'; img-src 'self' data: https://i.scdn.co https://*.spotifycdn.com; media-src 'self' https://*.itunes.apple.com https://*.apple.com https://*.mzstatic.com; style-src 'self'; script-src 'self' https://challenges.cloudflare.com; connect-src 'self' wss: ws://localhost:* ws://127.0.0.1:*; font-src 'self'; frame-src https://challenges.cloudflare.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+
+# Apple's Associated Domains fetcher requires JSON for this file, which has no extension, so the
+# asset server cannot type it. Universal links silently do not work without this. Checked after a
+# deploy with `curl -sI https://<origin>/.well-known/apple-app-site-association`. (docs/mobile/)
+/.well-known/apple-app-site-association
+  Content-Type: application/json

@@ -1,0 +1,88 @@
+apply plugin: 'com.android.application'
+
+// Build-time settings shared with the iOS build and the web copy: mobile/ourspace.config.json, overridden by the
+// environment (OURSPACE_ORIGIN, OURSPACE_APP_ID). CI also passes OURSPACE_VERSION_NAME / OURSPACE_VERSION_CODE and the
+// signing variables below. None of them is required: without them this builds an unsigned, version 1 debug-able app.
+def ourspace = new groovy.json.JsonSlurper().parse(file('../../ourspace.config.json'))
+def ourspaceOrigin = System.getenv('OURSPACE_ORIGIN') ?: ourspace.origin
+def ourspaceHost = new URI(ourspaceOrigin).host
+// App Links need a real https host; a dev origin gets one that matches nothing
+def linkHost = (ourspaceOrigin.startsWith('https://') && ourspaceHost != 'localhost') ? ourspaceHost : 'ourspace.invalid'
+
+android {
+    namespace = "com.ourspace.app"
+    compileSdk = rootProject.ext.compileSdkVersion
+    defaultConfig {
+        applicationId (System.getenv('OURSPACE_APP_ID') ?: ourspace.appId)
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode((System.getenv('OURSPACE_VERSION_CODE') ?: '1').toInteger())
+        versionName System.getenv('OURSPACE_VERSION_NAME') ?: '1.0.0'
+        manifestPlaceholders = [ourspaceHost: linkHost]
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        aaptOptions {
+             // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
+             // Default: https://android.googlesource.com/platform/frameworks/base/+/282e181b58cf72b6ca770dc7ca5f91f135444502/tools/aapt/AaptAssets.cpp#61
+            ignoreAssetsPattern = '!.svn:!.git:!.ds_store:!*.scc:.*:!CVS:!thumbs.db:!picasa.ini:!*~'
+        }
+    }
+    // Release signing: only when the keystore is supplied (the Play upload key; GitHub secrets, see .github/workflows/mobile.yml).
+    // Without it `bundleRelease` / `assembleRelease` produce an UNSIGNED artifact, which the workflow uploads as such.
+    signingConfigs {
+        release {
+            if (System.getenv('ANDROID_KEYSTORE_FILE')) {
+                storeFile file(System.getenv('ANDROID_KEYSTORE_FILE'))
+                storePassword System.getenv('ANDROID_KEYSTORE_PASSWORD')
+                keyAlias System.getenv('ANDROID_KEY_ALIAS')
+                keyPassword System.getenv('ANDROID_KEY_PASSWORD')
+            }
+        }
+    }
+    buildTypes {
+        release {
+            if (System.getenv('ANDROID_KEYSTORE_FILE')) signingConfig signingConfigs.release
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+repositories {
+    flatDir{
+        dirs '../capacitor-cordova-android-plugins/src/main/libs', 'libs'
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation "androidx.appcompat:appcompat:$androidxAppCompatVersion"
+    implementation "androidx.coordinatorlayout:coordinatorlayout:$androidxCoordinatorLayoutVersion"
+    implementation "androidx.core:core-splashscreen:$coreSplashScreenVersion"
+    implementation project(':capacitor-android')
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$androidxJunitVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$androidxEspressoCoreVersion"
+    implementation project(':capacitor-cordova-android-plugins')
+}
+
+apply from: 'capacitor.build.gradle'
+
+try {
+    def servicesJSON = file('google-services.json')
+    if (servicesJSON.text) {
+        apply plugin: 'com.google.gms.google-services'
+    }
+} catch(Exception e) {
+    logger.info("google-services.json not found, google-services plugin not applied. Push Notifications won't work")
+}
+
+// A release artifact (assembleRelease / bundleRelease) must be built for a real https origin. CI runs `npm run check:release`
+// first; this is the same refusal for anyone running Gradle by hand. An empty OURSPACE_ORIGIN counts as unset (Groovy's ?:),
+// exactly as in scripts/config.cjs, so it falls back to the dev default in ourspace.config.json, and then this stops it.
+gradle.taskGraph.whenReady { graph ->
+    def releasing = graph.allTasks.any { it.project == project && it.name ==~ /(assemble|bundle)(.*)Release/ }
+    if (releasing && (!ourspaceOrigin.startsWith('https://') || ourspaceHost == 'localhost')) {
+        throw new GradleException("A release build needs OURSPACE_ORIGIN set to the deployed https origin; it is '${ourspaceOrigin}' " +
+            "(${System.getenv('OURSPACE_ORIGIN') ? 'from the environment' : 'OURSPACE_ORIGIN is unset or empty, so this is the dev default in mobile/ourspace.config.json'}).")
+    }
+}

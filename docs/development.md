@@ -1,0 +1,68 @@
+# Development
+
+You need [Node.js](https://nodejs.org) 22 or newer and [git](https://git-scm.com). There is no build step: what's in `public/` and `src/` is what runs.
+
+## Run it locally
+
+```bash
+npm install
+npm run db:local       # create the tables in wrangler's local database (once)
+npm run dev            # http://127.0.0.1:8787
+npm test               # all tests (they start their own Worker on a fresh database, plus the stand-in providers)
+npm run demo           # the whole site with sample people and posts (see below)
+```
+
+Locally you don't need any secrets to sign up with email. **Forgot my password** prints the reset link in the `npm run dev` terminal instead of sending an email. Secrets for trying real provider keys locally go in `.dev.vars`, which is git-ignored.
+
+To start `npm run dev` over with an empty database, delete `.wrangler/state` and run `npm run db:local` again. (`rm -rf .wrangler/state` in a Unix shell, `Remove-Item -Recurse -Force .wrangler/state` in PowerShell.) The tests and the demo have their own databases and never touch it.
+
+## How the demo works
+
+`npm run demo` runs `tools/demo.mjs`, which:
+
+1. applies the migrations to a local database in `.demo/state`;
+2. starts the stand-in providers from `test/helpers/mock-providers.mjs` in "pretend" mode, where "Continue with Google" and "connect Spotify" show a labeled page that asks for a name instead of approving at once;
+3. starts `wrangler dev` with `TEST_PROVIDER_BASE` pointing at the stand-ins, made-up client IDs for every provider (so every sign-in button appears), and a `TOKEN_KEY` it generates once and keeps in `.demo/token-key`;
+4. on the first run, fills the site with sample people, follows, posts, DMs, a group chat (and a group invite waiting for `the_reviewer`), some #ourspace chatter and one report by calling the real API (with a few photos it draws as PNGs and uploads: on statuses, a board thread, a blog cover and `starlight_mia`'s own picture), then makes `malten` a moderator. It writes `.demo/seeded` when it's done. The photos live in the local R2 bucket in `.demo/state` too;
+5. prints password-reset and "confirm your email" emails in its own window;
+6. (phase 7) runs with Cloudflare's Turnstile test keys and the stand-ins' siteverify and DNS-over-HTTPS, `TEST_SIGNALS=1` (so the seeding can sign people up from different networks at once), and the mock AI detector in shadow mode. The sample people sign up through the real form and proof of work and are then marked confirmed; three bot-looking sign-ups from one cloud network wait in the held queue, the nightly cluster check runs once, and two long threads get scored.
+
+The sample people are the `PEOPLE` list in `tools/demo.mjs`; change them there and start over with `npm run demo -- --fresh`. Set the `PORT` environment variable to start the search for a free port somewhere other than 8787, and `DEMO_DIR` to keep a throwaway demo somewhere other than `.demo/`.
+
+### TEST_SIGNALS, TURNSTILE_VERIFY_URL, DOH_URL
+
+Test-only settings, like `TEST_PROVIDER_BASE` below. **Never set them on a real deployment.** `TEST_SIGNALS=1` lets a request say where it comes from (`X-Test-Ip`, and `request.cf`'s fields as JSON in `X-Test-Cf`) and which AI enforcement mode its post is scanned in (`X-Test-Enforcement`), so the tests can be a datacenter or a shared network; it also makes the Worker ignore the real `request.cf` (wrangler fills it with your own network's, which would make test results depend on where you run them). `TURNSTILE_VERIFY_URL` and `DOH_URL` send Turnstile's checks and the email domain's MX lookups to the stand-ins.
+
+### The bot simulator and the detector's evaluation
+
+- `node tools/bot-sim.mjs --base http://127.0.0.1:8787 --log <the server's output>` floods a local server (one running with the test keys and `TEST_SIGNALS=1`, like the demo) with scripted bad sign-ups and spam and reports how many were refused, held or got in, then walks one real person through. `test/api.test.mjs` runs it against the test server. Never point it at a site you don't run.
+- `AI_DETECTOR=mock node tools/eval-detector.mjs` runs the evaluation harness over `eval/` ([eval/README.md](../eval/README.md)).
+
+### TEST_PROVIDER_BASE
+
+`TEST_PROVIDER_BASE` makes the Worker send every sign-in and Spotify request to the server it names instead of to Google, Discord and Spotify. The tests and the demo use it. **Never set it on a real deployment.** It sends every sign-in to whatever server it names. It is not in `wrangler.jsonc`, and `wrangler secret put` should never be used for it.
+
+## Migrations locally
+
+- `npm run db:local` applies every file in `migrations/` that hasn't been applied to the local database. Run it again after adding a file.
+- `npm run db:remote` does the same on the real database (see [deploy.md](deploy.md)).
+- Files are `migrations/NNNN_snake_case.sql`, in sequence. Never edit one that has been applied, anywhere: add a new file instead. The rest of the rules are in [CONVENTIONS.md](../CONVENTIONS.md).
+- A table with an `expires` column needs a line in the cron in `src/index.js`.
+
+## Windows
+
+The tests and the demo run wrangler through node (`node_modules/wrangler/bin/wrangler.js`), because `node_modules/.bin/wrangler` is a shell script that Windows can't spawn. So `npm test` and `npm run demo` work in PowerShell, cmd and Git Bash alike. A few things to know:
+
+- When a test run ends, it stops wrangler's whole process tree (`taskkill`), because workerd would otherwise keep holding the database files. Windows lets go of them a moment later, so the temp folder is removed with a few retries.
+- The deploy commands use `openssl rand` to make secrets. Run those in Git Bash, which includes it.
+
+## Add a blog post
+
+The blog under `public/blog/` is plain static HTML, maintained by hand.
+
+1. Copy one of the existing posts, for example `public/blog/why-do-i-create.html`, to `public/blog/<short-name>.html`.
+2. Keep the chrome: the `<head>` (the stylesheet link and icon), the `os-top` header with the tabs, the `article.post` structure with `post-head`, `post-body` and `post-foot`, and the `os-foot` footer. Change the title, description, post number and date, and the text.
+3. List it in `public/blog/index.html`: add a `.blog-preview` block at the top (the list is newest first) linking to `/blog/<short-name>`, with the post number, the date and a one-line description.
+4. Any image the post uses must be in `public/assets/` and have a line in [public/assets/CREDITS.md](../public/assets/CREDITS.md). `npm test` fails otherwise.
+
+Link to a post as `/blog/<short-name>` (no `.html`). The in-app router leaves `/blog/` to the server, so these pages load as normal pages.

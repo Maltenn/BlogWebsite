@@ -1,0 +1,92 @@
+// ourspace-social: one Cloudflare Worker serves the OurSpace pages (public/) AND the API (/api/*), from the same
+// origin, so the login cookie can be HttpOnly + SameSite=Lax and nothing needs CORS. Storage is one D1 database, and
+// one R2 bucket for members' photos. Live chat goes through one Durable Object per room, which only carries events.
+// Setup and deploy steps: docs/deploy.md; operating it: docs/operations.md. Secrets (set with `wrangler secret put`, never written here):
+//   IP_SALT, TOKEN_KEY                                  required
+//   RESEND_API_KEY, MAIL_FROM                           emails: confirming a new account's address, "forgot my password"
+//   TURNSTILE_SECRET_KEY                                the human check on sign-up, log in and password reset (with the
+//                                                       public TURNSTILE_SITE_KEY below); sign-ups are refused until set
+//   PANGRAM_API_KEY or GPTZERO_API_KEY                  an AI-writing detector, if AI_DETECTOR names one (see below)
+//   SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET            Spotify connections
+//   GOOGLE_ / DISCORD_ CLIENT_ID + CLIENT_SECRET        "other options" sign-in (each appears once it's set)
+//   APNS_KEY_P8, APNS_KEY_ID, APNS_TEAM_ID, APNS_TOPIC  push to iPhones (the .p8 key's text, its id, the team id, the app's
+//                                                       bundle id); APNS_SANDBOX=1 as a variable for builds run from Xcode
+//   FCM_SERVICE_ACCOUNT_JSON                            push to Android (the Firebase service account's key file, as JSON)
+//                                                       Push is off, and silent, until one of these sets is complete (src/push/)
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "ourspace-social",
+  "main": "src/index.js",
+  "compatibility_date": "2026-10-01",
+  "observability": { "enabled": true },
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS",
+    // /u/<name>, /messages, /edit … are client-side routes: any page that isn't a file gets index.html
+    "not_found_handling": "single-page-application",
+    // the API and uploaded photos always reach the Worker, even if a file with the same path ever existed
+    "run_worker_first": ["/api/*", "/media/*"]
+  },
+  "vars": {
+    "MIN_AGE": "13",                     // birthdays below this age can't sign up
+    // The public contact address the legal pages show (/rules, /terms, /privacy): where anyone, member or not, can write
+    // for a Take It Down request or a question. Empty = the pages show no address (src/shared/contact.js). Not a secret.
+    "CONTACT_EMAIL": "",
+    "SIGNUPS_PER_DAY": "200",            // site-wide cap on new accounts per day (spam brake while the site is small)
+    "SIGNUPS_PER_IP_PER_HOUR": "5",
+    // Cloudflare Turnstile's public site key (dashboard → Turnstile → add the site); empty = sign-ups refused on a real
+    // server. Its secret is TURNSTILE_SECRET_KEY. docs/deploy.md.
+    "TURNSTILE_SITE_KEY": "",
+    "POW_BITS": "18",                    // sign-up proof of work: ~260k SHA-256s, 1–2 s in a normal browser (src/trust/form.js)
+    // AI-writing detection (docs/decisions/002, src/ai/): off | workersai | pangram | gptzero (mock: tests and the demo only)
+    "AI_DETECTOR": "off",
+    // shadow: scores go to the moderators, nobody gets a strike. enforce: the strike ladder. Switch only after
+    // tools/eval-detector.mjs measured ≤ 1% false positives on human text (95% upper bound): docs/deploy.md.
+    "AI_ENFORCEMENT": "shadow"
+    // PUSH_SENDS_PER_RUN: left unset on purpose. Each push is one subrequest and the free plan allows 50 per
+    // invocation, so src/push/push.js sends at most 45 a minute (~64,800 a day), round-robin over members so one
+    // busy person can't starve the rest. On a paid plan set this (500, say) to raise it; lines not reached keep
+    // their place and burn no attempt.
+  },
+  // Workers AI, for AI_DETECTOR=workersai only. Left out on purpose: the binding needs a Cloudflare login even for
+  // `wrangler dev`, which would stop the tests and the demo from running offline. Uncomment to try it.
+  // "ai": { "binding": "AI" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "ourspace-social-db",
+      // a placeholder until the first deploy: `npx wrangler d1 create ourspace-social-db`, then paste the id here
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "r2_buckets": [
+    {
+      // members' photos, served by the Worker at /media/<key> (src/media/). Create it once before the first deploy:
+      // `npx wrangler r2 bucket create ourspace-social-media`. Locally (dev, tests, demo) it's emulated in --persist-to.
+      "binding": "MEDIA",
+      "bucket_name": "ourspace-social-media"
+    }
+  ],
+  // the brake on sign-up traffic per network (src/shared/http.js, netLimit): the sign-up forms and posting them, 60 a
+  // minute per network, counted by Cloudflare (no database rows). namespace_id: any number unique in the account.
+  "ratelimits": [
+    { "name": "SIGNUP_LIMITER", "namespace_id": "7001", "simple": { "limit": 60, "period": 60 } }
+  ],
+  "durable_objects": {
+    // one object per chat room (#ourspace, each group chat and DM): src/live/room.js, exported from src/index.js. It
+    // owns no data (D1 does) and uses the WebSocket Hibernation API, so idle rooms cost nothing. SQLite-backed, which
+    // the Workers Free plan requires.
+    "bindings": [{ "name": "ROOMS", "class_name": "Room" }]
+  },
+  "migrations": [
+    { "tag": "v1", "new_sqlite_classes": ["Room"] }
+  ],
+  "triggers": {
+    // housekeeping: expired sessions, sign-in tickets, reset links, old rate-limit rows, loose photo uploads, #ourspace's
+    // rolling window, expired mutes, faded interaction scores, trust data past its time (sign-up signals and AI scores:
+    // 90 days); and nightly, the check for clusters of accounts (src/trust/clusters.js; alerts for moderators only);
+    // and every minute, the push notifications waiting for the phones (src/push/push.js; nothing else runs this often)
+    "crons": ["*/30 * * * *", "17 3 * * *", "* * * * *"]
+  }
+}

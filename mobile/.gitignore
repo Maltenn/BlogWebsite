@@ -1,0 +1,9 @@
+node_modules/
+# the web bundle is copied from ../public by `cap sync`; android/ and ios/ have their own .gitignore for the copies and builds
+*.keystore
+*.jks
+*.p12
+*.mobileprovision
+*.p8
+google-services.json
+GoogleService-Info.plist
