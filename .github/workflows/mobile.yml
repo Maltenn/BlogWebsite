@@ -447,7 +447,6 @@ jobs:
         working-directory: mobile
         env:
           IOS_TEAM_ID: ${{ secrets.IOS_TEAM_ID }}          # (when set, the .well-known file must name <team>.<app id>)
-        env:
           REVIEW_DEMO_PASSWORD: ${{ secrets.REVIEW_DEMO_PASSWORD }}
         run: npm run check:release -- --platform ios
 
